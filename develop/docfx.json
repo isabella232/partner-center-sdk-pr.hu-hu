@@ -31,12 +31,18 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
+      "bilingual_type": "hover over",
+      "disable_contribution_on_translation_quality": [
+        "MT",
+        "MTE75",
+        "MTE95",
+        "Blank"
+      ],
       "uhfHeaderId": "MSDocsHeader-Partner-Center",
       "titleSuffix": "Partner Center app developer",
       "breadcrumb_path": "/partner-center/develop/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_system": "None",
-      "feedback_github_repo": "MicrosoftDocs/partner-center-sdk",
       "feedback_product_url": "https://docs.microsoft.com/answers/topics/partner-center-api.html",
       "author": "JasonWHowell",
       "manager": "jasonh",
