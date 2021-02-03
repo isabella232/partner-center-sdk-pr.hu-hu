@@ -1,0 +1,88 @@
+### YamlMime:Landing
+title: Partnerközpont fejlesztői dokumentációja
+summary: Együttműködés a Microsofttal a partnerfunkciók és képességek fejlesztéséhez.
+metadata:
+  title: Partnerközpont fejlesztői dokumentációja
+  description: Együttműködés a Microsofttal a partnerfunkciók és képességek fejlesztéséhez.
+  ms.service: partner-dashboard
+  ms.subservice: partnercenter-sdk
+  ms.topic: landing-page
+  ms.collection: collection
+  author: jasonwhowell
+  ms.author: jasonh
+  ms.date: 01/08/2020
+  ms.openlocfilehash: 12c6cba5f489b9ab7c3394629c319a43d2d9163b
+  ms.sourcegitcommit: 529b07030a874d644cf947790f4b53cdff438dd4
+  ms.translationtype: MT
+  ms.contentlocale: hu-HU
+  ms.lasthandoff: 09/22/2020
+  ms.locfileid: "97766619"
+landingContent:
+- title: Fejlesztés a partnerközponttal
+  linkLists:
+  - linkListType: how-to-guide
+    links:
+    - text: A fejlesztői fiók és a hitelesítés konfigurálása
+      url: partner-center-authentication.md
+    - text: A környezet kialakítása
+      url: get-started.md
+  - linkListType: whats-new
+    links:
+    - text: Azure-csomag létrehozása az API-kkal
+      url: create-azure-plan.md
+  - linkListType: concept
+    links:
+    - text: Kódminták
+      url: partner-center-samples.md
+    - text: Példaforgatókönyvek
+      url: scenarios.md
+- title: A .NET SDK használata (1.16.1-es előzetes verzió)
+  linkLists:
+  - linkListType: download
+    links:
+    - text: Partnerközpont – .NET SDK
+      url: https://www.nuget.org/packages/Microsoft.Store.PartnerCenter
+    - text: Partnerközpont – .NET-minták
+      url: https://github.com/microsoft/Partner-Center-DotNet-Samples
+  - linkListType: reference
+    links:
+    - text: Felügyelt .NET API-referencia
+      url: /dotnet/api/
+    - text: A .NET SDK verzióinak kiadási megjegyzései
+      url: dotnet-release-notes.md
+- title: A REST API-k használata
+  linkLists:
+  - linkListType: reference
+    links:
+    - text: Partnerközpont – REST API-referencia
+      url: partner-center-rest-api-reference.md
+- title: A Java SDK használata (nyílt forráskódú)
+  linkLists:
+  - linkListType: download
+    links:
+    - text: A partnerközpont Java SDK-jának letöltése
+      url: https://search.maven.org/artifact/com.microsoft.store/partnercenter
+    - text: Java SDK GitHub-adattára (kérdések, hozzájárulások és problémák)
+      url: https://github.com/microsoft/Partner-Center-Java
+  - linkListType: reference
+    links:
+    - text: Java API-referencia
+      url: /java/partnercenter/overview
+- title: A PowerShell-modul használata (nyílt forráskódú)
+  linkLists:
+  - linkListType: download
+    links:
+    - text: A PowerShell-modul telepítése
+      url: https://www.powershellgallery.com/packages/PartnerCenter
+    - text: PowerShell-modul GitHub-adattára (kérdések, hozzájárulások és problémák)
+      url: https://github.com/microsoft/Partner-Center-PowerShell
+  - linkListType: reference
+    links:
+    - text: PowerShell-parancsok
+      url: /powershell/partnercenter
+- title: A Swagger API használata CSP-partnereknél
+  linkLists:
+  - linkListType: reference
+    links:
+    - text: Swagger API-hivatkozás a partnerközpont szolgáltatásaihoz (CSP-partnereknél)
+      url: https://apidocs.microsoft.com/services/partnercenter
