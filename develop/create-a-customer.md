@@ -1,0 +1,297 @@
+---
+title: Ügyfél létrehozása
+description: Megtudhatja, hogyan használhatja a Cloud Solution Provider (CSP) partner a partner Center API-kat új ügyfél létrehozásához. A cikk leírja az előfeltételeket, és hogy mi történik.
+ms.date: 11/13/2020
+ms.service: partner-dashboard
+ms.subservice: partnercenter-sdk
+author: dineshvu
+ms.author: dineshvu
+ms.openlocfilehash: 3bc8081c682bdf522bcb0ca218f16cafab7b3a99
+ms.sourcegitcommit: 01e75175077611da92175c777a440a594fb05797
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "97768659"
+---
+# <a name="create-a-customer-using-partner-center-apis"></a><span data-ttu-id="46845-104">Ügyfél létrehozása a partner Center API-kkal</span><span class="sxs-lookup"><span data-stu-id="46845-104">Create a customer using Partner Center APIs</span></span>
+
+<span data-ttu-id="46845-105">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="46845-105">**Applies to:**</span></span>
+
+- <span data-ttu-id="46845-106">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="46845-106">Partner Center</span></span>
+- <span data-ttu-id="46845-107">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="46845-107">Partner Center operated by 21Vianet</span></span>
+- <span data-ttu-id="46845-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="46845-108">Partner Center for Microsoft Cloud for US Government</span></span>
+
+<span data-ttu-id="46845-109">Ez a cikk azt ismerteti, hogyan lehet új ügyfelet létrehozni.</span><span class="sxs-lookup"><span data-stu-id="46845-109">This article explains how to create a new customer.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="46845-110">Ha Ön közvetett szolgáltató, és szeretné létrehozni az ügyfelet egy közvetett viszonteladóhoz, tekintse meg az [ügyfél létrehozása közvetett viszonteladóhoz](create-a-customer-for-an-indirect-reseller.md)című témakört.</span><span class="sxs-lookup"><span data-stu-id="46845-110">If you are an indirect provider and you want to create a customer for an indirect reseller, please see [Create a customer for an indirect reseller](create-a-customer-for-an-indirect-reseller.md).</span></span>
+
+<span data-ttu-id="46845-111">Felhőalapú megoldás-szolgáltatói (CSP) partnerként, amikor létrehoz egy ügyfelet, a rendeléseket az ügyfél nevében helyezheti el.</span><span class="sxs-lookup"><span data-stu-id="46845-111">As a cloud solution provider (CSP) partner, when you create a customer you can place orders on behalf of the customer.</span></span> <span data-ttu-id="46845-112">Amikor létrehoz egy ügyfelet, a következőket is létrehozhatja:</span><span class="sxs-lookup"><span data-stu-id="46845-112">When you create a customer, you also create:</span></span>
+
+- <span data-ttu-id="46845-113">Az ügyfél Azure Active Directory (AD) bérlői objektuma.</span><span class="sxs-lookup"><span data-stu-id="46845-113">An Azure Active Directory (AD) tenant object for the customer.</span></span>
+
+- <span data-ttu-id="46845-114">A viszonteladó és az ügyfél közötti kapcsolat, amelyet delegált rendszergazdai jogosultságokkal használtak.</span><span class="sxs-lookup"><span data-stu-id="46845-114">A relationship between the reseller and customer, used for delegated admin privileges.</span></span>
+
+- <span data-ttu-id="46845-115">Egy Felhasználónév és egy jelszó, amely az ügyfél rendszergazdájaként való bejelentkezéshez szükséges.</span><span class="sxs-lookup"><span data-stu-id="46845-115">A user name and password to sign in as an admin for the customer.</span></span>
+
+<span data-ttu-id="46845-116">Az ügyfél létrehozása után mindenképp mentse az ügyfél-azonosítót és az Azure AD-adatokat a partner Center SDK-val való jövőbeli használatra (például Fiókkezelés).</span><span class="sxs-lookup"><span data-stu-id="46845-116">Once the customer is created, be sure to save the customer ID and Azure AD details for future use with the Partner Center SDK (for example, account management).</span></span>
+
+## <a name="prerequisites"></a><span data-ttu-id="46845-117">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="46845-117">Prerequisites</span></span>
+
+- <span data-ttu-id="46845-118">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="46845-118">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="46845-119">Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.</span><span class="sxs-lookup"><span data-stu-id="46845-119">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="46845-120">Az ügyfél-bérlő létrehozásához érvényes fizikai címeket kell megadnia a létrehozási folyamat során.</span><span class="sxs-lookup"><span data-stu-id="46845-120">To create a customer tenant you must provide a valid physical address during the creation process.</span></span> <span data-ttu-id="46845-121">A címek a [címek ellenőrzése](validate-an-address.md) forgatókönyvben ismertetett lépéseket követve ellenőrizhetők.</span><span class="sxs-lookup"><span data-stu-id="46845-121">An address can be validated by following the steps outlined in the [Validate an address](validate-an-address.md) scenario.</span></span> <span data-ttu-id="46845-122">Ha a sandbox-környezet érvénytelen címe alapján hoz létre egy ügyfelet, nem fogja tudni törölni az ügyfél bérlőjét.</span><span class="sxs-lookup"><span data-stu-id="46845-122">If you create a customer using an invalid address in the sandbox environment, you will not be able to delete that customer tenant.</span></span>
+
+## <a name="c"></a><span data-ttu-id="46845-123">C\#</span><span class="sxs-lookup"><span data-stu-id="46845-123">C\#</span></span>
+
+<span data-ttu-id="46845-124">Ügyfél hozzáadása:</span><span class="sxs-lookup"><span data-stu-id="46845-124">To add a customer:</span></span>
+
+1. <span data-ttu-id="46845-125">Új [**ügyfél**](/dotnet/api/microsoft.store.partnercenter.models.customers.customer) -objektum példányának létrehozása.</span><span class="sxs-lookup"><span data-stu-id="46845-125">Instantiate a new [**Customer**](/dotnet/api/microsoft.store.partnercenter.models.customers.customer) object.</span></span> <span data-ttu-id="46845-126">Ügyeljen arra, hogy kitöltse a [**BillingProfile**](/dotnet/api/microsoft.store.partnercenter.models.customers.customerbillingprofile) és a [**CompanyProfile**](/dotnet/api/microsoft.store.partnercenter.models.customers.customercompanyprofile).</span><span class="sxs-lookup"><span data-stu-id="46845-126">Be sure to fill in the [**BillingProfile**](/dotnet/api/microsoft.store.partnercenter.models.customers.customerbillingprofile) and [**CompanyProfile**](/dotnet/api/microsoft.store.partnercenter.models.customers.customercompanyprofile).</span></span>
+
+2. <span data-ttu-id="46845-127">Adja hozzá az új ügyfelet a [**IAggregatePartner. Customs**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményhez a [**create**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.create) vagy a [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.createasync)hívásával.</span><span class="sxs-lookup"><span data-stu-id="46845-127">Add the new customer to your [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) collection by calling [**Create**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.create) or [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.createasync).</span></span>
+
+### <a name="c-example"></a><span data-ttu-id="46845-128">C \# példa</span><span class="sxs-lookup"><span data-stu-id="46845-128">C\# example</span></span>
+
+```csharp
+// IAggregatePartner partnerOperations;
+
+var partnerOperations = this.Context.UserPartnerOperations;
+
+var customerToCreate = new Customer()
+{
+    CompanyProfile = new CustomerCompanyProfile()
+    {
+        Domain = string.Format(CultureInfo.InvariantCulture,
+            "SampleApplication{0}.{1}",
+            new Random().Next(),
+            this.Context.Configuration.Scenario.CustomerDomainSuffix),
+        //// OrganizationRegistrationNumber = "123456" // Please add if in specific country that requires
+    },
+    BillingProfile = new CustomerBillingProfile()
+    {
+        Culture = "EN-US",
+        Email = "someone@example.com",
+        Language = "En",
+        CompanyName = "Some Company" + new Random().Next(),
+        DefaultAddress = new Address()
+        {
+            FirstName = "Tania",
+            MiddleName = "MiddleName",
+            LastName = "Carr",
+            AddressLine1 = "One Microsoft Way",
+            City = "Redmond",
+            State = "WA",
+            Country = "US",
+            PostalCode = "98052",
+            PhoneNumber = ""
+        }
+    }
+};
+
+var newCustomer = partnerOperations.Customers.Create(customerToCreate);
+```
+
+<span data-ttu-id="46845-129">**Példa**: [konzol tesztelési alkalmazás](console-test-app.md).</span><span class="sxs-lookup"><span data-stu-id="46845-129">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="46845-130">**Projekt**: partner Center SDK Samples **osztály**: CreateCustomer.cs</span><span class="sxs-lookup"><span data-stu-id="46845-130">**Project**: Partner Center SDK Samples **Class**: CreateCustomer.cs</span></span>
+
+## <a name="java"></a><span data-ttu-id="46845-131">Java</span><span class="sxs-lookup"><span data-stu-id="46845-131">Java</span></span>
+
+[!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
+
+<span data-ttu-id="46845-132">Új ügyfél létrehozása:</span><span class="sxs-lookup"><span data-stu-id="46845-132">To create a new customer:</span></span>
+
+1. <span data-ttu-id="46845-133">Hozzon létre egy új példányt a **CustomerBillingProfile** és a **CustomerCompanyProfile** objektumokhoz.</span><span class="sxs-lookup"><span data-stu-id="46845-133">Create a new instance of the **CustomerBillingProfile** and the **CustomerCompanyProfile** objects.</span></span> <span data-ttu-id="46845-134">Ügyeljen arra, hogy feltöltse a szükséges mezőket.</span><span class="sxs-lookup"><span data-stu-id="46845-134">Be sure to populate the required fields.</span></span>
+
+2. <span data-ttu-id="46845-135">Hozza létre az ügyfelet a **IAggregatePartner. getCustomers (). Create** függvény meghívásával.</span><span class="sxs-lookup"><span data-stu-id="46845-135">Create the customer by calling the **IAggregatePartner.getCustomers().create** function.</span></span>
+
+### <a name="java-example"></a><span data-ttu-id="46845-136">Java-példa</span><span class="sxs-lookup"><span data-stu-id="46845-136">Java example</span></span>
+
+```java
+// IAggregatePartner partnerOperations;
+
+Address address = new Address();
+
+address.setFirstName( "Gena" );
+address.setLastName( "Soto" );
+address.setAddressLine1( "One Microsoft Way" );
+address.setCity( "Redmond" );
+address.setState( "WA" );
+address.setCountry( "US" );
+address.setPostalCode( "98052" );
+address.setPhoneNumber( "4255550101" );
+
+CustomerBillingProfile billingProfile = new CustomerBillingProfile();
+
+billingProfile.setCulture( "en-US" );
+billingProfile.setEmail( "gena@wingtiptoys.com" );
+billingProfile.setLanguage( "en" );
+billingProfile.setCompanyName( "Wingtip Toys" + new Random().nextInt() );
+billingProfile.setDefaultAddress( address );
+
+CustomerCompanyProfile companyProfile = new CustomerCompanyProfile();
+
+companyProfile.setDomain( "WingtipToys" + Math.abs( new Random().nextInt() ) + ".onmicrosoft.com" );
+
+Customer customerToCreate = new Customer();
+
+customerToCreate.setBillingProfile( billingProfile );
+customerToCreate.setCompanyProfile( companyProfile );
+
+Customer newCustomer = partnerOperations.getCustomers().create( customerToCreate );
+```
+
+## <a name="powershell"></a><span data-ttu-id="46845-137">PowerShell</span><span class="sxs-lookup"><span data-stu-id="46845-137">PowerShell</span></span>
+
+[!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
+
+<span data-ttu-id="46845-138">Ügyfél létrehozásához hajtsa végre a [**New-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/New-PartnerCustomer.md) parancsot.</span><span class="sxs-lookup"><span data-stu-id="46845-138">To create a customer execute the [**New-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/New-PartnerCustomer.md) command.</span></span>
+
+```powershell
+New-PartnerCustomer -BillingAddressLine1 '1 Microsoft Way' -BillingAddressCity 'Redmond' -BillingAddressCountry 'US' -BillingAddressPostalCode '98052' -BillingAddressState 'WA' -ContactEmail 'jdoe@customer.com' -ContactFirstName 'Jane' -ContactLastName 'Doe' -Culture 'en-US' -Domain 'newcustomer.onmicrosoft.com' -Language 'en' -Name 'New Customer'
+```
+
+## <a name="rest-request"></a><span data-ttu-id="46845-139">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="46845-139">REST request</span></span>
+
+### <a name="request-syntax"></a><span data-ttu-id="46845-140">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="46845-140">Request syntax</span></span>
+
+| <span data-ttu-id="46845-141">Metódus</span><span class="sxs-lookup"><span data-stu-id="46845-141">Method</span></span>   | <span data-ttu-id="46845-142">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="46845-142">Request URI</span></span>                                                       |
+|----------|-------------------------------------------------------------------|
+| <span data-ttu-id="46845-143">**UTÁNI**</span><span class="sxs-lookup"><span data-stu-id="46845-143">**POST**</span></span> | <span data-ttu-id="46845-144">[*{baseURL}*](partner-center-rest-urls.md)/v1/Customers http/1.1</span><span class="sxs-lookup"><span data-stu-id="46845-144">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers HTTP/1.1</span></span> |
+
+### <a name="request-headers"></a><span data-ttu-id="46845-145">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="46845-145">Request headers</span></span>
+
+- <span data-ttu-id="46845-146">Ez az API idempotens (ez nem eredményez eltérő eredményt, ha többször hívja meg).</span><span class="sxs-lookup"><span data-stu-id="46845-146">This API is idempotent (it will not yield a different result if you call it multiple times).</span></span>
+
+- <span data-ttu-id="46845-147">A kérelem AZONOSÍTÓjának és korrelációs AZONOSÍTÓjának megadása kötelező.</span><span class="sxs-lookup"><span data-stu-id="46845-147">A request ID and correlation ID are required.</span></span>
+
+- <span data-ttu-id="46845-148">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="46845-148">For more information, see [Partner Center REST headers](headers.md).</span></span>
+
+### <a name="request-body"></a><span data-ttu-id="46845-149">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="46845-149">Request body</span></span>
+
+<span data-ttu-id="46845-150">Ez a táblázat a kérelem törzsében szereplő kötelező tulajdonságokat ismerteti.</span><span class="sxs-lookup"><span data-stu-id="46845-150">This table describes the required properties in the request body.</span></span>
+
+| <span data-ttu-id="46845-151">Név</span><span class="sxs-lookup"><span data-stu-id="46845-151">Name</span></span>                              | <span data-ttu-id="46845-152">Típus</span><span class="sxs-lookup"><span data-stu-id="46845-152">Type</span></span>   | <span data-ttu-id="46845-153">Leírás</span><span class="sxs-lookup"><span data-stu-id="46845-153">Description</span></span>                                 |
+|-----------------------------------|--------|---------------------------------------------|
+| [<span data-ttu-id="46845-154">BillingProfile</span><span class="sxs-lookup"><span data-stu-id="46845-154">BillingProfile</span></span>](#billing-profile) | <span data-ttu-id="46845-155">object</span><span class="sxs-lookup"><span data-stu-id="46845-155">object</span></span> | <span data-ttu-id="46845-156">Az ügyfél számlázási profiljának adatai.</span><span class="sxs-lookup"><span data-stu-id="46845-156">The customer's billing profile information.</span></span> |
+| [<span data-ttu-id="46845-157">CompanyProfile</span><span class="sxs-lookup"><span data-stu-id="46845-157">CompanyProfile</span></span>](#company-profile) | <span data-ttu-id="46845-158">object</span><span class="sxs-lookup"><span data-stu-id="46845-158">object</span></span> | <span data-ttu-id="46845-159">Az ügyfél vállalati profiljának adatai.</span><span class="sxs-lookup"><span data-stu-id="46845-159">The customer's company profile information.</span></span> |
+
+#### <a name="billing-profile"></a><span data-ttu-id="46845-160">Számlázási profil</span><span class="sxs-lookup"><span data-stu-id="46845-160">Billing profile</span></span>
+
+<span data-ttu-id="46845-161">Ez a táblázat az új ügyfelek létrehozásához szükséges [CustomerBillingProfile](customer-resources.md#customerbillingprofile) -erőforrás minimálisan szükséges mezőit ismerteti.</span><span class="sxs-lookup"><span data-stu-id="46845-161">This table describes the minimum required fields from the [CustomerBillingProfile](customer-resources.md#customerbillingprofile) resource needed to create a new customer.</span></span>
+
+| <span data-ttu-id="46845-162">Név</span><span class="sxs-lookup"><span data-stu-id="46845-162">Name</span></span>             | <span data-ttu-id="46845-163">Típus</span><span class="sxs-lookup"><span data-stu-id="46845-163">Type</span></span>                                     | <span data-ttu-id="46845-164">Leírás</span><span class="sxs-lookup"><span data-stu-id="46845-164">Description</span></span>                                                                                                                                                                                                     |
+|------------------|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span data-ttu-id="46845-165">e-mail</span><span class="sxs-lookup"><span data-stu-id="46845-165">email</span></span>            | <span data-ttu-id="46845-166">sztring</span><span class="sxs-lookup"><span data-stu-id="46845-166">string</span></span>                                   | <span data-ttu-id="46845-167">Az ügyfél e-mail-címe.</span><span class="sxs-lookup"><span data-stu-id="46845-167">The customer's email address.</span></span>                                                                                                                                                                                   |
+| <span data-ttu-id="46845-168">kulturális környezet</span><span class="sxs-lookup"><span data-stu-id="46845-168">culture</span></span>          | <span data-ttu-id="46845-169">sztring</span><span class="sxs-lookup"><span data-stu-id="46845-169">string</span></span>                                   | <span data-ttu-id="46845-170">Az előnyben részesített kulturális környezet a kommunikációhoz és a pénznemhez, mint például az "en-US".</span><span class="sxs-lookup"><span data-stu-id="46845-170">Their preferred culture for communication and currency, such as "en-US".</span></span> <span data-ttu-id="46845-171">Lásd: a [partneri központ által támogatott nyelvek és területi beállítások](partner-center-supported-languages-and-locales.md) a támogatott kulturális környezetekhez.</span><span class="sxs-lookup"><span data-stu-id="46845-171">See [Partner Center supported languages and locales](partner-center-supported-languages-and-locales.md) for the supported cultures.</span></span> |
+| <span data-ttu-id="46845-172">language</span><span class="sxs-lookup"><span data-stu-id="46845-172">language</span></span>         | <span data-ttu-id="46845-173">sztring</span><span class="sxs-lookup"><span data-stu-id="46845-173">string</span></span>                                   | <span data-ttu-id="46845-174">Az alapértelmezett nyelv.</span><span class="sxs-lookup"><span data-stu-id="46845-174">The default language.</span></span> <span data-ttu-id="46845-175">Két karakterből álló nyelvi kód (például `en` vagy `fr` ) támogatott.</span><span class="sxs-lookup"><span data-stu-id="46845-175">Two character language codes (for example `en` or `fr`) are supported.</span></span>                                                                                                                                |
+| <span data-ttu-id="46845-176">cég \_ neve</span><span class="sxs-lookup"><span data-stu-id="46845-176">company\_name</span></span>    | <span data-ttu-id="46845-177">sztring</span><span class="sxs-lookup"><span data-stu-id="46845-177">string</span></span>                                   | <span data-ttu-id="46845-178">A regisztrált vállalat/szervezet neve.</span><span class="sxs-lookup"><span data-stu-id="46845-178">The registered company/organization name.</span></span>                                                                                                                                                                       |
+| <span data-ttu-id="46845-179">alapértelmezett \_ címe</span><span class="sxs-lookup"><span data-stu-id="46845-179">default\_address</span></span> | [<span data-ttu-id="46845-180">Cím</span><span class="sxs-lookup"><span data-stu-id="46845-180">Address</span></span>](utility-resources.md#address) | <span data-ttu-id="46845-181">Az ügyfél vállalatának/szervezetének regisztrált címe.</span><span class="sxs-lookup"><span data-stu-id="46845-181">The registered address of the customer's company/organization.</span></span> <span data-ttu-id="46845-182">A hosszra vonatkozó korlátozásokkal kapcsolatos információkért tekintse meg a [címe](utility-resources.md#address) erőforrását.</span><span class="sxs-lookup"><span data-stu-id="46845-182">See the [Address](utility-resources.md#address) resource for information on any length limitations.</span></span>                                             |
+
+#### <a name="company-profile"></a><span data-ttu-id="46845-183">Vállalati profil</span><span class="sxs-lookup"><span data-stu-id="46845-183">Company profile</span></span>
+
+<span data-ttu-id="46845-184">Ez a táblázat az új ügyfelek létrehozásához szükséges [CustomerCompanyProfile](customer-resources.md#customercompanyprofile) -erőforrás minimálisan szükséges mezőit ismerteti.</span><span class="sxs-lookup"><span data-stu-id="46845-184">This table describes the minimum required fields from the [CustomerCompanyProfile](customer-resources.md#customercompanyprofile) resource needed to create a new customer.</span></span>
+
+| <span data-ttu-id="46845-185">Név</span><span class="sxs-lookup"><span data-stu-id="46845-185">Name</span></span>   | <span data-ttu-id="46845-186">Típus</span><span class="sxs-lookup"><span data-stu-id="46845-186">Type</span></span>   | <span data-ttu-id="46845-187">Leírás</span><span class="sxs-lookup"><span data-stu-id="46845-187">Description</span></span>                                                  |
+|--------|--------|--------------------------------------------------------------|
+| <span data-ttu-id="46845-188">domain</span><span class="sxs-lookup"><span data-stu-id="46845-188">domain</span></span> | <span data-ttu-id="46845-189">sztring</span><span class="sxs-lookup"><span data-stu-id="46845-189">string</span></span> | <span data-ttu-id="46845-190">Az ügyfél tartományának neve, például contoso.onmicrosoft.com.</span><span class="sxs-lookup"><span data-stu-id="46845-190">The customer's domain name, such as contoso.onmicrosoft.com.</span></span> |
+|<span data-ttu-id="46845-191">organizationRegistrationNumber</span><span class="sxs-lookup"><span data-stu-id="46845-191">organizationRegistrationNumber</span></span>|<span data-ttu-id="46845-192">Sztring</span><span class="sxs-lookup"><span data-stu-id="46845-192">String</span></span>|<span data-ttu-id="46845-193">Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban).</span><span class="sxs-lookup"><span data-stu-id="46845-193">The customer’s organization registration number (also referred to as INN number in certain countries).</span></span> <span data-ttu-id="46845-194">Csak a következő országokban található ügyfél vállalata/szervezete számára szükséges.</span><span class="sxs-lookup"><span data-stu-id="46845-194">Only required for customer’s company/organization located in the following countries.</span></span> <span data-ttu-id="46845-195">Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA).</span><span class="sxs-lookup"><span data-stu-id="46845-195">Armenia(AM), Azerbaijan(AZ), Belarus(BY), Hungary(HU), Kazakhstan(KZ), Kyrgyzstan(KG), Moldova(MD), Russia(RU), Tajikistan(TJ), Uzbekistan(UZ), Ukraine(UA).</span></span> <span data-ttu-id="46845-196">Az ügyfél más országokban található vállalata/szervezete számára nem adható meg.</span><span class="sxs-lookup"><span data-stu-id="46845-196">For customer’s company/organization located in other countries this should not be specified.</span></span>|
+
+
+### <a name="request-example"></a><span data-ttu-id="46845-197">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="46845-197">Request example</span></span>
+
+```http
+POST https://api.partnercenter.microsoft.com/v1/customers HTTP/1.1
+Authorization: Bearer <token>
+Accept: application/json
+MS-RequestId: 94e4e214-6b06-4fb7-96d1-94d559f9b47f
+MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
+X-Locale: en-US
+Content-Type: application/json
+Host: api.partnercenter.microsoft.com
+Content-Length: 789
+Expect: 100-continue
+Connection: Keep-Alive
+
+{
+    "CompanyProfile": {
+        "Domain": "xyz.ccsctp.net",
+    },
+    "BillingProfile": {
+        "Culture": "EN-US",
+        "Email": "test@outlook.com",
+        "Language": "en",
+        "CompanyName": "test company",
+        "DefaultAddress": {
+            "FirstName": "Test",
+            "LastName": "Test",
+            "AddressLine1": "One Microsoft Way",
+            "City": "Redmond",
+            "State": "WA",
+            "PostalCode": "98052",
+            "Country": "US",
+        }
+    }
+}
+```
+
+## <a name="rest-response"></a><span data-ttu-id="46845-198">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="46845-198">REST response</span></span>
+
+<span data-ttu-id="46845-199">Ha a művelet sikeres, az API az új ügyfélhez tartozó [ügyfél](customer-resources.md#customer) -erőforrást adja vissza.</span><span class="sxs-lookup"><span data-stu-id="46845-199">If successful, this API returns a [Customer](customer-resources.md#customer) resource for the new customer.</span></span> <span data-ttu-id="46845-200">Mentse az ügyfél-azonosítót és az Azure AD-adatokat későbbi használatra a partner Center SDK-val.</span><span class="sxs-lookup"><span data-stu-id="46845-200">Save the customer ID and Azure AD details for future use with the Partner Center SDK.</span></span> <span data-ttu-id="46845-201">Szüksége lesz rájuk a fiókok felügyeletéhez, például:.</span><span class="sxs-lookup"><span data-stu-id="46845-201">You will need them for use with account management, for example.</span></span>
+
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="46845-202">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="46845-202">Response success and error codes</span></span>
+
+<span data-ttu-id="46845-203">A válaszok olyan HTTP-állapotkódot mutatnak be, amely sikeres vagy sikertelen, valamint további hibakeresési információkat jelez.</span><span class="sxs-lookup"><span data-stu-id="46845-203">Responses come with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="46845-204">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="46845-204">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="46845-205">A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.</span><span class="sxs-lookup"><span data-stu-id="46845-205">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
+
+### <a name="response-example"></a><span data-ttu-id="46845-206">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="46845-206">Response example</span></span>
+
+```http
+HTTP/1.1 201 Created
+Content-Length: 834
+Content-Type: application/json; charset=utf-8
+MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
+MS-RequestId: 94e4e214-6b06-4fb7-96d1-94d559f9b47f
+MS-CV: ObwhuhD2tUKJoM+Z.0
+MS-ServerId: 202010223
+Date: Tue, 14 Feb 2017 20:06:02 GMT
+
+{
+    "id": "dfd8cc0a-c592-468c-8461-869a38d24738",
+    "commerceId": "0a4ce58a-6f96-4273-8035-d9c7d31b9ba4",
+    "companyProfile": {
+        "tenantId": "dfd8cc0a-c592-468c-8461-869a38d24738",
+        "domain": "xyz.ccsctp.net",
+        "attributes": {
+            "objectType": "CustomerCompanyProfile"
+        }
+    },
+    "billingProfile": {
+        "id": "d17c0275-da92-5c33-9032-782ef1d0b69b",
+        "email": "test@outlook.com",
+        "culture": "en-US",
+        "language": "en",
+        "companyName": "test company",
+        "defaultAddress": {
+            "country": "US",
+            "city": "Redmond",
+            "state": "WA",
+            "addressLine1": "One Microsoft Way",
+            "postalCode": "98052",
+            "firstName": "Test",
+            "lastName": "Test",
+            "phoneNumber": ""
+        },
+        "attributes": {
+            "etag": "5920358838484612121",
+            "objectType": "CustomerBillingProfile"
+        }
+    },
+    "relationshipToPartner": "none",
+    "userCredentials": {
+        "userName": "admin",
+        "password": "=;;n.=s9Z"
+    },
+    "attributes": {
+        "objectType": "Customer"
+    }
+}
+```

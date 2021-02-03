@@ -1,0 +1,559 @@
+- name: Partnerközpont – fejlesztői forrásanyagok
+  href: index.yml
+- name: Bevezetés
+  href: get-started.md
+  items:
+    - name: Fejlesztés a Partner Center for Microsoft National Cloudhoz
+      href: developing-for-partner-center-for-microsoft-national-cloud.md
+      items:
+        - name: Alkalmazás részleteinek regisztrálása a partnerközpontban
+          href: create-apps-for-partner-center-for-microsoft-national-clouds.md
+    - name: Partnerközpont – minták
+      href: partner-center-samples.md
+      items:
+        - name: CSP-ügyfél – webes áruház oldala
+          href: csp-customer-web-storefront.md
+        - name: CSP-ügyfél – áruházkészítő – első lépések
+          href: csp-customer-storefront-builder-quick-start-guide-.md
+        - name: Konzolos tesztalkalmazás
+          href: console-test-app.md
+    - name: API hozzáférésének beállítása a Partnerközpontban
+      href: set-up-api-access-in-partner-center.md
+    - name: Útmutatás az API-szabályozáshoz
+      href: api-throttling-guidance.md
+    - name: Partnerközpont – hitelesítés
+      href: partner-center-authentication.md
+    - name: Biztonságos alkalmazásmodell engedélyezése
+      href: enable-secure-app-model.md
+    - name: Korai felhasználói program
+      href: early-adopter-program.md
+- name: Forgatókönyvek
+  href: scenarios.md
+  items:
+    - name: Elemzés
+      href: usage-analytics.md
+      items:
+        - name: Partnerközpont-elemzések – forrásanyagok
+          href: partner-center-analytics-resources.md
+    - name: Az összes Azure-beli használatelemzési adat lekérése
+      href: get-all-azure-usage-analytics.md
+      items:
+        - name: Az összes közvetett viszonteladó elemzési adatainak lekérése
+          href: get-all-indirect-resellers-analytics.md
+        - name: Az összes javaslat elemzési adatainak lekérése
+          href: get-all-referrals-analytics.md
+        - name: Az összes keresés elemzési adatainak lekérése
+          href: get-all-search-analytics.md
+        - name: Az összes előfizetés elemzési adatainak lekérése
+          href: get-all-subscription-analytics.md
+        - name: Előfizetés keresési lekérdezés szerint szűrt elemzési adatainak lekérése
+          href: get-subscription-analytics-by-search-query.md
+        - name: Előfizetés dátumok vagy feltételek szerint csoportosított elemzési adatainak lekérése
+          href: get-subscription-analytics-grouped-by-dates-or-terms.md
+        - name: Licencek üzembehelyezési adatainak lekérése
+          href: get-licenses-deployment-information.md
+        - name: Licencek használati adatainak lekérése
+          href: get-licenses-usage-information.md
+        - name: Ügyféllicencek üzembehelyezési adatainak lekérése
+          href: get-customer-licenses-deployment-information.md
+        - name: Ügyféllicencek használati adatainak lekérése
+          href: get-customer-licenses-usage-information.md
+        - name: Partnerlicencek üzembehelyezési adatainak lekérése
+          href: get-partner-licenses-deployment-information.md
+        - name: Partnerlicencek használati adatainak lekérése
+          href: get-partner-licenses-usage-information.md
+    - name: Auditálási műveletek
+      href: audit.md
+      items:
+        - name: Partnerközpont-tevékenység rekordjának lekérése
+          href: get-a-record-of-partner-center-activity-by-user.md
+    - name: Eszköz üzembe helyezése
+      href: device-deployment.md
+      items:
+        - name: Új konfigurációs szabályzat létrehozása a megadott ügyfélnél
+          href: create-a-new-configuration-policy-for-the-specified-customer.md
+        - name: Konfigurációs szabályzat törlése a megadott ügyfélnél
+          href: delete-a-configuration-policy-for-the-specified-customer.md
+        - name: Egy ügyfél szabályzati listájának lekérése
+          href: get-a-list-of-a-customer-s-policies.md
+        - name: Egy ügyfél konfigurációs szabályzatának lekérése
+          href: retrieve-a-customer-s-configuration-policy.md
+        - name: Konfigurációs szabályzat frissítése a megadott ügyfélnél
+          href: update-a-configuration-policy-for-the-specified-customer.md
+        - name: Eszköz kötegelt feltöltési állapotának lekérése
+          href: get-the-status-of-a-device-batch-upload.md
+        - name: A megadott ügyfél eszközköteglistájának lekérése
+          href: get-the-list-of-device-batches-for-the-specified-customer.md
+        - name: A megadott köteg és ügyfél eszközlistájának lekérése
+          href: get-a-list-of-devices-for-the-specified-batch-and-customer.md
+        - name: Eszközök listájának feltöltése új köteg a megadott ügyfél számára történő létrehozásához
+          href: upload-a-list-of-devices-to-create-a-new-batch-for-the-specified-customer.md
+        - name: Eszközök listájának feltöltése a megadott ügyfél meglévő kötegére
+          href: upload-a-list-of-devices-for-the-specified-customer.md
+        - name: Eszközök listájának frissítése szabályzattal
+          href: update-a-list-of-devices-with-a-policy.md
+        - name: Eszköz törlése a megadott ügyfélnél
+          href: delete-a-device-for-the-specified-customer.md
+    - name: Fiókok és profilok kezelése
+      href: manage-profiles-and-information.md
+      items:
+        - name: Egy ügyfél előfizetéseinek lekérése a partner MPN-azonosítója alapján
+          href: get-all-subscriptions-by-partner.md
+        - name: Szervezet profiljának lekérése
+          href: get-an-organization-profile.md
+        - name: Közvetett viszonteladó ügyfeleinek lekérése
+          href: get-customers-of-an-indirect-reseller.md
+        - name: Egy ügyfél közvetett viszonteladóinak lekérése
+          href: get-indirect-resellers-of-a-customer.md
+        - name: A Microsoft Partner Network-profil lekérése
+          href: get-partner-network-profile.md
+        - name: Partner számlázási profiljának lekérése
+          href: get-partner-billing-profile.md
+        - name: Partner MPN-azonosítójának ellenőrzése
+          href: get-partner-by-mpn-id.md
+        - name: Közvetett viszonteladó Microsoft-partnerszerződése aláírási állapotának ellenőrzése
+          href: verify-indirect-reseller-mpa-status.md
+        - name: Támogatási profil lekérése
+          href: get-support-profile.md
+        - name: A partner hivatalos vállalkozási profiljának lekérése
+          href: get-legal-business-profile.md
+        - name: Közvetett viszonteladók listájának lekérése
+          href: retrieve-a-list-of-indirect-resellers.md
+        - name: Szervezeti profil frissítése
+          href: update-an-organization-profile.md
+        - name: A partner számlázási profiljának frissítése
+          href: update-partner-billing-profile.md
+        - name: Támogatási profil frissítése
+          href: update-support-profile.md
+        - name: A partner hivatalos vállalkozási profiljának frissítése
+          href: update-legal-business-profile.md
+    - name: Számlázás kezelése
+      href: manage-billing.md
+      items:
+        - name: A számlázási ciklus módosítása
+          href: change-the-billing-cycle.md
+        - name: Egy ügyfél szolgáltatásdíjai összegzésének lekérése
+          href: get-a-customer-s-service-costs-summary.md
+        - name: Egy ügyfél szolgáltatásdíjai sorelemeinek lekérése
+          href: get-a-customer-s-service-costs-line-items.md
+        - name: Számlák gyűjteményének lekérése
+          href: get-a-collection-of-invoices.md
+        - name: Ügyfél Azure-használati rekordjainak lekérése
+          href: get-a-customer-s-utilization-record-for-azure.md
+        - name: Számla lekérése azonosító alapján
+          href: get-invoice-by-id.md
+        - name: Számlázott használatalapú sorelemek lekérése
+          href: get-invoice-billed-consumption-lineitems.md
+        - name: Számlabecslés hivatkozásainak lekérése
+          href: get-invoice-estimate-links.md
+        - name: Számla sorelemeinek lekérése
+          href: get-invoiceline-items.md
+        - name: Számla nyugtakivonatának lekérése
+          href: get-invoice-receipt-statement.md
+        - name: Számlakivonat lekérése
+          href: get-invoice-statement.md
+        - name: Számla összegzéseinek lekérése
+          href: get-invoice-summaries.md
+        - name: Nem számlázott használatalapú sorelemek lekérése
+          href: get-invoice-unbilled-consumption-lineitems.md
+        - name: Nem számlázott egyeztetési sorelemek lekérése
+          href: get-invoice-unbilled-recon-lineitems.md
+        - name: Díjak lekérése a Microsoft Azure-tól
+          href: get-prices-for-microsoft-azure.md
+        - name: Díjak lekérése a Microsoft Azure Partner Shared Servicestől
+          href: get-prices-for-microsoft-azure-partner-shared-services.md
+        - name: A partner aktuális számlaegyenlegének lekérése
+          href: get-the-reseller-s-current-account-balance.md
+    - name: Azure-költség
+      href: azure-spending.md
+      items:
+        - name: A partner használati összegzésének lekérése
+          href: get-a-partner-usage-summary.md
+        - name: Egy partner összes ügyfélhasználati rekordjának lekérése
+          href: get-a-customer-s-usage-records.md
+        - name: Az ügyfél használati összegzésének lekérése
+          href: get-a-customer-usage-summary.md
+        - name: Egy ügyfél összes előfizetés-használati rekordjának lekérése
+          href: get-a-customer-subscription-s-usage-records.md
+        - name: Az előfizetés használati összegzésének lekérése
+          href: get-a-customer-subscription-usage-summary.md
+        - name: Egy előfizetés összes havi használati rekordjának lekérése
+          href: get-all-monthly-usage-records-for-a-subscription.md
+        - name: Előfizetés használati adatainak lekérése erőforrás szerint
+          href: get-a-customer-subscription-resource-usage-records.md
+        - name: Előfizetés használati adatainak lekérése mérő szerint
+          href: get-a-customer-subscription-meter-usage-records.md
+        - name: Mérőhasználati rekord erőforrásainak lekérése
+          href: meter-usage-resources.md
+        - name: Erőforrás-használati rekord erőforrásainak lekérése
+          href: resource-usage-resources.md
+        - name: Az ügyfél használatalapú költségvetésének lekérése
+          href: get-a-customer-s-usage-spending-budget.md
+        - name: Az ügyfél használatalapú költségvetésének frissítése
+          href: update-a-customer-s-usage-spending-budget.md
+        - name: Termék frissítési erőforrásai
+          href: product-upgrade-resources.md
+          items:
+            - name: Termék frissítési állapotának lekérése
+              href: get-product-upgrade-status.md
+            - name: Termékfrissítés jogosultságának lekérése
+              href: get-eligibility-for-product-upgrade.md
+            - name: Termékfrissítési entitás létrehozása egy ügyfélhez
+              href: create-product-upgrade-entity.md
+        - name: Egy előfizetés Azure-jogosultsági listájának lekérése
+          href: get-a-list-of-azure-entitlements-for-subscription.md
+    - name: Ügyfélfiókok kezelése
+      href: manage-customers.md
+      items:
+        - name: Ellenőrzött tartomány hozzáadása egy ügyfélhez
+          href: add-a-verified-domain-for-a-customer.md
+        - name: Licencek hozzárendelése egy felhasználóhoz
+          href: assign-licenses-to-a-user.md
+        - name: Microsoft Cloud szerződés szerződési metaadatainak lekérése
+          href: get-agreement-metadata.md
+        - name: A Microsoft Ügyfélszerződés szerződési metaadatainak lekérése
+          href: get-customer-agreement-metadata.md
+        - name: A Microsoft Cloud szerződés ügyfél általi elfogadási megerősítésének lekérése
+          href: get-confirmation-of-customer-consent.md
+        - name: A Microsoft Ügyfélszerződés sablonjának letöltése
+          href: download-customer-agreement-template.md
+        - name: A Microsoft Ügyfélszerződés ügyfél általi elfogadási megerősítésének lekérése
+          href: get-confirmation-of-customer-agreement.md
+        - name: A Microsoft Ügyfélszerződés közvetlen aláírási (közvetlen elfogadási) állapotának lekérése
+          href: get-direct-sign-status-of-customer-agreement.md
+        - name: 'Annak megerősítése, hogy az ügyfél elfogadta a Microsoft Ügyfélszerződést'
+          href: confirm-customer-consent-customer-agreement.md
+        - name: Adott felhasználóhoz rendelt licencek lekérése
+          href: check-which-licenses-are-assigned-to-a-user.md
+        - name: Adott felhasználóhoz rendelt licencek lekérése licenccsoport szerint
+          href: get-licenses-assigned-to-a-user-by-license-group.md
+        - name: Ügyfél létrehozása
+          href: create-a-customer.md
+        - name: Ügyfél létrehozása egy közvetett viszonteladónál
+          href: create-a-customer-for-an-indirect-reseller.md
+        - name: Felhasználói fiókok létrehozása egy ügyfélnél
+          href: create-user-accounts-for-a-customer.md
+        - name: Felhasználói fiók törlése egy ügyfélnél
+          href: delete-user-accounts-for-a-customer.md
+        - name: Jogosultságok gyűjteményének lekérése
+          href: get-a-collection-of-entitlements.md
+        - name: Egy ügyfél lekérése azonosító alapján
+          href: get-a-customer-by-id.md
+        - name: Egy ügyfél számlázási profiljának lekérése
+          href: get-all-of-a-customer-s-billing-profiles.md
+        - name: Egy ügyfél vállalati profiljának lekérése
+          href: get-a-customer-s-company-profile.md
+        - name: Egy ügyfél végzettségének lekérése
+          items:
+            - name: Aszinkron API-k használata
+              href: get-customer-qualification-asynchronous.md
+            - name: Egyidejű API-k használata
+              href: get-customer-qualification-synchronous.md
+        - name: Egy ügyfél összes megrendelésének lekérése
+          href: get-all-of-a-customer-s-orders.md
+        - name: Egy ügyfél előfizetéseinek lekérése
+          href: get-all-of-a-customer-s-subscriptions.md
+        - name: Egy ügyfél előfizetési áthelyezési jogosultságainak lekérése
+          href: get-customer-s-subscriptions-transfer-eligibility.md
+        - name: Egy ügyfél áthelyezéseinek lekérése
+          href: get-all-of-a-customer-s-transfers.md
+        - name: Egy ügyfél áthelyezési részleteinek lekérése
+          href: get-transfer-by-id.md
+        - name: Egy ügyfél összes felhasználói fiókját tartalmazó lista lekérése
+          href: get-a-list-of-all-user-accounts-for-a-customer.md
+        - name: A rendelkezésre álló licencek listájának lekérése
+          href: get-a-list-of-available-licenses.md
+        - name: A rendelkezésre álló licencek listájának lekérése licenccsoport alapján
+          href: get-a-list-of-available-licenses-by-license-group.md
+        - name: Az ügyfelek listájának lekérése
+          href: get-a-list-of-customers.md
+        - name: Az ügyfelek listájának lekérése keresési mező alapján szűrve
+          href: get-a-customer-by-name.md
+        - name: A megrendelések listájának lekérése ügyfél és a számlázási ciklus típusa alapján
+          href: get-a-list-of-orders-by-customer-and-billing-cycle-type.md
+        - name: Egy partner ellenőrzési kódjainak lekérése
+          href: get-a-partner-s-validation-codes.md
+        - name: Felhasználói fiók lekérése azonosító alapján
+          href: get-a-user-account-by-id.md
+        - name: Egy ügyfél felhasználói szerepköreinek lekérése
+          href: get-user-roles-for-a-customer.md
+        - name: Egy ügyfélfelhasználó eltávolítása egy szerepkörből
+          href: remove-customer-user-from-a-role.md
+        - name: Ügyféllel létesítendő viszonteladói kapcsolat eltávolítása
+          href: remove-a-reseller-relationship-with-a-customer.md
+        - name: Kapcsolatkérés URL-címének lekérése
+          href: request-reseller-relationship.md
+        - name: Egy ügyfél felhasználói jelszavának alaphelyzetbe állítása
+          href: reset-user-password-for-a-customer.md
+        - name: Törölt felhasználó visszaállítása egy ügyfélnél
+          href: restore-a-user-for-a-customer.md
+        - name: Felhasználói szerepkörök beállítása egy ügyfélnél
+          href: set-user-roles-for-a-customer.md
+        - name: Egy ügyfél számlázási profiljának frissítése
+          href: update-a-customer-s-billing-profile.md
+        - name: Ügyfél végzettségének frissítése
+          items:
+            - name: Aszinkron API-k használata
+              href: update-customer-qualification-asynchronous.md
+            - name: Egyidejű API-k használata
+              href: update-customer-qualification-synchronous.md
+        - name: Egy előfizetés becenevének frissítése
+          href: update-the-nickname-for-a-subscription.md
+        - name: Egy ügyfél áthelyezésének visszavonása
+          href: withdraw-a-transfer.md
+        - name: Egy ügyfél áthelyezésének létrehozása
+          href: create-a-transfer.md
+        - name: Egy ügyfél áthelyezésének elfogadása
+          href: accept-a-transfer.md
+        - name: Egy ügyfél áthelyezésének elutasítása
+          href: reject-a-transfer.md
+        - name: Felhasználói fiókok frissítése egy ügyfélnél
+          href: update-user-accounts-for-a-customer.md
+        - name: Egy ügyfél törölt felhasználóinak megtekintése
+          href: view-a-deleted-user.md
+        - name: Önkiszolgáló szabályzat létrehozása
+          href: create-a-self-serve-policy.md
+        - name: Önkiszolgáló szabályzat törlése
+          href: delete-a-self-serve-policy.md
+        - name: Önkiszolgáló szabályzatok listájának lekérése
+          href: get-a-list-of-self-serve-policies.md
+        - name: Önkiszolgáló szabályzat lekérése azonosító alapján
+          href: get-a-self-serve-policy-by-id.md
+        - name: Önkiszolgáló szabályzat frissítése
+          href: update-a-self-serve-policy.md
+    - name: Megrendelések kezelése
+      href: manage-orders.md
+      items:
+        - name: Egy Azure-csomag megvásárlása
+          href: create-azure-plan.md
+        - name: Azure-foglalások megvásárlása
+          href: purchase-azure-reservations.md
+        - name: Előfizetés vásárlása kereskedelmi piactéri termékekhez
+          href: create-subscription-azure-marketplace-products.md
+        - name: Kereskedelmi piactéri előfizetés lemondása
+          href: cancel-an-azure-marketplace-subscription.md
+        - name: Szoftvervásárlások lemondása
+          href: cancel-software-purchases.md
+        - name: Egy előfizetés mennyiségének módosítása
+          href: change-the-quantity-of-a-subscription.md
+        - name: Próbaverziós előfizetés átalakítása fizetőssé
+          href: convert-a-trial-subscription-to-paid.md
+        - name: Leltár ellenőrzése
+          href: check-inventory.md
+        - name: Kosár tartalmának kifizetése
+          href: checkout-a-cart.md
+        - name: Kosár létrehozása
+          href: create-a-cart.md
+        - name: Kosár létrehozása bővítményekkel
+          href: create-a-cart-with-add-ons.md
+        - name: Megrendelés létrehozása
+          href: create-an-order.md
+        - name: Megrendelés létrehozása közvetett viszonteladó ügyfelének
+          href: create-an-order-for-a-customer-of-an-indirect-reseller.md
+        - name: Egy előfizetés bővítménylistájának lekérése
+          href: get-a-list-of-add-ons-for-a-subscription.md
+        - name: Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ország alapján)
+          href: get-a-list-of-availabilities-for-a-sku.md
+        - name: Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ügyfél alapján)
+          href: get-a-list-of-availabilities-for-a-sku-by-customer.md
+        - name: Ajánlatkategóriák listájának lekérése piac alapján
+          href: get-a-list-of-offer-categories-by-country-and-locale.md
+        - name: Egy piac ajánlati listájának lekérése
+          href: get-a-list-of-offers-for-a-market.md
+        - name: Termékek listájának lekérése (ország alapján)
+          href: get-a-list-of-products.md
+        - name: Termékek listájának lekérése (ügyfél alapján)
+          href: get-a-list-of-products-by-customer.md
+        - name: Egy termék termékváltozatait tartalmazó lista lekérése (ország alapján)
+          href: get-a-list-of-skus-for-a-product.md
+        - name: Egy termék termékváltozatait tartalmazó lista lekérése (ügyfél alapján)
+          href: get-a-list-of-skus-for-a-product-by-customer.md
+        - name: Az előfizetések listájának lekérése megrendelés alapján
+          href: get-a-list-of-subscriptions-by-order.md
+        - name: A próbaverzió átalakításával kapcsolatos ajánlatok listájának lekérése
+          href: get-a-list-of-trial-conversion-offers.md
+        - name: Egy termék lekérése azonosító alapján
+          href: get-a-product-by-id.md
+        - name: Egy termékváltozat lekérése azonosító alapján
+          href: get-a-sku-by-id.md
+        - name: Egy előfizetés lekérése azonosító alapján
+          href: get-a-subscription-by-id.md
+        - name: Aktiválási hivatkozás lekérése megrendelési sorelem alapján
+          href: get-activation-link-by-order-line-item.md
+        - name: Bővítmények lekérése ajánlatazonosító alapján
+          href: get-addon-offers-by-offer-id.md
+        - name: Rendelkezésre állás lekérése azonosító alapján
+          href: get-an-availability-by-id.md
+        - name: Ajánlat lekérése azonosító alapján
+          href: get-an-offer-by-id.md
+        - name: Megrendelés lekérése azonosító alapján
+          href: get-an-order-by-id.md
+        - name: Előfizetés kiépítési állapotának lekérése
+          href: get-subscription-provisioning-status.md
+        - name: Előfizetés regisztrációs állapotának lekérése
+          href: get-subscription-registration-status.md
+        - name: Egyszeri vásárlás
+          href: make-a-one-time-purchase.md
+        - name: Bővítmény vásárlása egy előfizetéshez
+          href: purchase-an-add-on-to-a-subscription.md
+        - name: Katalóguselemek vásárlása
+          href: purchase-catalog-items.md
+        - name: Felfüggesztett előfizetés újraaktiválása
+          href: reactivate-a-suspended-a-subscription.md
+        - name: Előfizetés regisztrálása
+          href: register-a-subscription.md
+        - name: Előfizetés felfüggesztése
+          href: suspend-a-subscription.md
+        - name: Előfizetés átváltása
+          href: transition-a-subscription.md
+        - name: Kosár frissítése
+          href: update-a-cart.md
+        - name: Kereskedelmi piactéri előfizetés automatikus megújításának frissítése
+          href: update-autorenew-for-an-azure-marketplace-subscription.md
+    - name: Támogatás biztosítása
+      href: provide-support.md
+      items:
+        - name: Egy előfizetés támogatási kapcsolattartójának lekérése
+          href: get-a-subscription-s-support-contact.md
+        - name: Egy ügyfél összes szolgáltatáskérésének lekérése
+          href: get-all-service-requests-for-a-customer.md
+        - name: Szolgáltatáskérés részleteinek lekérése azonosító alapján
+          href: get-service-request-details-by-id.md
+        - name: Egy ügyfél felügyelt szolgáltatásainak lekérése azonosító alapján
+          href: get-the-managed-services-for-a-customer-by-id.md
+        - name: Szolgáltatáskérés frissítése
+          href: update-a-service-request.md
+        - name: Egy előfizetés támogatási kapcsolattartójának frissítése
+          href: update-a-subscription-s-support-contact.md
+- name: Integrációs tesztkörnyezet
+  items:
+    - name: Viszonteladói kapcsolatot támogató partneri tesztkörnyezet-képességek
+      href: sandbox-scenario.md
+    - name: A tesztkörnyezet tesztelése és hibakeresése
+      href: test-and-debug.md
+    - name: Rendelés visszavonása az integrációs tesztkörnyezetből
+      href: cancel-an-order-from-the-integration-sandbox.md
+    - name: Tesztkörnyezet-előfizetés aktiválása
+      href: activate-sandbox-subscription-azure-marketplace-products.md
+    - name: Ügyfélfiók törlése az integrációs tesztkörnyezetből
+      href: delete-a-customer-account-from-the-integration-sandbox.md
+- name: Javaslatok
+  href: /partner/develop/referrals
+  items:
+    - name: Javaslat létrehozása
+      href: /partner/develop/create-a-referral
+    - name: Javaslatok listájának lekérése
+      href: /partner/develop/get-a-list-of-referrals
+    - name: Javaslat lekérése azonosító alapján
+      href: /partner/develop/get-a-referral-by-id
+    - name: Javaslat frissítése
+      href: /partner/develop/update-a-referral
+- name: Segédprogramok
+  href: utilities.md
+  items:
+    - name: Cím ellenőrzése
+      href: validate-an-address.md
+    - name: Címformázási szabályok lekérése piac alapján
+      href: get-market-specific-validation-data.md
+    - name: Tartomány rendelkezésre állásának ellenőrzése
+      href: verify-domain-availability.md
+- name: Biztonság
+  href: partner-security-requirements.md
+  items:
+    - name: MFA nélküli portálkérelmek lekérése
+      href: get-portal-requests-without-mfa.md
+    - name: API-kérés összegzésének lekérése
+      href: get-api-request-summary.md
+    - name: API-kérés részleteinek lekérése
+      href: get-api-request-details.md
+- name: Partnerközpont – REST API-referencia
+  href: partner-center-rest-api-reference.md
+  items:
+    - name: Partnerközpont – REST API-változásnapló
+      href: api-change-log.md
+    - name: Partnerközpont – REST URL-címek
+      href: partner-center-rest-urls.md
+    - name: Partnerközpont – REST-fejlécek
+      href: headers.md
+    - name: Partnerközpont – REST-erőforrások
+      href: partner-center-rest-resources.md
+      items:
+        - name: Megállapodás
+          href: agreement-resources.md
+        - name: Megállapodás metaadatai
+          href: agreement-metadata-resources.md
+        - name: Megállapodási dokumentum erőforrásai (előzetes verzió)
+          href: agreement-document-resources.md
+        - name: Az Ügyfélszerződés közvetlen aláírási (közvetlen elfogadási) állapota
+          href: customer-agreement-direct-sign-status-resource.md
+        - name: Elemzés
+          href: analytics-resources.md
+        - name: Naplózás
+          href: auditing-resources.md
+        - name: Azure-értékelési kártya
+          href: azure-rate-card-resources.md
+        - name: Azure-használati rekord
+          href: azure-utilization-record-resources.md
+        - name: Kosár
+          href: cart-resources.md
+        - name: Átalakítások
+          href: conversions-resources.md
+        - name: Országgal kapcsolatos adatok
+          href: country-information-resources.md
+        - name: Ügyfél
+          href: customer-resources.md
+        - name: Ügyfél általi használat
+          href: customer-usage-resources.md
+        - name: Eszköz üzembe helyezése
+          href: device-deployment-resources.md
+        - name: Jogosultság
+          href: entitlement-resources.md
+        - name: Számla
+          href: invoice-resources.md
+        - name: Licenc
+          href: license-resources.md
+        - name: Felügyelt szolgáltatás
+          href: managed-service-resources.md
+        - name: Ajánlat
+          href: offer-resources.md
+        - name: Sorrend
+          href: order-resources.md
+        - name: Profil
+          href: profile-resources.md
+        - name: Termékek
+          href: product-resources.md
+        - name: Kapcsolatok
+          href: relationships-resources.md
+        - name: Önkiszolgáló szabályzat
+          href: self-serve-policy-resources.md
+        - name: Szolgáltatás költségei
+          href: service-costs-resources.md
+        - name: Szolgáltatáskérés
+          href: service-request-resources.md
+        - name: Előfizetés
+          href: subscription-resources.md
+        - name: Előfizetés használata
+          href: subscription-usage-resources.md
+        - name: Frissítés
+          href: upgrade-resources.md
+        - name: Felhasználó
+          href: user-resources.md
+        - name: Hasznos erőforrások
+          href: utility-resources.md
+    - name: Partnerközpont – REST hibakódok
+      href: error-codes.md
+    - name: Partnerközpont – REST-események
+      href: partner-center-webhook-events.md
+    - name: Partnerközpont – támogatott nyelvek és területi beállítások
+      href: partner-center-supported-languages-and-locales.md
+    - name: Partnerközpont – webhookok
+      href: partner-center-webhooks.md
+- name: Partnerközpont – felügyelt .NET API-referencia
+  href: /dotnet/api/
+  items:
+    - name: Partnerközpont – a .NET API-verzió kibocsátási megjegyzései
+      href: dotnet-release-notes.md
+- name: Partnerközpont – Java API-referencia
+  href: /java/partnercenter
+- name: Partnerközpont – PowerShell-parancsok
+  href: /powershell/partnercenter
