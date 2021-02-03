@@ -1,0 +1,43 @@
+---
+title: Erőforrások kapcsolatai
+description: A kapcsolatokhoz kapcsolódó erőforrásokat ismerteti.
+ms.date: 12/15/2017
+ms.service: partner-dashboard
+ms.subservice: partnercenter-sdk
+ms.openlocfilehash: c5701414bd704b375dc23859b920609d5a975d9f
+ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "97767792"
+---
+# <a name="relationships-resources"></a><span data-ttu-id="18ef7-103">Erőforrások kapcsolatai</span><span class="sxs-lookup"><span data-stu-id="18ef7-103">Relationships resources</span></span>
+
+<span data-ttu-id="18ef7-104">**A következőkre vonatkozik**</span><span class="sxs-lookup"><span data-stu-id="18ef7-104">**Applies To**</span></span>
+
+- <span data-ttu-id="18ef7-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="18ef7-105">Partner Center</span></span>
+
+<span data-ttu-id="18ef7-106">A kapcsolatokhoz kapcsolódó erőforrásokat ismerteti.</span><span class="sxs-lookup"><span data-stu-id="18ef7-106">Describes resources related to relationships.</span></span>
+
+## <a name="partnerrelationship"></a><span data-ttu-id="18ef7-107">PartnerRelationship</span><span class="sxs-lookup"><span data-stu-id="18ef7-107">PartnerRelationship</span></span>
+
+<span data-ttu-id="18ef7-108">Két partner közötti kapcsolatot jelöl.</span><span class="sxs-lookup"><span data-stu-id="18ef7-108">Represents a relationship between two partners.</span></span>
+
+| <span data-ttu-id="18ef7-109">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="18ef7-109">Property</span></span>         | <span data-ttu-id="18ef7-110">Típus</span><span class="sxs-lookup"><span data-stu-id="18ef7-110">Type</span></span>                                                           | <span data-ttu-id="18ef7-111">Leírás</span><span class="sxs-lookup"><span data-stu-id="18ef7-111">Description</span></span>                                                                                                                                    |
+|------------------|----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span data-ttu-id="18ef7-112">id</span><span class="sxs-lookup"><span data-stu-id="18ef7-112">id</span></span>               | <span data-ttu-id="18ef7-113">sztring</span><span class="sxs-lookup"><span data-stu-id="18ef7-113">string</span></span>                                                         | <span data-ttu-id="18ef7-114">A partner azonosítója.</span><span class="sxs-lookup"><span data-stu-id="18ef7-114">The partner identifier.</span></span> <span data-ttu-id="18ef7-115">A partner azonosítója megadja annak a partnernek a bérlői azonosítóját, aki a kapcsolat címzett (feladó) oldalán található.</span><span class="sxs-lookup"><span data-stu-id="18ef7-115">The partner identifier specifies the tenant id of the partner who is in the recipient (from) side of the relationship.</span></span> |
+| <span data-ttu-id="18ef7-116">location</span><span class="sxs-lookup"><span data-stu-id="18ef7-116">location</span></span>         | <span data-ttu-id="18ef7-117">sztring</span><span class="sxs-lookup"><span data-stu-id="18ef7-117">string</span></span>                                                         | <span data-ttu-id="18ef7-118">A partner helye.</span><span class="sxs-lookup"><span data-stu-id="18ef7-118">The location of the partner.</span></span>                                                                                                                   |
+| <span data-ttu-id="18ef7-119">mpnId</span><span class="sxs-lookup"><span data-stu-id="18ef7-119">mpnId</span></span>            | <span data-ttu-id="18ef7-120">sztring</span><span class="sxs-lookup"><span data-stu-id="18ef7-120">string</span></span>                                                         | <span data-ttu-id="18ef7-121">A partner Microsoft Partner Network (MPN) azonosítója.</span><span class="sxs-lookup"><span data-stu-id="18ef7-121">The Microsoft Partner Network (MPN) identifier of the partner.</span></span>                                                                                 |
+| <span data-ttu-id="18ef7-122">name</span><span class="sxs-lookup"><span data-stu-id="18ef7-122">name</span></span>             | <span data-ttu-id="18ef7-123">sztring</span><span class="sxs-lookup"><span data-stu-id="18ef7-123">string</span></span>                                                         | <span data-ttu-id="18ef7-124">A partner neve.</span><span class="sxs-lookup"><span data-stu-id="18ef7-124">The name of the partner.</span></span>                                                                                                                       |
+| <span data-ttu-id="18ef7-125">relationshipType</span><span class="sxs-lookup"><span data-stu-id="18ef7-125">relationshipType</span></span> | <span data-ttu-id="18ef7-126">sztring</span><span class="sxs-lookup"><span data-stu-id="18ef7-126">string</span></span>                                                         | <span data-ttu-id="18ef7-127">A kapcsolat típusa.</span><span class="sxs-lookup"><span data-stu-id="18ef7-127">The type of relationship.</span></span>                                                                                                                      |
+| <span data-ttu-id="18ef7-128">állapot</span><span class="sxs-lookup"><span data-stu-id="18ef7-128">state</span></span>            | <span data-ttu-id="18ef7-129">sztring</span><span class="sxs-lookup"><span data-stu-id="18ef7-129">string</span></span>                                                         | <span data-ttu-id="18ef7-130">A kapcsolat állapota (például `active` ).</span><span class="sxs-lookup"><span data-stu-id="18ef7-130">The state of the relationship (for example `active`).</span></span>                                                                                                 |
+| <span data-ttu-id="18ef7-131">attribútumok</span><span class="sxs-lookup"><span data-stu-id="18ef7-131">attributes</span></span>       | [<span data-ttu-id="18ef7-132">ResourceAttributes</span><span class="sxs-lookup"><span data-stu-id="18ef7-132">ResourceAttributes</span></span>](utility-resources.md#resourceattributes) | <span data-ttu-id="18ef7-133">A metaadatok attribútumai.</span><span class="sxs-lookup"><span data-stu-id="18ef7-133">The metadata attributes.</span></span>                                                                                                                       |
+
+## <a name="relationshiprequest"></a><span data-ttu-id="18ef7-134">RelationshipRequest</span><span class="sxs-lookup"><span data-stu-id="18ef7-134">RelationshipRequest</span></span>
+
+<span data-ttu-id="18ef7-135">Megadja azt az URL-címet, amellyel az ügyfél kapcsolatot létesíthet egy partnerrel.</span><span class="sxs-lookup"><span data-stu-id="18ef7-135">Provides the URL by which a customer can establish a relationship with a partner.</span></span>
+
+| <span data-ttu-id="18ef7-136">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="18ef7-136">Property</span></span>   | <span data-ttu-id="18ef7-137">Típus</span><span class="sxs-lookup"><span data-stu-id="18ef7-137">Type</span></span>                                                           | <span data-ttu-id="18ef7-138">Leírás</span><span class="sxs-lookup"><span data-stu-id="18ef7-138">Description</span></span>                   |
+|------------|----------------------------------------------------------------|-------------------------------|
+| <span data-ttu-id="18ef7-139">url</span><span class="sxs-lookup"><span data-stu-id="18ef7-139">url</span></span>        | <span data-ttu-id="18ef7-140">sztring</span><span class="sxs-lookup"><span data-stu-id="18ef7-140">string</span></span>                                                         | <span data-ttu-id="18ef7-141">A kapcsolati kérelem URL-címe.</span><span class="sxs-lookup"><span data-stu-id="18ef7-141">The relationship request URL.</span></span> |
+| <span data-ttu-id="18ef7-142">attribútumok</span><span class="sxs-lookup"><span data-stu-id="18ef7-142">attributes</span></span> | [<span data-ttu-id="18ef7-143">ResourceAttributes</span><span class="sxs-lookup"><span data-stu-id="18ef7-143">ResourceAttributes</span></span>](utility-resources.md#resourceattributes) | <span data-ttu-id="18ef7-144">A metaadatok attribútumai.</span><span class="sxs-lookup"><span data-stu-id="18ef7-144">The metadata attributes.</span></span>      |

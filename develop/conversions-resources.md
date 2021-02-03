@@ -1,0 +1,55 @@
+---
+title: Átalakítási erőforrások
+description: Útmutató a partneri központ API-átalakítási erőforrásainak használatához a próbaverziós előfizetés fizetős előfizetésre való átalakításának elősegítése érdekében.
+ms.date: 05/23/2019
+ms.service: partner-dashboard
+ms.subservice: partnercenter-sdk
+ms.openlocfilehash: d3ade5a5af76e7c637962b6bfe076ac806f337bf
+ms.sourcegitcommit: a25d4951f25502cdf90cfb974022c5e452205f42
+ms.translationtype: MT
+ms.contentlocale: hu-HU
+ms.lasthandoff: 12/04/2020
+ms.locfileid: "97768587"
+---
+# <a name="conversion-resources-to-convert-trial-subscriptions-to-paid"></a><span data-ttu-id="71245-103">Konverziós erőforrások a próbaverziós előfizetések kifizetésre való átalakításához</span><span class="sxs-lookup"><span data-stu-id="71245-103">Conversion resources to convert trial subscriptions to paid</span></span>
+
+<span data-ttu-id="71245-104">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="71245-104">**Applies to:**</span></span>
+
+- <span data-ttu-id="71245-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="71245-105">Partner Center</span></span>
+- <span data-ttu-id="71245-106">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="71245-106">Partner Center operated by 21Vianet</span></span>
+- <span data-ttu-id="71245-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="71245-107">Partner Center for Microsoft Cloud Germany</span></span>
+- <span data-ttu-id="71245-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="71245-108">Partner Center for Microsoft Cloud for US Government</span></span>
+
+<span data-ttu-id="71245-109">A konverziós erőforrások támogatják a próbaverziós előfizetés fizetős előfizetésre való átalakítását.</span><span class="sxs-lookup"><span data-stu-id="71245-109">Conversion resources support the conversion of a trial subscription to a paid subscription.</span></span>
+
+## <a name="conversion"></a><span data-ttu-id="71245-110">Átalakítás</span><span class="sxs-lookup"><span data-stu-id="71245-110">Conversion</span></span>
+
+<span data-ttu-id="71245-111">A próbaverziós előfizetés fizetős előfizetésre való átalakításához használt információkat tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="71245-111">Contains information used to convert a trial subscription to a paid subscription.</span></span>
+
+| <span data-ttu-id="71245-112">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="71245-112">Property</span></span> | <span data-ttu-id="71245-113">Típus</span><span class="sxs-lookup"><span data-stu-id="71245-113">Type</span></span> | <span data-ttu-id="71245-114">Leírás</span><span class="sxs-lookup"><span data-stu-id="71245-114">Description</span></span> |
+| -------- | ---- | ----------- |
+| <span data-ttu-id="71245-115">offerId</span><span class="sxs-lookup"><span data-stu-id="71245-115">offerId</span></span> | <span data-ttu-id="71245-116">sztring</span><span class="sxs-lookup"><span data-stu-id="71245-116">string</span></span> | <span data-ttu-id="71245-117">Az eredeti, próbaverziós ajánlat ajánlatának azonosítója.</span><span class="sxs-lookup"><span data-stu-id="71245-117">The offer identifier of the original, trial offer.</span></span> |
+| <span data-ttu-id="71245-118">targetOfferId</span><span class="sxs-lookup"><span data-stu-id="71245-118">targetOfferId</span></span> | <span data-ttu-id="71245-119">sztring</span><span class="sxs-lookup"><span data-stu-id="71245-119">string</span></span> | <span data-ttu-id="71245-120">A célként megadott ajánlat azonosítója.</span><span class="sxs-lookup"><span data-stu-id="71245-120">The offer identifier for the target offer.</span></span> |
+| <span data-ttu-id="71245-121">Rendeléskód</span><span class="sxs-lookup"><span data-stu-id="71245-121">orderId</span></span> | <span data-ttu-id="71245-122">sztring</span><span class="sxs-lookup"><span data-stu-id="71245-122">string</span></span> | <span data-ttu-id="71245-123">A sorrend azonosítója.</span><span class="sxs-lookup"><span data-stu-id="71245-123">The order identifier.</span></span> |
+| <span data-ttu-id="71245-124">quantity</span><span class="sxs-lookup"><span data-stu-id="71245-124">quantity</span></span> | <span data-ttu-id="71245-125">int</span><span class="sxs-lookup"><span data-stu-id="71245-125">int</span></span> | <span data-ttu-id="71245-126">A licencek száma.</span><span class="sxs-lookup"><span data-stu-id="71245-126">The number of licenses.</span></span> <span data-ttu-id="71245-127">Az alapértelmezett érték a próbaverziós előfizetésben található licencek száma.</span><span class="sxs-lookup"><span data-stu-id="71245-127">The default is the number of licenses in the trial subscription.</span></span> |
+| <span data-ttu-id="71245-128">billingCycle</span><span class="sxs-lookup"><span data-stu-id="71245-128">billingCycle</span></span> | <span data-ttu-id="71245-129">sztring</span><span class="sxs-lookup"><span data-stu-id="71245-129">string</span></span> | <span data-ttu-id="71245-130">Azt jelzi, hogy a partner milyen gyakran számítja fel az előfizetést.</span><span class="sxs-lookup"><span data-stu-id="71245-130">Indicates how often the partner is charged for the subscription.</span></span> <span data-ttu-id="71245-131">Lehetséges értékek: **havonta** (partner számlázása havonta), **évente** (a partnert évente számlázzák), vagy **egyik sem** (a partnert nem számlázzák.</span><span class="sxs-lookup"><span data-stu-id="71245-131">Possible values: **Monthly** (partner is billed monthly), **Annual** (partner is billed annually), or **None** (Partner isn't billed.</span></span> <span data-ttu-id="71245-132">Próbaverziós előfizetésekhez használatos).</span><span class="sxs-lookup"><span data-stu-id="71245-132">Used for trial subscriptions).</span></span> |
+
+## <a name="conversionerror"></a><span data-ttu-id="71245-133">ConversionError</span><span class="sxs-lookup"><span data-stu-id="71245-133">ConversionError</span></span>
+
+<span data-ttu-id="71245-134">Az átalakítás során előforduló hibát jelöli.</span><span class="sxs-lookup"><span data-stu-id="71245-134">Represents an error that occurred during conversion.</span></span>
+
+| <span data-ttu-id="71245-135">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="71245-135">Property</span></span> | <span data-ttu-id="71245-136">Típus</span><span class="sxs-lookup"><span data-stu-id="71245-136">Type</span></span> | <span data-ttu-id="71245-137">Leírás</span><span class="sxs-lookup"><span data-stu-id="71245-137">Description</span></span> |
+| -------- | ---- | ----------- |
+| <span data-ttu-id="71245-138">code</span><span class="sxs-lookup"><span data-stu-id="71245-138">code</span></span> | <span data-ttu-id="71245-139">sztring</span><span class="sxs-lookup"><span data-stu-id="71245-139">string</span></span> | <span data-ttu-id="71245-140">A problémához tartozó hibakód.</span><span class="sxs-lookup"><span data-stu-id="71245-140">The error code associated with the issue.</span></span> <span data-ttu-id="71245-141">Lehetséges értékek: **egyéb** (általános hiba), **ConversionsNotFound** (nem található konverzió a próbaverziós előfizetéshez a verzióra).</span><span class="sxs-lookup"><span data-stu-id="71245-141">Possible values: **Other** (general error), **ConversionsNotFound** (can't find any conversions for the trial subscription to convert to).</span></span>
+| <span data-ttu-id="71245-142">leírás</span><span class="sxs-lookup"><span data-stu-id="71245-142">description</span></span> | <span data-ttu-id="71245-143">sztring</span><span class="sxs-lookup"><span data-stu-id="71245-143">string</span></span> | <span data-ttu-id="71245-144">A problémát leíró rövid szöveg.</span><span class="sxs-lookup"><span data-stu-id="71245-144">The friendly text describing the issue.</span></span> |
+
+## <a name="conversionresult"></a><span data-ttu-id="71245-145">ConversionResult</span><span class="sxs-lookup"><span data-stu-id="71245-145">ConversionResult</span></span>
+
+<span data-ttu-id="71245-146">Az előfizetés konverziójának eredményét jelöli.</span><span class="sxs-lookup"><span data-stu-id="71245-146">Represents the result of performing a subscription conversion.</span></span>
+
+| <span data-ttu-id="71245-147">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="71245-147">Property</span></span>       | <span data-ttu-id="71245-148">Típus</span><span class="sxs-lookup"><span data-stu-id="71245-148">Type</span></span>                                | <span data-ttu-id="71245-149">Leírás</span><span class="sxs-lookup"><span data-stu-id="71245-149">Description</span></span>                                                            |
+|----------------|-------------------------------------|------------------------------------------------------------------------|
+| <span data-ttu-id="71245-150">subscriptionId</span><span class="sxs-lookup"><span data-stu-id="71245-150">subscriptionId</span></span> | <span data-ttu-id="71245-151">sztring</span><span class="sxs-lookup"><span data-stu-id="71245-151">string</span></span>                              | <span data-ttu-id="71245-152">Az előfizetés azonosítója.</span><span class="sxs-lookup"><span data-stu-id="71245-152">The subscription identifier.</span></span>                                           |
+| <span data-ttu-id="71245-153">offerId</span><span class="sxs-lookup"><span data-stu-id="71245-153">offerId</span></span>        | <span data-ttu-id="71245-154">sztring</span><span class="sxs-lookup"><span data-stu-id="71245-154">string</span></span>                              | <span data-ttu-id="71245-155">Az eredeti ajánlat azonosítója.</span><span class="sxs-lookup"><span data-stu-id="71245-155">The original offer identifier.</span></span>                                         |
+| <span data-ttu-id="71245-156">targetOfferId</span><span class="sxs-lookup"><span data-stu-id="71245-156">targetOfferId</span></span>  | <span data-ttu-id="71245-157">sztring</span><span class="sxs-lookup"><span data-stu-id="71245-157">string</span></span>                              | <span data-ttu-id="71245-158">A célként megadott ajánlat azonosítója.</span><span class="sxs-lookup"><span data-stu-id="71245-158">The offer identifier for the target offer.</span></span>                             |
+| <span data-ttu-id="71245-159">error</span><span class="sxs-lookup"><span data-stu-id="71245-159">error</span></span>          | [<span data-ttu-id="71245-160">ConversionError</span><span class="sxs-lookup"><span data-stu-id="71245-160">ConversionError</span></span>](#conversionerror) | <span data-ttu-id="71245-161">Hiba történt az átalakítás megkísérlése során, ha van ilyen.</span><span class="sxs-lookup"><span data-stu-id="71245-161">The error encountered while attempting the conversion, if applicable..</span></span> |
