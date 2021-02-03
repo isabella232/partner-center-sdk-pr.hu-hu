@@ -4,12 +4,12 @@ description: A megadott ügyfél konfigurációs házirendjének frissítése.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 6bf3b6f4db7516779c157b647725368ff0e4a570
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 42c57a92020723415b4621e9f9d7c5c3278bfb77
+ms.sourcegitcommit: 970031473b2e8cd3d08c6c097949c057a51df3ef
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768403"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99505339"
 ---
 # <a name="update-a-configuration-policy-for-the-specified-customer"></a>Konfigurációs szabályzat frissítése a megadott ügyfélnél
 

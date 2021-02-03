@@ -4,12 +4,12 @@ description: Hozzon létre egy online piactért a Cloud Solution Provider (CSP) 
 ms.date: 05/29/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: d64deff9b002b861c9f48d076feb5841af727e3d
-ms.sourcegitcommit: 57620e249e218edc4af7c83c2ce8a3008a4adf4e
+ms.openlocfilehash: 83ae0c789f95485ec3eb272434e57421a8f93fb6
+ms.sourcegitcommit: 970031473b2e8cd3d08c6c097949c057a51df3ef
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/04/2020
-ms.locfileid: "97768012"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99505322"
 ---
 # <a name="csp-customer-storefront-builder-quick-start-guide"></a>CSP-ügyfél – áruházkészítő – első lépések
 
@@ -25,10 +25,10 @@ A CSP Customer Builder-szerkesztő segítségével a partnereink könnyedén lé
 
 Ez a webhely a partnerek teljes tulajdonú, támogatott és karbantartott, és a Microsoft nem gyűjt adatokat és telemetria a webhelyről. A CSP Customer kirakat-készítő létrehoz egy webhelyet a partnernek, amely teljes mértékben megfelel a [Payment Card Industry adatbiztonsági szabványának](https://www.pcisecuritystandards.org/) (PCI DSS).
 
-A CSP Customer kirakat-készítő kódja a [partner Center SDK EULA](https://partnercenter.microsoft.com/partner/EULA_Partner_Center_SDK)-ban elérhető licenc hatálya alá esik.
+A CSP Customer kirakat-készítő kódja a [partner Center SDK EULA](/legal/partner-center/eula-partner-center-sdk)-ban elérhető licenc hatálya alá esik.
 
 >[!NOTE]
->Ön felelős a kirakati webhelyek kezelésével, karbantartásával és a webhelyek létrehozásával kapcsolatos esetleges problémákkal. Olvassa el és Ismerje meg a [partner Center SDK EULA](https://partnercenter.microsoft.com/partner/EULA_Partner_Center_SDK)-ban szereplő feltételeket.
+>Ön felelős a kirakati webhelyek kezelésével, karbantartásával és a webhelyek létrehozásával kapcsolatos esetleges problémákkal. Olvassa el és Ismerje meg a [partner Center SDK EULA](/legal/partner-center/eula-partner-center-sdk)-ban szereplő feltételeket.
 
 További információkat a következő cikkekben talál: [CSP Customer web kirakat](csp-customer-web-storefront.md) és [Console test app](console-test-app.md).
 
@@ -52,7 +52,7 @@ A CSP Customer kirakat-készítő célja a webhelyek létrehozásának gyors mó
 
 - A PayU-fizetési konfiguráció csak Indiában működik. A PayU rendelkezésre állását és támogatását kizárólag a PayU vezérli, és a PayU bármikor megszüntethető.
 
-- Olvassa el és Ismerje meg a [partner Center SDK EULA](https://partnercenter.microsoft.com/partner/EULA_Partner_Center_SDK)-ban szereplő feltételeket.
+- Olvassa el és Ismerje meg a [partner Center SDK EULA](/legal/partner-center/eula-partner-center-sdk)-ban szereplő feltételeket.
 
 ## <a name="using-the-csp-customer-storefront-builder"></a>A CSP Customer kirakat-készítő használata
 
