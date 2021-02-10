@@ -1,15 +1,15 @@
 ---
 title: Annak megerősítése, hogy az ügyfél elfogadta a Microsoft Ügyfélszerződést
 description: Megtudhatja, hogyan erősítheti meg a Microsoft-ügyfél szerződését a partner Center API-k használatával.
-ms.date: 02/04/2020
+ms.date: 02/08/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 239ca43c70fb8aa7f0d06e564e6c0726b235ffbe
-ms.sourcegitcommit: a25d4951f25502cdf90cfb974022c5e452205f42
+ms.openlocfilehash: 62a6cebd5d6d093377dd5940dcff6204b7095c70
+ms.sourcegitcommit: ebb36208d6e2dea705f62b7d60d471f10c55132e
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "97768591"
+ms.lasthandoff: 02/09/2021
+ms.locfileid: "100006071"
 ---
 # <a name="confirm-customer-acceptance-of-the-microsoft-customer-agreement-using-partner-center-apis"></a>A Microsoft Customer-szerződés ügyfél általi elfogadásának megerősítése a partner Center API-k használatával
 
@@ -40,6 +40,20 @@ Ez a cikk azt ismerteti, hogyan lehet megerősíteni vagy újból megerősíteni
   - Vezetéknév
   - E-mail-cím
   - Telefonszám (nem kötelező)
+- Ha az ügyfélen a következő értékek változnak, a partneri központ lehetővé teszi, hogy egy másik szerződést hozzon létre az adott ügyfél számára: Utónév vezetékneve e-mail-cím telefonszáma, máskülönben a partnerek a következő hibakódot kapják meg az ismétlődő ügyfél létrehozása miatt
+
+
+```
+{
+"code": 600061,
+"message": "A partner confirmed agreement already exists for the customer.",
+"description": "A partner confirmed agreement already exists for the customer.",
+"errorName": "PartnerConfirmedAgreementAlreadyExists",
+"isRetryable": false,
+"parameters": {},
+"errorMessageExtended": "InternalErrorCode=600061"
+}
+ ```
 
 ## <a name="net"></a>.NET
 
@@ -112,7 +126,7 @@ További információ: a [partneri központ Rest-fejlécei](headers.md).
 
 Ez a táblázat a REST-kérelem törzsében szereplő kötelező tulajdonságokat ismerteti.
 
-| Név      | Típus   | Leírás                                                                                  |
+| Név      | Típus   | Description                                                                                  |
 |-----------|--------|----------------------------------------------------------------------------------------------|
 | Megállapodás | object | A partner által biztosított részletek a Microsoft ügyfél-szerződésének megerősítő elfogadásának megerősítéséhez. |
 
@@ -120,7 +134,7 @@ Ez a táblázat a REST-kérelem törzsében szereplő kötelező tulajdonságoka
 
 Ez a táblázat a [ **szerződési** erőforrások](agreement-resources.md)létrehozásához szükséges minimális mezőket ismerteti.
 
-| Tulajdonság       | Típus   | Leírás                              |
+| Tulajdonság       | Típus   | Description                              |
 |----------------|--------|------------------------------------------|
 | primaryContact | [Kapcsolatfelvétel](./utility-resources.md#contact) | Információk a Microsoft ügyfél-szerződést elfogadó, a  **firstName**, a **lastName**, az **e-mail** és a **telefonszám** (nem kötelező) felhasználóról |
 | dateAgreed     | karakterlánc UTC-dátum időformátuma |Az a dátum, amikor az ügyfél elfogadta a szerződést. |
