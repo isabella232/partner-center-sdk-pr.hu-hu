@@ -4,12 +4,12 @@ description: Megtudhatja, hogyan használhatja a partner Center Integration sand
 ms.date: 09/11/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 95e80000a199ae00a31bddc5ecae8c19ab77c64e
-ms.sourcegitcommit: 8a5c37376a29e29fe0002a980082d4acc6b91131
+ms.openlocfilehash: e5b8f6cc2eb239b7a8b8a8722b231f290e768004
+ms.sourcegitcommit: a8ebfa97db9e43c6b5ff05bb37ecead6b3565721
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "97768515"
+ms.lasthandoff: 02/13/2021
+ms.locfileid: "100335795"
 ---
 # <a name="test-and-debug-with-your-partner-center-integration-sandbox-to-avoid-paying-unexpected-charges"></a>Tesztelés és hibakeresés a partner Center-integrációs munkaterülettel a váratlan költségek kifizetésének elkerülése érdekében
 
@@ -27,10 +27,6 @@ A kód teszteléséhez használja az Integration sandbox-fiókot a partner Cente
 Ha automatizált Build-ellenőrzési teszteket futtat, éles tesztelést végez, vagy manuális tesztelést hajt végre az integrációs munkaterületen, az integrációs szolgáltatáshoz tartozó munkaterületre vonatkozó maximális korlátokat is elérheti. Ezek a korlátok 75 ügyfél, 5 előfizetés felhasználónként és 25 licenc/előfizetés.
 
 - A 25 licences korlát azt jelenti, hogy nem vásárolhat olyan ajánlatot a homokozóban, amely legalább 25 licenccel meghaladja a licencet. Ez a korlátozás próbaverziókat is tartalmaz.
-
-- A használat összegzése nem szerezhető be a sandbox-fiókokon, mivel ezek a fiókok tesztelési célokra szolgálnak.
-
-- A számlázással és a számlázással kapcsolatos API-k nem működnek a homokozóban, mivel a teszt fiókhoz nem jönnek létre számlák.
 
 
 ### <a name="azure-plan"></a>Azure-csomag

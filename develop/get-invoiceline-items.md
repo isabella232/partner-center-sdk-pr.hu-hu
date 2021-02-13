@@ -4,12 +4,12 @@ description: A partner Center API-k használatával lekérheti a számla sor (le
 ms.date: 01/27/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 085397f3dc36468e411cec71e0dc9ae2cc364673
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 50dac1bbc96776d395014dc7ee5a5990f0710484
+ms.sourcegitcommit: a8ebfa97db9e43c6b5ff05bb37ecead6b3565721
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768323"
+ms.lasthandoff: 02/13/2021
+ms.locfileid: "100335812"
 ---
 # <a name="get-invoice-line-items"></a>Számla sorelemeinek lekérése
 
@@ -157,13 +157,13 @@ A kérelem létrehozásakor használja az alábbi URI-és lekérdezési paramét
 
 | Név                   | Típus   | Kötelező | Leírás                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
-| számlázási azonosító             | sztring | Igen      | A számlát azonosító karakterlánc.                             |
-| számlázási szolgáltató       | sztring | Igen      | A számlázási szolgáltató: "Office", "Azure", "egykori".               |
-| számla-sor-tétel típusa | sztring | Igen      | A számla részleteinek típusa: "BillingLineItems", "UsageLineItems". |
-| size                   | szám | Nem       | A visszaadni kívánt elemek maximális száma. Alapértelmezett maximális méret = 2000    |
-| offset                 | szám | Nem       | A visszaadni kívánt első sor nulla alapú indexe.            |
+| számlázási azonosító             | sztring | Yes      | A számlát azonosító karakterlánc.                             |
+| számlázási szolgáltató       | sztring | Yes      | A számlázási szolgáltató: "Office", "Azure", "egykori". A korábbi verziókban külön adatmodellek vannak az Office & Azure-tranzakciók számára. A Modernben azonban egyetlen adatmodellünk van minden termékben, amely az "egykori" értékkel van szűrve.            |
+| számla-sor-tétel típusa | sztring | Yes      | A számla részleteinek típusa: "BillingLineItems", "UsageLineItems". |
+| size                   | szám | No       | A visszaadni kívánt elemek maximális száma. Alapértelmezett maximális méret = 2000    |
+| offset                 | szám | No       | A visszaadni kívánt első sor nulla alapú indexe.            |
 | seekOperation          | sztring | No       | Ha a **számlázási szolgáltató** az **egykorinál** egyenlő, állítsa a **SeekOperation** egyenlő értékre a **következővel** , hogy beolvassa a számla sorok következő oldalát. |
-| hasPartnerEarnedCredit | logikai | Nem | Az az érték, amely azt jelzi, hogy a rendszer visszaküldi-e a sorban lévő, partner által létrehozott jóváírást Megjegyzés: ezt a paramétert csak akkor alkalmazza a rendszer, ha a számlázási szolgáltató típusa az egykori, a InvoiceLineItemType pedig UsageLineItems. |
+| hasPartnerEarnedCredit | logikai | No | Az az érték, amely azt jelzi, hogy a rendszer visszaküldi-e a sorban lévő, partner által létrehozott jóváírást Megjegyzés: ezt a paramétert csak akkor alkalmazza a rendszer, ha a számlázási szolgáltató típusa az egykori, a InvoiceLineItemType pedig UsageLineItems. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
