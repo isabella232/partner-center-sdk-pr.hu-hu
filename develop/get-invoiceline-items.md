@@ -4,12 +4,12 @@ description: A partner Center API-k használatával lekérheti a számla sor (le
 ms.date: 01/27/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 50dac1bbc96776d395014dc7ee5a5990f0710484
-ms.sourcegitcommit: a8ebfa97db9e43c6b5ff05bb37ecead6b3565721
+ms.openlocfilehash: e797f549e1344268c8167259a231122e7c669a2e
+ms.sourcegitcommit: 9f8ba784171ab4f980ed0c60ef6f2323849c4a98
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 02/13/2021
-ms.locfileid: "100335812"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100499898"
 ---
 # <a name="get-invoice-line-items"></a>Számla sorelemeinek lekérése
 
@@ -158,7 +158,7 @@ A kérelem létrehozásakor használja az alábbi URI-és lekérdezési paramét
 | Név                   | Típus   | Kötelező | Leírás                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
 | számlázási azonosító             | sztring | Yes      | A számlát azonosító karakterlánc.                             |
-| számlázási szolgáltató       | sztring | Yes      | A számlázási szolgáltató: "Office", "Azure", "egykori". A korábbi verziókban külön adatmodellek vannak az Office & Azure-tranzakciók számára. A Modernben azonban egyetlen adatmodellünk van minden termékben, amely az "egykori" értékkel van szűrve.            |
+| számlázási szolgáltató       | sztring | Yes      | A számlázási szolgáltató: "Office", "Azure", "egykori". A korábbi verziókban külön adatmodellek vannak az Office & Azure-tranzakciók számára. A modernnek azonban egyetlen adatmodellje van az összes tranzakcióban az "egykori" érték alapján szűrve.            |
 | számla-sor-tétel típusa | sztring | Yes      | A számla részleteinek típusa: "BillingLineItems", "UsageLineItems". |
 | size                   | szám | No       | A visszaadni kívánt elemek maximális száma. Alapértelmezett maximális méret = 2000    |
 | offset                 | szám | No       | A visszaadni kívánt első sor nulla alapú indexe.            |

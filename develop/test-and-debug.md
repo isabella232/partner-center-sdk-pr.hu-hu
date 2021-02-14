@@ -4,12 +4,12 @@ description: Megtudhatja, hogyan használhatja a partner Center Integration sand
 ms.date: 09/11/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: e5b8f6cc2eb239b7a8b8a8722b231f290e768004
-ms.sourcegitcommit: a8ebfa97db9e43c6b5ff05bb37ecead6b3565721
+ms.openlocfilehash: 3ff4a7ec3ad984b09c60d3d820423c614fb8020d
+ms.sourcegitcommit: 9f8ba784171ab4f980ed0c60ef6f2323849c4a98
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 02/13/2021
-ms.locfileid: "100335795"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100499881"
 ---
 # <a name="test-and-debug-with-your-partner-center-integration-sandbox-to-avoid-paying-unexpected-charges"></a>Tesztelés és hibakeresés a partner Center-integrációs munkaterülettel a váratlan költségek kifizetésének elkerülése érdekében
 
@@ -26,7 +26,17 @@ A kód teszteléséhez használja az Integration sandbox-fiókot a partner Cente
 
 Ha automatizált Build-ellenőrzési teszteket futtat, éles tesztelést végez, vagy manuális tesztelést hajt végre az integrációs munkaterületen, az integrációs szolgáltatáshoz tartozó munkaterületre vonatkozó maximális korlátokat is elérheti. Ezek a korlátok 75 ügyfél, 5 előfizetés felhasználónként és 25 licenc/előfizetés.
 
-- A 25 licences korlát azt jelenti, hogy nem vásárolhat olyan ajánlatot a homokozóban, amely legalább 25 licenccel meghaladja a licencet. Ez a korlátozás próbaverziókat is tartalmaz.
+A 25 licences korlát azt jelenti, hogy nem vásárolhat olyan ajánlatot a homokozóban, amely legalább 25 licenccel meghaladja a licencet. Ez a korlátozás próbaverziókat is tartalmaz.
+
+A homokozóban számos különböző számla-és egyeztetési fájl érhető el, de nem mindegyik a régi vagy a modern platformon érhető el. További részletekért ellenőrizze az alábbi táblázatot.
+
+| **Fájlok**                    | **Elérhető a régiben** | **Elérhető a modern** |
+| ---------------------------- | ------------------------ | ------------------------ |
+| PDF-formátumú számla                  | Nem                       | Igen                      |
+| Számla-egyeztetési fájl | Nem                       | Igen                      |
+| Számla becsült fájlja       | Nem                       | Igen                      |
+| Napi számlázott használati fájl     | Nem                       | Igen                      |
+| Napi nem számlázott használati fájl   | Nem                       | Igen                      |
 
 
 ### <a name="azure-plan"></a>Azure-csomag
