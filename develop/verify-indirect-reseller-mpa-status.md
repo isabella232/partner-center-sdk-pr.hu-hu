@@ -4,12 +4,12 @@ description: A AgreementStatus API segítségével ellenőrizheti, hogy a közve
 ms.date: 07/24/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 436f690991a2920465a5a13c73eb4c194956ae94
-ms.sourcegitcommit: ca932ba511bf7464a634195d71891f989036ab74
+ms.openlocfilehash: 9501f245a6c98fa90e77de7bc0caed8ca51fa4f2
+ms.sourcegitcommit: 40baf4d825ce0ca6a254b5f368c308f025be7034
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/29/2020
-ms.locfileid: "97768496"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100537576"
 ---
 # <a name="verify-an-indirect-resellers-microsoft-partner-agreement-signing-status"></a>Közvetett viszonteladó Microsoft partneri szerződésének aláírása állapotának ellenőrzése
 
@@ -232,7 +232,7 @@ Connection: close
     "code": 2200,
     "description": "MPN Id 123456 is either invalid or not yet migrated to Partner Center. Please advise your reseller to migrate the reseller MPN ID to Partner Center to continue with this order.",
     "data": [
-        "https://partner.microsoft.com/en-us/resources/detail/migrate-pmc-pc-mpa-guide-pptx"
+        "https://partner.microsoft.com/resources/detail/migrate-pmc-pc-mpa-guide-pptx"
     ],
     "source": "PartnerFD"
 }
@@ -240,7 +240,7 @@ Connection: close
 
 #### <a name="csp-indirect-provider-region-and-csp-indirect-reseller-region-does-not-match"></a>A CSP közvetett szolgáltató régiója és a CSP közvetett viszonteladói régiója nem egyezik
 
-A következő példa akkor ad vissza választ, ha a közvetett viszonteladói MPN-azonosító (PGA/PLA) régiója nem egyezik a közvetett szolgáltató régiójával. [További](/partner-center/regional-authorization-overview) információ a CSP-régiókról.
+A következő példa akkor ad vissza választ, ha a közvetett viszonteladói MPN-azonosító (PGA/PLA) régiója nem egyezik a közvetett szolgáltató régiójával. [További](https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq) információ a CSP-régiókról.
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -256,7 +256,7 @@ Connection: close
     "code": 2201,
     "description": "The CSP region of the MPN ID 1234567 doesn’t match the CSP region from where you are placing the order. Provide the MPN ID for the CSP region where you are placing the order.",
     "data": [
-        "https://docs.microsoft.com/en-us/partner-center/regional-authorization-overview" 
+        "https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq" 
     ],
     "source": "PartnerFD"
 }
@@ -264,7 +264,7 @@ Connection: close
 
 #### <a name="csp-indirect-reseller-account-exists-in-partner-center-but-hasnt-signed-the-mpa"></a>A CSP közvetett viszonteladói fiókja létezik a partner Centerben, de nem írta alá az MPA-t
 
-A következő példa válaszát adja vissza, ha a fiókpartner közvetett viszonteladói fiókja nem írta alá a MPA-t. [További információ](https://partner.microsoft.com/resources/detail/verify-mpa-acceptance-status-pptx)
+A következő példa válaszát adja vissza, ha a fiókpartner közvetett viszonteladói fiókja nem írta alá a MPA-t. [További információ](https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq)
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -280,7 +280,7 @@ Connection: close
     "code": 2203,
     "description": "MPN Id 123456 has not signed Microsoft Partner Agreement (MPA) for the CSP region where the order is being placed. Please advise your reseller to sign MPA to continue with the order.",
     "data": [
-        "https://partner.microsoft.com/en-gb/resources/detail/verify-mpa-acceptance-status-pptx"
+        "https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq"
     ],
     "source": "PartnerFD"
 }
@@ -288,7 +288,7 @@ Connection: close
 
 #### <a name="no-csp-indirect-reseller-account-is-associated-with-the-given-mpn-id"></a>Nincs társítva CSP közvetett viszonteladói fiók a megadott MPN-AZONOSÍTÓhoz
 
-A következő példa akkor ad vissza választ, ha a fiókpartner felismeri a kérelemben átadott MPN-azonosítót (PGA/PLA), de a megadott MPN-AZONOSÍTÓhoz (PGA/PLA) nincs társítva CSP-regisztráció. [További információ](https://partner.microsoft.com/resources/detail/onboard-pc-csp-mpn-mpa-guide-pptx)
+A következő példa akkor ad vissza választ, ha a fiókpartner felismeri a kérelemben átadott MPN-azonosítót (PGA/PLA), de a megadott MPN-AZONOSÍTÓhoz (PGA/PLA) nincs társítva CSP-regisztráció. [További információ](https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq)
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -304,7 +304,7 @@ Connection: close
     "code": 2204,
     "description": "MPN Id 123456 is not associated with a CSP Indirect Reseller account in Partner Center. Please advise your reseller to enroll into the CSP program as an indirect reseller in Partner Center.",
     "data": [
-        "https://partner.microsoft.com/en-us/resources/detail/onboard-pc-csp-mpn-mpa-guide-pptx"
+        "https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq"
     ],
     "source": "PartnerFD"
 }
@@ -334,7 +334,7 @@ Connection: close
 
 #### <a name="no-mpa-found-with-the-given-tenant-id"></a>Nem található a megadott bérlői AZONOSÍTÓval rendelkező MPA
 
-Ha a fiókpartner nem talál a megadott bérlői AZONOSÍTÓval rendelkező MPA-aláírást, akkor a következő példában szereplő válasz érkezik.
+Ha a fiókpartner nem talál a megadott bérlői AZONOSÍTÓval rendelkező MPA-aláírást, akkor a következő példában szereplő válasz érkezik. [További információ](https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq)
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -349,7 +349,9 @@ Connection: close
 {
     "code": 2206,
     "description": "Parnter Center Account associated to Tenant Id 12345678-ACBD-1234-ABCD-123456789ABC hasn't signed the agreement",
-    "data": [],
+    "data": [
+        "https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq"
+    ],
     "source": "PartnerFD"
 }
 ```
