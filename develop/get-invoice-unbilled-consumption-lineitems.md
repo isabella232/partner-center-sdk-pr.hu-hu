@@ -4,12 +4,12 @@ description: A partner Center API-k használatával beszerezhet egy adott száml
 ms.date: 01/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 594946db712c28983dd390207fb06c8d9f62f18b
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 8d3bbe7921029dc6c40c65fb8d82baaa944089b6
+ms.sourcegitcommit: 160296667833366fb3f4021d042094606e1032ec
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768327"
+ms.lasthandoff: 03/09/2021
+ms.locfileid: "102472682"
 ---
 # <a name="get-invoice-unbilled-commercial-consumption-line-items"></a>Számlázott kereskedelmi fogyasztási sorok beolvasása
 
@@ -129,11 +129,11 @@ A kérelem létrehozásakor használja az alábbi URI-és lekérdezési paramét
 
 | Név                   | Típus   | Kötelező | Leírás                                                                     |
 |------------------------|--------|----------|---------------------------------------------------------------------------------|
-| Szolgáltató               | sztring | Igen      | A szolgáltató: "**egykori**".                                                |
-| számla-sor-tétel típusa | sztring | Igen      | A számla részleteinek típusa: "**UsageLineItems**", "**UsageLineItems**".               |
-| currencyCode           | sztring | Igen      | A nem számlázott sorok pénznemkódja.                                  |
-| period                 | sztring | Igen      | A nem számlázott felderítés időtartama (például: **current**, **Previous**).<br/><br/>**Előző** – ha a számlázási ciklus 01/01/2020 – 01/31/2020, akkor az a legvalószínűbb, hogy a számla 02/06/2020 és 02/08/2020 UTC-idő között jön létre. Ha a számlázási ciklusban (01/01/2020 – 01/31/2020) nem számlázott használati adatokat kell lekérdezni a 02/01/2020 és a számla által generált dátum (amely 02/06/2020 és 02/08/2020 UTC idő között van) között, akkor az időszakot az "előző" értékre kell kiválasztania.<br/><br/>**Aktuális** – ha a számlázási ciklus 01/01/2020 – 01/31/2020, akkor az a legvalószínűbb, hogy a számla 02/06/2020 és 02/08/2020 UTC-idő között jön létre. Ha a számlázási ciklusban (01/01/2020 – 01/31/2020) nem számlázott használati adatokat kell lekérdezni az 01/01/2020 és az 01/31/2020 között, amely a számlázási ciklusban van, akkor az időszakot a "jelenlegi" értékre kell kiválasztania. |
-| size                   | szám | Nem       | A visszaadni kívánt elemek maximális száma. Az alapértelmezett méret 2000.                    |
+| Szolgáltató               | sztring | Yes      | A szolgáltató: "**egykori**".                                                |
+| számla-sor-tétel típusa | sztring | Yes      | A számla részleteinek típusa: "**UsageLineItems**", "**UsageLineItems**".               |
+| currencyCode           | sztring | Yes      | A nem számlázott sorok pénznemkódja.                                  |
+| period                 | sztring | Yes      | A nem számlázott felderítés időtartama (például: **current**, **Previous**). Tegyük fel, hogy a számlázási ciklus (01/01/2020 – 01/31/2020) nem számlázott használati adatait kell lekérdezni januárban, válassza a **"jelenlegi",** "else **" (előző) lehetőséget.** |
+| size                   | szám | No       | A visszaadni kívánt elemek maximális száma. Az alapértelmezett méret 2000.                    |
 | seekOperation          | sztring | No       | Állítsa be `seekOperation=Next` az egyeztetési sorok következő oldalának beolvasásához.                |
 
 ### <a name="request-headers"></a>Kérésfejlécek
