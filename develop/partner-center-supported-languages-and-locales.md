@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: 5f428bf9104fec3e4855706e8786ad3941875f3d
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: d486eed96586eb2577577eac44fa9e866479e825
+ms.sourcegitcommit: 9bc35836b389fdf083b278128a2e9ec994919f1c
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768044"
+ms.lasthandoff: 03/10/2021
+ms.locfileid: "102532838"
 ---
 # <a name="partner-center-supported-languages-and-locales"></a>Partnerközpont – támogatott nyelvek és területi beállítások
 
@@ -181,7 +181,7 @@ A következő táblázat a partner Center API-k által támogatott kulturális �
 | Montenegró                               | ME                       | MNE                      | SR-Latn-ME/en-US                    |
 | Montserrat                               | MS                       | MSR                      | en-US                                 |
 | Marokkó                                  | MA                       | MÁRC                      | AR-MA/en-US                         |
-| Mozambik                               | MZ                       | MOZ                      | PT-PT/en-US                         |
+| Mozambik                               | MZ                       | MOZ                      | pt-PT                                 |
 | Mianmar                                  | MM                       | MMR                      | en-US                                 |
 | Namíbia                                  | NA                       | NAM                      | en-GB/en-US                         |
 | Nauru                                    | NR                       | NRU                      | en-US                                 |
