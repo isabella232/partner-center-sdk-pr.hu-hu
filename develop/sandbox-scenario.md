@@ -4,19 +4,19 @@ description: A partneri homokozó képes támogatni a partner és az ügyfél k�
 ms.date: 11/10/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: e01dd1a83ca459cbdf12b8e564b43a2d18f5595b
-ms.sourcegitcommit: f69ceae441bbb2ddba96e878a1ec8c1a499a4879
+ms.openlocfilehash: af46811b3615e1f904a9619de85b0aca7622490b
+ms.sourcegitcommit: 717e483a6eec23607b4e31ddfaa3e2691f3043e6
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 01/13/2021
-ms.locfileid: "98180731"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711865"
 ---
 # <a name="partner-sandbox-capabilities-that-support-reseller-relationship"></a>Viszonteladói kapcsolatot támogató partneri tesztkörnyezet-képességek
 
 **A következőkre vonatkozik:**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
@@ -95,7 +95,7 @@ A kérelem törzse nincs
 
 ### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](https://docs.microsoft.com/partner-center/develop/error-codes)-hibakódok.
+Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](./error-codes.md)-hibakódok.
 
 ## <a name="next-steps"></a>Következő lépések
 
@@ -103,4 +103,4 @@ Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertele
 
 - [Megrendelés megszakítása a Homokozóból](cancel-an-order-from-the-integration-sandbox.md)
 
-- [Tesztelés és hibakeresés](test-and-debug.md) 
+- [Tesztelés és hibakeresés](test-and-debug.md)

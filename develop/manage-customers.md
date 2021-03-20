@@ -4,19 +4,19 @@ description: Ez a szakasz azokat a módszereket ismerteti, amelyekkel a felhőal
 ms.date: 02/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: b76829bf8bfae51c135ea815e3360376a5ff294d
-ms.sourcegitcommit: d53d300dc7fb01aeb4ef85bf2e3a6b80f868dc57
+ms.openlocfilehash: fa1a032735037b1b3a543d21bf4c868b52c13017
+ms.sourcegitcommit: 717e483a6eec23607b4e31ddfaa3e2691f3043e6
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "97768208"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711950"
 ---
 # <a name="manage-customers"></a>Ügyfelek kezelése
 
 **A következőkre vonatkozik**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
@@ -53,8 +53,8 @@ Ez a szakasz azt ismerteti, hogy a felhőalapú megoldások szolgáltatói partn
 - [A Microsoft Ügyfélszerződés közvetlen aláírási (közvetlen elfogadási) állapotának lekérése](get-direct-sign-status-of-customer-agreement.md)
 - [Annak megerősítése, hogy az ügyfél elfogadta a Microsoft Ügyfélszerződést](confirm-customer-consent-customer-agreement.md)
 - [Egy partner ellenőrzési kódjainak lekérése](get-a-partner-s-validation-codes.md)
-- [Egy ügyfél végzettségének lekérése](get-a-customer-s-qualification.md)
-- [Ügyfél végzettségének frissítése](update-a-customer-s-qualification.md)
+- [Egy ügyfél végzettségének lekérése](./get-customer-qualification-synchronous.md)
+- [Ügyfél végzettségének frissítése](./update-customer-qualification-synchronous.md)
 
 ## <a name="manage-user-accounts-and-assign-licenses"></a>Felhasználói fiókok kezelése és licencek kiosztása
 

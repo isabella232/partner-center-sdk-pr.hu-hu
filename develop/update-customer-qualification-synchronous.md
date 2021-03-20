@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 7faab68d20c698f5b040a76f4776dbdf14180640
-ms.sourcegitcommit: 0c98496e972aebe10eba23822aa229125bfc035d
+ms.openlocfilehash: c202d95beab771241a9665243be5f08ab6f82fd5
+ms.sourcegitcommit: 717e483a6eec23607b4e31ddfaa3e2691f3043e6
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "97768649"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711967"
 ---
 # <a name="update-a-customers-qualification-via-synchronous-validation"></a>Ügyfél minősítésének frissítése szinkron ellenőrzés útján
 
@@ -39,7 +39,7 @@ Ha frissíteni szeretné az ügyfél képzettségét az "oktatás" értékre, h�
 var eduCustomerQualification = partnerOperations.Customers.ById(existingCustomer.Id).Qualification.Update(CustomerQualification.Education);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSamples **osztály**: CustomerQualificationOperations.cs
+**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSamples **osztály**: CustomerQualificationOperations. cs
 
 Az ügyfél minősítésének frissítése egy meglévő ügyfél **GovernmentCommunityCloud** minősítés nélkül.  Emellett a partnernek is meg kell adnia az ügyfél [**ValidationCode**](utility-resources.md#validationcode).
 
@@ -64,8 +64,8 @@ A minősítés frissítéséhez használja a következő lekérdezési paraméte
 
 | Név                   | Típus | Kötelező | Leírás                                                                                                                                            |
 |------------------------|------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | GUID | Igen      | Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti. |
-| **validationCode**     | int  | Nem       | Csak a kormányzati közösségi felhőhöz szükséges.                                                                                                            |
+| **ügyfél – bérlő – azonosító** | GUID | Yes      | Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti. |
+| **validationCode**     | int  | No       | Csak a kormányzati közösségi felhőhöz szükséges.                                                                                                            |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -107,5 +107,5 @@ MS-RequestId: 037db222-6d8e-4d7f-ba78-df3dca33fb68
 
 ## <a name="related-articles"></a>Kapcsolódó cikkek
 
-- [Egy ügyfél végzettségének lekérése](get-a-customer-s-qualification.md)
+- [Egy ügyfél végzettségének lekérése](./get-customer-qualification-synchronous.md)
 - [Egy partner ellenőrzési kódjainak lekérése](get-a-partner-s-validation-codes.md)

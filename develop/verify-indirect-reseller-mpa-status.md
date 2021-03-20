@@ -4,12 +4,12 @@ description: A AgreementStatus API segítségével ellenőrizheti, hogy a közve
 ms.date: 07/24/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9501f245a6c98fa90e77de7bc0caed8ca51fa4f2
-ms.sourcegitcommit: 40baf4d825ce0ca6a254b5f368c308f025be7034
+ms.openlocfilehash: fa9480424eccc933bc9c28c3879a195fbd5f2bb1
+ms.sourcegitcommit: 717e483a6eec23607b4e31ddfaa3e2691f3043e6
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 02/16/2021
-ms.locfileid: "100537576"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711895"
 ---
 # <a name="verify-an-indirect-resellers-microsoft-partner-agreement-signing-status"></a>Közvetett viszonteladó Microsoft partneri szerződésének aláírása állapotának ellenőrzése
 
@@ -44,7 +44,7 @@ var agreementSignatureStatusByTenantId = partnerOperations.Compliance.AgreementS
 
 - Minta: **[konzol tesztelési alkalmazás](console-test-app.md)**
 - Projekt: **PartnerCenterSDK. FeaturesSamples**
-- Osztály: **GetAgreementSignatureStatus.cs**
+- Osztály: **GetAgreementSignatureStatus. cs**
 
 ## <a name="rest-request"></a>REST-kérelem
 
@@ -60,8 +60,8 @@ A partner azonosításához a következő két lekérdezési paraméter egyikét
 
 | Név | Típus | Kötelező | Leírás |
 | ---- | ---- | -------- | ----------- |
-| **MpnId** | int | Nem | A közvetett viszonteladót azonosító Microsoft Partner Network azonosító (PGA/PLA). |
-| **TenantId** | GUID | Nem | Egy Microsoft-azonosító, amely azonosítja a közvetett viszonteladó CSP-fiókját. |
+| **MpnId** | int | No | A közvetett viszonteladót azonosító Microsoft Partner Network azonosító (PGA/PLA). |
+| **TenantId** | GUID | No | Egy Microsoft-azonosító, amely azonosítja a közvetett viszonteladó CSP-fiókját. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -240,7 +240,7 @@ Connection: close
 
 #### <a name="csp-indirect-provider-region-and-csp-indirect-reseller-region-does-not-match"></a>A CSP közvetett szolgáltató régiója és a CSP közvetett viszonteladói régiója nem egyezik
 
-A következő példa akkor ad vissza választ, ha a közvetett viszonteladói MPN-azonosító (PGA/PLA) régiója nem egyezik a közvetett szolgáltató régiójával. [További](https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq) információ a CSP-régiókról.
+A következő példa akkor ad vissza választ, ha a közvetett viszonteladói MPN-azonosító (PGA/PLA) régiója nem egyezik a közvetett szolgáltató régiójával. [További](/partner-center/mpa-indirect-provider-faq) információ a CSP-régiókról.
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -264,7 +264,7 @@ Connection: close
 
 #### <a name="csp-indirect-reseller-account-exists-in-partner-center-but-hasnt-signed-the-mpa"></a>A CSP közvetett viszonteladói fiókja létezik a partner Centerben, de nem írta alá az MPA-t
 
-A következő példa válaszát adja vissza, ha a fiókpartner közvetett viszonteladói fiókja nem írta alá a MPA-t. [További információ](https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq)
+A következő példa válaszát adja vissza, ha a fiókpartner közvetett viszonteladói fiókja nem írta alá a MPA-t. [További információ](/partner-center/mpa-indirect-provider-faq)
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -288,7 +288,7 @@ Connection: close
 
 #### <a name="no-csp-indirect-reseller-account-is-associated-with-the-given-mpn-id"></a>Nincs társítva CSP közvetett viszonteladói fiók a megadott MPN-AZONOSÍTÓhoz
 
-A következő példa akkor ad vissza választ, ha a fiókpartner felismeri a kérelemben átadott MPN-azonosítót (PGA/PLA), de a megadott MPN-AZONOSÍTÓhoz (PGA/PLA) nincs társítva CSP-regisztráció. [További információ](https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq)
+A következő példa akkor ad vissza választ, ha a fiókpartner felismeri a kérelemben átadott MPN-azonosítót (PGA/PLA), de a megadott MPN-AZONOSÍTÓhoz (PGA/PLA) nincs társítva CSP-regisztráció. [További információ](/partner-center/mpa-indirect-provider-faq)
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -334,7 +334,7 @@ Connection: close
 
 #### <a name="no-mpa-found-with-the-given-tenant-id"></a>Nem található a megadott bérlői AZONOSÍTÓval rendelkező MPA
 
-Ha a fiókpartner nem talál a megadott bérlői AZONOSÍTÓval rendelkező MPA-aláírást, akkor a következő példában szereplő válasz érkezik. [További információ](https://docs.microsoft.com/partner-center/mpa-indirect-provider-faq)
+Ha a fiókpartner nem talál a megadott bérlői AZONOSÍTÓval rendelkező MPA-aláírást, akkor a következő példában szereplő válasz érkezik. [További információ](/partner-center/mpa-indirect-provider-faq)
 
 ```http
 HTTP/1.1 400 Bad Request

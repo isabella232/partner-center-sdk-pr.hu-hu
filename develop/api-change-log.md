@@ -5,12 +5,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 ms.topic: reference
 ms.date: 12/15/2020
-ms.openlocfilehash: 79359414276a1259117a8f506bbfae4441cdcbed
-ms.sourcegitcommit: f8ca3a14a763013fefafd3262d0a740881d1d7b1
+ms.openlocfilehash: b2c2cac36a8bd1bec7aa5bf6e5d1aa73b4779535
+ms.sourcegitcommit: 717e483a6eec23607b4e31ddfaa3e2691f3043e6
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97768684"
+ms.lasthandoff: 03/20/2021
+ms.locfileid: "104711848"
 ---
 # <a name="december-2020-changes-to-partner-center-rest-apis"></a>December 2020 a partner Center REST API-k változásai
 
@@ -24,8 +24,8 @@ Tekintse át a partner Center REST API-k módosításait.
 
 A partner Center API jelenleg az oktatási ügyfelek jogosultságának ellenőrzéséhez és a képesítések beszerzéséhez szükséges. A GET minősítési API-t nem változtatja meg. Azonban a PUT minősítési API-hoz hozzáadott egy visszatérési esetet.
 
-- A GET-nem változik. [Aktuális API-cikk](get-a-customer-s-qualification.md)
-- A rendszer felveszi a visszaküldési esetet. [Aktuális API-cikk](update-a-customer-s-qualification.md)
+- A GET-nem változik. [Aktuális API-cikk](./get-customer-qualification-synchronous.md)
+- A rendszer felveszi a visszaküldési esetet. [Aktuális API-cikk](./update-customer-qualification-synchronous.md)
 
 Ezek az API-k február 2021 végén megszűnnek, és az alább leírtak szerint új API-kat kell cserélni.
 
