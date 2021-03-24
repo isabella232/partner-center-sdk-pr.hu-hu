@@ -4,16 +4,45 @@ description: A partner Center .NET SDK legújabb verziójára vonatkozó kibocs�
 ms.date: 09/18/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 6be8f62e0c202a00b194f5af1dc8904006f8d637
-ms.sourcegitcommit: 01e75175077611da92175c777a440a594fb05797
+ms.openlocfilehash: 2fe309500cc80e962c101ad97f0712bef7e11eb3
+ms.sourcegitcommit: f7fce0b35ab1579e59136abc357b71cf768b81b4
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "97768663"
+ms.lasthandoff: 03/23/2021
+ms.locfileid: "104895533"
 ---
 # <a name="net-sdk-release-notes"></a>A .NET SDK kibocsátási megjegyzései
 
 A következő kibocsátási megjegyzések a [Microsoft partner Center .net SDK](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter)új verzióihoz érhetők el. [.Net SDK-minták](https://github.com/Microsoft/Partner-Center-DotNet-Samples) a githubon találhatók. A [partner Center .NET API-referenciát](/dotnet/api/?view=partnercenter-dotnet-latest&preserve-view=true) a .NET API-böngészőben találja.
+
+## <a name="version-1170"></a>1.17.0 verziója
+
+A [Microsoft partner Center .net SDK](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter/1.17.0) v 1.17.0 mostantól általánosan elérhető. A frissített [GitHub-minták](https://github.com/Microsoft/Partner-Center-DotNet-Samples) is elérhetők. Ebben a verzióban a következő változások szerepelnek:
+
+* Frissítve – új műveleti típusok hozzáadva, amelyekből megtudhatja, mikor hagyta jóvá és szakítja meg a DAP-t
+  * [DapAdminRelationshipApproved](auditing-resources.md)
+  * [DapAdminRelationshipTerminated](auditing-resources.md)
+
+* Napló frissítve – új erőforrás-és műveleti típusok hozzáadása az ügyfél-címtár szerepkör-forgatókönyv támogatásához
+  * "[CustomerDirectoryRole](auditing-resources.md)" erőforrástípus
+  * A "[AddUserMember](auditing-resources.md)" és a "[RemoveUserMember](auditing-resources.md)" típusú műveletek
+
+* SDK-frissítések az ügyfelek számlájához – támogatás a következő API-k számára
+  * /Customers/{customer-tenant-id}/directSignedMicrosoftCustomerAgreementStatus beolvasása
+  * /Customers/{Customer-Tenant-ID}/Qualifications beolvasása 
+  * POST/Customers/{customer_id}/Qualifications? Code = {validationCode}
+
+* **Az új kereskedelmi szolgáltatás részeként bevezetett változások a következők: a M365/D365 új kereskedelmi tapasztalattal foglalkozó partnereknek szóló meghívások alapján jelenleg elérhető partnerek.** Az új kereskedelmi privát előzetes verzió részét nem képező partnerek nem láthatják a hatásokat, és visszamenőlegesen kompatibilisnek kell lenniük.
+  * Katalógus változásai:
+    * /Products/{Product-ID}/SKUs/{SKU-ID} beolvasása
+  * Vásárlás és kezelés:
+    * /Customers/{customerId}/subscriptions beolvasása
+    * /Customers/{customerId}/subscriptions/{subscriptionId} beolvasása
+    * /Customers/{customerId}/subscriptions/{subscriptionId} javítása
+    * /Customers/{customerId}/subscriptions/{subscriptionId}/transitioneligibilities beolvasása
+    * /Customers/{customerId}/subscriptions/{subscriptionId}/transitions beolvasása
+    * /Customers/{customerId}/subscriptions/{subscriptionId}/transitions közzététele
+
 
 ## <a name="version-1163"></a>1.16.3 verziója
 
