@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: JoeyBytes
 ms.author: jobiesel
-ms.openlocfilehash: 2c860d4a35104131197e06d4712f4ef41ba0008e
-ms.sourcegitcommit: 717e483a6eec23607b4e31ddfaa3e2691f3043e6
+ms.openlocfilehash: 09801792c059873b9f6b842e99286eda09d38b1a
+ms.sourcegitcommit: bbdb5f7c9ddd42c2fc4eaadbb67d61aeeae805ca
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711913"
+ms.lasthandoff: 03/24/2021
+ms.locfileid: "105030567"
 ---
 # <a name="get-a-customers-qualification-asynchronously"></a>Ügyfél-képesítés aszinkron beszerzése
 
@@ -27,6 +27,18 @@ Az ügyfél képzettségének aszinkron beszerzése.
 
 - Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
 
+## <a name="c"></a>C\#
+
+Az ügyfél képzettségének beszerzéséhez hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval. Ezután használja a [**minősítés**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.qualification) tulajdonságot egy [**ICustomerQualification**](/dotnet/api/microsoft.store.partnercenter.qualification.icustomerqualification) felület lekéréséhez. Végül hívja `GetQualifications()` meg vagy kérje `GetQualificationsAsync()` le az ügyfél képzettségét.
+
+``` csharp
+// IAggregatePartner partnerOperations;
+// string customerId;
+var customerQualifications = partnerOperations.Customers.ById(customerId).Qualification.GetQualifications();
+```
+
+**Példa**: [konzolos minta alkalmazás](https://github.com/microsoft/Partner-Center-DotNet-Samples). **Projekt**: SdkSamples **osztály**: GetCustomerQualifications. cs
+
 ## <a name="rest-request"></a>REST-kérelem
 
 ### <a name="request-syntax"></a>Kérelem szintaxisa
@@ -41,7 +53,7 @@ Ez a táblázat felsorolja a szükséges lekérdezési paramétereket az összes
 
 | Név               | Típus   | Kötelező | Leírás                                           |
 |--------------------|--------|----------|-------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | sztring | Yes      | Egy GUID-formázott karakterlánc, amely azonosítja az ügyfelet. |
+| **ügyfél – bérlő – azonosító** | sztring | Igen      | Egy GUID-formázott karakterlánc, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -79,14 +91,12 @@ Content-Length:
 Content-Type: application/json
 MS-CorrelationId: 7d2456fd-2d79-46d0-9f8e-5d7ecd5f8745
 MS-RequestId: 037db222-6d8e-4d7f-ba78-df3dca33fb68
-{
-    "qualifications": [
-        {
-            "qualification": "Education",
-            "vettingStatus": "Approved",
-        }
-    ]
-}
+[
+    {
+        "qualification": "Education",
+        "vettingStatus": "Approved",
+    }
+]
 
 ```
 
@@ -98,15 +108,13 @@ Content-Length:
 Content-Type: application/json
 MS-CorrelationId: 7d2456fd-2d79-46d0-9f8e-5d7ecd5f8745
 MS-RequestId: 037db222-6d8e-4d7f-ba78-df3dca33fb68
-{
-    "qualifications": [
-        {
-            "qualification": "Education",
-            "vettingStatus": "InReview",
-            "vettingCreatedDate": "2020-12-03T10:37:38.885Z" // UTC
-        }
-    ]
-}
+[
+    {
+        "qualification": "Education",
+        "vettingStatus": "InReview",
+        "vettingCreatedDate": "2020-12-03T10:37:38.885Z" // UTC
+    }
+]
 
 ```
 
@@ -118,16 +126,14 @@ Content-Length:
 Content-Type: application/json
 MS-CorrelationId: 7d2456fd-2d79-46d0-9f8e-5d7ecd5f8745
 MS-RequestId: 037db222-6d8e-4d7f-ba78-df3dca33fb68
-{
-    "qualifications": [
-        {
-            "qualification": "Education",
-            "vettingStatus": "Denied",
-            "vettingReason": "Not an Education Customer", // example Vetting Reason
-            "vettingCreatedDate": "2020-12-03T10:37:38.885Z" // UTC
-        }
-    ]
-}
+[
+    {
+        "qualification": "Education",
+        "vettingStatus": "Denied",
+        "vettingReason": "Not an Education Customer", // example Vetting Reason
+        "vettingCreatedDate": "2020-12-03T10:37:38.885Z" // UTC
+    }
+]
 
 ```
 
