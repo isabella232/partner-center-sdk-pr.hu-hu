@@ -4,19 +4,19 @@ description: A partner Center API-kon keresztül több számlával kapcsolatos e
 ms.date: 01/27/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: bd2caefe4ae18c81a31083d084f1e87da1288dd9
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 8977b3b649cd930bb517965572d0efe51d6985a0
+ms.sourcegitcommit: 4ec053c56fd210b174fe657aa7b86faf4e2b5a7c
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767811"
+ms.lasthandoff: 03/29/2021
+ms.locfileid: "105730212"
 ---
 # <a name="invoice-resources"></a>Számlázási erőforrások
 
 **A következőkre vonatkozik:**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
@@ -24,7 +24,7 @@ A következő számlával kapcsolatos erőforrások a partner Center API-kon ker
 
 ## <a name="invoice"></a>Számla
 
-| Tulajdonság | Típus | Leírás |
+| Tulajdonság | Típus | Description |
 | -------- | ---- | ----------- |
 | id | sztring | A számla azonosítója. |
 | invoiceDate | karakterlánc UTC dátum-idő formátumban | A számla létrehozásának dátuma. |
@@ -47,7 +47,7 @@ A következő számlával kapcsolatos erőforrások a partner Center API-kon ker
 
 A számla számlázott elemek gyűjteményét tartalmazza, és minden elemet egy InvoiceDetail-erőforrás képvisel.
 
-| Tulajdonság            | Típus                                                           | Leírás                                                                       |
+| Tulajdonság            | Típus                                                           | Description                                                                       |
 |---------------------|----------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | invoiceLineItemType | sztring                                                         | A számla részleteinek típusa: "None", "használati \_ sor \_ elemek", "számlázási \_ sorok \_ ". |
 | billingProvider     | sztring                                                         | A számlázási szolgáltató: "None", "Office", "Azure" vagy "Azure-beli \_ \_ adatpiac".         |
@@ -58,7 +58,7 @@ A számla számlázott elemek gyűjteményét tartalmazza, és minden elemet egy
 
 A számlán belül minden egyes díj egy InvoiceLineItem jelenik meg.
 
-| Tulajdonság            | Típus                                                           | Leírás                                                                          |
+| Tulajdonság            | Típus                                                           | Description                                                                          |
 |---------------------|----------------------------------------------------------------|--------------------------------------------------------------------------------------|
 | invoiceLineItemType | sztring                                                         | A számlasorok-elem típusa: "None", "felhasználási \_ sor \_ elemek", "számlázási \_ sorok \_ ". |
 | billingProvider     | sztring                                                         | A számlázási szolgáltató: "None", "Office", "Azure" vagy "Azure-beli \_ \_ adatpiac".            |
@@ -68,7 +68,7 @@ A számlán belül minden egyes díj egy InvoiceLineItem jelenik meg.
 
 A számla egyenlegének és teljes díjainak összegzését ismerteti.
 
-| Tulajdonság                 | Típus                                                           | Leírás                                                           |
+| Tulajdonság                 | Típus                                                           | Description                                                           |
 |--------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
 | balanceAmount            | szám                                                         | A számla egyenlege. Ez a fizetetlen számlák teljes mennyisége. |
 | currencyCode             | sztring                                                         | Egy kód, amely az egyenleg összegéhez használt pénznemet jelzi.       |
@@ -86,7 +86,7 @@ A számla egyenlegének és teljes díjainak összegzését ismerteti.
 
 A számla típusának egyedi részletei (például ismétlődő, egyszeri) összegzését jelöli \_ .
 
-| Tulajdonság            | Típus                                                           | Leírás                                                                          |
+| Tulajdonság            | Típus                                                           | Description                                                                          |
 |---------------------|----------------------------------------------------------------|--------------------------------------------------------------------------------------|
 | invoiceType         | sztring                                                         | A számla típusa: "ismétlődő", "One \_ Time".                                       |
 | összegzés             | [InvoiceSummary](#invoicesummary) objektum                       | A számla és a számla típusának összefoglalása.                                         |
@@ -95,7 +95,7 @@ A számla típusának egyedi részletei (például ismétlődő, egyszeri) össz
 
 A [InvoiceSummary](#invoicesummary) típusú gyűjteményt jelöli, amely a számla típusának egyedi részleteit tartalmazza pénznemben.
 
-| Tulajdonság            | Típus                                                           | Leírás                                                                          |
+| Tulajdonság            | Típus                                                           | Description                                                                          |
 |---------------------|----------------------------------------------------------------|--------------------------------------------------------------------------------------|
 | collectionOfSummary | [InvoiceSummary](#invoicesummary) objektumok tömbje             | A számla összefoglalása a számla típusú számlánként.                            |
 
@@ -103,7 +103,7 @@ A [InvoiceSummary](#invoicesummary) típusú gyűjteményt jelöli, amely a szá
 
 A licencelt alapú előfizetések számlázási sorát jelöli.
 
-| Tulajdonság                 | Típus                                                           | Leírás                                                           |
+| Tulajdonság                 | Típus                                                           | Description                                                           |
 |--------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
 | összeg                   | sztring                                                         | Lekérdezi vagy beállítja a teljes mennyiséget. Teljes összeg = egység ára * mennyiség.  |
 | attribútumok               | sztring                                                         | Az attribútumok beolvasása.                                                  |
@@ -141,7 +141,7 @@ A licencelt alapú előfizetések számlázási sorát jelöli.
 
 A használati alapú előfizetések számlázási sor tételét jelöli.
 
-| Tulajdonság                 | Típus                                                           | Leírás                                                           |
+| Tulajdonság                 | Típus                                                           | Description                                                           |
 |--------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
 | attribútumok               | sztring                                                         | Az attribútumok beolvasása.                                                  |
 | billingCycleType         | sztring                                                         | Lekérdezi vagy beállítja a számlázási ciklus típusát.                                  |
@@ -188,7 +188,7 @@ A használati alapú előfizetések számlázási sor tételét jelöli.
 
 Az Application/PDF-ben egy számlafogadó utasításban elérhető műveleteket jelöli.
 
-| Tulajdonság                 | Típus                                                           | Leírás                                                           |
+| Tulajdonság                 | Típus                                                           | Description                                                           |
 |--------------------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
 | httpResponseMessage      | object                                                         | ByteArrayContent a contentType = Application/PDF formátumban.                  |
 
@@ -196,7 +196,7 @@ Az Application/PDF-ben egy számlafogadó utasításban elérhető műveleteket 
 
 A licenccel rendelkező előfizetések számlázási sorát jelöli.
 
-| Tulajdonság | Típus | Leírás |
+| Tulajdonság | Típus | Description |
 | --- | --- | --- |
 | PartnerId | sztring | Lekérdezi vagy beállítja a partner bérlői AZONOSÍTÓját. |
 | CustomerId | sztring | Lekérdezi vagy beállítja az ügyfél bérlői AZONOSÍTÓját. |
@@ -213,13 +213,13 @@ A licenccel rendelkező előfizetések számlázási sorát jelöli.
 | TermékNév | sztring | Lekérdezi vagy beállítja a terméknév nevét. |
 | SkuName | sztring | Lekérdezi vagy beállítja az SKU nevét. |
 | ChargeType | sztring | Lekérdezi vagy beállítja a díj típusát. |
-| UnitPrice | decimal | Lekérdezi vagy beállítja az egység árát. |
-| EffectiveUnitPrice | decimal | Lekérdezi vagy beállítja a hatályos egység árát. |
+| UnitPrice | tizedes tört | Lekérdezi vagy beállítja az egység árát. |
+| EffectiveUnitPrice | tizedes tört | Lekérdezi vagy beállítja a hatályos egység árát. |
 | UnitType | sztring | Lekérdezi vagy beállítja az egység típusát. |
 | Mennyiség | int | Lekérdezi vagy beállítja az ehhez a sorhoz társított egységek számát. |
-| Részösszeg | decimal | Lekérdezi vagy beállítja a kedvezmény utáni összeget. |
-| TaxTotal | decimal | Lekérdezi vagy beállítja a felszámított adókat. |
-| TotalForCustomer | decimal | Lekérdezi vagy beállítja a teljes összeget a kedvezmény és az adó után. |
+| Részösszeg | tizedes tört | Lekérdezi vagy beállítja a kedvezmény utáni összeget. |
+| TaxTotal | tizedes tört | Lekérdezi vagy beállítja a felszámított adókat. |
+| TotalForCustomer | tizedes tört | Lekérdezi vagy beállítja a teljes összeget a kedvezmény és az adó után. |
 | Pénznem | sztring | Lekérdezi vagy beállítja a tételhez használt pénznemet. |
 | Közzétevő neve | sztring | Lekérdezi vagy beállítja a vásárláshoz társított közzétevő nevét. |
 | PublisherId | sztring | Lekérdezi vagy beállítja a vásárláshoz társított közzétevő AZONOSÍTÓját. |
@@ -230,11 +230,12 @@ A licenccel rendelkező előfizetések számlázási sorát jelöli.
 | TermAndBillingCycle | sztring | Lekérdezi vagy beállítja a vásárláshoz társított kifejezést és számlázási ciklust. |
 | AlternateId | sztring | Lekérdezi vagy beállítja a helyettesítő azonosítót (azonosító azonosító). |
 | PriceAdjustmentDescription | sztring | Lekérdezi vagy beállítja az ár-helyesbítés leírását. |
+| CreditReasonCode | sztring | Lekérdezi vagy beállítja a kredit okának kódját. |
 | DiscountDetails | sztring |  **Elavult**. Lekérdezi vagy beállítja a vásárláshoz tartozó kedvezményes adatokat. |
 | PricingCurrency | sztring | Lekérdezi vagy beállítja az árképzési pénznem kódját. |
-| PCToBCExchangeRate | decimal | Lekérdezi vagy beállítja a díjszabási pénznemet a számlázási valuta árfolyamán. |
+| PCToBCExchangeRate | tizedes tört | Lekérdezi vagy beállítja a díjszabási pénznemet a számlázási valuta árfolyamán. |
 | PCToBCExchangeRateDate | DateTime | Lekérdezi vagy beállítja azt az árfolyam-időpontot, amelyen az árképzési pénznemet a számlázási valuta árfolyama alapján állapították meg. |
-| BillableQuantity | decimal | Lekérdezi vagy beállítja a megvásárolt egységeket. Minden **BillableQuantity** nevű tervezési oszlop esetében. |
+| BillableQuantity | tizedes tört | Lekérdezi vagy beállítja a megvásárolt egységeket. Minden **BillableQuantity** nevű tervezési oszlop esetében. |
 | MeterDescription | sztring | Lekérdezi vagy beállítja a használati sorok mérési leírását. |
 | ReservationOrderId | sztring | Lekérdezi vagy beállítja az Azure RI-vásárlás foglalási rendelésének azonosítóját. |
 | BillingFrequency | sztring | Lekérdezi vagy beállítja a számlázási gyakoriságot. |
@@ -245,7 +246,7 @@ A licenccel rendelkező előfizetések számlázási sorát jelöli.
 
 A nem számlázott, számlázott egyeztetési sorok a napi névleges használatot jelentik.
 
-| Tulajdonság | Típus | Leírás |
+| Tulajdonság | Típus | Description |
 | --- | --- | --- |
 | PartnerId | sztring | Lekérdezi vagy beállítja a partner bérlői AZONOSÍTÓját. |
 | PartnerName | sztring | Lekérdezi vagy beállítja a partner nevét. |
@@ -284,19 +285,21 @@ A nem számlázott, számlázott egyeztetési sorok a napi névleges használato
 | MpnId | sztring | Lekérdezi vagy beállítja az ehhez a sorhoz társított MPN-azonosítót. |
 | ResellerMpnId | sztring | Lekérdezi vagy beállítja az ehhez a sorhoz tartozó 2. szintű partner viszonteladói MPN-AZONOSÍTÓját. |
 | ChargeType | sztring | Lekérdezi vagy beállítja a díj típusát. |
-| UnitPrice | decimal | Lekérdezi vagy beállítja az egység árát. |
-| Mennyiség | decimal | Lekérdezi vagy beállítja a használat mennyiségét. |
+| UnitPrice | tizedes tört | Lekérdezi vagy beállítja az egység árát. |
+| Mennyiség | tizedes tört | Lekérdezi vagy beállítja a használat mennyiségét. |
 | UnitType | sztring | Lekérdezi vagy beállítja az egység típusát (például 1 óra). |
-| BillingPreTaxTotal | decimal | Lekérdezi vagy beállítja az ügyfél vagy a számlázási pénznem helyi pénznemében megjelenő adózás előtti kibővített költségeket vagy teljes költségeket. |
+| BillingPreTaxTotal | tizedes tört | Lekérdezi vagy beállítja az ügyfél vagy a számlázási pénznem helyi pénznemében megjelenő adózás előtti kibővített költségeket vagy teljes költségeket. |
 | BillingCurrency | sztring | Lekérdezi vagy beállítja az ISO-pénznemet, amelyben a mérőszámot az ügyfél vagy a számlázási pénznem helyi pénznemében számítjuk fel. |
-| PricingPreTaxTotal | decimal | Lekérdezi vagy beállítja a kibővített költségeket vagy a teljes díjat, mielőtt az USD vagy a katalógus pénznemét az értékeléshez használják. |
+| PricingPreTaxTotal | tizedes tört | Lekérdezi vagy beállítja a kibővített költségeket vagy a teljes díjat, mielőtt az USD vagy a katalógus pénznemét az értékeléshez használják. |
 | PricingCurrency | sztring | Lekérdezi vagy beállítja azt az ISO-pénznemet, amelyben a mérőszámot USD vagy katalógus pénznemben számítjuk fel a minősítéshez. |
 | EntitlementId | sztring | Lekérdezi vagy beállítja a jogosultság (Azure-előfizetés) AZONOSÍTÓját. |
 | EntitlementDescription | sztring | Lekérdezi vagy beállítja a jogosultság (Azure-előfizetés) leírását. |
 | PCToBCExchangeRate | sztring | Lekérdezi vagy beállítja a díjszabási pénznemet a számlázási valuta árfolyamán. |
 | PCToBCExchangeRateDate | DateTime | Lekérdezi vagy beállítja az árképzési pénznemet a számlázási valuta árfolyamának dátumára. |
-| EffectiveUnitPrice | decimal | Lekérdezi vagy beállítja a hatályos egység árát. |
-| RateOfPartnerEarnedCredit | decimal | Lekérdezi vagy beállítja a partner által létrehozott kreditek arányát. |
-| hasPartnerEarnedCredit | logikai | Lekérdezi vagy beállítja a partner által létrehozott kreditet. |
+| EffectiveUnitPrice | tizedes tört | Lekérdezi vagy beállítja a hatályos egység árát. |
+| RateOfPartnerEarnedCredit | tizedes tört | Lekérdezi vagy beállítja a partner által létrehozott kreditek arányát. |
+| HasPartnerEarnedCredit | logikai | Lekérdezi vagy beállítja a partner által létrehozott kreditet. |
+| RateOfCredit | tizedes tört | Lekérdezi vagy beállítja a megadott kredit típusú kreditek arányát. |
+| CreditType | sztring | Lekérdezi vagy beállítja a kredit típusát. |
 | InvoiceLineItemType | InvoiceLineItemType | A számlasor-elemek típusát adja vissza. |
 | BillingProvider | BillingProvider | A számlázási szolgáltatót adja vissza. |

@@ -4,19 +4,19 @@ description: A partner Center API-k használatával lekérheti a számla sor (le
 ms.date: 01/27/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: e797f549e1344268c8167259a231122e7c669a2e
-ms.sourcegitcommit: 9f8ba784171ab4f980ed0c60ef6f2323849c4a98
+ms.openlocfilehash: ddc49e4d83518b809402a65f990f3e9c2658e64b
+ms.sourcegitcommit: 4ec053c56fd210b174fe657aa7b86faf4e2b5a7c
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 02/14/2021
-ms.locfileid: "100499898"
+ms.lasthandoff: 03/29/2021
+ms.locfileid: "105730228"
 ---
 # <a name="get-invoice-line-items"></a>Számla sorelemeinek lekérése
 
 **A következőkre vonatkozik:**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
@@ -103,7 +103,7 @@ Ehhez hasonló példát a következő témakörben talál:
 
 - Minta: [konzol tesztelési alkalmazás](console-test-app.md)
 - Projekt: **partner Center SDK-minták**
-- Osztály: **GetInvoiceLineItems.cs**
+- Osztály: **GetInvoiceLineItems. cs**
 
 ## <a name="rest-request"></a>REST-kérelem
 
@@ -633,6 +633,7 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
             "termAndBillingCycle": "1 Month Subscription",
             "alternateId": "1234278124b8",
             "priceAdjustmentDescription": "[\"100.0% Tier 1 Discount\"]",
+            "creditReasonCode": "Azure Consumption Credit",
             "pricingCurrency": "USD",
             "pcToBCExchangeRate": 1,
             "pcToBCExchangeRateDate": "2019-09-30T23:59:59Z",

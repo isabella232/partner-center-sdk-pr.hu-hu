@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: a13b62903e44165ef9811ea7798fcea666d483dc
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 1e19792da6a7510bf02dd11b3e77f40a8365be2b
+ms.sourcegitcommit: 4ec053c56fd210b174fe657aa7b86faf4e2b5a7c
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768336"
+ms.lasthandoff: 03/29/2021
+ms.locfileid: "105730195"
 ---
 # <a name="get-invoice-billed-commercial-consumption-line-items"></a>Számlázott kereskedelmi fogyasztási sorok számlázásának beolvasása
 
@@ -109,7 +109,7 @@ Ehhez hasonló példát a következő témakörben talál:
 
 - Minta: [konzol tesztelési alkalmazás](console-test-app.md)
 - Projekt: **partner Center SDK-minták**
-- Osztály: **GetBilledConsumptionReconLineItemsPaging.cs**
+- Osztály: **GetBilledConsumptionReconLineItemsPaging. cs**
 
 ## <a name="rest-request"></a>REST-kérelem
 
@@ -129,12 +129,12 @@ A kérelem létrehozásakor használja az alábbi URI-és lekérdezési paramét
 
 | Név                   | Típus   | Kötelező | Leírás                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
-| számlázási azonosító             | sztring | Igen      | A számlát azonosító karakterlánc.                             |
-| Szolgáltató               | sztring | Igen      | A szolgáltató: "egykori".                                  |
-| számla-sor-tétel típusa | sztring | Igen      | A számla részleteinek típusa: "UsageLineItems". |
-| currencyCode           | sztring | Igen      | A számlázott sorok pénznemkódja.                    |
-| period                 | sztring | Igen      | A számlázott felderítés időszaka. Példa: current, Previous.        |
-| size                   | szám | Nem       | A visszaadni kívánt elemek maximális száma. Az alapértelmezett méret 2000       |
+| számlázási azonosító             | sztring | Yes      | A számlát azonosító karakterlánc.                             |
+| Szolgáltató               | sztring | Yes      | A szolgáltató: "egykori".                                  |
+| számla-sor-tétel típusa | sztring | Yes      | A számla részleteinek típusa: "UsageLineItems". |
+| currencyCode           | sztring | Yes      | A számlázott sorok pénznemkódja.                    |
+| period                 | sztring | Yes      | A számlázott felderítés időszaka. Példa: current, Previous.        |
+| size                   | szám | No       | A visszaadni kívánt elemek maximális száma. Az alapértelmezett méret 2000       |
 | seekOperation          | sztring | No       | Állítsa be a seekOperation = Next (Beolvasás) elemet a felderítési sorok következő oldalának beolvasásához. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
@@ -238,6 +238,7 @@ Date: Wed, 20 Feb 2019 19:59:27 GMT
             "billingCurrency": "USD",
             "pricingPreTaxTotal": 0.486031696515249,
             "pricingCurrency": "USD",
+            "creditType": "Credit Not Applied",
             "invoiceLineItemType": "usage_line_items",
             "billingProvider": "marketplace",
             "attributes": {
@@ -295,6 +296,8 @@ Date: Wed, 20 Feb 2019 19:59:27 GMT
             "pcToBCExchangeRateDate": "2019-08-01T00:00:00Z",
             "effectiveUnitPrice": 0.1999968000511991808131,
             "rateOfPartnerEarnedCredit": 0,
+            "rateOfCredit": 1,
+            "creditType": "Azure Credit Applied",
             "invoiceLineItemType": "usage_line_items",
             "billingProvider": "marketplace",
             "attributes": {
@@ -414,7 +417,8 @@ Date: Wed, 20 Feb 2019 19:59:27 GMT
             "pcToBCExchangeRateDate": "2019-08-01T00:00:00Z",
             "effectiveUnitPrice": 0.1835431430074643112595,
             "rateOfPartnerEarnedCredit": 0.15,
-
+            "rateOfCredit": 0.15,
+            "creditType": "Partner Earned Credit Applied",
             "attributes": {
                 "objectType": "DailyRatedUsageLineItem"
             }

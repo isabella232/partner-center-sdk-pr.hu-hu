@@ -4,12 +4,12 @@ description: A partner Center API-k használatával beszerezhet egy adott száml
 ms.date: 01/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 8d3bbe7921029dc6c40c65fb8d82baaa944089b6
-ms.sourcegitcommit: 160296667833366fb3f4021d042094606e1032ec
+ms.openlocfilehash: 0b0ce9d4c8d310243d8b799445e5a64975f2d05d
+ms.sourcegitcommit: 4ec053c56fd210b174fe657aa7b86faf4e2b5a7c
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/09/2021
-ms.locfileid: "102472682"
+ms.lasthandoff: 03/29/2021
+ms.locfileid: "105730246"
 ---
 # <a name="get-invoice-unbilled-commercial-consumption-line-items"></a>Számlázott kereskedelmi fogyasztási sorok beolvasása
 
@@ -109,7 +109,7 @@ Ehhez hasonló példát a következő témakörben talál:
 
 - Minta: [konzol tesztelési alkalmazás](console-test-app.md)
 - Projekt: **partner Center SDK-minták**
-- Osztály: **GetUnBilledConsumptionReconLineItemsPaging.cs**
+- Osztály: **GetUnBilledConsumptionReconLineItemsPaging. cs**
 
 ## <a name="rest-request"></a>REST-kérelem
 
@@ -243,6 +243,8 @@ Date: Wed, 20 Feb 2019 19:59:27 GMT
             "pcToBCExchangeRateDate": "2019-08-01T00:00:00Z",
             "effectiveUnitPrice": 0,
             "rateOfPartnerEarnedCredit": 0,
+            "rateOfCredit": 0,
+            "creditType": "Credit Not Applied",
             "invoiceLineItemType": "usage_line_items",
             "billingProvider": "marketplace",
             "attributes": {
@@ -300,7 +302,9 @@ Date: Wed, 20 Feb 2019 19:59:27 GMT
             "pcToBCExchangeRateDate": "2019-08-01T00:00:00Z",
             "effectiveUnitPrice": 0,
             "rateOfPartnerEarnedCredit": 0,
-            "invoiceLineItemType": "usage_line_items",
+            "rateOfCredit": 1,
+            "creditType": "Azure Credit Applied",
+            "invoiceLineItemTypce": "usage_line_items",
             "billingProvider": "marketplace",
             "attributes": {
                 "objectType": "DailyRatedUsageLineItem"
@@ -418,7 +422,9 @@ Date: Wed, 20 Feb 2019 19:59:27 GMT
             "pcToBCExchangeRate": 1,
             "pcToBCExchangeRateDate": "2019-08-01T00:00:00Z",
             "effectiveUnitPrice": 0,
-            "rateOfPartnerEarnedCredit": 0,
+            "rateOfPartnerEarnedCredit": 0.15,
+            "rateOfCredit": 0.15,
+            "creditType": "Partner Earned Credit Applied",
             "invoiceLineItemType": "usage_line_items",
             "billingProvider": "marketplace",
             "attributes": {
