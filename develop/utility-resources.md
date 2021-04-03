@@ -1,22 +1,22 @@
 ---
 title: Hasznos erőforrások
 description: A partner Center REST API számos olyan erőforrást tartalmaz, amelyek az SDK-ban használt általános célú adatmodelleket írják le.
-ms.date: 11/13/2020
+ms.date: 03/30/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 53d39e4f76684128d48eacdce75706d853c7ce74
-ms.sourcegitcommit: f5178dca1d9a51059738972810235d8858e6a67a
+ms.openlocfilehash: 115b0508f956c4b60e4db53193ef2585fa0c9a34
+ms.sourcegitcommit: 204e518e794b6b076a17488ee9ca1aaaa4beaaec
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/18/2020
-ms.locfileid: "97768580"
+ms.lasthandoff: 04/01/2021
+ms.locfileid: "106103980"
 ---
 # <a name="utility-resources"></a>Hasznos erőforrások
 
 **A következőkre vonatkozik**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
@@ -31,7 +31,7 @@ Az ügyfél-vagy partneri profilokhoz használandó címe. A különböző orsz�
 | AddressLine1 | sztring | (1, 200)          | A címe első sora.                                                                   |
 | AddressLine2 | sztring | (0, 200)          | A címe második sora. Ez a tulajdonság nem kötelező.                                       |
 | City         | sztring | n.a.               | A város.                                                                                        |
-| Állam        | sztring | (0, 2)            | Az állapot.                                                                                       |
+| Állapot        | sztring | (0, 2)            | Az állapot.                                                                                       |
 | Irányítószám   | sztring | n.a.               | A ZIP-kód vagy postai irányítószám.                                                                     |
 | Ország      | sztring | (2, 2)            | Az ország/régió ISO-országkód szerinti formátuma.                                                   |
 | Region       | sztring | n.a.               | A régió.                                                                                      |
@@ -39,7 +39,7 @@ Az ügyfél-vagy partneri profilokhoz használandó címe. A különböző orsz�
 | MiddleName   | sztring | (1, 50)           | Az ügyfél cége/szervezete kapcsolattartójának középső neve. Ez a tulajdonság nem kötelező.  |
 | LastName     | sztring | (1, 50)           | Egy partner vezetékneve az ügyfél vállalatánál vagy szervezetében.                               |
 | PhoneNumber  | sztring | n.a.               | Egy partner telefonszáma az ügyfél vállalata/szervezete számára. Ez a tulajdonság nem kötelező.|
-|PhoneNumber|sztring|n.a.|Egy partner telefonszáma az ügyfél vállalata/szervezete számára. Az ügyfél profiljában ez a tulajdonság a következő országokban található ügyfél vállalata/szervezete számára kötelező. Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA). Ellenkező esetben ez nem kötelező.|
+|PhoneNumber|sztring|n.a.|Egy partner telefonszáma az ügyfél vállalata/szervezete számára. Az ügyfél profiljában ez a tulajdonság a következő országokban található ügyfél vállalata/szervezete számára kötelező: Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (), Ukrajna (UA)), India, Brazília, Dél-Afrika, Lengyelország, Egyesült Arab Emírségek, Szaúd-Arábia, Törökország, Thaiföld, Vietnam, Mianmar, Irak, Dél-Szudán és Venezuela. Ellenkező esetben ez nem kötelező.|
 
 
 ## <a name="contact"></a>Kapcsolattartó

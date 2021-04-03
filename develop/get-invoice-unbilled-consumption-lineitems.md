@@ -4,12 +4,12 @@ description: A partner Center API-k használatával beszerezhet egy adott száml
 ms.date: 01/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 0b0ce9d4c8d310243d8b799445e5a64975f2d05d
-ms.sourcegitcommit: 4ec053c56fd210b174fe657aa7b86faf4e2b5a7c
+ms.openlocfilehash: 8b6ca8d6ff7af53dd2a258ea20e6eaeb26421440
+ms.sourcegitcommit: faea78fe3264cbafc2b02c04d98d5ce30e992124
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/29/2021
-ms.locfileid: "105730246"
+ms.lasthandoff: 04/03/2021
+ms.locfileid: "106274665"
 ---
 # <a name="get-invoice-unbilled-commercial-consumption-line-items"></a>Számlázott kereskedelmi fogyasztási sorok beolvasása
 
@@ -117,24 +117,24 @@ Ehhez hasonló példát a következő témakörben talál:
 
 A REST-kérelemhez a használati esettől függően a következő szintaxist használhatja. További információkért tekintse meg az egyes szintaxisok leírását.
 
- | Metódus  | Kérés URI-ja         | Szintaxis használati esetének leírása |                                                                                                                                            |
-|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/UNBILLED/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &időszak = {period} http/1.1                              | Ezzel a szintaxissal teljes listát adhat vissza az adott számlához tartozó összes sor tételről. |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/UNBILLED/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &időszak = {period} &mérete = {size} http/1.1  | Használja ezt a szintaxist nagyméretű számlákhoz. Ezt a szintaxist egy megadott mérettel és 0-alapú eltolással használhatja a sorok lapozható listájának visszaadásához. |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/UNBILLED/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &időszak = {period} &mérete = {size} &SeekOperation = tovább                               | Ezzel a szintaxissal beolvashatja az egyeztetési sorok következő oldalát a használatával `seekOperation = "Next"` . |
+| Metódus  | Kérés URI-ja                                                                                                                                                                                              | Szintaxis használati esetének leírása                                                                                                     |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/UNBILLED/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &időszak = {period} http/1.1                       | Ezzel a szintaxissal teljes listát adhat vissza az adott számlához tartozó összes sor tételről.                                                    |
+| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/UNBILLED/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &időszak = {period} &mérete = {size} http/1.1           | Használja ezt a szintaxist nagyméretű számlákhoz. Ezt a szintaxist egy megadott mérettel és 0-alapú eltolással használhatja a sorok lapozható listájának visszaadásához. |
+| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/UNBILLED/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &időszak = {period} &mérete = {size} &SeekOperation = tovább | Ezzel a szintaxissal beolvashatja az egyeztetési sorok következő oldalát a használatával `seekOperation = "Next"` .                                  |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
 A kérelem létrehozásakor használja az alábbi URI-és lekérdezési paramétereket.
 
-| Név                   | Típus   | Kötelező | Leírás                                                                     |
-|------------------------|--------|----------|---------------------------------------------------------------------------------|
-| Szolgáltató               | sztring | Yes      | A szolgáltató: "**egykori**".                                                |
-| számla-sor-tétel típusa | sztring | Yes      | A számla részleteinek típusa: "**UsageLineItems**", "**UsageLineItems**".               |
-| currencyCode           | sztring | Yes      | A nem számlázott sorok pénznemkódja.                                  |
-| period                 | sztring | Yes      | A nem számlázott felderítés időtartama (például: **current**, **Previous**). Tegyük fel, hogy a számlázási ciklus (01/01/2020 – 01/31/2020) nem számlázott használati adatait kell lekérdezni januárban, válassza a **"jelenlegi",** "else **" (előző) lehetőséget.** |
-| size                   | szám | No       | A visszaadni kívánt elemek maximális száma. Az alapértelmezett méret 2000.                    |
-| seekOperation          | sztring | No       | Állítsa be `seekOperation=Next` az egyeztetési sorok következő oldalának beolvasásához.                |
+| Név                   | Típus   | Kötelező | Leírás                                                                                                                                                                                                                                |
+|------------------------|--------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Szolgáltató               | sztring | Igen      | A szolgáltató: "**egykori**".                                                                                                                                                                                                               |
+| számla-sor-tétel típusa | sztring | Igen      | A számla részleteinek típusa: "**UsageLineItems**", "**UsageLineItems**".                                                                                                                                                                    |
+| currencyCode           | sztring | Igen      | A nem számlázott sorok pénznemkódja.                                                                                                                                                                                             |
+| period                 | sztring | Igen      | A nem számlázott felderítés időtartama (például: **current**, **Previous**). Tegyük fel, hogy a számlázási ciklus (01/01/2020 – 01/31/2020) nem számlázott használati adatait kell lekérdezni januárban, válassza a **"jelenlegi",** "else **" (előző) lehetőséget.** |
+| size                   | szám | Nem       | A visszaadni kívánt elemek maximális száma. Az alapértelmezett méret 2000.                                                                                                                                                                           |
+| seekOperation          | sztring | No       | Állítsa be `seekOperation=Next` az egyeztetési sorok következő oldalának beolvasásához.                                                                                                                                                                |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

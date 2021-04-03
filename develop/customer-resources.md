@@ -1,24 +1,24 @@
 ---
 title: Felhasználói erőforrások
 description: Ügyfelet vagy viszonteladót képviselő ügyfelek erőforrásai.
-ms.date: 11/13/2020
+ms.date: 03/30/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: fbd72ab5710876ba303fd1e30e6e552ecf89c5cd
-ms.sourcegitcommit: 741cfa8585901de207c2e5da5eeebe26db0b0ad1
+ms.openlocfilehash: 78622258880ab77ca99eae98082cc66acb3b66a7
+ms.sourcegitcommit: 204e518e794b6b076a17488ee9ca1aaaa4beaaec
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/18/2020
-ms.locfileid: "97768572"
+ms.lasthandoff: 04/01/2021
+ms.locfileid: "106103963"
 ---
 # <a name="customer-resources"></a>Felhasználói erőforrások
 
 **A következőkre vonatkozik:**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
@@ -54,8 +54,7 @@ A **CustomerCompanyProfile** -erőforrás a vállalattal vagy szervezettel kapcs
 | companyName | sztring                                                         | A vállalat vagy szervezet neve.                                          |
 | linkek       | [ResourceLinks](utility-resources.md#resourcelinks)           | A profilban található erőforrás-hivatkozások.                                  |
 | attribútumok  | [ResourceAttributes](utility-resources.md#resourceattributes) | A profilnak megfelelő metaadat-attribútumok.                             |
-
-| organizationRegistrationNumber | Karakterlánc | Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban). Csak a következő országokban található ügyfél vállalata/szervezete számára szükséges. Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA). Az ügyfél más országokban található vállalata/szervezete számára nem adható meg. |
+|organizationRegistrationNumber|Sztring|Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban). Csak a következő országokban található ügyfél vállalata vagy szervezete számára szükséges: Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA), India, Brazília, Dél-Afrika, Lengyelország, Egyesült Arab Emírségek, Szaúd-Arábia, Törökország, Thaiföld, Vietnam, Mianmar, Irak, Dél-Szudán és Venezuela. Az ügyfél más országokban található vállalata/szervezete számára nem adható meg.|
 
 
 ## <a name="customerbillingprofile"></a>CustomerBillingProfile

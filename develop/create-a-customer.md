@@ -1,24 +1,24 @@
 ---
 title: Ügyfél létrehozása
 description: Megtudhatja, hogyan használhatja a Cloud Solution Provider (CSP) partner a partner Center API-kat új ügyfél létrehozásához. A cikk leírja az előfeltételeket, és hogy mi történik.
-ms.date: 11/13/2020
+ms.date: 03/30/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 3bc8081c682bdf522bcb0ca218f16cafab7b3a99
-ms.sourcegitcommit: 01e75175077611da92175c777a440a594fb05797
+ms.openlocfilehash: 73286e6068663187b973827df1b5b49d44b95532
+ms.sourcegitcommit: 204e518e794b6b076a17488ee9ca1aaaa4beaaec
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "97768659"
+ms.lasthandoff: 04/01/2021
+ms.locfileid: "106103997"
 ---
 # <a name="create-a-customer-using-partner-center-apis"></a>Ügyfél létrehozása a partner Center API-kkal
 
 **A következőkre vonatkozik:**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud for US Government Partnerközpontja
 
 Ez a cikk azt ismerteti, hogyan lehet új ügyfelet létrehozni.
@@ -92,7 +92,7 @@ var customerToCreate = new Customer()
 var newCustomer = partnerOperations.Customers.Create(customerToCreate);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: CreateCustomer.cs
+**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: CreateCustomer. cs
 
 ## <a name="java"></a>Java
 
@@ -194,7 +194,7 @@ Ez a táblázat az új ügyfelek létrehozásához szükséges [CustomerCompanyP
 | Név   | Típus   | Leírás                                                  |
 |--------|--------|--------------------------------------------------------------|
 | domain | sztring | Az ügyfél tartományának neve, például contoso.onmicrosoft.com. |
-|organizationRegistrationNumber|Sztring|Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban). Csak a következő országokban található ügyfél vállalata/szervezete számára szükséges. Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA). Az ügyfél más országokban található vállalata/szervezete számára nem adható meg.|
+|organizationRegistrationNumber|Sztring|Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban). Csak a következő országokban található ügyfél vállalata vagy szervezete számára szükséges: Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA), India, Brazília, Dél-Afrika, Lengyelország, Egyesült Arab Emírségek, Szaúd-Arábia, Törökország, Thaiföld, Vietnam, Mianmar, Irak, Dél-Szudán és Venezuela. Az ügyfél más országokban található vállalata/szervezete számára ez egy választható mező.|
 
 
 ### <a name="request-example"></a>Példa kérésre
