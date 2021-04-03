@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 73286e6068663187b973827df1b5b49d44b95532
-ms.sourcegitcommit: 204e518e794b6b076a17488ee9ca1aaaa4beaaec
+ms.openlocfilehash: bc8e9d38353511e747ba4da99b11be40d08781e3
+ms.sourcegitcommit: faea78fe3264cbafc2b02c04d98d5ce30e992124
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 04/01/2021
-ms.locfileid: "106103997"
+ms.lasthandoff: 04/03/2021
+ms.locfileid: "106274597"
 ---
 # <a name="create-a-customer-using-partner-center-apis"></a>Ügyfél létrehozása a partner Center API-kkal
 
@@ -194,8 +194,7 @@ Ez a táblázat az új ügyfelek létrehozásához szükséges [CustomerCompanyP
 | Név   | Típus   | Leírás                                                  |
 |--------|--------|--------------------------------------------------------------|
 | domain | sztring | Az ügyfél tartományának neve, például contoso.onmicrosoft.com. |
-|organizationRegistrationNumber|Sztring|Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban). Csak a következő országokban található ügyfél vállalata vagy szervezete számára szükséges: Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA), India, Brazília, Dél-Afrika, Lengyelország, Egyesült Arab Emírségek, Szaúd-Arábia, Törökország, Thaiföld, Vietnam, Mianmar, Irak, Dél-Szudán és Venezuela. Az ügyfél más országokban található vállalata/szervezete számára ez egy választható mező.|
-
+|organizationRegistrationNumber|Sztring|Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban). Csak a következő országokban található ügyfél vállalata/szervezete számára szükséges: Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA), Brazília (BR), India, Dél-Afrika, Lengyelország, Egyesült Arab Emírségek, Szaúd-Arábia, Törökország, Thaiföld, Vietnam, Mianmar, Irak, Dél-Szudán és Venezuela. Az ügyfél más országokban található vállalata/szervezete számára ez egy választható mező.|
 
 ### <a name="request-example"></a>Példa kérésre
 

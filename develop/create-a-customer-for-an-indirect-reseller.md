@@ -1,17 +1,17 @@
 ---
 title: Ügyfél létrehozása egy közvetett viszonteladónál
 description: Megtudhatja, hogyan használhatja a közvetett szolgáltató a partner Center API-kat, hogy ügyfelet hozzon létre egy közvetett viszonteladó számára.
-ms.date: 03/30/2021
+ms.date: 04/01/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 13cd1b051abb536d397dcd4000228f67fe3206b8
-ms.sourcegitcommit: 204e518e794b6b076a17488ee9ca1aaaa4beaaec
+ms.openlocfilehash: 0de40d08e9fc2b9cf87b7c3c41214fdd34ad26f3
+ms.sourcegitcommit: faea78fe3264cbafc2b02c04d98d5ce30e992124
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 04/01/2021
-ms.locfileid: "106103946"
+ms.lasthandoff: 04/03/2021
+ms.locfileid: "106274580"
 ---
 # <a name="create-a-customer-for-an-indirect-reseller-using-partner-center-apis"></a>Ügyfél létrehozása közvetett viszonteladók számára a partner Center API-k használatával
 
@@ -97,11 +97,11 @@ Ez a táblázat a kérelem törzsében szereplő kötelező tulajdonságokat ism
 
 | Név                                          | Típus   | Kötelező | Leírás                                                                                                                                                                                                                                                                                                                                           |
 |-----------------------------------------------|--------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [BillingProfile](#billing-profile)             | object | Yes      | Az ügyfél számlázási profiljának adatai.                                                                                                                                                                                                                                                                                                           |
-| [CompanyProfile](#company-profile)             | object | Yes      | Az ügyfél vállalati profiljának adatai.                                                               
-| [AssociatedPartnerId](customer-resources.md#customer) | sztring | Yes      | A közvetett viszonteladó azonosítója. Az itt megadott azonosító által jelzett közvetett viszonteladónak partneri kapcsolattal kell rendelkeznie a közvetett szolgáltatóval, vagy a kérés sikertelen lesz. Azt is vegye figyelembe, hogy ha a AssociatedPartnerId érték nincs megadva, az ügyfél a közvetett szolgáltató közvetlen ügyfeleként jön létre a közvetett viszonteladó helyett. |
-|Tartomány| Sztring| Yes|Az ügyfél tartományának neve, például contoso.onmicrosoft.com.|
-|organizationRegistrationNumber|    sztring|Yes|     Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban). Csak a következő országokban található ügyfél vállalata vagy szervezete számára szükséges: Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA), India, Brazília, Dél-Afrika, Lengyelország, Egyesült Arab Emírségek, Szaúd-Arábia, Törökország, Thaiföld, Vietnam, Mianmar, Irak, Dél-Szudán és Venezuela. Az ügyfél más országokban található vállalata/szervezete számára ez egy választható mező.|
+| [BillingProfile](#billing-profile)             | object | Igen      | Az ügyfél számlázási profiljának adatai.                                                                                                                                                                                                                                                                                                           |
+| [CompanyProfile](#company-profile)             | object | Igen      | Az ügyfél vállalati profiljának adatai.                                                               
+| [AssociatedPartnerId](customer-resources.md#customer) | sztring | Igen      | A közvetett viszonteladó azonosítója. Az itt megadott azonosító által jelzett közvetett viszonteladónak partneri kapcsolattal kell rendelkeznie a közvetett szolgáltatóval, vagy a kérés sikertelen lesz. Azt is vegye figyelembe, hogy ha a AssociatedPartnerId érték nincs megadva, az ügyfél a közvetett szolgáltató közvetlen ügyfeleként jön létre a közvetett viszonteladó helyett. |
+|Tartomány| Sztring| Igen|Az ügyfél tartományának neve, például contoso.onmicrosoft.com.|
+|organizationRegistrationNumber|    sztring|Igen|     Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban). Csak a következő országokban található ügyfél vállalata vagy szervezete számára szükséges: Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA), India, Brazília, Dél-Afrika, Lengyelország, Egyesült Arab Emírségek, Szaúd-Arábia, Törökország, Thaiföld, Vietnam, Mianmar, Irak, Dél-Szudán és Venezuela. Az ügyfél más országokban található vállalata/szervezete számára ez egy választható mező.|
 
 
 
@@ -111,11 +111,11 @@ Ez a táblázat az új ügyfelek létrehozásához szükséges [CustomerBillingP
 
 | Név             | Típus                                     | Kötelező | Leírás                                                                                                                                                                                                     |
 |------------------|------------------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| e-mail            | sztring                                   | Yes      | Az ügyfél e-mail-címe.                                                                                                                                                                                   |
-| kulturális környezet          | sztring                                   | Yes      | Az előnyben részesített kulturális környezet a kommunikációhoz és a pénznemhez, mint például az "en-US". Lásd: a [partneri központ által támogatott nyelvek és területi beállítások](partner-center-supported-languages-and-locales.md) a támogatott kulturális környezetekhez. |
-| language         | sztring                                   | Yes      | Az alapértelmezett nyelv. Két karakterből álló nyelvi kód (például `en` vagy `fr` ) támogatott.                                                                                                                                |
-| cég \_ neve    | sztring                                   | Yes      | A regisztrált vállalat/szervezet neve.                                                                                                                                                                       |
-| alapértelmezett \_ címe | [Cím](utility-resources.md#address) | Yes      | Az ügyfél vállalatának/szervezetének regisztrált címe. A hosszra vonatkozó korlátozásokkal kapcsolatos információkért tekintse meg a [címe](utility-resources.md#address) erőforrását.                                             |
+| e-mail            | sztring                                   | Igen      | Az ügyfél e-mail-címe.                                                                                                                                                                                   |
+| kulturális környezet          | sztring                                   | Igen      | Az előnyben részesített kulturális környezet a kommunikációhoz és a pénznemhez, mint például az "en-US". Lásd: a [partneri központ által támogatott nyelvek és területi beállítások](partner-center-supported-languages-and-locales.md) a támogatott kulturális környezetekhez. |
+| language         | sztring                                   | Igen      | Az alapértelmezett nyelv. Két karakterből álló nyelvi kód (például `en` vagy `fr` ) támogatott.                                                                                                                                |
+| cég \_ neve    | sztring                                   | Igen      | A regisztrált vállalat/szervezet neve.                                                                                                                                                                       |
+| alapértelmezett \_ címe | [Cím](utility-resources.md#address) | Igen      | Az ügyfél vállalatának/szervezetének regisztrált címe. A hosszra vonatkozó korlátozásokkal kapcsolatos információkért tekintse meg a [címe](utility-resources.md#address) erőforrását.                                             |
 
 #### <a name="company-profile"></a>Vállalati profil
 
@@ -123,8 +123,8 @@ Ez a táblázat az új ügyfelek létrehozásához szükséges [CustomerCompanyP
 
 | Név   | Típus   | Kötelező | Leírás                                                  |
 |--------|--------|----------|--------------------------------------------------------------|
-| domain | sztring | Yes     | Az ügyfél tartományának neve, például contoso.onmicrosoft.com. |
-| organizationRegistrationNumber | sztring | Feltételtől függ | Az ügyfél szervezetének regisztrációs száma (más néven az egyes országokban található INN-szám). <br/><br/>A mező kitöltése csak akkor szükséges, ha az ügyfél vállalata/szervezete a következő országokban található: <br/><br/>-Örményország (AM) <br/>-Azerbajdzsán (AZ)<br/>– Fehéroroszország (BY)<br/>– Magyarország (HU)<br/>-Kazahsztán (KZ)<br/>-Kirgizisztán (KG)<br/>-Moldova (MD)<br/>– Oroszország (RU)<br/>– Tádzsikisztán (TJ)<br/>-Üzbegisztán (UZ)<br/>– Ukrajna (UA)<br/><br/>Erre a mezőre nincs szükség, ha az ügyfél vállalata/szervezete más országokban található, az itt láthatónál tovább.  |
+| domain | sztring | Igen     | Az ügyfél tartományának neve, például contoso.onmicrosoft.com. |
+| organizationRegistrationNumber | sztring | Feltételtől függ | Az ügyfél szervezetének regisztrációs száma (más néven az egyes országokban található INN-szám). <br/><br/>A mező kitöltése csak akkor szükséges, ha az ügyfél vállalata/szervezete a következő országokban található: <br/><br/>-Örményország (AM) <br/>-Azerbajdzsán (AZ)<br/>– Fehéroroszország (BY)<br/>– Magyarország (HU)<br/>-Kazahsztán (KZ)<br/>-Kirgizisztán (KG)<br/>-Moldova (MD)<br/>– Oroszország (RU)<br/>– Tádzsikisztán (TJ)<br/>-Üzbegisztán (UZ)<br/>– Ukrajna (UA)<br/>– India <br/>– Brazília <br/>– Dél-Afrika <br/>-Lengyelország <br/>– Egyesült Arab Emírségek <br/>– Szaúd-Arábia <br/>– Törökország <br/>– Thaiföld <br/>– Vietnam <br/>-Mianmar <br/>– Irak <br/>– Dél-Szudán <br/>– Venezuela<br/> <br/>Az ügyfél más országokban található vállalata/szervezete számára ez egy választható mező.  |
 
 ### <a name="request-example"></a>Példa kérésre
 
