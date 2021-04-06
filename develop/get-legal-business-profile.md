@@ -1,22 +1,22 @@
 ---
 title: A partner hivatalos vállalkozási profiljának lekérése
-description: Partner jogi üzleti profiljának beszerzése.
+description: Ismerje meg, hogyan használhatja az API-kat a jogi üzleti profil beszerzéséhez.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 5d7055dd0a6586e16b078109db4252250561eb29
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 1d488c8deb9f01110e92327035ce0c3c023fcb46
+ms.sourcegitcommit: f72173df911aee3ab29b008637190b4d85ffebfe
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768439"
+ms.lasthandoff: 04/06/2021
+ms.locfileid: "106500022"
 ---
 # <a name="get-the-partner-legal-business-profile"></a>A partner hivatalos vállalkozási profiljának lekérése
 
 **A következőkre vonatkozik**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
@@ -36,7 +36,7 @@ A partner jogi üzleti profil beszerzéséhez először a **IAggregatePartner. P
 var billingProfile = partnerOperations.Profiles.LegalBusinessProfile.Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: GetLegalBusinessProfile.cs
+**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: GetLegalBusinessProfile. cs
 
 ## <a name="rest-request"></a>REST-kérelem
 

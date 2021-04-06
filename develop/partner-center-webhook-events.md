@@ -1,24 +1,24 @@
 ---
 title: A partner Center webhook eseményei
-description: A partner Center által támogatott összes webhook-esemény dokumentációja.
+description: Megtudhatja, hogyan tesztelheti és használhatja a webhook-eseményeket, ha az előfizetések és egyéb események megváltoznak a partner Centerben.
 ms.date: 04/10/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: 5358aab8efdd68ad52c583936304f99ffae12708
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 03ee1d4e74408b8cf69e2971054bf9060650cb77
+ms.sourcegitcommit: f72173df911aee3ab29b008637190b4d85ffebfe
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768040"
+ms.lasthandoff: 04/06/2021
+ms.locfileid: "106500039"
 ---
 # <a name="partner-center-webhook-events"></a>A partner Center webhook eseményei
 
 **A következőkre vonatkozik**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
@@ -39,7 +39,7 @@ Ez az esemény lehetővé teszi, hogy saját bevezetést kérjen, és tesztelje 
 
 #### <a name="properties"></a>Tulajdonságok
 
-| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
+| Tulajdonság                  | Típus                               | Description                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
 | EventName                 | sztring                             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték "test-created".                                          |
 | ResourceUri               | URI                                | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/webhooks/v1/Registration/validationEvents/{{correlationId}}" |
@@ -68,7 +68,7 @@ Ez az esemény akkor következik be, amikor a megadott előfizetés megváltozik
 
 #### <a name="properties"></a>Tulajdonságok
 
-| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
+| Tulajdonság                  | Típus                               | Description                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
 | EventName                 | sztring                             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték az "előfizetés frissítve".                                  |
 | ResourceUri               | URI                                | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/webhooks/v1/Customers/{{CustomerId}}/Subscriptions/{{SubscriptionId}}" |
@@ -94,7 +94,7 @@ Ez az esemény akkor következik be, ha az ügyfél Microsoft Azure használatá
 
 #### <a name="properties"></a>Tulajdonságok
 
-| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
+| Tulajdonság                  | Típus                               | Description                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
 | EventName                 | sztring                             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték a következő: "usagerecords-thresholdExceeded".                                  |
 | ResourceUri               | URI                                | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/webhooks/v1/Customers/usagerecords" |
@@ -120,7 +120,7 @@ Ez az esemény az átirányítás létrehozásakor következik be.
 
 #### <a name="properties"></a>Tulajdonságok
 
-| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
+| Tulajdonság                  | Típus                               | Description                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
 | EventName                 | sztring                             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték "hivatkozó-létrehozva".                                  |
 | ResourceUri               | URI                                | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/engagements/v1/Referrals/{{ReferralID}}" |
@@ -146,7 +146,7 @@ Ez az esemény az átirányítás frissítésekor következik be.
 
 #### <a name="properties"></a>Tulajdonságok
 
-| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
+| Tulajdonság                  | Típus                               | Description                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
 | EventName                 | sztring                             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték "referral-frissítve".                                  |
 | ResourceUri               | URI                                | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/engagements/v1/Referrals/{{ReferralID}}" |
@@ -170,7 +170,7 @@ Ez az esemény az átirányítás frissítésekor következik be.
 
 Ez az esemény akkor következik be, amikor az új számla elkészült.
 
-| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
+| Tulajdonság                  | Típus                               | Description                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
 | EventName | sztring | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték "számla-kész". |
 | ResourceUri | URI | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{{InvoiceId}}" |

@@ -1,24 +1,24 @@
 ---
 title: Ajánlatkategóriák listájának lekérése piac alapján
-description: Egy adott ország/régió és területi beállítás összes ajánlati kategóriáját tartalmazó gyűjtemény beszerzése.
+description: Megtudhatja, hogyan szerezhet be egy olyan gyűjteményt, amely az adott országban/régióban található összes ajánlatot tartalmazza, és az összes Microsoft-felhőre vonatkozó területi beállítással rendelkezik.
 ms.date: 07/25/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 22c46ed03a8579c53ee18c14cbca9a1e19ddb82a
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 05aad095c6cb8eaee4cbf7ce976ca1b4b7a408c4
+ms.sourcegitcommit: f72173df911aee3ab29b008637190b4d85ffebfe
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768236"
+ms.lasthandoff: 04/06/2021
+ms.locfileid: "106500056"
 ---
 # <a name="get-a-list-of-offer-categories-by-market"></a>Ajánlatkategóriák listájának lekérése piac alapján
 
 **A következőkre vonatkozik:**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
@@ -62,7 +62,7 @@ Ez a táblázat felsorolja a szükséges lekérdezési paramétereket az ajánla
 
 | Név           | Típus       | Kötelező | Leírás            |
 |----------------|------------|----------|------------------------|
-| **ország azonosítója** | **karakterlánc** | Y        | Az ország/régió azonosítója. |
+| **ország azonosítója** | **sztring** | Y        | Az ország/régió azonosítója. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
