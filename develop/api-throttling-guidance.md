@@ -1,84 +1,96 @@
 ---
 title: Útmutatás az API-szabályozáshoz
-description: A partner Center API-kat hívó partnereink számára megismerheti, hogy mely API-k befolyásolják a Microsoft API szabályozását és az ajánlott eljárásokat a szabályozás elkerüléséhez vagy jobb kezeléséhez.
-ms.date: 09/09/2020
+description: A Partnerközpont API-kat hívó partnerek számára megtudhatja, hogy mely API-kat befolyásolja a Microsoft API-szabályozása, illetve megismerheti a szabályozás elkerülésére vagy jobb kezelésre vonatkozó ajánlott eljárásait.
+ms.date: 04/14/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: vijvala
 ms.author: vijvala
-ms.openlocfilehash: a52751a97e699050075c1aac910cc51e94514f26
-ms.sourcegitcommit: 01e75175077611da92175c777a440a594fb05797
+ms.openlocfilehash: ab1138e19e06111299ab43ea13a6f033274aaa5d
+ms.sourcegitcommit: 3c3a21e73aaadf3023cf4c13b09809ceae5f027a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "97768660"
+ms.lasthandoff: 04/14/2021
+ms.locfileid: "107496144"
 ---
-# <a name="api-throttling-guidance-for-partners-calling-partner-center-apis"></a>API-szabályozási útmutató a partner Center API-kat hívó partnereknek 
+# <a name="api-throttling-guidance-for-partners-calling-partner-center-apis"></a>API-szabályozási útmutató a Partnerközpont API-kat hívó partnerek számára 
 
 **A következőre érvényes:**
 
 - Partnerközpont
 
-A Microsoft olyan API-szabályozást valósít meg, amely a partner Center API-kat hívó partnereink számára egy adott időszakon belül nagyobb konzisztens teljesítményt tesz lehetővé. A szabályozás korlátozza a szolgáltatásra irányuló kérések számát egy adott időszakban, hogy elkerülje az erőforrások túlzott mennyiségét. Míg a partneri központ nagy mennyiségű kérés kezelésére van kialakítva, ha a kérések túlnyomó száma kevés partnernél fordul elő, a szabályozás segít fenntartani az optimális teljesítményt és megbízhatóságot az összes partner számára.  
+A Microsoft API-szabályozást használ annak érdekében, hogy egy időtartományon belül egyenletesebb teljesítményt biztosítsunk a Partnerközpont API-kat hívó partnerek számára. A szabályozás korlátozza a szolgáltatáshoz adott időtartamra vonatkozó kérések számát, hogy megakadályozza az erőforrások túlzott felhasználását. Bár Partnerközpont nagy mennyiségű kérést képes kezelni, ha néhány partner túl sok kérést intéz, a szabályozás segít fenntartani az optimális teljesítményt és megbízhatóságot az összes partner számára.  
 
-A szabályozás korlátai a forgatókönyv alapján változnak. Ha például nagy mennyiségű írást végez, a szabályozás lehetősége magasabb, mint ha csak olvasást végez.
+A szabályozási korlátok a forgatókönyvtől függően változnak. Ha például nagy mennyiségű írást végez, a szabályozás lehetősége magasabb, mint ha csak olvasási műveleteket hajt végre.
 
-## <a name="what-happens-when-throttling-occurs"></a>Mi történik a szabályozás esetén? 
+## <a name="what-happens-when-throttling-occurs"></a>Mi történik, ha szabályozás történik? 
 
-Ha túllépi a szabályozási küszöbértéket, a partneri központ egy adott időszakra korlátozza az ügyféltől érkező további kéréseket. A szabályozás viselkedése a kérelmek típusától és számától függ.   
+A szabályozási küszöbérték túllépése esetén a Partnerközpont korlátozza az adott ügyféltől származó további kéréseket egy időre. A szabályozás működése a kérések típusától és számától függ.   
 
 ### <a name="common-throttling-scenarios"></a>Gyakori szabályozási forgatókönyvek 
 
 Az ügyfelek szabályozásának leggyakoribb okai a következők: 
 
-- **Nagyszámú kérelem egy adott API-hoz tartozó partneri bérlői azonosítóhoz**: egyes partneri központ API-k esetében a szabályozást a partner bérlői azonosítója határozza meg, az API-k ugyanazon partner BÉRLŐi azonosítóján túl sok hívást eredményez a sávszélesség-szabályozási küszöbérték túllépése.  
+- **Egy** API-ra vonatkozó nagy számú kérelem partnerbérlő-azonosítónként: egyes Partnerközpont API-k esetében a szabályozást a partnerbérlő azonosítója határozza meg, az ugyanazon partnerbérlőazonosítón túl sok API-hívás pedig a szabályozási küszöbérték túllépését eredményezi.  
 
-- **Nagyszámú kérelem egy ügyfél**-BÉRLŐi azonosítóhoz a Customer bérlői azonosítója alapján: más API-k esetén a szabályozást a partner bérlő azonosítója/ügyfél bérlői azonosítója határozza meg. Ezekben az esetekben előfordulhat, hogy az azonos ügyfél-bérlői AZONOSÍTÓval való túl sok hívás a szabályozást eredményezi, míg a más ügyfelek felé irányuló hívások sikeresek lesznek.
+- **Egy API-ra** vonatkozó nagy számú kérelem partnerbérlőazonosítónként ügyfélbérlő-azonosítónként: más API-k esetén a szabályozást a partnerbérlő azonosítója/ügyfél bérlőazonosítójának kombinációja határozza meg; ilyen esetekben a túl sok hívás ugyanahhoz az ügyfél-bérlőazonosítóhoz szabályozást eredményez – míg más ügyfelekkel való hívás sikeres lehet.
 
 ## <a name="best-practices-to-avoid-throttling"></a>Ajánlott eljárások a szabályozás elkerüléséhez 
  
-Programozási eljárások, például az erőforrások folyamatos lekérdezése a frissítések kereséséhez és az erőforrások rendszeres vizsgálatához az új vagy törölt erőforrások ellenőrzéséhez nagyobb valószínűséggel vezethet a szabályozáshoz, és csökkenti a teljes teljesítményt. Az egyidejű API-hívások nagy mennyiségű kérést okozhatnak az egységnyi idő alatt, ami a kérelmek szabályozását is eredményezi. Ehelyett a Change Tracking és a Change Notifications szolgáltatást kell használnia. Ezen kívül a változások észleléséhez is képesnek kell lennie a Tevékenységnaplók kihasználása érdekében további információért lásd a [partneri központ tevékenységi naplóit](get-a-record-of-partner-center-activity-by-user.md) .  Kifejezetten ajánljuk a partnereknek a Tevékenységnaplók API használatát a hatékonyság és a szabályozás elkerülése érdekében. Lásd még a következő példa a tevékenység-naplók használatára című szakaszt.
+Az olyan programozási eljárások, mint az erőforrások folyamatos lekérdezése a frissítések kereséséhez és az erőforrás-gyűjtemények rendszeres ellenőrzése az új vagy törölt erőforrások kereséséhez nagyobb valószínűséggel vezetnek szabályozáshoz, és rontják az általános teljesítményt. Az egyidejű API-hívások nagy számú kérést okozhatnak egységenként, ami a kérelmek szabályozását is okozhatja. Ehelyett érdemes a változáskövetést és a változásértesítéseket használni. Emellett fel kell tudnia használni a tevékenységnaplókat a változások észleléséhez. [További](get-a-record-of-partner-center-activity-by-user.md) Partnerközpont a tevékenységnaplókban.  Javasoljuk a partnereknek, hogy a nagyobb hatékonyság és a szabályozás elkerülése érdekében fontolja meg a tevékenységnapló API használatát. A tevékenységnaplók használatának példáját alább láthatja.
 
-## <a name="best-practices-to-handle-throttling"></a>Ajánlott eljárások a szabályozás kezeléséhez
+## <a name="best-practices-to-handle-throttling"></a>Ajánlott eljárások a szabályozás kezeléshez
 
-A következő ajánlott eljárások a szabályozás kezeléséhez: 
+A szabályozás kezelésével kapcsolatban ajánlott eljárások a következők: 
 
 - Csökkentse a párhuzamosság mértékét. 
 - Csökkentse a hívások gyakoriságát. 
-- Kerülje az azonnali újrapróbálkozásokat, mert az összes kérelem a használati korlátok között van. 
+- Kerülje az azonnali újrakéréseket, mert minden kérés a használati korlátokba kerül. 
 
-Hibakezelés implementálásakor használja a 429-es HTTP-hibakódot a szabályozásészleléshez. A sikertelen válasz tartalmazza a Retry-After válasz fejlécét. A kérelmeknek az újrapróbálkozást követő késleltetéssel történő biztonsági mentése a lehető leggyorsabb módszer a szabályozás helyreállítására. 
+Hibakezelés implementálásakor használja a 429-es HTTP-hibakódot a szabályozásészleléshez. A sikertelen válasz tartalmazza a Retry-After fejlécét. A kérelmek a Retry-after késleltetéssel való lekérése a leggyorsabb mód a szabályozás utáni helyreállításra. 
 
-Az újrapróbálkozás utáni késleltetés használatához tegye a következőket: 
+Az Újrapróbálkozás késleltetése művelethez tegye a következőket: 
 
-1. Várjon a Retry-After fejlécben megadott másodpercek számát. 
+1. Várja meg a másodpercek számát a Retry-After fejlécben. 
 
-2. Próbálja megismételni a kérelmet.  
+2. Próbálja újra a kérést.  
 
-3. Ha a kérelem 429-es hibakóddal meghiúsul, továbbra is szabályozva lesz. Próbálkozzon újra az exponenciális leállítási, használja az ajánlott Retry-After késleltetést, majd ismételje meg a kérést, amíg a művelet be nem fejeződik.
+3. Ha a kérés 429-es hibakóddal ismét meghiúsul, a rendszer továbbra is le lesz korulva. Próbálja meg újra az exponenciális leépítést, használja az ajánlott Retry-After, majd próbálja újra a kérést, amíg sikeresen le nem jár.
 
-4. Ha az SDK-t használja, akkor az 429-es állapotkód kivételt fog kapni, ha a kérelmét szabályozzák. A kivételben használja a RetryAfter tulajdonságot, és ismételje meg a kérést az idő lejárta után.
-
-
-## <a name="apis-currently-impacted-by-throttling"></a>A szabályozás által jelenleg érintett API-k
-
-Hosszú távon a "api.partnercenter.microsoft.com/" végpontot meghívó minden egyes partner Center API szabályozva lesz. Jelenleg a szabályozás korlátozásai csak az alább felsorolt API-k esetében érvényesülnek. A partner Center összegyűjti a telemetria az egyes API-kkal, és dinamikusan módosítja a sávszélesség-szabályozási korlátokat. A következő táblázat felsorolja azokat az API-kat, amelyeken a szabályozás jelenleg érvényben van.  
+4. Ha SDK-t használ, kivételt fog kapni a 429-es állapotkóddal a kérés szabályozása esetén. Használja a RetryAfter tulajdonságot a kivételben, majd az idő eltelte után próbálja újra a kérést.
 
 
-|**Művelet**| **Partnerközpont dokumentációja**|       
+## <a name="apis-currently-impacted-by-throttling"></a>Jelenleg szabályozás által érintett API-k
+
+Hosszú távon minden olyan API Partnerközpont, amely a "api.partnercenter.microsoft.com/" végpontot hívja meg, le lesz szabályozással. Jelenleg a szabályozási korlátok csak az alább felsorolt API-kon vannak kényszerítve. Partnerközpont minden API-ra gyűjti a telemetriát, és dinamikusan módosítja a szabályozási korlátokat. Az alábbi táblázat azokat az API-kat sorolja fel, amelyeken a szabályozás jelenleg érvényben van.  
+
+
+|**Művelet**| **Partnerközpont dokumentációja**|
 |------------------------|----------------------------|
-|{baseURL}/v1/Customers/{customer_id}:/Orders|[megrendelés létrehozása](create-an-order.md)|
-|{baseURL}/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription}/upgrades|[előfizetés átváltása](transition-a-subscription.md)|
-|{baseURL}/v1/customers/{customer-tenant-id}/orders/{order-id}|[addon vásárlása egy előfizetéshez](purchase-an-add-on-to-a-subscription.md)|
+|{baseURL}/v1/customers/{customer_id}/orders|[rendelés létrehozása](create-an-order.md)|
+|{baseURL}/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription}/upgrades|[előfizetés váltása](transition-a-subscription.md)|
+|{baseURL}/v1/customers/{customer-tenant-id}/orders/{rendelésazonosító}|[bővítmény vásárlása egy előfizetéshez](purchase-an-add-on-to-a-subscription.md)|
 |{baseURL}/v1/customers/{customer-id}/carts/{cart-id}|[kosár létrehozása](create-a-cart.md)|
-|{baseURL}/v1/customers/{customer-id}/carts/{cart-id}/checkout|[kosár kifizetése](checkout-a-cart.md)|
+|{baseURL}/v1/customers/{customer-id}/carts/{cart-id}/checkout|[kosár kijelentkezéskor](checkout-a-cart.md)|
 |{baseURL}/v1/customers/{customer-id}/carts/{cart-id}|[kosár frissítése](update-a-cart.md)|
-|{baseURL}/v1/customers/{customer-id}/subscriptions/{subscription-id}/registrations|[előfizetés regisztrálása](register-a-subscription.md)|
-|{baseURL}/v1/productupgrades|[termék verziófrissítési entitásának létrehozása](create-product-upgrade-entity.md)|
-|{baseURL}/v1/customers/{customer-id}/subscriptions/{subscription-id}/conversions |[próbaverziós előfizetés átalakítása fizetős verzióra](convert-a-trial-subscription-to-paid.md)|
-|{baseURL}/v1/customers/{customer-tenant-id}|[ügyfél beszerzése azonosító alapján](get-a-customer-by-id.md)|
-|{baseURL}/v1/productUpgrades/eligibility|[a termék frissítésére vonatkozó jogosultság beszerzése](get-eligibility-for-product-upgrade.md)|
+|{baseURL}/v1/customers/{ügyfélazonosító}/subscriptions/{előfizetés-azonosító}/registrations|[előfizetés regisztrálása](register-a-subscription.md)|
+|{baseURL}/v1/productupgrades|[termékfrissítési entitás létrehozása](create-product-upgrade-entity.md)|
+|{baseURL}/v1/customers/{ügyfélazonosító}/subscriptions/{előfizetés-azonosító}/átalakítások |[próbaverziós előfizetés konvertálása fizetősre](convert-a-trial-subscription-to-paid.md)|
+|{baseURL}/v1/customers/{customer-tenant-id}|[ügyfél lekért azonosítója](get-a-customer-by-id.md)|
+|{baseURL}/v1/productUpgrades/jogosultság|[jogosultság a termékfrissítésre](get-eligibility-for-product-upgrade.md)|
 |{baseURL}/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription} |[előfizetés kezelése](manage-orders.md#manage-a-subscription)|
+|{baseURL}/v1/customers/{customer_id}/subscriptions |[get-all-of-a-customer-s-subscriptions](get-all-of-a-customer-s-subscriptions.md)|
+|{baseURL}/v1/customers/{customer_id}/subscriptions/{subscription_id}|[Egy előfizetés lekérése azonosító alapján](get-a-subscription-by-id.md)|
+|{baseURL}/v1/customers/{customer_id}/orders|[Az összes ügyfélrendelés lekérte](get-all-of-a-customer-s-orders.md)|
+|{baseURL}/v1/customers/{customer_id}/orders/{order_id}|[Megrendelés lekérése azonosító alapján](get-an-order-by-id.md)|
+|{baseURL}/v1/customers/{customer_id}/orders/{order_id}/provisioningstatus|[Előfizetés kiépítési állapotának lekérése](get-subscription-provisioning-status.md)|
+|{baseURL}/v1/customers/{customer_id}/subscriptions/{subscription_id}|[Rendelések kezelése és előfizetés kezelése](manage-orders.md#manage-a-subscription)|
+|{baseURL}/v1/customers/{customer_id}/subscriptions/{subscription_id}/addons|[Egy előfizetés bővítménylistájának lekérése](get-a-list-of-add-ons-for-a-subscription.md)|
+|{baseURL}/v1/customers/{customer_id}/subscriptions/{subscription_id}/azureEntitlements|[Előfizetés Azure-jogosultságai listájának lekért listája](get-a-list-of-azure-entitlements-for-subscription.md)|
+|{baseURL}/v1/customers/{customer_id}/subscriptions/{subscription_id}/registrationstatus|[Előfizetés regisztrációs állapotának lekérése](get-subscription-registration-status.md)|
+|{baseURL}/v1/customers/{customer-tenant-id}/transfers|[Az ügyfél összes átutalásának lekért része](get-all-of-a-customer-s-transfers.md)|
+|{baseURL}/v1/productUpgrades/{upgrade-id}/status|[Termék frissítési állapotának lekérése](get-product-upgrade-status.md)|
+|{baseURL}/v1/customers/{ügyfélazonosító}/subscriptions/{előfizetés-azonosító}/átalakítások|[A próbaverzió átalakításával kapcsolatos ajánlatok listájának lekérése](get-a-list-of-trial-conversion-offers.md)|
 
 
 ### <a name="error-code-response"></a>Hibakód válasza:
@@ -96,23 +108,23 @@ Date: Tue, 21 Jul 2020 04:10:58 GMT
 { "statusCode": 429, "message": "Rate limit is exceeded. Try again in 57 seconds." } 
 ```
 
-## <a name="example-of-activity-log"></a>Műveletnapló – példa
+## <a name="example-of-activity-log"></a>Példa tevékenységnaplóra
 
-Ajánlott eljárás a napi változások elemzésekor azt javasoljuk, hogy egy adott napra vonatkozóan kérdezze le a naplózási rekordot. 
+A napi módosítások elemzésének ajánlott eljárása az, ha egy adott napra vonatkozó naplórekordot kell lekérdezni. 
 
-A válaszban egy adott Művelettípus változásait fogja kapni.Az Ön számára fontos művelet alapján szűrheti a szűrőt. Ha például egy újonnan létrehozott ügyfelet érdekli, tekintse meg a következőt: operationType = "add_customer".  
+A válaszban egy adott művelettípusra módosuló eredményt fog kapni.Az Ön számára fontos művelet alapján szűrhet. Ha például egy újonnan létrehozott ügyfél érdekli, az operationType = "add_customer" add_customer.  
 
-A operationtype/erőforrások listája az alábbi API-docs alatt található.  
+Az operationtype/resources listája az alábbi API-dokumentumokban található.  
 
 - [Erőforrások naplózása](auditing-resources.md)  
 
-- [Partneri központ-tevékenység rekordjának beolvasása felhasználó szerint](get-a-record-of-partner-center-activity-by-user.md)  
+- [Felhasználó által Partnerközpont rekord lekért rekordja](get-a-record-of-partner-center-activity-by-user.md)  
 
 
 
 ### <a name="response-example"></a>Példa válaszra
 
-**Kérelem**:  
+**Kérés:**  
 ```http
 Http Get call:  https://api.partnercenter.microsoft.com/v1/auditrecords?startDate=2020-09-02&endDate=2020-09-02&size=50 
 
@@ -131,7 +143,7 @@ Host: api.partnercenter.microsoft.com
 Connection: Keep-Alive 
 ```
 
-**Válasz**:    
+**Válasz:**    
 ```http
 { 
 
