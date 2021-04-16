@@ -1,6 +1,6 @@
 ---
 title: Útmutatás az API-szabályozáshoz
-description: A Partnerközpont API-kat hívó partnerek számára megtudhatja, hogy mely API-kat befolyásolja a Microsoft API-szabályozása, illetve megismerheti a szabályozás elkerülésére vagy jobb kezelésre vonatkozó ajánlott eljárásait.
+description: A Partnerközpont API-kat hívó partnerek számára megtudhatja, hogy mely API-kat befolyásolja a Microsoft API-szabályozása, illetve megismerheti a szabályozás elkerüléséhez vagy jobb kezeléshez ajánlott eljárásokhoz való használatát.
 ms.date: 04/14/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
@@ -19,21 +19,21 @@ ms.locfileid: "107496144"
 
 - Partnerközpont
 
-A Microsoft API-szabályozást használ annak érdekében, hogy egy időtartományon belül egyenletesebb teljesítményt biztosítsunk a Partnerközpont API-kat hívó partnerek számára. A szabályozás korlátozza a szolgáltatáshoz adott időtartamra vonatkozó kérések számát, hogy megakadályozza az erőforrások túlzott felhasználását. Bár Partnerközpont nagy mennyiségű kérést képes kezelni, ha néhány partner túl sok kérést intéz, a szabályozás segít fenntartani az optimális teljesítményt és megbízhatóságot az összes partner számára.  
+A Microsoft API-szabályozást használ, hogy egy időtartományon belül egyenletesebb teljesítményt biztosít a Partnerközpont API-kat hívó partnerek számára. A szabályozás korlátozza a szolgáltatásokra vonatkozó kérések számát egy adott időtartományban, hogy megakadályozza az erőforrások túlzott felhasználását. Bár Partnerközpont nagy mennyiségű kérést kezelnek, ha néhány partner túl sok kérést intéz, a szabályozás segít fenntartani az optimális teljesítményt és megbízhatóságot minden partner számára.  
 
-A szabályozási korlátok a forgatókönyvtől függően változnak. Ha például nagy mennyiségű írást végez, a szabályozás lehetősége magasabb, mint ha csak olvasási műveleteket hajt végre.
+A szabályozási korlátok a forgatókönyvtől függően eltérőek lehetnek. Ha például nagy mennyiségű írást végez, a szabályozás lehetősége magasabb, mint ha csak olvasási műveleteket hajt végre.
 
-## <a name="what-happens-when-throttling-occurs"></a>Mi történik, ha szabályozás történik? 
+## <a name="what-happens-when-throttling-occurs"></a>Mi történik szabályozáskor? 
 
-A szabályozási küszöbérték túllépése esetén a Partnerközpont korlátozza az adott ügyféltől származó további kéréseket egy időre. A szabályozás működése a kérések típusától és számától függ.   
+A szabályozási küszöbérték túllépése esetén a Partnerközpont korlátozza az adott ügyféltől származó további kéréseket egy időre. A szabályozási viselkedés a kérések típusától és számától függ.   
 
 ### <a name="common-throttling-scenarios"></a>Gyakori szabályozási forgatókönyvek 
 
 Az ügyfelek szabályozásának leggyakoribb okai a következők: 
 
-- **Egy** API-ra vonatkozó nagy számú kérelem partnerbérlő-azonosítónként: egyes Partnerközpont API-k esetében a szabályozást a partnerbérlő azonosítója határozza meg, az ugyanazon partnerbérlőazonosítón túl sok API-hívás pedig a szabályozási küszöbérték túllépését eredményezi.  
+- Egy API-ra vonatkozó nagy számú kérelem partnerbérlő-azonosítónként: egyes Partnerközpont API-k esetében a szabályozást a partnerbérlő azonosítója határozza meg, és ha túl sok hívás vezet ezekhez az API-khoz ugyanazon partnerbérlő-azonosítón, az túllépi a szabályozási küszöbértéket.  
 
-- **Egy API-ra** vonatkozó nagy számú kérelem partnerbérlőazonosítónként ügyfélbérlő-azonosítónként: más API-k esetén a szabályozást a partnerbérlő azonosítója/ügyfél bérlőazonosítójának kombinációja határozza meg; ilyen esetekben a túl sok hívás ugyanahhoz az ügyfél-bérlőazonosítóhoz szabályozást eredményez – míg más ügyfelekkel való hívás sikeres lehet.
+- **Egy API-ra** vonatkozó nagy számú kérelem partnerbérlőazonosítónként és ügyfélbérlő-azonosítónként: más API-k esetén a szabályozást a partnerbérlő/ügyfél bérlőazonosítójának kombinációja határozza meg; ilyen esetekben a túl sok hívás ugyanazon ügyfél bérlőazonosítójára való hívás szabályozást eredményez – míg más ügyfelekkel való hívás sikeres lehet.
 
 ## <a name="best-practices-to-avoid-throttling"></a>Ajánlott eljárások a szabályozás elkerüléséhez 
  
@@ -62,7 +62,7 @@ Az Újrapróbálkozás késleltetése művelethez tegye a következőket:
 
 ## <a name="apis-currently-impacted-by-throttling"></a>Jelenleg szabályozás által érintett API-k
 
-Hosszú távon minden olyan API Partnerközpont, amely a "api.partnercenter.microsoft.com/" végpontot hívja meg, le lesz szabályozással. Jelenleg a szabályozási korlátok csak az alább felsorolt API-kon vannak kényszerítve. Partnerközpont minden API-ra gyűjti a telemetriát, és dinamikusan módosítja a szabályozási korlátokat. Az alábbi táblázat azokat az API-kat sorolja fel, amelyeken a szabályozás jelenleg érvényben van.  
+Hosszú távon a "Partnerközpont" végpontot api.partnercenter.microsoft.com/ API le lesz szabályozásra. Jelenleg a szabályozási korlátok csak az alább felsorolt API-kon vannak kényszerítve. Partnerközpont minden API-ra gyűjti a telemetriát, és dinamikusan módosítja a szabályozási korlátokat. Az alábbi táblázat azokat az API-kat sorolja fel, amelyeken a szabályozás jelenleg érvényben van.  
 
 
 |**Művelet**| **Partnerközpont dokumentációja**|
