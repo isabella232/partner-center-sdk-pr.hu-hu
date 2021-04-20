@@ -1,15 +1,15 @@
 ---
 title: Ügyfél Azure-használati rekordjainak lekérése
-description: Az Azure-kihasználtság API-val lekérheti az ügyfél Azure-előfizetésének kihasználtsági rekordjait egy adott időszakra vonatkozóan.
-ms.date: 11/01/2019
+description: Az Azure utilization API használatával lekérte egy ügyfél Azure-előfizetésének kihasználtsági rekordjait egy adott időszakra.
+ms.date: 04/19/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: bcdeb51b04039fd05b923150c85119385c0537e0
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 23c8d18462081c6d6c95c1d969f269cbb3f8754b
+ms.sourcegitcommit: abefe11421edc421491f14b257b2408b4f29b669
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768103"
+ms.lasthandoff: 04/20/2021
+ms.locfileid: "107745592"
 ---
 # <a name="get-a-customers-utilization-records-for-azure"></a>Ügyfél Azure-használati rekordjainak lekérése
 
@@ -19,39 +19,45 @@ ms.locfileid: "97768103"
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
-Az ügyfél Azure-előfizetésének kihasználtsági rekordjait az Azure-kihasználtság API használatával szerezheti be egy adott időszakra vonatkozóan.
+Az ügyfél Azure-előfizetésének kihasználtsági rekordjait egy adott időszakra az Azure utilization API használatával kaphatja meg.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
-Ez az API a napi és óránkénti nem értékelt felhasználást adja vissza egy tetszőleges időtartományra vonatkozóan. *Ez az API azonban nem támogatott az Azure-csomagokban*. Ha rendelkezik Azure-csomaggal, tekintse meg a [számlázás nem számlázott fogyasztási sorok beolvasása](get-invoice-unbilled-consumption-lineitems.md) és a számlázott [felhasználási sorok beolvasása](get-invoice-billed-consumption-lineitems.md) című cikket. Ezek a cikkek azt írják le, hogyan lehet a névleges fogyasztást napi szinten, egységenként. Ez a díjszabás megegyezik az Azure-kihasználtsági API által biztosított napi gabona-adatmennyiséggel. A számlázott használati adatok beolvasásához a számla azonosítóját kell használnia. Vagy a jelenlegi és az előző időszakok használatával lekérheti a nem számlázott használati becsléseket. *Az Azure-csomag előfizetési erőforrásai esetében jelenleg nem támogatott az óránkénti adatgabona és az önkényes dátumtartomány-szűrők* használata.
+Ez az API egy tetszőleges időtartamra napi és óránkénti, nem egységes használatot ad vissza. Ez az API azonban nem támogatott az *Azure-csomagokhoz.* Ha már van [Azure-csomagja,](get-invoice-unbilled-consumption-lineitems.md) tekintse meg a számla [](get-invoice-billed-consumption-lineitems.md) nem számlázott használatú sorelemeket és a számlázott használatú sorok cikkeit. Ezek a cikkek azt ismertetik, hogyan lehet mérőnként napi szinten lekért névleges fogyasztást erőforrásonként. Ez a díjfelhasználás megegyezik az Azure utilization API által biztosított napi rendszerességgel kapcsolatos adatokkal. A számlázott használati adatok lekéréséhez a számlaazonosítót kell használnia. Az aktuális és az előző időszakokkal is lekért használati becsléseket kaphat. Az óránkénti adat- és tetszőleges dátumtartomány-szűrők jelenleg nem támogatottak az *Azure-csomag előfizetési erőforrásaihoz.*
 
-## <a name="azure-utilization-api"></a>Azure-kihasználtság API
+## <a name="azure-utilization-api"></a>Azure-kihasználtsági API
 
-Ez az Azure-kihasználtsági API hozzáférést biztosít a kihasználtsági rekordokhoz egy olyan időszakra vonatkozóan, amely azt jelzi, hogy a kihasználtság mikor jelent meg a számlázási rendszeren. Hozzáférést biztosít az egyeztetési fájl létrehozásához és kiszámításához használt kihasználtsági adataihoz. Azonban nem ismeri a számlázási rendszerek egyeztetése fájl logikáját. Nem várhatja el a fájl összefoglalási eredményeinek összeegyeztetését, hogy az adott API-ból beolvasott eredményt pontosan ugyanarra az időszakra kelljen megfeleltetni.
+Ez az Azure-beli kihasználtsági API hozzáférést biztosít a kihasználtsági rekordokhoz egy olyan időszakra vonatkozóan, amely azt jelzi, hogy mikor jelentték a kihasználtságot a számlázási rendszerben. Hozzáférést biztosít ugyanazokhoz a kihasználtsági adatokhoz, amelyek az egyeztetési fájl létrehozásához és kiszámításához használatosak. Nem ismeri azonban a számlázási rendszer egyeztetési fájllogikát. Az egyeztetési fájl összegzési eredményei várhatóan nem egyeznek meg az API-ból pontosan ugyanabban az időszakban lekért eredményekkel.
 
-A számlázási rendszer például ugyanazokat a kihasználtsági értékeket veszi figyelembe, és a késői szabályok alapján határozza meg, hogy mi történik az egyeztetési fájlban. A számlázási időszak bezárásakor a rendszer a számlázási időszak végéig tartó teljes használatot a megbékélési fájlba kerül. A számlázási időszak végét követő 24 órán belül jelentett időszakon belüli késői használatot a következő egyeztetési fájlban számoljuk el. A partner számlázásával kapcsolatos késői szabályokért lásd: az Azure- [előfizetéshez tartozó felhasználási információk beolvasása](/previous-versions/azure/reference/mt219001(v=azure.100)).
+A számlázási rendszer például ugyanezeket a kihasználtsági adatokat alkalmazza, és késési szabályokat alkalmaz annak megállapításához, hogy mit kell figyelembe vennie egy egyeztetési fájlban. Ha egy számlázási időszak véget ér, az egyeztetési fájl tartalmazza a számlázási időszak végét elvégő teljes használatot. A számlázási időszakon belül a számlázási időszak vége után 24 órán belül jelentett minden kései használatot a következő egyeztetési fájlban kell figyelembe venni. A partner számlázásának késési szabályaiért lásd: [Azure-előfizetés fogyasztási adatainak lekérte.](/previous-versions/azure/reference/mt219001(v=azure.100))
 
-Ez a REST API lapozható. Ha a válasz adattartalma nagyobb, mint egyetlen oldal, a következő hivatkozásra kell beolvasni a kihasználtsági rekordok következő oldalát.
+Ez REST API lapra van ásva. Ha a válasz hasznos adatai nagyobbak egyetlen lapnál, a következő hivatkozásra kattintva le kell töltenie a kihasználtsági rekordok következő lapját.
+
+### <a name="scenario--partner-a-has-transferred-billing-ownership-of-azure-legacy-subscription-145p-to-partner-b"></a>Forgatókönyv: Az A partner átvitte az Örökölt Azure-előfizetés (145P) számlázási tulajdonjogát a B partnernek
+
+Ha egy partner egy örökölt Azure-előfizetés számlázási tulajdonjogát átadja egy másik partnernek, amikor az új partner a Utilization API-t hívja meg az átvitt előfizetéshez, akkor az Azure-jogosultságazonosító helyett a Kereskedelmi előfizetés azonosítóját (amely az Partnerközpont-fiókjában jelenik meg) kell használnia. Az Azure-jogosultságazonosító csak akkor jelenik meg a B partnernél, ha rendszergazda (AOBO) az ügyfél Azure Portal. 
+
+Az átvitt előfizetés Utilization API-jának sikeres hívásához az új partnernek a Kereskedelmi előfizetés azonosítóját kell használnia.
 
 ## <a name="c"></a>C\#
 
-Az Azure-kihasználtsági rekordok beszerzése:
+Az Azure-beli kihasználtsági rekordok beszerzése:
 
 1. Szerezze be az ügyfél-azonosítót és az előfizetés-azonosítót.
 
-2. Hívja meg a [**IAzureUtilizationCollection. Query**](/dotnet/api/microsoft.store.partnercenter.utilization.iazureutilizationcollection.query) metódust egy olyan [**ResourceCollection**](/dotnet/api/microsoft.store.partnercenter.models.resourcecollection-1) visszaadásához, amely tartalmazza a kihasználtsági rekordokat.
+2. Hívja meg az [**IAzureUtilizationCollection.Query**](/dotnet/api/microsoft.store.partnercenter.utilization.iazureutilizationcollection.query) metódust a kihasználtsági rekordokat tartalmazó [**ResourceCollection**](/dotnet/api/microsoft.store.partnercenter.models.resourcecollection-1) visszaadása érdekében.
 
-3. Szerezze be az Azure-kihasználtsági rekordok enumerálását a kihasználtsági lapok bejárásához. Erre a lépésre azért van szükség, mert az erőforrás-gyűjtemény lapozható.
+3. Szerezzen be egy Azure-beli kihasználtságirekord-enumerátort a kihasználtsági lapok bejárására. Erre a lépésre azért van szükség, mert az erőforrás-gyűjtemény lapszám van meglaposodva.
 
-- **Minta**: [konzol tesztelési alkalmazás](console-test-app.md)
-- **Projekt**: partner Center SDK-minták
-- **Osztály**: GetAzureSubscriptionUtilization.cs
+- **Minta:** [Konzoltesztalkalmazás](console-test-app.md)
+- **Projekt:** Partnerközpont SDK minták
+- **Osztály:** GetAzureSubscriptionUtilization.cs
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -84,7 +90,7 @@ while (utilizationRecordEnumerator.HasValue)
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-Az Azure-beli kihasználtsági rekordok beszerzéséhez először szüksége lesz egy ügyfél-azonosítóra és egy előfizetés-azonosítóra. Ezután meghívja a **IAzureUtilizationCollection. Query** függvényt egy olyan **ResourceCollection** visszaküldéséhez, amely tartalmazza a kihasználtsági rekordokat. Mivel az erőforrás-gyűjtemény lapozható, be kell szereznie egy Azure-kihasználtsági rekord enumerálását a kihasználtsági lapok átjárásához.
+Az Azure-beli kihasználtsági rekordok beszerzéséhez először egy ügyfél-azonosítóra és egy előfizetés-azonosítóra van szükség. Ezután meg kell hívnia az **IAzureUtilizationCollection.query** függvényt, hogy visszaadja a kihasználtsági rekordokat tartalmazó **ResourceCollection** adatokat. Mivel az erőforrás-gyűjtemény lapozódva van, be kell szereznie egy Azure-beli kihasználtságirekord-enumerátort a kihasználtsági oldalakon való áthaladáshoz.
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -119,7 +125,7 @@ while (utilizationRecordEnumerator.hasValue())
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-Az Azure-beli kihasználtsági rekordok beszerzéséhez először szüksége lesz egy ügyfél-azonosítóra és egy előfizetés-azonosítóra. Ezután hívja meg a [**Get-PartnerCustomerSubscriptionUtilization**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomerSubscriptionUtilization.md). Ez a parancs a megadott időszakra vonatkozó összes rendelkezésre álló rekordot visszaadja.
+Az Azure-beli kihasználtsági rekordok beszerzéséhez először egy ügyfél-azonosítóra és egy előfizetés-azonosítóra van szükség. Ezután hívja meg a [**Get-PartnerCustomerSubscriptionUtilization függvényt.**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomerSubscriptionUtilization.md) Ez a parancs a megadott időszakban elérhető összes rekordot visszaadja.
 
 ```powershell
 # $customerId
@@ -128,41 +134,41 @@ Az Azure-beli kihasználtsági rekordok beszerzéséhez először szüksége les
 Get-PartnerCustomerSubscriptionUtilization -CustomerId $customerId -SubscriptionId $subscriptionId -StartDate (Get-Date).AddDays(-2).ToUniversalTime() -Granularity Hourly -ShowDetails
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus | Kérés URI-ja |
 |------- | ----------- |
-| **GET** | *{baseURL}*/v1/Customers/{Customer-Tenant-ID}/Subscriptions/{Subscription-ID}/utilizations/Azure? kezdési \_ idő = {kezdő időpont} &befejezési \_ idő = {befejezési idő} &részletesség = {részletesség} &show \_ details = {True} |
+| **Kap** | *{baseURL}*/v1/customers/{customer-tenant-id}/subscriptions/{előfizetés-azonosító}/utilizations/azure?start \_ time={start-time}&\_ end-time={end-time}&granularity={granularity}&show \_ details={True} |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-A kihasználtsági rekordok beszerzéséhez használja a következő elérési utat és a lekérdezési paramétereket.
+Az alábbi elérési út és lekérdezési paraméterek használatával lekérdezheti a kihasználtsági rekordokat.
 
 | Név | Típus | Kötelező | Leírás |
 | ---- | ---- | -------- | ----------- |
-| ügyfél – bérlő – azonosító | sztring | Igen | Egy GUID-formázott karakterlánc, amely azonosítja az ügyfelet. |
-| előfizetés-azonosító | sztring | Igen | Egy GUID-formázott karakterlánc, amely azonosítja az előfizetést. |
-| start_time | karakterlánc UTC dátum-idő eltolási formátumban | Igen | Annak az időtartománynak a kezdete, amely akkor jelenik meg, amikor a rendszer a kihasználtságot a számlázási rendszeren mutatja be. |
-| end_time | karakterlánc UTC dátum-idő eltolási formátumban | Igen | Annak az időtartománynak a vége, amely akkor jelenik meg, amikor a rendszer a kihasználtságot a számlázási rendszeren mutatja be. |
-| granularitása | sztring | No | Meghatározza a használati összesítések részletességét. Az elérhető lehetőségek a következők: `daily` (alapértelmezett) és `hourly` .
-| show_details | boolean | Nem | Megadja, hogy a példány-szintű használat részleteit kívánja-e lekérni. A mező alapértelmezett értéke: `true`. |
-| size | szám | Nem | Egy API-hívás által visszaadott összesítések számát adja meg. Az alapértelmezett érték 1000. A max 1000. |
+| ügyfél-bérlő-azonosító | sztring | Yes | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
+| subscription-id | sztring | Yes | Egy GUID-formátumú sztring, amely azonosítja az előfizetést. |
+| start_time | sztring UTC dátum-idő eltolási formátumban | Yes | Annak az időtartománynak a kezdete, amely a kihasználtság számlázási rendszerben való jelentésének idejét jelöli. |
+| end_time | sztring UTC dátum-idő eltolási formátumban | Yes | Annak az időtartománynak a vége, amely a kihasználtság számlázási rendszerben való jelentésének idejét jelöli. |
+| Finomsága | sztring | No | Meghatározza a használati aggregációk részletességét. Az elérhető lehetőségek: `daily` (alapértelmezett) és `hourly` .
+| show_details | boolean | No | Megadja, hogy a rendszer le tudja-e szerezni a példányszintű használati adatokat. A mező alapértelmezett értéke: `true`. |
+| size | szám | No | Az egyetlen API-hívás által visszaadott aggregációk számát adja meg. Az alapértelmezett érték 1000. A maximális érték 1000. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Nincs
+Nincsenek
 
 ### <a name="request-example"></a>Példa kérésre
 
-Az alábbi példában szereplő kérelem olyan eredményeket hoz létre, amelyek a 7/2-8/1-as időszakra vonatkozó, a megbékélési fájlhoz hasonlóan jelennek meg. Előfordulhat, hogy ezek az eredmények nem egyeznek pontosan (lásd a részleteket az [Azure kihasználtsági API](#azure-utilization-api) szakaszban).
+A következő példakérés a 7/2–8/1 időszakban az egyeztetési fájlhoz hasonló eredményeket ad vissza. Előfordulhat, hogy ezek az eredmények nem egyeznek meg pontosan (a részletekért lásd az [Azure utilization API szakaszt).](#azure-utilization-api)
 
-Ez a példa a számlázási rendszeren jelentett kihasználtsági adatok visszaküldése 12 órakor (UTC) és 8/2 (UTC) 7/2.
+Ez a példakérés a számlázási rendszerben jelentett kihasználtsági adatokat adja vissza 7/2 időpontban (UTC) 12:00-kor (UTC) és 8/2 időpontban(UTC) 12:00-kor.
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers/E499C962-9218-4DBA-8B83-8ADC94F47B9F/subscriptions/FC8F8908-F918-4406-AF13-D5BC0FE41865/utilizations/azure?start_time=2017-07-02T00:00:00-08:00&end_time=2017-08-02T00:00:00-08:00 HTTP/1.1
@@ -176,11 +182,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus az [Azure kihasználtsági rekord](azure-utilization-record-resources.md) erőforrásainak gyűjteményét adja vissza a válasz törzsében. Ha az Azure-beli kihasználtsági adatok még nem állnak készen egy függő rendszerbe, ez a metódus egy 204-as HTTP-állapotkódot ad vissza Retry-After fejléccel.
+Ha a művelet sikeres, ez a metódus az [Azure-beli kihasználtsági](azure-utilization-record-resources.md) rekord erőforrásainak gyűjteményét adja vissza a válasz törzsében. Ha az Azure-kihasználtsági adatok még nem állnak készen egy függő rendszerben, ez a metódus egy 204-es HTTP-állapotkódot ad vissza egy Retry-After fejléccel.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. Hálózati nyomkövetési eszközzel olvassa be a HTTP-állapotkódot, a [hibakód típusát](error-codes.md)és a további paramétereket.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be a HTTP-állapotkódot, a [hibakód típusát](error-codes.md)és a további paramétereket.
 
 ### <a name="response-example"></a>Példa válaszra
 
