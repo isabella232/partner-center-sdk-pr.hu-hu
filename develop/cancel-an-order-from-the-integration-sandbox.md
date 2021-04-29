@@ -1,46 +1,46 @@
 ---
-title: Megrendelés megszakítása az integrációs munkaterületről
-description: Megtudhatja, hogyan vonhatja vissza a különböző típusú előfizetési rendeléseket a partner Center API-kkal az integrációs homokozó fiókjaiból.
-ms.date: 08/16/2019
+title: Rendelés visszavonása az integrációs védőfalból
+description: Megtudhatja, hogyan használhatja Partnerközpont API-kat az integrációs sandbox-fiókokból származó előfizetési rendelések különböző típusainak lemondására.
+ms.date: 04/28/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 363bf209e27d5223259c8c533710a3b35bbef1e6
-ms.sourcegitcommit: a25d4951f25502cdf90cfb974022c5e452205f42
+ms.openlocfilehash: c3bf862c62804a56e6f73dd3ec36d2e9eb65f997
+ms.sourcegitcommit: f59a9311c8a37d45695caf74794ec1697426acc9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "97768596"
+ms.lasthandoff: 04/29/2021
+ms.locfileid: "108210019"
 ---
-# <a name="cancel-an-order-from-the-integration-sandbox-using-partner-center-apis"></a>Megrendelés megszakítása az integrációs munkaterületről a partner Center API-k használatával
+# <a name="cancel-an-order-from-the-integration-sandbox-using-partner-center-apis"></a>Rendelés visszavonása az integrációs védőfalról az Partnerközpont API-k használatával
 
 **A következőkre vonatkozik:**
 
 - Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
+- A 21Vianet által üzemeltetett Partnerközpont
 - A Microsoft Cloud Germany Partnerközpontja
 - A Microsoft Cloud for US Government Partnerközpontja
 
-Ez a cikk azt ismerteti, hogyan lehet a partner Center API-kkal különböző típusú előfizetési rendeléseket lemondani az Integration sandbox-fiókokból. Az ilyen megrendelések tartalmazhatnak fenntartott példányokat, szoftvereket és kereskedelmi Piactéri szoftvereket (SaaS) előfizetési rendeléseket.
+Ez a cikk azt ismerteti, hogyan használhatók Partnerközpont API-k az integrációs sandbox-fiókokból származó előfizetési rendelések különböző típusainak lemondására. Ilyen rendelések lehetnek fenntartott példányok, szoftverek és kereskedelmi piactéri Szolgáltatott szoftver (SaaS) előfizetési rendelések.
 
->[!NOTE]
->Felhívjuk a figyelmét arra, hogy a fenntartott példányok vagy a kereskedelmi Piactéri SaaS-előfizetési megrendelések törlése csak az integrációs munkaterületről lehetséges.  
+>[!NOTE] 
+>Vegye figyelembe, hogy a fenntartott példányok vagy a kereskedelmi piactéri SaaS-előfizetési rendelések lemondása csak az integrációs sandbox-fiókokból lehetséges. A 60 napnál régebbi sandbox-rendelések nem szakíthatóak meg a Partnerközpont. Ha segítségre van szüksége, a támogatási Partnerközpont kell. 
 
-Ha az API-n keresztül szeretné lemondani a szoftver éles sorrendjét, használja a [Cancel-Software-](cancel-software-purchases.md)Buys parancsot.
-Az irányítópulton keresztül is megszakíthatja a szoftver éles rendeléseit a [vásárlás megszakításával](/partner-center/csp-software-subscriptions).
+Az API-n keresztüli szoftverrendelések lemondásához használja a [cancel-software-purchases parancsot.](cancel-software-purchases.md)
+Az irányítópulton keresztül is visszavonhatja az éles szoftverrendeléseket [a vásárlás lemondásával.](/partner-center/csp-software-subscriptions)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy integrációs sandbox-partner fiók egy aktív fenntartott példány/szoftver/harmadik féltől származó SaaS-előfizetési rendeléssel rendelkező ügyféllel.
+- Integrációs sandbox partnerfiók egy olyan ügyféllel, aki aktív fenntartott példányokkal/szoftverekkel/külső SaaS-előfizetési rendelésekkel rendelkezik.
 
 ## <a name="c"></a>C\#
 
-Ha meg szeretné szüntetni a rendelést az integrációs munkaterületről, adja át a fiók hitelesítő adatait a [**`CreatePartnerOperations`**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) metódusnak, hogy lekérje a partneri műveletek elvégzéséhez szükséges [**`IPartner`**](/dotnet/api/microsoft.store.partnercenter.ipartner) felületet.
+Ha le kell mondania egy rendelést az integrációs védőfalról, adja át a fiók hitelesítő adatait a metódusnak a partnerműveleteket lekért [**`CreatePartnerOperations`**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) [**`IPartner`**](/dotnet/api/microsoft.store.partnercenter.ipartner) felület lekért felülethez.
 
-Egy adott [megrendelés](order-resources.md#order)kiválasztásához használja a partner műveleti és Call [**`Customers.ById()`**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval, és adja meg az ügyfelet, majd a **`Orders.ById()`** megrendelés azonosítójának megadásával adja meg a sorrendet, végül **`Get`** vagy **`GetAsync`** a lekérési módszert.
+Egy adott [](order-resources.md#order)rendelés kiválasztásához használja a partnerműveleteket és a hívási metódust az ügyfél azonosítóval az ügyfél azonosítójának megadásával, majd a rendelés azonosítóját a rendelés megadásához, végül pedig a lekérési [**`Customers.ById()`**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) **`Orders.ById()`** **`Get`** **`GetAsync`** metódust.
 
-Állítsa be a tulajdonságot a értékre, [**`Order.Status`**](order-resources.md#order) `cancelled` és használja a **`Patch()`** metódust a sorrend frissítéséhez.
+Állítsa a [**`Order.Status`**](order-resources.md#order) tulajdonságot a következőre: `cancelled` , és használja a **`Patch()`** metódust a sorrend frissítéséhez.
 
 ``` csharp
 // IPartnerCredentials tipAccountCredentials;
@@ -56,26 +56,26 @@ order = tipAccountPartnerOperations.Customers.ById(customerTenantId).Orders.ById
 
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus     | Kérés URI-ja                                                                            |
 |------------|----------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Orders/{Order-ID} http/1.1 |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/orders/{rendelésazonosító} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az ügyfél törléséhez használja a következő lekérdezési paramétert.
+Az alábbi lekérdezési paraméterrel törölhet egy ügyfelet.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti. |
-| **megrendelés azonosítója** | **karakterlánc** | Y        | Az érték a megszakítani kívánt sorrendi azonosítókat jelölő karakterlánc. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
+| **rendelésazonosító** | **sztring** | Y        | Az érték egy sztring, amely a megszakítani szükséges rendelési értékeket jelenti. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -102,11 +102,11 @@ MS-CorrelationId: 1438ea3d-b515-45c7-9ec1-27ee0cc8e6bd
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus visszaadja a megszakított sorrendet.
+Ha a művelet sikeres, ez a metódus a megszakított rendelést adja vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
