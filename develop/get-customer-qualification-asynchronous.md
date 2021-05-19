@@ -1,35 +1,35 @@
 ---
-title: Ügyfél képzettségének beszerzése
-description: Megtudhatja, hogyan használhatja az aszinkron érvényesítést az ügyfél a partner Center API-n keresztüli minősítésének beszerzéséhez. A partnerek ezt az oktatási ügyfelek ellenőrzésére használhatják.
-ms.date: 01/21/2021
+title: Ügyfél minősítésének lekértsége
+description: Megtudhatja, hogyan használhatja az aszinkron érvényesítést az ügyfél minősítésének az API-n keresztüli Partnerközpont le. A partnerek ezzel ellenőrizhetik az oktatási ügyfeleket.
+ms.date: 05/17/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: JoeyBytes
 ms.author: jobiesel
-ms.openlocfilehash: 09801792c059873b9f6b842e99286eda09d38b1a
-ms.sourcegitcommit: bbdb5f7c9ddd42c2fc4eaadbb67d61aeeae805ca
+ms.openlocfilehash: df605e4d400d29e14fd0b44bef34f88bbc7ca8b2
+ms.sourcegitcommit: 7d59c58ee36b217bd5cac089f918059e9dbb8a62
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/24/2021
-ms.locfileid: "105030567"
+ms.lasthandoff: 05/19/2021
+ms.locfileid: "110027928"
 ---
-# <a name="get-a-customers-qualification-asynchronously"></a>Ügyfél-képesítés aszinkron beszerzése
+# <a name="get-a-customers-qualification-asynchronously"></a>Ügyfél minősítésének aszinkron lekértsége
 
-**A következőkre vonatkozik**
+**A következőre vonatkozik:**
 
 - Partnerközpont
 
-Az ügyfél képzettségének aszinkron beszerzése.
+Hogyan lehet aszinkron módon szerezni az ügyfelek minősítését.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Az ügyfél képzettségének beszerzéséhez hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval. Ezután használja a [**minősítés**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.qualification) tulajdonságot egy [**ICustomerQualification**](/dotnet/api/microsoft.store.partnercenter.qualification.icustomerqualification) felület lekéréséhez. Végül hívja `GetQualifications()` meg vagy kérje `GetQualificationsAsync()` le az ügyfél képzettségét.
+Az ügyfél minősítésének megszerzéséhez hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítóval. Ezután a [**Minősítés tulajdonság**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.qualification) használatával lekér egy [**ICustomerQualification**](/dotnet/api/microsoft.store.partnercenter.qualification.icustomerqualification) felületet. Végül hívja meg a vagy a et az `GetQualifications()` ügyfél `GetQualificationsAsync()` minősítésének lekérésére.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -37,27 +37,27 @@ Az ügyfél képzettségének beszerzéséhez hívja meg a [**IAggregatePartner.
 var customerQualifications = partnerOperations.Customers.ById(customerId).Qualification.GetQualifications();
 ```
 
-**Példa**: [konzolos minta alkalmazás](https://github.com/microsoft/Partner-Center-DotNet-Samples). **Projekt**: SdkSamples **osztály**: GetCustomerQualifications. cs
+**Minta:** [Konzol mintaalkalmazás.](https://github.com/microsoft/Partner-Center-DotNet-Samples) **Projekt:** SdkSamples **osztály:** GetCustomerQualifications.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                          |
 |---------|------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Qualifications http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/qualifications HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Ez a táblázat felsorolja a szükséges lekérdezési paramétereket az összes minősítés beszerzéséhez.
+Ez a táblázat felsorolja az összes minősítéshez szükséges lekérdezési paramétert.
 
 | Név               | Típus   | Kötelező | Leírás                                           |
 |--------------------|--------|----------|-------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | sztring | Igen      | Egy GUID-formázott karakterlánc, amely azonosítja az ügyfelet. |
+| **ügyfél-bérlő-azonosító** | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -75,13 +75,13 @@ MS-RequestId: 037db222-6d8e-4d7f-ba78-df3dca33fb68
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a módszer képesítések gyűjteményét adja vissza a válasz törzsében.  Az alábbi példák az **oktatási** végzettséggel rendelkező ügyfelekre vonatkozó **Get** hívásra vonatkoznak.
+Ha ez a módszer sikeres, a válasz törzsében minősítések gyűjteményét adja vissza.  Az alábbiakban példákat talál az Oktatási minősítéssel rendelkező ügyfelek **GET** **hívására.**
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
-### <a name="response-examples"></a>Példák a válaszokra
+### <a name="response-examples"></a>Példák válaszra
 
 #### <a name="approved"></a>Approved
 
@@ -132,6 +132,71 @@ MS-RequestId: 037db222-6d8e-4d7f-ba78-df3dca33fb68
         "vettingStatus": "Denied",
         "vettingReason": "Not an Education Customer", // example Vetting Reason
         "vettingCreatedDate": "2020-12-03T10:37:38.885Z" // UTC
+    }
+]
+
+```
+
+#### <a name="state-owned-entity-samples"></a>Állam tulajdonú entitások mintái
+
+**Állam tulajdonú entitás POST-mintán keresztül**
+
+```csharp
+
+//SOE
+POST {customer_id}/qualifications
+{
+“qualification”: “StateOwnedEntity”
+}
+
+//
+
+```
+
+**State Owned Entity via Get Qualifications sample**
+
+```csharp
+
+//SOE:
+GET {customer_id}/qualifications
+[
+    {
+        “qualification”: “StateOwnedEntity”
+    }
+]
+
+```
+
+**State Owned Entity via Get Qualifications with Education**
+
+```csharp
+
+GET {customer_id}/qualifications
+[
+    {
+        “qualification”: “Education”,
+        “vettingStatus”: “Approved”
+    },
+{
+        “qualification”: “StateOwnedEntity”
+    }
+]
+
+```
+
+**State Owned Entity via Get Qualifications with GCC**
+
+```csharp
+
+GET {customer_id}/qualifications
+[
+    {
+        “qualification”: “GovernmentCommunityCloud”,
+        “vettingStatus”: “Approved”,
+        “vettingCreateDate”: “2021-05-06T19:59:56.6832021+00:00”
+    },
+{
+        “qualification”: “StateOwnedEntity”
     }
 ]
 
