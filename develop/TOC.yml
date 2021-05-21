@@ -427,10 +427,12 @@
           href: update-a-subscription-s-support-contact.md
 - name: Integrációs tesztkörnyezet
   items:
-    - name: Viszonteladói kapcsolatot támogató partneri tesztkörnyezet-képességek
+    - name: A viszonteladói kapcsolatokhoz szükséges sandbox-képességek
       href: sandbox-scenario.md
     - name: A tesztkörnyezet tesztelése és hibakeresése
       href: test-and-debug.md
+    - name: Közvetett CSP-szolgáltatói képességek a sandboxban
+      href: indirect-provider-sandbox-capabilities.md
     - name: Rendelés visszavonása az integrációs tesztkörnyezetből
       href: cancel-an-order-from-the-integration-sandbox.md
     - name: Tesztkörnyezet-előfizetés aktiválása
