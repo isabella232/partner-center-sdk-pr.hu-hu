@@ -1,52 +1,51 @@
 ---
-title: Számlázott kereskedelmi fogyasztási sorok számlázásának beolvasása
-description: A partner Center API-k használatával lekérheti a kereskedelmi fogyasztási számla sora (a napi lezárt használati sor) részleteit a megadott számlára vonatkozóan.
+title: Számlázott kereskedelmi használatú sorelemek lekért száma
+description: Az adott számlához tartozó kereskedelmi használatú számlasorelem (lezárt napi minősített használati tétel) gyűjteményét a következő API Partnerközpont le.
 ms.date: 01/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 1e19792da6a7510bf02dd11b3e77f40a8365be2b
-ms.sourcegitcommit: 4ec053c56fd210b174fe657aa7b86faf4e2b5a7c
+ms.openlocfilehash: 1406938b16e5a363a73c36ef0338eb5fc4305279
+ms.sourcegitcommit: 89aefbff6dbe740b6f27a888492ffc2e5f98b1e9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/29/2021
-ms.locfileid: "105730195"
+ms.lasthandoff: 05/24/2021
+ms.locfileid: "110325445"
 ---
-# <a name="get-invoice-billed-commercial-consumption-line-items"></a>Számlázott kereskedelmi fogyasztási sorok számlázásának beolvasása
+# <a name="get-invoice-billed-commercial-consumption-line-items"></a>Számlázott kereskedelmi használatú sorelemek lekért száma
 
 **A következőkre vonatkozik:**
 
 - Partnerközpont
 
-A következő módszerekkel részletes információkat kaphat a kereskedelmi felhasználású számla sorokról (más néven bezárt napi használati sorokból) egy adott számlához.
+Az alábbi módszerekkel lekért adatok egy adott számlához tartozó kereskedelmi használatú számlasorelemekre (más néven lezárt napi minősített használatisor-tételekre) vonatkozó részleteket.
 
-Ez az API a Microsoft Azure (MS-AZR-0145P) előfizetésekhez tartozó **Azure** -szolgáltatói típusokat is támogatja. Ez azt jelenti, hogy ez az API egy visszamenőlegesen kompatibilis szolgáltatás.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy fiókazonosító. Ez azonosítja azt a számlát, amelynek a sorát be kell olvasni.
+- Egy számlaazonosító. Ez azonosítja a számlát, amelynek lekéri a sorelemeket.
 
 ## <a name="c"></a>C\#
 
-A megadott számla kereskedelmi vonali elemeinek lekéréséhez le kell kérnie a számla objektumot:
+A megadott számla kereskedelmisor-elemeinek lekérése a számlaobjektumot kell lekérnie:
 
-1. Hívja meg a [**ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) metódust, hogy lekérje a megadott számla műveleteinek számlázására szolgáló felületet.
+1. Hívja meg [**a ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) metódust a megadott számlához tartozó számlázási műveletek interfészének lehívása érdekében.
 
-2. Hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódust a számla objektum lekéréséhez. A számla objektum a megadott számla összes adatát tartalmazza.
+2. A [**számlaobjektum lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal. A számlaobjektum a megadott számla összes adatát tartalmazza.
 
-A **szolgáltató** azonosítja a számlázott részletes információk forrását (például: **egykori**). A **InvoiceLineItemType** meghatározza a típust (például **UsageLineItem**).
+A **Szolgáltató** azonosítja a kiszámlázott részletes adatok forrását (például **egyszer).** Az **InvoiceLineItemType** határozza meg a típust (például **UsageLineItem).**
 
-A következő példa egy **foreach** hurok használatával dolgozza fel a line Items gyűjteményt. Az egyes **InvoiceLineItemType** tartozó sorok külön gyűjteménye lesz beolvasva.
+Az alábbi példakód egy **foreach ciklust használ** a sorelemek gyűjteményének feldolgozásához. A rendszer minden **InvoiceLineItemType** típushoz külön sorelemek gyűjteményét olvassa be.
 
-Egy **InvoiceDetail** -példánynak megfelelő sorok gyűjteményének beolvasása:
+Egy InvoiceDetail példánynak megfelelő sorelemek **gyűjteményének legyűjtéséhez:**
 
-1. Adja át a példány **BillingProvider** és **InvoiceLineItemType** a [**by**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by) metódusnak.
+1. Adja át a példány **BillingProvider** és **InvoiceLineItemType** tulajdonságát a [**By metódusnak.**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by)
 
-2. A társított sorok beolvasásához hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódust.
-3. Hozzon létre egy enumerálást a gyűjtemény átjárásához az alábbi példában látható módon.
+2. A [**társított sorelemek lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal.
+3. Hozzon létre egy enumerátort, amely az alábbi példában látható módon lépked a gyűjteményen.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -105,41 +104,41 @@ while (fetchNext)
 }
 ```
 
-Ehhez hasonló példát a következő témakörben talál:
+Hasonló példát a következőben láthat:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **partner Center SDK-minták**
-- Osztály: **GetBilledConsumptionReconLineItemsPaging. cs**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Projekt: **Partnerközpont SDK minták**
+- Osztály: **GetBilledConsumptionReconLineItemsPaging.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
-Az első szintaxissal adja vissza az adott számla összes sorát tartalmazó teljes listát. Nagyméretű számlák esetén a második szintaxist a megadott mérettel és 0 alapú eltolással adja vissza a sorok lapozható listájának visszaadásához. A harmadik szintaxissal szerezheti be a felderítési sorok következő lapját a használatával: `seekOperation = "Next"` .
+Az első szintaxissal az adott számla összes sorelemének teljes listáját használhatja. Nagy számlák esetén használja a második szintaxist a megadott mérettel és a 0-alapú eltolással a sorelemek lapszámolt listájának visszaadására. A harmadik szintaxissal lekérte a sorelemek következő oldalát a `seekOperation = "Next"` használatával.
 
 | Metódus  | Kérés URI-ja                                                                                                                                                     |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {CURRENCYCODE} http/1.1                              |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &mérete = {size} http/1.1  |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &méret = {size} &SeekOperation = Next                               |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode} HTTP/1.1                              |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode}&size={size} HTTP/1.1  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode}&size={size}&seekOperation=Next                               |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-A kérelem létrehozásakor használja az alábbi URI-és lekérdezési paramétereket.
+A kérelem létrehozásakor használja a következő URI-t és lekérdezési paramétereket.
 
 | Név                   | Típus   | Kötelező | Leírás                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
-| számlázási azonosító             | sztring | Yes      | A számlát azonosító karakterlánc.                             |
-| Szolgáltató               | sztring | Yes      | A szolgáltató: "egykori".                                  |
-| számla-sor-tétel típusa | sztring | Yes      | A számla részleteinek típusa: "UsageLineItems". |
-| currencyCode           | sztring | Yes      | A számlázott sorok pénznemkódja.                    |
-| period                 | sztring | Yes      | A számlázott felderítés időszaka. Példa: current, Previous.        |
-| size                   | szám | No       | A visszaadni kívánt elemek maximális száma. Az alapértelmezett méret 2000       |
-| seekOperation          | sztring | No       | Állítsa be a seekOperation = Next (Beolvasás) elemet a felderítési sorok következő oldalának beolvasásához. |
+| számlaazonosító             | sztring | Yes      | A számlát azonosító sztring.                             |
+| Szolgáltató               | sztring | Yes      | A szolgáltató: "OneTime".                                  |
+| invoice-line-item-type | sztring | Yes      | A számla részleteinek típusa: "UsageLineItems". |
+| currencyCode           | sztring | Yes      | A számlázható sorelemek pénznemkódja.                    |
+| period                 | sztring | Yes      | A kiszámlázott felderítés időtartama. példa: current, previous.        |
+| size                   | szám | No       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000       |
+| seekOperation          | sztring | No       | Állítsa be a seekOperation=Next elemet a felderítési sorelemek következő oldalának lekért értékhez. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -147,25 +146,25 @@ Nincsenek.
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz tartalmazza a sor elem részleteinek gyűjteményét.
+Ha ez sikeres, a válasz sorelem-részletek gyűjteményét tartalmazza.
 
-A sor **ChargeType** a **megvásárolt** érték az **új** elemre van leképezve. Az érték- **visszatérítés** a **megszakításra** van leképezve.
+A **ChargeType** sorelem esetében a **Purchase érték** az Új értékre van **leképezve.** A **Refund (Visszatérítés)** érték a Cancel (Lemondás) **értékre van leképezve.**
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ## <a name="rest-examples"></a>REST-példák
 
-### <a name="request-response-example-1"></a>Kérelem – válasz 1. példa
+### <a name="request-response-example-1"></a>1. kérés-válasz példa
 
-A példában szereplő REST-kérelem és-válasz részletei a következők:
+A példa REST-kérés és -válasz részletei a következők:
 
-- **Szolgáltató**: **egykori**
-- **InvoiceLineItemType**: **UsageLineItems**
-- **Időszak**: **előző**
+- **Szolgáltató:** **OneTime**
+- **InvoiceLineItemType:** **UsageLineItems**
+- **Időszak:** **Előző**
 
-#### <a name="request-example-1"></a>1. példa kérés
+#### <a name="request-example-1"></a>1. kérési példa
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/T000001234/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode=usd&period=previous&size=2000 HTTP/1.1
@@ -178,7 +177,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-1"></a>1. válasz – példa
+#### <a name="response-example-1"></a>1. válasz példa
 
 ```http
 HTTP/1.1 200 OK
@@ -328,16 +327,16 @@ Date: Wed, 20 Feb 2019 19:59:27 GMT
 }
 ```
 
-### <a name="request-response-example-2"></a>Kérelem – válasz 2. példa
+### <a name="request-response-example-2"></a>2. kérés-válasz példa
 
-A példában szereplő REST-kérelem és-válasz részletei a következők:
+A példa REST-kérés és -válasz részletei a következők:
 
-- **Szolgáltató**: **egykori**
-- **InvoiceLineItemType**: **UsageLineItems**
-- **Időszak**: **előző**
-- **SeekOperation**: **következő**
+- **Szolgáltató:** **OneTime**
+- **InvoiceLineItemType:** **UsageLineItems**
+- **Időszak:** **Előző**
+- **SeekOperation:** **Tovább**
 
-#### <a name="request-example-2"></a>2. példa a kérelemre
+#### <a name="request-example-2"></a>2. kérési példa
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/T000001234/lineitems?provider=onetime&invoiceLineItemType=usagelineitems&currencyCode=usd&period=previous&size=2000&seekoperation=next HTTP/1.1
@@ -351,7 +350,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-## <a name="response-example-2"></a>2. válasz – példa
+## <a name="response-example-2"></a>2. válasz példa
 
 ```http
 HTTP/1.1 200 OK
