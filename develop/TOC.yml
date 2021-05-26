@@ -437,8 +437,10 @@
       href: cancel-an-order-from-the-integration-sandbox.md
     - name: Tesztkörnyezet-előfizetés aktiválása
       href: activate-sandbox-subscription-azure-marketplace-products.md
-    - name: Ügyfélfiók törlése az integrációs tesztkörnyezetből
-      href: delete-a-customer-account-from-the-integration-sandbox.md
+    - name: Közvetett viszonteladó létrehozása a sandboxban
+      href: create-indirect-reseller-in-sandbox.md
+    - name: Közvetett viszonteladó törlése a sandboxban
+      href: delete-indirect-reseller-in-sandbox.md
 - name: Javaslatok
   href: /partner/develop/referrals
   items:
