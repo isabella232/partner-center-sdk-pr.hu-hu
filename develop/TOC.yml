@@ -471,14 +471,17 @@
     - name: API-kérés részleteinek lekérése
       href: get-api-request-details.md
 - name: Partnerközpont – REST API-referencia
-  href: partner-center-rest-api-reference.md
   items:
+    - name: Partnerközpont REST API bemutatása
+      href: partner-center-rest-api-reference.md
     - name: Partnerközpont – REST API-változásnapló
       href: api-change-log.md
     - name: Partnerközpont – REST URL-címek
       href: partner-center-rest-urls.md
     - name: Partnerközpont – REST-fejlécek
       href: headers.md
+    - name: Partnerközpont – REST API-referencia
+      href: /rest/api/partner-center-rest/
     - name: Partnerközpont – REST-erőforrások
       href: partner-center-rest-resources.md
       items:
@@ -553,7 +556,7 @@
     - name: Partnerközpont – webhookok
       href: partner-center-webhooks.md
 - name: Partnerközpont – felügyelt .NET API-referencia
-  href: /dotnet/api/
+  href: /dotnet/api/microsoft.store.partnercenter
   items:
     - name: Partnerközpont – a .NET API-verzió kibocsátási megjegyzései
       href: dotnet-release-notes.md
