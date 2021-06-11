@@ -10,13 +10,13 @@ metadata:
   ms.collection: collection
   author: jasonwhowell
   ms.author: jasonh
-  ms.date: 01/08/2020
-  ms.openlocfilehash: 12c6cba5f489b9ab7c3394629c319a43d2d9163b
-  ms.sourcegitcommit: 529b07030a874d644cf947790f4b53cdff438dd4
+  ms.date: 06/10/2021
+  ms.openlocfilehash: 580e1c32bbfdf4cc725f00a98d720e59be36c2e8
+  ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
   ms.translationtype: MT
   ms.contentlocale: hu-HU
-  ms.lasthandoff: 09/22/2020
-  ms.locfileid: "97766619"
+  ms.lasthandoff: 06/10/2021
+  ms.locfileid: "111972992"
 landingContent:
 - title: Fejlesztés a partnerközponttal
   linkLists:
@@ -47,7 +47,7 @@ landingContent:
   - linkListType: reference
     links:
     - text: Felügyelt .NET API-referencia
-      url: /dotnet/api/
+      url: /dotnet/api/microsoft.store.partnercenter
     - text: A .NET SDK verzióinak kiadási megjegyzései
       url: dotnet-release-notes.md
 - title: A REST API-k használata
