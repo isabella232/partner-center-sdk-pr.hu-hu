@@ -1,41 +1,37 @@
 ---
 title: Közvetett viszonteladó ügyfeleinek lekérése
-description: Hogyan kérhető le egy közvetett viszonteladó ügyfeleinek listája.
+description: Egy közvetett viszonteladó ügyfeleinek listájának lekért listája.
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: e4219f544a74bb3f34ec3aefe08cf18eed77fd42
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: e05248b16b803529258de806c25b117f3104ad2a
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768332"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446326"
 ---
 # <a name="get-customers-of-an-indirect-reseller"></a>Közvetett viszonteladó ügyfeleinek lekérése
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-Hogyan kérhető le egy közvetett viszonteladó ügyfeleinek listája.
+Egy közvetett viszonteladó ügyfeleinek listájának lekért listája.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- A közvetett viszonteladó bérlői azonosítója.
+- A közvetett viszonteladó bérlőazonosítója.
 
 ## <a name="c"></a>C\#
 
-A megadott közvetett viszonteladóval fennálló kapcsolattal rendelkező ügyfelek gyűjteményének beszerzéséhez először hozzon létre egy [**SimpleFieldFilter**](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter) objektumot a szűrő létrehozásához. Át kell adnia a [**CustomerSearchField. IndirectReseller**](/dotnet/api/microsoft.store.partnercenter.models.customers.customersearchfield) enumerálási tagot egy karakterlánccá, és jeleznie kell a [**FieldFilterOperation. StartsWith**](/dotnet/api/microsoft.store.partnercenter.models.query.fieldfilteroperation) karakterláncot a szűrési művelet típusaként. Emellett meg kell adnia a közvetett viszonteladó bérlői azonosítóját is a szűréshez.
+Ha olyan ügyfelek gyűjteményét kell lekérte, akik kapcsolatban vannak a megadott közvetett viszonteladóval, először hozzon létre egy [**SimpleFieldFilter**](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter) objektumot a szűrő létrehozásához. A [**CustomerSearchField.IndirectReseller**](/dotnet/api/microsoft.store.partnercenter.models.customers.customersearchfield) enumerálás tagját át kell adni egy sztringgé, és a szűrőművelet típusaként meg kell adni a [**FieldFilterOperation.StartsWith**](/dotnet/api/microsoft.store.partnercenter.models.query.fieldfilteroperation) mezőt. Meg kell adnia annak a közvetett viszonteladónak a bérlőazonosítóját is, amely alapján szűrni tud.
 
-Ezután hozza létre a [**iQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.iquery) objektumot a lekérdezésnek való átadáshoz. ehhez hívja meg a [**BuildSimpleQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildsimplequery) metódust, és adja át a szűrőt. A BuildSimplyQuery csak az [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) osztály által támogatott lekérdezések egyike.
+Ezután példányosított egy [**iQuery-objektumot,**](/dotnet/api/microsoft.store.partnercenter.models.query.iquery) amelyet átadhat a lekérdezésnek a [**BuildSimpleQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildsimplequery) metódus hívásával és a szűrő átadásával. A BuildSimplyQuery csak egy a [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) osztály által támogatott lekérdezéstípusok közül.
 
-A szűrő végrehajtásához és az eredmény beszerzéséhez először használja a [**IAggregatePartner. Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) felületet a partner felhasználói műveleteihez. Ezután hívja meg a [**lekérdezés**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.query) vagy a [**QueryAsync**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.queryasync) metódust.
+A szűrő végrehajtásához és az eredmény lekért végrehajtásához először az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) használatával szerezze be a partner ügyfélműveletei interfészét. Ezután hívja meg a [**Query**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.query) vagy [**a QueryAsync metódust.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.queryasync)
 
-Ha enumerálást szeretne létrehozni a lapozható eredmények átjárásához, szerezze be a Customer Collection enumerálási gyári felületét a [**IAggregatePartner. enumerálások.**](/dotnet/api/microsoft.store.partnercenter.enumerators.iresourcecollectionenumeratorcontainer.customers) Customers tulajdonságból, majd hívja meg a [**create (létrehozás**](/dotnet/api/microsoft.store.partnercenter.factory.iresourcecollectionenumeratorfactory-1.create)) függvényt, ahogy az az alábbi kódban is látható, az ügyfél gyűjteményét birtokló változó átadásával.
+Ha létre kell hoznia egy enumerátort a lapozó eredmények bejárása érdekében, szerezze be az ügyfélgyűjtemény enumerátor-előállító felületét az [**IAggregatePartner.Enumerators.Customers**](/dotnet/api/microsoft.store.partnercenter.enumerators.iresourcecollectionenumeratorcontainer.customers) tulajdonságból, majd hívja meg a [**Létrehozás**](/dotnet/api/microsoft.store.partnercenter.factory.iresourcecollectionenumeratorfactory-1.create)függvényt az alábbi kódban látható módon, az ügyfélgyűjteményt tartalmazó változó átadásával.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -70,15 +66,15 @@ while (customersEnumerator.HasValue)
 }
 ```
 
-**Minta**: [Console test app](console-test-app.md)**Project**: a partner Center SDK Samples **osztálya**: GetCustomersOfIndirectReseller.cs
+**Minta:** [Konzoltesztelő](console-test-app.md)**alkalmazás Project:** Partnerközpont SDK Samples **Osztály:** GetCustomersOfIndirectReseller.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                   |
 |---------|-----------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers? méret = {size}? szűrő = {Filter} http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers?size={size}?filter={filter} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -87,17 +83,17 @@ A kérelem létrehozásához használja a következő lekérdezési paraméterek
 | Név   | Típus   | Kötelező | Leírás                                                                                                                                                                                                                                                                                   |
 |--------|--------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | size   | int    | Nem       | Az egyszerre megjelenítendő eredmények száma. Ezt a paramétert nem kötelező megadni.                                                                                                                                                                                                                |
-| filter (szűrő) | filter (szűrő) | Igen      | A keresést szűrő lekérdezés. Egy adott közvetett viszonteladó ügyfeleinek lekéréséhez be kell szúrnia a közvetett viszonteladó azonosítóját, és tartalmaznia kell a következő karakterláncot: {"Field": "IndirectReseller", "value": "{közvetett viszonteladói azonosító}", "operátor": "kezdődik \_ "}. |
+| filter (szűrő) | filter (szűrő) | Igen      | A keresést szűrő lekérdezés. Egy adott közvetett viszonteladó ügyfeleinek lekéréséhez be kell szúrni a közvetett viszonteladó azonosítóját, és bele kell foglalnia és kódolnia kell a következő sztringet: {"Field":"IndirectReseller","Value":"{közvetett viszonteladó-azonosító}","Operátor":"kezdete"}. \_ |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
 Nincsenek.
 
-### <a name="request-example-encoded"></a>Példa kérésre (kódolt)
+### <a name="request-example-encoded"></a>Példakérés (kódolt)
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers?size=0&filter=%7B%22Field%22%3A%22IndirectReseller%22%2C%22Value%22%3A%22484e548c-f5f3-4528-93a9-c16c6373cb59%22%2C%22Operator%22%3A%22starts_with%22%7D HTTP/1.1
@@ -109,7 +105,7 @@ X-Locale: en-US
 Host: api.partnercenter.microsoft.com
 ```
 
-### <a name="request-example-decoded"></a>Példa kérésre (dekódolást)
+### <a name="request-example-decoded"></a>Példa kérése (dekódolva)
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers?size=0&filter={"Field":"IndirectReseller","Value":"484e548c-f5f3-4528-93a9-c16c6373cb59","Operator":"starts_with"} HTTP/1.1
@@ -123,11 +119,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse információkat tartalmaz a viszonteladó ügyfeleiről.
+Ha a válasz törzse sikeres, a viszonteladó ügyfeleivel kapcsolatos információkat tartalmaz.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 ### <a name="response-example"></a>Példa válaszra
 

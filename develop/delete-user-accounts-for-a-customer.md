@@ -1,47 +1,43 @@
 ---
 title: Felhasználói fiók törlése egy ügyfélnél
-description: Meglévő felhasználói fiók törlése egy ügyfélhez.
+description: Egy ügyfél meglévő felhasználói fiókjának törlése.
 ms.date: 06/20/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 77fc1a1c7264779ca549be8d52798e90c91138bb
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: c45646da43b8926f911942374de5da07f318c526
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768128"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973060"
 ---
 # <a name="delete-a-user-account-for-a-customer"></a>Felhasználói fiók törlése egy ügyfélnél
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Ez a cikk azt ismerteti, hogyan törölheti az ügyfelek meglévő felhasználói fiókját.
+Ez a cikk egy ügyfél meglévő felhasználói fiókjának törlését ismerteti.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- Egy felhasználói azonosító. Ha nem rendelkezik a felhasználói AZONOSÍTÓval, tekintse [meg az ügyfélhez tartozó összes felhasználói fiók listájának beolvasása](get-a-list-of-all-user-accounts-for-a-customer.md)című témakört.
+- Egy felhasználói azonosító. Ha nem tudja a felhasználói azonosítót, tekintse meg az ügyfél összes felhasználói fiókjának [listáját.](get-a-list-of-all-user-accounts-for-a-customer.md)
 
 ## <a name="deleting-a-user-account"></a>Felhasználói fiók törlése
 
-Felhasználói fiók törlésekor a felhasználói állapot 30 napig **inaktívra** van állítva. Harminc nap elteltével a felhasználói fiók és a hozzá tartozó adatok törlődnek, és helyreállíthatatlanul történnek.
+Felhasználói fiók törlésekor a felhasználói állapot  30 napig inaktívra lesz állítva. 30 nap után a rendszer kiüríti a felhasználói fiókot és a hozzá tartozó adatokat, és nem állítható vissza.
 
-Ha az inaktív fiók a harminc napos időszakon belül van, [visszaállíthatja az ügyfél törölt felhasználói fiókját](restore-a-user-for-a-customer.md) . Ha azonban olyan fiókot állít vissza, amely törölve lett, és inaktívként jelölt meg, a fiók már nem lesz visszaküldve a felhasználói gyűjtemény tagjaként (például ha az [ügyfél összes felhasználói fiókjának listáját kapja](get-a-list-of-all-user-accounts-for-a-customer.md)).
+Az ügyfelek [törölt felhasználói](restore-a-user-for-a-customer.md) fiókjai visszaállíthatóak, ha az inaktív fiók a 30 napos időkereten belül van. Ha azonban visszaállít egy törölt és inaktívként megjelölt fiókot, a rendszer nem ad vissza fiókot a felhasználógyűjtemény tagjaként (például amikor lekért egy listát az ügyfél összes felhasználói [fiókjáról).](get-a-list-of-all-user-accounts-for-a-customer.md)
 
 ## <a name="c"></a>C\#
 
 Meglévő ügyfél-felhasználói fiók törlése:
 
-1. Az ügyfél azonosításához használja a [**IAggregatePartner. Customs. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval.
+1. Az [**ügyfél azonosításához használja az IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával.
 
-2. A felhasználó azonosításához hívja meg a Users [**. ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust.
+2. A felhasználó azonosításához hívja meg a [**Users.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust.
 
-3. A [**törlési**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.delete) metódus hívásával törölje a felhasználót, és állítsa inaktívra a felhasználói állapotot.
+3. Hívja meg [**a Delete**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.delete) metódust a felhasználó törléséhez, és állítsa a felhasználói állapotot inaktívra.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -51,28 +47,28 @@ Meglévő ügyfél-felhasználói fiók törlése:
 partnerOperations.Customers.ById(selectedCustomerId).Users.ById(customerUserIdToDelete).Delete();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: DeleteCustomerUser.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** DeleteCustomerUser.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus     | Kérés URI-ja                                                                                            |
 |------------|--------------------------------------------------------------------------------------------------------|
-| DELETE     | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Users/{User-ID} http/1.1 |
+| DELETE     | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/users/{felhasználói azonosító} HTTP/1.1 |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-Az ügyfél és a felhasználó azonosításához használja a következő lekérdezési paramétereket.
+A következő lekérdezési paraméterekkel azonosíthatja az ügyfelet és a felhasználót.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                               |
 |------------------------|----------|----------|---------------------------------------------------------------------------------------------------------------------------|
-| ügyfél – bérlő – azonosító     | GUID     | Y        | Az érték egy GUID-formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi a viszonteladónak az adott ügyfél eredményeinek szűrését. |
-| felhasználói azonosító                | GUID     | Y        | Az érték egy GUID-formátumú **felhasználói azonosító** , amely egyetlen felhasználói fiókhoz tartozik.                                          |
+| ügyfél-bérlő-azonosító     | GUID     | Y        | Az érték egy GUID-formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára az eredmények szűrését egy adott ügyfélre. |
+| felhasználói azonosító                | GUID     | Y        | Az érték egy GUID formátumú felhasználói **azonosító,** amely egyetlen felhasználói fiókhoz tartozik.                                          |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -93,11 +89,11 @@ Content-Length: 0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus egy **204** -as értéket ad vissza, amely nem a tartalom állapotkód.
+Sikeres művelet esetén ez a metódus **egy 204 Nincs** tartalom állapotkódot ad vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

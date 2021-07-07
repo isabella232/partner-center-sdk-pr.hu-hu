@@ -1,37 +1,33 @@
 ---
 title: Kereskedelmi piactéri előfizetés automatikus megújításának frissítése
-description: Frissítse az ügyfél-és előfizetés-AZONOSÍTÓval egyező előfizetési erőforráshoz tartozó autorenew tulajdonságot.
+description: Frissítse egy előfizetési erőforrás autorenew tulajdonságát, amely megfelel az ügyfél és az előfizetés azonosítójának.
 ms.date: 08/16/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 8dccec57901ea4ea429b74044e3b6c28178c43f6
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: cc0b4c4bff5e8762ffcc2552b2e9e36bcf93686c
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768264"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446666"
 ---
 # <a name="update-autorenew-for-a-commercial-marketplace-subscription"></a>Kereskedelmi piactéri előfizetés automatikus megújításának frissítése
 
-**A következőkre vonatkozik**
+Frissítse egy kereskedelmi piactéri előfizetési erőforrás autorenew [tulajdonságát,](subscription-resources.md) amely megfelel az ügyfél és az előfizetés azonosítójának.
 
-- Partnerközpont
-
-Frissítse az ügyfél-és előfizetés-AZONOSÍTÓval egyező kereskedelmi piactér- [előfizetési](subscription-resources.md) erőforráshoz tartozó autorenew tulajdonságot.
-
-A partner Center irányítópultján a művelet végrehajtásához először válasszon ki [egy ügyfelet](get-a-customer-by-name.md). Ezután válassza ki a frissíteni kívánt előfizetést. Végül kapcsolja be az **automatikus megújítás** lehetőséget, majd kattintson a **Küldés** elemre.
+A Partnerközpont a műveletet úgy hajtjuk végre, hogy először [kiválasztunk egy ügyfelet.](get-a-customer-by-name.md) Ezután válassza ki a frissíteni kívánt előfizetést. Végül válthat az Automatikus **megújítás lehetőséggel,** majd válassza a **Küldés lehetőséget.**
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
 ## <a name="c"></a>C\#
 
-Az ügyfél előfizetésének frissítéséhez először [szerezze be az előfizetést](get-a-subscription-by-id.md), majd állítsa be az előfizetés [**autoRenewEnabled**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.autoRenewEnabled) tulajdonságát. A módosítást követően használja a **IAggregatePartner. Customers** gyűjteményt, és hívja meg a **ById ()** metódust. Ezután hívja meg az [**előfizetések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot, majd a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) metódust. Ezután fejezze be a **Patch ()** metódus meghívásával.
+Az ügyfél előfizetésének frissítéséhez [](get-a-subscription-by-id.md)először szerezze be az előfizetést, majd állítsa be az [**előfizetés autoRenewEnabled tulajdonságát.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.autoRenewEnabled) A módosítás után használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a **ById() metódust.** Ezután hívja meg [**a Subscriptions**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot, majd a [**ById() metódust.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) Végül hívja meg a **Patch() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -43,32 +39,32 @@ selectedSubscription.AutoRenewEnabled = false;
 var updatedSubscription = partnerOperations.Customers.ById(selectedCustomerId).Subscriptions.ById(selectedSubscription.Id).Patch(selectedSubscription);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSample **osztály**: UpdateSubscription.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** UpdateSubscription.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus    | Kérés URI-ja                                                                                                                |
 |-----------|----------------------------------------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Subscriptions/{ID-for-Subscription} http/1.1 |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Ez a táblázat felsorolja az előfizetés felfüggesztéséhez szükséges lekérdezési paramétereket.
+Ez a táblázat felsorolja az előfizetés felfüggesztéséhez szükséges lekérdezési paramétert.
 
 | Név                    | Típus     | Kötelező | Leírás                               |
 |-------------------------|----------|----------|-------------------------------------------|
-| **ügyfél – bérlő – azonosító**  | **GUID** | Y        | Az ügyfélhez tartozó GUID.     |
-| **azonosító – előfizetés** | **GUID** | Y        | Az előfizetéshez tartozó GUID. |
+| **ügyfél-bérlő-azonosító**  | **Guid** | Y        | Az ügyfélnek megfelelő GUID.     |
+| **id-for-subscription** | **Guid** | Y        | Az előfizetéshez tartozó GUID. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem törzsében teljes kereskedelmi piactér- **előfizetési** erőforrás szükséges. Győződjön meg arról, hogy a **AutoRenewEnabled** tulajdonság frissítve lett.
+A kérelem törzsében egy teljes **kereskedelmi** piactéri előfizetési erőforrásra van szükség. Győződjön meg arról, hogy az **AutoRenewEnabled tulajdonság** frissült.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -116,11 +112,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus a válasz törzsében a frissített [előfizetés](subscription-resources.md) erőforrás-tulajdonságokat adja vissza.
+Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza az előfizetés [frissített](subscription-resources.md) erőforrás-tulajdonságait.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

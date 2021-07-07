@@ -1,30 +1,26 @@
 ---
-title: Számlázott kereskedelmi használatú sorelemek lekért száma
-description: Az adott számlához tartozó kereskedelmi használatú számlasorelem (lezárt napi minősített használati tétel) gyűjteményét a következő API Partnerközpont le.
+title: Számlázott kereskedelmi használatú sorok elemeinek lekért száma
+description: A kereskedelmi használatú számlasorelem (lezárt napi minősített használati sor tétel) gyűjteményét egy adott számlához a következő API Partnerközpont le.
 ms.date: 01/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 1406938b16e5a363a73c36ef0338eb5fc4305279
-ms.sourcegitcommit: 89aefbff6dbe740b6f27a888492ffc2e5f98b1e9
+ms.openlocfilehash: 285b6fbda774c9396dee8947550ed774d52bf901
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 05/24/2021
-ms.locfileid: "110325445"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446224"
 ---
-# <a name="get-invoice-billed-commercial-consumption-line-items"></a>Számlázott kereskedelmi használatú sorelemek lekért száma
+# <a name="get-invoice-billed-commercial-consumption-line-items"></a>Számlázott kereskedelmi használatú sorok elemeinek lekért száma
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Az alábbi módszerekkel lekért adatok egy adott számlához tartozó kereskedelmi használatú számlasorelemekre (más néven lezárt napi minősített használatisor-tételekre) vonatkozó részleteket.
+A következő módszerekkel lekértheti a kereskedelmi felhasználású számlasorelemek (más néven a lezárt napi minősített használati sorelemek) részleteit egy adott számlához.
 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
 - Egy számlaazonosító. Ez azonosítja a számlát, amelynek lekéri a sorelemeket.
 
@@ -36,11 +32,11 @@ A megadott számla kereskedelmisor-elemeinek lekérése a számlaobjektumot kell
 
 2. A [**számlaobjektum lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal. A számlaobjektum a megadott számla összes adatát tartalmazza.
 
-A **Szolgáltató** azonosítja a kiszámlázott részletes adatok forrását (például **egyszer).** Az **InvoiceLineItemType** határozza meg a típust (például **UsageLineItem).**
+A **Szolgáltató** azonosítja a számlázott részletes adatok forrását (például **egyszer).** Az **InvoiceLineItemType** megadja a típust (például **UsageLineItem).**
 
-Az alábbi példakód egy **foreach ciklust használ** a sorelemek gyűjteményének feldolgozásához. A rendszer minden **InvoiceLineItemType** típushoz külön sorelemek gyűjteményét olvassa be.
+Az alábbi példakód egy **foreach ciklust használ** a sorelemek gyűjteményének feldolgozásához. A rendszer külön sorelemek gyűjteményét olvassa be minden **InvoiceLineItemType típushoz.**
 
-Egy InvoiceDetail példánynak megfelelő sorelemek **gyűjteményének legyűjtéséhez:**
+Az InvoiceDetail példánynak megfelelő sorelemek **gyűjteményének lekért** száma:
 
 1. Adja át a példány **BillingProvider** és **InvoiceLineItemType** tulajdonságát a [**By metódusnak.**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by)
 
@@ -107,7 +103,7 @@ while (fetchNext)
 Hasonló példát a következőben láthat:
 
 - Minta: [Konzoltesztalkalmazás](console-test-app.md)
-- Projekt: **Partnerközpont SDK minták**
+- Project: **Partnerközpont SDK minták**
 - Osztály: **GetBilledConsumptionReconLineItemsPaging.cs**
 
 ## <a name="rest-request"></a>REST-kérés
@@ -128,13 +124,13 @@ A kérelem létrehozásakor használja a következő URI-t és lekérdezési par
 
 | Név                   | Típus   | Kötelező | Leírás                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
-| számlaazonosító             | sztring | Yes      | A számlát azonosító sztring.                             |
-| Szolgáltató               | sztring | Yes      | A szolgáltató: "OneTime".                                  |
-| invoice-line-item-type | sztring | Yes      | A számla részleteinek típusa: "UsageLineItems". |
-| currencyCode           | sztring | Yes      | A számlázható sorelemek pénznemkódja.                    |
-| period                 | sztring | Yes      | A kiszámlázott felderítés időtartama. példa: current, previous.        |
-| size                   | szám | No       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000       |
-| seekOperation          | sztring | No       | Állítsa be a seekOperation=Next elemet a felderítési sorelemek következő oldalának lekért értékhez. |
+| számlaazonosító             | sztring | Igen      | A számlát azonosító sztring.                             |
+| Szolgáltató               | sztring | Igen      | A szolgáltató: "OneTime".                                  |
+| invoice-line-item-type | sztring | Igen      | A számla részleteinek típusa: "UsageLineItems". |
+| currencyCode           | sztring | Igen      | A számlázott sorelemek pénznemkódja.                    |
+| period                 | sztring | Igen      | A számlázható recon időszaka. például: current, previous.        |
+| size                   | szám | Nem       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000       |
+| seekOperation          | sztring | No       | Állítsa be a seekOperation=Next elemet a felderítési sorelemek következő oldalának le tételhez. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -146,13 +142,13 @@ Nincsenek.
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz sorelem-részletek gyűjteményét tartalmazza.
+Ha a művelet sikeres, a válasz sorelem-részletek gyűjteményét tartalmazza.
 
-A **ChargeType** sorelem esetében a **Purchase érték** az Új értékre van **leképezve.** A **Refund (Visszatérítés)** érték a Cancel (Lemondás) **értékre van leképezve.**
+A **ChargeType** sorelem esetében a **Purchase** értéke New (Új) értékre **van leképezve.** A Refund **(Visszatérítés)** érték a Cancel (Lemondás) **értékre van leképezve.**
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ## <a name="rest-examples"></a>REST-példák
 

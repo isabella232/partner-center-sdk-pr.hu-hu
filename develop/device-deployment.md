@@ -1,28 +1,25 @@
 ---
 title: Eszköz üzembe helyezése
-description: A partner Center API-eszközök telepítési funkciói közé tartoznak a konfigurációs szabályzatok és az eszközök.
+description: Partnerközpont API-eszközök üzembe helyezési funkciói között konfigurációs szabályzatok és eszközök is találhatóak.
 ms.date: 06/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 72292ee59955bb35be7ad9d59789a3e109d5f7ec
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 46fd8b53d6d42816d498103192122a81b5f6564f
+ms.sourcegitcommit: d20e7d572fee09a83a4b23a92da7ff09cfebe75a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767724"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111906485"
 ---
 # <a name="device-deployment"></a>Eszköz üzembe helyezése
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Németországhoz
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-
-A partner Center API-k hozzáférést biztosítanak a nulla érintéses üzembe helyezési funkciókhoz, így egyszerűbbé teheti az ügyfelek számára a biztonságos eszközök beállítását.
+A Partnerközpont API-k érintés nélküli üzembe helyezési funkciókat biztosítanak, így leegyszerűsítheti az eszközök beállítását az ügyfelek számára.
 
 ## <a name="configuration-policies"></a>Konfigurációs szabályzatok
 
-Az eszköz-konfigurációs házirendek hozzáadásával, törlésével, frissítésével és lekérésével kapcsolatos témakörök:
+Témakörök az eszközkonfigurációs szabályzatok hozzáadásáról, törléséről, frissítéséről és lekéréséről:
 
 - [Új konfigurációs szabályzat létrehozása a megadott ügyfélnél](create-a-new-configuration-policy-for-the-specified-customer.md)
 - [Konfigurációs szabályzat törlése a megadott ügyfélnél](delete-a-configuration-policy-for-the-specified-customer.md)
@@ -32,7 +29,7 @@ Az eszköz-konfigurációs házirendek hozzáadásával, törlésével, frissít
 
 ## <a name="devices"></a>Eszközök
 
-A következő témakörökből megtudhatja, hogyan dolgozhat és tölthet fel az eszközök kötegeit és az eszközök metaadatait:
+Az eszközköteik és az eszköz metaadatainak kezelésével és feltöltésével kapcsolatos témakörök:
 
 - [Eszköz kötegelt feltöltési állapotának lekérése](get-the-status-of-a-device-batch-upload.md)
 - [A megadott ügyfél eszközköteglistájának lekérése](get-the-list-of-device-batches-for-the-specified-customer.md)

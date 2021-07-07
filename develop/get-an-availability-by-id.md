@@ -1,39 +1,35 @@
 ---
-title: A rendelkezésre állás beolvasása azonosító alapján
-description: A megadott termék és SKU rendelkezésre állásának beolvasása a rendelkezésre állási azonosító használatával.
+title: A rendelkezésre állás lekért azonosítója
+description: Lekérte a megadott termék és termékváltozat rendelkezésre állását egy rendelkezésre állási azonosítóval.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: 824303d40e1dcb0405246c8e29562c4527d147fd
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: c31bc12d8d484cc8042f36aa865145600d9e6738
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767715"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760198"
 ---
-# <a name="get-the-availability-by-id"></a>A rendelkezésre állás beolvasása azonosító alapján
+# <a name="get-the-availability-by-id"></a>A rendelkezésre állás lekért azonosítója
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-A megadott termék és SKU rendelkezésre állásának beolvasása a rendelkezésre állási azonosító használatával.
+Lekérte a megadott termék és termékváltozat rendelkezésre állását egy rendelkezésre állási azonosítóval.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- A termék azonosítója.
+- Egy termékazonosító.
 
-- SKU-AZONOSÍTÓ.
+- Egy termékváltozat-azonosító.
 
 - Egy rendelkezésre állási azonosító.
 
 ## <a name="c"></a>C\#
 
-Egy adott [rendelkezésre állás](product-resources.md#availability)részleteinek beszerzéséhez először a [SKU BEszerzése azonosítóval](get-a-sku-by-id.md) című cikkben ismertetett lépéseket követve szerezheti be egy adott [SKU](product-resources.md#sku) műveleteinek felületét. Az eredményül kapott felületen válassza a beszerzések tulajdonságot, hogy beszerezze **az elérhető** műveletekkel rendelkező felületet. Ezután adja át a rendelkezésre állási azonosítót a **ById ()** metódusnak, hogy lekérje az adott rendelkezésre állásra vonatkozó műveleteket, majd hívja a **Get ()** vagy a **GetAsync ()** függvényt a rendelkezésre állási adatok lekéréséhez.
+Egy adott rendelkezésre [](product-resources.md#availability)állás részleteinek lekért [](get-a-sku-by-id.md) lépéseit a Termékváltozat lekért azonosítója alapján lépéseit követve szerezze be az adott [termékváltozat](product-resources.md#sku) műveleteihez szükséges felületet. Az eredményül kapott felületen válassza az **Availabilities (Rendelkezésre** állások) tulajdonságot a rendelkezésre álláshoz elérhető műveletekkel való interfész beszerzéséhez. Ezt követően adja át a rendelkezésre állási azonosítót a **ById()** metódusnak az adott rendelkezésre álláshoz szükséges műveletek lekérése érdekében, majd hívja meg a **Get()** vagy **a GetAsync()** metódust a rendelkezésre állási adatok lekérése érdekében.
 
 ```csharp
 IAggregatePartner partnerOperations;
@@ -50,7 +46,7 @@ var availability = partnerOperations.Products.ByCountry(countryCode).ById(produc
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-Egy adott [rendelkezésre állás](product-resources.md#availability)részleteinek beszerzéséhez először a [SKU BEszerzése azonosítóval](get-a-sku-by-id.md) című cikkben ismertetett lépéseket követve szerezheti be egy adott [SKU](product-resources.md#sku) műveleteinek felületét. Az eredményül kapott felületről válassza a **getAvailabilities** függvényt, és szerezzen be egy felületet a rendelkezésre álláshoz elérhető műveletekkel. Ezután adja át a rendelkezésre állási azonosítót a **byId ()** függvénynek, hogy lekérje az adott rendelkezésre álláshoz tartozó műveleteket, majd a **Get ()** függvény meghívásával kérje le a rendelkezésre állási adatokat.
+Egy adott rendelkezésre [](product-resources.md#availability)állás részleteinek lekért [](get-a-sku-by-id.md) lépéseit a Termékváltozat lekért azonosítója alapján lépéseit követve szerezze be az adott [termékváltozat](product-resources.md#sku) műveleteihez szükséges felületet. Az eredményül kapott felületen válassza a **getAvailabilities** függvényt a rendelkezésre álláshoz elérhető műveletekkel való felület beszerzéséhez. Ezután adja át a rendelkezésre állási azonosítót a **byId()** függvénynek az adott rendelkezésre álláshoz szükséges műveletek lekérése érdekében, majd hívja meg a get() függvényt a rendelkezésre állási adatok **lekérése** érdekében.
 
 ```java
 IAggregatePartner partnerOperations;
@@ -67,34 +63,34 @@ Availability availability = partnerOperations.getProducts().byCountry(countryCod
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-Egy adott [rendelkezésre állás](product-resources.md#availability)részleteinek beszerzéséhez hajtsa végre a [**Get-PartnerProductAvailability**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerProductAvailability.md) , és adja meg a **AvailabilityId**, a **országhívószám**, a **Termékkód** és a **SkuId** paramétereket a rendelkezésre állási adatok lekéréséhez.
+Egy adott rendelkezésre [](product-resources.md#availability)állás részleteinek lekérése érdekében hajtsa végre a [**Get-PartnerProductAvailability**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerProductAvailability.md) paramétert, és adja meg az **AvailabilityId,** **CountryCode,** **ProductId** és **SkuId** paramétereket a rendelkezésre állási adatok lekérése érdekében.
 
 ```powershell
 Get-PartnerProductAvailability -Product $productId -SkuId $skuId -AvailabilityId $availabilityId
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Products/{Product-ID}/SKUs/{SKU-ID}/availabilities/{Availability-ID}? ország = {országkód} http/1.1         |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/termékváltozatok/{sku-id}/availabilities/{availability-id}?country={országkód} HTTP/1.1         |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A következő elérési út és lekérdezési paraméterek használatával a rendelkezésre állási AZONOSÍTÓval kaphat egy adott rendelkezésre állást.
+Az alábbi elérési út és lekérdezési paraméterek használatával lekérdezheti az adott rendelkezésre állást egy rendelkezésre állási azonosító használatával.
 
 | Név                   | Típus     | Kötelező | Leírás                                                     |
 |------------------------|----------|----------|-----------------------------------------------------------------|
-| termék azonosítója             | sztring   | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja a terméket.            |
-| SKU-azonosító                 | sztring   | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja az SKU-t.                |
-| rendelkezésre állás – azonosító        | sztring   | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja a rendelkezésre állást.       |
-| országkód           | sztring   | Igen      | Ország/régió azonosítója.                                            |
+| termékazonosító             | sztring   | Igen      | Egy GUID formátumú sztring, amely azonosítja a terméket.            |
+| sku-id                 | sztring   | Igen      | Egy GUID formátumú sztring, amely azonosítja a termékváltozatot.                |
+| rendelkezésre állási azonosító        | sztring   | Igen      | Egy GUID formátumú sztring, amely a rendelkezésre állást azonosítja.       |
+| országkód           | sztring   | Igen      | Egy ország-/régióazonosító.                                            |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -115,18 +111,18 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse [rendelkezésre állási](product-resources.md#availability) erőforrást tartalmaz.
+Ha ez sikeres, a válasz törzse tartalmaz egy [rendelkezésre állási erőforrást.](product-resources.md#availability)
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
 | HTTP-állapotkód     | Hibakód   | Leírás                                                                                               |
 |----------------------|--------------|-----------------------------------------------------------------------------------------------------------|
 | 404                  | 400013       | A termék nem található.                                                                                    |
-| 404                  | 400018       | Az SKU nem található.                                                                                        |
+| 404                  | 400018       | A termékváltozat nem található.                                                                                        |
 | 404                  | 400019       | A rendelkezésre állás nem található.                                                                                   |
 
 ### <a name="response-example"></a>Példa válaszra

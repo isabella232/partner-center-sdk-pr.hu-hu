@@ -1,37 +1,33 @@
 ---
 title: Előfizetés regisztrációs állapotának lekérése
-description: Lekéri egy olyan előfizetés állapotát, amely regisztrálva van a Azure Reserved VM Instancessal való használatra.
+description: Le kell kapnia egy előfizetés állapotát, amely regisztrálva van a Azure Reserved VM Instances.
 ms.date: 03/19/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: e06cf8a450d6c281f7f83a68c899d1e5b29e9855
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 9e39f94c0eac402a0be3afde84279aa637868f96
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768440"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445952"
 ---
 # <a name="get-subscription-registration-status"></a>Előfizetés regisztrációs állapotának lekérése
 
-**A következőkre vonatkozik**
+Hogyan lehet lekérte az előfizetés regisztrációs állapotát egy olyan ügyfél-előfizetéshez, amely számára engedélyezett a Azure Reserved VM Instances.
 
-- Partnerközpont
-
-Az előfizetés regisztrációs állapotának beszerzése olyan ügyfél-előfizetéshez, amely engedélyezve van a Azure Reserved VM Instances megvásárlására.
-
-Ha egy Azure-beli fenntartott VM-példányt szeretne megvásárolni a partner Center API-val, rendelkeznie kell legalább egy meglévő CSP Azure-előfizetéssel. Az [előfizetés regisztrálása](register-a-subscription.md) lehetővé teszi a meglévő CSP Azure-előfizetés regisztrálását, amely lehetővé teszi a Azure Reserved VM instances megvásárlását. Ez a módszer lehetővé teszi az adott regisztráció állapotának beolvasását.
+Ha azure-beli fenntartott virtuálisgép-példányt a Partnerközpont API-val vásárolni, legalább egy meglévő CSP Azure-előfizetéssel kell lennie. Az [Előfizetés regisztrálása](register-a-subscription.md) módszerrel regisztrálhatja meglévő CSP Azure-előfizetését, így megvásárolhatja Azure Reserved VM Instances. Ezzel a módszerrel lekérhető a regisztráció állapota.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
 ## <a name="c"></a>C\#
 
-Az előfizetés regisztrációs állapotának lekéréséhez először a [**IAggregatePartner. Customs. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust használja az ügyfél-azonosítóval az ügyfél azonosításához. Ezután szerezzen be egy illesztőfelületet az előfizetési műveletekhez úgy, hogy meghívja az előfizetés [**. ById ()**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) metódust az előfizetés-azonosítóval az előfizetés azonosításához. Ezután a RegistrationStatus tulajdonsággal szerezzen be egy felületet az aktuális előfizetés regisztrációs állapotára vonatkozó műveletekhez, és hívja meg a **Get** vagy a **GetAsync** metódust a **SubscriptionRegistrationStatus** objektum lekéréséhez.
+Az előfizetés regisztrációs állapotának leához először használja az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az előfizetési műveletek interfészét a [**Subscription.ById()**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) metódus az előfizetés azonosítójával való hívásával az előfizetés azonosításához. Ezután a RegistrationStatus tulajdonság használatával szerezze be az aktuális előfizetés regisztrációs állapotműveletei interfészét, és hívja meg a **Get** vagy **GetAsync** metódust a **SubscriptionRegistrationStatus** objektum lekéréséhez.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -42,26 +38,26 @@ Az előfizetés regisztrációs állapotának lekéréséhez először a [**IAgg
 var subscriptionRegistrationDetails = partnerOperations.Customers.ById(selectedCustomerId).Subscriptions.ById(selectedSubscriptionId).RegistrationStatus.Get();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus    | Kérés URI-ja                                                                                                                        |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|
-| **GET**  | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Subscriptions/{Subscription-ID}/registrationstatus http/1.1 |
+| **Kap**  | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/subscriptions/{előfizetés-azonosító}/registrationstatus HTTP/1.1 |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-A következő elérésiút-paraméterek használatával azonosíthatja az ügyfelet és az előfizetést.
+Az ügyfél és az előfizetés azonosításához használja az alábbi elérésiút-paramétereket.
 
 | Név                    | Típus       | Kötelező | Leírás                                                   |
 |-------------------------|------------|----------|---------------------------------------------------------------|
-| ügyfél-azonosító             | sztring     | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja az ügyfelet.         |
-| előfizetés-azonosító         | sztring     | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja az előfizetést.     |
+| ügyfélazonosító             | sztring     | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.         |
+| subscription-id         | sztring     | Igen      | Egy GUID formátumú sztring, amely azonosítja az előfizetést.     |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -83,11 +79,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse [SubscriptionRegistrationStatus](subscription-resources.md#subscriptionregistrationstatus) -erőforrást tartalmaz.
+Ha a művelet sikeres, a válasz törzse tartalmaz egy [SubscriptionRegistrationStatus erőforrást.](subscription-resources.md#subscriptionregistrationstatus)
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

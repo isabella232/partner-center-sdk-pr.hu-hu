@@ -1,33 +1,29 @@
 ---
 title: Felhasználói szerepkörök beállítása egy ügyfélnél
-description: Egy ügyfél-fiókban több címtár-szerepkör található. A szerepkörökhöz felhasználói fiókokat is hozzárendelhet.
+description: Az ügyfélfiókon belül címtárszerepkomó-készlet található. Ezekhez a szerepkörökhöz felhasználói fiókokat rendelhet.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: f42120e40e54ff8bd6242634d97268091abf8e1c
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: a035d711ffa91200fa7b479ed5ec53929aa4feaf
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768268"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446700"
 ---
 # <a name="set-user-roles-for-a-customer"></a>Felhasználói szerepkörök beállítása egy ügyfélnél
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-Egy ügyfél-fiókban több címtár-szerepkör található. A szerepkörökhöz felhasználói fiókokat is hozzárendelhet.
+Az ügyfélfiókon belül címtárszerepkomó-készlet található. Ezekhez a szerepkörökhöz felhasználói fiókokat rendelhet.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Ha egy címtárbeli szerepkört szeretne hozzárendelni egy ügyfél-felhasználóhoz, hozzon létre egy új [**UserMember**](/dotnet/api/microsoft.store.partnercenter.models.roles.usermember) a megfelelő felhasználói adatokkal. Ezután hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a megadott ügyfél-azonosítóval az ügyfél azonosításához. Innen válassza a [**DirectoryRoles. ById**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.idirectoryrolecollection.byid) metódust a címtár SZEREPKÖR-azonosítóval a szerepkör megadásához. Ezután nyissa meg a **UserMembers** gyűjteményt, és a [**create**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.iusermembercollection.create) metódussal adja hozzá az új felhasználói tagot az adott szerepkörhöz rendelt felhasználói tagok gyűjteményéhez.
+Ha címtárszerepkört szeretne hozzárendelni egy ügyfélfelhasználóhoz, hozzon létre egy új [**UserMember**](/dotnet/api/microsoft.store.partnercenter.models.roles.usermember) adatokat a megfelelő felhasználói adatokkal. Ezután hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) a megadott ügyfél-azonosítóval az ügyfél azonosításához. A szerepkör megadásához használja a [**DirectoryRoles.ById**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.idirectoryrolecollection.byid) metódust a címtár-szerepkör azonosítójával. Ezután hozzáféréssel a **UserMembers** gyűjteményhez, és a [**Létrehozás**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.iusermembercollection.create) metódussal adja hozzá az új felhasználói tagot az adott szerepkörhöz rendelt felhasználói tagok gyűjteményéhez.
 
 ``` csharp
 // UserMember createdUser;
@@ -47,39 +43,39 @@ UserMember userMemberToAdd = new UserMember()
 var userMemberAdded = partnerOperations.Customers.ById(selectedCustomer.Id).DirectoryRoles.ById(selectedRole.Id).UserMembers.Create(userMemberToAdd);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: AddUserMemberToDirectoryRole.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** AddUserMemberToDirectoryRole.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                                                                 |
 |----------|-----------------------------------------------------------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/directoryroles/{role-ID}/usermembers http/1.1 |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/directoryroles/{szerepkör-azonosító}/usermembers HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A megfelelő ügyfél és szerepkör azonosításához használja a következő URI-paramétereket. Annak a felhasználónak a azonosításához, akihez a szerepkört hozzá szeretné rendelni, adja meg az azonosítási adatokat a kérelem törzsében.
+Az alábbi URI-paraméterekkel azonosíthatja a megfelelő ügyfelet és szerepkört. Annak a felhasználónak az azonosításához, akihez hozzá kell rendelni a szerepkört, a kérelem törzsében meg kell határoznia az azonosító adatokat.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti. |
-| **szerepkör-azonosító**            | **guid** | Y        | Az érték egy GUID formátumú **szerepkör-azonosító** , amely azonosítja a felhasználóhoz hozzárendelni kívánt szerepkört.                                                              |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
+| **szerepkör-azonosító**            | **guid** | Y        | Az érték egy GUID formátumú **szerepkör-azonosító,** amely azonosítja a felhasználóhoz hozzárendelni kívánt szerepkört.                                                              |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a táblázat a kérelem törzsében szereplő kötelező tulajdonságokat ismerteti.
+Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 | Név                  | Típus       | Kötelező | Leírás                            |
 |-----------------------|------------|----------|----------------------------------------|
-| **ID**                | **karakterlánc** | Y        | A szerepkörhöz hozzáadandó felhasználó azonosítója. |
-| **Megjelenítendő név**       | **karakterlánc** | Y        | A felhasználó felhasználóbarát megjelenítendő neve. |
-| **UserPrincipalName** | **karakterlánc** | Y        | A felhasználói tag neve.        |
-| **Attribútumok**        | **objektum** | Y        | A "objektumtípus": "UserMember" kifejezést tartalmazza     |
+| **Id**                | **sztring** | Y        | A szerepkörhöz hozzáadnia kell a felhasználó azonosítóját. |
+| **Megjelenítendő név**       | **sztring** | Y        | A felhasználó rövid megjelenített neve. |
+| **UserPrincipalName (Felhasználónév)** | **sztring** | Y        | Az egyszerű felhasználó neve.        |
+| **Attribútumok**        | **Objektum** | Y        | Az "ObjectType":"UserMember" adatokat tartalmazza     |
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -107,11 +103,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ez a metódus visszaadja azt a felhasználói fiókot, amelyhez a szerepkör-azonosító csatolva lett, ha a felhasználó sikeresen hozzárendelte a szerepkört.
+Ez a metódus visszaadja a szerepkör-azonosítóval csatolt felhasználói fiókot, amikor a felhasználóhoz sikeresen hozzá lett rendelve a szerepkör.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

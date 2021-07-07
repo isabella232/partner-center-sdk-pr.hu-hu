@@ -6,24 +6,20 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: JoeyBytes
 ms.author: jobiesel
-ms.openlocfilehash: df605e4d400d29e14fd0b44bef34f88bbc7ca8b2
-ms.sourcegitcommit: 7d59c58ee36b217bd5cac089f918059e9dbb8a62
+ms.openlocfilehash: 4795b6e1ad008f9d854dc7efbee0c2099aefa609
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 05/19/2021
-ms.locfileid: "110027928"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446309"
 ---
 # <a name="get-a-customers-qualification-asynchronously"></a>Ügyfél minősítésének aszinkron lekértsége
-
-**A következőre vonatkozik:**
-
-- Partnerközpont
 
 Hogyan lehet aszinkron módon szerezni az ügyfelek minősítését.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
 - Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
@@ -37,11 +33,11 @@ Az ügyfél minősítésének megszerzéséhez hívja meg az [**IAggregatePartne
 var customerQualifications = partnerOperations.Customers.ById(customerId).Qualification.GetQualifications();
 ```
 
-**Minta:** [Konzol mintaalkalmazás.](https://github.com/microsoft/Partner-Center-DotNet-Samples) **Projekt:** SdkSamples **osztály:** GetCustomerQualifications.cs
+**Minta:** [Konzol mintaalkalmazás.](https://github.com/microsoft/Partner-Center-DotNet-Samples) **Project**: SdkSamples **osztály:** GetCustomerQualifications.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                          |
 |---------|------------------------------------------------------------------------------------------------------|
@@ -53,7 +49,7 @@ Ez a táblázat felsorolja az összes minősítéshez szükséges lekérdezési 
 
 | Név               | Típus   | Kötelező | Leírás                                           |
 |--------------------|--------|----------|-------------------------------------------------------|
-| **ügyfél-bérlő-azonosító** | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
+| **ügyfél-bérlő-azonosító** | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -75,11 +71,11 @@ MS-RequestId: 037db222-6d8e-4d7f-ba78-df3dca33fb68
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez a módszer sikeres, a válasz törzsében minősítések gyűjteményét adja vissza.  Az alábbiakban példákat talál az Oktatási minősítéssel rendelkező ügyfelek **GET** **hívására.**
+Ha sikeres, ez a metódus minősítések gyűjteményét adja vissza a válasz törzsében.  Az alábbiakban példákat talál az Oktatási minősítéssel rendelkező ügyfelek **GET** **hívására.**
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-examples"></a>Példák válaszra
 
@@ -137,7 +133,7 @@ MS-RequestId: 037db222-6d8e-4d7f-ba78-df3dca33fb68
 
 ```
 
-#### <a name="state-owned-entity-samples"></a>Állam tulajdonú entitások mintái
+#### <a name="state-owned-entity-samples"></a>Állam tulajdonában lévő entitásminták
 
 **Állam tulajdonú entitás POST-mintán keresztül**
 

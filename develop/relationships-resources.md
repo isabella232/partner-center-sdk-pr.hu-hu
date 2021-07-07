@@ -1,43 +1,39 @@
 ---
-title: Erőforrások kapcsolatai
+title: Kapcsolatok erőforrásai
 description: A kapcsolatokhoz kapcsolódó erőforrásokat ismerteti.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: c5701414bd704b375dc23859b920609d5a975d9f
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 7dba1e99a6c97c759e3c61cde1e7565faa2ef4d1
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767792"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445731"
 ---
-# <a name="relationships-resources"></a>Erőforrások kapcsolatai
-
-**A következőkre vonatkozik**
-
-- Partnerközpont
+# <a name="relationships-resources"></a>Kapcsolatok erőforrásai
 
 A kapcsolatokhoz kapcsolódó erőforrásokat ismerteti.
 
-## <a name="partnerrelationship"></a>PartnerRelationship
+## <a name="partnerrelationship"></a>Partnerreláció
 
-Két partner közötti kapcsolatot jelöl.
+Két partner közötti kapcsolatot képvisel.
 
 | Tulajdonság         | Típus                                                           | Leírás                                                                                                                                    |
 |------------------|----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| id               | sztring                                                         | A partner azonosítója. A partner azonosítója megadja annak a partnernek a bérlői azonosítóját, aki a kapcsolat címzett (feladó) oldalán található. |
+| id               | sztring                                                         | A partnerazonosító. A partnerazonosító megadja annak a partnernek a bérlőazonosítóját, aki a kapcsolat címzett oldalán van (a címről). |
 | location         | sztring                                                         | A partner helye.                                                                                                                   |
-| mpnId            | sztring                                                         | A partner Microsoft Partner Network (MPN) azonosítója.                                                                                 |
+| mpnId            | sztring                                                         | A Microsoft Partner Network (MPN) azonosítója.                                                                                 |
 | name             | sztring                                                         | A partner neve.                                                                                                                       |
-| relationshipType | sztring                                                         | A kapcsolat típusa.                                                                                                                      |
+| relationshipType (kapcsolattípus) | sztring                                                         | A kapcsolat típusa.                                                                                                                      |
 | állapot            | sztring                                                         | A kapcsolat állapota (például `active` ).                                                                                                 |
-| attribútumok       | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai.                                                                                                                       |
+| Attribútumok       | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok.                                                                                                                       |
 
-## <a name="relationshiprequest"></a>RelationshipRequest
+## <a name="relationshiprequest"></a>RelationshipRequest (Kapcsolatrequest)
 
-Megadja azt az URL-címet, amellyel az ügyfél kapcsolatot létesíthet egy partnerrel.
+Azt az URL-címet biztosítja, amellyel az ügyfél kapcsolatot létesíthet egy partnerrel.
 
 | Tulajdonság   | Típus                                                           | Leírás                   |
 |------------|----------------------------------------------------------------|-------------------------------|
-| url        | sztring                                                         | A kapcsolati kérelem URL-címe. |
-| attribútumok | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai.      |
+| url        | sztring                                                         | A kapcsolatkérés URL-címe. |
+| Attribútumok | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok.      |

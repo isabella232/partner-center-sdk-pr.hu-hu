@@ -1,91 +1,87 @@
 ---
-title: Ügyfél-használati erőforrások
-description: A használaton alapuló előfizetéseket és a havi használati költségvetést (beleértve a CustomerMonthlyUsageRecord, a CustomerUsageSummary, a PartnerUsageSummary és a SpendingBudget) használó ügyfelek erőforrásai.
+title: Ügyfélhasználati erőforrások
+description: Használatalapú előfizetéssel és havi használati költségvetéssel (például CustomerMonthlyUsageRecord, CustomerUsageSummary, PartnerUsageSummary és SpendingBudget) kapcsolatos erőforrások.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: ec82fcfe6c08a8ad55dd1fb48984859b954dd3c8
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: eae516e2f759dfc2e8f80e946a835d70760c5c9e
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767736"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973043"
 ---
-# <a name="customer-usage-resources"></a>Ügyfél-használati erőforrások
+# <a name="customer-usage-resources"></a>Ügyfélhasználati erőforrások
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A használati alapú előfizetéssel rendelkező ügyfelek havi használati költségkerettel rendelkezhetnek. Ez a költségkeret korlátozza az ügyfél maximális kihasználtságát, és lehetővé teszi a partner számára a használat nyomon követését az idő múlásával.
+A használatalapú előfizetéssel az ügyfelek havi használati költségkeretet használhatnak. Ez a költségkeret beállítja az ügyfél maximális használati korlátját, és lehetővé teszi, hogy a partner nyomon kövesse a használatot az idő során.
 
 > [!NOTE]
-> Az ügyfél-használati számok a becslések (nem végleges értékek), amelyeket nem szabad számlázási célra használni.
+> Az ügyfélhasználati számok becslések (nem végleges értékek), amelyek nem használhatók számlázási célokra.
 
-## <a name="customermonthlyusagerecord"></a>CustomerMonthlyUsageRecord
+## <a name="customermonthlyusagerecord"></a>CustomerMonthlyUsageRecord (ÜgyfélmonthlyUsageRecord)
 
-A **CustomerMonthlyUsageRecord** az ügyfél használatának becsült pénzügyi díját mutatja az aktuális hónapban.
+**A CustomerMonthlyUsageRecord** az ügyfél aktuális havi használatának becsült pénzügyi költségét jelöli.
 
 | Tulajdonság         | Típus               | Leírás                                                              |
 |------------------|--------------------|--------------------------------------------------------------------------|
 | Költségvetés           | SpendingBudget     | Az ügyfél számára lefoglalt költségkeret.                          |
-| PercentUsed      | decimal             | A lefoglalt költségvetésből felhasznált százalék.                        |
+| PercentUsed (Százalékos arány)      | tizedes tört             | A lefoglalt költségvetésből felhasznált százalékos arány.                        |
 | ResourceId       | sztring             | Az erőforrás egyedi azonosítója.                                   |
 | ResourceName nevű erőforrásáról     | sztring             | Az erőforrás neve.                                                |
-| TotalCost        | decimal             | Az előfizetésben lévő erőforrások becsült teljes használati költsége.|
-| CurrencyLocale   | sztring             | Az ügyfél pénznemének területi beállítása. Elérhető Microsoft Azure (MS-AZR-0145P) előfizetésekhez.            |
-| CurrencyCode     | sztring             | Lekérdezi vagy beállítja a pénznemkódot. Elérhető az Azure-csomagokhoz.           |
-| USDTotalCost     | decimal             | Lekérdezi vagy beállítja a becsült teljes díjat USD-ben. Elérhető az Azure-csomagokhoz.                                         |
-| IsUpgraded       | logikai             | Lekérdezi vagy beállítja azt az értéket, amely jelzi, hogy az ügyfél Azure-előfizetése frissítve van-e. Az **igaz** érték az Azure-csomaggal rendelkező ügyfeleket jelöli.                         |
+| TotalCost (Teljes költség)        | tizedes tört             | Az előfizetésben található erőforrások becsült teljes használati költsége.|
+| CurrencyLocale   | sztring             | Az ügyfél pénznemének területi területi stb. Elérhető Microsoft Azure (MS-AZR-0145P) előfizetéshez.            |
+| CurrencyCode     | sztring             | Lekért vagy beállítja a pénznemkódot. Elérhető Azure-csomagokhoz.           |
+| USDTotalCost (UsdTotalCost)     | tizedes tört             | Lekért vagy beállítja a becsült teljes költséget USD-ben. Elérhető Azure-csomagokhoz.                                         |
+| IsUpgraded (Új)       | logikai             | Lekért vagy beállítja azt az értéket, amely jelzi, hogy az ügyfél Azure-előfizetése frissítve van-e. Az igaz **érték azokat** az ügyfeleket jelöli, akik Azure-csomagokkal vannak.                         |
 | LastModifiedDate | dátum               | A használati adatok utolsó módosításának dátuma.                               |
-| Attribútumok       | ResourceAttributes | A használati rekordnak megfelelő metaadat-attribútumok.               |
+| Attribútumok       | ResourceAttributes (Erőforrás-attribútumok) | A használati rekordnak megfelelő metaadat-attribútumok.               |
 
 ## <a name="customerusagesummary"></a>CustomerUsageSummary
 
-A **CustomerUsageSummary** a teljes számlázási időszakra vonatkozó ügyfél-használat összegzését jelöli.
+**A CustomerUsageSummary** az ügyfél teljes számlázási időszakra vonatkozó használati adatokat összegzi.
 
 | Tulajdonság         | Típus               | Leírás                                                                                                      |
 |------------------|--------------------|------------------------------------------------------------------------------------------------------------------|
 | Költségvetés           | SpendingBudget     | Az ügyfél számára lefoglalt költségkeret.                                                                  |
 | ResourceId       | sztring             | Az erőforrás egyedi azonosítója. A CustomerMonthlyUsageRecord kontextusában ez az azonosító az ügyfél azonosítója. |
 | ResourceName nevű erőforrásáról     | sztring             | Az erőforrás neve. A CustomerMonthlyUsageRecord kontextusában ez az ügyfél neve.               |
-| BillingStartDate | dátum               | Az aktuális számlázási időszak kezdő dátuma.                                                                    |
-| BillingEndDate   | dátum               | Az aktuális számlázási időszak záró dátuma.                                                                      |
-| TotalCost        | decimal             | Az előfizetésben lévő erőforrások becsült teljes használati költsége.                                         |
-| CurrencyLocale   | sztring             | Az ügyfél pénznemének területi beállítása. Elérhető Microsoft Azure (MS-AZR-0145P) előfizetésekhez.                                         |
-| CurrencyCode     | sztring             | Lekérdezi vagy beállítja a pénznemkódot. Elérhető az Azure-csomagokhoz.                                         |
-| USDTotalCost     | decimal             | Lekérdezi vagy beállítja a becsült teljes díjat USD-ben. Elérhető az Azure-csomag előfizetési erőforrásaihoz.                                         |
+| BillingStartDate (Számlázási kezdő dátum) | dátum               | Az aktuális számlázási időszak kezdő dátuma.                                                                    |
+| BillingEndDate (Számlázási dátum)   | dátum               | Az aktuális számlázási időszak záró dátuma.                                                                      |
+| TotalCost (Teljes költség)        | tizedes tört             | Az előfizetésben található erőforrások becsült teljes használati költsége.                                         |
+| CurrencyLocale   | sztring             | Az ügyfél pénznemének területi területi stb. Elérhető Microsoft Azure (MS-AZR-0145P) előfizetéshez.                                         |
+| CurrencyCode     | sztring             | Lekért vagy beállítja a pénznemkódot. Elérhető Azure-csomagokhoz.                                         |
+| USDTotalCost (UsdTotalCost)     | tizedes tört             | Lekért vagy beállítja a becsült teljes költséget USD-ben. Elérhető az Azure-csomag előfizetési erőforrásaihoz.                                         |
 | LastModifiedDate | dátum               | A használati adatok utolsó módosításának dátuma.                                                                       |
-| Hivatkozások            | ResourceLinks      | A használati összegzésnek megfelelő erőforrás-hivatkozások.                                                           |
-| Attribútumok       | ResourceAttributes | A használat összegzéséhez tartozó metaadat-attribútumok.                                                      |
+| Hivatkozások            | ResourceLinks (Erőforrás-hivatkozás)      | A használati összegzésnek megfelelő erőforrás-hivatkozások.                                                           |
+| Attribútumok       | ResourceAttributes (Erőforrás-attribútumok) | A használat összegzésének megfelelő metaadat-attribútumok.                                                      |
 
 ## <a name="partnerusagesummary"></a>PartnerUsageSummary
 
-A **PartnerUsageSummary** az összes ügyfélre vonatkozó használati költségkeretet jelöli.
+**A PartnerUsageSummary** az összes ügyfél használati költségvetésének partnerszintű összegzését jelenti.
 
 | Tulajdonság         | Típus               | Leírás                                                                                                      |
 |------------------|--------------------|------------------------------------------------------------------------------------------------------------------|
-| EmailsToNotify   | sztringek tömbje   | Az értesítésekhez tartozó e-mail-címek listája.                                                                   |
-| CustomerOverBudget | egész szám          | A költségvetésen felüli ügyfelek száma.                                                                    |
-| CustomersTrendingOver | egész szám       | A költségvetéshez közeledő ügyfelek száma.                                                     |
-| CustomersWithUsageBasedSubscriptions  | egész szám | A használati alapú előfizetéssel rendelkező ügyfelek száma.                                               |
-| ResourceId       | sztring             | Az erőforrás egyedi azonosítója. A CustomerMonthlyUsageRecord kontextusában ez az azonosító az ügyfél azonosítója. |
+| EmailsToNotify   | sztringek tömbje   | Az értesítések e-mail-címének listája.                                                                   |
+| CustomerOverBudget (CustomerOverBudget) | egész szám          | A költségkereten túli ügyfelek száma.                                                                    |
+| CustomersTrendingOver | egész szám       | Azon ügyfelek száma, akik közel állnak a költségvetés túleső egymáshoz.                                                     |
+| CustomersWithUsageBasedSubscriptions  | egész szám | A használatalapú előfizetéssel kapcsolatos ügyfelek száma.                                               |
+| ResourceId       | sztring             | Az erőforrás egyedi azonosítója. A CustomerMonthlyUsageRecord környezetben ez az azonosító az ügyfél azonosítója. |
 | ResourceName nevű erőforrásáról     | sztring             | Az erőforrás neve. A CustomerMonthlyUsageRecord kontextusában ez az ügyfél neve.               |
-| BillingStartDate | dátum               | Az aktuális számlázási időszak kezdő dátuma.                                                                    |
-| BillingEndDate   | dátum               | Az aktuális számlázási időszak záró dátuma.                                                                      |
-| TotalCost        | decimal             | Az összes ügyfél-használat becsült teljes költsége a számlázási időszak elejétől számított aktuális használat alapján.      |
-| CurrencyLocale   | sztring             | A pénznem területi beállítása.                                                                                             |
+| BillingStartDate (Számlázási kezdő dátum) | dátum               | Az aktuális számlázási időszak kezdő dátuma.                                                                    |
+| BillingEndDate (Számlázási dátum)   | dátum               | Az aktuális számlázási időszak záró dátuma.                                                                      |
+| TotalCost (Teljes költség)        | tizedes tört             | Az összes ügyfélhasználat becsült teljes költsége a számlázási időszak kezdettől számított aktuális használat alapján.      |
+| CurrencyLocale   | sztring             | A pénznem területi stb.                                                                                             |
 | LastModifiedDate | dátum               | A használati adatok utolsó módosításának dátuma.                                                                       |
-| Hivatkozások            | ResourceLinks      | A használati összegzésnek megfelelő erőforrás-hivatkozások.                                                           |
-| Attribútumok       | ResourceAttributes | A használat összegzéséhez tartozó metaadat-attribútumok.                                                      |
+| Hivatkozások            | ResourceLinks (Erőforrás-hivatkozás)      | A használat összegzésének megfelelő erőforrás-hivatkozások.                                                           |
+| Attribútumok       | ResourceAttributes (Erőforrás-attribútumok) | A használat összegzésének megfelelő metaadat-attribútumok.                                                      |
 
-## <a name="spendingbudget"></a>SpendingBudget
+## <a name="spendingbudget"></a>SpendingBudget (Kiadások hibakeresése)
 
-A **SpendingBudget** az ügyfélnek a használati alapú előfizetésekhez lefoglalt költségvetést jelöli.
+**A SpendingBudget az** ügyfél számára a használatalapú előfizetések számára lefoglalt költségvetést jelöli.
 
 | Tulajdonság   | Típus               | Leírás                                                                                         |
 |------------|--------------------|-----------------------------------------------------------------------------------------------------|
-| Összeg     | decimal             | A lefoglalt költségkeret. Ha az érték null, az ügyfél számára nincs kiosztva költségkeret. |
-| Attribútumok | ResourceAttributes | A költségvetéshez tartozó metaadat-attribútumok.                                                |
+| Összeg     | tizedes tört             | A lefoglalt költségvetés. Ha az érték null, nincs hozzárendelve költségkeret ehhez az ügyfélhez. |
+| Attribútumok | ResourceAttributes (Erőforrás-attribútumok) | A költségvetésnek megfelelő metaadat-attribútumok.                                                |

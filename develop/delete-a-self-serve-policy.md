@@ -1,35 +1,31 @@
 ---
 title: Önkiszolgáló szabályzat törlése
-description: Önkiszolgáló házirend törlése.
+description: Önkiszolgáló szabályzat törlése.
 ms.date: 04/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 3450145d6daf2ffca5e2886245e592406cb0886d
-ms.sourcegitcommit: 01e75175077611da92175c777a440a594fb05797
+ms.openlocfilehash: 063cf98d4c78e82622e486427baeb1a5721715e5
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "97768656"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973094"
 ---
 # <a name="delete-a-selfservepolicy"></a>SelfServePolicy törlése
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Ez a témakör az önkiszolgáló szabályzatok frissítését ismerteti.
+Ez a cikk az önkiszolgáló szabályzatok frissítését ismerteti.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja az Application + felhasználói hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az Application+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-Önkiszolgáló házirend törlése:
+Önkiszolgáló szabályzat törlése:
 
-1. Hívja meg a [**IAggregatePartner. SelfServePolicies. ById**](/dotnet/api/microsoft.store.partnercenter.iselfservepoliciescollection.byid) metódust az entitás-azonosítóval, és kérje le a házirendek műveleteire szolgáló felületet.
+1. Hívja meg az [**IAggregatePartner.SelfServePolicies.ById**](/dotnet/api/microsoft.store.partnercenter.iselfservepoliciescollection.byid) metódust az entitásazonosítóval, hogy lekérje a szabályzatok műveleteinek interfészét.
 
-2. Az önkiszolgáló házirend törléséhez hívja meg a [**delete**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.delete) vagy a [**DeleteAsync**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.deleteasync) metódust.
+2. Az [**önkiszolgáló**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.delete) szabályzat törléséhez hívja meg a Delete vagy [**a DeleteAsync**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.deleteasync) metódust.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -44,30 +40,30 @@ partnerOperations.SelfServePolicies.ById(policyId).Delete();
 
 Példaként tekintse meg a következőket:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **PartnerSDK. FeatureSamples**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **PartnerSDK.FeatureSamples**
 - Osztály: **DeleteSelfServePolicies.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| **TÖRLÉSE** | [*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{ID} http/1.1 |
+| **Töröl** | [*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{id} HTTP/1.1 |
 
 **URI-paraméter**
 
-A megadott termék beolvasásához használja a következő elérésiút-paramétereket.
+Az alábbi elérésiút-paraméterek használatával szerezze be a megadott terméket.
 
 | Név                       | Típus         | Kötelező | Leírás                                                     |
 |----------------------------|--------------|----------|-----------------------------------------------------------------|
-| **SelfServePolicy-azonosító**     | **karakterlánc**   | Igen      | Az önkiszolgáló házirendet azonosító karakterlánc.                 |
+| **SelfServePolicy-id**     | **sztring**   | Igen      | Az önkiszolgáló szabályzatot azonosító sztring.                 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-- A kérelem AZONOSÍTÓjának és korrelációs AZONOSÍTÓjának megadása kötelező.
-- További információért lásd a [partneri központ Rest-fejléceit](headers.md) .
+- Szükség van egy kérésazonosítóra és egy korrelációs azonosítóra.
+- További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -90,9 +86,9 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

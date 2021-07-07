@@ -1,55 +1,50 @@
 ---
 title: Az összes Azure-beli használatelemzési adat lekérése
-description: Az összes Azure-használati elemzési információ beszerzése.
+description: Az Azure használatelemzési információinak lekért használata.
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: c281dcdeb93771a69a388ad64e1127b24156c809
-ms.sourcegitcommit: d53d300dc7fb01aeb4ef85bf2e3a6b80f868dc57
+ms.openlocfilehash: 7fe987c7dc50d55b26cd72d5aead52963eb1cfbe
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "97768168"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760215"
 ---
 # <a name="get-all-azure-usage-analytics-information"></a>Az összes Azure-beli használatelemzési adat lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Az Azure használati elemzési információinak beszerzése az ügyfelek számára.
+Az Azure használatelemzési információinak lekért használata az ügyfelek számára.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja |
 |---------|-------------|
-| **GET** | [*\{ BASEURL \}*](partner-center-rest-urls.md)/partner/v1/Analytics/Usage/Azure http/1.1 |
+| **Kap** | [*\{ baseURL \}*](partner-center-rest-urls.md)/partner/v1/analytics/usage/azure HTTP/1.1 |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
 |Paraméter        |Típus                        |Leírás               |
 |:----------------|:---------------------------|:-------------------------|
-|top              | sztring                     | A kérelemben visszaadni kívánt adatsorok száma. A maximális érték és az alapértelmezett érték, ha nincs megadva, 10000. Ha több sor van a lekérdezésben, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldalának lekérésére használható.                        |
-|kihagyása             | int                        | A lekérdezésben kihagyni kívánt sorok száma. Használja ezt a paramétert a nagy adathalmazokon keresztüli lapra. Például `top=10000 and skip=0` lekéri az első 10000 sornyi adatsort, `top=10000 and skip=10000` lekérdezi a következő 10000 sort, és így tovább.                       |
-|filter (szűrő)           | sztring                     | A kérelem *Filter* paraméterében egy vagy több olyan utasítás található, amely a válasz sorait szűri. Minden utasítás tartalmaz egy mezőt és egy értéket, amely társítva van az `eq` vagy `ne` operátorhoz, és a utasítások kombinálhatók a vagy a használatával `and` `or` . A következő karakterláncok megadására van lehetőség:<br/><br/>                                                       `customerTenantId`<br/> `customerName`<br/> `subscriptionId`<br/> `subscriptionName`<br/> `usageDate` <br/> `resourceLocation` <br/> `meterCategory` <br/> `meterSubcategory` <br/> `meterUnit`<br/> `reservationOrderId` <br/> `reservationId`<br/> `consumptionMeterId` <br/> `serviceType` <br/><br/>**Példa**<br/> `.../usage/azure?filter=meterCategory eq 'Data Management'`<br/><br/> **Példa**<br/>`.../usage/azure?filter=meterCategory eq 'Data Management' or (usageDate le cast('2018-01-01', Edm.DateTimeOffset) and usageDate le cast('2018-04-01', Edm.DateTimeOffset))`                        |
-|aggregationLevel | sztring                    | Meghatározza azt az időtartományt, amely esetében az összesített adatokat le kell olvasni. A következő karakterláncok egyike lehet: `day` , `week` , vagy `month` . Ha nincs megadva, az alapértelmezett érték `day` .<br/><br/>                                              A paraméter nem támogatott a (z `aggregationLevel` `groupby` ) nélkül. A `aggregationLevel` paraméter a összes dátum mezőjére vonatkozik `groupby` .                                                      |
-|OrderBy          |sztring                     | Az egyes telepítésekhez tartozó eredmény adatértékeit megrendelő utasítás. A szintaxis a következő: `...&orderby=field [order],field [order],...`. A `field` paraméter a következő karakterláncok egyike lehet:<br/><br/>                    `customerTenantId`<br/>`customerName`<br/>`subscriptionId`<br/>`subscriptionName`<br/>`usageDate`<br/>`resourceLocation`<br/>`meterCategory`<br/>`meterSubcategory`<br/>`meterUnit`<br/> `reservationOrderId` <br/> `reservationId`<br/> `consumptionMeterId` <br/> `serviceType` <br/><br/> A *Order* paraméter nem kötelező, és az `asc` `desc` egyes mezőknél növekvő vagy csökkenő sorrendet adhat meg. A mező alapértelmezett értéke: `asc`.<br/><br/>**Példa**<br/> `...&orderby=meterCategory,meterUnit`                                                                                           |
-|groupby          |sztring                    | Olyan utasítás, amely csak a megadott mezőkre alkalmazza az adatösszesítést. A következő mezőket adhatja meg:<br/><br/>                                                                                                                     `customerTenantId`<br/>`customerName`<br/> `subscriptionId` <br/> `subscriptionName` <br/> `usageDate` <br/> `resourceLocation` <br/> `meterCategory` <br/> `meterSubcategory` <br/> `meterUnit` <br/> `reservationOrderId` <br/> `reservationId` <br/> `consumptionMeterId` <br/> `serviceType` <br/><br/>A visszaadott adatsorok tartalmazzák a paraméterben megadott mezőket `groupby`  és a *mennyiséget*.<br/><br/>A `groupby` paraméter használható a `aggregationLevel` paraméterrel.<br/><br/>**Példa**<br/>`...&groupby=meterCategory,meterUnit` |
+|top              | sztring                     | A kérelemben visszaadni kívánt adatsorok száma. Ha nincs megadva, a maximális érték és az alapértelmezett érték 10000. Ha a lekérdezés több sort tartalmaz, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldal lekérésére használható.                        |
+|Ugrál             | int                        | A lekérdezésben kihagyni kívánt sorok száma. Ezzel a paraméterrel nagy adatkészletek között lapokat laposszunk. A például lekéri az első 10 000 adatsort, lekéri a következő `top=10000 and skip=0` `top=10000 and skip=10000` 10000 adatsort és így tovább.                       |
+|filter (szűrő)           | sztring                     | A *kérés* szűrőparamétere egy vagy több olyan utasításokat tartalmaz, amelyek szűrik a válasz sorait. Minden utasítás tartalmaz egy mezőt és egy értéket, amely az vagy operátorhoz van társítva, és az utasítások kombinálhatók `eq` `ne` a vagy a `and` `or` használatával. A következő sztringeket adhatja meg:<br/><br/>                                                       `customerTenantId`<br/> `customerName`<br/> `subscriptionId`<br/> `subscriptionName`<br/> `usageDate` <br/> `resourceLocation` <br/> `meterCategory` <br/> `meterSubcategory` <br/> `meterUnit`<br/> `reservationOrderId` <br/> `reservationId`<br/> `consumptionMeterId` <br/> `serviceType` <br/><br/>**Példa**<br/> `.../usage/azure?filter=meterCategory eq 'Data Management'`<br/><br/> **Példa**<br/>`.../usage/azure?filter=meterCategory eq 'Data Management' or (usageDate le cast('2018-01-01', Edm.DateTimeOffset) and usageDate le cast('2018-04-01', Edm.DateTimeOffset))`                        |
+|aggregationLevel | sztring                    | Megadja az összesített adatok lekérésének időtartományát. A következő sztringek egyike lehet: `day` , `week` vagy `month` . Ha nincs meghatározva, az alapértelmezett érték `day` a .<br/><br/>                                              A `aggregationLevel` paraméter nem támogatott a `groupby` nélkül. A `aggregationLevel` paraméter a összes, a-ban található dátummezőre vonatkozik. `groupby`                                                      |
+|orderby          |sztring                     | Az egyes telepítések eredményadatértékeit megrendelő utasítás. A szintaxis a következő: `...&orderby=field [order],field [order],...`. A `field` paraméter a következő sztringek egyike lehet:<br/><br/>                    `customerTenantId`<br/>`customerName`<br/>`subscriptionId`<br/>`subscriptionName`<br/>`usageDate`<br/>`resourceLocation`<br/>`meterCategory`<br/>`meterSubcategory`<br/>`meterUnit`<br/> `reservationOrderId` <br/> `reservationId`<br/> `consumptionMeterId` <br/> `serviceType` <br/><br/> A *rendelési* paraméter megadása nem kötelező, és a értéke vagy lehet, ha növekvő vagy csökkenő sorrendet ad meg az `asc` egyes `desc` mezőkhöz. A mező alapértelmezett értéke: `asc`.<br/><br/>**Példa**<br/> `...&orderby=meterCategory,meterUnit`                                                                                           |
+|groupby          |sztring                    | Olyan utasítás, amely csak a megadott mezőkre alkalmazza az adatösszesítőt. A következő mezőket adhatja meg:<br/><br/>                                                                                                                     `customerTenantId`<br/>`customerName`<br/> `subscriptionId` <br/> `subscriptionName` <br/> `usageDate` <br/> `resourceLocation` <br/> `meterCategory` <br/> `meterSubcategory` <br/> `meterUnit` <br/> `reservationOrderId` <br/> `reservationId` <br/> `consumptionMeterId` <br/> `serviceType` <br/><br/>A visszaadott adatsorok tartalmazzák a paraméterben és a Quantity mezőben `groupby` megadott *mezőket.*<br/><br/>A `groupby` paraméter a paraméterrel együtt `aggregationLevel` használható.<br/><br/>**Példa**<br/>`...&groupby=meterCategory,meterUnit` |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -67,11 +62,11 @@ Content-Length: 0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse az [Azure használati](partner-center-analytics-resources.md#csp-program-azure-usage-analytics) erőforrásainak gyűjteményét tartalmazza.
+Ha ez sikeres, a válasz törzse azure-beli [használati erőforrások gyűjteményét](partner-center-analytics-resources.md#csp-program-azure-usage-analytics) tartalmazza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

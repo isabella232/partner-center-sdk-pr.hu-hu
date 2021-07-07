@@ -1,53 +1,49 @@
 ---
-title: Számlázott kereskedelmi fogyasztási sorok beolvasása
-description: A partner Center API-k használatával beszerezhet egy adott számlára vonatkozó, nem számlázott kereskedelmi fogyasztási sor részleteit tartalmazó gyűjteményt.
+title: Számlázatlan kereskedelmi használatú sorok elemeinek lekért száma
+description: Egy adott számlához tartozó, nem számlázott kereskedelmi használatú tétel részleteinek gyűjteményét a következő API Partnerközpont le.
 ms.date: 01/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 8b6ca8d6ff7af53dd2a258ea20e6eaeb26421440
-ms.sourcegitcommit: faea78fe3264cbafc2b02c04d98d5ce30e992124
+ms.openlocfilehash: 1b7dba3333aaec8df73f0e8147b0bbbc78b9b184
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 04/03/2021
-ms.locfileid: "106274665"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446146"
 ---
-# <a name="get-invoice-unbilled-commercial-consumption-line-items"></a>Számlázott kereskedelmi fogyasztási sorok beolvasása
+# <a name="get-invoice-unbilled-commercial-consumption-line-items"></a>Számlázatlan kereskedelmi használatú sorok elemeinek lekért száma
 
-**A következőkre vonatkozik:**
+A ki nemszámlázatlan kereskedelmi használatú sortételek részleteinek gyűjteménye.
 
-- Partnerközpont
-
-A nem számlázott kereskedelmi fogyasztási sorokra vonatkozó részletek gyűjteményének beolvasása.
-
-A következő módszerekkel lekérheti a nem számlázott kereskedelmi fogyasztási sorok (más néven nyitott használati sorok) részletes gyűjteményét programozott módon.
+A következő metódusok használatával programozott módon lekérte a ki nemszámlázatlan kereskedelmi használatú sorelemek (más néven nyitott használatisor-elemek) adatait.
 
 >[!NOTE]
->A napi névleges használat általában 24 órát vesz igénybe a partner Centerben, vagy az API-n keresztül érhető el.
+>A napi névleges használat általában 24 órát vesz igénybe, Partnerközpont api-n keresztül jelennek meg.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Egy fiókazonosító. Ez azonosítja azt a számlát, amelynek a sorát be kell olvasni.
+- Egy számlaazonosító. Ez azonosítja a számlát, amelynek lekéri a sorelemeket.
 
 ## <a name="c"></a>C\#
 
-A megadott számla vonali elemeinek beolvasása:
+A megadott számlához tartozó sorelemek lekért száma:
 
-1. Hívja meg a [**ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) metódust, hogy lekérje a megadott számla műveleteinek számlázására szolgáló felületet.
+1. Hívja meg [**a ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) metódust a megadott számlához tartozó számlázási műveletek interfészének lehívása érdekében.
 
-2. Hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódust a számla objektum lekéréséhez.
+2. A [**számlaobjektum lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal.
 
-A **számla objektum** a megadott számla összes adatát tartalmazza. A **szolgáltató** azonosítja a nem számlázott részletes információk forrását (például **egykori**). A **InvoiceLineItemType** meghatározza a típust (például **UsageLineItem**).
+A **számlaobjektum** a megadott számla összes adatát tartalmazza. A **Provider** azonosítja a ki nemszámlázatlan részletes adatok forrását (például **OneTime).** Az **InvoiceLineItemType** megadja a típust (például **UsageLineItem).**
 
-Az alábbi mintakód egy **foreach** hurkot használ a **InvoiceLineItems** -gyűjtemény feldolgozásához. Az egyes **InvoiceLineItemType** tartozó sorok külön gyűjteménye lesz beolvasva.
+Az alábbi példakód egy **foreach ciklust** használ az **InvoiceLineItems gyűjtemény feldolgozásához.** A rendszer külön sorelemek gyűjteményét olvassa be minden **InvoiceLineItemType típushoz.**
 
-Egy **InvoiceDetail** -példánynak megfelelő sorok gyűjteményének beolvasása:
+Az InvoiceDetail példánynak megfelelő sorelemek **gyűjteményének lekért** száma:
 
-1. Adja át a példány **BillingProvider** és **InvoiceLineItemType** a [**by**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by) metódusnak.
+1. Adja át a példány **BillingProvider** és **InvoiceLineItemType** tulajdonságát a [**By metódusnak.**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by)
 
-2. A társított sorok beolvasásához hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódust.
-3. Hozzon létre egy enumerálást a gyűjtemény átjárásához az alábbi példában látható módon.
+2. A [**társított sorelemek lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal.
+3. Hozzon létre egy enumerátort, amely az alábbi példában látható módon lépked a gyűjteményen.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -105,40 +101,40 @@ while (fetchNext)
 }
 ```
 
-Ehhez hasonló példát a következő témakörben talál:
+Hasonló példát a következőben láthat:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **partner Center SDK-minták**
-- Osztály: **GetUnBilledConsumptionReconLineItemsPaging. cs**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **Partnerközpont SDK minták**
+- Osztály: **GetUnBilledConsumptionReconLineItemsPaging.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
-A REST-kérelemhez a használati esettől függően a következő szintaxist használhatja. További információkért tekintse meg az egyes szintaxisok leírását.
+A REST-kéréshez a következő szintaxisokat használhatja a saját esetétől függően. További információért tekintse meg az egyes szintaxisok leírását.
 
-| Metódus  | Kérés URI-ja                                                                                                                                                                                              | Szintaxis használati esetének leírása                                                                                                     |
+| Metódus  | Kérés URI-ja                                                                                                                                                                                              | Szintaxishasználati eset leírása                                                                                                     |
 |---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/UNBILLED/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &időszak = {period} http/1.1                       | Ezzel a szintaxissal teljes listát adhat vissza az adott számlához tartozó összes sor tételről.                                                    |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/UNBILLED/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &időszak = {period} &mérete = {size} http/1.1           | Használja ezt a szintaxist nagyméretű számlákhoz. Ezt a szintaxist egy megadott mérettel és 0-alapú eltolással használhatja a sorok lapozható listájának visszaadásához. |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/UNBILLED/lineitems? Provider = egykori&invoicelineitemtype = usagelineitems&CurrencyCode = {currencycode} &időszak = {period} &mérete = {size} &SeekOperation = tovább | Ezzel a szintaxissal beolvashatja az egyeztetési sorok következő oldalát a használatával `seekOperation = "Next"` .                                  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode}&period={period} HTTP/1.1                       | Ezzel a szintaxissal az adott számla összes sorelemének teljes listáját használhatja.                                                    |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode}&period={period}&size={size} HTTP/1.1           | Ezt a szintaxist nagy számlákhoz használja. Használja ezt a szintaxist a megadott mérettel és 0-alapú eltolással a sorelemek lapszámolt listájának visszaadására. |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode}&period={period}&size={size}&seekOperation=Next | Ezzel a szintaxissal lekérte az egyeztetési sorelemek következő oldalát a `seekOperation = "Next"` használatával.                                  |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-A kérelem létrehozásakor használja az alábbi URI-és lekérdezési paramétereket.
+A kérelem létrehozásakor használja a következő URI-t és lekérdezési paramétereket.
 
 | Név                   | Típus   | Kötelező | Leírás                                                                                                                                                                                                                                |
 |------------------------|--------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Szolgáltató               | sztring | Igen      | A szolgáltató: "**egykori**".                                                                                                                                                                                                               |
-| számla-sor-tétel típusa | sztring | Igen      | A számla részleteinek típusa: "**UsageLineItems**", "**UsageLineItems**".                                                                                                                                                                    |
-| currencyCode           | sztring | Igen      | A nem számlázott sorok pénznemkódja.                                                                                                                                                                                             |
-| period                 | sztring | Igen      | A nem számlázott felderítés időtartama (például: **current**, **Previous**). Tegyük fel, hogy a számlázási ciklus (01/01/2020 – 01/31/2020) nem számlázott használati adatait kell lekérdezni januárban, válassza a **"jelenlegi",** "else **" (előző) lehetőséget.** |
-| size                   | szám | Nem       | A visszaadni kívánt elemek maximális száma. Az alapértelmezett méret 2000.                                                                                                                                                                           |
-| seekOperation          | sztring | No       | Állítsa be `seekOperation=Next` az egyeztetési sorok következő oldalának beolvasásához.                                                                                                                                                                |
+| Szolgáltató               | sztring | Igen      | A szolgáltató: "**OneTime**".                                                                                                                                                                                                               |
+| invoice-line-item-type | sztring | Igen      | A számla részleteinek típusa: "**UsageLineItems**", "**UsageLineItems**".                                                                                                                                                                    |
+| currencyCode           | sztring | Igen      | A ki nemszámlázatlan sorelemek pénznemkódja.                                                                                                                                                                                             |
+| period                 | sztring | Igen      | A nemszámlázatlan felderítés időtartama (például **aktuális,** **előző**). Tegyük fel, hogy januárban le kellkérdezni a számlázási ciklus ki nem számlázatlan használati adatait (2020.01.01. – 01.31.) 2020. januárban, válassza az **időszak "Aktuális" lehetőséget,** egyébként pedig az **"Előző" lehetőséget.** |
+| size                   | szám | Nem       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000.                                                                                                                                                                           |
+| seekOperation          | sztring | No       | Állítsa `seekOperation=Next` be az elemet az egyeztetési sorelemek következő oldalának le tételére.                                                                                                                                                                |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -146,25 +142,25 @@ Nincsenek.
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz tartalmazza a sor elem részleteinek gyűjteményét.
+Ha a művelet sikeres, a válasz sorelem-részletek gyűjteményét tartalmazza.
 
-*A sor **ChargeType** az érték **megvásárlása** **újra** van leképezve, és az érték- **visszatérítés** a **megszakításra** van leképezve.*
+*A **ChargeType** sorelem esetében a **Purchase** (Vásárlás) értéke **New** (Új) értékre van leképezve, a **Refund** (Visszatérítés) értéke pedig Cancel (Lemondás) értékre **van leképezve.***
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
-## <a name="request-response-examples"></a>Kérelem – válasz példák
+## <a name="request-response-examples"></a>Példák kérés-válasz válaszra
 
-### <a name="request-response-example-1"></a>Kérelem – válasz 1. példa
+### <a name="request-response-example-1"></a>1. kérés-válasz példa
 
-A következő részletek a példára vonatkoznak:
+A következő részletek vonatkoznak erre a példára:
 
-- **Szolgáltató**: **egykori**
-- **InvoiceLineItemType**: **UsageLineItems**
-- **Időszak**: **előző**
+- **Szolgáltató:** **OneTime**
+- **InvoiceLineItemType:** **UsageLineItems**
+- **Időszak:** **Előző**
 
-#### <a name="request-example-1"></a>1. példa kérés
+#### <a name="request-example-1"></a>1. kérési példa
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1//invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode=usd&period=previous&size=2000 HTTP/1.1
@@ -177,7 +173,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-### <a name="response-example-1"></a>1. válasz – példa
+### <a name="response-example-1"></a>1. válasz példa
 
 ```http
 HTTP/1.1 200 OK
@@ -334,16 +330,16 @@ Date: Wed, 20 Feb 2019 19:59:27 GMT
 }
 ```
 
-### <a name="request-response-example-2"></a>Kérelem – válasz 2. példa
+### <a name="request-response-example-2"></a>2. kérés-válasz példa
 
-A következő részletek a példára vonatkoznak:
+A következő részletek vonatkoznak erre a példára:
 
-- **Szolgáltató**: **egykori**
-- **InvoiceLineItemType**: **UsageLineItems**
-- **Időszak**: **előző**
-- **SeekOperation**: **következő**
+- **Szolgáltató:** **OneTime**
+- **InvoiceLineItemType:** **UsageLineItems**
+- **Időszak:** **Előző**
+- **SeekOperation:** **Tovább**
 
-#### <a name="request-example-2"></a>2. példa a kérelemre
+#### <a name="request-example-2"></a>2. kérési példa
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/unbilled/lineitems?provider=onetime&invoiceLineItemType=usagelineitems&currencyCode=usd&period=previous&size=2000&seekoperation=next HTTP/1.1
@@ -357,7 +353,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-2"></a>2. válasz – példa
+#### <a name="response-example-2"></a>2. válasz példa
 
 ```http
 HTTP/1.1 200 OK

@@ -1,33 +1,29 @@
 ---
 title: Egy ügyfélfelhasználó eltávolítása egy szerepkörből
-description: Felhasználó eltávolítása egy ügyfél-fiókban lévő címtárbeli szerepkörből.
+description: Felhasználó eltávolítása egy címtár-szerepkörből az ügyfélfiókon belül.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 6253e86f3733bbf2b9c593c5ca3f3e2fccce7c2c
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 36dc742c4f713131b4996d7dc945b6dd008a3ef5
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768307"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445646"
 ---
 # <a name="remove-a-customer-user-from-a-role"></a>Egy ügyfélfelhasználó eltávolítása egy szerepkörből
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-Felhasználó eltávolítása egy ügyfél-fiókban lévő címtárbeli szerepkörből.
+Felhasználó eltávolítása egy címtár-szerepkörből az ügyfélfiókon belül.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Ha el szeretne távolítani egy felhasználót egy címtárbeli szerepkörből, válassza ki azt az ügyfelet, akit a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódus hívásával szeretne módosítani, majd adja meg a szerepkört a [**DirectoryRoles. ById**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.idirectoryrolecollection.byid) metódus használatával a címtár szerepkör-azonosítójával. Ezután nyissa meg a [**UserMembers. ById**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.iusermembercollection.byid) metódust az eltávolítandó felhasználó azonosításához, valamint a [**törlési**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.iusermember.delete) metódust a felhasználó a szerepkörből való eltávolításához.
+Ha el szeretne távolítani egy felhasználót egy címtárszerepkörből, válassza ki a módosítani kívánt felhasználót az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódus hívásával. Innen adja meg a szerepkört a [**DirectoryRoles.ById**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.idirectoryrolecollection.byid) metódussal és a címtárszerepkör-azonosítóval. Ezután a [**UserMembers.ById**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.iusermembercollection.byid) metódussal azonosíthatja az eltávolítani kívánt felhasználót, a [**Delete**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.iusermember.delete) metódussal pedig eltávolíthatja a felhasználót a szerepkörből.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -38,29 +34,29 @@ Ha el szeretne távolítani egy felhasználót egy címtárbeli szerepkörből, 
 partnerOperations.Customers.ById(selectedCustomerId).DirectoryRoles.ById(selectedRoleId).UserMembers.ById(selectedUserMemberId).Delete();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: RemoveCustomerUserMemberFromDirectoryRole.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** RemoveCustomerUserMemberFromDirectoryRole.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus     | Kérés URI-ja                                                                                                                           |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| **TÖRLÉSE** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/directoryroles/{role-ID}/usermembers/{User-ID} http/1.1 |
+| **Töröl** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfél-bérlő-azonosító}/directoryroles/{szerepkör-azonosító}/usermembers/{felhasználói-azonosító} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A megfelelő ügyfél, szerepkör és felhasználó azonosításához használja a következő URI-paramétereket.
+Az alábbi URI-paraméterekkel azonosíthatja a megfelelő ügyfelet, szerepkört és felhasználót.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                        |
 |------------------------|----------|----------|------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító** , amely azonosítja az ügyfelet. |
-| **szerepkör-azonosító**            | **guid** | Y        | Az érték egy GUID formátumú **szerepkör-azonosító** , amely azonosítja a szerepkört.                |
-| **felhasználói azonosító**            | **guid** | Y        | Az érték egy olyan GUID formátumú **felhasználói azonosító** , amely egyetlen felhasználói fiókot azonosít.   |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely azonosítja az ügyfelet. |
+| **szerepkör-azonosító**            | **guid** | Y        | Az érték egy GUID formátumú **szerepkör-azonosító,** amely azonosítja a szerepkört.                |
+| **felhasználóazonosító**            | **guid** | Y        | Az érték egy GUID formátumú felhasználói **azonosító,** amely egyetlen felhasználói fiókot azonosít.   |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -82,11 +78,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a felhasználó eltávolítása sikeresen megtörtént a szerepkörből, a válasz törzse üres.
+Ha a felhasználót sikeresen eltávolítják a szerepkörből, a válasz törzse üres lesz.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

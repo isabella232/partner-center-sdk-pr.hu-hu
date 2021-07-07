@@ -1,45 +1,40 @@
 ---
 title: Megrendelés lekérése azonosító alapján
-description: Lekéri az ügyfél és a megrendelés AZONOSÍTÓjának megfelelő rendelési erőforrást.
+description: Lekért egy rendelési erőforrást, amely megfelel az ügyfél és a rendelés azonosítójának.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: 0a39d7142e5bf97f9fb345416964d4ed6bb935ad
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 2cb2822935113fe1c5337b4ffc899fccff333d2f
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768455"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760181"
 ---
 # <a name="get-an-order-by-id"></a>Megrendelés lekérése azonosító alapján
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Lekéri az ügyfél és a megrendelés AZONOSÍTÓjának megfelelő [rendelési](order-resources.md) erőforrást.
+Lekért [egy rendelési](order-resources.md) erőforrást, amely megfelel az ügyfél és a rendelés azonosítójának.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-- Egy megrendelés azonosítója.
+- Egy rendelésazonosító.
 
 ## <a name="c"></a>C\#
 
-Ügyfél rendelésének beszerzése azonosító alapján:
+Az ügyfél megrendelésének lekért azonosítója:
 
-1. Használja a **IAggregatePartner. Customers** gyűjteményt, és hívja meg a **ById ()** metódust.
+1. Használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a **ById() metódust.**
 
-2. Hívja meg az [**orders (megrendelések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) ) tulajdonságot, majd a [**ByID ()**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.byid) metódust.
-3. A [**Get ()**](/dotnet/api/microsoft.store.partnercenter.orders.iorder.get) vagy a [**GetAsync ()**](/dotnet/api/microsoft.store.partnercenter.orders.iorder.getasync)hívása.
+2. Hívja meg [**ismét az Orders**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) tulajdonságot, majd a [**ByID()**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.byid) metódust.
+3. Hívja meg a [**Get()**](/dotnet/api/microsoft.store.partnercenter.orders.iorder.get) vagy [**a GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.orders.iorder.getasync)
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -49,18 +44,18 @@ Lekéri az ügyfél és a megrendelés AZONOSÍTÓjának megfelelő [rendelési]
 var order = partnerOperations.Customers.ById(selectedCustomerId).Orders.ById(selectedOrderId).Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSample **osztály**: GetOrder.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** GetOrder.cs
 
 ## <a name="java"></a>Java
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-Ügyfél rendelésének beszerzése azonosító alapján:
+Az ügyfél megrendelésének lekért azonosítója:
 
-1. Használja a **IAggregatePartner. getCustomers** függvényt, és hívja meg a **byId ()** függvényt.
+1. Használja az **IAggregatePartner.getCustomers** függvényt, és hívja meg a **byId()** függvényt.
 
-2. Hívja meg a **getOrders** függvényt, majd a **byID ()** függvényt.
-3. Hívja meg a **Get ()** függvényt.
+2. Hívja meg ismét a **getOrders** függvényt, majd a **byID()** függvényt.
+3. Hívja meg a **get()** függvényt.
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -74,7 +69,7 @@ Order order = partnerOperations.getCustomers().byId(selectedCustomerId).getOrder
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-Az ügyfél Order by ID azonosítójának lekéréséhez futtassa a [**Get-PartnerCustomerOrder**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomerOrder.md) parancsot, és határozza meg a **Vevőkód** és a **Rendeléskód** paramétereket.
+Ha azonosító alapján le kell szereznie egy ügyfél megrendelését, hajtsa végre a [**Get-PartnerCustomerOrder**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomerOrder.md) parancsot, és adja meg a **CustomerId** és **az OrderId** paramétereket.
 
 ```powershell
 # $selectedCustomerId
@@ -83,26 +78,26 @@ Az ügyfél Order by ID azonosítójának lekéréséhez futtassa a [**Get-Partn
 Get-PartnerCustomerOrder -CustomerId $selectedCustomerId -OrderId $selectedOrderId
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                  |
 |---------|--------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Orders/{ID-for-Order} http/1.1  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/orders/{id-for-order} HTTP/1.1  |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-Ez a táblázat felsorolja a szükséges lekérdezési paramétereket, amelyek alapján a rendelést azonosító alapján lehet beolvasni.
+Ez a táblázat a rendelés azonosító alapján való lekérdezéséhez szükséges lekérdezési paramétereket sorolja fel.
 
 | Név                   | Típus     | Kötelező | Leírás                                            |
 |------------------------|----------|----------|--------------------------------------------------------|
-| ügyfél – bérlő – azonosító     | sztring   | Igen      | Az ügyfélhez tartozó GUID formátumú karakterlánc. |
-| azonosító – sorrend           | sztring   | Igen      | A megrendelés AZONOSÍTÓjának megfelelő karakterlánc.                |
+| ügyfél-bérlő-azonosító     | sztring   | Igen      | Az ügyfélnek megfelelő GUID formátumú sztring. |
+| id-for-order           | sztring   | Igen      | A rendelésazonosítónak megfelelő sztring.                |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -121,11 +116,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy [Order](order-resources.md) erőforrást ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy [Order](order-resources.md) erőforrást ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

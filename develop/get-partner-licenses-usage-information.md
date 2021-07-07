@@ -1,34 +1,30 @@
 ---
 title: Partnerlicencek használati adatainak lekérése
-description: A partneri licencek használati információinak beszerzése az összes ügyfél belefoglalásához.
+description: A partnerlicencek használati információinak összesítése az összes ügyfélre vonatkozó összesítéssel.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 93d003fb269a3421b8efd8cebe8f396f97599a10
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: f3d05d61ac4f2c90b0d8a4bfd93fe24e94bd5c1b
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768476"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445595"
 ---
 # <a name="get-partner-licenses-usage-information"></a>Partnerlicencek használati adatainak lekérése
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-A partneri licencek használati információinak beszerzése az összes ügyfél belefoglalásához.
+A partnerlicencek használati információinak összesítése az összes ügyfélre vonatkozó összesítéssel.
 
 > [!NOTE]
-> Ezt a forgatókönyvet a [licencek használati adatainak](get-licenses-usage-information.md)felülírt.
+> Ezt a forgatókönyvet a [Get licenses usage information (Licencek használati információinak lekért információja) alapján lehet szuperlökni.](get-licenses-usage-information.md)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az App + User hitelesítő adataival.
+Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-Ha összesített adatokat szeretne lekérdezni a licencek központi telepítéséről, először szerezzen be egy felületet a partner szintű elemzési gyűjtési műveletekhez a [**IAggregatePartner. Analytics**](/dotnet/api/microsoft.store.partnercenter.ipartner.analytics) tulajdonságból. Ezután kérjen le egy felületet a partner szintű licencek Analytics-gyűjteményhez a [**licencek**](/dotnet/api/microsoft.store.partnercenter.analytics.ipartneranalyticscollection.licenses) tulajdonságból. Végül hívja meg a [**használati. Get**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) metódust, hogy beolvassa az összesített adatokat a licencek használatáról. Ha a metódus sikeresen beolvassa a [**PartnerLicensesUsageInsights**](/dotnet/api/microsoft.store.partnercenter.models.analytics.partnerlicensesusageinsights) -objektumok gyűjteményét.
+A licencek üzembe helyezésével kapcsolatos összesített adatok lekéréséhez először szerezze be a partnerszintű elemzési adatgyűjtési műveletek felületét az [**IAggregatePartner.Analytics tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.ipartner.analytics) Ezután a [**Licenses**](/dotnet/api/microsoft.store.partnercenter.analytics.ipartneranalyticscollection.licenses) (Licencek) tulajdonságból olvassa be a partnerszintű licencelemzési gyűjtemény felületét. Végül hívja meg a [**Usage.Get metódust**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) a licenchasználat összesített adatainak lehívására. Ha a metódus sikeres, a [**PartnerLicensesUsageInsights**](/dotnet/api/microsoft.store.partnercenter.models.analytics.partnerlicensesusageinsights) objektumok gyűjteményét fogja kapni.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -36,17 +32,17 @@ Ha összesített adatokat szeretne lekérdezni a licencek központi telepítés�
 var partnerLicensesUsageAnalytics = partnerOperations.Analytics.Licenses.Usage.Get();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                      |
 |---------|----------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Analytics/licenses/Usage http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/analytics/licenses/usage HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -66,11 +62,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz törzse [PartnerLicensesUsageInsights](analytics-resources.md#partnerlicensesusageinsights) -erőforrások gyűjteményét tartalmazza, amelyek a felhasznált licencekre vonatkozó információkat biztosítanak.
+Ha a válasz törzse sikeres, a [PartnerLicensesUsageInsights](analytics-resources.md#partnerlicensesusageinsights) erőforrások gyűjteményét tartalmazza, amelyek információt nyújtanak a használt licencekkel kapcsolatban.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

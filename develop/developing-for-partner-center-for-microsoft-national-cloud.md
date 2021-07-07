@@ -1,85 +1,81 @@
 ---
-title: A Microsoft országos Felhőkhöz készült partneri központ fejlesztése
-description: A Microsoft nemzeti Felhőkhöz tartozó partneri központ fejlesztésekor a partner Center SDK-val kapcsolatos különbségek.
+title: Fejlesztés Partnerközpont Microsoft országos felhőihez
+description: Partnerközpont SDK microsoftos országos felhők Partnerközpont fejlesztésekor.
 MS-HAID:
 - pc\_apiv2.developing\_with\_different\_partner\_center\_versions
 - pc\_apiv2.developing\_for\_partner\_center\_for\_microsoft\_national\_cloud
 ms.date: 06/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 7882846de0c591b21fe73345f560613f535d1788
-ms.sourcegitcommit: 529b07030a874d644cf947790f4b53cdff438dd4
+ms.openlocfilehash: d38a35fb88b4835716e429aeed731a0d55d9a669
+ms.sourcegitcommit: d20e7d572fee09a83a4b23a92da7ff09cfebe75a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768148"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111906454"
 ---
-# <a name="developing-for-partner-center-for-microsoft-national-clouds"></a>A Microsoft országos Felhőkhöz készült partneri központ fejlesztése
+# <a name="developing-for-partner-center-for-microsoft-national-clouds"></a>Fejlesztés Partnerközpont Microsoft országos felhőihez
 
-**A következőkre vonatkozik:**
+**A következőkre** vonatkozik: Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Partnerközpont SDK-dokumentációval rendelkezik. Előfordulhat azonban, hogy egyes funkciók nem érhetők el a microsoftos Partnerközpont microsoftos országos felhőkre vonatkozó verzióiban.
 
-A partner Center egyetlen SDK-dokumentációval rendelkezik. Előfordulhat azonban, hogy néhány funkció nem érhető el a Microsoft országos Felhőkhöz tartozó partner Center-verziókban.
+A fejlesztőknek figyelembe kell vennie az SDK módosításait az alábbi Partnerközpont:
 
-A fejlesztőknek meg kell fontolniuk az SDK változásait a partner Center következő verzióiban:
-
-- [A 21Vianet által üzemeltetett partneri központ](#partner-center-operated-by-21vianet)
+- [A 21Vianet által üzemeltetett Partnerközpont](#partner-center-operated-by-21vianet)
 - [A Microsoft Cloud Germany Partnerközpontja](#partner-center-for-microsoft-cloud-germany)
 - [A Microsoft Cloud for US Government Partnerközpontja](#partner-center-for-microsoft-cloud-for-us-government)
 
-Az egyes partneri központ SDK-cikkek a megfelelő fiókpartner-verziókat listázza. Az egyes felügyelt referenciák a szükséges partneri központ-verziókat is felsorolják a **követelmények** szakaszban.
+Minden Partnerközpont SDK cikk a megfelelő Partnerközpont sorolja fel. Az egyes felügyelt referenciacikkek a Követelmények szakaszban Partnerközpont a vonatkozó és újabb **verzióit** is.
 
-## <a name="partner-center-operated-by-21vianet"></a>A 21Vianet által üzemeltetett partneri központ
+## <a name="partner-center-operated-by-21vianet"></a>A 21Vianet által üzemeltetett Partnerközpont
 
-A *partner központ* és a *21Vianet által működtetett* partnerek közötti különbségek a következők:
+A partnerek és a *21Vianet* *Partnerközpont* Partnerközpont közötti különbségek a következőek:
 
-- Felhasználói vagy teljes partner felhasználó jelszava nem állítható be programozott módon.
+- Ügyfélfelhasználó vagy teljes partnerfelhasználó jelszavát nem állíthatja vissza programozott módon.
 
 - Az Azure-előfizetések nem érhetők el.
 
-- Az ügyfél felhasználójának licenceit nem kezelheti. Ehelyett az ügyfeleknek az Office 365 felügyeleti központot kell használniuk a licencek kezeléséhez.
+- Az ügyfélfelhasználói licencek nem kezelhetők. Ehelyett az ügyfeleknek a felügyeleti Office 365 kell használniuk a licenceik kezeléséhez.
 
-- Az összes támogatási kérést a 21Vianet által működtetett fiókpartner-központ kezeli. A szolgáltatási kérelmek és a szolgáltatási frissítések nem érvényesek.
+- Minden támogatási kérelem a 21Vianet Partnerközpont keresztül kezelhető. A szolgáltatáskérések és a szolgáltatásfrissítések nem érvényesek.
 
 ## <a name="partner-center-for-microsoft-cloud-germany"></a>A Microsoft Cloud Germany Partnerközpontja
 
 > [!IMPORTANT]
-> Az ügyfelek szükségleteinek alakulásán alapuló felhőalapú stratégiánk a németországi új Felhőbeli régiókat fogja figyelembe venni, amelyek összhangban vannak a globális felhőalapú ajánlattal. Ebben a fókuszban már nem fogadunk el új ügyfeleket, vagy nem helyezünk üzembe semmilyen új szolgáltatást a jelenleg elérhető Microsoft Cloud Németországon. A meglévő ügyfelek továbbra is használhatják a jelenleg elérhető Cloud Services szolgáltatást, amelyet a szükséges biztonsági frissítésekkel tartunk fenn.
+> Az ügyfelek igényeinek fejlődése alapján a németországi felhőstratégia a globális felhőajánlatnak megfelelő új felhőrégiók németországi megvalósításához fog összpontosítani. Ezzel a fókuszban már nem fogadunk új ügyfeleket, és nem helyezünk üzembe új szolgáltatásokat a jelenleg elérhető Microsoft Cloud Germany szolgáltatásból. A meglévő ügyfelek továbbra is használhatjak a jelenleg elérhető felhőszolgáltatásokat, amelyeket a szükséges biztonsági frissítésekkel fogunk karbantartani.
 >
-> Az új ügyfelek a jelenleg elérhető európai régiókat vagy a németországi új régiókat használhatják, amikor elérhetővé válnak. További információ: a [Microsoft és a Cloud Services elérhetővé nyilvánítása a németországi új adatközpontokból](https://news.microsoft.com/europe/2018/08/31/microsoft-to-deliver-cloud-services-from-new-datacentres-in-germany-in-2019-to-meet-evolving-customer-needs/).
+> A 2018-ban elérhetővé vált új ügyfelek a jelenleg elérhető európai régiókat vagy a németországi új régiókat is használhatja. További információ: A Microsoft felhőszolgáltatásokat nyújt a németországi új [adatközpontok számára.](https://news.microsoft.com/europe/2018/08/31/microsoft-to-deliver-cloud-services-from-new-datacentres-in-germany-in-2019-to-meet-evolving-customer-needs/)
 
-A partner *központ* és a *Microsoft Cloud Németország* közötti partner központ közötti különbségek a következők:
+A Microsoft Cloud Germany *Partnerközpont* és Partnerközpont partnerek közötti *különbségek* a következőek:
 
-- A partnerek nem hozhatnak létre felhasználókat az ügyfél szervezete számára, vagy szerepköröket rendelhetnek hozzájuk.
-  - A partnerek elolvashatják a mezőket, de nem tudják írni vagy frissíteni őket.
-  - A partnereknek manuálisan kell létrehozniuk vagy frissíteniük az ügyfelek felhasználóit az Office 365 felügyeleti központban vagy a Azure Portalon keresztül. Lásd: [Azure Active Directory dokumentáció](/azure/active-directory/).
+- A partnerek nem hozhatnak létre felhasználókat az ügyfél szervezetéhez, és nem rendelhetnek hozzá szerepköröket.
+  - A partnerek olvashatják a mezőket, de nem írhatják és nem frissítik azokat.
+  - A partnereknek manuálisan kell létrehozniuk vagy frissíteniük az ügyfeleik felhasználóit Office 365 felügyeleti központban vagy a Azure Portal. Lásd [a Azure Active Directory dokumentációját.](/azure/active-directory/)
 
-- Az ügyfél felhasználói számára a Microsoft Cloud Germany portál vagy API-k esetében nem kezelheti a licenceket. Ehelyett a licencek kezeléséhez az Office 365 felügyeleti központot vagy az Azure aktív közvetlen csoportos licencelés-kezelést (hamarosan) kell használnia.
-  - (Nem kötelező) az Azure AD Graph API használhatja. Lásd: [licencek kiosztása felhasználóhoz](/graph/api/user-assignlicense). A Microsoft Cloud Germany-hez készült partner Center esetében ne felejtse el használni a Graph-végpontot `https://graph.cloudapi.de` `https://graph.windows.net` .
+- Az ügyfélfelhasználói licencek nem kezelhetők a Microsoft Cloud Germany portálra vagy API-kra Partnerközpont portálon. Ehelyett a felügyeleti központot Office 365 Azure Active Directly Group licenckezelést kell használnia (hamarosan elérhető) a licencek kezeléséhez.
+  - (Nem kötelező) használhatja az Azure AD Graph API-t. Lásd: [Licencek hozzárendelése felhasználóhoz.](/graph/api/user-assignlicense) A Partnerközpont Microsoft Cloud Germany esetében a helyett a Graph `https://graph.cloudapi.de` végpontot `https://graph.windows.net` használja.
 
-- Felhasználói vagy teljes partner felhasználó jelszava nem állítható be programozott módon. Használja az Office 365 felügyeleti központot vagy Azure Portal. Lásd: [a felhasználó jelszavának alaphelyzetbe állítása Azure Active Directoryban](/azure/active-directory/fundamentals/active-directory-users-reset-password-azure-portal). Az 1. lépésben be kell jelentkeznie a Microsoft Cloud Germany Azure Portal.
+- Ügyfélfelhasználó vagy teljes partnerfelhasználó jelszavát nem állíthatja vissza programozott módon. Használja a Office 365 felügyeleti központot vagy Azure Portal. Lásd: [Új jelszó megadása egy felhasználóhoz a Azure Active Directory.](/azure/active-directory/fundamentals/active-directory-users-reset-password-azure-portal) Az 1. lépésben be kell jelentkeznie a Microsoft Cloud Germany Azure Portal szolgáltatásba.
 
-- A fejlesztőknek manuálisan kell regisztrálniuk az alkalmazás AZONOSÍTÓját a partner Center API/SDK funkcióinak az alkalmazásban való integrálásához a Microsoft Cloud Germany esetében. További információ: az [alkalmazás adatainak regisztrálása a Microsoft National Cloud Partner Centerhez](create-apps-for-partner-center-for-microsoft-national-clouds.md).
+- A fejlesztőknek manuálisan kell regisztrálniuk az alkalmazásazonosítójukat, hogy Partnerközpont API-/SDK-funkciókat integrálni Partnerközpont Microsoft Cloud Germany számára készült alkalmazásukba. További információ: Register app details for Partnerközpont for Microsoft National Cloud (Alkalmazásadatok regisztrálása a [Microsoft országos felhőszolgáltatáshoz).](create-apps-for-partner-center-for-microsoft-national-clouds.md)
 
 ## <a name="partner-center-for-microsoft-cloud-for-us-government"></a>A Microsoft Cloud for US Government Partnerközpontja
 
-A partner *központ* és a partner központ közötti, az *Egyesült Államok kormányzati* szerveinek Microsoft Cloud közötti különbségek a következők:
+A partnerek közötti különbségek *a* Partnerközpont és Partnerközpont *a Microsoft Cloud for US Government:*
 
-- Az Office 365-előfizetések jelenleg nem érhetők el a Microsoft Cloud az USA kormányzati szervei számára.
+- Office 365 előfizetések jelenleg nem érhetők el Partnerközpont előfizetések Microsoft Cloud for US Government.
 
-- Az USA kormányzati szerveinek Microsoft Cloudt támogató meglévő partnereknek új fiókokat kell létrehozniuk a partner Centerben Microsoft Cloud az USA kormányzati szerveinek.
+- A meglévő partnereknek Microsoft Cloud for US Government új fiókokat kell létrehozniuk a Partnerközpont a Microsoft Cloud for US Government.
 
-- Microsoft Cloud az USA kormányzati ügyfeleinek egyetlen partnerrel kell tranzakciót biztosítaniuk.
-  - A többcsatornás és a többpartneres kapcsolatok és a kérések kapcsolata egy meglévő ügyféllel Microsoft Cloudon belül az Egyesült Államok kormányzati forgatókönyvei esetében nem érvényes. Ez a korlátozás azért van, mert az Office 365 jelenleg nem érhető el.
+- Microsoft Cloud for US Government az ügyfeleknek egyetlen partnerrel kell tranzakciótuk.
+  - A többcsatornás, valamint a többpartneres és a kéréskapcsolatok nem érvényesek a Microsoft Cloud for US Government-forgatókönyvekben meglévő ügyféllel. Ennek a korlátozásnak az az oka Office 365 jelenleg nem érhető el.
 
-- A partnerek nem hozhatnak létre felhasználókat az ügyfél szervezete számára, vagy szerepköröket rendelhetnek hozzájuk.
-  - A partnerek elolvashatják a mezőket, de nem tudják írni vagy frissíteni őket. A partnereknek manuálisan kell létrehozniuk vagy frissíteniük a felhasználók ügyfeleit a Azure Portalban. Lásd: [Azure Active Directory dokumentáció](/azure/active-directory/).
+- A partnerek nem hozhatnak létre felhasználókat az ügyfél szervezetéhez, és nem rendelhetnek hozzá szerepköröket.
+  - A partnerek olvashatják a mezőket, de nem írhatják és nem frissítik azokat. A partnereknek manuálisan kell létrehozniuk vagy frissíteniük az ügyfelek felhasználóit a Azure Portal. Lásd [a Azure Active Directory dokumentációját.](/azure/active-directory/)
 
-- Felhasználói vagy teljes partner felhasználó jelszava nem állítható be programozott módon. Használja a Azure Portal. Lásd: [a felhasználó jelszavának alaphelyzetbe állítása Azure Active Directoryban](/azure/active-directory/active-directory-users-reset-password-azure-portal). Az 1. lépésben be kell jelentkeznie a Azure Portalba az Egyesült Államok kormányának Microsoft Cloud.
+- Ügyfélfelhasználó vagy teljes partnerfelhasználó jelszavát nem állíthatja vissza programozott módon. Használja az Azure Portalt. Lásd: [Új jelszó megadása egy felhasználóhoz a Azure Active Directory.](/azure/active-directory/active-directory-users-reset-password-azure-portal) Az 1. lépésben be kell jelentkeznie a Azure Portal a Microsoft Cloud for US Government.
 
-- A partner központhoz tartozó REST-végpontok a Microsoft Cloud az USA kormányzati szerveinek esetében ugyanazok, mint a partner Centerben: `https://api.partnercenter.microsoft.com` .
+- Az alkalmazáshoz Partnerközpont REST Microsoft Cloud for US Government végpont ugyanaz, mint a Partnerközpont: `https://api.partnercenter.microsoft.com` .
 
-- A fejlesztőknek manuálisan kell regisztrálniuk az alkalmazás AZONOSÍTÓját a partner Center API/SDK funkcióinak az alkalmazásban való integrálásához az USA kormányzati szerveinek Microsoft Cloud. További információ: az [alkalmazás adatainak regisztrálása a Microsoft National Cloud Partner Centerhez](create-apps-for-partner-center-for-microsoft-national-clouds.md).
+- A fejlesztőknek manuálisan kell regisztrálniuk az alkalmazásazonosítójukat, hogy Partnerközpont API-/SDK-funkciókat integrálni Partnerközpont alkalmazásukba Microsoft Cloud for US Government. További információ: Register app details for Partnerközpont for Microsoft National Cloud (Alkalmazásadatok regisztrálása a [Microsoft országos felhőszolgáltatáshoz).](create-apps-for-partner-center-for-microsoft-national-clouds.md)

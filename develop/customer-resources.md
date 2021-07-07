@@ -1,84 +1,79 @@
 ---
-title: Felhasználói erőforrások
-description: Ügyfelet vagy viszonteladót képviselő ügyfelek erőforrásai.
+title: Ügyfélerőforrások
+description: Ügyfél-erőforrások, amelyek egy ügyfelet vagy viszonteladót képviselnek.
 ms.date: 03/30/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 78622258880ab77ca99eae98082cc66acb3b66a7
-ms.sourcegitcommit: 204e518e794b6b076a17488ee9ca1aaaa4beaaec
+ms.openlocfilehash: 7d76de33c9a0d28e9d3fb0b0821cbd37ad67e7af
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 04/01/2021
-ms.locfileid: "106103963"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973145"
 ---
-# <a name="customer-resources"></a>Felhasználói erőforrások
+# <a name="customer-resources"></a>Ügyfélerőforrások
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-- A 21Vianet által üzemeltetett Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
 ## <a name="customer"></a>Ügyfél
 
-Az **ügyfél** -erőforrás egy ügyfelet vagy viszonteladót jelöl. A legszélesebb körben az ügyfél-erőforrás olyan személy, alkalmazott vagy szervezet, aki üzleti tevékenységet kíván végezni a Microsofttal és a Microsoft viszonteladókkal. Az ügyfeleknek emellett a vállalati profillal és a számlázási profillal is rendelkeznek.
+Az **Ügyfél** erőforrás egy ügyfelet vagy viszonteladót képvisel. Az ügyfélerőforrás általában bármely olyan személy, alkalmazott vagy szervezet lehet, aki a Microsoft és a Microsoft viszonteladói között szeretne üzleti vállalkozást. Az ügyfelek emellett vállalati profillal és számlázási profillal is.
 
 >[!NOTE]
->Az **ügyfél** -erőforráshoz a bérlői azonosítók száma percenként 500 kérelem.
+>Az **Ügyfél** erőforrás sebességkorlátja bérlőazonosítónként percenként 500 kérés.
 
 | Tulajdonság              | Típus                                                             | Leírás                                                                                                                                  |
 |-----------------------|------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| id                    | sztring                                                           | Az ügyfél-azonosító.                                                                                                                             |
-| commerceId            | sztring                                                           | A kereskedelmi azonosító.                                                                                                                             |
-| companyProfile        | [CustomerCompanyProfile](#customercompanyprofile)                | További információ a vállalatról vagy szervezetről.                                                                                    |
-| billingProfile        | [CustomerBillingProfile](#customerbillingprofile)                | További információ a számlázáshoz.                                                                                                     |
-| relationshipToPartner | sztring                                                           | Meghatározza azt a licencelési programot, amelyet a partner használ ehhez az ügyfélhez: "None", "viszonteladó", "Advisor", "hírszolgáltatás" vagy "Microsoft \_ support". |
-| allowDelegatedAccess  | boolean                                                          | Azt határozza meg, hogy a partner delegált rendszergazdai jogosultságokat kapott-e az ügyféltől. Ez a tulajdonság csak akkor érhető el, ha az ügyfél azonosító alapján, nem lista szerint van beolvasva.                                                         |
-| userCredentials       | [UserCredentials](user-resources.md#usercredentials) | A felhasználó hitelesítő adatai.                                                                                                                        |
-| customDomains         | sztringek tömbje                                                 | Az ügyfél egyéni tartományának listája.                                                                                                        |
-| associatedPartnerId   | sztring                                                           | Az ügyfél-fiókhoz társított közvetett viszonteladó. Ez az érték csak közvetett CSP-partnerek számára állítható be.                              |
-| linkek                 | [ResourceLinks](utility-resources.md#resourcelinks)             | A profilban található erőforrás-hivatkozások.                                                                                             |
-| attribútumok            | [ResourceAttributes](utility-resources.md#resourceattributes)   | A profilnak megfelelő metaadat-attribútumok.                                                                                        |
+| id                    | sztring                                                           | Az ügyfél azonosítója.                                                                                                                             |
+| commerceId (kereskedelmiazonosító)            | sztring                                                           | A kereskedelmi azonosító.                                                                                                                             |
+| companyProfile (vállalatiprofil)        | [CustomerCompanyProfile (Ügyfél cégesprofil)](#customercompanyprofile)                | További információk a vállalatról vagy szervezetről.                                                                                    |
+| billingProfile (számlázási profil)        | [CustomerBillingProfile](#customerbillingprofile)                | A számlázáshoz használt további információk.                                                                                                     |
+| relationshipToPartner (partnerkapcsolat) | sztring                                                           | Meghatározza a partner által az ügyfélhez használt licencprogramot: "none", "reseller", "advisor", "syndication" vagy "microsoft \_ support". |
+| allowDelegatedAccess  | boolean                                                          | Jelzi, hogy a partner kapott-e delegált rendszergazdai jogosultságokat az ügyféltől. Ez a tulajdonság csak akkor érhető el, ha az ügyfél azonosító alapján van lekért, nem lista alapján.                                                         |
+| userCredentials (userCredentials)       | [UserCredentials (Felhasználói adatok)](user-resources.md#usercredentials) | A felhasználói hitelesítő adatok.                                                                                                                        |
+| customDomains (egyéni tartomány)         | sztringek tömbje                                                 | Egy ügyfél egyéni tartományának listája.                                                                                                        |
+| associatedPartnerId (társított partnerazonosító)   | sztring                                                           | Az ügyfélfiókhoz társított közvetett viszonteladó. Ezt az értéket csak közvetett CSP-partnerek állíthatják be.                              |
+| Linkek                 | [ResourceLinks (Erőforrás-hivatkozás)](utility-resources.md#resourcelinks)             | A profilban található erőforrás-hivatkozások.                                                                                             |
+| Attribútumok            | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes)   | A profilnak megfelelő metaadat-attribútumok.                                                                                        |
 
-## <a name="customercompanyprofile"></a>CustomerCompanyProfile
+## <a name="customercompanyprofile"></a>CustomerCompanyProfile (Ügyfél cégesprofil)
 
-A **CustomerCompanyProfile** -erőforrás a vállalattal vagy szervezettel kapcsolatos további információk.
+A **CustomerCompanyProfile** erőforrás további információkat tartalmaz a vállalatról vagy szervezetről.
 
 | Tulajdonság    | Típus                                                           | Leírás                                                                       |
 |-------------|----------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| tenantId    | sztring                                                         | Az ügyfél bérlői azonosítója az Azure AD-hez. Ezt nevezik MicrosoftID is. |
+| tenantId (bérlőazonosító)    | sztring                                                         | Az ügyfél Azure AD-bérlőazonosítója. Ezt MicrosoftID-nek is nevezik. |
 | domain      | sztring                                                         | Az ügyfél neve, például contoso.onmicrosoft.com.                             |
-| companyName | sztring                                                         | A vállalat vagy szervezet neve.                                          |
-| linkek       | [ResourceLinks](utility-resources.md#resourcelinks)           | A profilban található erőforrás-hivatkozások.                                  |
-| attribútumok  | [ResourceAttributes](utility-resources.md#resourceattributes) | A profilnak megfelelő metaadat-attribútumok.                             |
-|organizationRegistrationNumber|Sztring|Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban). Csak a következő országokban található ügyfél vállalata vagy szervezete számára szükséges: Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA), India, Brazília, Dél-Afrika, Lengyelország, Egyesült Arab Emírségek, Szaúd-Arábia, Törökország, Thaiföld, Vietnam, Mianmar, Irak, Dél-Szudán és Venezuela. Az ügyfél más országokban található vállalata/szervezete számára nem adható meg.|
+| companyName (vállalat neve) | sztring                                                         | A vállalat vagy szervezet neve.                                          |
+| Linkek       | [ResourceLinks (Erőforrás-hivatkozás)](utility-resources.md#resourcelinks)           | A profilban található erőforrás-hivatkozások.                                  |
+| Attribútumok  | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A profilnak megfelelő metaadat-attribútumok.                             |
+|organizationRegistrationNumber|Sztring|Az ügyfél szervezeti regisztrációs száma (más néven INN-szám bizonyos országokban). Csak a következő országokban található ügyfél cégéhez/szervezetéhez szükséges: Egyesült Államok( AM), Uzbekistan(AZ), Inc(BY), Fogja(HU), Torgyzstan (KZ), Kyrgyzstan(KG), Fog(MD), Oroszország(RU), Tajikistan(TJ), Uzbekistan(UZ), Ova(UA), India, Brazília, Dél-Afrikai Köztársaság, Egyesült Arab Emírségek, Egyesült Arab Emírségek, Észak-Karolina, Észak-Karolina, Dél-Afrikai Köztársaság és Dél-Korea. Az ügyfél más országokban található vállalata/szervezete esetében ezt nem szabad megadni.|
 
 
 ## <a name="customerbillingprofile"></a>CustomerBillingProfile
 
-A **CustomerBillingProfile** -erőforrás az ügyfél számlázására szolgáló további információ.
+A **CustomerBillingProfile erőforrás** az ügyfél számlázására használt további információ.
 
 | Tulajdonság       | Típus                                                           | Leírás                                                                                                                                            |
 |----------------|----------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| id             | sztring                                                         | A profil azonosítója.                                                                                                                                |
-| firstName      | sztring                                                         | Az ügyfél vállalatának számlázási kapcsolatának utóneve. Ez az a személy, aki a számlákat és egyéb számlázási kommunikációt irányítja. |
-| lastName       | sztring                                                         | A számlázási kapcsolat vezetékneve.                                                                                                                  |
-| e-mail          | sztring                                                         | A számlázási partner e-mail-címe                                                                                                                    |
-| kulturális környezet        | sztring                                                         | Az előnyben részesített kulturális környezet a kommunikációhoz és a pénznemhez, mint például az "en-us".                                                                               |
-| language       | sztring                                                         | Az előnyben részesített nyelv a kommunikációhoz.                                                                                                            |
-| companyName    | sztring                                                         | A vállalat vagy szervezet neve.                                                                                                               |
-| defaultAddress | [Cím](utility-resources.md#address)                       | Az a cím, amelyet a számlák küldenek, ahol a számlázási kapcsolat működik.                                                                                   |
-| linkek          | [ResourceLinks](utility-resources.md#resourcelinks)           | A profilban található erőforrás-hivatkozások.                                                                                                       |
-| attribútumok     | [ResourceAttributes](utility-resources.md#resourceattributes) | A profilnak megfelelő metaadat-attribútumok.                                                                                                  |
+| id             | sztring                                                         | A profilazonosító.                                                                                                                                |
+| firstName      | sztring                                                         | Az ügyfél vállalatának számlázási kapcsolattartója vezetékneve. Ez az a személy, akihez a számlák és egyéb számlázási kommunikációk lesznek irányítva. |
+| lastName       | sztring                                                         | A számlázási kapcsolattartó vezetékneve.                                                                                                                  |
+| e-mail          | sztring                                                         | A számlázási kapcsolattartó e-mail-címe                                                                                                                    |
+| Kultúra        | sztring                                                         | A kommunikáció és a pénznem előnyben részesített kultúrája, például "en-us".                                                                               |
+| language       | sztring                                                         | Az előnyben részesített kommunikációs nyelv.                                                                                                            |
+| companyName (vállalat neve)    | sztring                                                         | A vállalat vagy szervezet neve.                                                                                                               |
+| defaultAddress (alapértelmezett cím) | [Cím](utility-resources.md#address)                       | A számlázó cím, ahová a számlázási kapcsolattartó működik.                                                                                   |
+| Linkek          | [ResourceLinks (Erőforrás-hivatkozás)](utility-resources.md#resourcelinks)           | A profilban található erőforrás-hivatkozások.                                                                                                       |
+| Attribútumok     | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A profilnak megfelelő metaadat-attribútumok.                                                                                                  |
 
 ## <a name="customerrelationshiprequest"></a>CustomerRelationshipRequest
 
-A **CustomerRelationshipRequest** -erőforrás tartalmazza azt az URL-címet, amelyet az ügyfél a viszonteladói kapcsolat létrehozásához használ a partnerrel.
+A **CustomerRelationshipRequest** erőforrás tartalmazza azt az URL-címet, amelyet az ügyfél a partnerrel való viszonteladói kapcsolat létesítéhez használ.
 
 | Tulajdonság   | Típus                                                           | Leírás                                                              |
 |------------|----------------------------------------------------------------|--------------------------------------------------------------------------|
-| url        | sztring                                                         | Az ügyfél által a partnerrel létesített kapcsolat létesítéséhez használt URL-cím. |
-| attribútumok | [ResourceAttributes](utility-resources.md#resourceattributes) | A kapcsolati kérelemhez tartozó metaadat-attribútumok.       |
+| url        | sztring                                                         | Az ügyfél által a partnerrel való kapcsolat létesítéhez használt URL-cím. |
+| Attribútumok | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A kapcsolatkéréshez tartozó metaadat-attribútumok.       |

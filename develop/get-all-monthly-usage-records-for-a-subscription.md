@@ -1,46 +1,42 @@
 ---
-title: Az előfizetéshez tartozó összes havi használati rekord beolvasása.
-description: A AzureResourceMonthlyUsageRecord erőforrás-gyűjtemény használatával lekérheti az ügyfél előfizetésén belüli szolgáltatások listáját, valamint a hozzájuk rendelt használati adatokat.
+title: Egy előfizetés összes havi használati rekordjának lekérése
+description: Az AzureResourceMonthlyUsageRecord erőforrás-gyűjtemény használatával lekérte az ügyfél előfizetésén belüli szolgáltatások listáját és a hozzájuk társított minősített használati adatokat.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 1dd09d4976c9626e088cda02ce36669dd7121a99
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: ee4bd413eec7d5a2dddbe3803df8839589ab7504
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768364"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760283"
 ---
-# <a name="get-all-monthly-usage-records-for-a-subscription"></a>Az előfizetéshez tartozó összes havi használati rekord beolvasása.
+# <a name="get-all-monthly-usage-records-for-a-subscription"></a>Egy előfizetés összes havi használati rekordjának lekérése
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A [**AzureResourceMonthlyUsageRecord**](/dotnet/api/microsoft.store.partnercenter.models.usage.azureresourcemonthlyusagerecord) erőforrás-gyűjtemény használatával lekérheti az ügyfél előfizetésén belüli szolgáltatások listáját, valamint a hozzájuk rendelt használati adatokat.
+Az [**AzureResourceMonthlyUsageRecord**](/dotnet/api/microsoft.store.partnercenter.models.usage.azureresourcemonthlyusagerecord) erőforrás-gyűjtemény használatával lekért lista az ügyfél előfizetésén belüli szolgáltatásokról és a társított minősített használati adatokról.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
-*Ez az API csak Microsoft Azure (MS-AZR-0145P) előfizetéseket támogatja. Ha Azure-csomagot használ, tekintse [meg a használati adatok beolvasása az előfizetéshez mérőszám alapján](get-a-customer-subscription-meter-usage-records.md) című témakört.*
+*Ez az API csak Microsoft Azure (MS-AZR-0145P) előfizetéseket támogat. Azure-csomag használata esetén lásd: Használati adatok [lekérte az előfizetéshez mérő alapján.](get-a-customer-subscription-meter-usage-records.md)*
 
 ## <a name="c"></a>C\#
 
-Az előfizetés erőforrás-használati adatainak beszerzése:
+Az előfizetés erőforrás-használati információinak lekért adatai:
 
-1. A **IAggregatePartner. Customs** gyűjtemény használatával hívja meg a **ById ()** metódust.
+1. Az **IAggregatePartner.Customers gyűjtemény** használatával hívja meg a **ById()** metódust.
 
-2. Hívja meg az **előfizetések** tulajdonságot, valamint a **UsageRecords**, majd a **Resources (erőforrások** ) tulajdonságot.
-3. Hívja meg a **Get ()** vagy a **GetAsync ()** metódust.
+2. Hívja meg **a Subscriptions (Előfizetések)** tulajdonságot, **a UsageRecords**(Használati adatok) tulajdonságot, majd a **Resources (Erőforrások)** tulajdonságot.
+3. Hívja meg **a Get() vagy** **a GetAsync() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -52,30 +48,30 @@ var usageRecords = partnerOperations.Customers.ById(selectedCustomerId).Subscrip
 
 Példaként tekintse meg a következőket:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **PartnerSDK. FeatureSample**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **PartnerSDK.FeatureSample**
 - Osztály: **SubscriptionResourceUsageRecords.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                                                       |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Subscriptions/{ID-for-Subscription}/usagerecords/Resources http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription}/usagerecords/resources HTTP/1.1 |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-Ez a táblázat felsorolja a szükséges lekérdezési paramétereket a névleges használati adatok lekéréséhez.
+Ez a táblázat a minősített használati adatok lekérdező lekérdezési paramétereit sorolja fel.
 
 | Név                    | Típus     | Kötelező | Leírás                               |
 |-------------------------|----------|----------|-------------------------------------------|
-| **ügyfél – bérlő – azonosító**  | **guid** | Y        | Az ügyfélhez tartozó GUID.     |
-| **előfizetés-azonosító** | **guid** | Y        | Az előfizetéshez tartozó GUID. |
+| **ügyfél-bérlő-azonosító**  | **guid** | Y        | Az ügyfélnek megfelelő GUID.     |
+| **subscription-id** | **guid** | Y        | Az előfizetéshez tartozó GUID. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -93,11 +89,11 @@ MS-CorrelationId: 47c36033-af5d-4457-80a4-512c1626fac4
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus **AzureResourceMonthlyUsageRecord** -erőforrások gyűjteményét adja vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus az **AzureResourceMonthlyUsageRecord** erőforrások gyűjteményét adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,113 +1,110 @@
 ---
-title: Eszköz központi telepítési erőforrásai
-description: A partner Center-eszköz telepítésével kapcsolatos erőforrások.
+title: Eszköztelepítési erőforrások
+description: Az eszközök üzembe Partnerközpont kapcsolódó erőforrások.
 ms.date: 06/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: a464cdad3979c305df16a3bdc9133ce70a7ac688
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: c85f0bd6a633ac18aa8e56e5a89bfc5c8f0398cc
+ms.sourcegitcommit: d20e7d572fee09a83a4b23a92da7ff09cfebe75a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767731"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111906502"
 ---
-# <a name="device-deployment-resources"></a>Eszköz központi telepítési erőforrásai
+# <a name="device-deployment-resources"></a>Eszköztelepítési erőforrások
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Németországhoz
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-
-A következő erőforrások az eszköz telepítésével kapcsolatosak.
+A következő erőforrások kapcsolódnak az eszközök üzembe helyezéséhez.
 
 ## <a name="configurationpolicy"></a>ConfigurationPolicy
 
-A **ConfigurationPolicy** információt nyújt a konfigurációs házirendről.
+**A ConfigurationPolicy** a konfigurációs szabályzatokkal kapcsolatos információkat biztosít.
 
 | Tulajdonság             | Típus                                                           | Leírás                                                        |
 |----------------------|----------------------------------------------|--------------------------------------------------------------------------------------|
-| id                   | sztring                                       | Egy GUID-formázott karakterlánc, amely azonosítja a szabályzatot.                                  |
+| id                   | sztring                                       | Egy GUID-formátumú sztring, amely azonosítja a szabályzatot.                                  |
 | name                 | sztring                                       | A szabályzat rövid neve.                                                    |
 | category             | sztring                                       | A kategória.                                                                        |
 | leírás          | sztring                                       | A szabályzat leírása.                                                              |
-| devicesAssignedCount | szám                                       | Az ehhez a Szabályzathoz rendelt eszközök száma.                                       |
-| policySettings       | sztringek tömbje                             | A házirend-beállítások: "None", "az \_ OEM- \_ előtelepítések eltávolítása", "Oobe- \_ felhasználó \_ nem \_ helyi \_ rendszergazda", "expressz beállítások kihagyása" \_ \_ , "az OEM-regisztráció kihagyása", "kihagyott \_ \_ \_ EULA".    |
-| createdDate          | karakterlánc UTC dátum-idő formátumban               | A szabályzat létrehozásának dátuma és időpontja.                                            |
-| lastModifiedDate     | karakterlánc UTC dátum-idő formátumban               | A szabályzat legutóbbi módosításának dátuma és időpontja.                                      |
-| attribútumok           | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai.                                            |
+| devicesAssignedCount | szám                                       | A szabályzathoz rendelt eszközök száma.                                       |
+| policySettings       | sztringek tömbje                             | A szabályzat beállításai: "none","remove \_ oem \_ preinstalls","oobe \_ user not local \_ \_ \_ admin","skip \_ express \_ settings","skip \_ oem \_ registration", "skip \_ eula".    |
+| createdDate (Létrehozásidátum)          | sztring UTC dátum-idő formátumban               | A szabályzat létrehozási dátuma és időpontja.                                            |
+| lastModifiedDate (lastModifiedDate)     | sztring UTC dátum-idő formátumban               | A szabályzat utolsó módosításának dátuma és időpontja.                                      |
+| Attribútumok           | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok.                                            |
 
 ## <a name="device"></a>Eszköz
 
-Az **eszköz** információt nyújt az eszközről.
+**Az** eszköz információkat biztosít az eszközről.
 
 | Tulajdonság            | Típus                                                           | Leírás                                                              |
 |---------------------|----------------------------------------------------------------|--------------------------------------------------------------------------|
-| id                  | sztring                                                         | Egy GUID-formázott karakterlánc, amely az eszközt azonosítja.                      |
+| id                  | sztring                                                         | Egy GUID-formátumú sztring, amely azonosítja az eszközt.                      |
 | serialNumber        | sztring                                                         | Az eszközhöz egyedileg társított sorozatszám.                   |
-| productKey          | sztring                                                         | Az eszközhöz egyedi módon társított termékkulcs.                     |
+| Productkey          | sztring                                                         | Az eszközhöz egyedileg társított termékkulcs.                     |
 | hardwareHash        | sztring                                                         | Az eszközhöz egyedileg társított hardver-kivonat.                   |
-| modelName           | sztring                                                         | Az eszközhöz társított modell neve.                               |
+| Modelname           | sztring                                                         | Az eszközhöz társított modellnév.                               |
 | oemManufacturerName | sztring                                                         | Az eszközhöz társított OEM-gyártó neve.             |
-| policies            | objektumok tömbje                                               | Az eszközhöz hozzárendelt szabályzatok listája.                             |
-| uploadedDate        | karakterlánc UTC dátum-idő formátumban                                 | Az eszköz adatainak feltöltésének dátuma és időpontja.                      |
-| allowedOperations   | sztringek tömbje                                               | Az eszközön a GET, a PATCH és a DELETE lehetőséggel engedélyezett HTTP-metódusok listája. |
-| attribútumok          | [ResourceAttributes](utility-resources.md#resourceattributes)  | A metaadatok attribútumai.                                                 |
+| policies            | objektumok tömbje                                               | Az eszközhöz rendelt szabályzatok listája.                             |
+| uploadedDate (feltöltöttdátum)        | sztring UTC dátum-idő formátumban                                 | Az eszközadatok feltöltésének dátuma és időpontja.                      |
+| allowedOperations (engedélyezett működés)   | sztringek tömbje                                               | Az eszközszinkronizáláshoz engedélyezett HTTP-metódusok listája GET, PATCH, DELETE ként. |
+| Attribútumok          | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes)  | A metaadat-attribútumok.                                                 |
 
 ## <a name="batchuploaddetails"></a>BatchUploadDetails
 
-A **BatchUploadDetails** ismerteti az eszközök batch-feltöltésének állapotát az eszközök listáján található egyes eszközökön.
+**A BatchUploadDetails** az eszközök listájában az egyes eszközökre vonatkozó adatok kötegelt feltöltésének állapotát ismerteti.
 
 | Tulajdonság        | Típus     | Leírás                                                                  |
 |-----------------|----------|------------------------------------------------------------------------------|
-| batchTrackingId | sztring   | Egy GUID-formázott karakterlánc, amely a feltöltött eszközök kötegéhez van társítva. |
-| status          | sztring   | A Batch-feltöltés állapota: "Unknown", "üzenetsor-kezelés", "feldolgozás", "befejezett", "befejezett \_ with \_ errors". |
-| startedTime     | karakterlánc UTC dátum-idő formátumban | A kötegelt feltöltési folyamat elindításának dátuma és időpontja.   |
-| completedTime   | karakterlánc UTC dátum-idő formátumban  | A kötegelt feltöltési folyamat befejezésének dátuma és időpontja.   |
-| devicesStatus   | [DeviceUploadDetails](#deviceuploaddetails) -erőforrások tömbje | Objektumok tömbje, amely meghatározza az egyes eszközökre vonatkozó adatok feltöltésének állapotát. |
-| attribútumok      | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai.  |
+| batchTrackingId | sztring   | Egy GUID formátumú sztring, amely a feltöltött eszközök kötegéhez van társítva. |
+| status          | sztring   | A kötegelt feltöltés állapota: "unknown","queued","processing","finished","finished \_ with \_ errors". |
+| startedTime (elindított idő)     | sztring UTC dátum-idő formátumban | A kötegelt feltöltési folyamat elindulási dátuma és időpontja.   |
+| completedTime (kész idő)   | sztring UTC dátum-idő formátumban  | A kötegelt feltöltési folyamat befejezésének dátuma és időpontja.   |
+| devicesStatus   | [DeviceUploadDetails erőforrások tömbje](#deviceuploaddetails) | Objektumok tömbje, amely meghatározza az egyes eszközinformációk feltöltésének állapotát. |
+| Attribútumok      | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok.  |
 
 ## <a name="deviceuploaddetails"></a>DeviceUploadDetails
 
-A **DeviceUploadDetails** leírja az eszközre vonatkozó adatok feltöltésének állapotát.
+**A DeviceUploadDetails** az eszközzel kapcsolatos információk feltöltésének állapotát írja le.
 
 | Tulajdonság         | Típus                    | Leírás                                 |
 |------------------|-------------------------|---------------------------------------------|
-| deviceId         | sztring                  | Egy GUID-formázott karakterlánc, amely az eszközhöz van társítva. |
+| deviceId         | sztring                  | Az eszközhöz társított GUID formátumú sztring. |
 | serialNumber     | sztring                  | Az eszközhöz egyedileg társított sorozatszám. |
-| productKey       | sztring                  | Az eszközhöz egyedi módon társított termékkulcs. |
-| status           | sztring                  | Az eszköz adatai feltöltésének állapota: "folyamatban", "befejezett", "hibákkal fejeződött be \_ " \_ . |
-| errorCode        | sztring                  | A HTTP-állapot hibakódja visszaadott, ha az eszköz feltöltése sikertelen. |
-| errorDescription | sztring                  | A HTTP-hiba leírása, ha az eszköz feltöltése sikertelen. |
-| attribútumok       | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai.   |
+| Productkey       | sztring                  | Az eszközhöz egyedileg társított termékkulcs. |
+| status           | sztring                  | Az eszközinformációk feltöltésének állapota: "folyamatban", "kész", \_ "hibákkal \_ fejeződött be". |
+| errorCode        | sztring                  | Ha az eszköz feltöltése sikertelen, a rendszer HTTP-állapot hibakódot ad vissza. |
+| errorDescription (hibaleíró) | sztring                  | A HTTP-hiba leírása, ha az eszköz feltöltése sikertelen. |
+| Attribútumok       | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok.   |
 
 ## <a name="devicebatch"></a>DeviceBatch
 
-A **DeviceBatch** az eszközök gyűjteményét jelöli.
+**A DeviceBatch** eszközök gyűjteményét jelöli.
 
 | Tulajdonság     | Típus                                                           | Leírás                                                           |
 |--------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
-| id           | sztring                                                         | Egy GUID-formázott karakterlánc, amely az eszközök kötegéhez van társítva. |
-| createdBy    | sztring                                                         | Annak a bérlőnek a neve, amely létrehozta a gyűjteményt.                   |
-| creationDate | karakterlánc UTC dátum-idő formátumban                                 | A gyűjtemény létrehozásának dátuma és időpontja.                    |
-| Eszközök száma  | szám                                                         | A gyűjteményben lévő eszközök száma.                              |
-| devicesLink  | [Hivatkozás](utility-resources.md#link)                              | A kötegben található eszközökre mutató hivatkozás.                        |
-| attribútumok   | [ResourceAttributes](utility-resources.md#resourceattributes)  | A metaadatok attribútumai.                                              |
+| id           | sztring                                                         | Egy GUID formátumú sztring, amely az eszközök kötegéhez van társítva. |
+| createdBy    | sztring                                                         | A gyűjteményt létrehozó bérlő neve.                   |
+| creationDate (Létrehozás dátuma) | sztring UTC dátum-idő formátumban                                 | A gyűjtemény létrehozási ideje és adatai.                    |
+| deviceCount (eszköz száma)  | szám                                                         | A gyűjteményben az eszközök száma.                              |
+| devicesLink (eszközök hivatkozása)  | [Link](utility-resources.md#link)                              | A kötegben található eszközökre mutató hivatkozás.                        |
+| Attribútumok   | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes)  | A metaadat-attribútumok.                                              |
 
 ## <a name="devicebatchcreationrequest"></a>DeviceBatchCreationRequest
 
-A **DeviceBatchCreationRequest** biztosítja az eszköz kötegének létrehozásához és az eszközökhöz való feltöltéséhez szükséges információkat.
+**A DeviceBatchCreationRequest** az eszközkötet létrehozásához szükséges információkat biztosítja, és feltölti az eszközökkel.
 
 | Tulajdonság     | Típus                                                           | Leírás                                                           |
 |--------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
-| Kötegazonosító      | sztring                                                         | Egy GUID-formázott karakterlánc, amely az eszközök kötegéhez van társítva. |
-| eszközök      | [eszköz](#device) objektumainak tömbje                             | Minden objektum egy eszközt határoz meg. Az eszközök azonosítására szolgáló mezők alábbi kombinációit fogadja el: hardwareHash + termék, hardwareHash + serialNumber, hardwareHash + termék + serialNumber, csak hardwareHash, csak termék, serialNumber + oemManufacturerName + modelName. |
-| attribútumok   | [ResourceAttributes](utility-resources.md#resourceattributes)  | A metaadatok attribútumai.                                              |
+| batchId (kötegazonosító)      | sztring                                                         | Egy GUID formátumú sztring, amely az eszközök kötegéhez van társítva. |
+| eszközök      | [Eszközobjektumok tömbje](#device)                             | Minden objektum megad egy eszközt. Az eszköz azonosításához a következő mezőkombinációk lesznek elfogadva: hardwareHash + productKey, hardwareHash + serialNumber, hardwareHash + productKey + serialNumber, hardwareHash only, productKey only, serialNumber + oemManufacturerName + modelName. |
+| Attribútumok   | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes)  | A metaadat-attribútumok.                                              |
 
 ## <a name="devicepolicyupdaterequest"></a>DevicePolicyUpdateRequest
 
-A **DevicePolicyUpdateRequest** biztosítja a szabályzattal rendelkező eszközök listájának frissítéséhez szükséges információkat.
+**A DevicePolicyUpdateRequest** az eszközök listájának szabályzatokkal való frissítéséhez szükséges információkat tartalmazza.
 
 | Tulajdonság     | Típus                                                           | Leírás                                                           |
 |--------------|----------------------------------------------------------------|-----------------------------------------------------------------------|
-| eszközök      | [eszköz](#device) objektumainak tömbje                             | Minden objektum egy eszközt határoz meg. A következő tulajdonságokkal kell rendelkeznie: azonosító, szabályzatok. |
-| attribútumok   | [ResourceAttributes](utility-resources.md#resourceattributes)  | A metaadatok attribútumai.                                              |
+| eszközök      | [Eszközobjektumok tömbje](#device)                             | Minden objektum megad egy eszközt. A következő tulajdonságok szükségesek: Azonosító, Szabályzatok. |
+| Attribútumok   | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes)  | A metaadat-attribútumok.                                              |

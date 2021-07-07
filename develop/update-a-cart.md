@@ -1,37 +1,33 @@
 ---
 title: Kosár frissítése
-description: Ügyfél rendelésének frissítése egy kosárban.
+description: Hogyan frissítheti egy ügyfél megrendelését egy kosárban.
 ms.date: 10/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 7c0806ccc87281b9b34005f22cd8d6ad57fb5de5
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 8954d4dad39f9b1a1b9a2f213e0231f01856fcd2
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767835"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446683"
 ---
 # <a name="update-a-cart"></a>Kosár frissítése
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-Ügyfél rendelésének frissítése egy kosárban.
+Hogyan frissítheti egy ügyfél megrendelését egy kosárban.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- Egy meglévő kosárhoz tartozó kosár-azonosító.
+- Egy meglévő kosár azonosítója.
 
 ## <a name="c"></a>C\#
 
-Egy ügyfél rendelésének frissítéséhez szerezze be a kosárt a **Get ()** metódussal, ha az ügyfél és a kosár azonosítóját a **ById ()** függvény használatával adja át. Végezze el a szükséges módosításokat a kosárban. Most hívja meg a **put** metódust az ügyfél és a kosár azonosítójának használatával a **ById ()** metódus használatával.
+Az ügyfél megrendelésének frissítéséhez szerezze be a kosárt a **Get()** metódussal úgy, hogy a **ById()** függvény használatával ad át az ügyfél- és kosárazonosítókat. Tegye meg a szükséges módosításokat a kosáron. Most hívja meg a **Put** metódust ügyfél- és kosárazonosítók használatával a **ById() metódussal.**
 
-Végül hívja a **put ()** vagy a **PutAsync ()** metódust a rendelés létrehozásához.
+Végül hívja meg a **Put() vagy** **PutAsync()** metódust a rendelés létrehozásához.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -45,54 +41,54 @@ cart.LineItems.ToArray()[0].Quantity++;
 var updatedCart = partnerOperations.Customers.ById(customerId).Cart.ById(cartId).Put(cart);
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                 |
 |---------|-------------------------------------------------------------------------------------------------------------|
-| **PUT** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/carts/{cart-ID} http/1.1              |
+| **PUT** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfél-azonosító}/carts/{cart-id} HTTP/1.1              |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-A következő elérésiút-paraméterek használatával azonosíthatja az ügyfelet, és megadhatja a frissítendő szekéret.
+Az alábbi elérésiút-paraméterek használatával azonosíthatja az ügyfelet, és megadhatja a frissíteni kívánt kosárt.
 
 | Név            | Típus     | Kötelező | Leírás                                                            |
 |-----------------|----------|----------|------------------------------------------------------------------------|
 | **ügyfél-azonosító** | sztring   | Igen      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.             |
-| **kosár-azonosító**     | sztring   | Igen      | A szekér azonosítására szolgáló GUID formátumú kosár-azonosító.                     |
+| **cart-id**     | sztring   | Igen      | Egy GUID formátumú kocsiazonosító, amely azonosítja a kosárat.                     |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a táblázat a kérés törzsében lévő [kosár](cart-resources.md) tulajdonságait ismerteti.
+Ez a táblázat a kocsi [tulajdonságait ismerteti](cart-resources.md) a kérés törzsében.
 
 | Tulajdonság              | Típus             | Kötelező        | Leírás                                                                                               |
 |-----------------------|------------------|-----------------|-----------------------------------------------------------------------------------------------------------|
-| id                    | sztring           | No              | A kosár sikeres létrehozásához megadott cart-azonosító.                                  |
-| creationTimeStamp     | DateTime         | Nem              | A kosár létrehozásának dátuma dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazható.        |
-| lastModifiedTimeStamp | DateTime         | Nem              | A kosár utolsó frissítésének dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazható.    |
-| expirationTimeStamp   | DateTime         | Nem              | A kosár lejáratának dátuma dátum-idő formátumban.  A kosár sikeres létrehozása után alkalmazható.            |
-| lastModifiedUser      | sztring           | No              | A kosár utolsó frissítését végző felhasználó. A kosár sikeres létrehozása után alkalmazható.                             |
-| Listaelemek             | Objektumok tömbje | Igen             | [CartLineItem](cart-resources.md#cartlineitem) -erőforrások tömbje.                                               |
+| id                    | sztring           | No              | A kosár sikeres létrehozása után megadott bevásárlókocsi-azonosító.                                  |
+| creationTimeStamp     | DateTime         | Nem              | A kosár létrehozási dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva.        |
+| lastModifiedTimeStamp | DateTime         | Nem              | A kosár legutóbbi frissítésének dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva.    |
+| expirationTimeStamp (lejárat ideje)   | DateTime         | Nem              | A kosár lejáratának dátuma, dátum-idő formátumban.  A kosár sikeres létrehozása után alkalmazva.            |
+| lastModifiedUser      | sztring           | No              | Az a felhasználó, aki utoljára frissítette a kosárat. A kosár sikeres létrehozása után alkalmazva.                             |
+| lineItems (sorsorok)             | Objektumok tömbje | Igen             | [CartLineItem-erőforrások tömbje.](cart-resources.md#cartlineitem)                                               |
 
-Ez a táblázat a kérelem törzsének [CartLineItem](cart-resources.md#cartlineitem) tulajdonságait ismerteti.
+Ez a táblázat a [CartLineItem](cart-resources.md#cartlineitem) tulajdonságait ismerteti a kérés törzsében.
 
 | Tulajdonság             | Típus                        | Kötelező     | Leírás                                                                                        |
 |----------------------|-----------------------------|--------------|----------------------------------------------------------------------------------------------------|
-| id                   | sztring                      | No           | Egy cart-sor egyedi azonosítója. A kosár sikeres létrehozása után alkalmazható.                |
-| catalogId            | sztring                      | Igen          | A katalógus-elemek azonosítója.                                                                       |
-| friendlyName         | sztring                      | No           | Választható. A partner által a egyértelműsítse segítségére meghatározott rövid név.              |
+| id                   | sztring                      | No           | A kosársorelem egyedi azonosítója. A kosár sikeres létrehozása után alkalmazva.                |
+| catalogId (katalógusazonosító)            | sztring                      | Igen          | A katalóguselem azonosítója.                                                                       |
+| friendlyName (rövid név)         | sztring                      | No           | Választható. A partner által meghatározott elem rövid neve, amely segít az egyértelműsségben.              |
 | quantity             | int                         | Igen          | A licencek vagy példányok száma.     |
-| currencyCode         | sztring                      | No           | A Pénznemkód.                                                                                 |
-| billingCycle         | Objektum                      | Igen          | Az aktuális időszakban beállított számlázási ciklus típusa.                                              |
-| résztvevők         | Az Object string párok listája | Nem           | A vásárlás résztvevőinek gyűjteménye.                                                      |
-| provisioningContext  | Szótár<karakterlánc, karakterlánc>  | Nem           | Az ajánlat üzembe helyezéséhez használt környezet.                                                          |
-| orderGroup           | sztring                      | No           | Egy csoport, amely jelzi, hogy mely elemek helyezhetők el egymásba.                                            |
-| error                | Objektum                      | Nem           | A kosár létrehozásakor a rendszer hiba esetén alkalmazza.                                                 |
+| currencyCode         | sztring                      | No           | A pénznemkód.                                                                                 |
+| billingCycle (számlázási ciklus)         | Objektum                      | Igen          | Az aktuális időszakra beállított számlázási ciklus típusa.                                              |
+| Résztvevők         | Objektumsring-párok listája | Nem           | A vásárlás résztvevőinek gyűjteménye.                                                      |
+| provisioningContext  | Dictionary<string, string>  | Nem           | Az ajánlat építéshez használt környezet.                                                          |
+| orderGroup           | sztring                      | No           | Egy csoport, amely jelzi, hogy mely elemek helyezhetők el együtt.                                            |
+| error                | Objektum                      | Nem           | A kosár létrehozása után lesz alkalmazva hiba esetén.                                                 |
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -136,11 +132,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus a válasz törzsében lévő feltöltött [kosár](cart-resources.md) -erőforrást adja vissza.
+Ha ez a módszer sikeres, a válasz törzsében adja vissza a megadott [Cart](cart-resources.md) erőforrást.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

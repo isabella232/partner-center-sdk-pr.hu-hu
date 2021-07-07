@@ -1,43 +1,39 @@
 ---
 title: Törölt felhasználó visszaállítása egy ügyfélnél
-description: Törölt felhasználó visszaállítása ügyfél-azonosító és felhasználói azonosító alapján.
+description: Törölt felhasználó visszaállítása ügyfél- és felhasználói azonosító alapján.
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9fd86a268c804a2fdd5efd67a8982afc043c95a6
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 23caf91c6b29b292c2638b4a1ad208c606c47492
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768407"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445714"
 ---
 # <a name="restore-a-deleted-user-for-a-customer"></a>Törölt felhasználó visszaállítása egy ügyfélnél
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-Törölt **felhasználó** visszaállítása ügyfél-azonosító és felhasználói azonosító alapján.
+Törölt felhasználó visszaállítása  ügyfél- és felhasználói azonosító alapján.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- A felhasználói azonosító. Ha nem rendelkezik a felhasználói AZONOSÍTÓval, tekintse [meg az ügyfél törölt felhasználóinak megtekintése](view-a-deleted-user.md)című témakört.
+- A felhasználói azonosító. Ha nem tudja a felhasználói azonosítót, lásd: Törölt felhasználók [megtekintése egy ügyfélhez.](view-a-deleted-user.md)
 
-## <a name="when-can-you-restore-a-deleted-user-account"></a>Mikor állíthatja vissza a törölt felhasználói fiókot?
+## <a name="when-can-you-restore-a-deleted-user-account"></a>Mikor lehet visszaállítani egy törölt felhasználói fiókot?
 
-Felhasználói fiók törlésekor a felhasználói állapot "inaktív" értékre van állítva. Így harminc napig marad, amely után a felhasználói fiók és a hozzá tartozó adatok törlődnek, és helyreállíthatatlanul történnek. A törölt felhasználói fiókokat csak ezen a harminc napos időszakban lehet visszaállítani. Ha törölve lett, és "inaktív" jelöléssel jelölte meg, a felhasználói fiók már nem lesz visszaküldve a felhasználói gyűjtemény tagjaként (például az [ügyfél összes felhasználói fiókjának lekérése lista](get-a-list-of-all-user-accounts-for-a-customer.md)használatával).
+A felhasználói fiók törlésekor a felhasználói állapot "inaktív" lesz. Ez 30 napig így marad, ezt követően a rendszer kiüríti a felhasználói fiókot és a hozzá tartozó adatokat, és nem állítható vissza. Törölt felhasználói fiókot csak ebben a 30 napos időszakban lehet visszaállítani. A törlést és az "inaktívként" megjelölt felhasználói fiókot a rendszer már nem a felhasználói gyűjtemény tagjaként visszaadja (például a Get a list of all user accounts for a customer (Ügyfél összes felhasználói fiókjának [lekért listája) használatával).](get-a-list-of-all-user-accounts-for-a-customer.md)
 
 ## <a name="c"></a>C\#
 
-Egy felhasználó visszaállításához hozza létre a [**CustomerUser**](/dotnet/api/microsoft.store.partnercenter.models.users.customeruser) osztály új példányát, és állítsa be a [**User. State**](/dotnet/api/microsoft.store.partnercenter.models.users.user.state) tulajdonság értékét a [**UserState. Active**](/dotnet/api/microsoft.store.partnercenter.models.users.userstate)értékre.
+Felhasználó visszaállításához hozza létre a [**CustomerUser**](/dotnet/api/microsoft.store.partnercenter.models.users.customeruser) osztály egy új példányát, és állítsa a [**User.State**](/dotnet/api/microsoft.store.partnercenter.models.users.user.state) tulajdonság értékét [**UserState.Active értékre.**](/dotnet/api/microsoft.store.partnercenter.models.users.userstate)
 
-A törölt felhasználókat úgy állíthatja vissza, hogy a felhasználó állapotát aktívra állítja. A felhasználói erőforrásban nem kell újratöltenie a fennmaradó mezőket. Ezeket az értékeket a rendszer automatikusan visszaállítja a törölt, inaktív felhasználói erőforrásból. Ezután használja a [**IAggregatePartner. Customs. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval az ügyfél azonosításához, valamint a Users [**. ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust a felhasználó azonosításához.
+Egy törölt felhasználót úgy lehet visszaállítani, hogy a felhasználó állapotát aktívra állítani. A felhasználói erőforrás többi mezőjét nem kell újra kitöltenünk. Ezek az értékek automatikusan visszaállnak a törölt, inaktív felhasználói erőforrásból. Ezután használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához, és a [**Users.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust a felhasználó azonosításához.
 
-Végül hívja meg a [**patch**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.patch) metódust, és adja át a **CustomerUser** -példányt a felhasználó visszaállítására vonatkozó kérés elküldéséhez.
+Végül hívja meg a [**Patch**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.patch) metódust, és adja át a **CustomerUser** példányt, hogy elküldje a felhasználó visszaállítására vonatkozó kérést.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -53,37 +49,37 @@ var updatedCustomerUser = new CustomerUser()
 var restoredCustomerUserInfo = partnerOperations.Customers.ById(selectedCustomerId).Users.ById(selectedCustomerUserId).Patch(updatedCustomerUser);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: CustomerUserRestore.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** Partnerközpont SDK Samples **Osztály:** CustomerUserRestore.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus    | Kérés URI-ja                                                                                            |
 |-----------|--------------------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Users/{User-ID} http/1.1 |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/users/{felhasználói azonosító} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az ügyfél-azonosító és a felhasználói azonosító megadásához használja a következő lekérdezési paramétereket.
+A következő lekérdezési paraméterekkel adhatja meg az ügyfél-azonosítót és a felhasználói azonosítót.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                              |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó az eredményeket egy adott ügyfélre szűrje. |
-| **felhasználói azonosító**            | **guid** | Y        | Az érték egy olyan GUID formátumú **felhasználói azonosító** , amely egyetlen felhasználói fiókhoz tartozik.                                         |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy az eredményeket egy adott ügyfélre szűrje. |
+| **felhasználóazonosító**            | **guid** | Y        | Az érték egy GUID formátumú felhasználói **azonosító,** amely egyetlen felhasználói fiókhoz tartozik.                                         |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a táblázat a kérelem törzsében szereplő kötelező tulajdonságokat ismerteti.
+Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 | Név       | Típus   | Kötelező | Leírás                                                            |
 |------------|--------|----------|------------------------------------------------------------------------|
-| Állam      | sztring | Y        | A felhasználói állapot. A törölt felhasználók visszaállításához a karakterláncnak "aktív" értéknek kell lennie. |
-| Attribútumok | object | N        | A "objektumtípus": "CustomerUser" kifejezést tartalmazza.                                 |
+| Állapot      | sztring | Y        | A felhasználói állapot. Törölt felhasználó visszaállításához ennek a sztringnek "aktívnak" kell lennie. |
+| Attribútumok | object | N        | Tartalmazza az "ObjectType": "CustomerUser" adatokat.                                 |
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -109,11 +105,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz a visszaállított felhasználói adatokat adja vissza a válasz törzsében.
+Ha ez sikeres, a válasz visszaadja a visszaállított felhasználói adatokat a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

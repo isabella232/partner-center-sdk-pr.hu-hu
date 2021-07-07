@@ -1,59 +1,55 @@
 ---
-title: Önkiszolgáló házirend-erőforrások
-description: Egy partner állít be önkiszolgáló házirendeket az ügyfél számára.
+title: Önkiszolgáló szabályzat erőforrásai
+description: A partnerek önkiszolgáló szabályzatokat állít be az ügyfelek számára.
 ms.date: 04/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 04daf6aaeb69153c4139941188f53dbab8979969
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: e44581b805e076132984b67280699314e274ca94
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767843"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446717"
 ---
 # <a name="selfservepolicy-resource"></a>SelfServePolicy erőforrás
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Egy partner állít be önkiszolgáló házirendeket az ügyfél számára.
+A partnerek önkiszolgáló szabályzatokat állít be az ügyfelek számára.
 
 ## <a name="selfservepolicy"></a>SelfServePolicy
 
-Útmutató a kosárhoz.
+Egy kosárra ír le.
 
 | Tulajdonság              | Típus             | Leírás                                                                                            |
 |-----------------------|------------------|--------------------------------------------------------------------------------------------------------|
-| id                    | sztring           | Önkiszolgáló házirend-azonosító, amelyet az önkiszolgáló házirend sikeres létrehozásakor kell megadni.     |
-| SelfServeEntity       | SelfServeEntity  | Az önállóan kiszolgált entitás hozzáférést kap.                                                     |
-| Megadó fél               | Megadó fél          | A hozzáférést biztosító biztosító.                                                                    |
-| Engedélyek           | Engedély tömbje| [Engedélyezési](#permission) erőforrások tömbje.                                                                     |
+| id                    | sztring           | Önkiszolgáló szabályzatazonosító, amely az önkiszolgáló szabályzat sikeres létrehozásakor lesz megadva.     |
+| SelfServeEntity       | SelfServeEntity  | Az önkiszolgáló entitás, amely hozzáférést kap.                                                     |
+| Grantor               | Grantor          | A hozzáférést engedélyező megadó.                                                                    |
+| Engedélyek           | Engedélytömb| [Engedélyerőforrások tömbje.](#permission)                                                                     |
 
 ## <a name="selfserveentity"></a>SelfServeEntity
 
-Az engedélyt képviselő entitást jelöli.
+Az engedélyeket kapott entitást jelöli.
 
 | Tulajdonság             | Típus|Leírás|
 |----------------------|----------------------------------|--------------------------------------------------------------------------------------------|
-| SelfServeEntityType  | sztring                           | Az entitás hozzáférést kap, elfogadott értékek: ügyfél.                                 |
-| TenantID             | sztring                           | A hozzáférést engedélyező entitás bérlői azonosítója.                                   |
+| SelfServeEntityType  | sztring                           | A hozzáférést kapott entitás, elfogadott értékek: Ügyfél.                                 |
+| TenantID (Bérlőazonosító)             | sztring                           | A hozzáférést kapott entitás bérlőazonosítója.                                   |
 
-## <a name="grantor"></a>Megadó fél
+## <a name="grantor"></a>Grantor
 
-Az engedélyeket megadó megadót jelöli.
+Az engedélyeket megadó engedélyezőt jelöli.
 
 | Tulajdonság             | Típus|Leírás|
 |----------------------|----------------------------------|--------------------------------------------------------------------------------------------|
-| GrantorType          | sztring                           | A hozzáférést megadó engedélyező, elfogadott értékek: BillToPartner.                               |
-| TenantID             | sztring                           | A hozzáférést biztosító entitás bérlői azonosítója.                                       |
+| GrantorType (GrantorType)          | sztring                           | A hozzáférést engedélyező, elfogadott értékek: BillToPartner.                               |
+| TenantID (Bérlőazonosító)             | sztring                           | A hozzáférést megadó entitás bérlőazonosítója.                                       |
 
 
 ## <a name="permission"></a>Engedély
 
-Az önkiszolgáló házirendben lévő engedélyt jelöli.
+Az önkiszolgáló szabályzatban egy engedélyt képvisel.
 
 | Tulajdonság             | Típus|Leírás|
 |----------------------|----------------------------------|--------------------------------------------------------------------------------------------|
-| Erőforrás             | sztring                           | Az erőforrás-hozzáférés is meg van adva: AzureReservedInstances.                          |
-| Művelet               | sztring                           | A rendszer a következő műveletekhez biztosít hozzáférést: vásárlás                                           |
+| Erőforrás             | sztring                           | Az erőforrás-hozzáférés is biztosított: AzureReservedInstances.                          |
+| Művelet               | sztring                           | A művelethez való hozzáférés a következő hez adható meg: Vásárlás                                           |

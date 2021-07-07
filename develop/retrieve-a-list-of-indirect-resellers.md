@@ -1,31 +1,27 @@
 ---
 title: Közvetett viszonteladók listájának lekérése
-description: A bejelentkezett partner közvetett viszonteladói listájának beolvasása.
+description: A bejelentkezett partner közvetett viszonteladói listájának lekérése.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: e53237b97fa26d3a987f0ee7de491084b596af4a
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 58f5c3378b5b941fdc9dafcf28f5efbc58c29c7c
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768399"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446564"
 ---
 # <a name="retrieve-a-list-of-indirect-resellers"></a>Közvetett viszonteladók listájának lekérése
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-A bejelentkezett partner közvetett viszonteladói listájának beolvasása.
+A bejelentkezett partner közvetett viszonteladói listájának lekérése.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
-Azon közvetett viszonteladók listájának lekéréséhez, akikkel a bejelentkezett partnernek van kapcsolata, először szerezzen be egy felületet a kapcsolat gyűjtési műveleteihez a [**partnerOperations. kapcsolatok**](/dotnet/api/microsoft.store.partnercenter.ipartner.relationships) tulajdonságból. Ezután hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.relationships.irelationshipcollection.get) vagy a [**Get \_ aszinkron**](/dotnet/api/microsoft.store.partnercenter.relationships.irelationshipcollection.getasync) metódust, amely a [**PartnerRelationshipType**](/dotnet/api/microsoft.store.partnercenter.models.relationships.partnerrelationshiptype) enumerálás egy tagját továbbítja a kapcsolat típusának azonosításához. A közvetett viszonteladók beolvasásához a IsIndirectCloudSolutionProviderOf-t kell használnia.
+Azon közvetett viszonteladók listájának lekéréséhez, akikkel a bejelentkezett partner kapcsolatban áll, először szerezze be a [**partnerOperations.Relationships**](/dotnet/api/microsoft.store.partnercenter.ipartner.relationships) tulajdonságból a kapcsolatgyűjtési műveletek felületét. Ezután hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.relationships.irelationshipcollection.get) vagy [**Get \_ Async**](/dotnet/api/microsoft.store.partnercenter.relationships.irelationshipcollection.getasync) metódust, és adja át a [**PartnerRelationshipType enumerálás**](/dotnet/api/microsoft.store.partnercenter.models.relationships.partnerrelationshiptype) egyik tagját a kapcsolattípus azonosításához. A közvetett viszonteladók lekérése az IsIndirectCloudSolutionProviderOf parancs használatával oldható meg.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -33,27 +29,27 @@ Azon közvetett viszonteladók listájának lekéréséhez, akikkel a bejelentke
 var indirectResellers = partnerOperations.Relationships.Get(PartnerRelationshipType.IsIndirectCloudSolutionProviderOf);
 ```
 
-**Minta**: [Console test app](console-test-app.md)**Project**: a partner Center SDK Samples **osztálya**: GetIndirectResellers.cs
+**Minta:** [Konzoltesztelő](console-test-app.md)**alkalmazás Project:** Partnerközpont SDK Samples **Class:** GetIndirectResellers.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                                |
 |---------|----------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Relationships? kapcsolat \_ típusa = IsIndirectCloudSolutionProviderOf http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/relationships?relationship \_ type=IsIndirectCloudSolutionProviderOf HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A kapcsolat típusának azonosításához használja a következő lekérdezési paramétert.
+A kapcsolattípus azonosításához használja a következő lekérdezési paramétert.
 
 | Név               | Típus    | Kötelező  | Leírás                         |
 |--------------------|---------|-----------|-------------------------------------|
-| relationship_type  | sztring  | Igen       | Az érték a [PartnerRelationshipType](/dotnet/api/microsoft.store.partnercenter.models.relationships.partnerrelationshiptype)található egyik tag nevének karakterláncos ábrázolása.<br/><br/> Ha a partner be van jelentkezve szolgáltatóként, és szeretné lekérni azon közvetett viszonteladók listáját, akikkel kapcsolatot létesítettek, használja a IsIndirectCloudSolutionProviderOf.<br/><br/> Ha a partnert viszonteladóként jelentkezett be, és szeretné lekérni azon közvetett szolgáltatók listáját, akikkel kapcsolatot létesítettek, használja a IsIndirectResellerOf-t.    |
+| relationship_type  | sztring  | Igen       | Az érték a [PartnerRelationshipType](/dotnet/api/microsoft.store.partnercenter.models.relationships.partnerrelationshiptype)típusban található egyik tagnév sztringes ábrázolása.<br/><br/> Ha a partner szolgáltatóként van bejelentkezve, és le szeretné kapni azon közvetett viszonteladók listáját, akikkel kapcsolatot létrehoztak, használja az IsIndirectCloudSolutionProviderOf használhatja.<br/><br/> Ha a partner viszonteladóként van bejelentkezve, és le szeretné kapni azon közvetett szolgáltatók listáját, akikkel kapcsolatot létrehozott, használja az IsIndirectResellerOf használhatja.    |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -73,11 +69,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse [PartnerRelationship](relationships-resources.md) -erőforrások gyűjteményét tartalmazza a viszonteladók azonosításához.
+Ha a válasz törzse sikeres, a [partnerreláció](relationships-resources.md) erőforrásainak gyűjteményét tartalmazza a viszonteladók azonosításához.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 ### <a name="response-example"></a>Példa válaszra
 

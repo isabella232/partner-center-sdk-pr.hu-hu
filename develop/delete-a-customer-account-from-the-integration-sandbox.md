@@ -1,61 +1,56 @@
 ---
 title: Ügyfélfiók törlése az integrációs tesztkörnyezetből
-description: Felhasználói fiók törlése a tesztelés éles környezetben (tip) integrációs munkaterületen.
+description: Ügyfélfiók törlése a Tesztelés éles környezetben (Tipp) integrációs tesztkészletből.
 ms.date: 06/20/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: e3a1642c0202c174ddd4f65a6aeda2752def9176
-ms.sourcegitcommit: b1ff781b67b1d322820bbcac2c583229201a8c07
+ms.openlocfilehash: b9d9e44ac9c40bd4e3c7e1a9e04253f853dfd96c
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "97768156"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973128"
 ---
 # <a name="delete-a-customer-account-from-the-integration-sandbox"></a>Ügyfélfiók törlése az integrációs tesztkörnyezetből
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Ez a cikk ismerteti a partner és az ügyfél közötti kapcsolat bontását, és visszanyeri a kvótát az üzemi (tip) integrációs munkaterületre való teszteléshez.
+Ez a cikk azt ismerteti, hogyan lehet megszakítani a partner és az ügyfélfiók közötti kapcsolatot, és vissza lehet szerezni a tesztelési kvótát éles környezetben (Tipp) az integrációs tesztkészletben.
 
 > [!IMPORTANT]
-> Ha töröl egy ügyfél-fiókot, az ügyfél-bérlőhöz társított összes erőforrás törlődni fog.
+> Amikor töröl egy ügyfélfiókot, az adott ügyfélbérlőhöz társított összes erőforrás törölve lesz.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- Az összes Azure Reserved Virtual Machine Instances-és szoftver-beszerzési rendelést meg kell szüntetni, mielőtt törölné egy ügyfelet a tip Integration sandbox-ból.
+- Minden Azure Reserved Virtual Machine Instances és szoftvervásárlási rendelést meg kell szakítani, mielőtt törölné az ügyfelet a Tipp integrációs védőfalból.
 
 ## <a name="c"></a>C\#
 
-Ügyfél törlése a tipp-integrációs homokozóból:
+Ügyfél törlése a Tipp integrációs védőfalból:
 
-1. Adja át a tip-fiókja hitelesítő adatait a [**CreatePartnerOperations**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) metódusnak, hogy [**IPartner**](/dotnet/api/microsoft.store.partnercenter.ipartner) felületet kapjon a partneri műveletekhez.
+1. Adja át Tipp-fiókja hitelesítő adatait a [**CreatePartnerOperations**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) metódusnak, hogy [**IPartner-felületet**](/dotnet/api/microsoft.store.partnercenter.ipartner) kapjon a partneri műveletekhez.
 
-2. A jogosultságok gyűjteményének lekéréséhez használja a partner műveleti felületet:
+2. A partner műveleti felületén lekéri a jogosultságok gyűjteményét:
 
-    1. Az ügyfél megadásához hívja meg a [**customers. ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval.
+    1. Az ügyfél megadásához hívja meg a [**Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfélazonosítóval.
 
-    2. Hívja meg a **jogosultságok** tulajdonságot.
+    2. Hívja meg **a Jogosultságok tulajdonságot.**
 
-    3. A [**jogosultságok**](entitlement-resources.md) gyűjtésének lekéréséhez hívja meg a **Get** vagy a **GetAsync** metódust.
+    3. Hívja meg **a Get** vagy **GetAsync metódust** a jogosultsággyűjtemény [**lekéréséhez.**](entitlement-resources.md)
 
-3. Győződjön meg arról, hogy az ügyfél összes Azure Reserved Virtual Machine Instances és szoftveres beszerzési rendelése meg lett szakítva. A gyűjtemény minden [**jogosultságához**](entitlement-resources.md) :
+3. Győződjön meg arról, Azure Reserved Virtual Machine Instances ügyfél összes rendelése és szoftvervásárlási rendelése törölve lett. A gyűjtemény [**minden egyes jogosultsága**](entitlement-resources.md) esetén:
 
-    1. Használja a [**jogosultságot. A ReferenceOrder.Id**](entitlement-resources.md#referenceorder) a megfelelő [rendelés](order-resources.md#order) helyi másolatát kapja meg az ügyfél rendeléseinek gyűjteményéből.
+    1. Használja a [**jogosultságot. ReferenceOrder.Id**](entitlement-resources.md#referenceorder) le kell szereznie a megfelelő [](order-resources.md#order) rendelés helyi másolatát az ügyfél rendelésgyűjteményéből.
 
-    2. Állítsa a [**Order. status**](order-resources.md#order) tulajdonságot "megszakítva" értékre.
+    2. Állítsa az [**Order.Status**](order-resources.md#order) tulajdonságot "Megszakítva" állapotra.
 
-    3. A **javítás ()** metódus használatával frissítse a sorrendet.
+    3. Frissítse a sorrendet a **Patch()** metódussal.
 
-4. Az összes megrendelés megszakítása. Az alábbi mintakód például egy hurkot használ az egyes sorrendek lekérdezéséhez, amíg az állapota "megszakítva".
+4. Az összes rendelés visszavonása. A következő kódminta például egy ciklussal lekérdezi az egyes rendeléseket, amíg az állapota "Cancelled" (Megszakítva) nem lesz.
 
     ``` csharp
     // IPartnerCredentials tipAccountCredentials;
@@ -64,7 +59,7 @@ Ez a cikk ismerteti a partner és az ügyfél közötti kapcsolat bontását, é
 
     IPartner tipAccountPartnerOperations = PartnerService.Instance.CreatePartnerOperations(tipAccountCredentials);
 
-    // Get all entitlements whose order must be cancelled.
+    // Get all entitlements whose order must be canceled.
     ResourceCollection<Entitlement> entitlements = tipAccountPartnerOperations.Customers.ById(customerTenantId).Entitlements.Get();
 
     // Cancel all orders
@@ -79,7 +74,7 @@ Ez a cikk ismerteti a partner és az ügyfél közötti kapcsolat bontását, é
     bool proceed = true;
     do
     {
-        // Check if all the orders were cancelled.
+        // Check if all the orders were canceled.
         foreach (var entitlement in entitlements)
         {
             var order = tipAccountPartnerOperations.Customers.ById(customerTenantId).Orders.ById(entitlement.ReferenceOrder.Id).Get();
@@ -97,29 +92,29 @@ Ez a cikk ismerteti a partner és az ügyfél közötti kapcsolat bontását, é
     tipAccountPartnerOperations.Customers.ById(customerTenantId).Delete();
     ```
 
-5. Győződjön meg arról, hogy az összes megrendelést megszakította az ügyfél **törlési** metódusának meghívásával.
+5. Az ügyfél Delete metódusának hívásával győződjön meg arról, hogy minden rendelés vissza lett szakítva. 
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center PartnerCenterSDK. FeaturesSamples **osztály**: DeleteCustomerFromTipAccount.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont PartnerCenterSDK.FeaturesSamples **osztály:** DeleteCustomerFromTipAccount.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus     | Kérés URI-ja                                                                            |
 |------------|----------------------------------------------------------------------------------------|
-| DELETE     | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID} http/1.1 |
+| DELETE     | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id} HTTP/1.1 |
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
-Az ügyfél törléséhez használja a következő lekérdezési paramétert.
+Az alábbi lekérdezési paraméterrel törölhet egy ügyfelet.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                         |
 |------------------------|----------|----------|-------------------------------------------------------------------------------------|
-| ügyfél – bérlő – azonosító     | GUID     | Y        | Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti. |
+| ügyfél-bérlő-azonosító     | GUID     | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -137,11 +132,11 @@ Content-Length: 0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus üres választ ad vissza.
+Sikeres művelet esetén ez a metódus üres választ ad vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

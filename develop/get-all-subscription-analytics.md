@@ -1,56 +1,51 @@
 ---
 title: Az összes előfizetés elemzési adatainak lekérése
-description: Az előfizetés-elemzési információk beszerzése.
+description: Az összes előfizetés-elemzési információ lekért adatai.
 ms.date: 08/02/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: f32fb99ad52939ae8e9de26276588d3022f18fbc
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: e1f16c92569a02bc51c96a85ecb642fbeb76a9a7
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767711"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760249"
 ---
 # <a name="get-all-subscription-analytics-information"></a>Az összes előfizetés elemzési adatainak lekérése
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Ez a cikk azt ismerteti, hogyan kérhető le az összes előfizetés-elemzési információ az ügyfelek számára.
+Ez a cikk azt ismerteti, hogyan lehet lekért összes előfizetési elemzési információt lekért ügyfelek számára.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus | Kérés URI-ja |
 |--------|-------------|
-| **GET** | [*\{ BASEURL \}*](partner-center-rest-urls.md)/partner/v1/Analytics/Subscriptions http/1.1 |
+| **Kap** | [*\{ baseURL \}*](partner-center-rest-urls.md)/partner/v1/analytics/subscriptions HTTP/1.1 |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-Az alábbi táblázat a választható paramétereket és azok leírásait tartalmazza:
+A következő táblázat a választható paramétereket és azok leírását sorolja fel:
 
 | Paraméter | Típus |  Leírás |
 |-----------|------|--------------|
-| top | int | A kérelemben visszaadni kívánt adatsorok száma. Ha az érték nincs megadva, a maximális érték és az alapértelmezett érték `10000` . Ha több sor van a lekérdezésben, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldalának lekérésére használható. |
-| kihagyása | int | A lekérdezésben kihagyni kívánt sorok száma. Használja ezt a paramétert a nagy adathalmazokon keresztüli lapra. Például, `top=10000` és `skip=0` lekérdezi az első 10000 sort, `top=10000` és `skip=10000` lekéri a következő 10000 sort. |
-| filter (szűrő) | sztring | Egy vagy több olyan utasítás, amely a válasz sorait szűri. Minden szűrő-utasítás tartalmaz egy mezőnevet a válasz törzsében, valamint egy olyan értéket, amely a **`eq`** , a **`ne`** vagy bizonyos mezőkhöz társítva van **`contains`** . Az utasítások kombinálhatók a vagy a használatával **`and`** **`or`** . A karakterlánc-értékeket szimpla idézőjelek között kell megadni a **Filter** paraméterben. Tekintse meg a következő szakaszt a szűrhető mezők és a mezők által támogatott operátorok listájához. |
-| aggregationLevel | sztring | Meghatározza azt az időtartományt, amely esetében az összesített adatokat le kell olvasni. A következő karakterláncok egyike lehet: **nap**, **hét** vagy **hónap**. Ha az érték nincs megadva, az alapértelmezett érték a **dateRange**. Ez a paraméter csak akkor érvényes, ha a **groupBy** paraméter részeként egy Date mezőt ad át. |
-| groupBy | sztring | Olyan utasítás, amely csak a megadott mezőkre alkalmazza az adatösszesítést. |
+| top | int | A kérelemben visszaadni kívánt adatsorok száma. Ha az érték nincs megadva, a maximális érték és az alapértelmezett érték `10000` . Ha a lekérdezés több sort tartalmaz, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldal lekérésére használható. |
+| Ugrál | int | A lekérdezésben kihagyni kívánt sorok száma. Ezzel a paraméterrel nagy adatkészletek között lapokat laposszunk. A például lekéri az első 10000 adatsort, és lekéri a következő `top=10000` `skip=0` `top=10000` `skip=10000` 10000 adatsort. |
+| filter (szűrő) | sztring | Egy vagy több utasítás, amely szűri a válasz sorait. Minden filter utasítás tartalmaz egy mezőnevet a válasz törzséből, valamint egy értéket, amely a , vagy egyes mezőkhöz, a operátorhoz **`eq`** **`ne`** van **`contains`** társítva. Az utasítások kombinálhatók a vagy **`and`** a **`or`** használatával. A sztringértékeket a szűrőparaméterben idézőjelek közé **kell tenni.** A következő szakaszban felsoroljuk a szűrhető mezőket, valamint az ezekhez a mezőkhöz támogatott operátorokat. |
+| aggregationLevel | sztring | Megadja az összesített adatok lekérésének időtartományát. A következő sztringek egyike lehet: **day,** **week**, vagy **month.** Ha az érték nincs megadva, az alapértelmezett érték **a dateRange.** Ez a paraméter csak akkor érvényes, ha egy dátummezőt ad át a **groupBy paraméter** részeként. |
+| groupBy | sztring | Olyan utasítás, amely csak a megadott mezőkre alkalmazza az adatösszesítőt. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -68,11 +63,11 @@ Content-Length: 0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse az [**előfizetési**](partner-center-analytics-resources.md#subscription-resource) erőforrások gyűjteményét tartalmazza.
+Ha a művelet sikeres, a válasz törzse előfizetési erőforrások [**gyűjteményét**](partner-center-analytics-resources.md#subscription-resource) tartalmazza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
