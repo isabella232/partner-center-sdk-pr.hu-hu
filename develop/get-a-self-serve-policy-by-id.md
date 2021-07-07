@@ -1,59 +1,55 @@
 ---
-title: Önkiszolgáló szabályzat lekérése azonosító alapján
-description: Lekérdezi a megadott önkiszolgálási házirendet az AZONOSÍTÓjának használatával.
+title: Önkiszolgáló szabályzat lekért azonosítója
+description: Lekérte a megadott önkiszolgáló szabályzatot az azonosítójával.
 ms.date: 04/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: ec01d0d9b7c3858cdacf1dbaad3b2b0bb7b6a1a4
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 074d7ba65c7aab91687a67f50e871cee913fc2bb
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767932"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111873836"
 ---
-# <a name="get-a-self-serve-policy-by-id"></a><span data-ttu-id="8c441-103">Önkiszolgáló szabályzat lekérése azonosító alapján</span><span class="sxs-lookup"><span data-stu-id="8c441-103">Get a self serve policy by ID</span></span>
+# <a name="get-a-self-serve-policy-by-id"></a><span data-ttu-id="9a769-103">Önkiszolgáló szabályzat lekért azonosítója</span><span class="sxs-lookup"><span data-stu-id="9a769-103">Get a self-serve policy by ID</span></span>
 
-<span data-ttu-id="8c441-104">**A következőkre vonatkozik**</span><span class="sxs-lookup"><span data-stu-id="8c441-104">**Applies To**</span></span>
+<span data-ttu-id="9a769-104">Lekérte a megadott önkiszolgáló szabályzatot az azonosítójával.</span><span class="sxs-lookup"><span data-stu-id="9a769-104">Gets the specified self-serve policy using its ID.</span></span>
 
-- <span data-ttu-id="8c441-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="8c441-105">Partner Center</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="9a769-105">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="9a769-105">Prerequisites</span></span>
 
-<span data-ttu-id="8c441-106">Lekérdezi a megadott önkiszolgálási házirendet az AZONOSÍTÓjának használatával.</span><span class="sxs-lookup"><span data-stu-id="8c441-106">Gets the specified self serve policy using its ID.</span></span>
+- <span data-ttu-id="9a769-106">Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="9a769-106">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="9a769-107">Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="9a769-107">This scenario supports authentication with App+User credentials.</span></span>
+- <span data-ttu-id="9a769-108">Egy önkiszolgáló szabályzatazonosító.</span><span class="sxs-lookup"><span data-stu-id="9a769-108">A self-serve policy ID.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="8c441-107">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="8c441-107">Prerequisites</span></span>
-
-- <span data-ttu-id="8c441-108">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="8c441-108">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="8c441-109">Ez a forgatókönyv támogatja a hitelesítést az App + User hitelesítő adataival.</span><span class="sxs-lookup"><span data-stu-id="8c441-109">This scenario supports authentication with App+User credentials.</span></span>
-- <span data-ttu-id="8c441-110">Önkiszolgáló házirend-azonosító.</span><span class="sxs-lookup"><span data-stu-id="8c441-110">A self serve policy ID.</span></span>
-
-## <a name="examples"></a><span data-ttu-id="8c441-111">Példák</span><span class="sxs-lookup"><span data-stu-id="8c441-111">Examples</span></span>
+## <a name="examples"></a><span data-ttu-id="9a769-109">Példák</span><span class="sxs-lookup"><span data-stu-id="9a769-109">Examples</span></span>
 
 
-## <a name="span-idrest_requestspan-idrest_requestspan-idrest_requestrest-request"></a><span data-ttu-id="8c441-112"><span id="REST_Request"/><span id="rest_request"/><span id="REST_REQUEST"/>REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="8c441-112"><span id="REST_Request"/><span id="rest_request"/><span id="REST_REQUEST"/>REST Request</span></span>
+## <a name="span-idrest_requestspan-idrest_requestspan-idrest_requestrest-request"></a><span data-ttu-id="9a769-110"><span id="REST_Request"/><span id="rest_request"/><span id="REST_REQUEST"/>REST-kérés</span><span class="sxs-lookup"><span data-stu-id="9a769-110"><span id="REST_Request"/><span id="rest_request"/><span id="REST_REQUEST"/>REST Request</span></span>
 
-<span data-ttu-id="8c441-113">**Kérelem szintaxisa**</span><span class="sxs-lookup"><span data-stu-id="8c441-113">**Request syntax**</span></span>
+<span data-ttu-id="9a769-111">**Kérés szintaxisa**</span><span class="sxs-lookup"><span data-stu-id="9a769-111">**Request syntax**</span></span>
 
-| <span data-ttu-id="8c441-114">Metódus</span><span class="sxs-lookup"><span data-stu-id="8c441-114">Method</span></span>  | <span data-ttu-id="8c441-115">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="8c441-115">Request URI</span></span>                                                                   |
+| <span data-ttu-id="9a769-112">Metódus</span><span class="sxs-lookup"><span data-stu-id="9a769-112">Method</span></span>  | <span data-ttu-id="9a769-113">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="9a769-113">Request URI</span></span>                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| <span data-ttu-id="8c441-116">**GET**</span><span class="sxs-lookup"><span data-stu-id="8c441-116">**GET**</span></span> | <span data-ttu-id="8c441-117">[*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{ID} http/1.1</span><span class="sxs-lookup"><span data-stu-id="8c441-117">[*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{id} HTTP/1.1</span></span> |
+| <span data-ttu-id="9a769-114">**Kap**</span><span class="sxs-lookup"><span data-stu-id="9a769-114">**GET**</span></span> | <span data-ttu-id="9a769-115">[*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{id} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="9a769-115">[*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{id} HTTP/1.1</span></span> |
 
-<span data-ttu-id="8c441-118">**URI-paraméter**</span><span class="sxs-lookup"><span data-stu-id="8c441-118">**URI parameter**</span></span>
+<span data-ttu-id="9a769-116">**URI-paraméter**</span><span class="sxs-lookup"><span data-stu-id="9a769-116">**URI parameter**</span></span>
 
-<span data-ttu-id="8c441-119">A megadott termék beolvasásához használja a következő elérésiút-paramétereket.</span><span class="sxs-lookup"><span data-stu-id="8c441-119">Use the following path parameters to get the specified product.</span></span>
+<span data-ttu-id="9a769-117">A megadott termék lekért értékével az alábbi elérésiút-paramétereket használhatja.</span><span class="sxs-lookup"><span data-stu-id="9a769-117">Use the following path parameters to get the specified product.</span></span>
 
-| <span data-ttu-id="8c441-120">Név</span><span class="sxs-lookup"><span data-stu-id="8c441-120">Name</span></span>                       | <span data-ttu-id="8c441-121">Típus</span><span class="sxs-lookup"><span data-stu-id="8c441-121">Type</span></span>         | <span data-ttu-id="8c441-122">Kötelező</span><span class="sxs-lookup"><span data-stu-id="8c441-122">Required</span></span> | <span data-ttu-id="8c441-123">Leírás</span><span class="sxs-lookup"><span data-stu-id="8c441-123">Description</span></span>                                                     |
+| <span data-ttu-id="9a769-118">Név</span><span class="sxs-lookup"><span data-stu-id="9a769-118">Name</span></span>                       | <span data-ttu-id="9a769-119">Típus</span><span class="sxs-lookup"><span data-stu-id="9a769-119">Type</span></span>         | <span data-ttu-id="9a769-120">Kötelező</span><span class="sxs-lookup"><span data-stu-id="9a769-120">Required</span></span> | <span data-ttu-id="9a769-121">Leírás</span><span class="sxs-lookup"><span data-stu-id="9a769-121">Description</span></span>                                                     |
 |----------------------------|--------------|----------|-----------------------------------------------------------------|
-| <span data-ttu-id="8c441-124">**SelfServePolicy-azonosító**</span><span class="sxs-lookup"><span data-stu-id="8c441-124">**SelfServePolicy-id**</span></span>     | <span data-ttu-id="8c441-125">**karakterlánc**</span><span class="sxs-lookup"><span data-stu-id="8c441-125">**string**</span></span>   | <span data-ttu-id="8c441-126">Igen</span><span class="sxs-lookup"><span data-stu-id="8c441-126">Yes</span></span>      | <span data-ttu-id="8c441-127">Az önkiszolgáló házirendet azonosító karakterlánc.</span><span class="sxs-lookup"><span data-stu-id="8c441-127">A string that identifies the self serve policy.</span></span>                 |
+| <span data-ttu-id="9a769-122">**SelfServePolicy-id**</span><span class="sxs-lookup"><span data-stu-id="9a769-122">**SelfServePolicy-id**</span></span>     | <span data-ttu-id="9a769-123">**sztring**</span><span class="sxs-lookup"><span data-stu-id="9a769-123">**string**</span></span>   | <span data-ttu-id="9a769-124">Igen</span><span class="sxs-lookup"><span data-stu-id="9a769-124">Yes</span></span>      | <span data-ttu-id="9a769-125">Az önkiszolgáló szabályzatot azonosító sztring.</span><span class="sxs-lookup"><span data-stu-id="9a769-125">A string that identifies the self-serve policy.</span></span>                 |
 
-<span data-ttu-id="8c441-128">**Kérésfejlécek**</span><span class="sxs-lookup"><span data-stu-id="8c441-128">**Request headers**</span></span>
+<span data-ttu-id="9a769-126">**Kérelemfejlécek**</span><span class="sxs-lookup"><span data-stu-id="9a769-126">**Request headers**</span></span>
 
-- <span data-ttu-id="8c441-129">További információért lásd a [fejléceket](headers.md) .</span><span class="sxs-lookup"><span data-stu-id="8c441-129">See [Headers](headers.md) for more information.</span></span>
+- <span data-ttu-id="9a769-127">További információ: [Fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="9a769-127">For more information, see [Headers](headers.md).</span></span>
 
-<span data-ttu-id="8c441-130">**Kérelem törzse**</span><span class="sxs-lookup"><span data-stu-id="8c441-130">**Request body**</span></span>
+<span data-ttu-id="9a769-128">**Kérelem törzse**</span><span class="sxs-lookup"><span data-stu-id="9a769-128">**Request body**</span></span>
 
-<span data-ttu-id="8c441-131">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="8c441-131">None.</span></span>
+<span data-ttu-id="9a769-129">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="9a769-129">None.</span></span>
 
-<span data-ttu-id="8c441-132">**Példa kérésre**</span><span class="sxs-lookup"><span data-stu-id="8c441-132">**Request example**</span></span>
+<span data-ttu-id="9a769-130">**Példa kérésre**</span><span class="sxs-lookup"><span data-stu-id="9a769-130">**Request example**</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/SelfServePolicy/634f6379-ad54-449b-9821-564f737158ab_0431a72c-7d8a-4393-b25e-ef63f5efb415 HTTP/1.1
@@ -63,21 +59,21 @@ MS-RequestId: 031160b2-b0b0-4d40-b2b1-aaa9bb84211d
 MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="8c441-133">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="8c441-133">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="9a769-131">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="9a769-131">REST response</span></span>
 
-<span data-ttu-id="8c441-134">Ha ez sikeres, a válasz törzse [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) -erőforrást tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="8c441-134">If successful, the response body contains a [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) resource.</span></span>
+<span data-ttu-id="9a769-132">Ha ez sikeres, a válasz törzse tartalmaz egy [SelfServePolicy erőforrást.](self-serve-policy-resources.md#selfservepolicy)</span><span class="sxs-lookup"><span data-stu-id="9a769-132">If successful, the response body contains a [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) resource.</span></span>
 
-<span data-ttu-id="8c441-135">**Válasz sikeres és hibakódok**</span><span class="sxs-lookup"><span data-stu-id="8c441-135">**Response success and error codes**</span></span>
+<span data-ttu-id="9a769-133">**Sikeres válasz és hibakódok**</span><span class="sxs-lookup"><span data-stu-id="9a769-133">**Response success and error codes**</span></span>
 
-<span data-ttu-id="8c441-136">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="8c441-136">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="8c441-137">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="8c441-137">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="8c441-138">A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).</span><span class="sxs-lookup"><span data-stu-id="8c441-138">For the full list, see [Partner Center error codes](error-codes.md).</span></span>
+<span data-ttu-id="9a769-134">Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="9a769-134">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="9a769-135">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="9a769-135">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="9a769-136">A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).</span><span class="sxs-lookup"><span data-stu-id="9a769-136">For the full list, see [Partner Center error codes](error-codes.md).</span></span>
 
-<span data-ttu-id="8c441-139">Ez a metódus a következő hibakódokat adja vissza:</span><span class="sxs-lookup"><span data-stu-id="8c441-139">This method returns the following error codes:</span></span>
+<span data-ttu-id="9a769-137">Ez a metódus a következő hibakódokat adja vissza:</span><span class="sxs-lookup"><span data-stu-id="9a769-137">This method returns the following error codes:</span></span>
 
-| <span data-ttu-id="8c441-140">HTTP-állapotkód</span><span class="sxs-lookup"><span data-stu-id="8c441-140">HTTP Status Code</span></span>     | <span data-ttu-id="8c441-141">Hibakód</span><span class="sxs-lookup"><span data-stu-id="8c441-141">Error code</span></span>   | <span data-ttu-id="8c441-142">Leírás</span><span class="sxs-lookup"><span data-stu-id="8c441-142">Description</span></span>                                                                |
+| <span data-ttu-id="9a769-138">HTTP-állapotkód</span><span class="sxs-lookup"><span data-stu-id="9a769-138">HTTP Status Code</span></span>     | <span data-ttu-id="9a769-139">Hibakód</span><span class="sxs-lookup"><span data-stu-id="9a769-139">Error code</span></span>   | <span data-ttu-id="9a769-140">Leírás</span><span class="sxs-lookup"><span data-stu-id="9a769-140">Description</span></span>                                                                |
 |----------------------|--------------|----------------------------------------------------------------------------|
-| <span data-ttu-id="8c441-143">404</span><span class="sxs-lookup"><span data-stu-id="8c441-143">404</span></span>                  | <span data-ttu-id="8c441-144">600039</span><span class="sxs-lookup"><span data-stu-id="8c441-144">600039</span></span>       | <span data-ttu-id="8c441-145">Az önkiszolgáló házirend nem található.</span><span class="sxs-lookup"><span data-stu-id="8c441-145">Self serve policy not found.</span></span>                                                     |
+| <span data-ttu-id="9a769-141">404</span><span class="sxs-lookup"><span data-stu-id="9a769-141">404</span></span>                  | <span data-ttu-id="9a769-142">600039</span><span class="sxs-lookup"><span data-stu-id="9a769-142">600039</span></span>       | <span data-ttu-id="9a769-143">Az önkiszolgáló szabályzat nem található.</span><span class="sxs-lookup"><span data-stu-id="9a769-143">Self-serve policy not found.</span></span>                                                     |
 
-<span data-ttu-id="8c441-146">**Példa válaszra**</span><span class="sxs-lookup"><span data-stu-id="8c441-146">**Response example**</span></span>
+<span data-ttu-id="9a769-144">**Példa válaszra**</span><span class="sxs-lookup"><span data-stu-id="9a769-144">**Response example**</span></span>
 
 ```http
 HTTP/1.1 200 OK

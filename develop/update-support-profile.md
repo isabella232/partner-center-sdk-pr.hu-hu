@@ -1,34 +1,29 @@
 ---
 title: Támogatási profil frissítése
-description: A felhasználó támogatási profiljának frissítése.
+description: Frissíti a felhasználó támogatási profilját.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 605c509eeb18f301144fec6287c9611d5a5acfe2
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 143328c5501f525d52911eead805d420f79b78ff
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768271"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530344"
 ---
-# <a name="update-support-profile"></a><span data-ttu-id="bbad6-103">Támogatási profil frissítése</span><span class="sxs-lookup"><span data-stu-id="bbad6-103">Update support profile</span></span>
+# <a name="update-support-profile"></a><span data-ttu-id="71c86-103">Támogatási profil frissítése</span><span class="sxs-lookup"><span data-stu-id="71c86-103">Update support profile</span></span>
 
-<span data-ttu-id="bbad6-104">**A következőkre vonatkozik**</span><span class="sxs-lookup"><span data-stu-id="bbad6-104">**Applies To**</span></span>
+<span data-ttu-id="71c86-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="71c86-104">**Applies to**: Partner Center | Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="bbad6-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="bbad6-105">Partner Center</span></span>
-- <span data-ttu-id="bbad6-106">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="bbad6-106">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="bbad6-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="bbad6-107">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="bbad6-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="bbad6-108">Partner Center for Microsoft Cloud for US Government</span></span>
+<span data-ttu-id="71c86-105">Frissíti a felhasználó támogatási profilját.</span><span class="sxs-lookup"><span data-stu-id="71c86-105">Updates a user's support profile.</span></span>
 
-<span data-ttu-id="bbad6-109">A felhasználó támogatási profiljának frissítése.</span><span class="sxs-lookup"><span data-stu-id="bbad6-109">Updates a user's support profile.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="71c86-106">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="71c86-106">Prerequisites</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="bbad6-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="bbad6-110">Prerequisites</span></span>
+- <span data-ttu-id="71c86-107">Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="71c86-107">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="71c86-108">Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.</span><span class="sxs-lookup"><span data-stu-id="71c86-108">This scenario supports authentication with App+User credentials only.</span></span>
 
-- <span data-ttu-id="bbad6-111">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="bbad6-111">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="bbad6-112">Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.</span><span class="sxs-lookup"><span data-stu-id="bbad6-112">This scenario supports authentication with App+User credentials only.</span></span>
+## <a name="c"></a><span data-ttu-id="71c86-109">C\#</span><span class="sxs-lookup"><span data-stu-id="71c86-109">C\#</span></span>
 
-## <a name="c"></a><span data-ttu-id="bbad6-113">C\#</span><span class="sxs-lookup"><span data-stu-id="bbad6-113">C\#</span></span>
-
-<span data-ttu-id="bbad6-114">A támogatási profil frissítéséhez először [szerezze be a támogatási profilt](get-support-profile.md) , és végezze el a kívánt módosításokat.</span><span class="sxs-lookup"><span data-stu-id="bbad6-114">To update your support profile, first [get your support profile](get-support-profile.md) and make any changes you wish.</span></span> <span data-ttu-id="bbad6-115">Ezután használja a [**IPartnerOperations. Profiles**](/dotnet/api/microsoft.store.partnercenter.ipartner.profiles) gyűjteményt.</span><span class="sxs-lookup"><span data-stu-id="bbad6-115">Then, use your [**IPartnerOperations.Profiles**](/dotnet/api/microsoft.store.partnercenter.ipartner.profiles) collection.</span></span> <span data-ttu-id="bbad6-116">Hívja meg a [**SupportProfile**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile) tulajdonságot, majd a [**Update ()**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.update) vagy a [**UpdateAsync ()**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.updateasync) metódust.</span><span class="sxs-lookup"><span data-stu-id="bbad6-116">Call the [**SupportProfile**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile) property, followed by the [**Update()**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.update) or [**UpdateAsync()**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.updateasync) method.</span></span>
+<span data-ttu-id="71c86-110">A támogatási profil frissítéséhez először szerezze be [a támogatási profilt,](get-support-profile.md) és tegye meg a kívánt módosításokat.</span><span class="sxs-lookup"><span data-stu-id="71c86-110">To update your support profile, first [get your support profile](get-support-profile.md) and make any changes you wish.</span></span> <span data-ttu-id="71c86-111">Ezután használja az [**IPartnerOperations.Profiles gyűjteményt.**](/dotnet/api/microsoft.store.partnercenter.ipartner.profiles)</span><span class="sxs-lookup"><span data-stu-id="71c86-111">Then, use your [**IPartnerOperations.Profiles**](/dotnet/api/microsoft.store.partnercenter.ipartner.profiles) collection.</span></span> <span data-ttu-id="71c86-112">Hívja meg [**a SupportProfile**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile) tulajdonságot, majd az [**Update() vagy**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.update) [**az UpdateAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.updateasync)</span><span class="sxs-lookup"><span data-stu-id="71c86-112">Call the [**SupportProfile**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile) property, followed by the [**Update()**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.update) or [**UpdateAsync()**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.updateasync) method.</span></span>
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -44,25 +39,25 @@ SupportProfile newSupportProfile = new SupportProfile
 SupportProfile updatedSupportProfile = partnerOperations.Profiles.SupportProfile.Update(newSupportProfile);
 ```
 
-<span data-ttu-id="bbad6-117">**Példa**: [konzol tesztelési alkalmazás](console-test-app.md).</span><span class="sxs-lookup"><span data-stu-id="bbad6-117">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="bbad6-118">**Projekt**: PartnerCenterSDK. FeaturesSamples **osztály**: UpdateSupportProfile.cs</span><span class="sxs-lookup"><span data-stu-id="bbad6-118">**Project**: PartnerCenterSDK.FeaturesSamples **Class**: UpdateSupportProfile.cs</span></span>
+<span data-ttu-id="71c86-113">**Minta:** [Konzoltesztalkalmazás.](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="71c86-113">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="71c86-114">**Project:** PartnerCenterSDK.FeaturesSamples **osztály:** UpdateSupportProfile.cs</span><span class="sxs-lookup"><span data-stu-id="71c86-114">**Project**: PartnerCenterSDK.FeaturesSamples **Class**: UpdateSupportProfile.cs</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="bbad6-119">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="bbad6-119">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="71c86-115">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="71c86-115">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="bbad6-120">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="bbad6-120">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="71c86-116">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="71c86-116">Request syntax</span></span>
 
-| <span data-ttu-id="bbad6-121">Metódus</span><span class="sxs-lookup"><span data-stu-id="bbad6-121">Method</span></span>  | <span data-ttu-id="bbad6-122">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="bbad6-122">Request URI</span></span>                                                                     |
+| <span data-ttu-id="71c86-117">Metódus</span><span class="sxs-lookup"><span data-stu-id="71c86-117">Method</span></span>  | <span data-ttu-id="71c86-118">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="71c86-118">Request URI</span></span>                                                                     |
 |---------|---------------------------------------------------------------------------------|
-| <span data-ttu-id="bbad6-123">**PUT**</span><span class="sxs-lookup"><span data-stu-id="bbad6-123">**PUT**</span></span> | <span data-ttu-id="bbad6-124">[*{baseURL}*](partner-center-rest-urls.md)/v1/Profiles/supportprofile http/1.1</span><span class="sxs-lookup"><span data-stu-id="bbad6-124">[*{baseURL}*](partner-center-rest-urls.md)/v1/profiles/supportprofile HTTP/1.1</span></span> |
+| <span data-ttu-id="71c86-119">**PUT**</span><span class="sxs-lookup"><span data-stu-id="71c86-119">**PUT**</span></span> | <span data-ttu-id="71c86-120">[*{baseURL}*](partner-center-rest-urls.md)/v1/profiles/supportprofile HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="71c86-120">[*{baseURL}*](partner-center-rest-urls.md)/v1/profiles/supportprofile HTTP/1.1</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="bbad6-125">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="bbad6-125">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="71c86-121">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="71c86-121">Request headers</span></span>
 
-<span data-ttu-id="bbad6-126">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="bbad6-126">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="71c86-122">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="71c86-122">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="bbad6-127">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="bbad6-127">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="71c86-123">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="71c86-123">Request body</span></span>
 
-<span data-ttu-id="bbad6-128">A teljes támogatási profil erőforrása.</span><span class="sxs-lookup"><span data-stu-id="bbad6-128">The full support profile resource.</span></span>
+<span data-ttu-id="71c86-124">A teljes támogatásiprofil-erőforrás.</span><span class="sxs-lookup"><span data-stu-id="71c86-124">The full support profile resource.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="bbad6-129">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="bbad6-129">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="71c86-125">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="71c86-125">Request example</span></span>
 
 ```http
 PUT https://api.partnercenter.microsoft.com/v1/profiles/supportprofile HTTP/1.1
@@ -85,15 +80,15 @@ Expect: 100-continue
 }
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="bbad6-130">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="bbad6-130">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="71c86-126">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="71c86-126">REST response</span></span>
 
-<span data-ttu-id="bbad6-131">Ha ez sikeres, ez a metódus a válasz törzsében a frissített **SupportProfile** objektum tulajdonságait adja vissza.</span><span class="sxs-lookup"><span data-stu-id="bbad6-131">If successful, this method returns updated **SupportProfile** object properties in the response body.</span></span>
+<span data-ttu-id="71c86-127">Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza a **frissített SupportProfile** objektumtulajdonságokat.</span><span class="sxs-lookup"><span data-stu-id="71c86-127">If successful, this method returns updated **SupportProfile** object properties in the response body.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="bbad6-132">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="bbad6-132">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="71c86-128">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="71c86-128">Response success and error codes</span></span>
 
-<span data-ttu-id="bbad6-133">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="bbad6-133">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="bbad6-134">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="bbad6-134">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="bbad6-135">A teljes listát lásd: [hibakódok](error-codes.md).</span><span class="sxs-lookup"><span data-stu-id="bbad6-135">For the full list, see [Error Codes](error-codes.md).</span></span>
+<span data-ttu-id="71c86-129">Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="71c86-129">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="71c86-130">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="71c86-130">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="71c86-131">A teljes listát lásd: [Hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="71c86-131">For the full list, see [Error Codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="bbad6-136">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="bbad6-136">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="71c86-132">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="71c86-132">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK

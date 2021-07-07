@@ -1,33 +1,29 @@
 ---
 title: Jogosultságok gyűjteményének lekérése
-description: Jogosultságok gyűjteményének beszerzése.
+description: Jogosultságok gyűjteményének begyűjtése.
 ms.date: 01/28/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: d2cc485429941dd2080bd285553333a01fc0ffd1
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 7bb8d3aefb11fae0af4bce790b41598d935de57c
+ms.sourcegitcommit: d20e7d572fee09a83a4b23a92da7ff09cfebe75a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768068"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111906422"
 ---
-# <a name="get-a-collection-of-entitlements"></a><span data-ttu-id="90f1e-103">Jogosultságok gyűjteményének lekérése</span><span class="sxs-lookup"><span data-stu-id="90f1e-103">Get a collection of entitlements</span></span>
+# <a name="get-a-collection-of-entitlements"></a><span data-ttu-id="ec06d-103">Jogosultságok gyűjteményének lekérése</span><span class="sxs-lookup"><span data-stu-id="ec06d-103">Get a collection of entitlements</span></span>
 
-<span data-ttu-id="90f1e-104">**A következőkre vonatkozik**</span><span class="sxs-lookup"><span data-stu-id="90f1e-104">**Applies To**</span></span>
+<span data-ttu-id="ec06d-104">Jogosultságok gyűjteményének begyűjtése.</span><span class="sxs-lookup"><span data-stu-id="ec06d-104">How to get a collection of entitlements.</span></span>
 
-- <span data-ttu-id="90f1e-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="90f1e-105">Partner Center</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="ec06d-105">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="ec06d-105">Prerequisites</span></span>
 
-<span data-ttu-id="90f1e-106">Jogosultságok gyűjteményének beszerzése.</span><span class="sxs-lookup"><span data-stu-id="90f1e-106">How to get a collection of entitlements.</span></span>
+- <span data-ttu-id="ec06d-106">Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="ec06d-106">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="ec06d-107">Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="ec06d-107">This scenario supports authentication with App+User credentials.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="90f1e-107">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="90f1e-107">Prerequisites</span></span>
+- <span data-ttu-id="ec06d-108">Egy ügyfélazonosító ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="ec06d-108">A customer ID (`customer-tenant-id`).</span></span> <span data-ttu-id="ec06d-109">Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard)</span><span class="sxs-lookup"><span data-stu-id="ec06d-109">If you don't know the customer's ID, you can look it up in the Partner Center [dashboard](https://partner.microsoft.com/dashboard).</span></span> <span data-ttu-id="ec06d-110">Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.**</span><span class="sxs-lookup"><span data-stu-id="ec06d-110">Select **CSP** from the Partner Center menu, followed by **Customers**.</span></span> <span data-ttu-id="ec06d-111">Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.**</span><span class="sxs-lookup"><span data-stu-id="ec06d-111">Select the customer from the customer list, then select **Account**.</span></span> <span data-ttu-id="ec06d-112">Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.**</span><span class="sxs-lookup"><span data-stu-id="ec06d-112">On the customer’s Account page, look for the **Microsoft ID** in the **Customer Account Info** section.</span></span> <span data-ttu-id="ec06d-113">A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="ec06d-113">The Microsoft ID is the same as the customer ID  (`customer-tenant-id`).</span></span>
 
-- <span data-ttu-id="90f1e-108">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="90f1e-108">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="90f1e-109">Ez a forgatókönyv támogatja a hitelesítést az App + User hitelesítő adataival.</span><span class="sxs-lookup"><span data-stu-id="90f1e-109">This scenario supports authentication with App+User credentials.</span></span>
+## <a name="c"></a><span data-ttu-id="ec06d-114">C\#</span><span class="sxs-lookup"><span data-stu-id="ec06d-114">C\#</span></span>
 
-- <span data-ttu-id="90f1e-110">Ügyfél-azonosító ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="90f1e-110">A customer ID (`customer-tenant-id`).</span></span> <span data-ttu-id="90f1e-111">Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard).</span><span class="sxs-lookup"><span data-stu-id="90f1e-111">If you don't know the customer's ID, you can look it up in the Partner Center [dashboard](https://partner.microsoft.com/dashboard).</span></span> <span data-ttu-id="90f1e-112">Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**.</span><span class="sxs-lookup"><span data-stu-id="90f1e-112">Select **CSP** from the Partner Center menu, followed by **Customers**.</span></span> <span data-ttu-id="90f1e-113">Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="90f1e-113">Select the customer from the customer list, then select **Account**.</span></span> <span data-ttu-id="90f1e-114">Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban.</span><span class="sxs-lookup"><span data-stu-id="90f1e-114">On the customer’s Account page, look for the **Microsoft ID** in the **Customer Account Info** section.</span></span> <span data-ttu-id="90f1e-115">A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="90f1e-115">The Microsoft ID is the same as the customer ID  (`customer-tenant-id`).</span></span>
-
-## <a name="c"></a><span data-ttu-id="90f1e-116">C\#</span><span class="sxs-lookup"><span data-stu-id="90f1e-116">C\#</span></span>
-
-<span data-ttu-id="90f1e-117">Egy ügyfél jogosultsági gyűjteményének beszerzéséhez szerezzen be egy felületet a [**jogosultsági**](entitlement-resources.md#entitlement) műveletekhez úgy, hogy meghívja a  [**IAggregatePartner. customers. ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval az ügyfél azonosításához.</span><span class="sxs-lookup"><span data-stu-id="90f1e-117">To get an entitlements collection for a customer, obtain an interface to [**Entitlement**](entitlement-resources.md#entitlement) operations by calling the  [**IAggregatePartner.Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) method with the customer ID to identify the customer.</span></span> <span data-ttu-id="90f1e-118">Ezután kérje le a felületet a **jogosultságok** tulajdonságból, és hívja meg a **Get ()** vagy a **GetAsync ()** metódust a jogosultságok gyűjteményének lekéréséhez.</span><span class="sxs-lookup"><span data-stu-id="90f1e-118">Then, retrieve the interface from the **Entitlements** property and call the **Get()** or **GetAsync()** method to retrieve the collection of entitlements.</span></span>
+<span data-ttu-id="ec06d-115">Az ügyfél jogosultsággyűjteményének beszerzéséhez szerezze [](entitlement-resources.md#entitlement) be a jogosultsági műveletek felületét az [**IAggregatePartner.Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódus az ügyfél azonosítójával való hívásával az ügyfél azonosításához.</span><span class="sxs-lookup"><span data-stu-id="ec06d-115">To get an entitlements collection for a customer, obtain an interface to [**Entitlement**](entitlement-resources.md#entitlement) operations by calling the  [**IAggregatePartner.Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) method with the customer ID to identify the customer.</span></span> <span data-ttu-id="ec06d-116">Ezután olvassa be a felületet a **Jogosultságok** tulajdonságból, és hívja meg a **Get() vagy** **a GetAsync()** metódust a jogosultságok gyűjteményének lekéréséhez.</span><span class="sxs-lookup"><span data-stu-id="ec06d-116">Then, retrieve the interface from the **Entitlements** property and call the **Get()** or **GetAsync()** method to retrieve the collection of entitlements.</span></span>
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -37,38 +33,38 @@ string customerId;
 var entitlements = partnerOperations.Customers.ById(customerId).Entitlements.Get();
 ```
 
-<span data-ttu-id="90f1e-119">Ha fel szeretné tölteni a jogosultságok lejárati idejét a lekéréshez, hívja meg a fenti metódusokat, és állítsa a **showExpiry** (true **)** vagy a **GetAsync (** true) értékre a nem kötelező logikai paramétert.</span><span class="sxs-lookup"><span data-stu-id="90f1e-119">To populate expiry dates for the entitlements to be retrieved, call the same methods above and set the optional boolean parameter **showExpiry** to true **Get(true)** or **GetAsync(true)**.</span></span> <span data-ttu-id="90f1e-120">Ez azt jelzi, hogy a jogosultság lejárati dátumai szükségesek (ha vannak ilyenek).</span><span class="sxs-lookup"><span data-stu-id="90f1e-120">This indicates that entitlement expiry dates are required (when applicable).</span></span>
+<span data-ttu-id="ec06d-117">A lekért jogosultságok lejárati dátumának feltöltéséhez hívja meg ugyanezeket a fenti metódusokat, és állítsa a **showExpiry** opcionális logikai paramétert true **Get(true)** vagy **GetAsync(true) (igaz) értékre.**</span><span class="sxs-lookup"><span data-stu-id="ec06d-117">To populate expiry dates for the entitlements to be retrieved, call the same methods above and set the optional boolean parameter **showExpiry** to true **Get(true)** or **GetAsync(true)**.</span></span> <span data-ttu-id="ec06d-118">Ez azt jelzi, hogy a jogosultság lejárati dátumai kötelezőek (ha vannak).</span><span class="sxs-lookup"><span data-stu-id="ec06d-118">This indicates that entitlement expiry dates are required (when applicable).</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="90f1e-121">A helyszíni jogosultsági típusok nem rendelkeznek lejárati dátummal.</span><span class="sxs-lookup"><span data-stu-id="90f1e-121">On-premise entitlement types do not have expiry dates.</span></span>
+> <span data-ttu-id="ec06d-119">A saját jogosultságtípusok nem lejárati dátumokkal.</span><span class="sxs-lookup"><span data-stu-id="ec06d-119">On-premise entitlement types do not have expiry dates.</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="90f1e-122">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="90f1e-122">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="ec06d-120">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="ec06d-120">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="90f1e-123">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="90f1e-123">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="ec06d-121">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="ec06d-121">Request syntax</span></span>
 
-| <span data-ttu-id="90f1e-124">Metódus</span><span class="sxs-lookup"><span data-stu-id="90f1e-124">Method</span></span> | <span data-ttu-id="90f1e-125">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="90f1e-125">Request URI</span></span> |
+| <span data-ttu-id="ec06d-122">Metódus</span><span class="sxs-lookup"><span data-stu-id="ec06d-122">Method</span></span> | <span data-ttu-id="ec06d-123">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="ec06d-123">Request URI</span></span> |
 |--------|-------------|
-| <span data-ttu-id="90f1e-126">**GET**</span><span class="sxs-lookup"><span data-stu-id="90f1e-126">**GET**</span></span> | <span data-ttu-id="90f1e-127">[*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{customerId}/Entitlements http/1.1</span><span class="sxs-lookup"><span data-stu-id="90f1e-127">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customerId}/entitlements HTTP/1.1</span></span>                            |
+| <span data-ttu-id="ec06d-124">**Kap**</span><span class="sxs-lookup"><span data-stu-id="ec06d-124">**GET**</span></span> | <span data-ttu-id="ec06d-125">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customerId}/entitlements HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="ec06d-125">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customerId}/entitlements HTTP/1.1</span></span>                            |
 
-### <a name="uri-parameters"></a><span data-ttu-id="90f1e-128">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="90f1e-128">URI parameters</span></span>
+### <a name="uri-parameters"></a><span data-ttu-id="ec06d-126">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="ec06d-126">URI parameters</span></span>
 
-<span data-ttu-id="90f1e-129">A kérelem létrehozásakor használja az alábbi elérési utat és a lekérdezési paramétereket.</span><span class="sxs-lookup"><span data-stu-id="90f1e-129">Use the following path and query parameters when creating the request.</span></span>
+<span data-ttu-id="ec06d-127">A kérelem létrehozásakor használja a következő elérési utat és lekérdezési paramétereket.</span><span class="sxs-lookup"><span data-stu-id="ec06d-127">Use the following path and query parameters when creating the request.</span></span>
 
-| <span data-ttu-id="90f1e-130">Név</span><span class="sxs-lookup"><span data-stu-id="90f1e-130">Name</span></span> | <span data-ttu-id="90f1e-131">Típus</span><span class="sxs-lookup"><span data-stu-id="90f1e-131">Type</span></span> | <span data-ttu-id="90f1e-132">Kötelező</span><span class="sxs-lookup"><span data-stu-id="90f1e-132">Required</span></span> | <span data-ttu-id="90f1e-133">Leírás</span><span class="sxs-lookup"><span data-stu-id="90f1e-133">Description</span></span> |
+| <span data-ttu-id="ec06d-128">Név</span><span class="sxs-lookup"><span data-stu-id="ec06d-128">Name</span></span> | <span data-ttu-id="ec06d-129">Típus</span><span class="sxs-lookup"><span data-stu-id="ec06d-129">Type</span></span> | <span data-ttu-id="ec06d-130">Kötelező</span><span class="sxs-lookup"><span data-stu-id="ec06d-130">Required</span></span> | <span data-ttu-id="ec06d-131">Leírás</span><span class="sxs-lookup"><span data-stu-id="ec06d-131">Description</span></span> |
 |------|------|----------|-------------|
-| <span data-ttu-id="90f1e-134">customerId</span><span class="sxs-lookup"><span data-stu-id="90f1e-134">customerId</span></span> | <span data-ttu-id="90f1e-135">sztring</span><span class="sxs-lookup"><span data-stu-id="90f1e-135">string</span></span> | <span data-ttu-id="90f1e-136">Igen</span><span class="sxs-lookup"><span data-stu-id="90f1e-136">Yes</span></span> | <span data-ttu-id="90f1e-137">GUID formátumú Vevőkód, amely azonosítja az ügyfelet.</span><span class="sxs-lookup"><span data-stu-id="90f1e-137">A GUID formatted customerId that identifies the customer.</span></span> |
-| <span data-ttu-id="90f1e-138">entitlementType</span><span class="sxs-lookup"><span data-stu-id="90f1e-138">entitlementType</span></span> | <span data-ttu-id="90f1e-139">sztring</span><span class="sxs-lookup"><span data-stu-id="90f1e-139">string</span></span> | <span data-ttu-id="90f1e-140">No</span><span class="sxs-lookup"><span data-stu-id="90f1e-140">No</span></span> | <span data-ttu-id="90f1e-141">A lekérdezni kívánt jogosultságok típusának meghatározására használható (**szoftver** -vagy **reservedInstance** ).</span><span class="sxs-lookup"><span data-stu-id="90f1e-141">Can be used to specify the type of entitlements to be retrieved (**software** or **reservedInstance** ).</span></span> <span data-ttu-id="90f1e-142">Ha nincs beállítva, a rendszer az összes típust beolvassa</span><span class="sxs-lookup"><span data-stu-id="90f1e-142">If not set, all types will be retrieved</span></span> |
-| <span data-ttu-id="90f1e-143">showExpiry</span><span class="sxs-lookup"><span data-stu-id="90f1e-143">showExpiry</span></span> | <span data-ttu-id="90f1e-144">boolean</span><span class="sxs-lookup"><span data-stu-id="90f1e-144">boolean</span></span> | <span data-ttu-id="90f1e-145">Nem</span><span class="sxs-lookup"><span data-stu-id="90f1e-145">No</span></span> | <span data-ttu-id="90f1e-146">Opcionális jelző, amely megadja, hogy a jogosultságok lejárati dátuma kötelező-e.</span><span class="sxs-lookup"><span data-stu-id="90f1e-146">Optional flag which indicates if entitlements expiry dates are required.</span></span> |
+| <span data-ttu-id="ec06d-132">customerId</span><span class="sxs-lookup"><span data-stu-id="ec06d-132">customerId</span></span> | <span data-ttu-id="ec06d-133">sztring</span><span class="sxs-lookup"><span data-stu-id="ec06d-133">string</span></span> | <span data-ttu-id="ec06d-134">Igen</span><span class="sxs-lookup"><span data-stu-id="ec06d-134">Yes</span></span> | <span data-ttu-id="ec06d-135">Egy GUID formátumú customerId, amely azonosítja az ügyfelet.</span><span class="sxs-lookup"><span data-stu-id="ec06d-135">A GUID formatted customerId that identifies the customer.</span></span> |
+| <span data-ttu-id="ec06d-136">entitlementType (jogosultságtípus)</span><span class="sxs-lookup"><span data-stu-id="ec06d-136">entitlementType</span></span> | <span data-ttu-id="ec06d-137">sztring</span><span class="sxs-lookup"><span data-stu-id="ec06d-137">string</span></span> | <span data-ttu-id="ec06d-138">No</span><span class="sxs-lookup"><span data-stu-id="ec06d-138">No</span></span> | <span data-ttu-id="ec06d-139">A lekérni kívánt jogosultságok típusának megadására használható (**szoftver** vagy **reservedInstance** ).</span><span class="sxs-lookup"><span data-stu-id="ec06d-139">Can be used to specify the type of entitlements to be retrieved (**software** or **reservedInstance** ).</span></span> <span data-ttu-id="ec06d-140">Ha nincs beállítva, a program minden típust lekér</span><span class="sxs-lookup"><span data-stu-id="ec06d-140">If not set, all types will be retrieved</span></span> |
+| <span data-ttu-id="ec06d-141">showExpiry</span><span class="sxs-lookup"><span data-stu-id="ec06d-141">showExpiry</span></span> | <span data-ttu-id="ec06d-142">boolean</span><span class="sxs-lookup"><span data-stu-id="ec06d-142">boolean</span></span> | <span data-ttu-id="ec06d-143">Nem</span><span class="sxs-lookup"><span data-stu-id="ec06d-143">No</span></span> | <span data-ttu-id="ec06d-144">Nem kötelező jelző, amely jelzi, hogy szükség van-e a jogosultságok lejárati dátumokra.</span><span class="sxs-lookup"><span data-stu-id="ec06d-144">Optional flag that indicates if entitlements expiry dates are required.</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="90f1e-147">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="90f1e-147">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="ec06d-145">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="ec06d-145">Request headers</span></span>
 
-<span data-ttu-id="90f1e-148">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="90f1e-148">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="ec06d-146">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="ec06d-146">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="90f1e-149">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="90f1e-149">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="ec06d-147">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="ec06d-147">Request body</span></span>
 
-<span data-ttu-id="90f1e-150">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="90f1e-150">None.</span></span>
+<span data-ttu-id="ec06d-148">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="ec06d-148">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="90f1e-151">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="90f1e-151">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="ec06d-149">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="ec06d-149">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers/18ac2950-8ea9-4dfc-92a4-ff4d4cd57796/entitlements HTTP/1.1
@@ -80,15 +76,15 @@ X-Locale: en-US
 Host: api.partnercenter.microsoft.com
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="90f1e-152">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="90f1e-152">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="ec06d-150">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="ec06d-150">REST response</span></span>
 
-<span data-ttu-id="90f1e-153">Ha ez sikeres, a válasz törzse a [jogosultsági](entitlement-resources.md#entitlement) erőforrások gyűjteményét tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="90f1e-153">If successful, the response body contains a collection of [Entitlement](entitlement-resources.md#entitlement) resources.</span></span>
+<span data-ttu-id="ec06d-151">Ha ez sikeres, a válasz törzse jogosultság-erőforrások [gyűjteményét](entitlement-resources.md#entitlement) tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="ec06d-151">If successful, the response body contains a collection of [Entitlement](entitlement-resources.md#entitlement) resources.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="90f1e-154">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="90f1e-154">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="ec06d-152">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="ec06d-152">Response success and error codes</span></span>
 
-<span data-ttu-id="90f1e-155">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="90f1e-155">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="90f1e-156">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="90f1e-156">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="90f1e-157">A teljes listát lásd: [hibakódok](error-codes.md).</span><span class="sxs-lookup"><span data-stu-id="90f1e-157">For the full list, see [Error Codes](error-codes.md).</span></span>
+<span data-ttu-id="ec06d-153">Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="ec06d-153">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="ec06d-154">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="ec06d-154">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="ec06d-155">A teljes listát lásd: [Hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="ec06d-155">For the full list, see [Error Codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="90f1e-158">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="90f1e-158">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="ec06d-156">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="ec06d-156">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK
@@ -173,19 +169,19 @@ Date: Mon, 19 Mar 2018 07:42:51 GMT
 }
 ```
 
-## <a name="additional-examples"></a><span data-ttu-id="90f1e-159">További példák</span><span class="sxs-lookup"><span data-stu-id="90f1e-159">Additional Examples</span></span>
+## <a name="additional-examples"></a><span data-ttu-id="ec06d-157">További példák</span><span class="sxs-lookup"><span data-stu-id="ec06d-157">Additional Examples</span></span>
 
-<span data-ttu-id="90f1e-160">Az alábbi példa bemutatja, hogyan kérhet le egy adott típusú jogosultságot a lejárati dátumokkal együtt (ha alkalmazható)</span><span class="sxs-lookup"><span data-stu-id="90f1e-160">The following example shows you how to retrieve a specific type of entitlements along with expiry dates (when applicable)</span></span>
+<span data-ttu-id="ec06d-158">Az alábbi példa bemutatja, hogyan lehet lekérni egy adott típusú jogosultságot és lejárati dátumokat (ha van)</span><span class="sxs-lookup"><span data-stu-id="ec06d-158">The following example shows you how to retrieve a specific type of entitlements along with expiry dates (when applicable)</span></span>
 
-### <a name="c-example"></a><span data-ttu-id="90f1e-161">C \# példa</span><span class="sxs-lookup"><span data-stu-id="90f1e-161">C\# example</span></span>
+### <a name="c-example"></a><span data-ttu-id="ec06d-159">C \# példa</span><span class="sxs-lookup"><span data-stu-id="ec06d-159">C\# example</span></span>
 
-<span data-ttu-id="90f1e-162">A jogosultságok meghatározott típusának lekéréséhez szerezze be a **ByEntitlementType** felületet a **jogosultságok** felületéről, és használja a **Get ()** vagy a **GetAsync ()** metódust.</span><span class="sxs-lookup"><span data-stu-id="90f1e-162">To retrieve a specific type of entitlements, obtain the **ByEntitlementType** interface from the **Entitlements** interface and use the **Get()** or **GetAsync()** methods.</span></span>
+<span data-ttu-id="ec06d-160">Egy adott típusú jogosultság lekérése érdekében szerezze be a **ByEntitlementType** felületet a **Jogosultságok** felületről, és használja a **Get() vagy** **GetAsync() metódusokat.**</span><span class="sxs-lookup"><span data-stu-id="ec06d-160">To retrieve a specific type of entitlements, obtain the **ByEntitlementType** interface from the **Entitlements** interface and use the **Get()** or **GetAsync()** methods.</span></span>
 
 ``` csharp
 ResourceCollection<Entitlement> entitlements = partnerOperations.Customers.ById(selectedCustomerId).Entitlements.ByEntitlementType("software").Get(true);
 ```
 
-### <a name="request-example"></a><span data-ttu-id="90f1e-163">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="90f1e-163">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="ec06d-161">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="ec06d-161">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers/de3dcef9-9991-459c-ac71-2903d1127414/entitlements?entitlementtype=software&showExpiry=true
@@ -197,7 +193,7 @@ X-Locale: en-US
 Host: api.partnercenter.microsoft.com
 ```
 
-### <a name="response-example"></a><span data-ttu-id="90f1e-164">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="90f1e-164">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="ec06d-162">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="ec06d-162">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK
@@ -301,13 +297,13 @@ Date: Mon, 28 Jan 2019 18:31:43 GMT
 }
 ```
 
-<span data-ttu-id="90f1e-165">Az alábbi példák bemutatják, hogyan kérhet le adatokat a termékekről és a foglalásokról egy jogosultságról.</span><span class="sxs-lookup"><span data-stu-id="90f1e-165">The following examples show you how to retrieve information about products and reservations from an entitlement.</span></span>
+<span data-ttu-id="ec06d-163">Az alábbi példák bemutatják, hogyan lehet lekérni a termékekkel és foglalásokkal kapcsolatos információkat egy jogosultságból.</span><span class="sxs-lookup"><span data-stu-id="ec06d-163">The following examples show you how to retrieve information about products and reservations from an entitlement.</span></span>
 
-### <a name="retrieve-virtual-machine-reservation-details-from-an-entitlement-by-using-sdk-v18"></a><span data-ttu-id="90f1e-166">Virtuális gépek foglalási adatainak beolvasása jogosultságból az SDK V 1.8 használatával</span><span class="sxs-lookup"><span data-stu-id="90f1e-166">Retrieve virtual machine reservation details from an entitlement by using SDK V1.8</span></span>
+### <a name="retrieve-virtual-machine-reservation-details-from-an-entitlement-by-using-sdk-v18"></a><span data-ttu-id="ec06d-164">Virtuális gép foglalási részleteinek lekérése jogosultságból az SDK 1.8-as verziójával</span><span class="sxs-lookup"><span data-stu-id="ec06d-164">Retrieve virtual machine reservation details from an entitlement by using SDK V1.8</span></span>
 
-### <a name="c-example"></a><span data-ttu-id="90f1e-167">C \# példa</span><span class="sxs-lookup"><span data-stu-id="90f1e-167">C\# example</span></span>
+### <a name="c-example"></a><span data-ttu-id="ec06d-165">C \# példa</span><span class="sxs-lookup"><span data-stu-id="ec06d-165">C\# example</span></span>
 
-<span data-ttu-id="90f1e-168">Ha további részleteket szeretne beolvasni egy jogosultságból a virtuális gépek fenntartásával kapcsolatban, hívja meg a entitledArtifacts. link és a artifactType = virtual_machine_reserved_instance között elérhető URI-t.</span><span class="sxs-lookup"><span data-stu-id="90f1e-168">To retrieve more details related to the virtual machine reservations from an entitlement, invoke the URI exposed under entitledArtifacts.link with artifactType = virtual_machine_reserved_instance .</span></span>
+<span data-ttu-id="ec06d-166">A virtuális gépek foglalásával kapcsolatos további részletek jogosultságból való lekérése érdekében hívja meg az összetevőtípus = entitledArtifacts.link alatt elérhetővé virtual_machine_reserved_instance.</span><span class="sxs-lookup"><span data-stu-id="ec06d-166">To retrieve more details related to the virtual machine reservations from an entitlement, invoke the URI exposed under entitledArtifacts.link with artifactType = virtual_machine_reserved_instance.</span></span>
 
 ``` csharp
 ResourceCollection<Entitlement> entitlements = partnerOperations.Customers.ById(selectedCustomerId).Entitlements.ByEntitlementType("VirtualMachineReservedInstance").Get();
@@ -315,7 +311,7 @@ ResourceCollection<Entitlement> entitlements = partnerOperations.Customers.ById(
 ((VirtualMachineReservedInstanceArtifact)entitlements.First().EntitledArtifacts.First(x => x.Type == ArtifactType.VirtualMachineReservedInstance)).Link.InvokeAsync<VirtualMachineReservedInstanceArtifactDetails>(partnerOperations)
 ```
 
-### <a name="request-example"></a><span data-ttu-id="90f1e-169">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="90f1e-169">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="ec06d-167">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="ec06d-167">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers/18ac2950-8ea9-4dfc-92a4-ff4d4cd57796/artifacts/virtualmachinereservedinstance/groups/2caf524395724e638ef64e109f1f79ca/lineitems/03500b1b-f2d6-4e23-ab4b-9fd67b917012/resource/ebf2e74b-630e-4a09-857d-a1f6c6351336 HTTP/1.1
@@ -327,7 +323,7 @@ X-Locale: en-US
 Host: api.partnercenter.microsoft.com
 ```
 
-### <a name="response-example"></a><span data-ttu-id="90f1e-170">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="90f1e-170">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="ec06d-168">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="ec06d-168">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK
@@ -355,11 +351,11 @@ Date: Mon, 19 Mar 2018 07:45:14 GMT
 }
 ```
 
-### <a name="retrieve-reservation-details-from-an-entitlement-by-using-sdk-v19"></a><span data-ttu-id="90f1e-171">A foglalás részleteinek beolvasása jogosultságok alapján az SDK V 1.9 használatával</span><span class="sxs-lookup"><span data-stu-id="90f1e-171">Retrieve reservation details from an entitlement by using SDK V1.9</span></span>
+### <a name="retrieve-reservation-details-from-an-entitlement-by-using-sdk-v19"></a><span data-ttu-id="ec06d-169">Foglalás részleteinek lekérése jogosultságból az SDK 1.9-es verziójával</span><span class="sxs-lookup"><span data-stu-id="ec06d-169">Retrieve reservation details from an entitlement by using SDK V1.9</span></span>
 
-### <a name="c-example"></a><span data-ttu-id="90f1e-172">C \# példa</span><span class="sxs-lookup"><span data-stu-id="90f1e-172">C\# example</span></span>
+### <a name="c-example"></a><span data-ttu-id="ec06d-170">C \# példa</span><span class="sxs-lookup"><span data-stu-id="ec06d-170">C\# example</span></span>
 
-<span data-ttu-id="90f1e-173">A fenntartott példányokra vonatkozó jogosultságok fenntartásával kapcsolatos további részletekért hívja meg a-ben elérhető URI- ```entitledArtifacts.link``` t ```artifactType = reservedinstance``` .</span><span class="sxs-lookup"><span data-stu-id="90f1e-173">To retrieve more details related to the reservations from a reserved instance entitlement, invoke the URI exposed under ```entitledArtifacts.link``` with ```artifactType = reservedinstance```.</span></span>
+<span data-ttu-id="ec06d-171">A foglalásokkal kapcsolatos további részletek fenntartott példány jogosultságból való lekérésére hívja meg az alatt elérhetővé téve az URI-t a ```entitledArtifacts.link``` ```artifactType = reservedinstance``` következővel: .</span><span class="sxs-lookup"><span data-stu-id="ec06d-171">To retrieve more details related to the reservations from a reserved instance entitlement, invoke the URI exposed under ```entitledArtifacts.link``` with ```artifactType = reservedinstance```.</span></span>
 
 ``` csharp
 ResourceCollection<Entitlement> entitlements = partnerOperations.Customers.ById(selectedCustomerId).Entitlements.ByEntitlementType("ReservedInstance").Get();
@@ -367,7 +363,7 @@ ResourceCollection<Entitlement> entitlements = partnerOperations.Customers.ById(
 ((ReservedInstanceArtifact)entitlements.First().EntitledArtifacts.First(x => x.Type == ArtifactType.ReservedInstance)).Link.InvokeAsync<ReservedInstanceArtifactDetails>(partnerOperations);
 ```
 
-### <a name="request-example"></a><span data-ttu-id="90f1e-174">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="90f1e-174">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="ec06d-172">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="ec06d-172">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers/18ac2950-8ea9-4dfc-92a4-ff4d4cd57796/artifacts/reservedinstance/groups/2caf524395724e638ef64e109f1f79ca/lineitems/03500b1b-f2d6-4e23-ab4b-9fd67b917012/resource/ebf2e74b-630e-4a09-857d-a1f6c6351336 HTTP/1.1
@@ -379,7 +375,7 @@ X-Locale: en-US
 Host: api.partnercenter.microsoft.com
 ```
 
-### <a name="response-example"></a><span data-ttu-id="90f1e-175">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="90f1e-175">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="ec06d-173">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="ec06d-173">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK
@@ -407,6 +403,6 @@ Date: Mon, 19 Mar 2018 07:45:14 GMT
 }
 ```
 
-### <a name="api-consumers"></a><span data-ttu-id="90f1e-176">API-felhasználók</span><span class="sxs-lookup"><span data-stu-id="90f1e-176">API Consumers</span></span>
+### <a name="api-consumers"></a><span data-ttu-id="ec06d-174">API-felhasználók</span><span class="sxs-lookup"><span data-stu-id="ec06d-174">API Consumers</span></span>
 
-<span data-ttu-id="90f1e-177">Azok a partnerek, akik az API-t használják a virtuális gép fenntartott példányaira vonatkozó jogosultságok lekérdezésére – a/Customers/{customerId}/Entitlements-ről/customers/{customerId}/entitlements-re való kérelem URI-azonosítójának frissítése a **entitlementType = virtualmachinereservedinstance** .</span><span class="sxs-lookup"><span data-stu-id="90f1e-177">Partners who are using the API to query virtual machine reserved instance entitlements - Update the request URI from **/customers/{customerId}/entitlements to /customers/{customerId}/entitlements?entitlementType=virtualmachinereservedinstance** to maintain backward compatibility.</span></span> <span data-ttu-id="90f1e-178">Ha a virtuális gépet vagy az Azure SQL-t bővített szerződéssel szeretné használni, frissítse a kérelem URI-JÁT a **/Customers/{customerId}/Entitlements? entitlementType = reservedinstance**.</span><span class="sxs-lookup"><span data-stu-id="90f1e-178">In order to consume virtual machine or Azure SQL with enhanced contract, update the request URI to **/customers/{customerId}/entitlements?entitlementType=reservedinstance**.</span></span>
+<span data-ttu-id="ec06d-175">Azok a partnerek, akik az API-val kérik le a virtuális gép fenntartott példányai jogosultságát – Frissítse a kérés URI-ját **a /customers/{customerId}/jogosultságok esetében a /customers/{customerId}/entitlements?entitlementType=virtualmachinereservedinstance** címről a visszamenőleges kompatibilitás fenntartása érdekében.</span><span class="sxs-lookup"><span data-stu-id="ec06d-175">Partners who are using the API to query virtual machine reserved instance entitlements - Update the request URI from **/customers/{customerId}/entitlements to /customers/{customerId}/entitlements?entitlementType=virtualmachinereservedinstance** to maintain backward compatibility.</span></span> <span data-ttu-id="ec06d-176">A virtuális gép vagy az Azure SQL szerződéssel való használathoz frissítse a kérés URI-ját **a következőre: /customers/{customerId}/entitlements?entitlementType=reservedinstance**.</span><span class="sxs-lookup"><span data-stu-id="ec06d-176">To consume virtual machine or Azure SQL with enhanced contract, update the request URI to **/customers/{customerId}/entitlements?entitlementType=reservedinstance**.</span></span>
