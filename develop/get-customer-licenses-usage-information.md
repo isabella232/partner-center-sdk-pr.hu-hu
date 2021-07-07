@@ -1,36 +1,32 @@
 ---
 title: Ügyféllicencek használati adatainak lekérése
-description: Licencek használati információinak beszerzése egy adott ügyfél számára.
+description: Licenchasználati elemzések lekérte egy adott ügyfélhez.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 1ee19e458ec65faa21034dd230b5388f7de981b2
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: cfec12d37ce4f5f50baad57bfd45770388f8a2dc
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768347"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446428"
 ---
-# <a name="get-customer-licenses-usage-information"></a><span data-ttu-id="bd99e-103">Ügyféllicencek használati adatainak lekérése</span><span class="sxs-lookup"><span data-stu-id="bd99e-103">Get customer licenses usage information</span></span>
+# <a name="get-customer-licenses-usage-information"></a><span data-ttu-id="736f0-103">Ügyféllicencek használati adatainak lekérése</span><span class="sxs-lookup"><span data-stu-id="736f0-103">Get customer licenses usage information</span></span>
 
-<span data-ttu-id="bd99e-104">**A következőkre vonatkozik**</span><span class="sxs-lookup"><span data-stu-id="bd99e-104">**Applies To**</span></span>
-
-- <span data-ttu-id="bd99e-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="bd99e-105">Partner Center</span></span>
-
-<span data-ttu-id="bd99e-106">A licencek üzembe helyezési információinak beszerzése egy adott ügyfél számára.</span><span class="sxs-lookup"><span data-stu-id="bd99e-106">How to get licenses deployment insights for a specific customer.</span></span>
+<span data-ttu-id="736f0-104">Licencek üzembe helyezési elemzésének le szolgáltatása egy adott ügyfél számára.</span><span class="sxs-lookup"><span data-stu-id="736f0-104">How to get licenses deployment insights for a specific customer.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="bd99e-107">Ezt a forgatókönyvet a [licencek használati adatainak](get-licenses-usage-information.md)felülírt.</span><span class="sxs-lookup"><span data-stu-id="bd99e-107">This scenario is superceded by [Get licenses usage information](get-licenses-usage-information.md).</span></span>
+> <span data-ttu-id="736f0-105">Ezt a forgatókönyvet a [Get licenses usage information (Licencek használati információinak lekért információja) szuperküldi le.](get-licenses-usage-information.md)</span><span class="sxs-lookup"><span data-stu-id="736f0-105">This scenario is superceded by [Get licenses usage information](get-licenses-usage-information.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="bd99e-108">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="bd99e-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="736f0-106">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="736f0-106">Prerequisites</span></span>
 
-<span data-ttu-id="bd99e-109">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="bd99e-109">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="bd99e-110">Ez a forgatókönyv támogatja a hitelesítést az App + User hitelesítő adataival.</span><span class="sxs-lookup"><span data-stu-id="bd99e-110">This scenario supports authentication with App+User credentials.</span></span>
+<span data-ttu-id="736f0-107">Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="736f0-107">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="736f0-108">Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="736f0-108">This scenario supports authentication with App+User credentials.</span></span>
 
-## <a name="c"></a><span data-ttu-id="bd99e-111">C\#</span><span class="sxs-lookup"><span data-stu-id="bd99e-111">C\#</span></span>
+## <a name="c"></a><span data-ttu-id="736f0-109">C\#</span><span class="sxs-lookup"><span data-stu-id="736f0-109">C\#</span></span>
 
-<span data-ttu-id="bd99e-112">Ha egy adott ügyfélhez tartozó összesített adatokat szeretné lekérni az üzemelő példányon, először hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójának használatával, és azonosítsa az ügyfelet.</span><span class="sxs-lookup"><span data-stu-id="bd99e-112">To retrieve aggregated data on deployment for a specified customer, first call the [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) method with the customer ID to identify the customer.</span></span> <span data-ttu-id="bd99e-113">Ezután szerezzen be egy felületet az ügyfél szintű elemzési gyűjtési műveletekhez az [**analitikai**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.analytics) tulajdonságból.</span><span class="sxs-lookup"><span data-stu-id="bd99e-113">Then get an interface to customer level analytics collection operations from the [**Analytics**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.analytics) property.</span></span> <span data-ttu-id="bd99e-114">Ezután kérjen le egy felületet az ügyfél szintű licencek Analytics-gyűjteményhez a [**licencek**](/dotnet/api/microsoft.store.partnercenter.analytics.icustomeranalyticscollection.licenses) tulajdonságból.</span><span class="sxs-lookup"><span data-stu-id="bd99e-114">Next, retrieve an interface to the customer level licenses analytics collection from the [**Licenses**](/dotnet/api/microsoft.store.partnercenter.analytics.icustomeranalyticscollection.licenses) property.</span></span> <span data-ttu-id="bd99e-115">Végül hívja meg a [**használati. Get**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) metódust, hogy beolvassa az összesített adatokat a licencek használatáról.</span><span class="sxs-lookup"><span data-stu-id="bd99e-115">Finally, call the [**Usage.Get**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) method to get the aggregated data on licenses usage.</span></span> <span data-ttu-id="bd99e-116">Ha a metódus sikeresen beolvassa a [**CustomerLicensesUsageInsights**](/dotnet/api/microsoft.store.partnercenter.models.analytics.customerlicensesusageinsights) -objektumok gyűjteményét.</span><span class="sxs-lookup"><span data-stu-id="bd99e-116">If the method succeeds you'll get a collection of [**CustomerLicensesUsageInsights**](/dotnet/api/microsoft.store.partnercenter.models.analytics.customerlicensesusageinsights) objects.</span></span>
+<span data-ttu-id="736f0-110">Egy adott ügyfél üzembe helyezésével kapcsolatos összesített adatok lekéréséhez először hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához.</span><span class="sxs-lookup"><span data-stu-id="736f0-110">To retrieve aggregated data on deployment for a specified customer, first call the [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) method with the customer ID to identify the customer.</span></span> <span data-ttu-id="736f0-111">Ezután szerezze be az ügyfélszintű elemzési gyűjtemény műveleteinek felületét az [**Analytics tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.analytics)</span><span class="sxs-lookup"><span data-stu-id="736f0-111">Then get an interface to customer level analytics collection operations from the [**Analytics**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.analytics) property.</span></span> <span data-ttu-id="736f0-112">Ezután a [**Licenses**](/dotnet/api/microsoft.store.partnercenter.analytics.icustomeranalyticscollection.licenses) (Licencek) tulajdonságból olvassa be az ügyfélszintű licencelemzési gyűjtemény felületét.</span><span class="sxs-lookup"><span data-stu-id="736f0-112">Next, retrieve an interface to the customer level licenses analytics collection from the [**Licenses**](/dotnet/api/microsoft.store.partnercenter.analytics.icustomeranalyticscollection.licenses) property.</span></span> <span data-ttu-id="736f0-113">Végül hívja meg a [**Usage.Get metódust**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) a licenchasználat összesített adatainak lehívására.</span><span class="sxs-lookup"><span data-stu-id="736f0-113">Finally, call the [**Usage.Get**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) method to get the aggregated data on licenses usage.</span></span> <span data-ttu-id="736f0-114">Ha a metódus sikeres, a [**CustomerLicensesUsageInsights**](/dotnet/api/microsoft.store.partnercenter.models.analytics.customerlicensesusageinsights) objektumok gyűjteményét fogja kapni.</span><span class="sxs-lookup"><span data-stu-id="736f0-114">If the method succeeds, you'll get a collection of [**CustomerLicensesUsageInsights**](/dotnet/api/microsoft.store.partnercenter.models.analytics.customerlicensesusageinsights) objects.</span></span>
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -39,31 +35,31 @@ ms.locfileid: "97768347"
 var customerLicensesDeploymentAnalytics = partnerOperations.Customers.ById(customerIdToRetrieve).Analytics.Licenses.Usage.Get();
 ```
 
-## <a name="rest-request"></a><span data-ttu-id="bd99e-117">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="bd99e-117">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="736f0-115">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="736f0-115">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="bd99e-118">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="bd99e-118">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="736f0-116">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="736f0-116">Request syntax</span></span>
 
-| <span data-ttu-id="bd99e-119">Metódus</span><span class="sxs-lookup"><span data-stu-id="bd99e-119">Method</span></span>  | <span data-ttu-id="bd99e-120">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="bd99e-120">Request URI</span></span>                                                                                              |
+| <span data-ttu-id="736f0-117">Metódus</span><span class="sxs-lookup"><span data-stu-id="736f0-117">Method</span></span>  | <span data-ttu-id="736f0-118">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="736f0-118">Request URI</span></span>                                                                                              |
 |---------|----------------------------------------------------------------------------------------------------------|
-| <span data-ttu-id="bd99e-121">**GET**</span><span class="sxs-lookup"><span data-stu-id="bd99e-121">**GET**</span></span> | <span data-ttu-id="bd99e-122">[*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Analytics/licenses/Usage http/1.1</span><span class="sxs-lookup"><span data-stu-id="bd99e-122">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-id}/analytics/licenses/usage HTTP/1.1</span></span> |
+| <span data-ttu-id="736f0-119">**Kap**</span><span class="sxs-lookup"><span data-stu-id="736f0-119">**GET**</span></span> | <span data-ttu-id="736f0-120">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/analytics/licenses/usage HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="736f0-120">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-id}/analytics/licenses/usage HTTP/1.1</span></span> |
 
-### <a name="uri-parameter"></a><span data-ttu-id="bd99e-123">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="bd99e-123">URI parameter</span></span>
+### <a name="uri-parameter"></a><span data-ttu-id="736f0-121">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="736f0-121">URI parameter</span></span>
 
-<span data-ttu-id="bd99e-124">Az ügyfél azonosításához használja a következő Path paramétert.</span><span class="sxs-lookup"><span data-stu-id="bd99e-124">Use the following path parameter to identify the customer.</span></span>
+<span data-ttu-id="736f0-122">Az ügyfél azonosításához használja a következő elérésiút-paramétert.</span><span class="sxs-lookup"><span data-stu-id="736f0-122">Use the following path parameter to identify the customer.</span></span>
 
-| <span data-ttu-id="bd99e-125">Név</span><span class="sxs-lookup"><span data-stu-id="bd99e-125">Name</span></span>        | <span data-ttu-id="bd99e-126">Típus</span><span class="sxs-lookup"><span data-stu-id="bd99e-126">Type</span></span> | <span data-ttu-id="bd99e-127">Kötelező</span><span class="sxs-lookup"><span data-stu-id="bd99e-127">Required</span></span> | <span data-ttu-id="bd99e-128">Leírás</span><span class="sxs-lookup"><span data-stu-id="bd99e-128">Description</span></span>                                                |
+| <span data-ttu-id="736f0-123">Név</span><span class="sxs-lookup"><span data-stu-id="736f0-123">Name</span></span>        | <span data-ttu-id="736f0-124">Típus</span><span class="sxs-lookup"><span data-stu-id="736f0-124">Type</span></span> | <span data-ttu-id="736f0-125">Kötelező</span><span class="sxs-lookup"><span data-stu-id="736f0-125">Required</span></span> | <span data-ttu-id="736f0-126">Leírás</span><span class="sxs-lookup"><span data-stu-id="736f0-126">Description</span></span>                                                |
 |-------------|------|----------|------------------------------------------------------------|
-| <span data-ttu-id="bd99e-129">ügyfél-azonosító</span><span class="sxs-lookup"><span data-stu-id="bd99e-129">customer-id</span></span> | <span data-ttu-id="bd99e-130">guid</span><span class="sxs-lookup"><span data-stu-id="bd99e-130">guid</span></span> | <span data-ttu-id="bd99e-131">Igen</span><span class="sxs-lookup"><span data-stu-id="bd99e-131">Yes</span></span>      | <span data-ttu-id="bd99e-132">Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.</span><span class="sxs-lookup"><span data-stu-id="bd99e-132">A GUID formatted customer-id that identifies the customer.</span></span> |
+| <span data-ttu-id="736f0-127">ügyfélazonosító</span><span class="sxs-lookup"><span data-stu-id="736f0-127">customer-id</span></span> | <span data-ttu-id="736f0-128">guid</span><span class="sxs-lookup"><span data-stu-id="736f0-128">guid</span></span> | <span data-ttu-id="736f0-129">Igen</span><span class="sxs-lookup"><span data-stu-id="736f0-129">Yes</span></span>      | <span data-ttu-id="736f0-130">Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.</span><span class="sxs-lookup"><span data-stu-id="736f0-130">A GUID formatted customer-id that identifies the customer.</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="bd99e-133">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="bd99e-133">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="736f0-131">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="736f0-131">Request headers</span></span>
 
-<span data-ttu-id="bd99e-134">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="bd99e-134">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="736f0-132">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="736f0-132">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="bd99e-135">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="bd99e-135">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="736f0-133">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="736f0-133">Request body</span></span>
 
-<span data-ttu-id="bd99e-136">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="bd99e-136">None.</span></span>
+<span data-ttu-id="736f0-134">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="736f0-134">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="bd99e-137">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="bd99e-137">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="736f0-135">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="736f0-135">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers/4d3cf487-70f4-4e1e-9ff1-b2bfce8d9f04/analytics/licenses/usage HTTP/1.1
@@ -76,15 +72,15 @@ MS-PartnerCenter-Client: Partner Center .NET SDK
 Host: api.partnercenter.microsoft.com
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="bd99e-138">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="bd99e-138">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="736f0-136">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="736f0-136">REST response</span></span>
 
-<span data-ttu-id="bd99e-139">Ha a művelet sikeres, a válasz törzse [CustomerLicensesUsageInsights](analytics-resources.md#customerlicensesusageinsights) -erőforrások gyűjteményét tartalmazza, amelyek információkat biztosítanak a licencek használatáról.</span><span class="sxs-lookup"><span data-stu-id="bd99e-139">If successful, the response body contains a collection of [CustomerLicensesUsageInsights](analytics-resources.md#customerlicensesusageinsights) resources that provide information about licenses usage.</span></span>
+<span data-ttu-id="736f0-137">Ha a válasz törzse sikeres, a [CustomerLicensesUsageInsights](analytics-resources.md#customerlicensesusageinsights) erőforrások gyűjteményét tartalmazza, amelyek a licenchasználattal kapcsolatos információkat tartalmaznak.</span><span class="sxs-lookup"><span data-stu-id="736f0-137">If successful, the response body contains a collection of [CustomerLicensesUsageInsights](analytics-resources.md#customerlicensesusageinsights) resources that provide information about licenses usage.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="bd99e-140">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="bd99e-140">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="736f0-138">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="736f0-138">Response success and error codes</span></span>
 
-<span data-ttu-id="bd99e-141">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="bd99e-141">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="bd99e-142">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="bd99e-142">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="bd99e-143">A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.</span><span class="sxs-lookup"><span data-stu-id="bd99e-143">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
+<span data-ttu-id="736f0-139">Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="736f0-139">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="736f0-140">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="736f0-140">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="736f0-141">A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="736f0-141">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="bd99e-144">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="bd99e-144">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="736f0-142">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="736f0-142">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK

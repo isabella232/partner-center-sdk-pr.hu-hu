@@ -1,61 +1,56 @@
 ---
 title: Ügyfélfiók törlése az integrációs tesztkörnyezetből
-description: Felhasználói fiók törlése a tesztelés éles környezetben (tip) integrációs munkaterületen.
+description: Ügyfélfiók törlése a Tesztelés éles környezetben (Tipp) integrációs tesztkészletből.
 ms.date: 06/20/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: e3a1642c0202c174ddd4f65a6aeda2752def9176
-ms.sourcegitcommit: b1ff781b67b1d322820bbcac2c583229201a8c07
+ms.openlocfilehash: b9d9e44ac9c40bd4e3c7e1a9e04253f853dfd96c
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "97768156"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973128"
 ---
-# <a name="delete-a-customer-account-from-the-integration-sandbox"></a><span data-ttu-id="07b55-103">Ügyfélfiók törlése az integrációs tesztkörnyezetből</span><span class="sxs-lookup"><span data-stu-id="07b55-103">Delete a customer account from the integration sandbox</span></span>
+# <a name="delete-a-customer-account-from-the-integration-sandbox"></a><span data-ttu-id="d5f17-103">Ügyfélfiók törlése az integrációs tesztkörnyezetből</span><span class="sxs-lookup"><span data-stu-id="d5f17-103">Delete a customer account from the integration sandbox</span></span>
 
-<span data-ttu-id="07b55-104">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="07b55-104">**Applies to:**</span></span>
+<span data-ttu-id="d5f17-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="d5f17-104">**Applies to**: Partner Center | Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="07b55-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="07b55-105">Partner Center</span></span>
-- <span data-ttu-id="07b55-106">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="07b55-106">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="07b55-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="07b55-107">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="07b55-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="07b55-108">Partner Center for Microsoft Cloud for US Government</span></span>
-
-<span data-ttu-id="07b55-109">Ez a cikk ismerteti a partner és az ügyfél közötti kapcsolat bontását, és visszanyeri a kvótát az üzemi (tip) integrációs munkaterületre való teszteléshez.</span><span class="sxs-lookup"><span data-stu-id="07b55-109">This article explains, how to break the relationship between the partner and the customer account and regain the quota for Testing in Production (Tip) integration sandbox.</span></span>
+<span data-ttu-id="d5f17-105">Ez a cikk azt ismerteti, hogyan lehet megszakítani a partner és az ügyfélfiók közötti kapcsolatot, és vissza lehet szerezni a tesztelési kvótát éles környezetben (Tipp) az integrációs tesztkészletben.</span><span class="sxs-lookup"><span data-stu-id="d5f17-105">This article explains, how to break the relationship between the partner and the customer account and regain the quota for Testing in Production (Tip) integration sandbox.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="07b55-110">Ha töröl egy ügyfél-fiókot, az ügyfél-bérlőhöz társított összes erőforrás törlődni fog.</span><span class="sxs-lookup"><span data-stu-id="07b55-110">When you delete a customer account, all resources associated with that customer tenant will be purged.</span></span>
+> <span data-ttu-id="d5f17-106">Amikor töröl egy ügyfélfiókot, az adott ügyfélbérlőhöz társított összes erőforrás törölve lesz.</span><span class="sxs-lookup"><span data-stu-id="d5f17-106">When you delete a customer account, all resources associated with that customer tenant will be purged.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="07b55-111">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="07b55-111">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="d5f17-107">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="d5f17-107">Prerequisites</span></span>
 
-- <span data-ttu-id="07b55-112">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="07b55-112">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="07b55-113">Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.</span><span class="sxs-lookup"><span data-stu-id="07b55-113">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
+- <span data-ttu-id="d5f17-108">Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="d5f17-108">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="d5f17-109">Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="d5f17-109">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
 
-- <span data-ttu-id="07b55-114">Ügyfél-azonosító ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="07b55-114">A customer ID (`customer-tenant-id`).</span></span> <span data-ttu-id="07b55-115">Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard).</span><span class="sxs-lookup"><span data-stu-id="07b55-115">If you don't know the customer's ID, you can look it up in the Partner Center [dashboard](https://partner.microsoft.com/dashboard).</span></span> <span data-ttu-id="07b55-116">Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**.</span><span class="sxs-lookup"><span data-stu-id="07b55-116">Select **CSP** from the Partner Center menu, followed by **Customers**.</span></span> <span data-ttu-id="07b55-117">Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="07b55-117">Select the customer from the customer list, then select **Account**.</span></span> <span data-ttu-id="07b55-118">Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban.</span><span class="sxs-lookup"><span data-stu-id="07b55-118">On the customer’s Account page, look for the **Microsoft ID** in the **Customer Account Info** section.</span></span> <span data-ttu-id="07b55-119">A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="07b55-119">The Microsoft ID is the same as the customer ID  (`customer-tenant-id`).</span></span>
+- <span data-ttu-id="d5f17-110">Egy ügyfélazonosító ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="d5f17-110">A customer ID (`customer-tenant-id`).</span></span> <span data-ttu-id="d5f17-111">Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard)</span><span class="sxs-lookup"><span data-stu-id="d5f17-111">If you don't know the customer's ID, you can look it up in the Partner Center [dashboard](https://partner.microsoft.com/dashboard).</span></span> <span data-ttu-id="d5f17-112">Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.**</span><span class="sxs-lookup"><span data-stu-id="d5f17-112">Select **CSP** from the Partner Center menu, followed by **Customers**.</span></span> <span data-ttu-id="d5f17-113">Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.**</span><span class="sxs-lookup"><span data-stu-id="d5f17-113">Select the customer from the customer list, then select **Account**.</span></span> <span data-ttu-id="d5f17-114">Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.**</span><span class="sxs-lookup"><span data-stu-id="d5f17-114">On the customer’s Account page, look for the **Microsoft ID** in the **Customer Account Info** section.</span></span> <span data-ttu-id="d5f17-115">A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="d5f17-115">The Microsoft ID is the same as the customer ID  (`customer-tenant-id`).</span></span>
 
-- <span data-ttu-id="07b55-120">Az összes Azure Reserved Virtual Machine Instances-és szoftver-beszerzési rendelést meg kell szüntetni, mielőtt törölné egy ügyfelet a tip Integration sandbox-ból.</span><span class="sxs-lookup"><span data-stu-id="07b55-120">All Azure Reserved Virtual Machine Instances and software purchase orders must be cancelled before deleting a customer from the Tip integration sandbox.</span></span>
+- <span data-ttu-id="d5f17-116">Minden Azure Reserved Virtual Machine Instances és szoftvervásárlási rendelést meg kell szakítani, mielőtt törölné az ügyfelet a Tipp integrációs védőfalból.</span><span class="sxs-lookup"><span data-stu-id="d5f17-116">All Azure Reserved Virtual Machine Instances and software purchase orders must be canceled before deleting a customer from the Tip integration sandbox.</span></span>
 
-## <a name="c"></a><span data-ttu-id="07b55-121">C\#</span><span class="sxs-lookup"><span data-stu-id="07b55-121">C\#</span></span>
+## <a name="c"></a><span data-ttu-id="d5f17-117">C\#</span><span class="sxs-lookup"><span data-stu-id="d5f17-117">C\#</span></span>
 
-<span data-ttu-id="07b55-122">Ügyfél törlése a tipp-integrációs homokozóból:</span><span class="sxs-lookup"><span data-stu-id="07b55-122">To delete a customer from the Tip integration sandbox:</span></span>
+<span data-ttu-id="d5f17-118">Ügyfél törlése a Tipp integrációs védőfalból:</span><span class="sxs-lookup"><span data-stu-id="d5f17-118">To delete a customer from the Tip integration sandbox:</span></span>
 
-1. <span data-ttu-id="07b55-123">Adja át a tip-fiókja hitelesítő adatait a [**CreatePartnerOperations**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) metódusnak, hogy [**IPartner**](/dotnet/api/microsoft.store.partnercenter.ipartner) felületet kapjon a partneri műveletekhez.</span><span class="sxs-lookup"><span data-stu-id="07b55-123">Pass your Tip account credentials to the [**CreatePartnerOperations**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) method to get an [**IPartner**](/dotnet/api/microsoft.store.partnercenter.ipartner) interface to partner operations.</span></span>
+1. <span data-ttu-id="d5f17-119">Adja át Tipp-fiókja hitelesítő adatait a [**CreatePartnerOperations**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) metódusnak, hogy [**IPartner-felületet**](/dotnet/api/microsoft.store.partnercenter.ipartner) kapjon a partneri műveletekhez.</span><span class="sxs-lookup"><span data-stu-id="d5f17-119">Pass your Tip account credentials to the [**CreatePartnerOperations**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) method to get an [**IPartner**](/dotnet/api/microsoft.store.partnercenter.ipartner) interface to partner operations.</span></span>
 
-2. <span data-ttu-id="07b55-124">A jogosultságok gyűjteményének lekéréséhez használja a partner műveleti felületet:</span><span class="sxs-lookup"><span data-stu-id="07b55-124">Use the partner operations interface to retrieve the collection of entitlements:</span></span>
+2. <span data-ttu-id="d5f17-120">A partner műveleti felületén lekéri a jogosultságok gyűjteményét:</span><span class="sxs-lookup"><span data-stu-id="d5f17-120">Use the partner operations interface to retrieve the collection of entitlements:</span></span>
 
-    1. <span data-ttu-id="07b55-125">Az ügyfél megadásához hívja meg a [**customers. ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval.</span><span class="sxs-lookup"><span data-stu-id="07b55-125">Call the [**Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) method with the customer identifier to specify the customer.</span></span>
+    1. <span data-ttu-id="d5f17-121">Az ügyfél megadásához hívja meg a [**Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfélazonosítóval.</span><span class="sxs-lookup"><span data-stu-id="d5f17-121">Call the [**Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) method with the customer identifier to specify the customer.</span></span>
 
-    2. <span data-ttu-id="07b55-126">Hívja meg a **jogosultságok** tulajdonságot.</span><span class="sxs-lookup"><span data-stu-id="07b55-126">Call the **Entitlements** property.</span></span>
+    2. <span data-ttu-id="d5f17-122">Hívja meg **a Jogosultságok tulajdonságot.**</span><span class="sxs-lookup"><span data-stu-id="d5f17-122">Call the **Entitlements** property.</span></span>
 
-    3. <span data-ttu-id="07b55-127">A [**jogosultságok**](entitlement-resources.md) gyűjtésének lekéréséhez hívja meg a **Get** vagy a **GetAsync** metódust.</span><span class="sxs-lookup"><span data-stu-id="07b55-127">Call the **Get** or **GetAsync** method to retrieve the [**Entitlement**](entitlement-resources.md) collection.</span></span>
+    3. <span data-ttu-id="d5f17-123">Hívja meg **a Get** vagy **GetAsync metódust** a jogosultsággyűjtemény [**lekéréséhez.**](entitlement-resources.md)</span><span class="sxs-lookup"><span data-stu-id="d5f17-123">Call the **Get** or **GetAsync** method to retrieve the [**Entitlement**](entitlement-resources.md) collection.</span></span>
 
-3. <span data-ttu-id="07b55-128">Győződjön meg arról, hogy az ügyfél összes Azure Reserved Virtual Machine Instances és szoftveres beszerzési rendelése meg lett szakítva.</span><span class="sxs-lookup"><span data-stu-id="07b55-128">Make sure that all Azure Reserved Virtual Machine Instances and software purchase orders for that customer are cancelled.</span></span> <span data-ttu-id="07b55-129">A gyűjtemény minden [**jogosultságához**](entitlement-resources.md) :</span><span class="sxs-lookup"><span data-stu-id="07b55-129">For each [**Entitlement**](entitlement-resources.md) in the collection:</span></span>
+3. <span data-ttu-id="d5f17-124">Győződjön meg arról, Azure Reserved Virtual Machine Instances ügyfél összes rendelése és szoftvervásárlási rendelése törölve lett.</span><span class="sxs-lookup"><span data-stu-id="d5f17-124">Make sure that all Azure Reserved Virtual Machine Instances and software purchase orders for that customer are canceled.</span></span> <span data-ttu-id="d5f17-125">A gyűjtemény [**minden egyes jogosultsága**](entitlement-resources.md) esetén:</span><span class="sxs-lookup"><span data-stu-id="d5f17-125">For each [**Entitlement**](entitlement-resources.md) in the collection:</span></span>
 
-    1. <span data-ttu-id="07b55-130">Használja a [**jogosultságot. A ReferenceOrder.Id**](entitlement-resources.md#referenceorder) a megfelelő [rendelés](order-resources.md#order) helyi másolatát kapja meg az ügyfél rendeléseinek gyűjteményéből.</span><span class="sxs-lookup"><span data-stu-id="07b55-130">Use the [**entitlement.ReferenceOrder.Id**](entitlement-resources.md#referenceorder) to get a local copy of the corresponding [Order](order-resources.md#order) from the customer's collection of orders.</span></span>
+    1. <span data-ttu-id="d5f17-126">Használja a [**jogosultságot. ReferenceOrder.Id**](entitlement-resources.md#referenceorder) le kell szereznie a megfelelő [](order-resources.md#order) rendelés helyi másolatát az ügyfél rendelésgyűjteményéből.</span><span class="sxs-lookup"><span data-stu-id="d5f17-126">Use the [**entitlement.ReferenceOrder.Id**](entitlement-resources.md#referenceorder) to get a local copy of the corresponding [Order](order-resources.md#order) from the customer's collection of orders.</span></span>
 
-    2. <span data-ttu-id="07b55-131">Állítsa a [**Order. status**](order-resources.md#order) tulajdonságot "megszakítva" értékre.</span><span class="sxs-lookup"><span data-stu-id="07b55-131">Set the [**Order.Status**](order-resources.md#order) property to "Cancelled".</span></span>
+    2. <span data-ttu-id="d5f17-127">Állítsa az [**Order.Status**](order-resources.md#order) tulajdonságot "Megszakítva" állapotra.</span><span class="sxs-lookup"><span data-stu-id="d5f17-127">Set the [**Order.Status**](order-resources.md#order) property to "Cancelled".</span></span>
 
-    3. <span data-ttu-id="07b55-132">A **javítás ()** metódus használatával frissítse a sorrendet.</span><span class="sxs-lookup"><span data-stu-id="07b55-132">Use the **Patch()** method to update the order.</span></span>
+    3. <span data-ttu-id="d5f17-128">Frissítse a sorrendet a **Patch()** metódussal.</span><span class="sxs-lookup"><span data-stu-id="d5f17-128">Use the **Patch()** method to update the order.</span></span>
 
-4. <span data-ttu-id="07b55-133">Az összes megrendelés megszakítása.</span><span class="sxs-lookup"><span data-stu-id="07b55-133">Cancel all orders.</span></span> <span data-ttu-id="07b55-134">Az alábbi mintakód például egy hurkot használ az egyes sorrendek lekérdezéséhez, amíg az állapota "megszakítva".</span><span class="sxs-lookup"><span data-stu-id="07b55-134">For example, the following code sample uses a loop to poll each order until its status is "Cancelled".</span></span>
+4. <span data-ttu-id="d5f17-129">Az összes rendelés visszavonása.</span><span class="sxs-lookup"><span data-stu-id="d5f17-129">Cancel all orders.</span></span> <span data-ttu-id="d5f17-130">A következő kódminta például egy ciklussal lekérdezi az egyes rendeléseket, amíg az állapota "Cancelled" (Megszakítva) nem lesz.</span><span class="sxs-lookup"><span data-stu-id="d5f17-130">For example, the following code sample uses a loop to poll each order until its status is "Cancelled".</span></span>
 
     ``` csharp
     // IPartnerCredentials tipAccountCredentials;
@@ -64,7 +59,7 @@ ms.locfileid: "97768156"
 
     IPartner tipAccountPartnerOperations = PartnerService.Instance.CreatePartnerOperations(tipAccountCredentials);
 
-    // Get all entitlements whose order must be cancelled.
+    // Get all entitlements whose order must be canceled.
     ResourceCollection<Entitlement> entitlements = tipAccountPartnerOperations.Customers.ById(customerTenantId).Entitlements.Get();
 
     // Cancel all orders
@@ -79,7 +74,7 @@ ms.locfileid: "97768156"
     bool proceed = true;
     do
     {
-        // Check if all the orders were cancelled.
+        // Check if all the orders were canceled.
         foreach (var entitlement in entitlements)
         {
             var order = tipAccountPartnerOperations.Customers.ById(customerTenantId).Orders.ById(entitlement.ReferenceOrder.Id).Get();
@@ -97,35 +92,35 @@ ms.locfileid: "97768156"
     tipAccountPartnerOperations.Customers.ById(customerTenantId).Delete();
     ```
 
-5. <span data-ttu-id="07b55-135">Győződjön meg arról, hogy az összes megrendelést megszakította az ügyfél **törlési** metódusának meghívásával.</span><span class="sxs-lookup"><span data-stu-id="07b55-135">Make sure all orders are cancelled by calling the **Delete** method for the customer.</span></span>
+5. <span data-ttu-id="d5f17-131">Az ügyfél Delete metódusának hívásával győződjön meg arról, hogy minden rendelés vissza lett szakítva. </span><span class="sxs-lookup"><span data-stu-id="d5f17-131">Make sure all orders are canceled by calling the **Delete** method for the customer.</span></span>
 
-<span data-ttu-id="07b55-136">**Példa**: [konzol tesztelési alkalmazás](console-test-app.md).</span><span class="sxs-lookup"><span data-stu-id="07b55-136">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="07b55-137">**Projekt**: partner Center PartnerCenterSDK. FeaturesSamples **osztály**: DeleteCustomerFromTipAccount.cs</span><span class="sxs-lookup"><span data-stu-id="07b55-137">**Project**: Partner Center PartnerCenterSDK.FeaturesSamples **Class**: DeleteCustomerFromTipAccount.cs</span></span>
+<span data-ttu-id="d5f17-132">**Minta:** [Konzoltesztalkalmazás.](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="d5f17-132">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="d5f17-133">**Project**: Partnerközpont PartnerCenterSDK.FeaturesSamples **osztály:** DeleteCustomerFromTipAccount.cs</span><span class="sxs-lookup"><span data-stu-id="d5f17-133">**Project**: Partner Center PartnerCenterSDK.FeaturesSamples **Class**: DeleteCustomerFromTipAccount.cs</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="07b55-138">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="07b55-138">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="d5f17-134">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="d5f17-134">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="07b55-139">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="07b55-139">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="d5f17-135">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="d5f17-135">Request syntax</span></span>
 
-| <span data-ttu-id="07b55-140">Metódus</span><span class="sxs-lookup"><span data-stu-id="07b55-140">Method</span></span>     | <span data-ttu-id="07b55-141">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="07b55-141">Request URI</span></span>                                                                            |
+| <span data-ttu-id="d5f17-136">Metódus</span><span class="sxs-lookup"><span data-stu-id="d5f17-136">Method</span></span>     | <span data-ttu-id="d5f17-137">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="d5f17-137">Request URI</span></span>                                                                            |
 |------------|----------------------------------------------------------------------------------------|
-| <span data-ttu-id="07b55-142">DELETE</span><span class="sxs-lookup"><span data-stu-id="07b55-142">DELETE</span></span>     | <span data-ttu-id="07b55-143">[*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID} http/1.1</span><span class="sxs-lookup"><span data-stu-id="07b55-143">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id} HTTP/1.1</span></span> |
+| <span data-ttu-id="d5f17-138">DELETE</span><span class="sxs-lookup"><span data-stu-id="d5f17-138">DELETE</span></span>     | <span data-ttu-id="d5f17-139">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="d5f17-139">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id} HTTP/1.1</span></span> |
 
-#### <a name="uri-parameter"></a><span data-ttu-id="07b55-144">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="07b55-144">URI parameter</span></span>
+#### <a name="uri-parameter"></a><span data-ttu-id="d5f17-140">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="d5f17-140">URI parameter</span></span>
 
-<span data-ttu-id="07b55-145">Az ügyfél törléséhez használja a következő lekérdezési paramétert.</span><span class="sxs-lookup"><span data-stu-id="07b55-145">Use the following query parameter to delete a customer.</span></span>
+<span data-ttu-id="d5f17-141">Az alábbi lekérdezési paraméterrel törölhet egy ügyfelet.</span><span class="sxs-lookup"><span data-stu-id="d5f17-141">Use the following query parameter to delete a customer.</span></span>
 
-| <span data-ttu-id="07b55-146">Név</span><span class="sxs-lookup"><span data-stu-id="07b55-146">Name</span></span>                   | <span data-ttu-id="07b55-147">Típus</span><span class="sxs-lookup"><span data-stu-id="07b55-147">Type</span></span>     | <span data-ttu-id="07b55-148">Kötelező</span><span class="sxs-lookup"><span data-stu-id="07b55-148">Required</span></span> | <span data-ttu-id="07b55-149">Leírás</span><span class="sxs-lookup"><span data-stu-id="07b55-149">Description</span></span>                                                                         |
+| <span data-ttu-id="d5f17-142">Név</span><span class="sxs-lookup"><span data-stu-id="d5f17-142">Name</span></span>                   | <span data-ttu-id="d5f17-143">Típus</span><span class="sxs-lookup"><span data-stu-id="d5f17-143">Type</span></span>     | <span data-ttu-id="d5f17-144">Kötelező</span><span class="sxs-lookup"><span data-stu-id="d5f17-144">Required</span></span> | <span data-ttu-id="d5f17-145">Leírás</span><span class="sxs-lookup"><span data-stu-id="d5f17-145">Description</span></span>                                                                         |
 |------------------------|----------|----------|-------------------------------------------------------------------------------------|
-| <span data-ttu-id="07b55-150">ügyfél – bérlő – azonosító</span><span class="sxs-lookup"><span data-stu-id="07b55-150">customer-tenant-id</span></span>     | <span data-ttu-id="07b55-151">GUID</span><span class="sxs-lookup"><span data-stu-id="07b55-151">GUID</span></span>     | <span data-ttu-id="07b55-152">Y</span><span class="sxs-lookup"><span data-stu-id="07b55-152">Y</span></span>        | <span data-ttu-id="07b55-153">Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti.</span><span class="sxs-lookup"><span data-stu-id="07b55-153">The value is a GUID formatted **customer-tenant-id** that allows the reseller to filter the results for a given customer that belongs to the reseller.</span></span> |
+| <span data-ttu-id="d5f17-146">ügyfél-bérlő-azonosító</span><span class="sxs-lookup"><span data-stu-id="d5f17-146">customer-tenant-id</span></span>     | <span data-ttu-id="d5f17-147">GUID</span><span class="sxs-lookup"><span data-stu-id="d5f17-147">GUID</span></span>     | <span data-ttu-id="d5f17-148">Y</span><span class="sxs-lookup"><span data-stu-id="d5f17-148">Y</span></span>        | <span data-ttu-id="d5f17-149">Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit.</span><span class="sxs-lookup"><span data-stu-id="d5f17-149">The value is a GUID formatted **customer-tenant-id** that allows the reseller to filter the results for a given customer that belongs to the reseller.</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="07b55-154">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="07b55-154">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="d5f17-150">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="d5f17-150">Request headers</span></span>
 
-<span data-ttu-id="07b55-155">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="07b55-155">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="d5f17-151">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="d5f17-151">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="07b55-156">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="07b55-156">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="d5f17-152">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="d5f17-152">Request body</span></span>
 
-<span data-ttu-id="07b55-157">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="07b55-157">None.</span></span>
+<span data-ttu-id="d5f17-153">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="d5f17-153">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="07b55-158">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="07b55-158">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="d5f17-154">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="d5f17-154">Request example</span></span>
 
 ```http
 DELETE https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id> HTTP/1.1
@@ -135,15 +130,15 @@ MS-CorrelationId: 1438ea3d-b515-45c7-9ec1-27ee0cc8e6bd
 Content-Length: 0
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="07b55-159">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="07b55-159">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="d5f17-155">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="d5f17-155">REST response</span></span>
 
-<span data-ttu-id="07b55-160">Ha ez sikeres, a metódus üres választ ad vissza.</span><span class="sxs-lookup"><span data-stu-id="07b55-160">If successful, this method returns an empty response.</span></span>
+<span data-ttu-id="d5f17-156">Sikeres művelet esetén ez a metódus üres választ ad vissza.</span><span class="sxs-lookup"><span data-stu-id="d5f17-156">If successful, this method returns an empty response.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="07b55-161">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="07b55-161">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="d5f17-157">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="d5f17-157">Response success and error codes</span></span>
 
-<span data-ttu-id="07b55-162">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="07b55-162">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="07b55-163">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="07b55-163">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="07b55-164">A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.</span><span class="sxs-lookup"><span data-stu-id="07b55-164">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
+<span data-ttu-id="d5f17-158">Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="d5f17-158">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="d5f17-159">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="d5f17-159">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="d5f17-160">A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="d5f17-160">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="07b55-165">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="07b55-165">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="d5f17-161">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="d5f17-161">Response example</span></span>
 
 ```http
 HTTP/1.1 204 No Content

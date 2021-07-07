@@ -1,45 +1,41 @@
 ---
 title: MFA nélküli portálkérelmek lekérése
-description: A többtényezős hitelesítés (MFA) nélküli felhasználói kérelmek listájának beolvasása a partner REST API használatával.
+description: A többtényezős hitelesítés (MFA) nélküli felhasználói kérelmek listájának lekérése a partneri REST API.
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 ms.date: 05/29/2020
-ms.openlocfilehash: fd350aa3301f00926942ae6c6af359b0d0edc423
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 41627751d3402d7712d96c15c4281a25ed9a44a7
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767924"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445578"
 ---
-# <a name="get-portal-requests-without-mfa"></a><span data-ttu-id="c22f5-103">MFA nélküli portálkérelmek lekérése</span><span class="sxs-lookup"><span data-stu-id="c22f5-103">Get portal requests without MFA</span></span>
+# <a name="get-portal-requests-without-mfa"></a><span data-ttu-id="e5e4b-103">MFA nélküli portálkérelmek lekérése</span><span class="sxs-lookup"><span data-stu-id="e5e4b-103">Get portal requests without MFA</span></span>
 
-<span data-ttu-id="c22f5-104">A következőkre vonatkozik:</span><span class="sxs-lookup"><span data-stu-id="c22f5-104">Applies to:</span></span>
+<span data-ttu-id="e5e4b-104">Ez a cikk bemutatja, hogyan kérheti le a legutóbbi kérések listáját azokról a felhasználókról, akik a Partnerközpont többtényezős hitelesítés (MFA) elvégzése nélkül férnek hozzá a portálhoz.</span><span class="sxs-lookup"><span data-stu-id="e5e4b-104">This article explains how to obtain a list of the most recent requests from users who access Partner Center portal without completing multi-factor authentication (MFA).</span></span>
 
-- <span data-ttu-id="c22f5-105">Partnerközpont API</span><span class="sxs-lookup"><span data-stu-id="c22f5-105">Partner Center API</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="e5e4b-105">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="e5e4b-105">Prerequisites</span></span>
 
-<span data-ttu-id="c22f5-106">Ez a cikk azt ismerteti, hogyan kérhető le a partner Center portált a többtényezős hitelesítés (MFA) befejezése nélkül elérő felhasználók legutóbbi kéréseinek listája.</span><span class="sxs-lookup"><span data-stu-id="c22f5-106">This article explains how to obtain a list of the most recent requests from users who access Partner Center portal without completing multi-factor authentication (MFA).</span></span>
+- <span data-ttu-id="e5e4b-106">Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="e5e4b-106">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="e5e4b-107">Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="e5e4b-107">This scenario supports authentication with App+User credentials.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="c22f5-107">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="c22f5-107">Prerequisites</span></span>
+## <a name="rest-request"></a><span data-ttu-id="e5e4b-108">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="e5e4b-108">REST request</span></span>
 
-- <span data-ttu-id="c22f5-108">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="c22f5-108">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="c22f5-109">Ez a forgatókönyv támogatja a hitelesítést az App + User hitelesítő adataival.</span><span class="sxs-lookup"><span data-stu-id="c22f5-109">This scenario supports authentication with App+User credentials.</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="e5e4b-109">Kérésszintaxis</span><span class="sxs-lookup"><span data-stu-id="e5e4b-109">Request syntax</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="c22f5-110">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="c22f5-110">REST request</span></span>
-
-### <a name="request-syntax"></a><span data-ttu-id="c22f5-111">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="c22f5-111">Request syntax</span></span>
-
-| <span data-ttu-id="c22f5-112">Metódus</span><span class="sxs-lookup"><span data-stu-id="c22f5-112">Method</span></span>  | <span data-ttu-id="c22f5-113">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="c22f5-113">Request URI</span></span>                                                  |
+| <span data-ttu-id="e5e4b-110">Metódus</span><span class="sxs-lookup"><span data-stu-id="e5e4b-110">Method</span></span>  | <span data-ttu-id="e5e4b-111">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="e5e4b-111">Request URI</span></span>                                                  |
 |---------|--------------------------------------------------------------|
-| <span data-ttu-id="c22f5-114">**GET**</span><span class="sxs-lookup"><span data-stu-id="c22f5-114">**GET**</span></span> | <span data-ttu-id="c22f5-115">[*{baseURL}*](partner-center-rest-urls.md)/v1/nonMfaCompliantPartnerPrincipals</span><span class="sxs-lookup"><span data-stu-id="c22f5-115">[*{baseURL}*](partner-center-rest-urls.md)/v1/nonMfaCompliantPartnerPrincipals</span></span> |
+| <span data-ttu-id="e5e4b-112">**Kap**</span><span class="sxs-lookup"><span data-stu-id="e5e4b-112">**GET**</span></span> | <span data-ttu-id="e5e4b-113">[*{baseURL}*](partner-center-rest-urls.md)/v1/nonMfaCompliantPartnerPrincipals</span><span class="sxs-lookup"><span data-stu-id="e5e4b-113">[*{baseURL}*](partner-center-rest-urls.md)/v1/nonMfaCompliantPartnerPrincipals</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="c22f5-116">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="c22f5-116">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="e5e4b-114">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="e5e4b-114">Request headers</span></span>
 
-- <span data-ttu-id="c22f5-117">További információért lásd a [partneri központ Rest-fejléceit](headers.md) .</span><span class="sxs-lookup"><span data-stu-id="c22f5-117">See [Partner Center REST headers](headers.md) for more information.</span></span>
+- <span data-ttu-id="e5e4b-115">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="e5e4b-115">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="c22f5-118">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="c22f5-118">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="e5e4b-116">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="e5e4b-116">Request body</span></span>
 
-<span data-ttu-id="c22f5-119">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="c22f5-119">None.</span></span>
+<span data-ttu-id="e5e4b-117">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="e5e4b-117">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="c22f5-120">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="c22f5-120">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="e5e4b-118">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="e5e4b-118">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/nonMfaCompliantPartnerPrincipals HTTP/1.1
@@ -52,15 +48,15 @@ Connection: keep-alive
 
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="c22f5-121">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="c22f5-121">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="e5e4b-119">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="e5e4b-119">REST response</span></span>
 
-<span data-ttu-id="c22f5-122">Ha a művelet sikeres, ez a módszer egy [portál-kérelem](mfa-resources.md#portal-request-without-mfa) erőforrásainak gyűjteményét adja vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="c22f5-122">If successful, this method returns a collection of [Portal request](mfa-resources.md#portal-request-without-mfa) resources in the response body.</span></span>
+<span data-ttu-id="e5e4b-120">Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza a [Portal-kérések](mfa-resources.md#portal-request-without-mfa) erőforrásainak gyűjteményét.</span><span class="sxs-lookup"><span data-stu-id="e5e4b-120">If successful, this method returns a collection of [Portal request](mfa-resources.md#portal-request-without-mfa) resources in the response body.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="c22f5-123">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="c22f5-123">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="e5e4b-121">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="e5e4b-121">Response success and error codes</span></span>
 
-<span data-ttu-id="c22f5-124">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="c22f5-124">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="c22f5-125">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="c22f5-125">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="c22f5-126">A teljes listát lásd: [hibakódok](error-codes.md).</span><span class="sxs-lookup"><span data-stu-id="c22f5-126">For the full list, see [Error Codes](error-codes.md).</span></span>
+<span data-ttu-id="e5e4b-122">Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="e5e4b-122">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="e5e4b-123">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="e5e4b-123">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="e5e4b-124">A teljes listát lásd: [Hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="e5e4b-124">For the full list, see [Error Codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="c22f5-127">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="c22f5-127">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="e5e4b-125">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="e5e4b-125">Response example</span></span>
 
 ``` http
 HTTP/1.1 200 OK

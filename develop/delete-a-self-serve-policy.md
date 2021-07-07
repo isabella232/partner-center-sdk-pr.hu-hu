@@ -1,35 +1,31 @@
 ---
 title: Önkiszolgáló szabályzat törlése
-description: Önkiszolgáló házirend törlése.
+description: Önkiszolgáló szabályzat törlése.
 ms.date: 04/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 3450145d6daf2ffca5e2886245e592406cb0886d
-ms.sourcegitcommit: 01e75175077611da92175c777a440a594fb05797
+ms.openlocfilehash: 063cf98d4c78e82622e486427baeb1a5721715e5
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "97768656"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973094"
 ---
-# <a name="delete-a-selfservepolicy"></a><span data-ttu-id="dbe80-103">SelfServePolicy törlése</span><span class="sxs-lookup"><span data-stu-id="dbe80-103">Delete a SelfServePolicy</span></span>
+# <a name="delete-a-selfservepolicy"></a><span data-ttu-id="74754-103">SelfServePolicy törlése</span><span class="sxs-lookup"><span data-stu-id="74754-103">Delete a SelfServePolicy</span></span>
 
-<span data-ttu-id="dbe80-104">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="dbe80-104">**Applies to:**</span></span>
+<span data-ttu-id="74754-104">Ez a cikk az önkiszolgáló szabályzatok frissítését ismerteti.</span><span class="sxs-lookup"><span data-stu-id="74754-104">This article explains how to update a self-serve policy.</span></span>
 
-- <span data-ttu-id="dbe80-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="dbe80-105">Partner Center</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="74754-105">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="74754-105">Prerequisites</span></span>
 
-<span data-ttu-id="dbe80-106">Ez a témakör az önkiszolgáló szabályzatok frissítését ismerteti.</span><span class="sxs-lookup"><span data-stu-id="dbe80-106">This topic explains how to update a self-serve policy.</span></span>
+- <span data-ttu-id="74754-106">Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="74754-106">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="74754-107">Ez a forgatókönyv támogatja az Application+User hitelesítő adatokkal történő hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="74754-107">This scenario supports authentication with Application+User credentials.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="dbe80-107">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="dbe80-107">Prerequisites</span></span>
+## <a name="c"></a><span data-ttu-id="74754-108">C\#</span><span class="sxs-lookup"><span data-stu-id="74754-108">C\#</span></span>
 
-- <span data-ttu-id="dbe80-108">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="dbe80-108">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="dbe80-109">Ez a forgatókönyv támogatja az Application + felhasználói hitelesítő adatokkal történő hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="dbe80-109">This scenario supports authentication with Application+User credentials.</span></span>
+<span data-ttu-id="74754-109">Önkiszolgáló szabályzat törlése:</span><span class="sxs-lookup"><span data-stu-id="74754-109">To delete a self-serve policy:</span></span>
 
-## <a name="c"></a><span data-ttu-id="dbe80-110">C\#</span><span class="sxs-lookup"><span data-stu-id="dbe80-110">C\#</span></span>
+1. <span data-ttu-id="74754-110">Hívja meg az [**IAggregatePartner.SelfServePolicies.ById**](/dotnet/api/microsoft.store.partnercenter.iselfservepoliciescollection.byid) metódust az entitásazonosítóval, hogy lekérje a szabályzatok műveleteinek interfészét.</span><span class="sxs-lookup"><span data-stu-id="74754-110">Call the [**IAggregatePartner.SelfServePolicies.ById**](/dotnet/api/microsoft.store.partnercenter.iselfservepoliciescollection.byid) method with the entity identifier to retrieve an interface to operations on the policies.</span></span>
 
-<span data-ttu-id="dbe80-111">Önkiszolgáló házirend törlése:</span><span class="sxs-lookup"><span data-stu-id="dbe80-111">To delete a self-serve policy:</span></span>
-
-1. <span data-ttu-id="dbe80-112">Hívja meg a [**IAggregatePartner. SelfServePolicies. ById**](/dotnet/api/microsoft.store.partnercenter.iselfservepoliciescollection.byid) metódust az entitás-azonosítóval, és kérje le a házirendek műveleteire szolgáló felületet.</span><span class="sxs-lookup"><span data-stu-id="dbe80-112">Call the [**IAggregatePartner.SelfServePolicies.ById**](/dotnet/api/microsoft.store.partnercenter.iselfservepoliciescollection.byid) method with the entity identifier to retrieve an interface to operations on the policies.</span></span>
-
-2. <span data-ttu-id="dbe80-113">Az önkiszolgáló házirend törléséhez hívja meg a [**delete**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.delete) vagy a [**DeleteAsync**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.deleteasync) metódust.</span><span class="sxs-lookup"><span data-stu-id="dbe80-113">Call the [**Delete**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.delete) or [**DeleteAsync**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.deleteasync) method to delete the self-serve policy.</span></span>
+2. <span data-ttu-id="74754-111">Az [**önkiszolgáló**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.delete) szabályzat törléséhez hívja meg a Delete vagy [**a DeleteAsync**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.deleteasync) metódust.</span><span class="sxs-lookup"><span data-stu-id="74754-111">Call the [**Delete**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.delete) or [**DeleteAsync**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.deleteasync) method to delete the self-serve policy.</span></span>
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -42,38 +38,38 @@ IPartner scopedPartnerOperations = partnerOperations.With(RequestContextFactory.
 partnerOperations.SelfServePolicies.ById(policyId).Delete();
 ```
 
-<span data-ttu-id="dbe80-114">Példaként tekintse meg a következőket:</span><span class="sxs-lookup"><span data-stu-id="dbe80-114">For an example, see the following:</span></span>
+<span data-ttu-id="74754-112">Példaként tekintse meg a következőket:</span><span class="sxs-lookup"><span data-stu-id="74754-112">For an example, see the following:</span></span>
 
-- <span data-ttu-id="dbe80-115">Minta: [konzol tesztelési alkalmazás](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="dbe80-115">Sample: [Console test app](console-test-app.md)</span></span>
-- <span data-ttu-id="dbe80-116">Projekt: **PartnerSDK. FeatureSamples**</span><span class="sxs-lookup"><span data-stu-id="dbe80-116">Project: **PartnerSDK.FeatureSamples**</span></span>
-- <span data-ttu-id="dbe80-117">Osztály: **DeleteSelfServePolicies.cs**</span><span class="sxs-lookup"><span data-stu-id="dbe80-117">Class: **DeleteSelfServePolicies.cs**</span></span>
+- <span data-ttu-id="74754-113">Minta: [Konzoltesztalkalmazás](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="74754-113">Sample: [Console test app](console-test-app.md)</span></span>
+- <span data-ttu-id="74754-114">Project: **PartnerSDK.FeatureSamples**</span><span class="sxs-lookup"><span data-stu-id="74754-114">Project: **PartnerSDK.FeatureSamples**</span></span>
+- <span data-ttu-id="74754-115">Osztály: **DeleteSelfServePolicies.cs**</span><span class="sxs-lookup"><span data-stu-id="74754-115">Class: **DeleteSelfServePolicies.cs**</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="dbe80-118">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="dbe80-118">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="74754-116">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="74754-116">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="dbe80-119">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="dbe80-119">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="74754-117">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="74754-117">Request syntax</span></span>
 
-| <span data-ttu-id="dbe80-120">Metódus</span><span class="sxs-lookup"><span data-stu-id="dbe80-120">Method</span></span>  | <span data-ttu-id="dbe80-121">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="dbe80-121">Request URI</span></span>                                                                   |
+| <span data-ttu-id="74754-118">Metódus</span><span class="sxs-lookup"><span data-stu-id="74754-118">Method</span></span>  | <span data-ttu-id="74754-119">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="74754-119">Request URI</span></span>                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| <span data-ttu-id="dbe80-122">**TÖRLÉSE**</span><span class="sxs-lookup"><span data-stu-id="dbe80-122">**DELETE**</span></span> | <span data-ttu-id="dbe80-123">[*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{ID} http/1.1</span><span class="sxs-lookup"><span data-stu-id="dbe80-123">[*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{id} HTTP/1.1</span></span> |
+| <span data-ttu-id="74754-120">**Töröl**</span><span class="sxs-lookup"><span data-stu-id="74754-120">**DELETE**</span></span> | <span data-ttu-id="74754-121">[*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{id} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="74754-121">[*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{id} HTTP/1.1</span></span> |
 
-<span data-ttu-id="dbe80-124">**URI-paraméter**</span><span class="sxs-lookup"><span data-stu-id="dbe80-124">**URI parameter**</span></span>
+<span data-ttu-id="74754-122">**URI-paraméter**</span><span class="sxs-lookup"><span data-stu-id="74754-122">**URI parameter**</span></span>
 
-<span data-ttu-id="dbe80-125">A megadott termék beolvasásához használja a következő elérésiút-paramétereket.</span><span class="sxs-lookup"><span data-stu-id="dbe80-125">Use the following path parameters to get the specified product.</span></span>
+<span data-ttu-id="74754-123">Az alábbi elérésiút-paraméterek használatával szerezze be a megadott terméket.</span><span class="sxs-lookup"><span data-stu-id="74754-123">Use the following path parameters to get the specified product.</span></span>
 
-| <span data-ttu-id="dbe80-126">Név</span><span class="sxs-lookup"><span data-stu-id="dbe80-126">Name</span></span>                       | <span data-ttu-id="dbe80-127">Típus</span><span class="sxs-lookup"><span data-stu-id="dbe80-127">Type</span></span>         | <span data-ttu-id="dbe80-128">Kötelező</span><span class="sxs-lookup"><span data-stu-id="dbe80-128">Required</span></span> | <span data-ttu-id="dbe80-129">Leírás</span><span class="sxs-lookup"><span data-stu-id="dbe80-129">Description</span></span>                                                     |
+| <span data-ttu-id="74754-124">Név</span><span class="sxs-lookup"><span data-stu-id="74754-124">Name</span></span>                       | <span data-ttu-id="74754-125">Típus</span><span class="sxs-lookup"><span data-stu-id="74754-125">Type</span></span>         | <span data-ttu-id="74754-126">Kötelező</span><span class="sxs-lookup"><span data-stu-id="74754-126">Required</span></span> | <span data-ttu-id="74754-127">Leírás</span><span class="sxs-lookup"><span data-stu-id="74754-127">Description</span></span>                                                     |
 |----------------------------|--------------|----------|-----------------------------------------------------------------|
-| <span data-ttu-id="dbe80-130">**SelfServePolicy-azonosító**</span><span class="sxs-lookup"><span data-stu-id="dbe80-130">**SelfServePolicy-id**</span></span>     | <span data-ttu-id="dbe80-131">**karakterlánc**</span><span class="sxs-lookup"><span data-stu-id="dbe80-131">**string**</span></span>   | <span data-ttu-id="dbe80-132">Igen</span><span class="sxs-lookup"><span data-stu-id="dbe80-132">Yes</span></span>      | <span data-ttu-id="dbe80-133">Az önkiszolgáló házirendet azonosító karakterlánc.</span><span class="sxs-lookup"><span data-stu-id="dbe80-133">A string that identifies the self-serve policy.</span></span>                 |
+| <span data-ttu-id="74754-128">**SelfServePolicy-id**</span><span class="sxs-lookup"><span data-stu-id="74754-128">**SelfServePolicy-id**</span></span>     | <span data-ttu-id="74754-129">**sztring**</span><span class="sxs-lookup"><span data-stu-id="74754-129">**string**</span></span>   | <span data-ttu-id="74754-130">Igen</span><span class="sxs-lookup"><span data-stu-id="74754-130">Yes</span></span>      | <span data-ttu-id="74754-131">Az önkiszolgáló szabályzatot azonosító sztring.</span><span class="sxs-lookup"><span data-stu-id="74754-131">A string that identifies the self-serve policy.</span></span>                 |
 
-### <a name="request-headers"></a><span data-ttu-id="dbe80-134">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="dbe80-134">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="74754-132">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="74754-132">Request headers</span></span>
 
-- <span data-ttu-id="dbe80-135">A kérelem AZONOSÍTÓjának és korrelációs AZONOSÍTÓjának megadása kötelező.</span><span class="sxs-lookup"><span data-stu-id="dbe80-135">A request ID and correlation ID are required.</span></span>
-- <span data-ttu-id="dbe80-136">További információért lásd a [partneri központ Rest-fejléceit](headers.md) .</span><span class="sxs-lookup"><span data-stu-id="dbe80-136">See [Partner Center REST headers](headers.md) for more information.</span></span>
+- <span data-ttu-id="74754-133">Szükség van egy kérésazonosítóra és egy korrelációs azonosítóra.</span><span class="sxs-lookup"><span data-stu-id="74754-133">A request ID and correlation ID are required.</span></span>
+- <span data-ttu-id="74754-134">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="74754-134">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="dbe80-137">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="dbe80-137">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="74754-135">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="74754-135">Request body</span></span>
 
-<span data-ttu-id="dbe80-138">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="dbe80-138">None.</span></span>
+<span data-ttu-id="74754-136">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="74754-136">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="dbe80-139">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="dbe80-139">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="74754-137">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="74754-137">Request example</span></span>
 
 ```http
 DELETE https://api.partnercenter.microsoft.com/v1/SelfServePolicy/634f6379-ad54-449b-9821-564f737158ab_0431a72c-7d8a-4393-b25e-ef63f5efb415 HTTP/1.1
@@ -88,13 +84,13 @@ Connection: Keep-Alive
 
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="dbe80-140">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="dbe80-140">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="74754-138">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="74754-138">REST response</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="dbe80-141">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="dbe80-141">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="74754-139">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="74754-139">Response success and error codes</span></span>
 
-<span data-ttu-id="dbe80-142">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="dbe80-142">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="dbe80-143">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="dbe80-143">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="dbe80-144">A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.</span><span class="sxs-lookup"><span data-stu-id="dbe80-144">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
+<span data-ttu-id="74754-140">Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="74754-140">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="74754-141">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="74754-141">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="74754-142">A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="74754-142">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="dbe80-145">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="dbe80-145">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="74754-143">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="74754-143">Response example</span></span>
 
 ```http
 HTTP/1.1 204 deleted
