@@ -1,30 +1,26 @@
 ---
-title: TransferEligibility-erőforrások
-description: Egy partner akkor hozza létre az átvitelt, ha az ügyfél előfizetését a partnerrel egy másik partnernek kívánja átvinni.
+title: TransferEligibility erőforrások
+description: A partnerek akkor hozhatnak létre átadást, ha az ügyfél a partnerrel való előfizetését egy másik partnernek való átadásra kéri.
 ms.date: 04/10/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: dcac5724a1f708bc540a3aac7ce74b2eda60a296
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 8f121d499abffb4c4dda688c2a91c25f83d2e863
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767848"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530208"
 ---
-# <a name="transfereligibility-resources"></a><span data-ttu-id="33408-103">TransferEligibility-erőforrások</span><span class="sxs-lookup"><span data-stu-id="33408-103">TransferEligibility resources</span></span>
+# <a name="transfereligibility-resources"></a><span data-ttu-id="21a7f-103">TransferEligibility erőforrások</span><span class="sxs-lookup"><span data-stu-id="21a7f-103">TransferEligibility resources</span></span>
 
-<span data-ttu-id="33408-104">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="33408-104">**Applies to:**</span></span>
+<span data-ttu-id="21a7f-104">A partnerek akkor hozhatnak létre átadást, ha az ügyfél a partnerrel való előfizetését egy másik partnernek való átadásra kéri.</span><span class="sxs-lookup"><span data-stu-id="21a7f-104">A partner can create a transfer when a customer requests their subscription with the partner to be transferred to another partner.</span></span> <span data-ttu-id="21a7f-105">A TransferEligibility használatával ellenőrizheti, hogy egy előfizetés átvihető-e.</span><span class="sxs-lookup"><span data-stu-id="21a7f-105">Use TransferEligibility to check whether a subscription is eligible to be transferred.</span></span>
 
-- <span data-ttu-id="33408-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="33408-105">Partner Center</span></span>
+## <a name="transfereligibility"></a><span data-ttu-id="21a7f-106">TransferEligibility (Átvitelelhetőség)</span><span class="sxs-lookup"><span data-stu-id="21a7f-106">TransferEligibility</span></span>
 
-<span data-ttu-id="33408-106">Egy partner akkor hozza létre az átvitelt, ha az ügyfél előfizetését a partnerrel egy másik partnernek kívánja átvinni.</span><span class="sxs-lookup"><span data-stu-id="33408-106">A partner creates a transfer when a customer wants their subscription with the partner to be transferred to another partner.</span></span>
+<span data-ttu-id="21a7f-107">A transferEligibility (átvitelelhetőség) szakaszt írja le.</span><span class="sxs-lookup"><span data-stu-id="21a7f-107">Describes a transferEligibility.</span></span>
 
-## <a name="transfereligibility"></a><span data-ttu-id="33408-107">TransferEligibility</span><span class="sxs-lookup"><span data-stu-id="33408-107">TransferEligibility</span></span>
-
-<span data-ttu-id="33408-108">Leírja a transferEligibility.</span><span class="sxs-lookup"><span data-stu-id="33408-108">Describes a transferEligibility.</span></span>
-
-| <span data-ttu-id="33408-109">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="33408-109">Property</span></span>              | <span data-ttu-id="33408-110">Típus</span><span class="sxs-lookup"><span data-stu-id="33408-110">Type</span></span>             | <span data-ttu-id="33408-111">Leírás</span><span class="sxs-lookup"><span data-stu-id="33408-111">Description</span></span>                                                                              |
+| <span data-ttu-id="21a7f-108">Tulajdonság</span><span class="sxs-lookup"><span data-stu-id="21a7f-108">Property</span></span>              | <span data-ttu-id="21a7f-109">Típus</span><span class="sxs-lookup"><span data-stu-id="21a7f-109">Type</span></span>             | <span data-ttu-id="21a7f-110">Leírás</span><span class="sxs-lookup"><span data-stu-id="21a7f-110">Description</span></span>                                                                              |
 |-----------------------|------------------|------------------------------------------------------------------------------------------|
-| <span data-ttu-id="33408-112">id</span><span class="sxs-lookup"><span data-stu-id="33408-112">id</span></span>                    | <span data-ttu-id="33408-113">sztring</span><span class="sxs-lookup"><span data-stu-id="33408-113">string</span></span>           | <span data-ttu-id="33408-114">Az ügyfél előfizetés-azonosítója.</span><span class="sxs-lookup"><span data-stu-id="33408-114">The customer's subscription identifier.</span></span>                                                  |
-| <span data-ttu-id="33408-115">isEligible</span><span class="sxs-lookup"><span data-stu-id="33408-115">isEligible</span></span>            | <span data-ttu-id="33408-116">logikai</span><span class="sxs-lookup"><span data-stu-id="33408-116">bool</span></span>             | <span data-ttu-id="33408-117">Azt jelzi, hogy az előfizetés jogosult-e az átvitelre.</span><span class="sxs-lookup"><span data-stu-id="33408-117">Indicates whether the subscription is eligible for the transfer.</span></span>                         |
-| <span data-ttu-id="33408-118">Ok</span><span class="sxs-lookup"><span data-stu-id="33408-118">Reason</span></span>                | <span data-ttu-id="33408-119">sztring</span><span class="sxs-lookup"><span data-stu-id="33408-119">string</span></span>           | <span data-ttu-id="33408-120">Az OK tulajdonság megmagyarázza, hogy az előfizetés miért nem jogosult az átvitelre.</span><span class="sxs-lookup"><span data-stu-id="33408-120">The reason property explains why the subscription isn't eligible for transfer.</span></span> |
+| <span data-ttu-id="21a7f-111">id</span><span class="sxs-lookup"><span data-stu-id="21a7f-111">id</span></span>                    | <span data-ttu-id="21a7f-112">sztring</span><span class="sxs-lookup"><span data-stu-id="21a7f-112">string</span></span>           | <span data-ttu-id="21a7f-113">Az ügyfél előfizetés-azonosítója.</span><span class="sxs-lookup"><span data-stu-id="21a7f-113">The customer's subscription identifier.</span></span>                                                  |
+| <span data-ttu-id="21a7f-114">isEligible</span><span class="sxs-lookup"><span data-stu-id="21a7f-114">isEligible</span></span>            | <span data-ttu-id="21a7f-115">logikai</span><span class="sxs-lookup"><span data-stu-id="21a7f-115">bool</span></span>             | <span data-ttu-id="21a7f-116">Jelzi, hogy az előfizetés jogosult-e az átadásra.</span><span class="sxs-lookup"><span data-stu-id="21a7f-116">Indicates whether the subscription is eligible for the transfer.</span></span>                         |
+| <span data-ttu-id="21a7f-117">Ok</span><span class="sxs-lookup"><span data-stu-id="21a7f-117">Reason</span></span>                | <span data-ttu-id="21a7f-118">sztring</span><span class="sxs-lookup"><span data-stu-id="21a7f-118">string</span></span>           | <span data-ttu-id="21a7f-119">Az ok tulajdonság elmagyarázza, hogy az előfizetés miért nem jogosult az átadásra.</span><span class="sxs-lookup"><span data-stu-id="21a7f-119">The reason property explains why the subscription isn't eligible for transfer.</span></span> |

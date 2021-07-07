@@ -1,34 +1,29 @@
 ---
 title: Szervezeti profil frissítése
-description: Egy szervezet számlázási profiljának frissítése.
+description: Frissíti egy szervezet számlázási profilját.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: ccf938fff285704f54d4717b2678e1419d857d8d
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 0ef736a722cde16f95ed6dfdbdab278c98fcf738
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767871"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530055"
 ---
-# <a name="update-an-organization-profile"></a><span data-ttu-id="fc0c1-103">Szervezeti profil frissítése</span><span class="sxs-lookup"><span data-stu-id="fc0c1-103">Update an organization profile</span></span>
+# <a name="update-an-organization-profile"></a><span data-ttu-id="003c4-103">Szervezeti profil frissítése</span><span class="sxs-lookup"><span data-stu-id="003c4-103">Update an organization profile</span></span>
 
-<span data-ttu-id="fc0c1-104">**A következőkre vonatkozik**</span><span class="sxs-lookup"><span data-stu-id="fc0c1-104">**Applies To**</span></span>
+<span data-ttu-id="003c4-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="003c4-104">**Applies to**: Partner Center | Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="fc0c1-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="fc0c1-105">Partner Center</span></span>
-- <span data-ttu-id="fc0c1-106">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="fc0c1-106">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="fc0c1-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="fc0c1-107">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="fc0c1-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="fc0c1-108">Partner Center for Microsoft Cloud for US Government</span></span>
+<span data-ttu-id="003c4-105">Frissíti a partner számlázási profilját.</span><span class="sxs-lookup"><span data-stu-id="003c4-105">Updates a partner's billing profile.</span></span>
 
-<span data-ttu-id="fc0c1-109">A partner számlázási profiljának frissítése.</span><span class="sxs-lookup"><span data-stu-id="fc0c1-109">Updates a partner's billing profile.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="003c4-106">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="003c4-106">Prerequisites</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="fc0c1-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="fc0c1-110">Prerequisites</span></span>
+- <span data-ttu-id="003c4-107">Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="003c4-107">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="003c4-108">Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.</span><span class="sxs-lookup"><span data-stu-id="003c4-108">This scenario supports authentication with App+User credentials only.</span></span>
 
-- <span data-ttu-id="fc0c1-111">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="fc0c1-111">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="fc0c1-112">Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.</span><span class="sxs-lookup"><span data-stu-id="fc0c1-112">This scenario supports authentication with App+User credentials only.</span></span>
+## <a name="c"></a><span data-ttu-id="003c4-109">C\#</span><span class="sxs-lookup"><span data-stu-id="003c4-109">C\#</span></span>
 
-## <a name="c"></a><span data-ttu-id="fc0c1-113">C\#</span><span class="sxs-lookup"><span data-stu-id="fc0c1-113">C\#</span></span>
-
-<span data-ttu-id="fc0c1-114">A szervezeti profil frissítéséhez kérje le a profilt, és végezze el a szükséges módosításokat.</span><span class="sxs-lookup"><span data-stu-id="fc0c1-114">To update your organization profile, retrieve the profile and make any necessary changes.</span></span> <span data-ttu-id="fc0c1-115">Ezután használja a **IAggregatePartner. Profiles** gyűjteményt, és hívja meg a **OrganizationProfile** tulajdonságot.</span><span class="sxs-lookup"><span data-stu-id="fc0c1-115">Then, use your **IAggregatePartner.Profiles** collection and call the **OrganizationProfile** property.</span></span> <span data-ttu-id="fc0c1-116">Végül hívja meg a **Update ()** metódust.</span><span class="sxs-lookup"><span data-stu-id="fc0c1-116">Finally, call the **Update()** method.</span></span>
+<span data-ttu-id="003c4-110">A szervezeti profil frissítéséhez olvassa be a profilt, és tegye meg a szükséges módosításokat.</span><span class="sxs-lookup"><span data-stu-id="003c4-110">To update your organization profile, retrieve the profile and make any necessary changes.</span></span> <span data-ttu-id="003c4-111">Ezután használja az **IAggregatePartner.Profiles** gyűjteményt, és hívja meg az **OrganizationProfile tulajdonságot.**</span><span class="sxs-lookup"><span data-stu-id="003c4-111">Then, use your **IAggregatePartner.Profiles** collection and call the **OrganizationProfile** property.</span></span> <span data-ttu-id="003c4-112">Végül hívja meg az **Update() metódust.**</span><span class="sxs-lookup"><span data-stu-id="003c4-112">Finally, call the **Update()** method.</span></span>
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -41,25 +36,25 @@ organizationProfile.DefaultAddress.PhoneNumber = ((long)(new Random().NextDouble
 OrganizationProfile updatedOrganizationProfile = partnerOperations.Profiles.OrganizationProfile.Update(organizationProfile);
 ```
 
-<span data-ttu-id="fc0c1-117">**Példa**: [konzol tesztelési alkalmazás](console-test-app.md).</span><span class="sxs-lookup"><span data-stu-id="fc0c1-117">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="fc0c1-118">**Projekt**: PartnerCenterSDK. FeaturesSamples **osztály**: UpdateOrganizationProfile.cs</span><span class="sxs-lookup"><span data-stu-id="fc0c1-118">**Project**: PartnerCenterSDK.FeaturesSamples **Class**: UpdateOrganizationProfile.cs</span></span>
+<span data-ttu-id="003c4-113">**Minta:** [Konzoltesztalkalmazás.](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="003c4-113">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="003c4-114">**Project:** PartnerCenterSDK.FeaturesSamples **osztály:** UpdateOrganizationProfile.cs</span><span class="sxs-lookup"><span data-stu-id="003c4-114">**Project**: PartnerCenterSDK.FeaturesSamples **Class**: UpdateOrganizationProfile.cs</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="fc0c1-119">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="fc0c1-119">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="003c4-115">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="003c4-115">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="fc0c1-120">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="fc0c1-120">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="003c4-116">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="003c4-116">Request syntax</span></span>
 
-| <span data-ttu-id="fc0c1-121">Metódus</span><span class="sxs-lookup"><span data-stu-id="fc0c1-121">Method</span></span>  | <span data-ttu-id="fc0c1-122">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="fc0c1-122">Request URI</span></span>                                                                   |
+| <span data-ttu-id="003c4-117">Metódus</span><span class="sxs-lookup"><span data-stu-id="003c4-117">Method</span></span>  | <span data-ttu-id="003c4-118">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="003c4-118">Request URI</span></span>                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| <span data-ttu-id="fc0c1-123">**PUT**</span><span class="sxs-lookup"><span data-stu-id="fc0c1-123">**PUT**</span></span> | <span data-ttu-id="fc0c1-124">[*{baseURL}*](partner-center-rest-urls.md)/v1/Profiles/Organization http/1.1</span><span class="sxs-lookup"><span data-stu-id="fc0c1-124">[*{baseURL}*](partner-center-rest-urls.md)/v1/profiles/organization HTTP/1.1</span></span> |
+| <span data-ttu-id="003c4-119">**PUT**</span><span class="sxs-lookup"><span data-stu-id="003c4-119">**PUT**</span></span> | <span data-ttu-id="003c4-120">[*{baseURL}*](partner-center-rest-urls.md)/v1/profiles/organization HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="003c4-120">[*{baseURL}*](partner-center-rest-urls.md)/v1/profiles/organization HTTP/1.1</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="fc0c1-125">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="fc0c1-125">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="003c4-121">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="003c4-121">Request headers</span></span>
 
-<span data-ttu-id="fc0c1-126">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="fc0c1-126">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="003c4-122">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="003c4-122">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="fc0c1-127">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="fc0c1-127">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="003c4-123">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="003c4-123">Request body</span></span>
 
-<span data-ttu-id="fc0c1-128">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="fc0c1-128">None.</span></span>
+<span data-ttu-id="003c4-124">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="003c4-124">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="fc0c1-129">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="fc0c1-129">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="003c4-125">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="003c4-125">Request example</span></span>
 
 ```http
 PUT https://api.partnercenter.microsoft.com/v1/profiles/organization HTTP/1.1
@@ -103,15 +98,15 @@ Expect: 100-continue
 }
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="fc0c1-130">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="fc0c1-130">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="003c4-126">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="003c4-126">REST response</span></span>
 
-<span data-ttu-id="fc0c1-131">Ha ez sikeres, ez a metódus egy **OrganizationProfile** objektumot ad vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="fc0c1-131">If successful, this method returns an **OrganizationProfile** object in the response body.</span></span>
+<span data-ttu-id="003c4-127">Sikeres művelet esetén ez a metódus egy **OrganizationProfile** objektumot ad vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="003c4-127">If successful, this method returns an **OrganizationProfile** object in the response body.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="fc0c1-132">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="fc0c1-132">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="003c4-128">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="003c4-128">Response success and error codes</span></span>
 
-<span data-ttu-id="fc0c1-133">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="fc0c1-133">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="fc0c1-134">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="fc0c1-134">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="fc0c1-135">A teljes listát lásd: [hibakódok](error-codes.md).</span><span class="sxs-lookup"><span data-stu-id="fc0c1-135">For the full list, see [Error Codes](error-codes.md).</span></span>
+<span data-ttu-id="003c4-129">Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="003c4-129">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="003c4-130">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="003c4-130">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="003c4-131">A teljes listát lásd: [Hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="003c4-131">For the full list, see [Error Codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="fc0c1-136">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="fc0c1-136">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="003c4-132">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="003c4-132">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK

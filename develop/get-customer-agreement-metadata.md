@@ -1,50 +1,46 @@
 ---
 title: A Microsoft Ügyfélszerződés szerződési metaadatainak lekérése
-description: Ez a cikk azt ismerteti, hogyan kérheti le a Microsoft ügyfél-szerződéshez tartozó szerződési metaadatokat.
+description: Ez a cikk a szerződés metaadatainak lekért Microsoft Ügyfélszerződés.
 ms.date: 8/29/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khakiali
 ms.author: alikhaki
-ms.openlocfilehash: c3ebecc51859c9d2240d319d823f7e555eaecc27
-ms.sourcegitcommit: d53d300dc7fb01aeb4ef85bf2e3a6b80f868dc57
+ms.openlocfilehash: 5c20b317edf16b159050884070683880cf7e45bb
+ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "97768163"
+ms.lasthandoff: 06/11/2021
+ms.locfileid: "112025718"
 ---
-# <a name="get-agreement-metadata-for-the-microsoft-customer-agreement"></a><span data-ttu-id="8e3e3-103">A Microsoft Ügyfélszerződés szerződési metaadatainak lekérése</span><span class="sxs-lookup"><span data-stu-id="8e3e3-103">Get agreement metadata for the Microsoft Customer Agreement</span></span>
+# <a name="get-agreement-metadata-for-the-microsoft-customer-agreement"></a><span data-ttu-id="e0298-103">A Microsoft Ügyfélszerződés szerződési metaadatainak lekérése</span><span class="sxs-lookup"><span data-stu-id="e0298-103">Get agreement metadata for the Microsoft Customer Agreement</span></span>
 
-<span data-ttu-id="8e3e3-104">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="8e3e3-104">**Applies to:**</span></span>
+<span data-ttu-id="e0298-104">**A következőkre vonatkozik:** Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="e0298-104">**Applies to**: Partner Center</span></span>
 
-- <span data-ttu-id="8e3e3-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="8e3e3-105">Partner Center</span></span>
+<span data-ttu-id="e0298-105">**Nem vonatkozik a következőre:** Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="e0298-105">**Does not apply to**: Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-<span data-ttu-id="8e3e3-106">A partner Center jelenleg csak a *Microsoft nyilvános felhőben* támogatja a Microsoft ügyfél-szerződési metaadatokat.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-106">Agreement metadata for Microsoft Customer Agreement is currently supported by Partner Center only in the *Microsoft public cloud*.</span></span> <span data-ttu-id="8e3e3-107">A következőkre nem vonatkozik:</span><span class="sxs-lookup"><span data-stu-id="8e3e3-107">It doesn't apply to:</span></span>
+<span data-ttu-id="e0298-106">A microsoftos Microsoft Ügyfélszerződés metaadatait jelenleg csak a Microsoft Partnerközpont támogatja.</span><span class="sxs-lookup"><span data-stu-id="e0298-106">Agreement metadata for Microsoft Customer Agreement is currently supported by Partner Center only in the Microsoft public cloud.</span></span>
 
-- <span data-ttu-id="8e3e3-108">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="8e3e3-108">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="8e3e3-109">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="8e3e3-109">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="8e3e3-110">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="8e3e3-110">Partner Center for Microsoft Cloud for US Government</span></span>
+<span data-ttu-id="e0298-107">A szerződés metaadatait a következő Microsoft Ügyfélszerződés kell lekérnie:</span><span class="sxs-lookup"><span data-stu-id="e0298-107">You must retrieve the agreement metadata for the Microsoft Customer Agreement before you can:</span></span>
 
-<span data-ttu-id="8e3e3-111">A Microsoft ügyfél-szerződéshez tartozó szerződési metaadatokat a következő lehetőségekkel kell lekérnie:</span><span class="sxs-lookup"><span data-stu-id="8e3e3-111">You must retrieve the agreement metadata for the Microsoft Customer Agreement before you can:</span></span>
+- [<span data-ttu-id="e0298-108">Annak megerősítése, hogy az ügyfél elfogadta a Microsoft Ügyfélszerződés</span><span class="sxs-lookup"><span data-stu-id="e0298-108">Confirm a customer's acceptance of the Microsoft Customer Agreement</span></span>](./confirm-customer-consent-customer-agreement.md)
+- [<span data-ttu-id="e0298-109">Letöltési hivatkozás lekérése a Microsoft Ügyfélszerződés sablonhoz</span><span class="sxs-lookup"><span data-stu-id="e0298-109">Retrieve a download link for the Microsoft Customer Agreement template</span></span>](./download-customer-agreement-template.md)
 
-- [<span data-ttu-id="8e3e3-112">A Microsoft ügyfél-szerződés elfogadásának megerősítése</span><span class="sxs-lookup"><span data-stu-id="8e3e3-112">Confirm a customer's acceptance of the Microsoft Customer Agreement</span></span>](./confirm-customer-consent-customer-agreement.md)
-- [<span data-ttu-id="8e3e3-113">Letöltési hivatkozás beolvasása a Microsoft ügyfél-szerződési sablonhoz</span><span class="sxs-lookup"><span data-stu-id="8e3e3-113">Retrieve a download link for the Microsoft Customer Agreement template</span></span>](./download-customer-agreement-template.md)
+## <a name="prerequisites"></a><span data-ttu-id="e0298-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="e0298-110">Prerequisites</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="8e3e3-114">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="8e3e3-114">Prerequisites</span></span>
+- <span data-ttu-id="e0298-111">Ha az Partnerközpont .NET SDK-t használja, 1.14-es vagy újabb verzió szükséges.</span><span class="sxs-lookup"><span data-stu-id="e0298-111">If you are using the Partner Center .NET SDK, version 1.14 or newer is required.</span></span>
 
-- <span data-ttu-id="8e3e3-115">Ha a partner Center .NET SDK-t használja, a 1,14-es vagy újabb verzió szükséges.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-115">If you are using the Partner Center .NET SDK, version 1.14 or newer is required.</span></span>
+- <span data-ttu-id="e0298-112">Hitelesítő adatok a Partnerközpont [leírtak szerint.](./partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="e0298-112">Credentials as described in [Partner Center authentication](./partner-center-authentication.md).</span></span> <span data-ttu-id="e0298-113">Ez a forgatókönyv csak az App+User hitelesítést támogatja.</span><span class="sxs-lookup"><span data-stu-id="e0298-113">This scenario supports App+User authentication only.</span></span>
 
-- <span data-ttu-id="8e3e3-116">A [partner Center-hitelesítésben](./partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-116">Credentials as described in [Partner Center authentication](./partner-center-authentication.md).</span></span> <span data-ttu-id="8e3e3-117">Ez a forgatókönyv csak az alkalmazások és a felhasználók hitelesítését támogatja.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-117">This scenario supports App+User authentication only.</span></span>
+## <a name="net-version-114-or-newer"></a><span data-ttu-id="e0298-114">.NET (1.14-es vagy újabb verzió)</span><span class="sxs-lookup"><span data-stu-id="e0298-114">.NET (version 1.14 or newer)</span></span>
 
-## <a name="net-version-114-or-newer"></a><span data-ttu-id="8e3e3-118">.NET (1,14-es vagy újabb verzió)</span><span class="sxs-lookup"><span data-stu-id="8e3e3-118">.NET (version 1.14 or newer)</span></span>
+<span data-ttu-id="e0298-115">A szerződés metaadatainak lekérése a Microsoft Ügyfélszerződés:</span><span class="sxs-lookup"><span data-stu-id="e0298-115">To retrieve the agreement metadata for Microsoft Customer Agreement:</span></span>
 
-<span data-ttu-id="8e3e3-119">A Microsoft ügyfél-szerződéshez tartozó szerződés metaadatainak beolvasása:</span><span class="sxs-lookup"><span data-stu-id="8e3e3-119">To retrieve the agreement metadata for Microsoft Customer Agreement:</span></span>
+1. <span data-ttu-id="e0298-116">Először is olvassa be az **IAggregatePartner.AgreementDetails gyűjteményt.**</span><span class="sxs-lookup"><span data-stu-id="e0298-116">First, retrieve the **IAggregatePartner.AgreementDetails** collection.</span></span>
 
-1. <span data-ttu-id="8e3e3-120">Először kérje le a **IAggregatePartner. AgreementDetails** gyűjteményt.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-120">First, retrieve the **IAggregatePartner.AgreementDetails** collection.</span></span>
+2. <span data-ttu-id="e0298-117">Hívja **meg a ByAgreementType metódust** a gyűjtemény szűréséhez a Microsoft Ügyfélszerződés.</span><span class="sxs-lookup"><span data-stu-id="e0298-117">Call **ByAgreementType** method to filter the collection to Microsoft Customer Agreement.</span></span>
 
-2. <span data-ttu-id="8e3e3-121">Hívja meg a **ByAgreementType** metódust a gyűjtemény Microsoft-ügyféli szerződésre való szűréséhez.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-121">Call **ByAgreementType** method to filter the collection to Microsoft Customer Agreement.</span></span>
-
-3. <span data-ttu-id="8e3e3-122">Végül hívja a **Get** vagy a **GetAsync** metódust.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-122">Finally, call **Get** or **GetAsync** method.</span></span>
+3. <span data-ttu-id="e0298-118">Végül hívja meg a **Get** vagy **a GetAsync metódust.**</span><span class="sxs-lookup"><span data-stu-id="e0298-118">Finally, call **Get** or **GetAsync** method.</span></span>
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -54,37 +50,37 @@ string agreementType = "MicrosoftCustomerAgreement";
 var microsoftCustomerAgreementDetails = partnerOperations.AgreementDetails.ByAgreementType(agreementType).Get().Items.Single();
 ```
 
-<span data-ttu-id="8e3e3-123">Teljes minta a [GetAgreementDetails](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetAgreementDetails.cs) osztályban található a [konzol tesztelése alkalmazás](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples) projektben.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-123">A complete sample can be found in the [GetAgreementDetails](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetAgreementDetails.cs) class from the [console test app](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples) project.</span></span>
+<span data-ttu-id="e0298-119">A teljes minta megtalálható a [GetAgreementDetails](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetAgreementDetails.cs) osztályban a konzol [tesztalkalmazás](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples) projektjében.</span><span class="sxs-lookup"><span data-stu-id="e0298-119">A complete sample can be found in the [GetAgreementDetails](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetAgreementDetails.cs) class from the [console test app](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples) project.</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="8e3e3-124">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="8e3e3-124">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="e0298-120">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="e0298-120">REST request</span></span>
 
-<span data-ttu-id="8e3e3-125">A Microsoft ügyfél-szerződéshez tartozó szerződés metaadatainak beolvasása:</span><span class="sxs-lookup"><span data-stu-id="8e3e3-125">To retrieve the agreement metadata for Microsoft Customer Agreement:</span></span>
+<span data-ttu-id="e0298-121">A szerződés metaadatainak lekérése a Microsoft Ügyfélszerződés:</span><span class="sxs-lookup"><span data-stu-id="e0298-121">To retrieve the agreement metadata for Microsoft Customer Agreement:</span></span>
 
-1. <span data-ttu-id="8e3e3-126">Hozzon létre egy REST-kérést a [AgreementMetaData](./agreement-metadata-resources.md) -gyűjtemény lekéréséhez.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-126">Create a REST request to retrieve the [AgreementMetaData](./agreement-metadata-resources.md) collection.</span></span>
+1. <span data-ttu-id="e0298-122">Hozzon létre egy REST-kérést az [AgreementMetaData gyűjtemény lekéréséhez.](./agreement-metadata-resources.md)</span><span class="sxs-lookup"><span data-stu-id="e0298-122">Create a REST request to retrieve the [AgreementMetaData](./agreement-metadata-resources.md) collection.</span></span>
 
-2. <span data-ttu-id="8e3e3-127">A **agreementType** lekérdezési paraméterrel az eredményeket csak a Microsoft ügyfél-szerződésre szűkítheti.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-127">Use the **agreementType** query parameter to scope the result to only the Microsoft Customer Agreement.</span></span>
+2. <span data-ttu-id="e0298-123">Az **agreementType lekérdezési** paraméterrel az eredményt csak a lekérdezési Microsoft Ügyfélszerződés.</span><span class="sxs-lookup"><span data-stu-id="e0298-123">Use the **agreementType** query parameter to scope the result to only the Microsoft Customer Agreement.</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="8e3e3-128">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="8e3e3-128">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="e0298-124">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="e0298-124">Request syntax</span></span>
 
-| <span data-ttu-id="8e3e3-129">Metódus</span><span class="sxs-lookup"><span data-stu-id="8e3e3-129">Method</span></span> | <span data-ttu-id="8e3e3-130">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="8e3e3-130">Request URI</span></span>                                                         |
+| <span data-ttu-id="e0298-125">Metódus</span><span class="sxs-lookup"><span data-stu-id="e0298-125">Method</span></span> | <span data-ttu-id="e0298-126">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="e0298-126">Request URI</span></span>                                                         |
 |--------|---------------------------------------------------------------------|
-| <span data-ttu-id="8e3e3-131">GET</span><span class="sxs-lookup"><span data-stu-id="8e3e3-131">GET</span></span>    | <span data-ttu-id="8e3e3-132">[*\{ baseURL \}*](partner-center-rest-urls.md)/v1/Agreements? agreementType = {egyezmény-típus} http/1.1</span><span class="sxs-lookup"><span data-stu-id="8e3e3-132">[*\{baseURL\}*](partner-center-rest-urls.md)/v1/agreements?agreementType={agreement-type} HTTP/1.1</span></span> |
+| <span data-ttu-id="e0298-127">GET</span><span class="sxs-lookup"><span data-stu-id="e0298-127">GET</span></span>    | <span data-ttu-id="e0298-128">[*\{ baseURL \}*](partner-center-rest-urls.md)/v1/agreements?agreementType={agreement-type} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="e0298-128">[*\{baseURL\}*](partner-center-rest-urls.md)/v1/agreements?agreementType={agreement-type} HTTP/1.1</span></span> |
 
-#### <a name="uri-parameters"></a><span data-ttu-id="8e3e3-133">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="8e3e3-133">URI parameters</span></span>
+#### <a name="uri-parameters"></a><span data-ttu-id="e0298-129">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="e0298-129">URI parameters</span></span>
 
-| <span data-ttu-id="8e3e3-134">Név</span><span class="sxs-lookup"><span data-stu-id="8e3e3-134">Name</span></span>                   | <span data-ttu-id="8e3e3-135">Típus</span><span class="sxs-lookup"><span data-stu-id="8e3e3-135">Type</span></span>     | <span data-ttu-id="8e3e3-136">Kötelező</span><span class="sxs-lookup"><span data-stu-id="8e3e3-136">Required</span></span> | <span data-ttu-id="8e3e3-137">Leírás</span><span class="sxs-lookup"><span data-stu-id="8e3e3-137">Description</span></span>                                                             |
+| <span data-ttu-id="e0298-130">Név</span><span class="sxs-lookup"><span data-stu-id="e0298-130">Name</span></span>                   | <span data-ttu-id="e0298-131">Típus</span><span class="sxs-lookup"><span data-stu-id="e0298-131">Type</span></span>     | <span data-ttu-id="e0298-132">Kötelező</span><span class="sxs-lookup"><span data-stu-id="e0298-132">Required</span></span> | <span data-ttu-id="e0298-133">Leírás</span><span class="sxs-lookup"><span data-stu-id="e0298-133">Description</span></span>                                                             |
 |------------------------|----------|----------|-------------------------------------------------------------------------|
-| <span data-ttu-id="8e3e3-138">szerződés típusa</span><span class="sxs-lookup"><span data-stu-id="8e3e3-138">agreement-type</span></span> | <span data-ttu-id="8e3e3-139">sztring</span><span class="sxs-lookup"><span data-stu-id="8e3e3-139">string</span></span> | <span data-ttu-id="8e3e3-140">No</span><span class="sxs-lookup"><span data-stu-id="8e3e3-140">No</span></span> | <span data-ttu-id="8e3e3-141">Ezzel a paraméterrel a lekérdezési választ adott szerződési típusra szűkítheti.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-141">Use this parameter to scope the query response to specific agreement type.</span></span> <span data-ttu-id="8e3e3-142">A támogatott értékek a következők:</span><span class="sxs-lookup"><span data-stu-id="8e3e3-142">The supported values are:</span></span> <br/><br/><span data-ttu-id="8e3e3-143">**MicrosoftCloudAgreement** , amely csak a *MicrosoftCloudAgreement* típusú szerződési metaadatokat tartalmazza</span><span class="sxs-lookup"><span data-stu-id="8e3e3-143">**MicrosoftCloudAgreement** that includes agreement metadata only of the type *MicrosoftCloudAgreement*</span></span><br/><br/><span data-ttu-id="8e3e3-144">**MicrosoftCustomerAgreement** , amely csak a *MicrosoftCustomerAgreement* típusú megállapodási metaadatokat tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-144">**MicrosoftCustomerAgreement** that includes agreement metadata only of the type *MicrosoftCustomerAgreement*.</span></span><br/><br/><span data-ttu-id="8e3e3-145">**\*** Ez az összes szerződési metaadatot visszaadja.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-145">**\*** that returns all agreement metadata.</span></span> <span data-ttu-id="8e3e3-146">(Ne használja **\*** , kivéve, ha a kód a szükséges futtatókörnyezeti logikával rendelkezik a nem ismert megállapodások típusainak kezeléséhez, mivel a Microsoft bármikor bevezetheti a szerződési metaadatokat az új szerződési típusokkal.)</span><span class="sxs-lookup"><span data-stu-id="8e3e3-146">(Don't use **\*** unless your code has the necessary runtime logic to handle unfamiliar agreement types because Microsoft may introduce agreement metadata with new agreement types at any time.)</span></span><br/><br/> <span data-ttu-id="8e3e3-147">**Megjegyzés:** Ha nincs megadva az URI paraméter, a lekérdezés alapértelmezés szerint **MicrosoftCloudAgreement** a visszafelé kompatibilitás érdekében.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-147">**Note:** If the URI parameter isn't specified, the query defaults to **MicrosoftCloudAgreement** for backward compatibility.</span></span>  |
+| <span data-ttu-id="e0298-134">szerződéstípus</span><span class="sxs-lookup"><span data-stu-id="e0298-134">agreement-type</span></span> | <span data-ttu-id="e0298-135">sztring</span><span class="sxs-lookup"><span data-stu-id="e0298-135">string</span></span> | <span data-ttu-id="e0298-136">No</span><span class="sxs-lookup"><span data-stu-id="e0298-136">No</span></span> | <span data-ttu-id="e0298-137">Ezzel a paraméterrel adott szerződéstípusra lehet hatókört használni a lekérdezési válaszra.</span><span class="sxs-lookup"><span data-stu-id="e0298-137">Use this parameter to scope the query response to specific agreement type.</span></span> <span data-ttu-id="e0298-138">A támogatott értékek a következőek:</span><span class="sxs-lookup"><span data-stu-id="e0298-138">The supported values are:</span></span> <br/><br/><span data-ttu-id="e0298-139">**MicrosoftCloudAgreement,** amely csak *MicrosoftCloudAgreement* típusú szerződési metaadatokat tartalmaz</span><span class="sxs-lookup"><span data-stu-id="e0298-139">**MicrosoftCloudAgreement** that includes agreement metadata only of the type *MicrosoftCloudAgreement*</span></span><br/><br/><span data-ttu-id="e0298-140">**MicrosoftCustomerAgreement,** amely csak *MicrosoftCustomerAgreement* típusú szerződési metaadatokat tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="e0298-140">**MicrosoftCustomerAgreement** that includes agreement metadata only of the type *MicrosoftCustomerAgreement*.</span></span><br/><br/><span data-ttu-id="e0298-141">**\**_ az összes szerződési metaadatot visszaadja. (Ne használja a _\* \* _ hacsak a kód nem rendelkezik a szükséges futásidejű logikával az ismeretlen szerződéstípusok kezeléshez, mert a Microsoft bármikor bevezethet szerződésmetaadatokat új *szerződéstípusokkal.) <br/> <br/> _* Megjegyzés:*\* Ha az URI paraméter nincs megadva, a lekérdezés alapértelmezés szerint **a MicrosoftCloudAgreement** értéket használja a visszamenőleges kompatibilitás érdekében.</span><span class="sxs-lookup"><span data-stu-id="e0298-141">**\**_ that returns all agreement metadata. (Don't use _*\**_ unless your code has the necessary runtime logic to handle unfamiliar agreement types because Microsoft may introduce agreement metadata with new agreement types at any time.)<br/><br/> _\* Note:*\* If the URI parameter isn't specified, the query defaults to **MicrosoftCloudAgreement** for backward compatibility.</span></span>  |
 
-### <a name="request-headers"></a><span data-ttu-id="8e3e3-148">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="8e3e3-148">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="e0298-142">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="e0298-142">Request headers</span></span>
 
-<span data-ttu-id="8e3e3-149">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="8e3e3-149">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="e0298-143">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="e0298-143">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="8e3e3-150">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="8e3e3-150">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="e0298-144">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="e0298-144">Request body</span></span>
 
-<span data-ttu-id="8e3e3-151">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-151">None.</span></span>
+<span data-ttu-id="e0298-145">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="e0298-145">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="8e3e3-152">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="8e3e3-152">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="e0298-146">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="e0298-146">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/agreements?agreementType=MicrosoftCustomerAgreement HTTP/1.1
@@ -94,17 +90,17 @@ MS-RequestId: 94e4e214-6b06-4fb7-96d1-94d559f9b47f
 MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="8e3e3-153">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="8e3e3-153">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="e0298-147">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="e0298-147">REST response</span></span>
 
-<span data-ttu-id="8e3e3-154">Ha ez sikeres, ez a metódus [ **AgreementMetaData** -erőforrások](./agreement-metadata-resources.md) gyűjteményét adja vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-154">If successful, this method returns a collection of [**AgreementMetaData** resources](./agreement-metadata-resources.md) in the response body.</span></span>
+<span data-ttu-id="e0298-148">Ha a művelet sikeres, ez a metódus [ **agreementMetaData-erőforrások**](./agreement-metadata-resources.md) gyűjteményét adja vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="e0298-148">If successful, this method returns a collection of [**AgreementMetaData** resources](./agreement-metadata-resources.md) in the response body.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="8e3e3-155">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="8e3e3-155">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="e0298-149">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="e0298-149">Response success and error codes</span></span>
 
-<span data-ttu-id="8e3e3-156">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-156">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span>
+<span data-ttu-id="e0298-150">Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="e0298-150">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span>
 
-<span data-ttu-id="8e3e3-157">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-157">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="8e3e3-158">A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.</span><span class="sxs-lookup"><span data-stu-id="8e3e3-158">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
+<span data-ttu-id="e0298-151">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="e0298-151">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="e0298-152">A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="e0298-152">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="8e3e3-159">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="8e3e3-159">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="e0298-153">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="e0298-153">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK
