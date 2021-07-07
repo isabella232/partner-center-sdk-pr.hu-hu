@@ -1,40 +1,35 @@
 ---
 title: Egy előfizetés mennyiségének módosítása
-description: Ismerje meg, hogyan módosíthatja az ügyfél-előfizetések licenceit a partner Center API-k használatával. Ezt a partner Center irányítópultján is megteheti.
+description: Megtudhatja, hogyan használhatja Partnerközpont API-kat az ügyfél-előfizetések licencszámának módosításakor. Ezt az irányítópulton Partnerközpont is.
 ms.date: 06/05/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: b9b781c50895aa3a14819bec43fcca1e931e3b30
-ms.sourcegitcommit: a25d4951f25502cdf90cfb974022c5e452205f42
+ms.openlocfilehash: d57ece4dd19ef2852f39130916222c54a9ccc85a
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "97768588"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974097"
 ---
-# <a name="change-the-quantity-of-licenses-in-a-customer-subscription"></a>Az ügyfél-előfizetésben lévő licencek mennyiségének módosítása
+# <a name="change-the-quantity-of-licenses-in-a-customer-subscription"></a>Az ügyfél-előfizetésben szereplő licencek mennyiségének módosítása
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
 Frissíti az [előfizetést](subscription-resources.md) a licencek mennyiségének növeléséhez vagy csökkentéséhez.
 
-A partner Center irányítópultján ezt a műveletet a [felhasználó kiválasztásával](get-a-customer-by-name.md)végezheti el. Ezután válassza ki az átnevezni kívánt előfizetést. A befejezéshez módosítsa a **mennyiség** mező értékét, majd válassza a **Küldés lehetőséget.**
+Az Partnerközpont irányítópulton ez a művelet úgy hajtható végre, hogy először [kiválaszt egy ügyfelet.](get-a-customer-by-name.md) Ezután válassza ki az átnevezni kívánt előfizetést. A befejezéshez módosítsa a **Quantity** (Mennyiség) mező értékét, majd válassza a Submit (Küldés) **lehetőséget.**
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
 ## <a name="c"></a>C\#
 
-Ha módosítani szeretné az ügyfél előfizetésének mennyiségét, először [szerezze be az előfizetést](get-a-subscription-by-id.md), majd módosítsa az előfizetés [**mennyiségi**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.quantity) tulajdonságát. A módosítást követően használja a **IAggregatePartner. Customers** gyűjteményt, és hívja meg a **ById ()** metódust. Ezután hívja meg az [**előfizetések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot, majd a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) metódust. Ezután fejezze be a **Patch ()** metódus meghívásával.
+Az ügyfél előfizetésének mennyiségének változásához [](get-a-subscription-by-id.md)először szerezze be az előfizetést, majd módosítsa az előfizetés [**Quantity (Mennyiség) tulajdonságát.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.quantity) A módosítás után használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a **ById() metódust.** Ezután hívja meg [**a Subscriptions**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot, majd a [**ById() metódust.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) Végül hívja meg a **Patch() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -51,32 +46,32 @@ selectedSubscription.Quantity++;
 var updatedSubscription = partnerOperations.Customers.ById(selectedCustomerId).Subscriptions.ById(selectedSubscription.Id).Patch(selectedSubscription);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSample **osztály**: UpdateSubscription.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** UpdateSubscription.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus    | Kérés URI-ja                                                                                                                |
 |-----------|----------------------------------------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Subscriptions/{ID-for-Subscription} http/1.1 |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Ez a táblázat felsorolja a szükséges lekérdezési paramétert az előfizetés mennyiségének módosításához.
+Ez a táblázat felsorolja az előfizetés mennyiségének változásához szükséges lekérdezési paramétert.
 
 | Név                    | Típus     | Kötelező | Leírás                               |
 |-------------------------|----------|----------|-------------------------------------------|
-| **ügyfél – bérlő – azonosító**  | **guid** | Y        | Az ügyfélhez tartozó GUID.     |
-| **azonosító – előfizetés** | **guid** | Y        | Az előfizetéshez tartozó GUID. |
+| **ügyfél-bérlő-azonosító**  | **guid** | Y        | Az ügyfélnek megfelelő GUID.     |
+| **id-for-subscription** | **guid** | Y        | Az előfizetéshez tartozó GUID. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem törzsében teljes **előfizetési** erőforrás szükséges. Győződjön meg arról, hogy a **mennyiségi** tulajdonság frissítve lett.
+A kérelem **törzsében** teljes előfizetési erőforrásra van szükség. Győződjön meg **arról, hogy** a Quantity tulajdonság frissült.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -115,19 +110,19 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus egy **200-as http-állapotot** ad vissza, és frissítette az [előfizetési erőforrás](subscription-resources.md)  tulajdonságait a válasz törzsében.
+Ha ez a módszer sikeres, a **200-as HTTP-állapotkódot** és a válasz törzsében frissített előfizetési erőforrás-tulajdonságokat ad vissza. [](subscription-resources.md)
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz egy HTTP-állapotkódot ad vissza, amely a sikeres vagy sikertelen műveletekre és a további hibakeresési információkra utal. Hálózati nyomkövetési eszköz használata az állapotkód, a hiba típusa és a további paraméterek olvasásához. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz egy HTTP-állapotkódot ad vissza, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be az állapotkódot, a hiba típusát és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
-Ha a javítási művelet a várt időpontnál hosszabb időt vesz igénybe, a partner Center egy 202-as **http-állapotot** küld, és egy olyan hely fejlécét, amely az előfizetés lekérésének helyét mutat. Rendszeres időközönként lekérdezheti az előfizetést az állapot és a mennyiség változásának figyeléséhez.
+Ha a javítási művelet a vártnál több időt vesz igénybe, a Partnerközpont **egy 202-es** HTTP-állapotkódot és egy helyfejlécet küld, amely az előfizetés lekérési helyére mutat. Rendszeres időközönként lekérdezheti az előfizetést az állapot- és mennyiségváltozások figyelése érdekében.
 
-### <a name="response-examples"></a>Példák a válaszokra
+### <a name="response-examples"></a>Példák válaszra
 
-#### <a name="response-example-1"></a>1. válasz – példa
+#### <a name="response-example-1"></a>1. válasz példa
 
-Sikeres kérelem http- **állapottal 200** -as állapotkód esetén:
+Sikeres kérés **200-as HTTP-állapotkóddal:**
 
 ```http
 PATCH https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id>/subscriptions/<subscriptionID> HTTP/1.1
@@ -180,9 +175,9 @@ Connection: Keep-Alive
 }
 ```
 
-#### <a name="response-example-2"></a>2. válasz – példa
+#### <a name="response-example-2"></a>2. válasz példa
 
-Sikeres kérelem http- **állapottal 202** -as állapotkód esetén:
+Sikeres kérés **202-es HTTP-állapotkóddal:**
 
 ```http
 PATCH https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id>/subscriptions/<subscriptionID> HTTP/1.1

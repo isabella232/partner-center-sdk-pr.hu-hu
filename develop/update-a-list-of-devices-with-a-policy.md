@@ -1,42 +1,39 @@
 ---
 title: Eszközök listájának frissítése szabályzattal
-description: Az eszközök listájának frissítése a megadott ügyfél konfigurációs házirendjével.
+description: Eszközlista frissítése a megadott ügyfél konfigurációs szabályzatával.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 04c2ef33116335db40bd2934dc7e33d57f015097
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 35b35873eb253b0929bfc01662b0beb9b31d0c6b
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768376"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530072"
 ---
 # <a name="update-a-list-of-devices-with-a-policy"></a>Eszközök listájának frissítése szabályzattal
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Németországhoz
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-
-Az eszközök listájának frissítése a megadott ügyfél konfigurációs házirendjével.
+Eszközlista frissítése a megadott ügyfél konfigurációs szabályzatával.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-- A házirend-azonosító.
+- A szabályzat azonosítója.
 
-- A frissítendő eszközök azonosítói.
+- A frissítenie kell az eszközök eszközazonosítóit.
 
 ## <a name="c"></a>C\#
 
-A megadott konfigurációs házirenddel rendelkező eszközök listájának frissítéséhez először a [KeyValuePair/DotNet/API/System. Collections. Generic. KeyValuePair [**-2) típusú**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.policycategory)[List/DotNet/API/System. Collections. Generic. list -1 "példányt hozza létre, és adja hozzá az alkalmazandó szabályzatot az alábbi példában látható módon. Szüksége lesz a házirend házirend-azonosítójára.
+A megadott konfigurációs házirendet használó eszközök listájának frissítéséhez először példányosítson egy [List/dotnet/api/system.collections.generic.list-1) típusú [KeyValuePair/dotnet/api/system.collections.generic.keyvaluepair-2)[**(PolicyCategory,**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.policycategory)string) típusú szabályzatot, az alábbi példakódban látható módon. Szüksége lesz a szabályzat szabályzatazonosítóra.
 
-Ezután hozza létre a szabályzattal frissítendő [**eszközbeállítások**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device) listáját, megadhatja az eszköz azonosítóját és az alkalmazandó házirendet tartalmazó listát. Ezután hozzon létre egy [**DevicePolicyUpdateRequest**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.devicepolicyupdaterequest) objektumot, és állítsa be az [**eszközök**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.devicebatchcreationrequest.devices) tulajdonságot az eszköz objektumainak listájára.
+Ezután hozzon létre [](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device) egy listát a szabályzatban frissíthető eszközobjektumokról, és adja meg az egyes eszközökre vonatkozó eszközazonosítót és az alkalmazandó szabályzatot tartalmazó listát. Ezután példányositsa a [**DevicePolicyUpdateRequest**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.devicepolicyupdaterequest) objektumot, és állítsa az [**Eszközök**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.devicebatchcreationrequest.devices) tulajdonságot az eszközobjektumok listájára.
 
-Az eszköz házirend-frissítési kérelmének feldolgozásához hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval, és kérje le a felületet a megadott ügyfél műveleteire. Ezután kérje le a [**DevicePolicy**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.devicepolicy) tulajdonságot az ügyfél-eszköz gyűjtési műveleteihez szükséges illesztőfelület beszerzéséhez. Végül hívja meg a [**frissítési**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.icustomerdevicecollection.update) metódust a DevicePolicyUpdateRequest objektummal, hogy frissítse az eszközöket a szabályzattal.
+Az eszköz szabályzatfrissítési kérésének feldolgozásához hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval a megadott ügyfél műveleteinek interfészének lekéréséhez. Ezután olvassa be a [**DevicePolicy**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.devicepolicy) tulajdonságot az ügyfél eszközgyűjteményi műveleteinek felületének lekéréséhez. Végül hívja meg az [**Update**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.icustomerdevicecollection.update) metódust a DevicePolicyUpdateRequest objektummal az eszközök a szabályzat használatával való frissítéséhez.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -74,15 +71,15 @@ var trackingLocation =
     partnerOperations.Customers.ById(selectedCustomerId).DevicePolicy.Update(devicePolicyUpdateRequest);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: UpdateDevicesPolicy.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **osztály:** UpdateDevicesPolicy.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus    | Kérés URI-ja                                                                                         |
 |-----------|-----------------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/DevicePolicyUpdates http/1.1 |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/DevicePolicyUpdates HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -90,15 +87,15 @@ A kérelem létrehozásakor használja a következő elérésiút-paramétereket
 
 | Név        | Típus   | Kötelező | Leírás                                           |
 |-------------|--------|----------|-------------------------------------------------------|
-| ügyfél-azonosító | sztring | Igen      | Egy GUID-formázott karakterlánc, amely azonosítja az ügyfelet. |
+| ügyfélazonosító | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem törzsének tartalmaznia kell egy [DevicePolicyUpdateRequest](device-deployment-resources.md#devicepolicyupdaterequest) -erőforrást.
+A kérelem törzsének tartalmaznia kell egy [DevicePolicyUpdateRequest erőforrást.](device-deployment-resources.md#devicepolicyupdaterequest)
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -143,11 +140,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz egy olyan **Location** fejlécet tartalmaz, amely rendelkezik egy URI-val, amely a Batch-folyamat állapotának lekérésére használható. Mentse ezt az URI-t más kapcsolódó REST API-kkal való használatra.
+Ha a válasz sikeres, a válasz tartalmaz egy **Location** fejlécet, amely rendelkezik egy URI-azonosítóval, amely a kötegelt folyamat állapotának lekérésére használható. Mentse ezt az URI-t a többi kapcsolódó REST API-val való használathoz.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

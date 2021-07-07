@@ -1,43 +1,39 @@
 ---
 title: Szoftvervásárlások lemondása
-description: Önkiszolgáló lehetőség a szoftveres előfizetések és a végleges szoftverfrissítések megszakításához a partner Center API-kkal.
+description: Önkiszolgáló lehetőség a szoftver-előfizetések és a folyamatos szoftvervásárlások lemondására Partnerközpont API-k használatával.
 ms.date: 12/19/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 25fd10a171fa6ca01f3442d49145443f2382cc18
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 877702ac930919ff72c6cc45a3c0e8ecc7e1b5f4
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768092"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974233"
 ---
 # <a name="cancel-software-purchases"></a>Szoftvervásárlások lemondása
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-A partner Center API-kkal megszakíthatja a szoftver-előfizetéseket és az örökös szoftveres vásárlásokat (feltéve, hogy ezek a vásárlások a lemondási időszakon belül történnek). Nem kell támogatási jegyet létrehoznia az ilyen lemondás elvégzéséhez, és a következő önkiszolgáló metódusokat használhatja helyette.
+A Partnerközpont API-k használatával megszüntetheti a szoftver-előfizetéseket és a folyamatos szoftvervásárlásokat (felhasználhatja azokat a vásárlásokat a vásárlás dátumtól számított lemondási időszakban). Ilyen lemondáshoz nem kell támogatási jegyet létrehoznia, és ehelyett a következő önkiszolgáló módszereket használhatja.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-A szoftver megrendelésének megszakítása
+Szoftverrendelés lemondása:
 
-1. Adja át a fiók hitelesítő adatait a [**CreatePartnerOperations**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) metódusnak, hogy [**IPartner**](/dotnet/api/microsoft.store.partnercenter.ipartner) felületet kapjon a partneri műveletek elvégzéséhez.
+1. Adja át a fiók hitelesítő adatait a [**CreatePartnerOperations**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) metódusnak egy [**IPartner-felület**](/dotnet/api/microsoft.store.partnercenter.ipartner) lekért létrehozásához a partnerműveleteket lekért fiókhoz.
 
-2. Válassza ki a megszüntetni kívánt [sorrendet](order-resources.md#order) . Hívja meg a [**customers. ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval, majd a Orders **. ById ()** függvényt a megrendelés azonosítójával.
+2. Válassza ki azt a [megrendelést,](order-resources.md#order) amelyről le szeretné mondani a rendelést. Hívja meg [**a Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítóját, majd az **Orders.ById()** metódust a rendelésazonosítóval.
 
-3. A megrendelés lekéréséhez hívja meg a **Get** vagy a **GetAsync** metódust.
+3. A **rendelés lekérése** érdekében hívja meg a Get vagy **a GetAsync** metódust.
 
-4. Állítsa a [**Order. status**](order-resources.md#order) tulajdonságot a következőre: `cancelled` .
+4. Állítsa az [**Order.Status**](order-resources.md#order) tulajdonságot a `cancelled` következőre: .
 
-5. Választható Ha bizonyos sortöréseket szeretne megadni, állítsa a [**sorrendet. listaelemek**](order-resources.md#order) a megszakítani kívánt sorok listájára.
+5. (Nem kötelező) Ha meg szeretne adni bizonyos sorelemeket a megszakításhoz, állítsa az [**Order.LineItems**](order-resources.md#order) elemet a megszakítani kívánt sorelemek listájára.
 
-6. A **javítás ()** metódus használatával frissítse a sorrendet.
+6. Frissítse a sorrendet a **Patch()** metódussal.
 
 ``` csharp
 // IPartnerCredentials accountCredentials;
@@ -56,26 +52,26 @@ order = accountPartnerOperations.Customers.ById(customerTenantId).Orders.ById(or
 
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus     | Kérés URI-ja                                                                            |
 |------------|----------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Orders/{Order-ID} http/1.1 |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/orders/{rendelésazonosító} HTTP/1.1 |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-Az ügyfél törléséhez használja a következő lekérdezési paramétereket.
+Az ügyfél törléséhez használja az alábbi lekérdezési paramétereket.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az érték egy GUID formátumú ügyfél-bérlői azonosító, amely lehetővé teszi a viszonteladónak a viszonteladóhoz tartozó adott ügyfél eredményének szűrését. |
-| **megrendelés azonosítója** | **karakterlánc** | Y        | Az érték egy olyan karakterlánc, amely a megszakítani kívánt megrendelés azonosítóját jelöli. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú ügyfélbérlő-azonosító, amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
+| **order-id (rendelésazonosító)** | **sztring** | Y        | Az érték egy sztring, amely a megszakítani kívánt rendelés azonosítóját jelöli. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -114,17 +110,17 @@ MS-CorrelationId: 1438ea3d-b515-45c7-9ec1-27ee0cc8e6bd
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus visszaadja a megszakított sorok sorrendjét.
+Ha sikeres, ez a metódus megszakított sorelemeket ad vissza a rendeléshez.
 
-A megrendelés állapota **megszakítva** , ha a sorrendben lévő összes sort megszakították **, vagy ha** a sorrend nem az összes sort megszakítja.
+A rendelés állapota vagy  megszakítva állapotúként lesz megjelölve, ha a  rendelésben lévő összes sorelemet visszavonják, vagy akkor fejeződnek be, ha nem minden sorelemet törölnek.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
-Az alábbi példában látható válaszban láthatja, hogy az ajánlat-azonosítóval rendelkező sor mennyisége **`DG7GMGF0FKZV:0003:DG7GMGF0DWMS`** nulla (0) lesz. Ez a módosítás azt jelenti, hogy a törlésre megjelölt sort a rendszer sikeresen megszakította. A példában szereplő egyéb sorok nem lettek megszakítva, ami azt jelenti, hogy a teljes megrendelés állapota **befejezettként** lesz megjelölve, nem **szakítva** meg.
+A következő példaválaszban láthatja, hogy az ajánlatazonosítóval együtt a sorelem mennyisége **`DG7GMGF0FKZV:0003:DG7GMGF0DWMS`** nullára (0) vált. Ez a módosítás azt jelenti, hogy a megszakításra megjelölt sorelem sikeresen törölve lett. A példasorrend más sorelemeket is tartalmaz, amelyeket nem töröltek, ami azt jelenti, hogy a teljes rendelés állapota befejezettként lesz megjelölve, nem **megszakítva.**
 
 ```http
 HTTP/1.1 200 OK

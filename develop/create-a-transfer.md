@@ -1,39 +1,35 @@
 ---
 title: Átvitel létrehozása
-description: Előfizetések átvitelének létrehozása az ügyfelek számára.
+description: Előfizetések átvitelének létrehozása egy ügyfél számára.
 ms.date: 04/10/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: d5e70cc5b7ce4fcfa715f581a2151f0b8d1922b0
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: d459a0a96912ab27f312bc73af16af2d4fdb518c
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767760"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973706"
 ---
 # <a name="create-a-transfer"></a>Átvitel létrehozása
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                                                 |
 |----------|-------------------------------------------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Transfers http/1.1                    |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/transfers HTTP/1.1                    |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az ügyfél azonosításához használja a következő Path paramétert.
+Az ügyfél azonosításához használja a következő elérésiút-paramétert.
 
 | Név            | Típus     | Kötelező | Leírás                                                            |
 |-----------------|----------|----------|------------------------------------------------------------------------|
@@ -41,42 +37,42 @@ Az ügyfél azonosításához használja a következő Path paramétert.
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a táblázat a kérelem törzsének [TransferEntity](transfer-entity-resources.md) tulajdonságait ismerteti.
+Ez a táblázat a [kérés törzsében található TransferEntity](transfer-entity-resources.md) tulajdonságokat ismerteti.
 
 | Tulajdonság              | Típus          | Kötelező  | Leírás                                                                                |
 |-----------------------|---------------|-----------|--------------------------------------------------------------------------------------------|
-| id                    | sztring        | No    | A transferEntity sikeres létrehozásakor megadott transferEntity-azonosító.                               |
-| createdTime           | DateTime      | Nem    | A transferEntity létrehozásának dátuma dátum és idő formátumban. A transferEntity sikeres létrehozása után alkalmazható.      |
-| lastModifiedTime      | DateTime      | Nem    | A transferEntity utolsó frissítésének dátuma, dátum-idő formátumban. A transferEntity sikeres létrehozása után alkalmazható. |
-| lastModifiedUser      | sztring        | No    | Az a felhasználó, aki utoljára frissítette a transferEntity. A transferEntity sikeres létrehozásakor lett alkalmazva.                          |
-| Customername (          | sztring        | No    | Választható. Annak az ügyfélnek a neve, amelynek előfizetéseit át kell vinni.                                              |
-| customerTenantId      | sztring        | No    | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet. A transferEntity sikeres létrehozása után alkalmazható.         |
-| partnertenantid       | sztring        | No    | Egy GUID formátumú partner-azonosító, amely azonosítja a partnert.                                                                   |
-| sourcePartnerName     | sztring        | No    | Választható. A partner azon szervezetének neve, aki kezdeményezi az átvitelt.                                           |
-| sourcePartnerTenantId | sztring        | Igen   | Egy GUID formátumú partner-azonosító, amely azonosítja az átvitelt kezdeményező partnert.                                           |
-| targetPartnerName     | sztring        | No    | Választható. A partner azon szervezetének neve, amelyhez az átvitel irányul.                                         |
-| targetPartnerTenantId | sztring        | Igen   | Egy GUID formátumú partner-azonosító, amely azonosítja azt a partnert, akire az átvitel irányul.                                  |
-| Listaelemek             | Objektumok tömbje | Igen| [TransferLineItem](transfer-entity-resources.md#transferlineitem) -erőforrások tömbje.                                   |
-| status                | sztring        | No    | A transferEntity állapota. A lehetséges értékek: "Active" (törölhető/elküldhető) és "befejezett" (már befejeződött). A transferEntity sikeres létrehozása után alkalmazható.|
+| id                    | sztring        | No    | A transferEntity sikeres létrehozása után megadott transferEntity azonosító.                               |
+| createdTime (létrehozás ideje)           | DateTime      | Nem    | A transferEntity létrejöttének dátuma dátum-idő formátumban. Alkalmazva a transferEntity sikeres létrehozásakor.      |
+| lastModifiedTime (lastModifiedTime)      | DateTime      | Nem    | A transferEntity utolsó frissítésének dátuma dátum-idő formátumban. Alkalmazva a transferEntity sikeres létrehozásakor. |
+| lastModifiedUser      | sztring        | No    | Az a felhasználó, aki utoljára frissítette a transferEntity adatokat. Alkalmazva a transferEntity sikeres létrehozásakor.                          |
+| customerName (ügyfél neve)          | sztring        | No    | Választható. Annak az ügyfélnek a neve, akinek az előfizetései átadása folyamatban van.                                              |
+| customerTenantId (customerTenantId)      | sztring        | No    | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet. Alkalmazva a transferEntity sikeres létrehozásakor.         |
+| partnertenantid       | sztring        | No    | Egy GUID formátumú partnerazonosító, amely azonosítja a partnert.                                                                   |
+| sourcePartnerName (forráspartner neve)     | sztring        | No    | Választható. Az átadást kezdeményező partnerszervezet neve.                                           |
+| sourcePartnerTenantId | sztring        | Igen   | Egy GUID formátumú partnerazonosító, amely azonosítja az átadást kezdeményező partnert.                                           |
+| targetPartnerName     | sztring        | No    | Választható. Annak a partnernek a neve, amely számára az átvitel megcélzott.                                         |
+| targetPartnerTenantId | sztring        | Igen   | Egy GUID formátumú partnerazonosító, amely azonosítja azt a partnert, akinek az átadást megcéloznia kell.                                  |
+| lineItems (sorsorok)             | Objektumok tömbje | Igen| [TransferLineItem-erőforrások tömbje.](transfer-entity-resources.md#transferlineitem)                                   |
+| status                | sztring        | No    | A transferEntity állapota. Lehetséges értékek: "Aktív" (törölhető/elküldve) és "Befejezve" (már befejeződött). Alkalmazva a transferEntity sikeres létrehozásakor.|
 
-Ez a táblázat a kérelem törzsének [TransferLineItem](transfer-entity-resources.md#transferlineitem) tulajdonságait ismerteti.
+Ez a táblázat a kérés törzsében található [TransferLineItem](transfer-entity-resources.md#transferlineitem) tulajdonságokat ismerteti.
 
 |      Tulajdonság       |            Típus             | Kötelező | Leírás                                                                                     |
 |---------------------|-----------------------------|----------|-------------------------------------------------------------------------------------------------|
-| id                   | sztring                     | No       | Egy adatátviteli sorhoz tartozó egyedi azonosító. A transferEntity sikeres létrehozása után alkalmazható.|
+| id                   | sztring                     | No       | Egy átvitelisor-elem egyedi azonosítója. Alkalmazva a transferEntity sikeres létrehozásakor.|
 | subscriptionId       | sztring                     | Igen      | Az előfizetés azonosítója.                                                                         |
 | quantity             | int                        | Nem       | A licencek vagy példányok száma.                                                                 |
-| billingCycle         | Objektum                     | Nem       | Az aktuális időszakban beállított számlázási ciklus típusa.                                                |
-| friendlyName         | sztring                     | No       | Választható. A partner által a egyértelműsítse segítségére meghatározott rövid név.                |
-| partnerIdOnRecord    | sztring                     | No       | A PartnerId on Record (MPNID) azon a vásárláson, amely az átvitel elfogadásakor történik.              |
-| offerId              | sztring                     | No       | Az ajánlat azonosítója.                                                                                |
-| addonItems           | **TransferLineItem** -objektumok listája | Nem | Olyan transferEntity-elemek gyűjteménye, amelyek az átvitt alap előfizetéssel együtt lesznek átadva. A transferEntity sikeres létrehozása után alkalmazható.|
-| transferError        | sztring                     | No       | A transferEntity elfogadását követően alkalmazva hiba esetén.                                        |
-| status               | sztring                     | No       | A lineitem állapota a transferEntity.                                                    |
+| billingCycle         | Objektum                     | Nem       | Az aktuális időszakhoz beállított számlázási ciklus típusa.                                                |
+| friendlyName (rövid név)         | sztring                     | No       | Választható. A partner által definiált elem rövid neve, amely segít egyértelműsedni.                |
+| partnerIdOnRecord    | sztring                     | No       | PartnerAzonosító a rekordban (MPN-azonosító) a vásárláskor, amikor az átadást elfogadják.              |
+| offerId (ajánlatazonosító)              | sztring                     | No       | Az ajánlat azonosítója.                                                                                |
+| addonItems (bővítmények)           | **TransferLineItem-objektumok** listája | Nem | TransferEntity sorelemek gyűjteménye bővítményekhez, amelyek át lesznek adva az átvitt alap előfizetéssel együtt. Alkalmazva a transferEntity sikeres létrehozásakor.|
+| transferError        | sztring                     | No       | A transferEntity után lesz alkalmazva, ha hiba történik.                                        |
+| status               | sztring                     | No       | A sortem állapota a transferEntity oszlopban.                                                    |
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -109,11 +105,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus a válasz törzsében lévő [TransferEnity](transfer-entity-resources.md) -erőforrást adja vissza.
+Ha a művelet sikeres, ez a metódus visszaadja a válasz törzsében a megadott [TransferEnity](transfer-entity-resources.md) erőforrást.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

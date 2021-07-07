@@ -1,49 +1,44 @@
 ---
 title: A számlázási ciklus módosítása
-description: Megtudhatja, hogyan frissítheti az ügyfél-előfizetést havi vagy éves számlázásra a partner Center API-k használatával. Ezt a partner Center irányítópultján is elvégezheti.
+description: Megtudhatja, hogyan frissítheti az ügyfél-előfizetést havi vagy éves számlázásra az Partnerközpont API-k használatával. Ezt az irányítópulton Partnerközpont is.
 ms.date: 05/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: sourishdeb
 ms.author: sodeb
-ms.openlocfilehash: 8a2879db061ced799e29d84e71be5b1259b07689
-ms.sourcegitcommit: a25d4951f25502cdf90cfb974022c5e452205f42
+ms.openlocfilehash: 435309229e2cb038c936028943f4c2cf27b032a7
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "97768600"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974114"
 ---
 # <a name="change-a-customer-subscription-billing-cycle"></a>Ügyfél-előfizetés számlázási ciklusának módosítása
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Frissíti a [rendelést](order-resources.md) haviról éves vagy évesről havi számlázásra.
 
-Havonta és évenkénti számlázással, vagy éves és havi számlázással frissíti a [rendelést](order-resources.md) .
+Az Partnerközpont irányítópulton ezt a műveletet úgy hajthatja végre, hogy megnyitja az ügyfél előfizetési adatait tartalmazó oldalt. Itt egy lehetőséget fog látni, amely meghatározza az előfizetés aktuális számlázási ciklusát, és lehetővé teszi a módosítását és elküldét.
 
-A partneri központ irányítópultján ez a művelet az ügyfél előfizetésének részleteit tartalmazó oldalra navigálva végezhető el. Ekkor megjelenik egy lehetőség, amely meghatározza az előfizetés aktuális számlázási ciklusát, amely lehetővé teszi a módosítást és a beküldést.
+**A cikk nem terjed** ki a cikkre:
 
-A cikk **Hatókörön kívüli** :
-
-- A számlázási ciklus módosítása a próbaverziók esetében
-- A számlázási ciklusok bármely nem éves időszakra vonatkozó ajánlatának módosítása (havi, 6 éves) & Azure-előfizetések
-- Az inaktív előfizetések számlázási ciklusának módosítása
-- Számlázási ciklusok módosítása a Microsoft online szolgáltatások licenc-alapú előfizetésekhez
+- Próbaverziók számlázási ciklusának módosítása
+- Az Azure-előfizetések nem éves (havi, hat éves) időszakra vonatkozó számlázási ciklusainak & módosítása
+- Inaktív előfizetések számlázási ciklusainak módosítása
+- A Microsoft licencalapú előfizetések online szolgáltatások számlázási ciklusainak módosítása
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- Egy megrendelés azonosítója.
+- Egy rendelésazonosító.
 
 ## <a name="c"></a>C\#
 
-A számlázási ciklus gyakoriságának módosításához frissítse a [**Order. BillingCycle**](/dotnet/api/microsoft.store.partnercenter.models.orders.order.billingcycle#Microsoft_Store_PartnerCenter_Models_Orders_Order_BillingCycle) tulajdonságot.
+A számlázási ciklus gyakoriságának változásához frissítse az [**Order.BillingCycle tulajdonságot.**](/dotnet/api/microsoft.store.partnercenter.models.orders.order.billingcycle#Microsoft_Store_PartnerCenter_Models_Orders_Order_BillingCycle)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -70,57 +65,57 @@ var order = new Order()
 var createdOrder = partnerOperations.Customers.ById(customerId).Orders.ById(orderId).Patch(order);
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus    | Kérés URI-ja                                                                                             |
 |-----------|---------------------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Orders/{Order-ID} http/1.1 |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/orders/{rendelésazonosító} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Ez a táblázat felsorolja a szükséges lekérdezési paramétert az előfizetés mennyiségének módosításához.
+Ez a táblázat felsorolja az előfizetés mennyiségének változásához szükséges lekérdezési paramétert.
 
 | Név                   | Típus | Kötelező | Leírás                                                          |
 |------------------------|------|----------|----------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | GUID |    Y     | Az ügyfelet azonosító, formázott **ügyfél-bérlői azonosító** |
-| **megrendelés azonosítója**           | GUID |    Y     | A megrendelés azonosítója                                                 |
+| **ügyfél-bérlő-azonosító** | GUID |    Y     | Egy GUID formátumú **ügyfél-bérlőazonosító,** amely azonosítja az ügyfelet |
+| **order-id (rendelésazonosító)**           | GUID |    Y     | A rendelés azonosítója                                                 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A következő táblázatok a kérés törzsének tulajdonságait ismertetik.
+Az alábbi táblázatok a kérés törzsében lévő tulajdonságokat ismertetik.
 
 ### <a name="order"></a>Sorrend
 
 | Tulajdonság           | Típus             | Kötelező | Leírás                                                                |
 |--------------------|------------------|----------|----------------------------------------------------------------------------|
-| Id                 | sztring           |    N     | A megrendelés sikeres létrehozásakor megadott rendelési azonosító |
-|ReferenceCustomerId | sztring           |    Y     | Az ügyfél azonosítója                                                    |
-| BillingCycle       | sztring           |    Y     | Azt jelzi, hogy milyen gyakorisággal történik a partner számlázása ebben a sorrendben. A támogatott értékek a [BillingCycleType](product-resources.md#billingcycletype)található tagok nevei. |
-| Listaelemek          | objektumok tömbje |    Y     | [OrderLineItem](#orderlineitem) -erőforrások tömbje                      |
-| CreationDate       | dátum/idő         |    N     | A rendelés létrehozásának dátuma dátum-idő formátumban                        |
-| Attribútumok         | Objektum           |    N     | A "objektumtípus": "OrderLineItem" kifejezést tartalmazza                                     |
+| Id                 | sztring           |    N     | A rendelés sikeres létrehozása után megadott rendelésazonosító |
+|ReferenceCustomerId (ReferenciacustomerId) | sztring           |    Y     | Az ügyfél azonosítója                                                    |
+| BillingCycle       | sztring           |    Y     | Azt jelzi, hogy milyen gyakorisággal számlázták a partnert a rendelésért. A támogatott értékek a [BillingCycleType](product-resources.md#billingcycletype)típusban található tagnevek. |
+| Sorsorok          | objektumok tömbje |    Y     | [OrderLineItem-erőforrások tömbje](#orderlineitem)                      |
+| CreationDate (Létrehozás dátuma)       | dátum/idő         |    N     | A rendelés létrehozási dátuma, dátum és idő formátumban                        |
+| Attribútumok         | Objektum           |    N     | Tartalmazza az "ObjectType": "OrderLineItem" adatokat                                     |
 
-### <a name="orderlineitem"></a>OrderLineItem
+### <a name="orderlineitem"></a>OrderLineItem (Megrendelési vonal)
 
 | Tulajdonság             | Típus   | Kötelező | Leírás                                                                        |
 |----------------------|--------|----------|------------------------------------------------------------------------------------|
-| LineItemNumber       | szám |    Y     | A sor sorszáma, kezdő és 0                                              |
-| OfferId              | sztring |    Y     | Az ajánlat azonosítója                                                                |
+| LineItemNumber (Sortem száma)       | szám |    Y     | A sorelem száma, 0-val kezdve                                              |
+| OfferId (Ajánlatazonosító)              | sztring |    Y     | Az ajánlat azonosítója                                                                |
 | SubscriptionId       | sztring |    Y     | Az előfizetés azonosítója                                                         |
-| FriendlyName         | sztring |    N     | A partner által az előfizetéshez megadott rövid név, amely segít a egyértelműsítse |
-| Mennyiség             | szám |    Y     | A licencek vagy példányok száma                                                |
-| PartnerIdOnRecord    | sztring |    N     | A rekord partnerének MPN-azonosítója                                                |
-| Attribútumok           | Objektum |    N     | A "objektumtípus": "OrderLineItem" kifejezést tartalmazza                                             |
+| FriendlyName (Rövid név)         | sztring |    N     | A partner által meghatározott előfizetés rövid neve, amely segít egyértelműsni |
+| Mennyiség             | szám |    Y     | Licencek vagy példányok száma                                                |
+| PartnerIdOnRecord    | sztring |    N     | A rekordpartner MPN-azonosítója                                                |
+| Attribútumok           | Objektum |    N     | Tartalmazza az "ObjectType": "OrderLineItem" adatokat                                             |
 
 ### <a name="request-example"></a>Példa kérésre
 
-Frissítés az éves számlázásra
+Frissítés éves számlázásra
 
 ```http
 PATCH https://api.partnercenter.microsoft.com/v1/customers/4d3cf487-70f4-4e1e-9ff1-b2bfce8d9f04/orders/CF3B0E37-BE0B-4CDD-B584-D1A97D98A922 HTTP/1.1
@@ -159,11 +154,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus visszaadja a frissített előfizetés sorrendjét a válasz törzsében.
+Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza a frissített előfizetési sorrendet.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

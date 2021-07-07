@@ -1,53 +1,49 @@
 ---
 title: Az összes javaslat elemzési adatainak lekérése
-description: Az összes átirányítási elemzés információjának beolvasása.
+description: A hivatkozások elemzési információinak lekérte.
 ms.date: 06/27/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: Kim-Davis
 ms.author: kimnich
-ms.openlocfilehash: b470c59cecf8b214e6d90a244e928e5d15ebd3e0
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 7deda4098ceb9eb4e1ee75056c53c754618bf3e2
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767928"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760606"
 ---
 # <a name="get-all-referrals-analytics-information"></a>Az összes javaslat elemzési adatainak lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Az összes átirányítási elemzés információinak beszerzése az ügyfelek számára.
+Az ügyfelekre vonatkozó összes hivatkozáselemzési információ lekérte.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja |
 |---------|-------------|
-| **GET** | [*\{ BASEURL \}*](partner-center-rest-urls.md)/partner/v1/Analytics/Referrals http/1.1 |
+| **Kap** | [*\{ baseURL \}*](partner-center-rest-urls.md)/partner/v1/analytics/referrals HTTP/1.1 |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
 | Paraméter | Típus | Leírás |
 |-----------|------|-------------|
-| filter (szűrő) | sztring | A szűrési feltételnek megfelelő adatok visszaadása.</br> **Példa**</br>  `.../referrals?filter=field eq 'value'` |
-| groupby | sztring | A a kifejezéseket és a dátumokat is támogatja. Rövidzárlat-logika a gyűjtők számának korlátozásához.</br> **Példa**</br>  `.../referrals?groupby=termField1,dateField1,termField2` |
-| aggregationLevel | sztring | A *aggregationLevel* paraméterhez *groupby* szükséges. A *aggregationLevel* paraméter a *groupby* lévő összes Date mezőre vonatkozik.</br> **Példa**</br> `.../referrals?groupby=termField1,dateField1,termField2&aggregationLevel=day` |
-| top | sztring | Az oldal korlátja 10000. 10000-nál kisebb értéket vesz fel.</br> **Példa**</br> `.../referrals?top=100`</br> |
-| kihagyása | sztring | A kihagyni kívánt sorok száma.</br> **Példa**</br>  `.../referrals?top=100&skip=100` |
+| filter (szűrő) | sztring | A szűrési feltételnek megfelelő adatokat ad vissza.</br> **Példa**</br>  `.../referrals?filter=field eq 'value'` |
+| groupby | sztring | A feltételeket és a dátumokat is támogatja. Rövid áramköri logika a gyűjtők számának korlátozására.</br> **Példa**</br>  `.../referrals?groupby=termField1,dateField1,termField2` |
+| aggregationLevel | sztring | Az *aggregációszint* paraméterhez csoportosítás *szükséges.* Az *aggregationLevel* paraméter a csoportosításban található összes *dátummezőre vonatkozik.*</br> **Példa**</br> `.../referrals?groupby=termField1,dateField1,termField2&aggregationLevel=day` |
+| top | sztring | Az oldalkorlát 10000. 10000-esnél kisebb értéket vesz fel.</br> **Példa**</br> `.../referrals?top=100`</br> |
+| Ugrál | sztring | A kihagyni kívánt sorok száma.</br> **Példa**</br>  `.../referrals?top=100&skip=100` |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -65,11 +61,11 @@ Content-Length: 0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse az [átirányítási](partner-center-analytics-resources.md#referrals-resource) erőforrások gyűjteményét tartalmazza.
+Ha ez sikeres, a válasz törzse hivatkozási erőforrások [gyűjteményét](partner-center-analytics-resources.md#referrals-resource) tartalmazza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

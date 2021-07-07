@@ -1,71 +1,66 @@
 ---
 title: Partnerközpont – webhookok
-description: A webhookok lehetővé teszik a partnerek számára az Erőforrás-változási események regisztrálását.
+description: A webhookokkal a partnerek regisztrálnak az erőforrás-módosítási eseményekre.
 ms.date: 04/10/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: 8225623ade7e922ac23ebf0ed9215686b0601244
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 74d5981436ba29ea4f6f93a5693ec6da82777eb4
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768024"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111547749"
 ---
 # <a name="partner-center-webhooks"></a>Partnerközpont – webhookok
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+A Partnerközpont Webhook API-k lehetővé teszik a partnerek számára az erőforrás-változási eseményekre való regisztrációt. Ezeket az eseményeket HTTP POS-ként kézbesíti a rendszer a partner regisztrált URL-címére. Ahhoz, hogy a partnerek eseményt Partnerközpont fogadnak, visszahívási eseményt fognak fogadni, Partnerközpont postán közzétenik az erőforrás-módosítási eseményt. Az esemény digitálisan lesz aláírva, hogy a partner ellenőrizni tudja, hogy a Partnerközpont.
 
-A partner Center webhook API-k lehetővé teszik a partnerek számára az Erőforrás-változási események regisztrálását. Ezeket az eseményeket a rendszer HTTP-bejegyzések formájában továbbítja a partner regisztrált URL-címére. A partneri központból érkező események fogadásához a partnerek visszahívást kapnak, ahol a partner Center közzéteheti az erőforrás-módosítási eseményt. Az esemény digitálisan alá lesz írva, hogy a partner ellenőrizze, hogy a partner központból küldték-e el.
+A partnerek az alábbi példákhoz hasonló webhookesemények közül választhatnak, amelyet a Partnerközpont.
 
-A partnerek a partner Center által támogatott webhook-eseményekről választhatnak, például a következő példákkal.
+- **Tesztesemény ("test-created")**
 
-- **Tesztelési esemény ("test-created")**
+    Ez az esemény lehetővé teszi, hogy önkiszolgálóan regisztrálja és tesztelje a regisztrációt egy tesztesemény lekért kérésével, majd nyomon követi a folyamat előrehaladását. Láthatja a Microsofttól az esemény kézbesítése közben kapott hibaüzeneteket. Ez a korlátozás csak a "teszt által létrehozott" eseményekre vonatkozik. A hét napnál régebbi adatok el lesznek ürülve.
 
-    Ez az esemény lehetővé teszi, hogy saját bevezetést kérjen, és tesztelje a regisztrációt egy tesztelési esemény megadásával, majd a folyamat nyomon követésével. Megtekintheti a Microsofttól érkező hibaüzeneteket, amikor az eseményt próbálja kézbesíteni. Ez a korlátozás csak a "test-created" eseményekre vonatkozik. A hét napnál régebbi adatértékek törlődnek.
+- **Előfizetés-frissített esemény ("subscription-updated")**
 
-- **Előfizetés frissített eseménye ("előfizetés-frissítve")**
-
-    Ez az esemény az előfizetés változásakor következik be. Ezek az események akkor jönnek létre, ha a partner Center API-n keresztül végzett módosítások mellett belső módosítás is történik.
+    Ez az esemény akkor történik, amikor az előfizetés megváltozik. Ezek az események akkor jönnek létre, ha belső változás történik azon felül, hogy a módosítások a Partnerközpont API-n keresztül történnek.
 
     >[!NOTE]
-    >Az előfizetés változásai és az előfizetés frissített eseményének megváltozása közötti időtartam 48 óra.
+    >Akár 48 órás késés is lehet az előfizetés változásának és az Előfizetés frissítése esemény aktiválásának ideje között.
 
-- **Túllépte a küszöbértéket ("usagerecords-thresholdExceeded")**
+- **Küszöbérték túllépve esemény ("usagerecords-thresholdExceeded")**
 
-    Ez az esemény akkor következik be, ha az ügyfél Microsoft Azure használatának mennyisége meghaladja a használati költségekkel kapcsolatos költségvetést (a küszöbértéket). További információ: [Azure-beli kiadások költségvetésének beállítása ügyfeleinek/partner-központ/set-an-Azure-költőpénzt-Budget-for-your-Customs).
+    Ez az esemény akkor lép fel, ha Microsoft Azure felhasználó használati költségének összege meghaladja a használati költség költségvetését (a küszöbértéküket). További információ: [Azure-költségvetés beállítása az ügyfelek számára/partner-központ/set-an-azure-spending-budget-for-your-customers).
 
-- **Hivatkozó létrehozott esemény ("hivatkozó-létrehozva")**
+- **Ajánlás által létrehozott esemény ("referral-created")**
 
-    Ez az esemény az átirányítás létrehozásakor következik be.
+    Ez az esemény a hivatkozás létrehozásakor jön létre.
 
-- **Hivatkozó frissített esemény ("referral-frissítve")**
+- **A hivatkozó frissített eseménye ("referral-updated")**
 
-    Ez az esemény az átirányítás frissítésekor következik be.
+    Ez az esemény a hivatkozás frissítésekor történik.
 
-- **Számla üzemkész eseménye ("számla kész")**
+- **Számla kész esemény ("számla kész")**
 
-    Ez az esemény akkor következik be, amikor az új számla elkészült.
+    Ez az esemény akkor történik, amikor az új számla elkészült.
 
-A jövőbeli webhook-események hozzáadódnak a rendszeren megjelenő olyan erőforrásokhoz, amelyek a partner által nem vezéreltek, és további frissítésekre kerül majd, hogy a lehető legrövidebb idő alatt megkapják ezeket az eseményeket. A partnerek visszajelzései hasznosak lehetnek a felvenni kívánt új események meghatározásához.
+A jövőben webhookesemények lesznek hozzáadva az olyan erőforrásokhoz, amelyek megváltoznak a rendszerben, és amelyek nem a partner ellenőrzése alatt áll, és további frissítéseket is el kell látni, hogy ezek az események a lehető legközelebb legyenek a "valós időhöz". A partnerektől származó visszajelzések, amelyek miatt az események értéket képviselnek a vállalatuk számára, hasznosak lehetnek annak meghatározásában, hogy milyen új eseményeket kell hozzáadniuk.
 
-A partner Center által támogatott webhook-események teljes listáját a következő témakörben talál: a [partner Center webhook eseményei](partner-center-webhook-events.md).
+A webhookesemények által támogatott webhookesemények teljes listájáért tekintse meg Partnerközpont [webhookesemények Partnerközpont listáját.](partner-center-webhook-events.md)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-## <a name="receiving-events-from-partner-center"></a>Események fogadása a partner központtól
+## <a name="receiving-events-from-partner-center"></a>Események fogadása a Partnerközpont
 
-A partner Centertől érkező események fogadásához közzé kell tenni egy nyilvánosan elérhető végpontot. Mivel ez a végpont elérhető, ellenőriznie kell, hogy a kommunikáció a partner központból származik-e. A kapott webhook-események digitális aláírása a Microsoft gyökeréhez tartozó tanúsítvánnyal történik. A rendszer az esemény aláírásához használt tanúsítványra mutató hivatkozást is biztosít. Ez lehetővé teszi a tanúsítvány megújítását anélkül, hogy újból üzembe kellene helyeznie vagy konfigurálnia kell a szolgáltatást. A partner Center 10 kísérletet tesz az esemény kézbesítésére. Ha az esemény még nem érkezik meg 10 próbálkozás után, akkor a rendszer egy offline várólistába helyezi, és nem hajt végre további kísérleteket a kézbesítéskor.
+Ahhoz, hogy eseményeket fogad Partnerközpont egy nyilvánosan elérhető végpontot kell elérhetővé tenni. Mivel ez a végpont elérhető, ellenőriznie kell, hogy a kommunikáció a Partnerközpont. Minden kapott webhookesemény digitálisan alá van írva egy tanúsítvánnyal, amely a Microsoft-gyökérhez van láncolva. A szolgáltatás az esemény aláíráshoz használt tanúsítványra mutató hivatkozást is biztosít. Ez lehetővé teszi a tanúsítvány megújítását anélkül, hogy újra üzembe kellene állítania vagy újra kellene konfigurálnia a szolgáltatást. Partnerközpont 10 kísérletet tesz az esemény kézbesítésére. Ha az esemény 10 próbálkozás után sem lesz kézbesítve, akkor az offline üzenetsorba kerül, és a kézbesítéskor nem történik további kísérlet.
 
-Az alábbi példa egy, a partner Centerből közzétett eseményt mutat be.
+Az alábbi példa egy, a Partnerközpont.
 
 ```http
 POST /webhooks/callback
@@ -87,48 +82,48 @@ Content-Length: 195
 ```
 
 >[!NOTE]
->Az engedélyezési fejléc "Signature" sémával rendelkezik. Ez a tartalom Base64 kódolású aláírása.
+>Az Authorization fejléc "Signature" sémával rendelkezik. Ez a tartalom base64 kódolású aláírása.
 
 ## <a name="how-to-authenticate-the-callback"></a>A visszahívás hitelesítése
 
-A partner Centertől kapott visszahívási esemény hitelesítéséhez kövesse az alábbi lépéseket:
+A következő lépésekkel hitelesítheti a Partnerközpont visszahívási eseményt:
 
-1. Ellenőrizze, hogy jelen vannak-e a szükséges fejlécek (Engedélyezés, x-MS-Certificate-URL, x-MS-Signature-algoritmus).
+1. Ellenőrizze, hogy a szükséges fejlécek jelen vannak-e (Engedélyezés, x-ms-certificate-url, x-ms-signature-algorithm).
 
-2. Töltse le a tartalom aláírásához használt tanúsítványt (x-MS-Certificate-URL).
+2. Töltse le a tartalom aláíráshoz használt tanúsítványt (x-ms-certificate-url).
 
-3. Ellenőrizze a tanúsítványlánc utasításait.
+3. Ellenőrizze a tanúsítványláncot.
 
-4. Ellenőrizze a tanúsítvány "szervezetét".
+4. Ellenőrizze a tanúsítvány "Szervezet" tanúsítványát.
 
-5. Az UTF8 kódolású tartalom beolvasása pufferbe.
+5. Olvassa be a tartalmat UTF8-kódolással egy pufferbe.
 
-6. Hozzon létre egy RSA titkosítási szolgáltatót.
+6. RSA titkosítási szolgáltató létrehozása.
 
-7. Győződjön meg arról, hogy a megadott kivonatoló algoritmussal (például SHA256) aláírt adatértékek megfelelnek-e.
+7. Ellenőrizze, hogy az adatok megegyeznek-e a megadott kivonatolási algoritmussal aláírt adatokkal (például SHA256).
 
-8. Ha az ellenőrzés sikeres, dolgozza fel az üzenetet.
+8. Ha az ellenőrzés sikeres, az üzenet feldolgozása.
 
 > [!NOTE]
-> Alapértelmezés szerint az aláírási jogkivonat egy engedélyezési fejlécben lesz elküldve. Ha a **SignatureTokenToMsSignatureHeader** értéke TRUE (igaz) értékre van állítva a regisztrációban, az aláírási tokent az x-MS-Signature fejlécben küldi el a rendszer.
+> Alapértelmezés szerint az aláírási jogkivonat egy Authorization fejlécben lesz elküldve. Ha a regisztrációban a **SignatureTokenToMsSignatureHeader** true (igaz) értékre van állítva, az aláírási jogkivonat ehelyett az x-ms-signature fejlécben lesz elküldve.
 
-## <a name="event-model"></a>Eseményvezérelt modell
+## <a name="event-model"></a>Eseménymodell
 
-A következő táblázat a partneri központ eseményeinek tulajdonságait ismerteti.
+Az alábbi táblázat egy esemény Partnerközpont ismerteti.
 
 ### <a name="properties"></a>Tulajdonságok
 
 | Név                      | Leírás                                                                           |
 |---------------------------|---------------------------------------------------------------------------------------|
-| **EventName**             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Például: "test-created".  |
-| **ResourceUri**           | A módosult erőforrás URI-ja.                                                 |
-| **ResourceName**          | A módosult erőforrás neve.                                                |
-| **AuditUrl**              | Választható. A naplózási rekord URI-ja.                                                |
-| **ResourceChangeUtcDate** | A dátum és az idő UTC formátumban, amikor az erőforrás megváltozása megtörtént.                  |
+| **EventName**             | Az esemény neve. A következő űrlapon: {resource}-{action}. Például: "test-created".  |
+| **ResourceUri (Erőforrás-azonosító)**           | A módosított erőforrás URI-ját.                                                 |
+| **ResourceName (Erőforrásnév)**          | A módosított erőforrás neve.                                                |
+| **AuditUrl (Naplózásiurl)**              | Választható. A naplórekord URI-ját.                                                |
+| **ResourceChangeUtcDate** | Az erőforrás változásának dátuma és időpontja (UTC formátumban).                  |
 
 ### <a name="sample"></a>Sample
 
-Az alábbi példa egy partner Center-esemény szerkezetét mutatja be.
+Az alábbi minta egy esemény Partnerközpont mutatja be.
 
 ```http
 {
@@ -144,9 +139,9 @@ Az alábbi példa egy partner Center-esemény szerkezetét mutatja be.
 
 ### <a name="authentication"></a>Hitelesítés
 
-A webhook API-kon lévő összes hívást az engedélyezési fejléc tulajdonosi jogkivonatának használatával hitelesíti a rendszer. Hozzáférési jogkivonat beszerzése a hozzáféréshez `https://api.partnercenter.microsoft.com` . Ez a jogkivonat ugyanaz a jogkivonat, amely a partner Center API-k további részeinek elérésére szolgál.
+A webhook API-k hívásait az engedélyezési fejlécben található Bearer token hitelesíti. Szerezzen be egy hozzáférési jogkivonatot a `https://api.partnercenter.microsoft.com` hozzáféréshez. Ez a jogkivonat ugyanaz a jogkivonat, amely a többi api-hoz való Partnerközpont használ.
 
-### <a name="get-a-list-of-events"></a>Események listájának beolvasása
+### <a name="get-a-list-of-events"></a>Események listájának lekért listája
 
 A webhook API-k által jelenleg támogatott események listáját adja vissza.
 
@@ -180,9 +175,9 @@ X-Locale: en-US
 [ "subscription-updated", "test-created", "usagerecords-thresholdExceeded" ]
 ```
 
-### <a name="register-to-receive-events"></a>Regisztrálás az események fogadására
+### <a name="register-to-receive-events"></a>Regisztrálás események fogadására
 
-Regisztrálja a bérlőt a megadott események fogadásához.
+Regisztrál egy bérlőt a megadott események fogadására.
 
 #### <a name="resource-url"></a>Erőforrás URL-címe
 
@@ -226,7 +221,7 @@ MS-RequestId: f04b1b5e-87b4-4d95-b087-d65fffec0bd2
 
 ### <a name="view-a-registration"></a>Regisztráció megtekintése
 
-Egy bérlő webhookok eseményének regisztrációját adja vissza.
+Egy bérlő webhook eseményregisztrációját adja vissza.
 
 #### <a name="resource-url"></a>Erőforrás URL-címe
 
@@ -262,9 +257,9 @@ X-Locale: en-US
 }
 ```
 
-### <a name="update-an-event-registration"></a>Esemény-regisztráció frissítése
+### <a name="update-an-event-registration"></a>Eseményregisztráció frissítése
 
-Egy meglévő esemény regisztrációjának frissítése.
+Frissíti a meglévő eseményregisztrációt.
 
 #### <a name="resource-url"></a>Erőforrás URL-címe
 
@@ -306,12 +301,12 @@ MS-RequestId: f04b1b5e-87b4-4d95-b087-d65fffec0bd2
 }
 ```
 
-### <a name="send-a-test-event-to-validate-your-registration"></a>Tesztelési esemény küldése a regisztráció érvényesítéséhez
+### <a name="send-a-test-event-to-validate-your-registration"></a>Tesztesemény küldése a regisztráció érvényesítéséhez
 
-Tesztelési eseményt hoz létre a webhookok regisztrálásának ellenőrzéséhez. Ez a teszt arra szolgál, hogy ellenőrizze, hogy tud-e eseményeket fogadni a partner központból. Az események adatai a kezdeti esemény létrehozása után hét nappal törlődnek. Az érvényesítési esemény elküldése előtt regisztrálnia kell a "test-created" eseményhez a regisztrációs API használatával.
+Létrehoz egy teszteseményt a webhookok regisztrációja érvényesítéséhez. A teszt célja annak ellenőrzése, hogy fogadhat-e eseményeket a Partnerközpont. Ezeknek az eseményeknek az adatai hét nappal a kezdeti esemény létrehozása után törlődnek. Érvényesítési esemény küldése előtt regisztrálnia kell a "test-created" eseményre a regisztrációs API-val.
 
 >[!NOTE]
->Egy érvényesítési esemény közzétételekor percenként 2 kérelem van.
+>Érvényesítési esemény közzétételével percenként 2 kérelem van korlátozva.
 
 #### <a name="resource-url"></a>Erőforrás URL-címe
 
@@ -347,7 +342,7 @@ X-Locale: en-US
 
 ### <a name="verify-that-the-event-was-delivered"></a>Az esemény kézbesítésének ellenőrzése
 
-Az érvényesítési esemény aktuális állapotát adja vissza. Ez az ellenőrzés hasznos lehet az esemény-kézbesítési problémák elhárításához. A válasz az esemény továbbítására tett összes kísérlet eredményét tartalmazza.
+Az érvényesítési esemény aktuális állapotát adja vissza. Ez az ellenőrzés hasznos lehet az események kézbesítésével kapcsolatos problémák elhárításában. A Válasz az esemény kézbesítésére tett minden egyes kísérlet eredményét tartalmazza.
 
 #### <a name="resource-url"></a>Erőforrás URL-címe
 
@@ -391,7 +386,7 @@ X-Locale: en-US
 }
 ```
 
-## <a name="example-for-signature-validation"></a>Példa aláírás-ellenőrzésre
+## <a name="example-for-signature-validation"></a>Példa az aláírás-ellenőrzésre
 
 ### <a name="sample-callback-controller-signature-aspnet"></a>Minta visszahívási vezérlő aláírása (ASP.NET)
 
@@ -401,9 +396,9 @@ X-Locale: en-US
 public IHttpActionResult Post(PartnerResourceChangeCallBack callback)
 ```
 
-### <a name="signature-validation"></a>Aláírás ellenőrzése
+### <a name="signature-validation"></a>Aláírás-ellenőrzés
 
-Az alábbi példa bemutatja, hogyan adhat hozzá olyan engedélyezési attribútumot a vezérlőhöz, amely fogadja a webhook eseményeinek visszahívásait.
+Az alábbi példa bemutatja, hogyan adhat hozzá engedélyezési attribútumot a webhookesemények visszahívásait fogadó vezérlőhöz.
 
 ``` csharp
 namespace Webhooks.Security

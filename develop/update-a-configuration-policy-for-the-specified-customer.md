@@ -1,36 +1,33 @@
 ---
 title: Konfigurációs szabályzat frissítése a megadott ügyfélnél
-description: A megadott ügyfél konfigurációs házirendjének frissítése.
+description: A megadott ügyfélhez megadott konfigurációs szabályzat frissítése.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 42c57a92020723415b4621e9f9d7c5c3278bfb77
-ms.sourcegitcommit: 970031473b2e8cd3d08c6c097949c057a51df3ef
+ms.openlocfilehash: 5e008f41a44f2b7cf3ddfd705505175c69bbad38
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99505339"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530233"
 ---
 # <a name="update-a-configuration-policy-for-the-specified-customer"></a>Konfigurációs szabályzat frissítése a megadott ügyfélnél
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Németországhoz
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-
-A megadott ügyfél konfigurációs házirendjének frissítése.
+A megadott ügyfélhez megadott konfigurációs szabályzat frissítése.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- A házirend-azonosító.
+- A szabályzat azonosítója.
 
 ## <a name="c"></a>C\#
 
-Ha frissíteni szeretne egy meglévő konfigurációs házirendet a megadott ügyfél számára, egy új [**ConfigurationPolicy**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.configurationpolicy) objektumot hoz létre, ahogy az a következő kódrészletben látható. Az új objektum értékei a meglévő objektum megfelelő értékeit cserélik le. Ezután hívja meg a [**IAggregatePartner. Customs. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval, és kérje le a felületet a műveletekre a megadott ügyfélen. Ezután hívja meg a [**ConfigurationPolicies. ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicycollection.byid) metódust a házirend-azonosítóval, hogy lekérje az adott szabályzathoz tartozó konfigurációs házirend műveleteihez szükséges felületet. Végül hívja meg a [**patch**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicy.patch) vagy a [**PatchAsync**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicy.patchasync) metódust a konfigurációs szabályzat frissítéséhez.
+A megadott ügyfél meglévő konfigurációs szabályzatának frissítéséhez az alábbi kódrészletben látható módon példányositsa az új [**ConfigurationPolicy**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.configurationpolicy) objektumot. Az új objektumban lévő értékek lecserélik a meglévő objektum megfelelő értékeit. Ezután hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával, hogy lekérje a megadott ügyfél műveleteinek interfészét. Ezután hívja meg a [**ConfigurationPolicies.ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicycollection.byid) metódust a szabályzat azonosítójával, hogy lekérje a megadott házirend konfigurációs házirendműveletei felületét. Végül hívja meg a [**Patch**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicy.patch) vagy [**a PatchAsync metódust**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicy.patchasync) a konfigurációs szabályzat frissítéséhez.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -50,41 +47,41 @@ ConfigurationPolicy updatedConfigurationPolicy =
     partnerOperations.Customers.ById(selectedCustomerId).ConfigurationPolicies.ById(selectedConfigurationPolicyId).Patch(configPolicyToBeUpdated);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: UpdateConfigurationPolicy.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** Partnerközpont SDK **Osztály:** UpdateConfigurationPolicy.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                          |
 |---------|------------------------------------------------------------------------------------------------------|
-| **PUT** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/policies/{Policy-ID} http/1.1 |
+| **PUT** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/policies/{szabályzatazonosító} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A kérelem létrehozásakor használja a következő elérésiút-paramétereket.
+A kérelem létrehozásakor használja az alábbi elérésiút-paramétereket.
 
 | Név        | Típus   | Kötelező | Leírás                                                   |
 |-------------|--------|----------|---------------------------------------------------------------|
-| ügyfél-azonosító | sztring | Igen      | Egy GUID-formázott karakterlánc, amely azonosítja az ügyfelet.         |
-| házirend-azonosító   | sztring | Igen      | Egy GUID-formázott karakterlánc, amely a frissítendő szabályzatot azonosítja. |
+| ügyfél-azonosító | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet.         |
+| policy-id   | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja a frissíteni kívánt szabályzatot. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérés törzsének tartalmaznia kell egy objektumot, amely megadja a szabályzat adatait.
+A kérelem törzsének tartalmaznia kell egy objektumot, amely a szabályzat adatait tartalmazza.
 
 | Név            | Típus             | Kötelező | Frissíthető | Leírás                                                                                                                                              |
 |-----------------|------------------|----------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| id              | sztring           | Igen      | Nem        | A házirendet azonosító GUID formátumú karakterlánc.                                                                                                    |
+| id              | sztring           | Igen      | Nem        | A szabályzatot azonosító GUID formátumú sztring.                                                                                                    |
 | name            | sztring           | Igen      | Igen       | A szabályzat rövid neve.                                                                                                                         |
 | category        | sztring           | Igen      | Nem        | A szabályzat kategóriája.                                                                                                                                     |
 | leírás     | sztring           | Nem       | Igen       | A szabályzat leírása.                                                                                                                                  |
-| devicesAssigned | szám           | Nem       | Nem        | Az eszközök száma.                                                                                                                                   |
-| policySettings  | sztringek tömbje | Igen      | Igen       | A házirend-beállítások: "None", " \_ OEM- \_ előtelepítések eltávolítása", "Oobe \_ felhasználó \_ nem \_ helyi \_ rendszergazda", "expressz beállítások kihagyása \_ \_ ", "az \_ OEM- \_ regisztráció \_ kihagyása", "kihagyott EULA". |
+| devicesAssigned (hozzárendelt eszközök) | szám           | Nem       | Nem        | Az eszközök száma.                                                                                                                                   |
+| policySettings  | sztringek tömbje | Igen      | Igen       | A szabályzat beállításai: "none","remove \_ oem \_ preinstalls","oobe \_ user not local \_ \_ \_ admin","skip \_ express \_ settings","skip \_ oem \_ registration,"skip \_ eula". |
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -111,11 +108,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz törzse tartalmazza az új szabályzathoz tartozó [ConfigurationPolicy](device-deployment-resources.md#configurationpolicy) -erőforrást.
+Ha ez sikeres, a válasz törzse tartalmazza az új szabályzat [ConfigurationPolicy](device-deployment-resources.md#configurationpolicy) erőforrását.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,30 +1,26 @@
 ---
-title: TransferEligibility-erőforrások
-description: Egy partner akkor hozza létre az átvitelt, ha az ügyfél előfizetését a partnerrel egy másik partnernek kívánja átvinni.
+title: TransferEligibility erőforrások
+description: A partnerek akkor hozhatnak létre átadást, ha az ügyfél a partnerrel való előfizetését egy másik partnernek való átadásra kéri.
 ms.date: 04/10/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: dcac5724a1f708bc540a3aac7ce74b2eda60a296
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 8f121d499abffb4c4dda688c2a91c25f83d2e863
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767848"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530208"
 ---
-# <a name="transfereligibility-resources"></a>TransferEligibility-erőforrások
+# <a name="transfereligibility-resources"></a>TransferEligibility erőforrások
 
-**A következőkre vonatkozik:**
+A partnerek akkor hozhatnak létre átadást, ha az ügyfél a partnerrel való előfizetését egy másik partnernek való átadásra kéri. A TransferEligibility használatával ellenőrizheti, hogy egy előfizetés átvihető-e.
 
-- Partnerközpont
+## <a name="transfereligibility"></a>TransferEligibility (Átvitelelhetőség)
 
-Egy partner akkor hozza létre az átvitelt, ha az ügyfél előfizetését a partnerrel egy másik partnernek kívánja átvinni.
-
-## <a name="transfereligibility"></a>TransferEligibility
-
-Leírja a transferEligibility.
+A transferEligibility (átvitelelhetőség) szakaszt írja le.
 
 | Tulajdonság              | Típus             | Leírás                                                                              |
 |-----------------------|------------------|------------------------------------------------------------------------------------------|
 | id                    | sztring           | Az ügyfél előfizetés-azonosítója.                                                  |
-| isEligible            | logikai             | Azt jelzi, hogy az előfizetés jogosult-e az átvitelre.                         |
-| Ok                | sztring           | Az OK tulajdonság megmagyarázza, hogy az előfizetés miért nem jogosult az átvitelre. |
+| isEligible            | logikai             | Jelzi, hogy az előfizetés jogosult-e az átadásra.                         |
+| Ok                | sztring           | Az ok tulajdonság elmagyarázza, hogy az előfizetés miért nem jogosult az átadásra. |

@@ -1,36 +1,31 @@
 ---
 title: Tartomány rendelkezésre állásának ellenőrzése
-description: Hogyan állapítható meg, hogy a tartomány használható-e.
+description: Annak meghatározása, hogy egy tartomány használható-e.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 84edb5b7510642ec44dad3d4f92349e40eb10b24
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: e2b8f0438516cc0aff9c4d8159c22de43ec582e4
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768279"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530276"
 ---
 # <a name="verify-domain-availability"></a>Tartomány rendelkezésre állásának ellenőrzése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Hogyan állapítható meg, hogy a tartomány használható-e.
+Annak meghatározása, hogy egy tartomány használható-e.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 - Egy tartomány (például `contoso.onmicrosoft.com` ).
 
 ## <a name="c"></a>C\#
 
-Annak ellenőrzéséhez, hogy a tartomány elérhető-e, először hívja meg a [**IAggregatePartner. Domains**](/dotnet/api/microsoft.store.partnercenter.ipartner.domains) -t, és szerezzen be egy felületet a tartományi műveletekhez. Ezután hívja meg a [**ByDomain**](/dotnet/api/microsoft.store.partnercenter.domains.idomaincollection.bydomain) metódust a tartománnyal. Ez a módszer egy adott tartományhoz elérhető műveletekhez tartozó felületet kérdez le. Végül hívja meg a [**létező**](/dotnet/api/microsoft.store.partnercenter.domains.idomain.exists) metódust, és ellenőrizze, hogy már létezik-e a tartomány.
+Annak ellenőrzéséhez, hogy egy tartomány elérhető-e, először hívja meg az [**IAggregatePartner.Domains**](/dotnet/api/microsoft.store.partnercenter.ipartner.domains) nevet a tartományi műveletek interfészének beszerzéséhez. Ezután hívja meg [**a ByDomain metódust**](/dotnet/api/microsoft.store.partnercenter.domains.idomaincollection.bydomain) az ellenőrzéshez használt tartománnyal. Ez a metódus lekér egy felületet az adott tartományhoz elérhető műveletekhez. Végül hívja meg az [**Exists**](/dotnet/api/microsoft.store.partnercenter.domains.idomain.exists) metódust, hogy lássa, létezik-e már a tartomány.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -39,15 +34,15 @@ Annak ellenőrzéséhez, hogy a tartomány elérhető-e, először hívja meg a 
 bool result = partnerOperations.Domains.ByDomain(domain).Exists();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: CheckDomainAvailability.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** CheckDomainAvailability.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus   | Kérés URI-ja                                                              |
 |----------|--------------------------------------------------------------------------|
-| **FEJ** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Domains/{domain} http/1.1 |
+| **Fej** | [*{baseURL}*](partner-center-rest-urls.md)/v1/domains/{domain} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -55,15 +50,15 @@ A tartomány rendelkezésre állásának ellenőrzéséhez használja a követke
 
 | Név       | Típus       | Kötelező | Leírás                                   |
 |------------|------------|----------|-----------------------------------------------|
-| **tartományi** | **karakterlánc** | Y        | Egy karakterlánc, amely az ellenőrzési tartományt azonosítja. |
+| **Tartomány** | **sztring** | Y        | Egy sztring, amely azonosítja az ellenőriznie kell a tartományt. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Nincs
+None
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -80,13 +75,13 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a tartomány létezik, az nem érhető el, és az 200-es válasz-állapotkód vissza lesz állítva. Ha a tartomány nem található, használható, és a 404-es válasz-állapotkód nem található.
+Ha a tartomány létezik, nem használható, és a 200 OK válaszállapotkódot ad vissza. Ha a tartomány nem található, használható, és a 404 Not Found válaszállapotkódot ad vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
-### <a name="response-example-for-when-the-domain-is-already-in-use"></a>Válasz példa arra, ha a tartomány már használatban van
+### <a name="response-example-for-when-the-domain-is-already-in-use"></a>Példa válaszra, ha a tartomány már használatban van
 
 ```http
 HTTP/1.1 200 OK
@@ -98,7 +93,7 @@ MS-ServerId: 201022015
 Date: Tue, 31 Jan 2017 22:22:35 GMT
 ```
 
-### <a name="response-example-for-when-the-domain-is-available"></a>Válasz példa arra, ha a tartomány elérhető
+### <a name="response-example-for-when-the-domain-is-available"></a>Példa a tartomány rendelkezésre áll-e válaszra
 
 ```http
 HTTP/1.1 404 Not Found

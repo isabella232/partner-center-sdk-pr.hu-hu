@@ -1,51 +1,46 @@
 ---
-title: A partner Center webhook eseményei
-description: Megtudhatja, hogyan tesztelheti és használhatja a webhook-eseményeket, ha az előfizetések és egyéb események megváltoznak a partner Centerben.
+title: Partnerközpont webhookesemények
+description: Megtudhatja, hogyan teszteli és használhatja a webhookeseményeket, és hogyan jegyezze fel, ha az előfizetések és egyéb események megváltoznak a Partnerközpont.
 ms.date: 04/10/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: 03ee1d4e74408b8cf69e2971054bf9060650cb77
-ms.sourcegitcommit: f72173df911aee3ab29b008637190b4d85ffebfe
+ms.openlocfilehash: e5e363a2f928dd38304887547bdc0e5d652728d6
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 04/06/2021
-ms.locfileid: "106500039"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111547740"
 ---
-# <a name="partner-center-webhook-events"></a>A partner Center webhook eseményei
+# <a name="partner-center-webhook-events"></a>Partnerközpont webhookesemények
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Partnerközpont webhookesemények http POST-ként egy regisztrált URL-címre kézbesített erőforrás-módosítási események. Ha egy esemény fogadása a Partnerközpont, olyan visszahívási eseményt kell fogadnia, Partnerközpont postán is közzétenné az eseményt. Az esemény digitális aláírással van aláírva, így ellenőrizheti, hogy a rendszer elküldte-e Partnerközpont.
 
-A partner Center webhook eseményei a HTTP-bejegyzések formájában a regisztrált URL-címre küldött erőforrás-változási események. A partneri központból érkező események fogadásához olyan visszahívást kell futtatni, amelyben a partner Center közzéteheti az eseményt. Az esemény digitálisan alá van írva, így ellenőrizheti, hogy a partner központból küldték-e el.
-
-További információ az események fogadásáról, a visszahívás hitelesítéséről, valamint a partneri központ webhook API-k használatával az események regisztrálásának létrehozásához, megtekintéséhez és frissítéséhez: a [partner Center webhookok](partner-center-webhooks.md).
+Az események fogadására, a visszahívások hitelesítésére, valamint az Partnerközpont webhook API-k eseményregisztráció létrehozására, megtekintésére és frissítésére való használatával kapcsolatos információkért lásd: Partnerközpont [webhookok.](partner-center-webhooks.md)
 
 ## <a name="supported-events"></a>Támogatott események
 
-A partner Center a következő webhook-eseményeket támogatja.
+A következő webhookeseményeket támogatja a Partnerközpont.
 
-### <a name="test-event"></a>Esemény tesztelése
+### <a name="test-event"></a>Tesztesemény
 
-Ez az esemény lehetővé teszi, hogy saját bevezetést kérjen, és tesztelje a regisztrációt egy tesztelési esemény megadásával, majd a folyamat nyomon követésével. Megtekintheti a Microsofttól érkező hibaüzeneteket, amikor az eseményt megpróbálja kézbesíteni. Ez a művelet csak a "test-created" eseményekre és a 7 napnál régebbi adatértékekre vonatkozik.
+Ez az esemény lehetővé teszi, hogy önkiszolgálóan regisztrálja és tesztelje a regisztrációt egy tesztesemény lekért kérésével, majd nyomon követi a folyamat előrehaladását. Látni fogja a Microsofttól az esemény kézbesítése közben kapott hibaüzeneteket. Ez csak a "teszt által létrehozott" eseményekre vonatkozik, és a hét napnál régebbi adatokat a rendszer kiüríti.
 
 >[!NOTE]
->Egy teszt által létrehozott esemény elküldésekor percenként 2 kérelem van.
+>A teszt által létrehozott események kihirdetésekor percenként 2 kérelemre van korlátozás.
 
 #### <a name="properties"></a>Tulajdonságok
 
-| Tulajdonság                  | Típus                               | Description                                                                                                  |
+| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| EventName                 | sztring                             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték "test-created".                                          |
-| ResourceUri               | URI                                | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/webhooks/v1/Registration/validationEvents/{{correlationId}}" |
-| ResourceName nevű erőforrásáról              | sztring                             | Annak az erőforrásnak a neve, amely elindítja az eseményt. Ebben az esetben az érték "test".                                  |
-| AuditUri                  | URI                                | Választható A naplózási rekord beolvasására szolgáló URI, ha van ilyen. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}" |
-| ResourceChangeUtcDate     | karakterlánc az UTC dátum-idő formátumban | Az erőforrás változásának dátuma és időpontja.                                                         |
+| EventName                 | sztring                             | Az esemény neve. A következő űrlapon: {resource}-{action}. Ehhez az eseményhez az érték "test-created".                                          |
+| ResourceUri (Erőforrás-azonosító)               | URI                                | Az erőforrás lekért URI-ját. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/webhooks/v1/registration/validationEvents/{{CorrelationId}}" |
+| ResourceName nevű erőforrásáról              | sztring                             | Az eseményt aktiváló erőforrás neve. Ebben az eseményben az érték "test".                                  |
+| AuditUri                  | URI                                | (Nem kötelező) A naplórekord lekért URI-ját, ha létezik. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}" |
+| ResourceChangeUtcDate     | sztring az UTC dátum-idő formátumban | Az erőforrás-módosítás dátuma és időpontja.                                                         |
 
 #### <a name="example"></a>Példa
 
@@ -61,20 +56,20 @@ Ez az esemény lehetővé teszi, hogy saját bevezetést kérjen, és tesztelje 
 
 ### <a name="subscription-updated-event"></a>Előfizetés frissített eseménye
 
-Ez az esemény akkor következik be, amikor a megadott előfizetés megváltozik. Az előfizetés frissített eseménye akkor jön létre, ha a partner Center API-n keresztül végzett módosítások mellett belső módosítás is történik.  Ez az esemény csak akkor jön létre, ha a kereskedelmi szint megváltozik, például ha a licencek száma módosítva lesz, és az előfizetés állapota megváltozik. Nem jön létre, ha az erőforrás az előfizetésen belül jön létre.
+Ez az esemény akkor történik, amikor a megadott előfizetés megváltozik. A Subscription Updated (Előfizetés frissítve) esemény akkor jön létre, ha belső változás történik azon felül, hogy mikor történik módosítás a Partnerközpont API-n keresztül.  Ez az esemény csak akkor jön létre, ha a kereskedelmi szint módosul, például ha a licencek száma módosul, és az előfizetés állapota megváltozik. Nem jön létre, amikor erőforrások jönnek létre az előfizetésen belül.
 
 >[!NOTE]
->Az előfizetés változásai és az előfizetés frissített eseményének megváltozása közötti időtartam 48 óra.
+>Akár 48 órás késés is lehet az előfizetés változásának és az Előfizetés frissítése esemény aktiválásának ideje között.
 
 #### <a name="properties"></a>Tulajdonságok
 
-| Tulajdonság                  | Típus                               | Description                                                                                                  |
+| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| EventName                 | sztring                             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték az "előfizetés frissítve".                                  |
-| ResourceUri               | URI                                | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/webhooks/v1/Customers/{{CustomerId}}/Subscriptions/{{SubscriptionId}}" |
-| ResourceName nevű erőforrásáról              | sztring                             | Annak az erőforrásnak a neve, amely elindítja az eseményt. Ebben az esetben az érték az "előfizetés".                          |
-| AuditUri                  | URI                                | Választható A naplózási rekord beolvasására szolgáló URI, ha van ilyen. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}" |
-| ResourceChangeUtcDate     | karakterlánc az UTC dátum-idő formátumban | Az erőforrás változásának dátuma és időpontja.                                                         |
+| EventName                 | sztring                             | Az esemény neve. A következő űrlapon: {resource}-{action}. Ebben az eseményben az érték "subscription-updated".                                  |
+| ResourceUri (Erőforrás-azonosító)               | URI                                | Az erőforrás lekért URI-ját. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/webhooks/v1/customers/{{CustomerId}}/subscriptions/{{SubscriptionId}}" |
+| ResourceName nevű erőforrásáról              | sztring                             | Az eseményt aktiváló erőforrás neve. Ebben az eseményben az érték "subscription".                          |
+| AuditUri                  | URI                                | (Nem kötelező) A naplórekord lekért URI-ját, ha létezik. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}" |
+| ResourceChangeUtcDate     | sztring az UTC dátum-idő formátumban | Az erőforrás-módosítás dátuma és időpontja.                                                         |
 
 #### <a name="example"></a>Példa
 
@@ -88,19 +83,19 @@ Ez az esemény akkor következik be, amikor a megadott előfizetés megváltozik
 }
 ```
 
-### <a name="threshold-exceeded-event"></a>Túllépte a küszöbértéket (esemény)
+### <a name="threshold-exceeded-event"></a>Küszöbérték túllépve esemény
 
-Ez az esemény akkor következik be, ha az ügyfél Microsoft Azure használatának mennyisége meghaladja a használati költségekkel kapcsolatos költségvetést (a küszöbértéket). További információ: [Azure-beli kiadások költségvetésének beállítása ügyfeleinek/partner-központ/set-an-Azure-költőpénzt-Budget-for-your-Customs).
+Ez az esemény akkor lép fel, Microsoft Azure bármely ügyfél használati költségének kihasználtsága meghaladja a használati költségkeretet (a küszöbértéküket). További információ: [Azure-költségvetés beállítása az ügyfelek számára/partner-központ/set-an-azure-spending-budget-for-your-customers).
 
 #### <a name="properties"></a>Tulajdonságok
 
-| Tulajdonság                  | Típus                               | Description                                                                                                  |
+| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| EventName                 | sztring                             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték a következő: "usagerecords-thresholdExceeded".                                  |
-| ResourceUri               | URI                                | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/webhooks/v1/Customers/usagerecords" |
-| ResourceName nevű erőforrásáról              | sztring                             | Annak az erőforrásnak a neve, amely elindítja az eseményt. Ebben az esetben az érték "usagerecords".                          |
-| AuditUri                  | URI                                | Választható A naplózási rekord beolvasására szolgáló URI, ha van ilyen. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}" |
-| ResourceChangeUtcDate     | karakterlánc az UTC dátum-idő formátumban | Az erőforrás változásának dátuma és időpontja.                                                         |
+| EventName                 | sztring                             | Az esemény neve. A következő űrlapon: {resource}-{action}. Ebben az esetben az érték "usagerecords-thresholdExceeded".                                  |
+| ResourceUri (Erőforrás-azonosító)               | URI                                | Az erőforrás lekért URI-ját. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/webhooks/v1/customers/usagerecords" |
+| ResourceName nevű erőforrásáról              | sztring                             | Az eseményt aktiváló erőforrás neve. Ebben az esetben az érték "usagerecords".                          |
+| AuditUri                  | URI                                | (Nem kötelező) A naplórekord lekért URI-ját, ha létezik. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}" |
+| ResourceChangeUtcDate     | sztring az UTC dátum-idő formátumban | Az erőforrás-módosítás dátuma és időpontja.                                                         |
 
 #### <a name="example"></a>Példa
 
@@ -114,19 +109,19 @@ Ez az esemény akkor következik be, ha az ügyfél Microsoft Azure használatá
 }
 ```
 
-### <a name="referral-created-event"></a>Hivatkozó létrehozott esemény
+### <a name="referral-created-event"></a>Hivatkozás által létrehozott esemény
 
-Ez az esemény az átirányítás létrehozásakor következik be.
+Ez az esemény a hivatkozás létrehozásakor jön létre.
 
 #### <a name="properties"></a>Tulajdonságok
 
-| Tulajdonság                  | Típus                               | Description                                                                                                  |
+| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| EventName                 | sztring                             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték "hivatkozó-létrehozva".                                  |
-| ResourceUri               | URI                                | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/engagements/v1/Referrals/{{ReferralID}}" |
-| ResourceName nevű erőforrásáról              | sztring                             | Annak az erőforrásnak a neve, amely elindítja az eseményt. Ebben az esetben az érték az "ajánló".                          |
-| AuditUri                  | URI                                | Választható A naplózási rekord beolvasására szolgáló URI, ha van ilyen. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}" |
-| ResourceChangeUtcDate     | karakterlánc az UTC dátum-idő formátumban | Az erőforrás változásának dátuma és időpontja.                                                         |
+| EventName                 | sztring                             | Az esemény neve. A következő űrlapon: {resource}-{action}. Ebben az esetben az érték "referral-created".                                  |
+| ResourceUri (Erőforrás-azonosító)               | URI                                | Az erőforrás lekért URI-ját. A következő szintaxist használja:[*" {baseURL}*](partner-center-rest-urls.md)/engagements/v1/referrals/{{ReferralID}}" |
+| ResourceName nevű erőforrásáról              | sztring                             | Az eseményt aktiváló erőforrás neve. Ebben az esetben az érték "hivatkozás".                          |
+| AuditUri                  | URI                                | (Nem kötelező) A naplórekord lekért URI-ját, ha létezik. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}" |
+| ResourceChangeUtcDate     | sztring az UTC dátum-idő formátumban | Az erőforrás-módosítás dátuma és időpontja.                                                         |
 
 #### <a name="example"></a>Példa
 
@@ -140,19 +135,19 @@ Ez az esemény az átirányítás létrehozásakor következik be.
 }
 ```
 
-### <a name="referral-updated-event"></a>Hivatkozó frissített esemény
+### <a name="referral-updated-event"></a>Ajánló frissített eseménye
 
-Ez az esemény az átirányítás frissítésekor következik be.
+Ez az esemény a hivatkozás frissítésekor történik.
 
 #### <a name="properties"></a>Tulajdonságok
 
-| Tulajdonság                  | Típus                               | Description                                                                                                  |
+| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| EventName                 | sztring                             | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték "referral-frissítve".                                  |
-| ResourceUri               | URI                                | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/engagements/v1/Referrals/{{ReferralID}}" |
-| ResourceName nevű erőforrásáról              | sztring                             | Annak az erőforrásnak a neve, amely elindítja az eseményt. Ebben az esetben az érték az "ajánló".                          |
-| AuditUri                  | URI                                | Választható A naplózási rekord beolvasására szolgáló URI, ha van ilyen. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}" |
-| ResourceChangeUtcDate     | karakterlánc az UTC dátum-idő formátumban | Az erőforrás változásának dátuma és időpontja.                                                         |
+| EventName                 | sztring                             | Az esemény neve. A következő űrlapon: {resource}-{action}. Ebben az esetben az érték "referral-updated" (ajánló frissítése) lesz.                                  |
+| ResourceUri (Erőforrás-azonosító)               | URI                                | Az erőforrás lekért URI-ját. A következő szintaxist használja:[*" {baseURL}*](partner-center-rest-urls.md)/engagements/v1/referrals/{{ReferralID}}" |
+| ResourceName nevű erőforrásáról              | sztring                             | Az eseményt aktiváló erőforrás neve. Ebben az esetben az érték "hivatkozás".                          |
+| AuditUri                  | URI                                | (Nem kötelező) A naplórekord lekért URI-ját, ha létezik. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}" |
+| ResourceChangeUtcDate     | sztring az UTC dátum-idő formátumban | Az erőforrás-módosítás dátuma és időpontja.                                                         |
 
 #### <a name="example"></a>Példa
 
@@ -166,17 +161,17 @@ Ez az esemény az átirányítás frissítésekor következik be.
 }
 ```
 
-### <a name="invoice-ready-event"></a>Számla üzemkész eseménye
+### <a name="invoice-ready-event"></a>Számla kész esemény
 
-Ez az esemény akkor következik be, amikor az új számla elkészült.
+Ez az esemény akkor történik, amikor az új számla elkészült.
 
-| Tulajdonság                  | Típus                               | Description                                                                                                  |
+| Tulajdonság                  | Típus                               | Leírás                                                                                                  |
 |---------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| EventName | sztring | Az esemény neve. A (z) {Resource} – {Action} formátumban. Ebben az esetben az érték "számla-kész". |
-| ResourceUri | URI | Az erőforrás beolvasására szolgáló URI. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{{InvoiceId}}" |
-| ResourceName nevű erőforrásáról | sztring | Annak az erőforrásnak a neve, amely elindítja az eseményt. Ebben az esetben az érték a "számla". |
-| AuditUri |  URI | Választható A naplózási rekord beolvasására szolgáló URI, ha van ilyen. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}") |
-| ResourceChangeUtcDate | karakterlánc az UTC dátum-idő formátumban | Az erőforrás változásának dátuma és időpontja. |
+| EventName | sztring | Az esemény neve. A következő űrlapon: {resource}-{action}. Ebben az esetben az érték "számlakész". |
+| ResourceUri (Erőforrás-azonosító) | URI | Az erőforrás lekért URI-ját. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{{InvoiceId}}" |
+| ResourceName nevű erőforrásáról | sztring | Az eseményt aktiváló erőforrás neve. Ebben az esetben az érték "invoice". |
+| AuditUri |  URI | (Nem kötelező) A naplórekord lekért URI-ját, ha létezik. A következő szintaxist használja: "[*{baseURL}*](partner-center-rest-urls.md)/auditactivity/v1/auditrecords/{{AuditId}}} |
+| ResourceChangeUtcDate | sztring az UTC dátum-idő formátumban | Az erőforrás-módosítás dátuma és időpontja. |
 
 #### <a name="example"></a>Példa
 

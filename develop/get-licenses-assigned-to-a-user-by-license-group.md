@@ -1,37 +1,33 @@
 ---
 title: Adott felhasználóhoz rendelt licencek lekérése licenccsoport szerint
-description: A megadott licencfeltételek felhasználó által hozzárendelt licencek listájának beolvasása.
+description: A felhasználóhoz rendelt licencek listájának lekért listája a megadott licenccsoportokhoz.
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 28c10e3e2acb30e4110213344959a87d4ddfcffb
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 54acf6f315e3062d03903a98d0c6c1946065f95e
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768320"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446003"
 ---
 # <a name="get-licenses-assigned-to-a-user-by-license-group"></a>Adott felhasználóhoz rendelt licencek lekérése licenccsoport szerint
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-A megadott licencfeltételek felhasználó által hozzárendelt licencek listájának beolvasása.
+A felhasználóhoz rendelt licencek listájának lekért listája a megadott licenccsoportokhoz.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy felhasználói azonosító.
 
-- Egy vagy több engedélyszám-azonosító listája.
+- Egy vagy több licenccsoport-azonosítót felsoroló lista.
 
 ## <a name="c"></a>C\#
 
-Annak ellenőrzéséhez, hogy mely licencek vannak hozzárendelve egy felhasználóhoz a megadott licencfeltételek alapján, kezdje a következőt: [List/DotNet/API/System. Collections. Generic. list -1), amely [**LicenseGroupId**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licensegroupid)típusú, majd adja hozzá a licenc-csoportokat a listához. Ezután használja a [**IAggregatePartner. Customs. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval az ügyfél azonosításához. Ezután hívja meg a Users [**. ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust a felhasználói azonosítóval a felhasználó azonosításához. Ezután szerezzen be egy felületet az ügyfél felhasználói licencelési műveleteihez a [**licencek**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.licenses) tulajdonságból. Végül adja át a licenc-csoportok listáját a [**Get**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.getasync) metódusnak a felhasználóhoz rendelt licencek gyűjteményének lekéréséhez.
+Annak ellenőrzéséhez, hogy mely licencek vannak hozzárendelve egy felhasználóhoz a megadott licenccsoportokból, először példányosodja a [**LicenseGroupId**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licensegroupid)típusú [List/dotnet/api/system.collections.generic.list-1) típust, majd adja hozzá a licenccsoportokat a listához. Ezután használja az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Ezután hívja meg a [**Users.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) a felhasználói azonosítóval a felhasználó azonosításához. Ezután szerezze be az ügyfélfelhasználói licencműveletekkel kapcsolatos felületet a [**Licencek tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.licenses) Végül továbbküldi a licenccsoportok listáját a [**Get**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.get) vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.getasync) metódusnak a felhasználóhoz rendelt licencek gyűjteményének lekéréséhez.
 
 ``` csharp
 // string selectedCustomerUserId;
@@ -51,29 +47,29 @@ List<LicenseGroupId> licenseGroupIds = new List<LicenseGroupId>(){ LicenseGroupI
 var customerUserBothAadAndSfbAssignedLicenses = partnerOperations.Customers.ById(selectedCustomerId).Users.ById(selectedCustomerUserId).Licenses.Get(licenseGroupIds);
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                                                            |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Users/{User-ID}/licenses? LicenseGroupIds = Group1 http/1.1                        |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Users/{User-ID}/licenses? LicenseGroupIds = Group2 http/1.1                        |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Users/{User-ID}/licenses? LicenseGroupIds = Group1&LicenseGroupIds = Group2 http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/users/{felhasználói azonosító}/licenses?licenseGroupIds=Group1 HTTP/1.1                        |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/users/{felhasználói azonosító}/licenses?licenseGroupIds=Group2 HTTP/1.1                        |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/users/{felhasználói azonosító}/licenses?licenseGroupIds=Group1&licenseGroupIds=Group2 HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Használja az alábbi elérési utat és a lekérdezési paramétereket az ügyfél, a felhasználó és a licencek csoportjának azonosításához.
+Az alábbi elérési út és lekérdezési paraméterek segítségével azonosíthatja az ügyfél-, felhasználó- és licenccsoportokat.
 
 | Név            | Típus   | Kötelező | Leírás                                                                                                                                                                                                                                                           |
 |-----------------|--------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ügyfél-azonosító     | sztring | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja az ügyfelet.                                                                                                                                                                                                                 |
-| felhasználói azonosító         | sztring | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja a felhasználót.                                                                                                                                                                                                                     |
-| licenseGroupIds | sztring | No       | Egy enumerálási érték, amely a hozzárendelt licencek licencszerződését jelzi. Érvényes értékek: Group1, Group2 Group1 – ez a csoport minden olyan terméket tartalmaz, amelynek a licence felügyelhető a Azure Active Directoryban (HRE). Group2 – ez a csoport csak a Minecraft termék licenceit tartalmazta. |
+| ügyfélazonosító     | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.                                                                                                                                                                                                                 |
+| felhasználói azonosító         | sztring | Igen      | A felhasználót azonosító GUID formátumú sztring.                                                                                                                                                                                                                     |
+| licenseGroupIds (licenccsoport-azonosítók) | sztring | No       | A hozzárendelt licencek licenccsoportját jelző felsorolásérték. Érvényes értékek: Group1, Group2 Group1 – Ez a csoport az összes olyan terméket tartalmaz, amelynek licence a Azure Active Directory (AAD) alatt kezelhető. 2. csoport – Ez a csoport csak Minecraft terméklicenceket. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -93,11 +89,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse tartalmazza a [licenc](license-resources.md#license) -erőforrások gyűjteményét.
+Ha a művelet sikeres, a válasz törzse tartalmazza a [licencerőforrások](license-resources.md#license) gyűjteményét.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 ### <a name="response-example"></a>Példa válaszra
 
@@ -155,9 +151,9 @@ Date: June 24 2016 22:00:25 PST
 }
 ```
 
-### <a name="response-example-no-matching-licenses-found"></a>Példa válaszra (nem találhatók egyező licencek)
+### <a name="response-example-no-matching-licenses-found"></a>Válasz példa (nem található egyező licenc)
 
-Ha a megadott licencfeltételeket nem találhatók egyező licencek, a válasz egy üres gyűjteményt tartalmaz egy olyan totalCount elemmel, amelynek értéke 0.
+Ha a megadott licenccsoportokhoz nem találhatók megfelelő licencek, a válasz egy üres gyűjteményt tartalmaz, amelynek totalCount eleme 0.
 
 ```http
 HTTP/1.1 200 OK

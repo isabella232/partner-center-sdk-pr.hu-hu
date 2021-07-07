@@ -1,50 +1,48 @@
 ---
 title: Előfizetések átvitelének elfogadása
-description: Megtudhatja, hogyan használhatja a partner Center REST API az előfizetések elfogadására az ügyfelek számára. A REST-kérelmek szintaxisát, fejléceit és REST-válaszokat tartalmaz.
+description: Megtudhatja, hogyan használhatja Partnerközpont REST API ügyfél számára az előfizetések átvitelének elfogadására. TARTALMAZZA a REST-kérések szintaxisát, a fejléceket és a REST-válaszokat.
 ms.date: 04/10/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: fd9a6788b3dd022470e516ba928a6cd873970e53
-ms.sourcegitcommit: 8a5c37376a29e29fe0002a980082d4acc6b91131
+ms.openlocfilehash: 762f2106d6173e352bec11936c96bc3a9c9f89cb
+ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "97768516"
+ms.lasthandoff: 06/11/2021
+ms.locfileid: "112025751"
 ---
-# <a name="accept-a-transfer-of-subscriptions-for-a-customer-using-partner-center-rest-apis"></a>Előfizetés elfogadása egy ügyfél számára a partner Center REST API-k használatával
+# <a name="accept-a-transfer-of-subscriptions-for-a-customer-using-partner-center-rest-apis"></a>Előfizetések átadásának elfogadása egy ügyfél számára Partnerközpont REST API-k használatával
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
+Ez a cikk azt REST API be, Partnerközpont hogyan fogadhatja el az előfizetések átadását egy ügyfél számára. A példa REST-szintaxist, fejléceket és REST-válaszokat tartalmaz.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-- Egy meglévő átvitelhez tartozó adatátviteli azonosító.
+- Egy meglévő átvitel átviteli azonosítója.
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                                                 |
 |----------|-------------------------------------------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Transfers/{Transfer-ID}/Accept http/1.1                    |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/transfers/{transfer-id}/accept HTTP/1.1                    |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A következő Path paraméter használatával azonosíthatja az ügyfelet, és megadhatja az elfogadásra váró átvitelt.
+Az alábbi elérésiút-paraméterrel azonosíthatja az ügyfelet, és megadhatja az elfogadni kívánt átvitelt.
 
 | Név            | Típus     | Kötelező | Leírás                                                            |
 |-----------------|----------|----------|------------------------------------------------------------------------|
 | **ügyfél-azonosító** | sztring   | Igen      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.             |
-| **átvitel-azonosító** | sztring   | Igen      | GUID formátumú átvitel-azonosító, amely azonosítja az átvitelt.             |
+| **átviteli azonosító** | sztring   | Igen      | Az átvitelt azonosító GUID formátumú átviteli azonosító.             |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -63,11 +61,11 @@ Content-Length: 0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus a válasz törzsében lévő [TransferSubmitResult](transfer-entity-resources.md#transfersubmitresult) -erőforrást adja vissza.
+Ha ez a metódus sikeres, a válasz törzsében adja vissza a megadott [TransferSubmitResult](transfer-entity-resources.md#transfersubmitresult) erőforrást.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

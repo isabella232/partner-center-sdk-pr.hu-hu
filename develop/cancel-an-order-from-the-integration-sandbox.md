@@ -4,26 +4,21 @@ description: Megtudhatja, hogyan használhatja Partnerközpont API-kat az integr
 ms.date: 04/28/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: c3bf862c62804a56e6f73dd3ec36d2e9eb65f997
-ms.sourcegitcommit: f59a9311c8a37d45695caf74794ec1697426acc9
+ms.openlocfilehash: 4c4b658f406e420d8d3cd425688364fe3d440d3d
+ms.sourcegitcommit: a3a78ec0f5078645b5a4f3b534165eef30f2c822
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 04/29/2021
-ms.locfileid: "108210019"
+ms.lasthandoff: 06/30/2021
+ms.locfileid: "113104971"
 ---
 # <a name="cancel-an-order-from-the-integration-sandbox-using-partner-center-apis"></a>Rendelés visszavonása az integrációs védőfalról az Partnerközpont API-k használatával
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-- A 21Vianet által üzemeltetett Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
 Ez a cikk azt ismerteti, hogyan használhatók Partnerközpont API-k az integrációs sandbox-fiókokból származó előfizetési rendelések különböző típusainak lemondására. Ilyen rendelések lehetnek fenntartott példányok, szoftverek és kereskedelmi piactéri Szolgáltatott szoftver (SaaS) előfizetési rendelések.
 
->[!NOTE] 
->Vegye figyelembe, hogy a fenntartott példányok vagy a kereskedelmi piactéri SaaS-előfizetési rendelések lemondása csak az integrációs sandbox-fiókokból lehetséges. A 60 napnál régebbi sandbox-rendelések nem szakíthatóak meg a Partnerközpont. Ha segítségre van szüksége, a támogatási Partnerközpont kell. 
+> [!NOTE] 
+> Vegye figyelembe, hogy a fenntartott példányok vagy a kereskedelmi piactéri SaaS-előfizetési rendelések lemondása csak az integrációs sandbox-fiókokból lehetséges. A 60 napnál régebbi sandbox-rendelések nem szakíthatóak meg a Partnerközpont.
 
 Az API-n keresztüli szoftverrendelések lemondásához használja a [cancel-software-purchases parancsot.](cancel-software-purchases.md)
 Az irányítópulton keresztül is visszavonhatja az éles szoftverrendeléseket [a vásárlás lemondásával.](/partner-center/csp-software-subscriptions)
@@ -58,7 +53,7 @@ order = tipAccountPartnerOperations.Customers.ById(customerTenantId).Orders.ById
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus     | Kérés URI-ja                                                                            |
 |------------|----------------------------------------------------------------------------------------|
@@ -71,7 +66,7 @@ Az alábbi lekérdezési paraméterrel törölhet egy ügyfelet.
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
-| **rendelésazonosító** | **sztring** | Y        | Az érték egy sztring, amely a megszakítani szükséges rendelési értékeket jelenti. |
+| **order-id (rendelésazonosító)** | **sztring** | Y        | Az érték egy sztring, amely a megszakítani szükséges rendelési értékeket jegyzett meg. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -106,7 +101,7 @@ Ha a művelet sikeres, ez a metódus a megszakított rendelést adja vissza.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

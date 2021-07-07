@@ -1,38 +1,34 @@
 ---
-title: Szerződés metaadatainak erőforrásai
-description: A AgreementMetadata-erőforrások gyűjteménye leírja, hogy a partnerek milyen típusú megállapodásokat használhatnak az ügyfelek elfogadásának megerősítéséhez.
+title: A szerződés metaadatainak erőforrásai
+description: Az AgreementMetadata erőforrás-gyűjtemény azokat a szerződéstípusokat ismerteti, amelyek használatával a partnerek megerősítheti az ügyfelek elfogadását.
 ms.date: 02/12/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: aarzh-AaronZhang
 ms.author: v-aarzh
-ms.openlocfilehash: 36ba2aa2f78552dc9a835168b5bbd5b6a3ce47f3
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: b930e3691b9d269ddb8d76ae18b6b26a217123c0
+ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767767"
+ms.lasthandoff: 06/11/2021
+ms.locfileid: "112025628"
 ---
-# <a name="agreement-metadata-resources"></a>Szerződés metaadatainak erőforrásai
+# <a name="agreement-metadata-resources"></a>A szerződés metaadatainak erőforrásai
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont
 
-- Partnerközpont
+**Nem vonatkozik a következőre:** Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-A **AgreementMetaData** erőforrást jelenleg csak a *Microsoft nyilvános felhőben* támogatja a partner Center. Ez az erőforrás nem alkalmazható a következőre:
+Az **AgreementMetaData** erőforrást jelenleg csak a Microsoft Partnerközpont támogatja. 
 
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Az **AgreementMetaData** gyűjtemény az összes szerződéstípusra vonatkozó metaadatokat biztosít. A partnerek ezzel a gyűjteményrel megerősítheti, hogy az ügyfelek elfogadják a szerződéseket. Az **AgreementMetaData** gyűjtemény metaadatokat ad vissza mindkét szerződéstípushoz ( Microsoft Cloud szerződés és **Microsoft Ügyfélszerződés**).
 
-A **AgreementMetaData** -gyűjtemény metaadatokat biztosít az összes szerződés típusáról. A partnerek használhatják ezt a gyűjteményt, hogy megerősítsék az ügyfelek elfogadják a szerződéseket. A **AgreementMetaData** -gyűjtemény a szerződési típusok (**Microsoft Cloud szerződés** és a **Microsoft ügyfél-szerződés**) metaadatait adja vissza.
-
-## <a name="agreementmetadata"></a>AgreementMetaData
+## <a name="agreementmetadata"></a>AgreementMetaData (SzerződésmetaData)
 
 A visszaadott szerződési metaadatok a következő tulajdonságokat tartalmazzák:
 
 | Tulajdonság      | Típus               | Leírás                                                                       |
 |---------------|--------------------|-----------------------------------------------------------------------------------|
-| templateId    | sztring             | Egy szerződési sablon egyedi azonosítója.                                       |
-| típus          | sztring             | Szerződés típusa Jelenleg a támogatott értékek a következők: **MicrosoftCloudAgreement** és **MicrosoftCustomerAgreement** (előzetes verzió). |
-| agreementLink | sztring             | A szerződés sablonjának URL-címe.                                                    |
+| templateId (sablonazonosító)    | sztring             | A szerződéssablon egyedi azonosítója.                                       |
+| típus          | sztring             | Szerződés típusa. Jelenleg a támogatott értékek közé tartozik a **MicrosoftCloudAgreement** és a **MicrosoftCustomerAgreement** (előzetes verzió). |
+| agreementLink | sztring             | A szerződéssablon URL-címe.                                                    |

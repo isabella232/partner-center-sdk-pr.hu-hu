@@ -1,86 +1,82 @@
 ---
 title: Elemzési erőforrások
-description: A partner Center erőforrásai a használattal, az üzembe helyezéssel és a felhasználással kapcsolatos adatokat tartalmazzák. A licencek telepítésével és a partnerek és ügyfelek általi használattal kapcsolatos információkat tartalmaz.
+description: Partnerközpont erőforrások használati, üzembe helyezési és használati adatokat tartalmaznak. Betekintő adatokat tartalmaz a licencek üzembe helyezéséről és használatáról a partnerek és az ügyfelek számára.
 ms.date: 05/21/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: v-sumukh
 ms.author: v-sumukh
-ms.openlocfilehash: 9bd47b99f0abaa181e5f255dd6e46151363917e7
-ms.sourcegitcommit: d1104d5c27f8fb3908a87532f80c432f0147ef5d
+ms.openlocfilehash: 69c6c195ba1a0d657a91320b2f9b08b5269a8499
+ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/13/2020
-ms.locfileid: "97768543"
+ms.lasthandoff: 06/11/2021
+ms.locfileid: "112025598"
 ---
-# <a name="analytics-api-resources-that-help-you-report-on-license-usage-deployment-and-consumption"></a>Elemzési API-erőforrások, amelyek segítséget nyújtanak a licencek használatáról, üzembe helyezéséről és felhasználásáról
+# <a name="analytics-api-resources-that-help-you-report-on-license-usage-deployment-and-consumption"></a>Analytics API-erőforrások, amelyek segítségével jelentést készít a licenchasználatról, az üzembe helyezésről és a felhasználásról
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Az itt megadott erőforrások a használat, a telepítés és a felhasználás jelentésére szolgáló adatokat tartalmaznak.
+Az itt definiált erőforrások a használattal, üzembe helyezéssel és használattal kapcsolatos jelentésekhez használt adatokat tartalmaznak.
 
 ## <a name="partnerlicensesdeploymentinsights"></a>PartnerLicensesDeploymentInsights
 
-A **PartnerLicensesDeploymentInsights** -erőforrás a licencek telepítésével kapcsolatos partneri szintű információkat tartalmaz.
+A **PartnerLicensesDeploymentInsights erőforrás** partnerszintű információkat tartalmaz a licencek üzembe helyezésével kapcsolatban.
 
 | Tulajdonság                  | Típus                                                           | Leírás                                                                         |
 |---------------------------|----------------------------------------------------------------|-------------------------------------------------------------------------------------|
 | proratedDeploymentPercent | szám                                                         | A telepített licencek százalékos aránya.                                                |
 | licensesSold              | szám                                                         | Az eladott licencek száma.                                                        |
-| processedDateTime         | karakterlánc UTC dátum-idő formátumban                                 | Az adatok összesítésének dátuma és időpontja.                                     |
-| serviceName               | sztring                                                         | A szolgáltatás neve (például: o365, CRM).                                                  |
-| csatorna                   | sztring                                                         | A szolgáltatás csatorna neve (például: viszonteladó).                                    |
-| attribútumok                | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai. Tartalmazza a "objektumtípus": "PartnerLicensesDeploymentInsights" |
+| processedDateTime         | sztring UTC dátum-idő formátumban                                 | Az adatok összesítésének dátuma és időpontja.                                     |
+| serviceName (szolgáltatásnév)               | sztring                                                         | A szolgáltatás neve (például: o365, crm).                                                  |
+| Csatorna                   | sztring                                                         | A szolgáltatás csatornaneve (például viszonteladó).                                    |
+| Attribútumok                | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok. Tartalmazza az "objectType": "PartnerLicensesDeploymentInsights" |
 
 ## <a name="partnerlicensesusageinsights"></a>PartnerLicensesUsageInsights
 
-A **PartnerLicensesUsageInsights** -erőforrás partneri szintű információkat tartalmaz a licencek használatáról.
+A **PartnerLicensesUsageInsights erőforrás** partnerszintű információkat tartalmaz a licenchasználatról.
 
 | Tulajdonság                     | Típus                                                           | Leírás                                                                    |
 |------------------------------|----------------------------------------------------------------|--------------------------------------------------------------------------------|
 | proratedLicensesUsagePercent | szám                                                         | A telepített licencek százalékos aránya.                                           |
-| workloadName                 | sztring                                                         | A munkaterhelés neve (például: Exchange).                                             |
-| processedDateTime            | karakterlánc UTC dátum-idő formátumban                                 | Az adatok összesítésének dátuma és időpontja.                                |
-| serviceName                  | sztring                                                         | A szolgáltatás neve (például: o365, CRM).                                             |
-| csatorna                      | sztring                                                         | A szolgáltatás csatorna neve (például: viszonteladó).                               |
-| attribútumok                   | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai. Tartalmazza a "objektumtípus": "PartnerLicensesUsageInsights" |
+| workloadName (számítási feladat neve)                 | sztring                                                         | A számítási feladat neve (például exchange).                                             |
+| processedDateTime            | sztring UTC dátum-idő formátumban                                 | Az adatok összesítésének dátuma és időpontja.                                |
+| serviceName (szolgáltatásnév)                  | sztring                                                         | A szolgáltatás neve (például: o365, crm).                                             |
+| Csatorna                      | sztring                                                         | A szolgáltatás csatornaneve (például viszonteladó).                               |
+| Attribútumok                   | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok. Tartalmazza az "objectType": "PartnerLicensesUsageInsights" |
 
 ## <a name="customerlicensesdeploymentinsights"></a>CustomerLicensesDeploymentInsights
 
-A **CustomerLicensesDeploymentInsights** -erőforrás felhasználói szintű információkat tartalmaz a licencek telepítésével kapcsolatban.
+A **CustomerLicensesDeploymentInsights erőforrás** ügyfélszintű információkat tartalmaz a licencek üzembe helyezésről.
 
 | Tulajdonság          | Típus                                                           | Leírás                                                                          |
 |-------------------|----------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| licensesDeployed  | szám                                                         | A telepített licencek száma.                                                     |
+| licensesDeployed  | szám                                                         | Az üzembe helyezett licencek száma.                                                     |
 | licensesSold      | szám                                                         | Az eladott licencek száma.                                                         |
-| deploymentPercent | szám                                                         | A telepített licencek százalékos aránya.                                        |
-| customerId        | sztring                                                         | Az ügyfél-azonosító.                                                             |
-| Customername (      | sztring                                                         | Az ügyfél neve.                                                                   |
-| productName       | sztring                                                         | A termék neve.                                                                    |
-| Meg       | sztring                                                         | A licenc szolgáltatási kódja.                                                     |
-| processedDateTime | karakterlánc UTC dátum-idő formátumban                                 | Az adatok összesítésének dátuma és időpontja.                                      |
-| serviceName       | sztring                                                         | A szolgáltatás neve (például: o365, CRM).                                                   |
-| csatorna           | sztring                                                         | A szolgáltatás csatorna neve (például: viszonteladó).                                     |
-| attribútumok        | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai. Tartalmazza a "objektumtípus": "CustomerLicensesDeploymentInsights" |
+| deploymentPercent | szám                                                         | Az üzembe helyezett licencek módosított százalékos aránya.                                        |
+| customerId        | sztring                                                         | Az ügyfél azonosítója.                                                             |
+| customerName (ügyfél neve)      | sztring                                                         | Az ügyfél neve.                                                                   |
+| Productname       | sztring                                                         | A termék neve.                                                                    |
+| serviceCode       | sztring                                                         | A licenc szolgáltatáskódja.                                                     |
+| processedDateTime | sztring UTC dátum-idő formátumban                                 | Az adatok összesítésének dátuma és időpontja.                                      |
+| serviceName (szolgáltatásnév)       | sztring                                                         | A szolgáltatás neve (például: o365, crm).                                                   |
+| Csatorna           | sztring                                                         | A szolgáltatás csatornaneve (például viszonteladó).                                     |
+| Attribútumok        | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok. Tartalmazza az "objectType": "CustomerLicensesDeploymentInsights" |
 
 ## <a name="customerlicensesusageinsights"></a>CustomerLicensesUsageInsights
 
-A **CustomerLicensesUsageInsights** -erőforrás felhasználói szintű információkat tartalmaz a licencek használatáról.
+A **CustomerLicensesUsageInsights erőforrás** ügyfélszintű információkat tartalmaz a licenchasználatról.
 
 | Tulajdonság          | Típus                                                           | Leírás                                                                     |
 |-------------------|----------------------------------------------------------------|---------------------------------------------------------------------------------|
-| workloadCode      | sztring                                                         | A munkaterhelés kódja.                                                              |
-| workloadName      | szám                                                         | A munkaterhelés neve (például: Exchange).                                              |
-| usagePercent      | szám                                                         | A felhasznált licencek kiigazított százalékos aránya.                                       |
+| workloadCode      | sztring                                                         | A számítási feladat kódja.                                                              |
+| workloadName (számítási feladat neve)      | szám                                                         | A számítási feladat neve (például: Exchange).                                              |
+| usagePercent      | szám                                                         | A felhasznált licencek módosított százalékos aránya.                                       |
 | licensesActive    | szám                                                         | Az aktív licencek száma.                                                  |
 | licensesQualified | szám                                                         | A minősített licencek száma.                                               |
-| customerId        | sztring                                                         | Az ügyfél-azonosító.                                                        |
-| Customername (      | sztring                                                         | Az ügyfél neve.                                                              |
-| productName       | sztring                                                         | A termék neve.                                                               |
-| Meg       | sztring                                                         | A licenc szolgáltatási kódja.                                                |
-| processedDateTime | karakterlánc UTC dátum-idő formátumban                                 | Az adatok összesítésének dátuma és időpontja.                                 |
-| serviceName       | sztring                                                         | A szolgáltatás neve (például: o365, CRM).                                              |
-| csatorna           | sztring                                                         | A szolgáltatás csatorna neve (például: viszonteladó).                                |
-| attribútumok        | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai. Tartalmazza a "objektumtípus": "CustomerLicensesUsageInsights" |
+| customerId        | sztring                                                         | Az ügyfél azonosítója.                                                        |
+| customerName (ügyfél neve)      | sztring                                                         | Az ügyfél neve.                                                              |
+| Productname       | sztring                                                         | A termék neve.                                                               |
+| serviceCode       | sztring                                                         | A licenc szolgáltatáskódja.                                                |
+| processedDateTime | sztring UTC dátum-idő formátumban                                 | Az adatok összesítésének dátuma és időpontja.                                 |
+| serviceName (szolgáltatásnév)       | sztring                                                         | A szolgáltatás neve (például: o365, crm).                                              |
+| Csatorna           | sztring                                                         | A szolgáltatás csatornaneve (például viszonteladó).                                |
+| Attribútumok        | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok. Tartalmazza az "objectType": "CustomerLicensesUsageInsights" |

@@ -1,108 +1,103 @@
 ---
 title: Ellenőrzött tartomány hozzáadása egy ügyfélhez
-description: Megtudhatja, hogyan adhat hozzá ellenőrzött tartományt a partner Centerben lévő ügyfél jóváhagyott tartományának listájához. Ezt a partner Center API-k és a REST API-k használatával teheti meg.
+description: Megtudhatja, hogyan adhat hozzá ellenőrzött tartományt a jóváhagyott tartományok listájához egy ügyfél Partnerközpont. Ezt az api-Partnerközpont REST API-k használatával tegye meg.
 ms.date: 05/21/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: d0ea9998324e99c7986645dc90fdfba0a2a71571
-ms.sourcegitcommit: 8a5c37376a29e29fe0002a980082d4acc6b91131
+ms.openlocfilehash: a8157bff5ac37100713a057ac68ac94c89ba28b8
+ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "97768519"
+ms.lasthandoff: 06/11/2021
+ms.locfileid: "112025683"
 ---
 # <a name="add-a-verified-domain-to-the-list-of-approved-domains-for-an-existing-customer"></a>Ellenőrzött tartomány hozzáadása egy meglévő ügyfél jóváhagyott tartományának listájához 
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
 Ellenőrzött tartomány hozzáadása egy meglévő ügyfél jóváhagyott tartományának listájához.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Olyan partnernek kell lennie, aki egy tartományregisztráló.
+- Tartományregisztráló partnernek kell lennie.
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="adding-a-verified-domain"></a>Ellenőrzött tartomány hozzáadása
 
-Ha Ön olyan partner, aki egy tartományregisztráló, az `verifieddomain` API-val új [tartományi](#domain) erőforrást küldhet egy meglévő ügyfél tartományának listájára. Ehhez azonosítsa az ügyfelet a CustomerTenantId használatával. A VerifiedDomainName tulajdonság értékének megadása. Adjon át egy [tartományi](#domain) erőforrást a kérelemben a szükséges névvel, képességgel, AuthenticationType, állapottal és VerificationMethod tulajdonságokkal. Annak megadásához, hogy az új [tartomány](#domain) összevont tartomány legyen, állítsa a AuthenticationType tulajdonságot a [tartományba](#domain) , `Federated` és vegyen fel egy [DomainFederationSettings](#domain-federation-settings) -erőforrást a kérelembe. Ha a metódus sikeres, a válasz tartalmazni fog egy [tartományi](#domain) erőforrást az új ellenőrzött tartományhoz.
+Ha Ön egy tartományregisztráló partner, az API-val új tartományerőforrást is közzétethet `verifieddomain` egy meglévő ügyfél tartománylistán. [](#domain) Ehhez azonosítsa az ügyfelet a CustomerTenantId azonosítóval. Adjon meg egy értéket a VerifiedDomainName tulajdonsághoz. A [kérelemben adja](#domain) át a tartományerőforrást a szükséges Név, Képesség, Hitelesítési típus, Állapot és VerificationMethod tulajdonsággal. Annak megadásához, [](#domain) hogy az új tartomány összevont tartomány, állítsa [](#domain) a Tartomány erőforrás AuthenticationType tulajdonságát a következőre: , és adjon meg egy `Federated` [DomainFederationSettings](#domain-federation-settings) erőforrást a kérelemben. Ha a metódus sikeres, a válasz tartalmazni fog egy [tartományi](#domain) erőforrást az új ellenőrzött tartományhoz.
 
 ### <a name="custom-verified-domains"></a>Egyéni ellenőrzött tartományok
 
-Egyéni ellenőrzött tartomány hozzáadásakor egy olyan tartomány, amely nincs regisztrálva a **onmicrosoft.com**-on, a [CustomerUser. immutableId](user-resources.md#customeruser) tulajdonságot egy egyedi azonosító értékre kell állítani ahhoz az ügyfélhez, amelyhez a tartományt hozzá kívánja adni. Ez az egyedi azonosító szükséges az érvényesítési folyamat során a tartomány ellenőrzésekor. További információ az ügyfél felhasználói fiókjairól: [felhasználói fiókok létrehozása az ügyfélhez](create-user-accounts-for-a-customer.md).
+Egyéni ellenőrzött tartomány, a **onmicrosoft.com-on** nem regisztrált tartomány hozzáadásakor a [CustomerUser.immutableId](user-resources.md#customeruser) tulajdonságot egyedi azonosítóértékre kell állítania ahhoz az ügyfélhez, akihez hozzáadja a tartományt. Erre az egyedi azonosítóra az ellenőrzési folyamat során van szükség a tartomány ellenőrzésekor. További információ az ügyfél felhasználói fiókjairól: [Felhasználói fiókok létrehozása ügyfél számára.](create-user-accounts-for-a-customer.md)
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus | Kérés URI-ja                                                                                        |
 |--------|----------------------------------------------------------------------------------------------------|
-| POST   | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{CustomerTenantId}/verifieddomain http/1.1 |
+| POST   | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{CustomerTenantId}/verifieddomain HTTP/1.1 |
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
-A következő lekérdezési paraméter használatával adja meg azt az ügyfelet, amelyhez ellenőrzött tartományt ad hozzá.
+A következő lekérdezési paraméterrel adhatja meg azt az ügyfelet, akihez ellenőrzött tartományt ad hozzá.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CustomerTenantId | guid | Y        | Az érték egy GUID formátumú **CustomerTenantId** , amely lehetővé teszi az ügyfél megadását. |
+| CustomerTenantId | guid | Y        | Az érték egy **CustomerTenantId** formátumú GUID, amely lehetővé teszi egy ügyfél megadását. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a táblázat a kérelem törzsében szereplő kötelező tulajdonságokat ismerteti.
+Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 | Név                                                  | Típus   | Kötelező                                      | Leírás                                                |
 |-------------------------------------------------------|--------|-----------------------------------------------|--------------------------------------------------------|
-| VerifiedDomainName                                    | sztring | Igen                                           | Az ellenőrzött tartomány neve. |
-| [Tartomány](#domain)                                     | object | Igen                                           | A tartományi információkat tartalmazza. |
-| [DomainFederationSettings](#domain-federation-settings) | object | Igen (IF AuthenticationType = `Federated` )     | A tartományi összevonási beállítások, amelyeket akkor kell használni, ha a tartomány `Federated` tartomány, és nem `Managed` tartomány. |
+| VerifiedDomainName (Ellenőrzött tartománynév)                                    | sztring | Igen                                           | Az ellenőrzött tartománynév. |
+| [Tartomány](#domain)                                     | object | Igen                                           | A tartomány adatait tartalmazza. |
+| [DomainFederationSettings](#domain-federation-settings) | object | Igen (If AuthenticationType = `Federated` )     | A tartomány-összevonási beállításokat akkor kell használni, ha a tartomány `Federated` tartomány, nem `Managed` pedig tartomány. |
 
 ### <a name="domain"></a>Tartomány
 
-Ez a táblázat a kérés törzsének kötelező és választható **tartomány** -tulajdonságait ismerteti.
+Ez a táblázat a  kérelem törzsében található kötelező és választható tartománytulajdonságokat ismerteti.
 
 | Név               | Típus                                     | Kötelező | Leírás                                                                                                                                                                                                     |
 |--------------------|------------------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| AuthenticationType                                    | sztring           | Igen      | Meghatározza, hogy a tartomány `Managed` tartomány vagy tartomány-e `Federated` . Támogatott értékek: `Managed` , `Federated` .|
+| AuthenticationType (Hitelesítés típusa)                                    | sztring           | Igen      | Meghatározza, hogy a tartomány `Managed` tartomány vagy `Federated` tartomány. Támogatott értékek: `Managed` , `Federated` .|
 | Képesség                                            | sztring           | Igen      | Megadja a tartományi képességet. Például: `Email`.                  |
-| IsDefault                                             | NULL értékű logikai érték | Nem       | Azt jelzi, hogy a tartomány a bérlő alapértelmezett tartománya-e. Támogatott értékek: `True` , `False` , `Null` .        |
-| IsInitial                                             | NULL értékű logikai érték | Nem       | Azt jelzi, hogy a tartomány kezdeti tartomány-e. Támogatott értékek: `True` , `False` , `Null` .                       |
+| IsDefault (Hamis)                                             | nullázható logikai érték | Nem       | Azt jelzi, hogy a tartomány-e a bérlő alapértelmezett tartománya. Támogatott értékek: `True` , `False` , `Null` .        |
+| IsInitial (IsInitial)                                             | nullázható logikai érték | Nem       | Azt jelzi, hogy a tartomány kezdeti tartomány-e. Támogatott értékek: `True` , `False` , `Null` .                       |
 | Name                                                  | sztring           | Igen      | A tartománynév.                                                          |
-| RootDomain                                            | sztring           | No       | A gyökértartomány neve.                                              |
+| RootDomain (Gyökértartomány)                                            | sztring           | No       | A gyökértartomány neve.                                              |
 | Állapot                                                | sztring           | Igen      | A tartomány állapota. Például: `Verified`. Támogatott értékek:  `Unverified` , `Verified` , `PendingDeletion` .                               |
-| VerificationMethod                                    | sztring           | Igen      | A tartomány-ellenőrzési módszer típusa. Támogatott értékek: `None` , `DnsRecord` , `Email` .                                    |
+| VerificationMethod (Ellenőrzésmetódusz)                                    | sztring           | Igen      | A tartomány-ellenőrzési módszer típusa. Támogatott értékek: `None` , `DnsRecord` , `Email` .                                    |
 
-### <a name="domain-federation-settings"></a>Tartományi összevonási beállítások
+### <a name="domain-federation-settings"></a>Tartomány-összevonási beállítások
 
-Ez a táblázat a kérés törzsének kötelező és választható **DomainFederationSettings** tulajdonságait ismerteti.
+Ez a táblázat a kérés törzsében található kötelező és választható **DomainFederationSettings** tulajdonságokat ismerteti.
 
 | Név   | Típus   | Kötelező | Leírás                                                  |
 |--------|--------|----------|--------------------------------------------------------------|
-| ActiveLogOnUri                         | sztring           | No      | A gazdag ügyfelek által használt bejelentkezési URI. Ez a tulajdonság a partner STS-hitelesítésének URL-címe. |
-| DefaultInteractiveAuthenticationMethod | sztring           | No      | Megadja az alapértelmezett hitelesítési módszert, amelyet akkor kell használni, ha egy alkalmazásnak interaktív bejelentkezésre van szüksége a felhasználónak. |
-| FederationBrandName                    | sztring           | No      | Az összevonási márka neve.        |
-| IssuerUri                              | sztring           | Igen     | A tanúsítványok kiállítójának neve.                        |
-| LogOffUri                              | sztring           | Igen     | A kijelentkezés URI-ja. Ez a tulajdonság az összevont tartomány kijelentkezési URI-JÁT ismerteti.        |
-| MetadataExchangeUri                    | sztring           | No      | Az URL-cím, amely a gazdag ügyfélalkalmazások általi hitelesítéshez használt metaadat-Exchange-végpontot határozza meg. |
-| NextSigningCertificate                 | sztring           | No      | Az ADFS v2 STS által a jogcímek aláírásához használt tanúsítvány. Ez a tulajdonság a tanúsítvány Base64 kódolású ábrázolása. |
-| OpenIdConnectDiscoveryEndpoint         | sztring           | No      | Az összevont IDENTITÁSSZOLGÁLTATÓ STS-kapcsolatának az OpenID Connect-felderítési végpontja. |
-| PassiveLogOnUri                        | sztring           | Igen     | A régebbi passzív ügyfelek által használt bejelentkezési URI. Ez a tulajdonság az összevont bejelentkezési kérelmek küldésének címe. |
+| ActiveLogOnUri                         | sztring           | No      | A gazdag ügyfelek által használt bejelentkezési URI. Ez a tulajdonság a partner STS hitelesítési URL-címe. |
+| DefaultInteractiveAuthenticationMethod | sztring           | No      | Azt az alapértelmezett hitelesítési módszert jelöli, amely akkor használható, ha egy alkalmazás interaktív bejelentkezést igényel a felhasználótól. |
+| FederationBrandName (Összevonási név)                    | sztring           | No      | Az összevonási márkanév.        |
+| IssuerUri (Kiállítói azonosító)                              | sztring           | Igen     | A tanúsítványok kiállítójának neve.                        |
+| LogOffUri                              | sztring           | Igen     | Az kijelentkezés URI-ját. Ez a tulajdonság az összevont tartomány kijelentkező URI-ját írja le.        |
+| MetadataExchangeUri                    | sztring           | No      | Az URL-cím, amely megadja a gazdag ügyfélalkalmazások hitelesítéséhez használt metaadatcsere-végpontot. |
+| NextSigningCertificate (NextSigningCertificate)                 | sztring           | No      | Az ADFS V2 STS által a jogcímek aláírása érdekében a jövőre használt tanúsítvány. Ez a tulajdonság a tanúsítvány base64 kódolású ábrázolása. |
+| OpenIdConnectDiscoveryEndpoint         | sztring           | No      | Az OpenID Csatlakozás az összevont IDP STS felderítési végpontját. |
+| PassiveLogOnUri                        | sztring           | Igen     | A régebbi passzív ügyfelek által használt bejelentkezési URI. Ez a tulajdonság az a cím, amely összevont bejelentkezési kérelmeket küld. |
 | PreferredAuthenticationProtocol        | sztring           | Igen     | A hitelesítési jogkivonat formátuma. Például: `WsFed`. Támogatott értékek: `WsFed` , `Samlp` |
-| PromptLoginBehavior                    | sztring           | Igen     | A bejelentkezés kérésének viselkedési típusa.  Például: `TranslateToFreshPasswordAuth`. Támogatott értékek: `TranslateToFreshPasswordAuth` , `NativeSupport` , `Disabled` |
-| SigningCertificate                     | sztring           | Igen     | Az ADFS v2 STS által a jogcímek aláírására jelenleg használt tanúsítvány. Ez a tulajdonság a tanúsítvány Base64 kódolású ábrázolása. |
+| PromptLoginBehavior                    | sztring           | Igen     | A bejelentkezési viselkedés típusa.  Például: `TranslateToFreshPasswordAuth`. Támogatott értékek: `TranslateToFreshPasswordAuth` , `NativeSupport` , `Disabled` |
+| SigningCertificate (Aláíró tanúsítvány)                     | sztring           | Igen     | Az ADFS V2 STS által a jogcímek aláíráshoz jelenleg használt tanúsítvány. Ez a tulajdonság a tanúsítvány base64 kódolású ábrázolása. |
 | SigningCertificateUpdateStatus         | sztring           | No      | Az aláíró tanúsítvány frissítési állapotát jelzi. |
-| SigningCertificateUpdateStatus         | NULL értékű logikai érték | Nem      | Azt jelzi, hogy a IDENTITÁSSZOLGÁLTATÓ STS támogatja-e az MFA-t. Támogatott értékek: `True` , `False` , `Null` .|
+| SigningCertificateUpdateStatus         | nullázható logikai érték | Nem      | Jelzi, hogy az IDP STS támogatja-e az MFA-t. Támogatott értékek: `True` , `False` , `Null` .|
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -148,11 +143,11 @@ X-Locale: "en-US"
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, az API egy [tartományi](#domain) erőforrást ad vissza az új ellenőrzött tartományhoz.
+Ha ez az API sikeres, visszaad egy [tartományi](#domain) erőforrást az új ellenőrzött tartományhoz.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

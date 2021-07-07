@@ -1,55 +1,51 @@
 ---
 title: Ügyfél létrehozása
-description: Megtudhatja, hogyan használhatja a Cloud Solution Provider (CSP) partner a partner Center API-kat új ügyfél létrehozásához. A cikk leírja az előfeltételeket, és hogy mi történik.
+description: Megtudhatja, Felhőszolgáltató (CSP)-partnerek hogyan használhatnak Partnerközpont API-kat új ügyfelek létrehozásához. A cikk ismerteti az előfeltételeket, és hogy mi történik még.
 ms.date: 03/30/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: bc8e9d38353511e747ba4da99b11be40d08781e3
-ms.sourcegitcommit: faea78fe3264cbafc2b02c04d98d5ce30e992124
+ms.openlocfilehash: 6232ca77d057f2f5168b73d81ec551669d540246
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 04/03/2021
-ms.locfileid: "106274597"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973723"
 ---
-# <a name="create-a-customer-using-partner-center-apis"></a>Ügyfél létrehozása a partner Center API-kkal
+# <a name="create-a-customer-using-partner-center-apis"></a>Ügyfél létrehozása Partnerközpont API-k használatával
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett Partnerközpont
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Ez a cikk azt ismerteti, hogyan lehet új ügyfelet létrehozni.
+Ez a cikk bemutatja, hogyan hozhat létre új ügyfelet.
 
 > [!IMPORTANT]
-> Ha Ön közvetett szolgáltató, és szeretné létrehozni az ügyfelet egy közvetett viszonteladóhoz, tekintse meg az [ügyfél létrehozása közvetett viszonteladóhoz](create-a-customer-for-an-indirect-reseller.md)című témakört.
+> Ha Ön közvetett szolgáltató, és egy közvetett viszonteladóhoz szeretne ügyfelet létrehozni, tekintse meg az Ügyfél létrehozása közvetett [viszonteladóhoz(](create-a-customer-for-an-indirect-reseller.md))
 
-Felhőalapú megoldás-szolgáltatói (CSP) partnerként, amikor létrehoz egy ügyfelet, a rendeléseket az ügyfél nevében helyezheti el. Amikor létrehoz egy ügyfelet, a következőket is létrehozhatja:
+Felhőszolgáltatói (CSP-) partnerként az ügyfél létrehozásakor az ügyfél nevében is ki lehet rendelni a rendeléseket. Amikor létrehoz egy ügyfelet, a következőt is létrehozza:
 
-- Az ügyfél Azure Active Directory (AD) bérlői objektuma.
+- Egy Azure Active Directory (AD) bérlőobjektuma.
 
-- A viszonteladó és az ügyfél közötti kapcsolat, amelyet delegált rendszergazdai jogosultságokkal használtak.
+- A viszonteladó és az ügyfél közötti kapcsolat, delegált rendszergazdai jogosultságokkal.
 
-- Egy Felhasználónév és egy jelszó, amely az ügyfél rendszergazdájaként való bejelentkezéshez szükséges.
+- Egy felhasználónév és egy jelszó, amely rendszergazdaként jelentkezik be az ügyfél számára.
 
-Az ügyfél létrehozása után mindenképp mentse az ügyfél-azonosítót és az Azure AD-adatokat a partner Center SDK-val való jövőbeli használatra (például Fiókkezelés).
+Miután az ügyfél létrejött, mentse az ügyfél-azonosítót és az Azure AD adatait, hogy a Partnerközpont SDK használva (például fiókkezelés).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
 > [!IMPORTANT]
-> Az ügyfél-bérlő létrehozásához érvényes fizikai címeket kell megadnia a létrehozási folyamat során. A címek a [címek ellenőrzése](validate-an-address.md) forgatókönyvben ismertetett lépéseket követve ellenőrizhetők. Ha a sandbox-környezet érvénytelen címe alapján hoz létre egy ügyfelet, nem fogja tudni törölni az ügyfél bérlőjét.
+> Ügyfélbérlő létrehozásához érvényes fizikai címet kell adnia a létrehozási folyamat során. A címeket a Cím ellenőrzése forgatókönyv lépéseit [követve ellenőrizheti.](validate-an-address.md) Ha érvénytelen címmel hoz létre ügyfelet a sandbox környezetben, nem tudja törölni az adott ügyfélbérlőt.
 
 ## <a name="c"></a>C\#
 
 Ügyfél hozzáadása:
 
-1. Új [**ügyfél**](/dotnet/api/microsoft.store.partnercenter.models.customers.customer) -objektum példányának létrehozása. Ügyeljen arra, hogy kitöltse a [**BillingProfile**](/dotnet/api/microsoft.store.partnercenter.models.customers.customerbillingprofile) és a [**CompanyProfile**](/dotnet/api/microsoft.store.partnercenter.models.customers.customercompanyprofile).
+1. Új Customer objektum [**példányos**](/dotnet/api/microsoft.store.partnercenter.models.customers.customer) létrehozása. Mindenképpen töltse ki a [**BillingProfile**](/dotnet/api/microsoft.store.partnercenter.models.customers.customerbillingprofile) és [**a CompanyProfile adatokat.**](/dotnet/api/microsoft.store.partnercenter.models.customers.customercompanyprofile)
 
-2. Adja hozzá az új ügyfelet a [**IAggregatePartner. Customs**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményhez a [**create**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.create) vagy a [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.createasync)hívásával.
+2. Adja hozzá az új ügyfelet az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményhez a [**Create**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.create) vagy [**CreateAsync hívásával.**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.createasync)
 
 ### <a name="c-example"></a>C \# példa
 
@@ -92,7 +88,7 @@ var customerToCreate = new Customer()
 var newCustomer = partnerOperations.Customers.Create(customerToCreate);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: CreateCustomer. cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** CreateCustomer.cs
 
 ## <a name="java"></a>Java
 
@@ -100,9 +96,9 @@ var newCustomer = partnerOperations.Customers.Create(customerToCreate);
 
 Új ügyfél létrehozása:
 
-1. Hozzon létre egy új példányt a **CustomerBillingProfile** és a **CustomerCompanyProfile** objektumokhoz. Ügyeljen arra, hogy feltöltse a szükséges mezőket.
+1. Hozzon létre egy új példányt a **CustomerBillingProfile** és **a CustomerCompanyProfile objektumból.** Mindenképpen töltse ki a kötelező mezőket.
 
-2. Hozza létre az ügyfelet a **IAggregatePartner. getCustomers (). Create** függvény meghívásával.
+2. Hozza létre az ügyfelet az **IAggregatePartner.getCustomers().create függvény hívásával.**
 
 ### <a name="java-example"></a>Java-példa
 
@@ -150,51 +146,51 @@ Customer newCustomer = partnerOperations.getCustomers().create( customerToCreate
 New-PartnerCustomer -BillingAddressLine1 '1 Microsoft Way' -BillingAddressCity 'Redmond' -BillingAddressCountry 'US' -BillingAddressPostalCode '98052' -BillingAddressState 'WA' -ContactEmail 'jdoe@customer.com' -ContactFirstName 'Jane' -ContactLastName 'Doe' -Culture 'en-US' -Domain 'newcustomer.onmicrosoft.com' -Language 'en' -Name 'New Customer'
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus   | Kérés URI-ja                                                       |
 |----------|-------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers http/1.1 |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-- Ez az API idempotens (ez nem eredményez eltérő eredményt, ha többször hívja meg).
+- Ez az API idempotent (nem fog más eredményt eredményezni, ha többször is meghívja).
 
-- A kérelem AZONOSÍTÓjának és korrelációs AZONOSÍTÓjának megadása kötelező.
+- Szükség van egy kérésazonosítóra és egy korrelációs azonosítóra.
 
-- További információ: a [partneri központ Rest-fejlécei](headers.md).
+- További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a táblázat a kérelem törzsében szereplő kötelező tulajdonságokat ismerteti.
+Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 | Név                              | Típus   | Leírás                                 |
 |-----------------------------------|--------|---------------------------------------------|
-| [BillingProfile](#billing-profile) | object | Az ügyfél számlázási profiljának adatai. |
-| [CompanyProfile](#company-profile) | object | Az ügyfél vállalati profiljának adatai. |
+| [BillingProfile (Számlázási profil)](#billing-profile) | object | Az ügyfél számlázási profiljának adatai. |
+| [Vállalatiprofil](#company-profile) | object | Az ügyfél céges profilinformációi. |
 
 #### <a name="billing-profile"></a>Számlázási profil
 
-Ez a táblázat az új ügyfelek létrehozásához szükséges [CustomerBillingProfile](customer-resources.md#customerbillingprofile) -erőforrás minimálisan szükséges mezőit ismerteti.
+Ez a táblázat az új ügyfél létrehozásához szükséges Minimálisan szükséges mezőket ismerteti a [CustomerBillingProfile](customer-resources.md#customerbillingprofile) erőforrásból.
 
 | Név             | Típus                                     | Leírás                                                                                                                                                                                                     |
 |------------------|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | e-mail            | sztring                                   | Az ügyfél e-mail-címe.                                                                                                                                                                                   |
-| kulturális környezet          | sztring                                   | Az előnyben részesített kulturális környezet a kommunikációhoz és a pénznemhez, mint például az "en-US". Lásd: a [partneri központ által támogatott nyelvek és területi beállítások](partner-center-supported-languages-and-locales.md) a támogatott kulturális környezetekhez. |
-| language         | sztring                                   | Az alapértelmezett nyelv. Két karakterből álló nyelvi kód (például `en` vagy `fr` ) támogatott.                                                                                                                                |
-| cég \_ neve    | sztring                                   | A regisztrált vállalat/szervezet neve.                                                                                                                                                                       |
-| alapértelmezett \_ címe | [Cím](utility-resources.md#address) | Az ügyfél vállalatának/szervezetének regisztrált címe. A hosszra vonatkozó korlátozásokkal kapcsolatos információkért tekintse meg a [címe](utility-resources.md#address) erőforrását.                                             |
+| Kultúra          | sztring                                   | A kommunikáció és a pénznem előnyben részesített kultúrája, például "en-US". Lásd [Partnerközpont támogatott nyelvek és területi stb.](partner-center-supported-languages-and-locales.md) |
+| language         | sztring                                   | Az alapértelmezett nyelv. Két karakteres nyelvkód (például `en` vagy `fr` ) támogatott.                                                                                                                                |
+| vállalat \_ neve    | sztring                                   | A regisztrált vállalat/szervezet neve.                                                                                                                                                                       |
+| alapértelmezett \_ cím | [Cím](utility-resources.md#address) | Az ügyfél vállalatának/szervezetének regisztrált címe. A [hosszkorlátozásokkal](utility-resources.md#address) kapcsolatos információkért tekintse meg a Cím erőforrást.                                             |
 
 #### <a name="company-profile"></a>Vállalati profil
 
-Ez a táblázat az új ügyfelek létrehozásához szükséges [CustomerCompanyProfile](customer-resources.md#customercompanyprofile) -erőforrás minimálisan szükséges mezőit ismerteti.
+Ez a táblázat az új ügyfél létrehozásához szükséges Minimálisan szükséges mezőket ismerteti a [CustomerCompanyProfile](customer-resources.md#customercompanyprofile) erőforrásból.
 
 | Név   | Típus   | Leírás                                                  |
 |--------|--------|--------------------------------------------------------------|
-| domain | sztring | Az ügyfél tartományának neve, például contoso.onmicrosoft.com. |
-|organizationRegistrationNumber|Sztring|Az ügyfél szervezetének regisztrációs száma (más néven az INN száma bizonyos országokban). Csak a következő országokban található ügyfél vállalata/szervezete számára szükséges: Örményország (AM), Azerbajdzsán (AZ), Fehéroroszország (BY), Magyarország (HU), Kazahsztán (KZ), Kirgizisztán (KG), Moldova (MD), Oroszország (RU), Tádzsikisztán (TJ), Üzbegisztán (UZ), Ukrajna (UA), Brazília (BR), India, Dél-Afrika, Lengyelország, Egyesült Arab Emírségek, Szaúd-Arábia, Törökország, Thaiföld, Vietnam, Mianmar, Irak, Dél-Szudán és Venezuela. Az ügyfél más országokban található vállalata/szervezete számára ez egy választható mező.|
+| domain | sztring | Az ügyfél tartományneve, például contoso.onmicrosoft.com. |
+|organizationRegistrationNumber|Sztring|Az ügyfél szervezeti regisztrációs száma (más néven INN-szám bizonyos országokban). Csak a következő országokban található ügyfél vállalatához/szervezetéhez szükséges: Egyesült Államok(AM), Uzbekistan(AZ), Amelyet(BY), Amelyet (HU), Torgyzstan(KZ), Kyrgyzstan(KG), Torgyzstan(KG), Torgikistan(TJ), Uzbekistan(UZ), Uzbekistan(UZ), Brazília(BR), India, Dél-Afrika, Dél-Afrikai Köztársaság, Egyesült Arab Emírségek, Szaúd-Arábia, Észak-Korea, Vietnam, Észak-Korea, Szignában, Dél-Koreában és Észak-Koreában. Az ügyfél más országokban található vállalata/szervezete esetén ez egy nem kötelező mező.|
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -235,11 +231,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, az API az új ügyfélhez tartozó [ügyfél](customer-resources.md#customer) -erőforrást adja vissza. Mentse az ügyfél-azonosítót és az Azure AD-adatokat későbbi használatra a partner Center SDK-val. Szüksége lesz rájuk a fiókok felügyeletéhez, például:.
+Ha ez a művelet sikeres, ez az API egy [Ügyfél](customer-resources.md#customer) erőforrást ad vissza az új ügyfélnek. Mentse az ügyfél-azonosítót és az Azure AD adatait a Partnerközpont SDK. Szüksége lesz rájuk például a fiókkezeléshez.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-A válaszok olyan HTTP-állapotkódot mutatnak be, amely sikeres vagy sikertelen, valamint további hibakeresési információkat jelez. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+A válaszokhoz egy HTTP-állapotkód is szükséges, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

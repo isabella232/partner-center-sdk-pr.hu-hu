@@ -1,46 +1,42 @@
 ---
-title: Azure Rate Card – aktuális Azure-díjszabás
-description: Megtudhatja, hogyan használhatja az Azure díjszabási kártyáját a régiójában lévő Azure-ajánlatok valós idejű, aktuális árainak beszerzéséhez. Az Azure Rate Card a partner Center REST APIon keresztül érhető el.
+title: Azure-díjkártya – aktuális Azure-díjszabás
+description: Ismerje meg, hogyan használhatja az Azure Rate Cardot a régióban elérhető Azure-ajánlatok valós idejű, aktuális árainak lekérthez. Az Azure Rate Card az Partnerközpont REST API.
 ms.date: 05/21/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 2d011153f508ea0a745413b88003333452d0af24
-ms.sourcegitcommit: d1104d5c27f8fb3908a87532f80c432f0147ef5d
+ms.openlocfilehash: e0b1bc9d764e2132315205653f46cef73b25e02f
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/13/2020
-ms.locfileid: "97768551"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974335"
 ---
-# <a name="azure-rate-card-resources-to-get-real-time-current-azure-prices-on-azure-offers-in-your-region"></a>Azure Rate Card-erőforrások valós idejű, aktuális Azure-árak a régión belüli Azure-ajánlatokhoz
+# <a name="azure-rate-card-resources-to-get-real-time-current-azure-prices-on-azure-offers-in-your-region"></a>Az Azure díjkártya-erőforrásaival valós idejű, aktuális Azure-árakat kap a régiójában elérhető Azure-ajánlatokhoz
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Az Azure Rate Card valós idejű árakat biztosít az Azure-ajánlatokhoz. Az Azure díjszabása dinamikus, és gyakran változik. A Microsoft frissítéseket tesz közzé a Partnerközpont, de a REST API a leggyorsabb lehetőséget Felhőszolgáltató, hogy a partnerek kihozni a jelenlegi árakat.
 
-Az Azure díjszabási kártyája valós idejű árakat biztosít az Azure-ajánlatokhoz. Az Azure díjszabása meglehetősen dinamikus, és gyakran változnak. A Microsoft frissítéseket tesz közzé a partner Centerben, de a REST API biztosítja a leggyorsabb megoldást a felhőalapú megoldások szolgáltatói partnerei számára a jelenlegi árak beszerzésére.
+A használat nyomon követéséhez és a havi számla és az egyes ügyfelek számlái előrejelzéséhez kombinálhat egy Rate Card-lekérdezést az [Microsoft Azure](get-prices-for-microsoft-azure.md) árainak lekéréséhez és az ügyfél Azure-beli kihasználtsági rekordjainak lekérésére vonatkozó [kéréssel.](get-a-customer-s-utilization-record-for-azure.md)
 
-Ha nyomon szeretné követni a használatot, és segít megjósolni a havi számlát és az egyes ügyfelek számláit, kombinálhatja a díjszabási kártya lekérdezését, és lekérheti a [Microsoft Azure díjszabását](get-prices-for-microsoft-azure.md) , hogy lekérje az [ügyfél kihasználtsági rekordjait az Azure](get-a-customer-s-utilization-record-for-azure.md)-ban.
-
-Az árak a piac és a pénznem alapján eltérnek, és ez az API figyelembe veszi a helyet. Alapértelmezés szerint az API a partner-profil beállításait a partner Centerben és a böngésző nyelvén használja, és ezek a beállítások testreszabhatók. A hely ismertsége különösen akkor fontos, ha egyetlen, központosított irodában több piacon kezel értékesítéseket.
+Az árak piac és pénznem szerint eltérnek, és ez az API figyelembe veszi a helyet. Alapértelmezés szerint az API a saját partnerprofil-beállításait Partnerközpont böngészőnyelven használja, és ezek a beállítások testre szabhatók. A helytudatosságát különösen akkor fontos, ha az értékesítéseket több piacon kezeli egyetlen központi irodából.
 
 ## <a name="azureratecard"></a>AzureRateCard
 
-Az Azure Rate Card-erőforrások tulajdonságait ismerteti.
+Egy Azure Rate Card-erőforrás tulajdonságait ismerteti.
 
 | Tulajdonság      | Típus                                      | Leírás                                                       |
 |---------------|-------------------------------------------|-------------------------------------------------------------------|
-| currency      | sztring                                    | Az a pénznem, amelyben a díjszabást megadja.                     |
-| isTaxIncluded | boolean                                   | Az összes díj áfa, így ez a tulajdonság a értéket adja vissza `false` . |
-| területi beállítás        | sztring                                    | Az a kulturális környezet, amelyben az erőforrás-információk honosítva vannak.       |
-| méterre        | objektumok tömbje                          | [AzureMeter](#azuremeter) objektumok tömbje.                       |
-| offerTerms    | objektumok tömbje                          | [AzureOfferTerm](#azureofferterm) objektumok tömbje.               |
-| attribútumok    | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai. Tartalmaz `"objectType": "AzureRateCard"`   |
+| currency      | sztring                                    | Az a pénznem, amelyben a díjszabás meg van téve.                     |
+| isTaxIncluded | boolean                                   | Az összes díj adó előtti, ezért ez a tulajdonság értékként lesz `false` visszaadva. |
+| területi beállítás        | sztring                                    | Az a kulturális környezet, amelyben az erőforrás-információk honosulnak.       |
+| Méter        | objektumok tömbje                          | [AzureMeter-objektumok tömbje.](#azuremeter)                       |
+| offerTerms (ajánlati idő)    | objektumok tömbje                          | [AzureOfferTerm-objektumok tömbje.](#azureofferterm)               |
+| Attribútumok    | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok. Tartalmaz `"objectType": "AzureRateCard"`   |
 
-### <a name="operations-on-the-azureratecard-resource"></a>Műveletek a AzureRateCard-erőforráson
+### <a name="operations-on-the-azureratecard-resource"></a>Műveletek az AzureRateCard erőforráson
 
 - [Díjak lekérése a Microsoft Azure-tól](get-prices-for-microsoft-azure.md)
 
@@ -50,20 +46,20 @@ Az Azure Rate Card-erőforrások tulajdonságait ismerteti.
 |------------------|------------------|-----------------------------------------------------------------------------------------------|
 | id               | sztring           | A mérő egyedi azonosítója.                                                                    |
 | name             | sztring           | A fogyasztásmérő rövid neve.                                                                   |
-| díjak            | object           | Mérési díjak. A kulcs a mérési mennyiség (string), az érték pedig a mérési arány (szám). |
-| tags             | sztringek tömbje | Opcionális mérőműszer-címkék. Ez a tömb lehet üres.                                                 |
+| Árak            | object           | Fogyasztásmérők díjszabása. A kulcs a fogyasztásmérő mennyisége (sztring), az érték pedig a fogyasztásmérő sebessége (száma). |
+| tags             | sztringek tömbje | Nem kötelező fogyasztásmérő-címkék. Ez a tömb lehet üres.                                                 |
 | category         | sztring           | Az erőforrás kategóriája.                                                                     |
 | Alkategória      | sztring           | Az erőforrás alkategóriája.                                                                 |
 | régió           | sztring           | Az azonosító régiója.                                                                             |
 | egység             | sztring           | A mennyiség típusa (óra, bájt stb.)                                                     |
-| includedQuantity | szám           | A felszámított mennyiség ingyenes.                                               |
-| effectiveDate    | sztring           | A mérőszám érvényességi dátuma.                                                             |
+| includedQuantity | szám           | Az ingyenesen tartalmazott mérési mennyiség.                                               |
+| effectiveDate (hatályosdátum)    | sztring           | Az a dátum, amikor az fogyasztásmérő érvényben van.                                                             |
 
 ## <a name="azureofferterm"></a>AzureOfferTerm
 
 | Tulajdonság         | Típus             | Leírás                             |
 |------------------|------------------|-----------------------------------------|
 | name             | sztring           | Az ajánlat kifejezésének rövid neve.        |
-| discount         | szám           | Az alkalmazott kedvezmény, ha van ilyen.           |
-| excludedMeterIds | sztringek tömbje | Az ajánlatból kizárt mérőműszerek, ha vannak ilyenek. |
-| effectiveDate    | sztring           | Az ajánlat érvényességének dátuma.        |
+| discount         | szám           | Az alkalmazott kedvezmény, ha van.           |
+| excludedMeterIds (kizártmeteridek) | sztringek tömbje | Az ajánlatból kizárt mérők, ha vannak. |
+| effectiveDate (hatályosdátum)    | sztring           | Az ajánlat hatályba lépő dátuma.        |

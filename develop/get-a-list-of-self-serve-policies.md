@@ -1,35 +1,31 @@
 ---
-title: Önkiszolgáló szabályzatok listájának beolvasása
-description: Az ügyfél önkiszolgáló házirendjeit képviselő erőforrások gyűjteményének beszerzése.
+title: Önkiszolgáló szabályzatok listájának lekért listája
+description: Az ügyfél önkiszolgáló szabályzatát képviselő erőforrások gyűjteményének lekért gyűjtése.
 ms.date: 07/06/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: ff3116b8757e28e03615930ebd19bc75f34e2efe
-ms.sourcegitcommit: 01e75175077611da92175c777a440a594fb05797
+ms.openlocfilehash: b18fde8a11d3ed3dd31e50fdba746dd6b0bf3f97
+ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "97768664"
+ms.lasthandoff: 06/11/2021
+ms.locfileid: "112025733"
 ---
-# <a name="get-a-list-of-self-serve-policies"></a>Önkiszolgáló szabályzatok listájának beolvasása
+# <a name="get-a-list-of-self-serve-policies"></a>Önkiszolgáló szabályzatok listájának lekért listája
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Ez a cikk azt ismerteti, hogyan szerezhet be olyan erőforrás-gyűjteményt, amely az entitások önkiszolgáló házirendjeit jelképezi.
+Lekért erőforrások gyűjteményét, amelyek egy entitás önkiszolgáló szabályzatát képviselik.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja az Application + felhasználói hitelesítő adatokkal történő hitelesítést.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv az Application+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
-Az összes önkiszolgáló házirend listájának lekérése:
+Az összes önkiszolgáló szabályzat listájának lekért listája:
 
-1. Hívja meg a [**IAggregatePartner. SelfServePolicies**](/dotnet/api/microsoft.store.partnercenter.iselfservepoliciescollection) metódust az entitás-azonosítóval, és kérje le a szabályzatok műveleteihez szükséges felületet.
+1. Hívja meg az [**IAggregatePartner.SelfServePolicies**](/dotnet/api/microsoft.store.partnercenter.iselfservepoliciescollection) metódust az entitásazonosítóval, hogy lekérje a szabályzatok műveleteinek interfészét.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -43,29 +39,29 @@ var SelfServePolicies = scopedPartnerOperations.SelfServePolicies.Get(customerId
 
 Példaként tekintse meg a következőket:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **PartnerSDK. FeatureSamples**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **PartnerSDK.FeatureSamples**
 - Osztály: **GetSelfServePolicies.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy? entity_id = {ENTITY_ID} http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy?entity_id={entity_id} HTTP/1.1 |
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
-Használja az alábbi lekérdezési paramétert az ügyfelek listájának lekéréséhez.
+Az alábbi lekérdezési paraméterrel lekérdezheti az ügyfelek listáját.
 
 | Név          | Típus       | Kötelező | Leírás                                        |
 |---------------|------------|----------|----------------------------------------------------|
-| **entity_id** | **karakterlánc** | Y        | A számára hozzáférést kérő entitás azonosítója. Ez lesz az ügyfél bérlői azonosítója. |
+| **entity_id** | **sztring** | Y        | A hozzáférést kérő entitásazonosító. Ez lesz az ügyfél bérlőazonosítója. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: [fejlécek](headers.md).
+További információ: [Fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -83,11 +79,11 @@ MS-CorrelationId: b12260fb-82de-4701-a25f-dcd367690645
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) -erőforrások gyűjteményét adja vissza a válasz törzsében.
+Ha ez a módszer sikeres, a válasz törzsében [a SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) erőforrások gyűjteményét adja vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

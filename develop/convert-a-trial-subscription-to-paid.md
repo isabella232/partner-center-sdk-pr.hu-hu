@@ -1,70 +1,66 @@
 ---
 title: Próbaverziós előfizetés átalakítása fizetőssé
-description: Ismerje meg, hogyan alakíthatja át a próbaverziós előfizetéseket a partner Center API-kkal a fizetős verzióra.
+description: Megtudhatja, hogyan használhatja Partnerközpont API-kat a próba-előfizetés fizetős előfizetésre való átalakításához.
 ms.date: 05/23/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 59dcf6caf21d407b2fba4cc8438bc435fda9dc77
-ms.sourcegitcommit: a25d4951f25502cdf90cfb974022c5e452205f42
+ms.openlocfilehash: c1876cfc796b683bfff00b7d137bcfe0b7162c78
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "97768584"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973859"
 ---
-# <a name="convert-a-trial-subscription-to-paid-using-partner-center-apis"></a>Próbaverziós előfizetés átalakítása a partner Center API-k használatával
+# <a name="convert-a-trial-subscription-to-paid-using-partner-center-apis"></a>Próba-előfizetés konvertálása fizetősre Partnerközpont API-k használatával
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-A próbaverziós előfizetés kifizetésre konvertálható.
+A próba-előfizetéseket fizetősre konvertálhatja.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-- Egy aktív próbaverziós előfizetés előfizetési azonosítója.
+- Egy aktív próba-előfizetés előfizetés-azonosítója.
 
 - Egy elérhető konverziós ajánlat.
 
-## <a name="convert-a-trial-subscription-to-paid-through-code"></a>Próbaverziós előfizetés átalakítása kóddal való fizetésre
+## <a name="convert-a-trial-subscription-to-a-paid-subscription-through-code"></a>Próbaverziós előfizetés konvertálása fizetős előfizetésre kóddal
 
-A próbaverziós előfizetés fizetős verzióra való átalakításához először be kell szereznie az elérhető próbaverziók gyűjteményét. Ezután ki kell választania a megvásárolni kívánt átalakítási ajánlatot.
+A próba-előfizetés fizetősre való konvertálásához először be kell szereznie az elérhető próbaverziós konverziók gyűjteményét. Ezután ki kell választania a megvásárolni kívánt átváltási ajánlatot.
 
-Az átalakítási ajánlatok olyan mennyiséget határoznak meg, amely alapértelmezés szerint ugyanannyi licenccel rendelkezik, mint a próbaverziós előfizetés. Ezt a mennyiséget úgy módosíthatja, hogy a [**mennyiségi**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.conversion.quantity) tulajdonságot a megvásárolni kívánt licencek számára állítja be.
+Az átváltási ajánlatok olyan mennyiséget határoznak meg, amely alapértelmezés szerint a próbaverziós előfizetéssel azonos számú licencre van beállítva. Ezt a mennyiséget módosíthatja, ha a [**Quantity**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.conversion.quantity) tulajdonságot a megvásárolni kívánt licencek számára módosítja.
 
 > [!NOTE]
-> A megvásárolt licencek számától függetlenül a rendszer újra felhasználja a próbaverzió előfizetés-AZONOSÍTÓját a megvásárolt licencek esetében. Ennek eredményeképpen a próbaverzió eltűnik, és a vásárlás helyébe lép.
+> A megvásárolt licencek számától függetlenül a próbaidőszak előfizetés-azonosítója a megvásárolt licencekhez lesz újra felhasználva. Ennek eredményeképpen a próbaverzió eltűnik, és a vásárlás váltja fel.
 
-A próbaverziós előfizetés kód használatával történő átalakításához kövesse az alábbi lépéseket:
+Próbaverziós előfizetés kódon keresztüli konvertálásához kövesse az alábbi lépéseket:
 
-1. Szerezzen be egy felületet az elérhető előfizetési műveletekhez. Azonosítania kell az ügyfelet, és meg kell adnia a próbaverziós előfizetés előfizetés-azonosítóját.
+1. Szerezze be az elérhető előfizetési műveletek felületét. Azonosítania kell az ügyfelet, és meg kell adnia a próba-előfizetés előfizetés-azonosítóját.
 
     ``` csharp
     var subscriptionOperations = partnerOperations.Customers.ById(customerId).Subscriptions.ById(subscriptionId);
     ```
 
-2. Szerezze be az elérhető átalakítási ajánlatok gyűjteményét. További információt és a módszerre vonatkozó kérés/válasz részleteit itt tekintheti meg: a [próbaverziós konvertálási ajánlatok listájának beolvasása](get-a-list-of-trial-conversion-offers.md).
+2. Szerezze be az elérhető konverziós ajánlatok gyűjteményét. A metódus kérésével/válaszával kapcsolatos további információkért lásd: Próbaverziós konverziós [ajánlatok listájának lekérése.](get-a-list-of-trial-conversion-offers.md)
 
     ``` csharp
     var conversions = subscriptionOperations.Conversions.Get();
     ```
 
-3. Válasszon egy átalakítási ajánlatot. A következő kód kiválasztja a gyűjtemény első átalakítási ajánlatát.
+3. Válasszon egy konverziós ajánlatot. A következő kód a gyűjtemény első konverziós ajánlatát választja ki.
 
     ``` csharp
     var selectedConversion = conversions.Items.ToList()[0];
     ```
 
-4. Igény szerint megadhatja a megvásárolni kívánt licencek számát. Az alapértelmezett érték a próbaverziós előfizetésben található licencek száma.
+4. Megadhatja a megvásárolni kívánt licencek számát is. Az alapértelmezett érték a próbaverziós előfizetésben elérhető licencek száma.
 
     ``` csharp
     selectedConversion.Quantity = 10;
     ```
 
-5. A [**create**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionupgradecollection.create) vagy a [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionupgradecollection.createasync) metódus meghívásával konvertálja a próbaverziós előfizetést fizetettre.
+5. A [**próba-előfizetés**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionupgradecollection.create) fizetősre konvertálásához hívja meg a Create vagy [**a CreateAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionupgradecollection.createasync) metódust.
 
     ``` csharp
     var convertResult = subscriptionOperations.Conversions.Create(selectedConversion);
@@ -72,17 +68,17 @@ A próbaverziós előfizetés kód használatával történő átalakításához
 
 ## <a name="c"></a>C\#
 
-Próbaverziós előfizetés átalakítása fizetős verzióra:
+Próbaverziós előfizetés fizetősre konvertálása:
 
-1. Az ügyfél azonosításához használja a [**IAggregatePartner. Customs. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval.
+1. Az ügyfél azonosításához használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával.
 
-2. Az előfizetések [**. ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódus meghívása a próbaverziós előfizetés-azonosítóval az előfizetési műveletek eléréséhez. Egy helyi változóban mentheti az előfizetés-üzemeltetési felületre mutató hivatkozást.
+2. Az előfizetési műveletek interfészének lehívásához hívja meg a [**Subscriptions.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust a próba-előfizetés azonosítójával. Mentse az előfizetési műveleti felület hivatkozását egy helyi változóban.
 
-3. Az [**átalakítások**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.conversion) [**tulajdonsággal**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.conversions) szerezzen be egy felületet az elérhető műveletekhez a konverziók között, majd hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionconversioncollection.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionconversioncollection.getasync) metódust a rendelkezésre álló konverziós ajánlatok gyűjteményének lekéréséhez. Ki kell választania egyet. A következő példa a rendelkezésre álló első konverziót alapértelmezett értékre vált.
+3. A [**Conversions**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.conversions) tulajdonság használatával szerezzen be egy felületet az elérhető konverziós műveletekhez, majd hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionconversioncollection.get) vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionconversioncollection.getasync) metódust az elérhető konverziós ajánlatok [**gyűjteményének lekéréséhez.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.conversion) Ki kell választania egyet. Az alábbi példa alapértelmezés szerint az első elérhető konverziót használja.
 
-4. Használja az előfizetési műveletek felületét, amelyet egy helyi változóban és a [**konverziók**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.conversions) tulajdonságban mentett, hogy az elérhető műveletekhez csatolót szerezzen be a konverziók között.
+4. A helyi változóba mentett előfizetési műveleti felületre és a [**Conversions**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.conversions) tulajdonságra való hivatkozással szerezzen be egy interfészt az átalakításkor elérhető műveletekhez.
 
-5. A próbaverzió átalakításának megkísérlése érdekében adja át a kiválasztott átalakítási ajánlat objektumát a [**create**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionupgradecollection.create) vagy a [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionupgradecollection.createasync) metódusnak.
+5. A próbakonverzió megkísérlése érdekében adja át a kiválasztott konverziós ajánlat objektumát a [**Create**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionupgradecollection.create) vagy [**a CreateAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionupgradecollection.createasync) metódusnak.
 
 ### <a name="c-example"></a>C \# példa
 
@@ -113,30 +109,30 @@ else
 }
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus   | Kérés URI-ja                                                                                                                 |
 |----------|-----------------------------------------------------------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Subscriptions/{Subscription-ID}/Conversions http/1.1 |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/subscriptions/{előfizetés-azonosító}/konverziós HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az ügyfél és a próbaverzió előfizetésének azonosításához használja a következő elérésiút-paramétereket.
+Az alábbi elérésiút-paraméterekkel azonosíthatja az ügyfelet és a próbaverziós előfizetést.
 
 | Név            | Típus   | Kötelező | Leírás                                                     |
 |-----------------|--------|----------|-----------------------------------------------------------------|
-| ügyfél-azonosító     | sztring | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja az ügyfelet.           |
-| előfizetés-azonosító | sztring | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja a próba-előfizetést. |
+| ügyfélazonosító     | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.           |
+| subscription-id | sztring | Igen      | A próba-előfizetést azonosító GUID formátumú sztring. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem törzsében szerepelnie kell egy feltöltött [konverziós](conversions-resources.md#conversion) erőforrásnak.
+A kérelem [törzsében](conversions-resources.md#conversion) szerepelnie kell egy feltöltéses konverziós erőforrásnak.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -166,11 +162,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse [ConversionResult](conversions-resources.md#conversionresult) -erőforrást tartalmaz.
+Ha a művelet sikeres, a válasz törzse tartalmaz egy [ConversionResult erőforrást.](conversions-resources.md#conversionresult)
 
-#### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+#### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 #### <a name="response-example"></a>Példa válaszra
 

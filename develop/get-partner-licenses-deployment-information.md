@@ -1,34 +1,30 @@
 ---
 title: Partnerlicencek üzembehelyezési adatainak lekérése
-description: A partneri licencek központi telepítési információinak beszerzése az összes ügyfél belefoglalásához.
+description: A partnerlicencek üzembe helyezési információinak összesítése az összes ügyfélre.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 229f63d4df4f59cd0fde2bd0fc5e3f10cf6b25c0
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 2464242fc6dc4e7464511eac5d4197630e22fac0
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768432"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445976"
 ---
 # <a name="get-partner-licenses-deployment-information"></a>Partnerlicencek üzembehelyezési adatainak lekérése
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-A partneri licencek központi telepítési információinak beszerzése az összes ügyfél belefoglalásához.
+A partnerlicencek üzembe helyezési információinak összesítése az összes ügyfélre.
 
 > [!NOTE]
-> Ezt a forgatókönyvet a [licencek telepítési információi](get-licenses-deployment-information.md)felülírt.
+> Ezt a forgatókönyvet a Licencek le get deployment information (Licencek üzembe helyezési [információinak le szolgáltatása) szuperküldi le.](get-licenses-deployment-information.md)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az App + User hitelesítő adataival.
+Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-Ha összesített adatokat szeretne lekérdezni a licencek központi telepítéséről, először szerezzen be egy felületet a partner szintű elemzési gyűjtési műveletekhez a [**IAggregatePartner. Analytics**](/dotnet/api/microsoft.store.partnercenter.ipartner.analytics) tulajdonságból. Ezután kérjen le egy felületet a partner szintű licencek Analytics-gyűjteményhez a [**licencek**](/dotnet/api/microsoft.store.partnercenter.analytics.ipartneranalyticscollection.licenses) tulajdonságból. Végül hívja meg a [**Deployment. Get**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) metódust a licencek összesített adatainak beolvasásához. Ha a metódus sikeresen beolvassa a [**PartnerLicensesDeploymentInsights**](/dotnet/api/microsoft.store.partnercenter.models.analytics.partnerlicensesdeploymentinsights) -objektumok gyűjteményét.
+A licencek üzembe helyezésével kapcsolatos összesített adatok lekéréséhez először szerezze be a partnerszintű elemzési gyűjtemény műveleteinek felületét az [**IAggregatePartner.Analytics tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.ipartner.analytics) Ezután a [**Licenses**](/dotnet/api/microsoft.store.partnercenter.analytics.ipartneranalyticscollection.licenses) (Licencek) tulajdonságból olvassa be a partnerszintű licencelemzési gyűjtemény felületét. Végül hívja meg a [**Deployment.Get metódust**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) a licencek üzembe helyezésével kapcsolatos összesített adatok lehívására. Ha a metódus sikeres, a [**PartnerLicensesDeploymentInsights**](/dotnet/api/microsoft.store.partnercenter.models.analytics.partnerlicensesdeploymentinsights) objektumok gyűjteményét fogja kapni.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -36,17 +32,17 @@ Ha összesített adatokat szeretne lekérdezni a licencek központi telepítés�
 var partnerLicensesDeploymentAnalytics = partnerOperations.Analytics.Licenses.Deployment.Get();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                           |
 |---------|---------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Analytics/licenses/Deployment http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/analytics/licenses/deployment HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -66,11 +62,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse olyan [PartnerLicensesDeploymentInsights](analytics-resources.md#partnerlicensesdeploymentinsights) -erőforrások gyűjteményét tartalmazza, amelyek a telepített licencekre vonatkozó információkat biztosítanak.
+Ha a válasz törzse sikeres, a [PartnerLicensesDeploymentInsights](analytics-resources.md#partnerlicensesdeploymentinsights) erőforrások gyűjteményét tartalmazza, amelyek információt nyújtanak az üzembe helyezett licencekkel kapcsolatban.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

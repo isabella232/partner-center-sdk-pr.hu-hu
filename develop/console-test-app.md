@@ -1,76 +1,71 @@
 ---
 title: Konzolos tesztalkalmazás
-description: Ez a konzol-tesztelési alkalmazás a partner Center API-k által támogatott összes forgatókönyvhöz tartalmaz mintakód-kódot. Teszteléshez is használhatja.
+description: Ez a konzoltesztalkalmazás mintakódot biztosít a Partnerközpont API-k által támogatott összes forgatókönyvhöz. Teszteléshez is használhatja.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: e82bac3ccc22d0e7cf898e5b2d2e002c622584ae
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: b35167104deeede50107d59fca6112c10dc7b4bf
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767995"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974029"
 ---
 # <a name="console-test-app"></a>Konzolos tesztalkalmazás
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A konzol tesztelési alkalmazás a C# és a Java nyelven érhető el, és a partner Center API-k által támogatott összes forgatókönyvhöz tartalmaz mintakód-kódokat. Teszteléshez is használhatja.
+A konzol tesztalkalmazása C# és Java nyelven van megtéve, és mintakódokat biztosít a Partnerközpont API-k által támogatott összes forgatókönyvhöz. Teszteléshez is használhatja.
 
 ## <a name="get-the-code"></a>A kód letöltése
 
-Töltse le a konzol tesztelési alkalmazásának kódját.
+Töltse le a konzoltesztalkalmazás mintakódját.
 
 ## <a name="net"></a>.NET
 
-[Töltse le a mintakód](https://go.microsoft.com/fwlink/p/?LinkId=746682) , és szükség szerint módosítsa.
+[Töltse le a mintakódot,](https://go.microsoft.com/fwlink/p/?LinkId=746682) és szükség szerint módosítsa.
 
 > [!IMPORTANT]
-> Az alkalmazás létrehozása előtt frissítse a *App.config* fájl értékeit, hogy azok tükrözzék a [partner Center-hitelesítésben](partner-center-authentication.md)létrehozott Azure ad-hitelesítési adatokat. A korai fejlesztés vagy az éles környezetben történő tesztelés során az integrációs munkafolyamatok fiókjának beállításait kell használnia.
+> Az alkalmazás létrehozása előtt frissítse a App.config-fájlban található értékeket, hogy azok a hitelesítés során létrehozott Azure [AD-Partnerközpont tükrözzék.](partner-center-authentication.md) Pontosabban az integrációs tesztfiók beállításait kell használnia a fejlesztés korai szakaszában vagy éles környezetben való teszteléshez.
 
-A *App.config* fájl **ScenarioSettings** részén megadhatja azokat a paramétereket, amelyek automatikusan átkerülnek a futtatott forgatókönyvekben.
+A **forgatókönyvfájl ScenarioSettings** *App.config* meg olyan paramétereket, amelyek automatikusan át lesznek állítva a futtatott forgatókönyvekbe.
 
-A futtatott forgatókönyvek listájának módosításához a **IPartnerScenario \[ \] mainScenarios** vagy a *program.cs* -fájlban található egyéni Get- **forgatókönyvek** metódusban talál megjegyzéseket.
+A futtatott forgatókönyvek listájának módosításához megjegyzésbe kell tenni a sorokat az **IPartnerScenario \[ \] mainScenarios** vagy a *Program.cs* fájlban található egyedi **Forgatókönyv** lekért metódusban.
 
 ## <a name="java"></a>Java
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-[Töltse le a mintakód](https://go.microsoft.com/fwlink/p/?LinkId=2026887) , és szükség szerint módosítsa.
+[Töltse le a mintakódot,](https://go.microsoft.com/fwlink/p/?LinkId=2026887) és szükség szerint módosítsa.
 
 > [!IMPORTANT]
-> Az alkalmazás létrehozása előtt frissítse a fájlban lévő *SamplesConfigurations.js* értékeit, hogy azok tükrözzék a [partner Center-hitelesítésben](partner-center-authentication.md)létrehozott Azure ad-hitelesítési adatokat. A korai fejlesztés vagy az éles környezetben történő tesztelés során az integrációs munkafolyamatok fiókjának beállításait kell használnia.
+> Az alkalmazás létrehozása előtt frissítse a fájlban *SamplesConfigurations.js* a fájlban található értékeket, hogy tükrözzék a hitelesítés során létrehozott Azure AD Partnerközpont adatokat. [](partner-center-authentication.md) Pontosabban az integrációs tesztfiók beállításait kell használnia a fejlesztés korai szakaszában vagy éles környezetben való teszteléshez.
 
-A fájl *SamplesConfiguration.js* **ScenarioSettings** alatt megadhatja azokat a paramétereket, amelyek automatikusan átkerülnek a futtatott forgatókönyvekben.
+A **Fájlon** találhatóSamplesConfiguration.js *ScenarioSettings* alatt olyan paramétereket állíthat be, amelyek automatikusan át lesznek állítva a futtatott forgatókönyvekbe.
 
-A futtatott forgatókönyvek listájának módosításához a **IPartnerScenario \[ \] MainScenarios** vagy a *program. Java* fájlban található egyéni **Get-forgatókönyvek** metódusban talál megjegyzéseket.
+A futtatott forgatókönyvek listájának módosításához megjegyzésbe kell tenni a sorokat az **IPartnerScenario \[ \] mainScenarios** vagy a *Program.java* fájlban található egyedi **Forgatókönyv** lekért metódusban.
 
-## <a name="what-to-change"></a>Mi a változás?
+## <a name="what-to-change"></a>Mi a módosítás?
 
-A következő listában megadhatja, hogy mit kell módosítani, vagy nem változik a mintakód.
+Az alábbi listák segítségével meghatározhatja, hogy mit módosíthat a mintakódban.
 
 ### <a name="partnerservicesettings"></a>PartnerServiceSettings
 
-A **PartnerServiceSettings** esetében ne módosítsa a következőt:
+A **PartnerServiceSettings beállításnál** ne módosítsa a következőt:
 
 - **PartnerServiceApiEndpoint**
 - **AuthenticationAuthorityEndpoint**
 - **GraphEndpoint**
-- **CommonDomain**
+- **CommonDomain (Tartomány)**
 
-Ezen beállítások mindegyike szükséges ahhoz, hogy a minta API-hívások megfelelően működjenek.
+Ezek a beállítások mind szükségesek a minta API-hívások megfelelő működéséhez.
 
-### <a name="userauthentication"></a>UserAuthentication
+### <a name="userauthentication"></a>UserAuthentication (Felhasználói hitelesítés)
 
-A **UserAuthentication** esetében módosítania kell a következőt:
+A **UserAuthentication** esetén a következőt kell módosítania:
 
-- **ApplicationId** (a bejelentkezéshez használt Azure Active Directory-alkalmazás azonosítója)
-- **Username** (az Active Directory-beli Felhasználónév)
+- **ApplicationId** (Azure Active Directory bejelentkezéshez használt alkalmazásazonosító)
+- **Felhasználónév** (az Active Directory-felhasználóneve)
 - **Jelszó** (az Active Directory-jelszó).
 
 Ne módosítsa:
@@ -80,34 +75,34 @@ Ne módosítsa:
 
 ### <a name="appauthentication"></a>AppAuthentication
 
-A **AppAuthentication** esetében módosítania kell a következőt:
+Az **AppAuthentication** esetén a következőt kell módosítania:
 
-- **ApplicationId** (az alkalmazás-bejelentkezéshez használt Active Directory-alkalmazás azonosítója)
-- **ApplicationSecret** (az alkalmazás-bejelentkezéshez használt Active Directory-alkalmazás titka)
-- **Tartomány** (az Active Directory-tartomány, amelyen az alkalmazás fut)
+- **ApplicationId** (az alkalmazás bejelentkezéshez használt Active Directory-alkalmazásazonosítója)
+- **ApplicationSecret** (az alkalmazásba való bejelentkezéshez használt Active Directory-alkalmazás titkos adatokat használ)
+- **Tartomány** (az az Active Directory-tartomány, amelyen az alkalmazás üzemel)
 
-### <a name="scenariosettings"></a>ScenarioSettings
+### <a name="scenariosettings"></a>ScenarioSettings (Forgatókönyv-beállítások)
 
-A **ScenarioSettings** esetében ne módosítsa a következőt:
+A **ScenarioSettings esetében** ne módosítsa a következőt:
 
-- **CustomerDomainSuffix** (az új ügyfél létrehozásakor használt tartomány utótagja)
+- **CustomerDomainSuffix** (az új ügyfél létrehozásakor használt tartomány-utótag)
 
-Választható beállítások. Ha a mezőt üresen hagyja, akkor ezeket az információkat meg kell adni, ha szükség van a forgatókönyv futtatására:
+Nem kötelező beállítások. Ha üresen hagyja, akkor szükség esetén meg kell határoznia ezt az információt a forgatókönyvek futtatásakor:
 
 - **CustomerIdToDelete** (a törléshez használt ügyfél azonosítója)
-- **DefaultCustomerId** (az ügyfélhez kapcsolódó forgatókönyvekben használandó ügyfél-azonosító)
-- **DefaultInvoiceID** (a számlázási helyzetekben használandó számlázási azonosító)
-- **PartnerMpnId** (a partner MPN-azonosítóját használja a közvetett partneri forgatókönyvekben való használatra)
-- **DefaultServiceRequestId** (a szolgáltatási kérelem azonosítójának használata a szolgáltatás kérelmezési forgatókönyvében)
-- **DefaultSupportTopicID** (a szolgáltatási kérelemben használni kívánt támogatási témakör azonosítója)
-- **DefaultOfferID** (az ajánlati forgatókönyvekben használandó ajánlat azonosítója)
-- **DefaultOrderID** (a sorrendben használandó sorrend-azonosító)
-- **DefaultSubscriptionID** (az ELŐfizetési azonosítók az előfizetési forgatókönyvekben használhatók)
+- **DefaultCustomerId** (az ügyfélhez kapcsolódó forgatókönyvekben használt ügyfélazonosító)
+- **DefaultInvoiceID** (a számlázási forgatókönyvekben használt számlaazonosító)
+- **PartnerMpnId** (a közvetett partneri forgatókönyvekben használt partner MPN-azonosítója)
+- **DefaultServiceRequestId** (a szolgáltatáskérési forgatókönyvekben használt szolgáltatáskérés-azonosító)
+- **DefaultSupportTopicID** (a támogatási témakör szolgáltatáskérési forgatókönyvekben használható azonosítója)
+- **DefaultOfferID** (az ajánlati forgatókönyvekben használt ajánlatazonosító)
+- **DefaultOrderID** (a megrendelési forgatókönyvekben használni szükséges rendelésazonosító)
+- **DefaultSubscriptionID** (előfizetési forgatókönyvekben használni szükséges előfizetés-azonosító)
 
-A módosítás nem kötelező. Az összes beállítás a lapozható tartalom beolvasása során az egyes lapokon megjelenő bejegyzések mennyiségét határozza meg:
+Nem kötelező módosítani. Ezek a beállítások határozzák meg az oldalankénti bejegyzések mennyiségét lapszámozási tartalom leolvasásakor:
 
-- **CustomerPageSize**
-- **InvoicePageSize**
+- **CustomerPageSize (CustomerPageSize)**
+- **InvoicePageSize (Számlaoldalak megszagorizálása**
 - **ServiceRequestPageSize**
 - **DefaultOfferPageSize**
-- **SubscriptionPageSize**
+- **SubscriptionPageSize (Előfizetés lapja)**

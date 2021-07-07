@@ -1,55 +1,51 @@
 ---
 title: Kereskedelmi piactéri előfizetés lemondása
-description: Ismerje meg, hogy a partner Center API-k használatával hogyan vonhatja vissza a kereskedelmi piactér előfizetési erőforrásait, amely megfelel az ügyfél és az előfizetés AZONOSÍTÓjának.
+description: Megtudhatja, hogyan használhatja Partnerközpont API-kat kereskedelmi piactéri előfizetés erőforrásának lemondásához, amely megfelel egy ügyfélnek és egy előfizetés-azonosítónak.
 ms.date: 08/16/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 38708c17b31e39a5e7c436e0d76b4ebabbc3a801
-ms.sourcegitcommit: a25d4951f25502cdf90cfb974022c5e452205f42
+ms.openlocfilehash: 95fa265a3c103d1ec55066f12a3ede7fdb2d0170
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "97768592"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974284"
 ---
-# <a name="cancel-a-commercial-marketplace-subscription-using-partner-center-apis"></a>Kereskedelmi piactér-előfizetés megszakítása a partner Center API-kkal
+# <a name="cancel-a-commercial-marketplace-subscription-using-partner-center-apis"></a>Kereskedelmi piactér-előfizetés lemondása Partnerközpont API-k használatával
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Ez a cikk azt ismerteti, hogyan lehet a partner Center API használatával lemondani egy olyan kereskedelmi piactér- [előfizetési](subscription-resources.md) erőforrást, amely megfelel az ügyfél-és előfizetés-azonosítónak.
+Ez a cikk azt ismerteti, hogyan használhatja a [](subscription-resources.md) Partnerközpont API-t egy kereskedelmi piactéri előfizetés erőforrásának lemondására, amely megfelel az ügyfél és az előfizetés azonosítójának.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
-## <a name="partner-center-dashboard-method"></a>A partner Center irányítópultjának metódusa
+## <a name="partner-center-dashboard-method"></a>Partnerközpont irányítópult metódusa
 
-Kereskedelmi piactér-előfizetés megszakítása a partner Center irányítópultján:
+Kereskedelmi piactér-előfizetés lemondása az Partnerközpont irányítópulton:
 
-1. [Válasszon ki egy ügyfelet](get-a-customer-by-name.md).
+1. [Válasszon ki egy ügyfelet.](get-a-customer-by-name.md)
 
 2. Válassza ki a megszüntetni kívánt előfizetést.
 
-3. Válassza az **előfizetés megszakítása** lehetőséget, majd kattintson a **Küldés** elemre.
+3. Válassza az **Előfizetés lemondása** lehetőséget, majd válassza a **Küldés lehetőséget.**
 
 ## <a name="c"></a>C\#
 
-Ügyfél előfizetésének megszakítása:
+Ügyfél előfizetésének lemondása:
 
-1. [Az előfizetés beszerzése azonosító alapján](get-a-subscription-by-id.md).
+1. [Szerezze be az előfizetést azonosító alapján.](get-a-subscription-by-id.md)
 
-2. Módosítsa az előfizetés [**status (állapot**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.status) ) tulajdonságát. Az **állapotkódok** információit lásd: [SubscriptionStatus enumerálása](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscriptionstatus).
+2. Módosítsa az előfizetés [**Status (Állapot) tulajdonságát.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.status) Az **állapotkódokkal kapcsolatos információkért** [lásd: SubscriptionStatus enumerálás.](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscriptionstatus)
 
-3. A módosítás után használja a **`IAggregatePartner.Customers`** gyűjteményt, és hívja meg a **ById ()** metódust.
+3. A módosítás után használja a gyűjteményt, **`IAggregatePartner.Customers`** és hívja meg a **ById() metódust.**
 
-4. Hívja meg az [**előfizetések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot, majd a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) metódust.
+4. Hívja meg [**a Subscriptions**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot, majd a [**ById() metódust.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid)
 
-5. Hívja meg a **Patch ()** metódust.
+5. Hívja meg **a Patch() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -60,34 +56,34 @@ selectedSubscription.Status = SubscriptionStatus.Deleted;
 var updatedSubscription = partnerOperations.Customers.ById(selectedCustomerId).Subscriptions.ById(selectedSubscription.Id).Patch(selectedSubscription);
 ```
 
-### <a name="sample-console-test-app"></a>Minta-konzol tesztelési alkalmazás
+### <a name="sample-console-test-app"></a>Mintakonzol-tesztalkalmazás
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSample **osztály**: UpdateSubscription.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSample **osztály:** UpdateSubscription.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus    | Kérés URI-ja                                                                                                                |
 |-----------|----------------------------------------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Subscriptions/{ID-for-Subscription} http/1.1 |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Ez a táblázat felsorolja az előfizetés felfüggesztéséhez szükséges lekérdezési paramétereket.
+Ez a táblázat felsorolja az előfizetés felfüggesztéséhez szükséges lekérdezési paramétert.
 
 | Név                    | Típus     | Kötelező | Leírás                               |
 |-------------------------|----------|----------|-------------------------------------------|
-| **ügyfél – bérlő – azonosító**  | **guid** | Y        | Az ügyfélhez tartozó GUID.     |
-| **azonosító – előfizetés** | **guid** | Y        | Az előfizetéshez tartozó GUID. |
+| **ügyfél-bérlő-azonosító**  | **guid** | Y        | Az ügyfélnek megfelelő GUID.     |
+| **id-for-subscription** | **guid** | Y        | Az előfizetéshez tartozó GUID. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem törzsében teljes **előfizetési** erőforrás szükséges. Győződjön meg arról, hogy az **állapot** tulajdonság frissítve lett.
+A kérelem **törzsében** teljes előfizetési erőforrásra van szükség. Győződjön meg **arról, hogy** az Állapot tulajdonság frissítve lett.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -135,11 +131,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus a válasz törzsében a törölt [előfizetés](subscription-resources.md) erőforrás-tulajdonságokat adja vissza.
+Ha ez a módszer sikeres, a törölt [előfizetés](subscription-resources.md) erőforrás-tulajdonságait adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

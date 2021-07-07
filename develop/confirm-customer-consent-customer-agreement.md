@@ -1,46 +1,42 @@
 ---
 title: Annak megerősítése, hogy az ügyfél elfogadta a Microsoft Ügyfélszerződést
-description: Megtudhatja, hogyan erősítheti meg a Microsoft-ügyfél szerződését a partner Center API-k használatával.
+description: Megtudhatja, hogyan erősítheti meg az ügyfelek számára a Microsoft Ügyfélszerződés API Partnerközpont használatával.
 ms.date: 02/08/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 62a6cebd5d6d093377dd5940dcff6204b7095c70
-ms.sourcegitcommit: ebb36208d6e2dea705f62b7d60d471f10c55132e
+ms.openlocfilehash: 002508109191ede53cd06f25efc38286647fd67c
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 02/09/2021
-ms.locfileid: "100006071"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974012"
 ---
-# <a name="confirm-customer-acceptance-of-the-microsoft-customer-agreement-using-partner-center-apis"></a>A Microsoft Customer-szerződés ügyfél általi elfogadásának megerősítése a partner Center API-k használatával
+# <a name="confirm-customer-acceptance-of-the-microsoft-customer-agreement-using-partner-center-apis"></a>Az ügyfél általi elfogadás megerősítése Microsoft Ügyfélszerződés API Partnerközpont használatával
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont
 
-- Partnerközpont
+**Nem vonatkozik a következőre:** Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-A partner Center jelenleg csak a Microsoft *nyilvános felhőben* támogatja a Microsoft-ügyfél szerződésének megerősítő jóváhagyását. Ez a funkció jelenleg nem érvényes a következőkre:
+Partnerközpont jelenleg csak a Microsoft nyilvános felhőben támogatja a Microsoft Ügyfélszerződés ügyfél általi elfogadásának megerősítését.
 
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Ez a cikk azt ismerteti, hogyan lehet megerősíteni vagy újból megerősíteni a Microsoft ügyfél-szerződését.
+Ez a cikk azt ismerteti, hogyan lehet megerősíteni vagy újra megerősíteni az ügyfél általi Microsoft Ügyfélszerződés.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Ha a partner Center .NET SDK-t használja, a 1,14-es vagy újabb verzió szükséges.
+- Ha az Partnerközpont .NET SDK-t használja, 1.14-es vagy újabb verzió szükséges.
 
-- A [partner Center-hitelesítésben](./partner-center-authentication.md)leírt hitelesítő adatok. *Ez a forgatókönyv csak az App + felhasználói hitelesítést támogatja.*
+- Az Partnerközpont [ismertetett hitelesítő adatok.](./partner-center-authentication.md) *Ez a forgatókönyv csak az alkalmazás- és felhasználóhitelesítést támogatja.*
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-- A dátum (**dateAgreed**), amikor az ügyfél elfogadta a Microsoft ügyfél-szerződést.
+- Az a **dátum (dateAgreed**), amikor az ügyfél elfogadta a Microsoft Ügyfélszerződés.
 
-- A Microsoft ügyfél-szerződését elfogadó ügyfélről szóló információ. Ide tartoznak az alábbiak:
+- Információ az ügyfélszervezettől származó felhasználóról, amely elfogadta a Microsoft Ügyfélszerződés. Ide tartoznak az alábbiak:
   - Utónév
   - Vezetéknév
   - E-mail-cím
-  - Telefonszám (nem kötelező)
-- Ha az ügyfélen a következő értékek változnak, a partneri központ lehetővé teszi, hogy egy másik szerződést hozzon létre az adott ügyfél számára: Utónév vezetékneve e-mail-cím telefonszáma, máskülönben a partnerek a következő hibakódot kapják meg az ismétlődő ügyfél létrehozása miatt
+  - Telefon száma (nem kötelező)
+- Ha egy ügyfélnél az alábbi értékek változnak, a Partnerközpont lehetővé teszi egy másik szerződés létrejöttét az ügyfél számára: Vezetéknév vezetéknév e-mail-címe Telefon szám. Ellenkező esetben a partnerek a következő hibakódot kapják meg egy duplikált ügyfél létrehozása miatt
 
 
 ```
@@ -57,9 +53,9 @@ Ez a cikk azt ismerteti, hogyan lehet megerősíteni vagy újból megerősíteni
 
 ## <a name="net"></a>.NET
 
-A Microsoft ügyfél-szerződés elfogadásának megerősítése vagy újbóli megerősítése:
+A következő feltételek ügyfél általi elfogadásának megerősítése vagy Microsoft Ügyfélszerződés:
 
-1. Kérje le a Microsoft Customer szerződéshez tartozó szerződési metaadatokat. Be kell szereznie a Microsoft Customer szerződés **templateId** . További részletekért lásd: [a szerződés metaadatainak beszerzése a Microsoft ügyfél-szerződéshez](get-customer-agreement-metadata.md).
+1. A szerződés metaadatainak lekérése a Microsoft Ügyfélszerződés. Be kell szereznie a **sablonazonosítót** a Microsoft Ügyfélszerződés. További információkért lásd a [szerződés metaadatainak lekért Microsoft Ügyfélszerződés.](get-customer-agreement-metadata.md)
 
    ```csharp
    // IAggregatePartner partnerOperations;
@@ -69,11 +65,11 @@ A Microsoft ügyfél-szerződés elfogadásának megerősítése vagy újbóli m
    var microsoftCustomerAgreementDetails = partnerOperations.AgreementDetails.ByAgreementType(agreementType).Get().Items.Single();
    ```
 
-2. Hozzon létre egy új **Szerződés** objektumot, amely tartalmazza a megerősítés részleteit.
+2. Hozzon létre egy új **Szerződés** objektumot, amely a megerősítés részleteit tartalmazza.
 
-3. Használja a **IAgreggatePartner. Customs** gyűjteményt, és hívja meg a **ById** metódust a megadott **ügyfél-bérlő-azonosítóval**.
+3. Használja az **IAgreggatePartner.Customers** gyűjteményt, és hívja meg a **ById** metódust a megadott **ügyfél-bérlő-azonosítóval.**
 
-4. Használja a **szerződések** tulajdonságot, amelyet a **create** vagy a **CreateAsync** hívása követ.
+4. Használja a **Agreements tulajdonságot,** majd hívja meg a **Create** vagy **a CreateAsync metódust.**
 
    ```csharp
    // string selectedCustomerId;
@@ -94,52 +90,52 @@ A Microsoft ügyfél-szerződés elfogadásának megerősítése vagy újbóli m
    Agreement agreement = partnerOperations.Customers.ById(selectedCustomerId).Agreements.Create(agreementToCreate);
    ```
 
-Teljes minta a [CreateCustomerAgreement](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/CreateCustomerAgreement.cs) osztályban található a [konzol tesztelése alkalmazás](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples) projektben.
+A teljes minta a [CreateCustomerAgreement osztályban](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/CreateCustomerAgreement.cs) található a konzol [tesztalkalmazás-projektből.](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples)
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-A Microsoft ügyfél-szerződés elfogadásának megerősítése vagy újbóli megerősítése:
+A következő feltételek ügyfél általi elfogadásának megerősítése vagy Microsoft Ügyfélszerződés:
 
-1. Kérje le a Microsoft Customer szerződéshez tartozó szerződési metaadatokat. Be kell szereznie a Microsoft Customer szerződés **templateId** . További részletekért lásd: [a szerződés metaadatainak beszerzése a Microsoft ügyfél-szerződéshez](get-customer-agreement-metadata.md).
+1. A szerződés metaadatainak lekérése a Microsoft Ügyfélszerződés. Be kell szereznie a **sablonazonosítót** a Microsoft Ügyfélszerződés. További információkért lásd a [szerződés metaadatainak lekért Microsoft Ügyfélszerződés.](get-customer-agreement-metadata.md)
 
-2. Hozzon létre egy új [ **szerződési** erőforrást](agreement-resources.md) annak megerősítéséhez, hogy az ügyfél elfogadta a Microsoft ügyfél-szerződést. Használja az alábbi [Rest-kérelem szintaxisát](#request-syntax).
+2. Hozzon létre egy új [ **Szerződés** erőforrást](agreement-resources.md) annak megerősítéséhez, hogy az ügyfél elfogadta a Microsoft Ügyfélszerződés. Használja a [következő REST-kérési szintaxist:](#request-syntax).
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus | Kérés URI-ja                                                                                        |
 |--------|----------------------------------------------------------------------------------------------------|
-| POST   | [*\{ BASEURL \}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Agreements http/1.1 |
+| POST   | [*\{ baseURL \}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/agreements HTTP/1.1 |
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
-A következő lekérdezési paraméterrel adhatja meg a megerősítő ügyfelet.
+A következő lekérdezési paraméterrel adhatja meg azt az ügyfelet, akiről megerősítést ad.
 
 | Név               | Típus | Kötelező | Leírás                                                                                 |
 |--------------------|------|----------|---------------------------------------------------------------------------------------------|
-| ügyfél – bérlő – azonosító | GUID | Igen | Az érték egy GUID-formátumú **ügyfél-bérlői azonosító**, amely egy ügyfél megadását lehetővé tevő azonosító. |
+| ügyfél-bérlő-azonosító | GUID | Igen | Az érték egy GUID-formátumú **ügyfél-bérlő-azonosító,** amely egy olyan azonosító, amellyel megadhatja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a táblázat a REST-kérelem törzsében szereplő kötelező tulajdonságokat ismerteti.
+Ez a táblázat a REST-kérelem törzsében szükséges tulajdonságokat ismerteti.
 
-| Név      | Típus   | Description                                                                                  |
+| Név      | Típus   | Leírás                                                                                  |
 |-----------|--------|----------------------------------------------------------------------------------------------|
-| Megállapodás | object | A partner által biztosított részletek a Microsoft ügyfél-szerződésének megerősítő elfogadásának megerősítéséhez. |
+| Megállapodás | object | A partner által a feltételek ügyfél általi elfogadásának megerősítéséhez megadott Microsoft Ügyfélszerződés. |
 
 #### <a name="agreement"></a>Megállapodás
 
-Ez a táblázat a [ **szerződési** erőforrások](agreement-resources.md)létrehozásához szükséges minimális mezőket ismerteti.
+Ez a táblázat a szerződéserőforrás létrehozásához minimálisan szükséges [ **mezőket** ismerteti.](agreement-resources.md)
 
-| Tulajdonság       | Típus   | Description                              |
+| Tulajdonság       | Típus   | Leírás                              |
 |----------------|--------|------------------------------------------|
-| primaryContact | [Kapcsolatfelvétel](./utility-resources.md#contact) | Információk a Microsoft ügyfél-szerződést elfogadó, a  **firstName**, a **lastName**, az **e-mail** és a **telefonszám** (nem kötelező) felhasználóról |
-| dateAgreed     | karakterlánc UTC-dátum időformátuma |Az a dátum, amikor az ügyfél elfogadta a szerződést. |
-| templateId     | sztring | Az ügyfél által elfogadott szerződés típusának egyedi azonosítója. A Microsoft ügyfél-szerződéshez tartozó **templateId** beszerezheti a Microsoft-szerződés metaadatainak beolvasásával. További részletekért lásd: a [Szerződés metaadatainak beszerzése a Microsoft Customer szerződéshez](./get-customer-agreement-metadata.md) . |
-| típus           | sztring | Az ügyfél által elfogadott szerződés típusa. Ha az ügyfél elfogadta a Microsoft Customer szerződést, használja a "MicrosoftCustomerAgreement" lehetőséget. |
+| primaryContact (elsődleges tranzakció) | [Kapcsolatfelvétel](./utility-resources.md#contact) | A felhasználóval kapcsolatos információk az ügyfélszervezettől, amely elfogadta a Microsoft Ügyfélszerződés, beleértve a  **következőket: firstName,** **lastName,** **e-mail,** és **phoneNumber** (nem kötelező) |
+| dateAgreed (dátum dátuma)     | sztring UTC dátum-idő formátumban |Az a dátum, amikor az ügyfél elfogadta a szerződést. |
+| templateId (sablonazonosító)     | sztring | Az ügyfél által elfogadott szerződéstípus egyedi azonosítója. A sablon  sablonazonosítóját úgy szerezheti be Microsoft Ügyfélszerződés hogy lekérte a szerződés metaadatait a Microsoft Ügyfélszerződés. A részletekért tekintse meg a szerződés [metaadatainak le Microsoft Ügyfélszerződés](./get-customer-agreement-metadata.md) kapcsolatos információkat. |
+| típus           | sztring | Az ügyfél által elfogadott szerződéstípus. Ha az ügyfél elfogadta a Microsoft Ügyfélszerződés, használja a "MicrosoftCustomerAgreement" Microsoft Ügyfélszerződés. |
 
 #### <a name="request-example"></a>Példa kérésre
 
@@ -164,13 +160,13 @@ MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy [ **Szerződés** -erőforrást](./agreement-resources.md)ad vissza.
+Ha a művelet sikeres, ez a metódus egy [ **szerződéserőforrást ad** vissza.](./agreement-resources.md)
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.
 
-A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 #### <a name="response-example"></a>Példa válaszra
 

@@ -1,36 +1,31 @@
 ---
 title: Cím ellenőrzése
-description: Címek érvényesítése a címek érvényesítésére szolgáló API használatával.
+description: Cím ellenőrzése a címérvényesítési API-val.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 22d5faec2fdab4907067bb01cb74e110032dea9a
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 14d45977f3af6e8bba1b7cb7f969aa7c5bb671da
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767828"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111529885"
 ---
 # <a name="validate-an-address"></a>Cím ellenőrzése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Cím ellenőrzése a címérvényesítési API-val.
 
-Címek érvényesítése a címek érvényesítésére szolgáló API használatával.
-
-A címek érvényesítésére szolgáló API-t csak az ügyfél-profil frissítéseinek előzetes érvényesítéséhez kell használni. Azzal a feltétellel, hogy ha az ország a Egyesült Államok, Kanadában, Kínában vagy Mexikóban található, a State (állam) mezőt a rendszer érvényesíti az adott országban érvényes állapotok listájával. Az összes többi országban ez a teszt nem történik meg, és az API csak azt ellenőrzi, hogy az állapot érvényes karakterlánc-e.
+A címérvényesítési API csak az ügyfélprofilok frissítésének előzetes érvényesítéséhez használható. Használja annak tudatában, hogy ha az ország az Egyesült Államok, Kanada, Kína vagy Mexikó, akkor az állam mező az adott ország érvényes államlistával lesz ellenőrizve. Az összes többi országban ez a teszt nem történik meg, és az API csak azt ellenőrzi, hogy az állam érvényes sztring-e.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-A címek érvényesítéséhez először egy új **címlistát** kell létrehoznia, és azt a következő címen kell feltöltenie: Validate. Ezután kérjen le egy illesztőfelületet a **IAggregatePartner. valids** tulajdonságból származó **érvényesítési** műveletekre, és hívja meg a **IsAddressValid** metódust a címe objektummal.
+Egy cím érvényesítéséhez először példányosítenie kell egy új **Cím** objektumot, és fel kell tölti azt az érvényesítenie kell a címmel. Ezután az **IAggregatePartner.Validations** tulajdonságból olvassa be az Ellenőrzési műveletek felületét, és hívja meg az **IsAddressValid** metódust a címobjektummal. 
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -79,7 +74,7 @@ catch (PartnerException exception)
 
 ## <a name="java"></a>Java
 
-A címek érvényesítéséhez először egy új **címlistát** kell létrehoznia, és azt a következő címen kell feltöltenie: Validate. Ezután kérjen le egy illesztőfelületet a **IAggregatePartner. getValidations** függvénytől az **érvényesítési** műveletekhez, és hívja meg a **isAddressValid** metódust a címe objektummal.
+Egy cím érvényesítéséhez először példányosítenie kell egy új **Cím** objektumot, és fel kell tölti azt az érvényesítenie kell a címmel. Ezután az **IAggregatePartner.getValidations** függvényből szerezze be az Ellenőrzési műveletek felületét, és hívja meg az **isAddressValid** metódust a címobjektummal. 
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
@@ -117,36 +112,36 @@ catch (Exception exception)
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-A címek ellenőrzéséhez hajtsa végre a [**test-PartnerAddress**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Test-PartnerAddress.md) paramétert a megadott címekkel.
+Egy cím érvényesítéséhez futtasa le a [**Test-PartnerAddress paramétert**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Test-PartnerAddress.md) a megadott címparaméterekkel.
 
 ```powershell
 Test-PartnerAddress -AddressLine1 '700 Bellevue Way NE' -City 'Bellevue' -Country 'US' -PostalCode '98004' -State 'WA'
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus   | Kérés URI-ja                                                                 |
 |----------|-----------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/validations/Address http/1.1 |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/validations/address HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a táblázat a kérelem törzsében szereplő kötelező tulajdonságokat ismerteti.
+Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 | Név         | Típus   | Kötelező | Leírás                                                |
 |--------------|--------|----------|------------------------------------------------------------|
-| addressline1 | sztring | Y        | A címe első sora.                             |
-| addressline2 | sztring | N        | A címe második sora. Ez a tulajdonság nem kötelező. |
+| addressline1 | sztring | Y        | A cím első sorát.                             |
+| addressline2 | sztring | N        | A cím második sorában. Ez a tulajdonság nem kötelező. |
 | city         | sztring | Y        | A város.                                                  |
 | állapot        | sztring | Y        | Az állapot.                                                 |
-| Irányítószám   | sztring | Y        | A postai irányítószám.                                           |
-| ország      | sztring | Y        | A két karakterből álló ISO Alpha-2 országkód.                |
+| irányítószám   | sztring | Y        | Az irányítószám.                                           |
+| ország      | sztring | Y        | A két karakterből álló ISO alpha-2 országkód.                |
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -172,15 +167,15 @@ Content-Length: 129
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a metódus a 200 állapotkódot adja vissza, amint az alább látható a válasz-érvényesítés sikeres példája.
+Sikeres művelet esetén a metódus a 200-as állapotkódot adja vissza az alább látható Válasz – sikeres ellenőrzés példában látható módon.
 
-Ha a kérelem meghiúsul, a metódus a 400 állapotkódot adja vissza, amint az alább látható válasz-érvényesítés sikertelen. A válasz törzse egy JSON-adattartalommal rendelkezik, amely további információkat tartalmaz a hibáról.
+Ha a kérés meghiúsul, a metódus a 400-as állapotkódot adja vissza az alább látható Válasz – ellenőrzés sikertelen példában látható módon. A válasz törzse tartalmaz egy hasznos JSON-adatokat, amely további információkat tartalmaz a hibáról.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
-### <a name="response---validation-succeeded-example"></a>A válasz érvényesítése sikeres példa
+### <a name="response---validation-succeeded-example"></a>Válasz – sikeres érvényesítés – példa
 
 ```http
 HTTP/1.1 200 OK

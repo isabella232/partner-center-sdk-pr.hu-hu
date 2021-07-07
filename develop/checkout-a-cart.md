@@ -1,38 +1,33 @@
 ---
 title: Kosár tartalmának kifizetése
-description: Megtudhatja, hogyan tekintheti meg egy ügyfél rendelését egy kosárban a partner Center API-k használatával. Ezt megteheti az ügyfél megrendelésének befejezéséhez.
+description: Megtudhatja, hogyan ellenőrizheti egy ügyfél megrendelését egy kosárban az Partnerközpont API-k használatával. Ezt az ügyfélrendelések befejezéséhez is meg lehet tenni.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 094817a34cd29bc96788fcfb6a16610a8192d784
-ms.sourcegitcommit: a25d4951f25502cdf90cfb974022c5e452205f42
+ms.openlocfilehash: 9ee06797602b22a1f8257c94880a2d81e2280f2e
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "97768595"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974046"
 ---
-# <a name="checkout-an-order-for-a-customer-in-a-cart"></a>Megrendelés megrendelése egy kosárban lévő ügyfél számára
+# <a name="checkout-an-order-for-a-customer-in-a-cart"></a>Megrendelés megrendelésének kirendelése egy kosárban
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Megrendelés megrendelése az ügyfelek számára a kosárban.
+Hogyan lehet kiveszni egy megrendelést egy ügyféltől egy kosárban.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-- Egy meglévő kosárhoz tartozó kosár-azonosító.
+- Egy meglévő kosár azonosítója.
 
 ## <a name="c"></a>C\#
 
-Egy ügyfél rendelésének kifizetéséhez a kosár és az ügyfél-azonosító használatával szerezzen be egy hivatkozást a kosárra. Végül hívja meg a **create** vagy a **CreateAsync** függvényt a megrendelés befejezéséhez.
+Egy ügyfél megrendelésének kirendelése érdekében a kosárra és az ügyfél azonosítójának használatával szerezze be a kosárra vonatkozó hivatkozást. Végül hívja meg a **Create** vagy **a CreateAsync** függvényt a rendelés befejezéséhez.
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -46,7 +41,7 @@ var cart = partnerOperations.Customers.ById(customerId).Cart.ById(cartId).Checko
 
 [!INCLUDE [Partner Center Java SDK support details](<../includes/java-sdk-support.md>)]
 
-Egy ügyfél rendelésének kifizetéséhez a kosár és az ügyfél-azonosító használatával szerezzen be egy hivatkozást a kosárra. Végül hívja meg a **create** függvényt a megrendelés befejezéséhez.
+Egy ügyfél megrendelésének kirendelése érdekében a kosárra és az ügyfél azonosítójának használatával szerezze be a kosárra vonatkozó hivatkozást. Végül hívja meg a **create függvényt** a rendelés befejezéséhez.
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -60,7 +55,7 @@ Cart cart = partnerOperations.getCustomers().byId(customerId).getCart().byId(car
 
 [!INCLUDE [Partner Center PowerShell module support details](<../includes/powershell-module-support.md>)]
 
-Egy ügyfél rendelésének kifizetéséhez hajtsa végre a [**Submit-PartnerCustomerCart**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Submit-PartnerCustomerCart.md) a rendelés befejezéséhez.
+Egy ügyfél megrendelésének ki- és leállításhoz hajtsa végre a [**Submit-PartnerCustomerCart**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Submit-PartnerCustomerCart.md) parancsot a rendelés befejezéséhez.
 
 ```powershell
 # $customerId
@@ -69,26 +64,26 @@ Egy ügyfél rendelésének kifizetéséhez hajtsa végre a [**Submit-PartnerCus
 Submit-PartnerCustomerCart -CartId $cartId -CustomerId $customerId
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                                                 |
 |----------|-------------------------------------------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/carts/{cart-ID}/Checkout http/1.1     |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/carts/{cart-id}/checkout HTTP/1.1     |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-A következő elérésiút-paraméterek használatával azonosíthatja az ügyfelet, és megadhatja a kivenni kívánt szekéret.
+Az alábbi elérésiút-paraméterekkel azonosíthatja az ügyfelet, és megadhatja a kiveszni kívánt kosárt.
 
 | Név            | Típus     | Kötelező | Leírás                                                            |
 |-----------------|----------|----------|------------------------------------------------------------------------|
 | **ügyfél-azonosító** | sztring   | Igen      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.             |
-| **kosár-azonosító**     | sztring   | Igen      | A szekér azonosítására szolgáló GUID formátumú kosár-azonosító.                     |
+| **kocsiazonosító**     | sztring   | Igen      | Egy GUID formátumú kocsiazonosító, amely azonosítja a kosárat.                     |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -114,11 +109,11 @@ No-Content-Body
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz törzse tartalmazza a feltöltött [CartCheckoutResult](cart-resources.md#cartcheckoutresult) -erőforrást.
+Ha a művelet sikeres, a válasz törzse tartalmazza a kitöltve [CartCheckoutResult erőforrást.](cart-resources.md#cartcheckoutresult)
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

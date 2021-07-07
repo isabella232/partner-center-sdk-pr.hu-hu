@@ -1,97 +1,92 @@
 ---
-title: Kosár erőforrásai
-description: Egy partner megrendelést helyez el egy kosárban, ha az ügyfél egy előfizetést szeretne megvásárolni az ajánlatok listájából.
+title: Kocsierőforrások
+description: A partnerek akkor rendelnek a kosárba, ha egy ügyfél egy ajánlatlistából szeretne előfizetést vásárolni.
 ms.date: 08/26/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 3aea428064654077ae67974132ec05918edfee65
-ms.sourcegitcommit: a8fe6268fed2162843e7c92dca41c3919b25647d
+ms.openlocfilehash: 08085dde1b43f20b6f6bf707120dd87c48816aba
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "97768016"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974148"
 ---
-# <a name="cart-resources"></a>Kosár erőforrásai
+# <a name="cart-resources"></a>Kocsierőforrások
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A partnerek megrendelést végeznek, amikor egy ügyfél előfizetést szeretne vásárolni az ajánlatok listájáról.
+A partner akkor ad le rendelést, ha egy ügyfél egy ajánlatlistából szeretne előfizetést vásárolni.
 
 ## <a name="cart"></a>Kosár
 
-Útmutató a kosárhoz.
+Egy kosarat ír le.
 
 | Tulajdonság              | Típus             | Leírás                                                                                            |
 |-----------------------|------------------|--------------------------------------------------------------------------------------------------------|
-| id                    | sztring           | A kosár sikeres létrehozásához megadott cart-azonosító.                               |
-| creationTimeStamp     | DateTime         | A kosár létrehozásának dátuma dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazható.      |
-| lastModifiedTimeStamp | DateTime         | A kosár utolsó frissítésének dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazható. |
-| expirationTimeStamp   | DateTime         | A kosár lejáratának dátuma dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazható.          |
-| lastModifiedUser      | sztring           | A kosár utolsó frissítését végző felhasználó. A kosár sikeres létrehozása után alkalmazható.                          |
-| Listaelemek             | Objektumok tömbje | [CartLineItem](#cartlineitem) -erőforrások tömbje.                                                   |
-| status                | sztring           | A kosár állapota. A lehetséges értékek: "Active" (frissíthető/elküldhető) és "rendezett" (már elküldve). |
+| id                    | sztring           | A kosár sikeres létrehozása után megadott bevásárlókocsi-azonosító.                               |
+| creationTimeStamp     | DateTime         | A kosár létrehozási dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva.      |
+| lastModifiedTimeStamp | DateTime         | A kosár legutóbbi frissítésének dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva. |
+| expirationTimeStamp (lejárat ideje)   | DateTime         | A kosár lejáratának dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva.          |
+| lastModifiedUser      | sztring           | Az a felhasználó, aki utoljára frissítette a kosárat. A kosár sikeres létrehozása után alkalmazva.                          |
+| lineItems (sorsorok)             | Objektumok tömbje | [CartLineItem-erőforrások tömbje.](#cartlineitem)                                                   |
+| status                | sztring           | A kosár állapota. Lehetséges értékek: "Aktív" (frissíthető/elküldhető) és "Megrendelve" (már elküldve). |
 
 ## <a name="cartlineitem"></a>CartLineItem
 
-Egy kosárban található egy elem.
+Egy kosárban található elemet képvisel.
 
 | Tulajdonság             | Típus                             | Leírás                                                                                                                                           |
 |----------------------|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| id                   | sztring                           | Egy cart-sor egyedi azonosítója. A kosár sikeres létrehozása után alkalmazható.                                                                   |
-| catalogItemId        | sztring                           | A katalógus-elemek azonosítója.                                                                                                                          |
-| friendlyName         | sztring                           | Választható. A partner által a egyértelműsítse segítségére meghatározott rövid név.                                                                 |
+| id                   | sztring                           | A kosársorelem egyedi azonosítója. A kosár sikeres létrehozása után alkalmazva.                                                                   |
+| catalogItemId (katalógusazonosító)        | sztring                           | A katalóguselem azonosítója.                                                                                                                          |
+| friendlyName (rövid név)         | sztring                           | Választható. A partner által meghatározott elem rövid neve a egyértelműsséghez.                                                                 |
 | quantity             | int                              | A licencek vagy példányok száma.                                                                                                                  |
-| currencyCode         | sztring                           | A Pénznemkód.                                                                                                                                    |
-| billingCycle         | Objektum                           | Az aktuális időszakban beállított számlázási ciklus típusa.                                                                                                 |
-| termDuration         | sztring                           | A kifejezés időtartamának ISO 8601-es ábrázolása. A jelenleg támogatott értékek a következők: P1M (1 hónap), P1Y (1 év) és P3Y (3 év).                                |
-| résztvevők         | Az Object string párok listája      | A PartnerId on Record (MPNID) gyűjteménye a vásárláson.                                                                                          |
-| provisioningContext  | Szótár<karakterlánc, karakterlánc>       | A megvásárolt tétel kiépítés során használt további környezet. Az adott elemhez szükséges értékek meghatározásához tekintse meg az SKU provisioningVariables tulajdonságát. |
-| orderGroup           | sztring                           | Egy csoport, amely jelzi, hogy mely elemek lesznek elküldve ugyanabban a sorrendben.                                                                          |
-| addonItems           | **CartLineItem** -objektumok listája | A bővítményekhez készült cart-elemek gyűjteménye. Ezeket az elemeket a rendszer az alapszintű, a legfelső szintű cart-elem megvásárlásakor megvásárolt alapelőfizetés felé vásárolja meg. |
-| error                | Objektum                           | Ha hiba történt, a kosár létrehozása után alkalmazza a rendszer.                                                                                                    |
-| renewsTo             | Objektumok tömbje                 | [RenewsTo](#renewsto) -erőforrások tömbje.                                                                            |
+| currencyCode         | sztring                           | A pénznemkód.                                                                                                                                    |
+| billingCycle (számlázási ciklus)         | Objektum                           | Az aktuális időszakra beállított számlázási ciklus típusa.                                                                                                 |
+| termDuration (kifejezés-lekértség)         | sztring                           | A kifejezés időtartamának ISO 8601-es ábrázolása. A jelenleg támogatott értékek: P1M (1 hónap), P1Y (1 év) és P3Y (3 év).                                |
+| Résztvevők         | Objektumsring-párok listája      | PartnerAzonosító gyűjtemény a vásárláskor rekordban (MPN-azonosító).                                                                                          |
+| provisioningContext  | Dictionary<string, string>       | A megvásárolt elem kiépítésekor használt további környezet. Egy adott elemhez szükséges értékek meghatározásához tekintse meg a termékváltozat provisioningVariables tulajdonságát. |
+| orderGroup           | sztring                           | Egy csoport, amely jelzi, hogy mely elemek lesznek együtt elküldve ugyanabban a sorrendben.                                                                          |
+| addonItems (bővítmények)           | **CartLineItem-objektumok** listája | Kosársorelemek gyűjteménye bővítményekhez. Ezeket az elemeket az alap előfizetéshez vásároljuk meg, amely a kosársori tétel vásárlását jelenti. |
+| error                | Objektum                           | A kosár létrehozása után lesz alkalmazva hiba esetén.                                                                                                    |
+| renewsTo             | Objektumok tömbje                 | A [RenewsTo erőforrások tömbje.](#renewsto)                                                                            |
 
 ## <a name="renewsto"></a>RenewsTo
 
-Egy olyan elem, amely egy cart-sorban található.
+Egy kosársorelemben található elemet képvisel.
 
 | Tulajdonság              | Típus             | Kötelező        | Leírás |
 |-----------------------|------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------|
-| termDuration          | sztring           | No              | A megújítási időszak érvényességének ISO 8601-es ábrázolása. A jelenleg támogatott értékek a következők: **P1M** (1 hónap) és **P1Y** (1 év). |
+| termDuration (kifejezés-lekértség)          | sztring           | No              | A megújítási időszak időtartamának ISO 8601-es ábrázolása. A jelenleg támogatott értékek a **P1M (1** hónap) és a **P1Y (1** év). |
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 ## <a name="carterror"></a>CartError
 
-Egy olyan hibát jelöl, amely a kosár létrehozása után következik be.
+A kosár létrehozása után észlelt hibát jelöli.
 
 | Tulajdonság         | Típus                                   | Leírás                                                                                   |
 |------------------|----------------------------------------|-----------------------------------------------------------------------------------------------|
-| errorCode        | [A partner Center hibakódai](error-codes.md) | A kosár típusú hiba.                                                                       |
-| errorDescription | sztring                                 | A hiba leírása, beleértve a támogatott értékekkel, az alapértelmezett értékekkel vagy a korlátozásokkal kapcsolatos megjegyzéseket is. |
+| errorCode        | [Partnerközpont hibakódok](error-codes.md) | A kosárhiba típusa.                                                                       |
+| errorDescription (hibaleíró) | sztring                                 | A hiba leírása, beleértve a támogatott értékekkel, alapértelmezett értékekkel vagy korlátokkal kapcsolatos megjegyzéseket. |
 
 ## <a name="cartcheckoutresult"></a>CartCheckoutResult
 
-Egy kosár-pénztár eredményét jelöli.
+A kosárból való kijelentkezés eredményét jelöli.
 
 | Tulajdonság    | Típus                                              | Leírás                     |
 |-------------|---------------------------------------------------|---------------------------------|
-| rendelések      | [Megrendelési](order-resources.md#order) objektumok listája.         | A megrendelések gyűjteménye.       |
-| orderErrors | [OrderError](#ordererror) -objektumok listája. | A sorrendi hibák gyűjteménye. |
+| rendelések      | Az Order [objektumok](order-resources.md#order) listája.         | A rendelések gyűjteménye.       |
+| orderErrors (orderErrors) | Az [OrderError objektumok](#ordererror) listája. | A rendelési hibák gyűjteménye. |
 
-## <a name="ordererror"></a>OrderError
+## <a name="ordererror"></a>OrderError (Rendelési rendelés)
 
-Olyan hibát jelöl, amely egy rendelés létrehozásakor a kosár-pénztárban történik.
+Olyan hibát jelez, amely a kosárból való ki- és kijelentkezés során fordul elő egy rendelés létrehozásakor.
 
 | Tulajdonság     | Típus   | Leírás                                     |
 |--------------|--------|-------------------------------------------------|
-| orderGroupId | sztring | A megrendelési csoport azonosítója a hibával. |
+| orderGroupId (rendeléscsoport-azonosító) | sztring | A rendelési csoport azonosítója a hibával együtt. |
 | code         | int    | A hibakód.                                 |
 | leírás  | sztring | A hiba leírása.                   |

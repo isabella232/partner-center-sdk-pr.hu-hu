@@ -1,118 +1,113 @@
 ---
-title: Tesztelés és hibakeresés integrációs homokozóval
-description: Megtudhatja, hogyan használhatja a partner Center Integration sandbox-fiókját (és a kapcsolódó jogkivonatokat) a kód teszteléséhez és hibakereséséhez, így nem kell véletlenül új díjakat fizetnie.
+title: Tesztelés és hibakeresés az integrációs tesztkészletben
+description: Megtudhatja, hogyan használhatja Partnerközpont integrációs tesztfiókját (és a kapcsolódó jogkivonatokat) a kód tesztelésére és hibakeresésére, hogy véletlenül ne számítsa fel új díjakkal.
 ms.date: 09/11/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 3ff4a7ec3ad984b09c60d3d820423c614fb8020d
-ms.sourcegitcommit: 9f8ba784171ab4f980ed0c60ef6f2323849c4a98
+ms.openlocfilehash: 7a9d7755cd9f493f44f9a7bbf613e0f80cf7b4ac
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 02/14/2021
-ms.locfileid: "100499881"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530106"
 ---
-# <a name="test-and-debug-with-your-partner-center-integration-sandbox-to-avoid-paying-unexpected-charges"></a>Tesztelés és hibakeresés a partner Center-integrációs munkaterülettel a váratlan költségek kifizetésének elkerülése érdekében
+# <a name="test-and-debug-with-your-partner-center-integration-sandbox-to-avoid-paying-unexpected-charges"></a>Tesztelje és hibakeresést végezni a Partnerközpont integrációs tesztkészletben a váratlan költségek elkerülése érdekében
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+A kód tesztelése érdekében használja az integrációs tesztfiókot az Partnerközpont-ban (és a megfelelő jogkivonatokat), hogy véletlenül ne legyen olyan új díj felszám véve, amelyért a vállalata fizet. További információ erről az éles környezetben való tesztelési (TiP) környezetről: API-hozzáférés beállítása a [Partnerközpont.](set-up-api-access-in-partner-center.md)
 
-A kód teszteléséhez használja az Integration sandbox-fiókot a partner Centerben (és a hozzá tartozó jogkivonatokban), így nem kell véletlenül új díjakat fizetnie, melyeket a vállalat a fizetésért felelős. További információ erről a tesztelési célú üzemi (TiP) környezetről: [API-hozzáférés beállítása a partner Centerben](set-up-api-access-in-partner-center.md).
+## <a name="integration-sandbox-constraints"></a>Integrációs védőfal megkötései
 
-## <a name="integration-sandbox-constraints"></a>Integrációs homokozó – korlátozások
+Ha automatizált buildellenőrzési teszteket futtat, éles környezetben végez tesztelést, vagy manuális tesztelést végez az integrációs tesztkészletben, elérheti az integrációs tesztkészlet maximális korlátját. Ez a korlát 75 ügyfél, 5 előfizetés ügyfélenként és 25 licenc előfizetésenként.
 
-Ha automatizált Build-ellenőrzési teszteket futtat, éles tesztelést végez, vagy manuális tesztelést hajt végre az integrációs munkaterületen, az integrációs szolgáltatáshoz tartozó munkaterületre vonatkozó maximális korlátokat is elérheti. Ezek a korlátok 75 ügyfél, 5 előfizetés felhasználónként és 25 licenc/előfizetés.
+A 25 licences korlát azt jelenti, hogy nem szerezhet be olyan ajánlatot a védőfalon, amely legalább 25 licenccel rendelkezik. Ez a korlátozás magában foglalja a próbaverziókat is.
 
-A 25 licences korlát azt jelenti, hogy nem vásárolhat olyan ajánlatot a homokozóban, amely legalább 25 licenccel meghaladja a licencet. Ez a korlátozás próbaverziókat is tartalmaz.
+A sandbox környezetekben különböző számla- és egyeztetési fájlok érhetők el, de nem mindegyik érhető el örökölt vagy modern platformokon. További információért ellenőrizze az alábbi táblázatot.
 
-A homokozóban számos különböző számla-és egyeztetési fájl érhető el, de nem mindegyik a régi vagy a modern platformon érhető el. További részletekért ellenőrizze az alábbi táblázatot.
-
-| **Fájlok**                    | **Elérhető a régiben** | **Elérhető a modern** |
+| **Fájlok**                    | **Az örökölt szolgáltatásban érhető el** | **Elérhető a Modernben** |
 | ---------------------------- | ------------------------ | ------------------------ |
 | PDF-formátumú számla                  | Nem                       | Igen                      |
-| Számla-egyeztetési fájl | Nem                       | Igen                      |
-| Számla becsült fájlja       | Nem                       | Igen                      |
-| Napi számlázott használati fájl     | Nem                       | Igen                      |
-| Napi nem számlázott használati fájl   | Nem                       | Igen                      |
+| Számla egyeztetési fájlja | Nem                       | Igen                      |
+| Számlabecslési fájl       | Nem                       | Igen                      |
+| Napi számlázható használati adatok fájlja     | Nem                       | Igen                      |
+| Napi ki nemszámlázatlan használati fájl   | Nem                       | Igen                      |
 
 
 ### <a name="azure-plan"></a>Azure-csomag
 
-Alapértelmezés szerint a partnerek nem tudják kiépíteni az Azure-csomagokat a sandbox-fiókjaik használatával. Azoknak a partnereknek, akiknek a homokozó-fiókjával kell rendelkezniük, hozzáférésre van szükségük. A hozzáférésre való jelentkezéshez lépjen kapcsolatba a Microsoft-fiók Manager vagy a Business Contact szolgáltatással. Azokat a partnereket, akik korábban már alkalmazták az Microsoft Azure (MS-AZR-0145P) előfizetések kiépítésére a sandbox-fiókokban, nem kell újra alkalmazni a hozzáférést. Hozzáférést kapnak az Azure-csomagok automatikus kiépítéséhez.
+Alapértelmezés szerint a partnerek nem helyezhetnek üzembe Azure-csomagokat a tesztkörnyezeti fiókjukkal. Azoknak a partnereknek, akiknek a tesztkörnyezeti fiókjukkal kell ezt elvégezniük, hozzáférést kell kérniük. A hozzáférés útjára való jelentkezéshez lépjen kapcsolatba Microsoft-fiók felettesével vagy üzleti kapcsolattartóval. Azok a partnerek, akik korábban hozzáférést kértek Microsoft Azure-előfizetések (MS-AZR-0145P) építéséhez a saját sandbox-fiókjukban, nem kell ismét hozzáférést alkalmazniuk. Automatikusan hozzáférést kapnak az Azure-csomagok építéshez.
 
-A következő korlátozások érvényesek azon partnerek számára, akik az Azure-csomagok kiépítéséhez jóváhagyták a sandbox-fiókokat:
+Azon partnerekre, akiknek a sandbox-fiókjai jóvá vannak hagyva az Azure-csomagok kiépítése érdekében, a következő korlátok érvényesek:
 
-- Minden sandbox-partner fiók legfeljebb 10 Azure-csomagot tartalmazhat az összes ügyfél-bérlőn (függetlenül attól, hogy a csomagok hogyan oszlanak el az ügyfelek között).
+- Minden egyes sandbox partnerfiók legfeljebb 10 Azure-csomagtal rendelkezik az összes ügyfélbérlőben (függetlenül attól, hogy a csomagok hogyan vannak elosztva az ügyfelek között).
 
-- A közvetlen számlás partner akár egy Azure-csomagot is létrehozhat egy ügyfél-bérlőn.
+- A közvetlen számlázási partnerek ügyfélbérlőnként legfeljebb egy Azure-tervet hozhatnak létre.
 
-- A közvetett szolgáltatók legfeljebb három Azure-csomagot hozhatnak létre ügyfél-bérlőként (a partner-rekordként megadott különböző közvetett viszonteladók esetében).
+- Egy közvetett szolgáltató ügyfélbérlőnként legfeljebb három Azure-csomag hozható létre (a partnerként megadott különböző közvetett viszonteladók számára).
 
-- Minden egyes Azure-csomaghoz legfeljebb három Azure-előfizetés tartozhat.
+- Minden Azure-csomag legfeljebb három Azure-előfizetéssel rendelkezik.
 
-- A sandbox-fiókhoz tartozó összes CSP Azure-előfizetés egy adatközpontban legfeljebb négy virtuálisgép-maggal rendelkezik. Ezért nem telepíthet olyan virtuálisgép-SKU-ket, amelyek több mint négy virtuálisgép-magot igényelnek. Bizonyos speciális virtuálisgép-SKU-ket, például a GPU-magokat is kizárják.
+- A sandbox-fiókban lévő összes CSP Azure-előfizetés adatközpontonként négy virtuálisgép-magra van korlátozva. Ezért nem létesíthet négynél több virtuálisgép-magot igénylő virtuálisgép-SKUS-okat. Bizonyos speciális virtuálisgép-SKUS-k, például a GPU-magok szintén ki vannak zárva.
 
-- Minden egyes sandbox-partneri fiók esetében az összes Azure-csomagra vonatkozó költségkeret $2000 (USD). Ha egy partner eléri a költségkeretet, az összes Azure-csomag átmenetileg le lesz tiltva a következő számlázási ciklusig.
+- Minden egyes sandbox partnerfiók számlázási ciklusonként 2000 DOLLÁR (USD) költségkeretet kap az összes Azure-csomagra. Ha egy partner eléri a költekkorlátot, az összes Azure-csomag átmenetileg le lesz tiltva a következő számlázási ciklusig.
 
-### <a name="cloud-solution-provider-csp-azure-subscription-offers"></a>Felhőalapú megoldás-szolgáltató (CSP) Azure-előfizetési ajánlatok
+### <a name="cloud-solution-provider-csp-azure-subscription-offers"></a>Felhőszolgáltató (CSP) Azure-előfizetési ajánlatok
 
-A CSP Azure-előfizetési ajánlatok alapértelmezés szerint nem érhetők el a sandbox-fiókok számára. Ezek közé tartozik az MS-AZR-0146P, az MS-AZR-DE-0146P és az MS-AZR-USA KORM.-0146P for CSP Azure-előfizetések a Microsoft nyilvános felhőben, a német felhőben és a kormányzati felhőben. Azoknak a partnereknek, akiknek hozzá kell férniük az ajánlatokhoz a sandbox-fiókkal, hozzáféréssel kell rendelkezniük. A hozzáférésre való jelentkezéshez beszéljen a Microsoft-fiók Manager vagy a Business Contact szolgáltatással.
+A CSP Azure-előfizetési ajánlatok alapértelmezés szerint nem érhetők el a sandbox-fiókokhoz. Ezek közé tartozik az MS-AZR-0146P, az MS-AZR-DE-0146P és az MS-AZR-USGOV-0146P a Microsoft nyilvános felhőben, német felhőben és kormányzati felhőben elérhető CSP Azure-előfizetések esetében. Azok a partnerek, akiknek hozzáférésre van szükségük ezekhez az ajánlatokhoz a saját sandbox-fiókjukkal, hozzáférést kell alkalmazniuk. A hozzáférésre való jelentkezéshez beszéljen Microsoft-fiók felettesével vagy üzleti kapcsolattartóval.
 
-Az alábbi korlátozások érvényesek azon partnereink számára, akiknek a sandbox-fiókját jóváhagyták a CSP Azure-előfizetési ajánlatok esetében:
+Azon partnerekre, akiknek a sandbox-fiókjait jóváhagyták a CSP Azure-előfizetési ajánlatokhoz, a következő korlátozások érvényesek:
 
-- Legfeljebb 375 aktív előfizetéssel (75 ügyfél x 5 előfizetéssel) rendelkezhet. Azonban csak 10 lehet CSP Azure-előfizetés.
+- Legfeljebb 375 aktív előfizetéssel rendelkezik (ügyfélenként 75 ügyfél x 5 előfizetés). Ezekből azonban csak 10 lehet CSP Azure-előfizetés.
 
-- Ha egy CSP Azure-előfizetés eléri a $200 Azure-beli használatot, az erőforrásai átmenetileg le lesznek tiltva a következő számlázási ciklusig. A szolgáltatás továbbra is aktív előfizetésnek minősül, és a 10 aktív Azure-előfizetésre vonatkozó korlátnak számít.
+- Ha egy CSP Azure-előfizetés eléri a 200 dollárnyi Azure-használatot, az erőforrásai ideiglenesen le vannak tiltva a következő számlázási ciklusig. Továbbra is aktív előfizetésnek számít, és beleszámol a 10 aktív Azure-előfizetés korlátba.
 
-- A sandbox-fiókhoz tartozó összes CSP Azure-előfizetés egy adatközpontban legfeljebb négy virtuálisgép-maggal rendelkezik. Ezért nem telepíthet olyan virtuálisgép-SKU-ket, amelyek több mint négy virtuálisgép-magot igényelnek. Bizonyos speciális virtuálisgép-SKU-ket, például a GPU-magokat is kizárják.
+- A sandbox-fiókban lévő összes CSP Azure-előfizetés adatközpontonként négy virtuálisgép-magra van korlátozva. Ezért nem létesíthet négynél több virtuálisgép-magot igénylő virtuálisgép-SKUS-okat. Bizonyos speciális virtuálisgép-SKUS-k, például a GPU-magok szintén ki vannak zárva.
 
 > [!Important]
-> Az 2018. augusztus 1. előtt üzembe helyezendő összes meglévő CSP Azure-előfizetés már nem támogatott, és a Microsoft a 2018 október 16 – október 31. között megszűnik. Az előfizetések megszüntetése után azok nem engedélyezhetők újra, és a társított adatai már nem érhetők el. Az Ezen előfizetések alatt tárolt értékes adattal rendelkező partnereknek az 2018. október 16. előtt biztonsági másolatot kell készíteniük az adatról.
+> A 2018. augusztus 1. előtt a sandbox-fiókokkal létesített összes meglévő CSP Azure-előfizetés már nem támogatott, és a Microsoft 2018. október 16. és 2018. október 31. között megszüntetjük. Az előfizetések megszüntetése után azok nem engedélyezhetők újra, és a társított adatok többé nem lesznek elérhetők. Azok a partnerek, akik értékes adatokat tárolnak ezekben az előfizetésekben, 2018. október 16. előtt kell biztonsági adatokat tárolniuk.
 
-### <a name="azure-reserved-vm-instance"></a>Azure-beli fenntartott VM-példány
+### <a name="azure-reserved-vm-instance"></a>Azure-beli fenntartott virtuálisgép-példány
 
-Ha az Azure-beli [fenntartott VM-példányt vásárolja](purchase-azure-reservations.md) meg a sandbox-fiókjával, az ügyfél két virtuálisgép-példányra korlátozódik. Arra is korlátozódik, hogy csak a következő Azure-beli fenntartott VM-példányokból származó termékekből válasszon ki:
+Ha [azure-beli fenntartott virtuálisgép-példányt](purchase-azure-reservations.md) vásárol a saját sandbox-fiókjával, ügyfelenként legfeljebb két virtuálisgép-példányt használhat. Emellett csak a következő Azure-beli fenntartott VM-példány terméktermék-terméktermék-termékből választhat:
 
-| Termék címe  | Hatálybalépés dátuma  | SKU címe                                               | Régió [ArmRegionName] | Példány kulcsa [ArmSkuName] | Időtartam | Felhasználási mérőszám azonosítója       |
+| Termékcím  | Hatályos dátum  | Termékváltozat címe                                               | Régió [ArmRegionName] | Példánykulcs [ArmSkuName] | Időtartam | Fogyasztásmérő azonosítója       |
 |----------------|-----------------|---------------------------------------------------------|------------------------|--------------|----------|----------------------------|
-| B sorozat       | 12/1/2017 0:00  | Fenntartott VM-példány, Standard_B1s, Korea déli régiója, 1 év    | KoreaSouth             | `Standard_B1s` | `1Year`    | 3f913071-0dd7-4258-8ec4-6fad05bd976d |
-| B sorozat       | 12/1/2017 0:00  | Fenntartott VM-példány, Standard_B1s, USA keleti régiója, 1 év     | eastus                 | `Standard_B1s` | `1Year`    | f4d7a5a5-1b67-45ea-b1a0-282fbdd34b05 |
-| B sorozat       | 12/1/2017 0:00  | Fenntartott VM-példány, Standard_B1s, USA 2. nyugati régiója, 1 év   | westus2                | `Standard_B1s` | `1Year`    | 222e39f5-e99f-4fa3-a323-f46402977888 |
-| B sorozat       | 12/1/2017 0:00  | Fenntartott VM-példány, Standard_B1s, USA északi középső régiója, 1 év    | northcentralus | `Standard_B1s` | `1Year`    | 4e1716fc-4842-43f1-aa96-7c1b1b1395a7 |
-| B sorozat       | 12/1/2017 0:00  | Fenntartott VM-példány, Standard_B1s, CA keleti régiója, 1 év     | CanadaEast             | `Standard_B1s` | `1Year`    | ab8a5993-5db7-47c8-b3b1-2e1365b353fb |
+| B sorozat       | 12/1/2017 0:00  | Fenntartott virtuálisgép-példány, Standard_B1s, Korea déli részén, 1 év    | KoreaSouth             | `Standard_B1s` | `1Year`    | 3f913071-0dd7-4258-8ec4-6fad05bd976d |
+| B sorozat       | 12/1/2017 0:00  | Fenntartott virtuálisgép-példány, Standard_B1s, USA keleti régiója, 1 év     | eastus                 | `Standard_B1s` | `1Year`    | f4d7a5a5-1b67-45ea-b1a0-282fbdd34b05 |
+| B sorozat       | 12/1/2017 0:00  | Fenntartott virtuálisgép-példány, Standard_B1s, USA 2. nyugati régiója, 1 év   | westus2                | `Standard_B1s` | `1Year`    | 222e39f5-e99f-4fa3-a323-f46402977888 |
+| B sorozat       | 12/1/2017 0:00  | Fenntartott virtuálisgép-példány, Standard_B1s, USA északi középső középső sarka, 1 év    | northcentralus | `Standard_B1s` | `1Year`    | 4e1716fc-4842-43f1-aa96-7c1b1b1395a7 |
+| B sorozat       | 12/1/2017 0:00  | Fenntartott virtuálisgép-példány, Standard_B1s, Kelet-Ca, 1 év     | CanadaEast             | `Standard_B1s` | `1Year`    | ab8a5993-5db7-47c8-b3b1-2e1365b353fb |
 
-### <a name="subscriptions-for-commercial-marketplace-products"></a>Kereskedelmi Piactéri termékek előfizetései
+### <a name="subscriptions-for-commercial-marketplace-products"></a>Előfizetések kereskedelmi piactéri termékekhez
 
-Éles környezetben, miután [létrehozta a kereskedelmi Marketplace SaaS-termékek előfizetését](create-subscription-azure-marketplace-products.md), egy személyre szabott aktiválási hivatkozást kell lekérnie a partner Center webhelyről, és el kell végeznie a közzétevő helyét a telepítési folyamat befejezéséhez. Az előfizetés számlázása csak a telepítés befejeződése után kezdődik.
+Éles környezetben, miután létrehozott egy előfizetést a kereskedelmi [piactéri SaaS-termékekre,](create-subscription-azure-marketplace-products.md)le kellkérni egy személyre szabott aktiválási hivatkozást a Partnerközpont-ból, majd a telepítési folyamat befejezéséhez látogasson el a közzétevő webhelyére. Az előfizetés számlázása csak a beállítás befejezése után kezdődik meg.
 
-A CSP homokozó környezetében nincs integráció az ISV-val. Ha a partner Centerből próbál meg beolvasni egy aktiválási hivatkozást, a rendszer egy dummy-hivatkozást ad vissza. Ez a dummy-hivatkozás nem használható a telepítési folyamat befejezéséhez a közzétevő webhelyén. A kereskedelmi Piactéri SaaS-termékekhez való előfizetés számlázásának teszteléséhez az Integration sandbox-fiók használatával a kereskedelmi [Piactéri termékekhez készült homokozó-előfizetés aktiválása](activate-sandbox-subscription-azure-marketplace-products.md) című témakörben talál helyet. Az előfizetés számlázása a sikeres aktiválás után kezdődik.
+A CSP-védőkörnyezetben nincs integráció a isv-ekkel. Ha egy aktiválási hivatkozást próbál lekérni a Partnerközpont, a rendszer egy üres hivatkozást ad vissza. Ezzel a hely nélküli hivatkozással nem fejezhető be a telepítési folyamat a közzétevő webhelyén. A kereskedelmi piactéri SaaS-termékekre való előfizetések számlázásának teszteléséhez használja az integrációs tesztfiókot: Tesztkészlet-előfizetés aktiválása kereskedelmi [piactéri termékekhez.](activate-sandbox-subscription-azure-marketplace-products.md) Az előfizetés számlázása a sikeres aktiválás után kezdődik.
 
-Ha a teszt végén szeretné megtisztítani a műveletet, hogy a következő tesztelési fordulóra van-e hely, tekintse meg a következő cikkeket:
+A következő tesztelési körben a következő cikkekben talál helyet, hogy a tesztfutat végén megtisztítsa a adatokat:
 
 - [Ügyfélfiók törlése az integrációs tesztkörnyezetből](delete-a-customer-account-from-the-integration-sandbox.md)
 
 - [Előfizetés mennyiségének csökkentése](change-the-quantity-of-a-subscription.md)
 
-- [Felfüggesztheti az előfizetést](suspend-a-subscription.md) , hogy el tudja távolítani.
+- [Előfizetés felfüggesztése,](suspend-a-subscription.md) hogy eltávolítható legyen.
 
-## <a name="best-practices-for-rest-development"></a>Ajánlott eljárások a REST-fejlesztéshez
+## <a name="best-practices-for-rest-development"></a>Ajánlott eljárások REST-fejlesztéshez
 
-- Használjon hálózati nyomkövetési eszközt, hogy megtekintse a kérést, a választ, és ha a válaszban hiba történt a HTTP-állapotkódot illetően. A hibakezelés részletes ismertetését lásd: a [partneri központ Rest](error-codes.md)-hibakódai.
+- Használjon egy hálózati nyomkövetési eszközt, hogy lássa a kérést, a választ, valamint azt, hogy a válasz tartalmaz-e hibákat a HTTP-állapotkódban. További információ a hibakezelésről: Partnerközpont [REST-hibakódok.](error-codes.md)
 
-- Használjon egy új korrelációs azonosítót a partner Center REST API minden hívásához. Ez a gyakorlat biztosítja a jobb naplózást, és segítséget nyújt a hibakereséshez. További információ: a [partneri központ Rest-fejlécei](headers.md).
+- Használjon új korrelációs azonosítót a Partnerközpont REST API. Ez a gyakorlat jobb naplózást biztosít, és segít a hibakeresés során. További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ## <a name="troubleshooting-tips-for-common-rest-problems"></a>Hibaelhárítási tippek a REST gyakori problémáihoz
 
-- Tekintse át az összes fejléc-tulajdonságot, beleértve az URL-címet és az API-verziót.
+- Tekintse át az összes fejléctulajdonságokat, beleértve az URL-címet és az API-verziót.
 
-- Szükség esetén győződjön meg arról, hogy a tulajdonságok megfelelően vannak formázva.
+- Szükség esetén győződjön meg arról, hogy a tulajdonságok szerepelnek, és megfelelően vannak formázva.
 
-- A tömb formázásának helytelen formázása gyakori hiba.
+- Gyakori hiba a tömb helytelen formázása.
 
-- A **etagek** ideiglenesek, és az eredmény nem tárolható. Ha egy függvény hívásához **etagek** szükséges, használja a legújabb **etagek** értéket az erőforrás újbóli lekérésével. A **etagek** értékeket idézőjelek közé kell foglalni, például egy sztringet:
+- **Az ETagek** ideiglenesek, ezért nem tárolhatók. Ha egy függvényhíváshoz szükség van **egy ETagre,** használja a legújabb **ETags** értéket az erőforrás lehívásához. **Az ETag értékeknek** idézőjelek között kell szerepelnie, például sztringként:
 
    ```rest
    If-Match : "eyJpZCI6IjUwMWE4NjBjLTE2OTgtNDQyYi04MDhjLTRiNjEyY2NmMzVmMiIsInZlcnNpb24iOjF9"

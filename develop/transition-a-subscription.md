@@ -1,38 +1,33 @@
 ---
 title: Előfizetés átváltása
-description: Egy ügyfél előfizetésének frissítése egy adott cél előfizetésre.
+description: Frissíti egy ügyfél előfizetését egy megadott cél-előfizetésre.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9b757eee8bc65c16b5c65221a4c14b6c0fd6369e
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 01455315825cad026830268b6bbd55509e964bb5
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767832"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530232"
 ---
 # <a name="transition-a-subscription"></a>Előfizetés átváltása
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Egy ügyfél előfizetésének frissítése egy adott cél előfizetésre.
+Frissíti egy ügyfél előfizetését egy megadott cél-előfizetésre.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- Két előfizetési azonosító, egyet a kezdeti előfizetéshez, egyet pedig a cél előfizetéshez.
+- Két előfizetés- és egy a kezdeti előfizetéshez, egy pedig a cél-előfizetéshez.
 
 ## <a name="c"></a>C\#
 
-Az ügyfél előfizetésének frissítéséhez először [szerezze be a customer's-előfizetést](get-a-subscription-by-id.md). Ezután szerezze be az előfizetéshez tartozó frissítések listáját úgy, hogy meghívja a **verziófrissítések** tulajdonságot, majd a **Get ()** vagy a **GetAsync ()** metódust. Válasszon egy cél frissítést a frissítések listájáról, majd hívja meg a kezdeti előfizetés **verziófrissítések** tulajdonságát, majd a **create ()** metódust.
+Az ügyfél előfizetésének frissítéséhez először szerezze be az [ügyfél előfizetését.](get-a-subscription-by-id.md) Ezután szerezze be az előfizetés frissítésének listáját az **Upgrades tulajdonság,** majd a **Get()** vagy **a GetAsync() metódusok hívásával.** Válasszon ki egy célfrissítést a frissítések listájából, majd hívja meg a kezdeti előfizetés **Upgrades** (Frissítések) tulajdonságát, majd a **Create() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -43,34 +38,34 @@ Az ügyfél előfizetésének frissítéséhez először [szerezze be a customer
 UpgradeResult upgradeResult = partnerOperations.Customers.ById(selectedCustomerId).Subscriptions.ById(subscriptionIdForUpgrade).Upgrades.Create(targetOffer);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSamples **osztály**: UpgradeSubscription.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSamples **osztály:** UpgradeSubscription.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus   | Kérés URI-ja                                                                                                                         |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------|
-| **GET**  | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Subscriptions/{ID-for-Subscription}/Upgrades http/1.1 |
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Subscriptions/{ID-for-Target}/Upgrades http/1.1       |
+| **Kap**  | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription}/upgrades HTTP/1.1 |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{id-for-target}/upgrades HTTP/1.1       |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az előfizetés átváltásához használja az alábbi lekérdezési paramétert.
+Az előfizetés átváltásához használja a következő lekérdezési paramétert.
 
 | Név                    | Típus     | Kötelező | Leírás                                       |
 |-------------------------|----------|----------|---------------------------------------------------|
-| **ügyfél – bérlő – azonosító**  | **guid** | Y        | Az ügyfélhez tartozó GUID.             |
-| **azonosító – előfizetés** | **guid** | Y        | A kezdeti előfizetéshez tartozó GUID. |
-| **azonosító – cél**       | **guid** | Y        | A célként megadott előfizetéshez tartozó GUID.  |
+| **ügyfél-bérlő-azonosító**  | **guid** | Y        | Az ügyfélnek megfelelő GUID.             |
+| **id-for-subscription** | **guid** | Y        | A kezdeti előfizetésnek megfelelő GUID. |
+| **id-for-target**       | **guid** | Y        | A cél-előfizetésnek megfelelő GUID.  |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Nincs
+None
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -147,11 +142,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus a válasz törzsében a **frissítési** eredmény erőforrását adja vissza.
+Ha ez a módszer sikeres, a válasz törzsében egy **Frissítés** eredményerőforrást ad vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

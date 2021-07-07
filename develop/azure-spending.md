@@ -1,47 +1,42 @@
 ---
-title: Azure-kiadások API-erőforrásai
-description: Ismerje meg, hogy a CSP-partnerek hogyan használhatják a partner Center API-kat a partnerek és az ügyfelek Azure-beli kiadásainak és használatának a költségvetésen keresztüli megtekintéséhez
+title: Azure-beli költési API-erőforrások
+description: Megtudhatja, hogyan használhatnak a CSP-partnerek Partnerközpont API-kat a partneri és ügyfél Azure-kiadások és -használat költségvetéshez való megtekintésére és kezelésére.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 02a2995a06473cc6990d1234acd522a3b38a03d3
-ms.sourcegitcommit: d1104d5c27f8fb3908a87532f80c432f0147ef5d
+ms.openlocfilehash: 472554de1c354559d5bc4b21959c109467891806
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/13/2020
-ms.locfileid: "97768539"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974318"
 ---
-# <a name="azure-spending-api-resources-to-manage-partner-or-customer-spending-and-usage-against-a-budget"></a>Az Azure-kiadások API-erőforrásai a partneri és az ügyfél-kiadások, valamint a költségvetéssel való használat kezeléséhez 
+# <a name="azure-spending-api-resources-to-manage-partner-or-customer-spending-and-usage-against-a-budget"></a>Azure-költség API-erőforrások partner- vagy ügyfél-kiadások és -használat költségvetéshez való kezeléséhez 
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Felhőszolgáltató (CSP) partnerek megtekinthetik és kezelhetik Azure-kiadásaikat az Partnerközpont API-kon keresztül. Emellett programozott módon is megtekinthetik az ügyfeleik kiadásait az Azure-költségvetéshez.
 
-A Cloud Solution Provider (CSP) partnerei a partner Center API-kon keresztül tekinthetik meg és kezelhetik az Azure-kiadásokat. Emellett programozott módon megtekinthetik az ügyfeleik költségeit az Azure-kiadások költségvetésében.
+További információért tekintse meg az olyan forgatókönyveket, amelyekben a CSP-partnerek a Partnerközpont API-k használatával kezelhetik az ügyfél- és [partnerfiókokat és -rendeléseket.](scenarios.md)
 
-További információ: [olyan forgatókönyvek, amelyekben a CSP-partnerek a partner Center API-kkal kezelhetik az ügyfél-és partneri fiókokat és a rendeléseket](scenarios.md).
+## <a name="partner-usage-management"></a>Partnerhasználat kezelése
 
-## <a name="partner-usage-management"></a>Partneri használat kezelése
+- [Partner használati összegzésének lezása](get-a-partner-usage-summary.md) a **PartnerUsageSummary erőforrás** használatával
+- [A](get-a-customer-s-usage-records.md) **CustomerMonthlyUsageRecord** erőforrást használó összes ügyfél használati rekordjainak lekérte
 
-- [Partner-használat összesítésének beszerzése](get-a-partner-usage-summary.md) a **PartnerUsageSummary** -erőforrás használatával
-- A **CustomerMonthlyUsageRecord** -erőforrást használó [összes ügyfél használati rekordjainak lekérése](get-a-customer-s-usage-records.md)
+## <a name="customer-usage-management"></a>Ügyfélhasználat kezelése
 
-## <a name="customer-usage-management"></a>Ügyfél-használati felügyelet
+- [Ügyfél használati összegzésének lezása](get-a-customer-usage-summary.md) a **CustomerUsageSummary erőforrás** használatával
+- [Egy ügyfél összes előfizetés-használati](get-a-customer-subscription-s-usage-records.md) rekordját lekérte a **SubscriptionMonthlyUsageRecord erőforrás** használatával
 
-- [Ügyfél használati összegzésének beszerzése](get-a-customer-usage-summary.md) a **CustomerUsageSummary** -erőforrás használatával
-- Az [ügyfél összes előfizetés-használati rekordjának lekérése](get-a-customer-subscription-s-usage-records.md) az **SubscriptionMonthlyUsageRecord** erőforrás használatával
+## <a name="subscription-usage-management"></a>Előfizetés használatának kezelése
 
-## <a name="subscription-usage-management"></a>Előfizetés-használat kezelése
+- [Az előfizetés használatának összegzése a](get-a-customer-subscription-usage-summary.md) **SubscriptionUsageSummary erőforrás** használatával
+- [Előfizetés összes havi használati rekordját](get-all-monthly-usage-records-for-a-subscription.md) lekérte az **AzureResourceMonthlyUsageRecord erőforrás** használatával
+- [Előfizetés használati adatainak lekérte erőforrás szerint](get-a-customer-subscription-resource-usage-records.md) a **ResourceUsageRecord erőforrás** használatával
+- [Használati adatok lekérte egy előfizetés használati adatait fogyasztásmérő alapján](get-a-customer-subscription-meter-usage-records.md) a **MeterUsageRecord erőforrás** használatával
 
-- [Előfizetés-használati összefoglalás beszerzése](get-a-customer-subscription-usage-summary.md) a **SubscriptionUsageSummary** -erőforrás használatával
-- Az [előfizetéshez tartozó összes havi használati rekord beolvasása](get-all-monthly-usage-records-for-a-subscription.md) a **AzureResourceMonthlyUsageRecord** -erőforrás használatával
-- [Előfizetéshez tartozó használati adatok lekérése erőforrás alapján](get-a-customer-subscription-resource-usage-records.md) a **ResourceUsageRecord** -erőforrás használatával
-- Az [előfizetéshez tartozó használati adatok lekérése](get-a-customer-subscription-meter-usage-records.md) a **MeterUsageRecord** -erőforrás használatával
+## <a name="azure-spending-budget-management"></a>Azure-költségvetések kezelése
 
-## <a name="azure-spending-budget-management"></a>Az Azure költségvetés-kezelési kiadásai
-
-- [Ügyfél használati költségkeretének beszerzése](get-a-customer-s-usage-spending-budget.md) a **CustomerUsageSummary** -erőforrás használatával
-- [Ügyfél használati költségkeretének frissítése](update-a-customer-s-usage-spending-budget.md) a **CustomerUsageSummary** -erőforrás használatával
+- [Az ügyfél használati költségvetésének lekérte](get-a-customer-s-usage-spending-budget.md) a **CustomerUsageSummary erőforrást**
+- [Ügyfél használati költségvetésének frissítése](update-a-customer-s-usage-spending-budget.md) a **CustomerUsageSummary erőforrás** használatával

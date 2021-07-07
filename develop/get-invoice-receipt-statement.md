@@ -1,36 +1,32 @@
 ---
 title: Számla nyugtakivonatának lekérése
-description: A számla-azonosító és a bevételezési azonosító használatával kérdezi le a számlázási bevételezési utasítást.
+description: Lekér egy számlakivonatot a számlaazonosító és a nyugtaazonosító használatával.
 ms.date: 02/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 96cef11d6778de2d9bf28e466d88a39f9415727d
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: dcac4c8f0b881409dcad3560eefb82d4bb5e877a
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767683"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111446129"
 ---
 # <a name="get-invoice-receipt-statement"></a>Számla nyugtakivonatának lekérése
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-A számla-azonosító és a bevételezési azonosító használatával kérdezi le a számlázási bevételezési utasítást.
+Lekér egy számlakivonatot a számlaazonosító és a nyugtaazonosító használatával.
 
 > [!IMPORTANT]
-> Ez a funkció csak a tajvani adóbevallásokra vonatkozik.
+> Ez a funkció csak a Tajvani adóbevallások esetében érvényes.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy érvényes számla-azonosító és egy megfelelő nyugta-azonosító.
+- Egy érvényes számlaazonosító és egy megfelelő nyugtaazonosító.
 
 ## <a name="c"></a>C\#
 
-Ha azonosító alapján szeretné beolvasni a számla bevételezési utasítását, a partner Center SDK v 1.12.0 kezdődően, használja a **IPartner. számlák** gyűjteményt, és hívja meg a **ById ()** METÓDUSt a számla azonosítójának használatával, majd hívja meg a **beérkezési** gyűjteményt, hívja meg a **ById ()** , majd hívja meg a **Documents ()** és a **utasítás ()** metódust a számla Végül hívja meg a **Get ()** vagy a **GetAsync ()** metódust.
+A számla visszaigazolási kimutatásának azonosító alapján való lehívásához az Partnerközpont SDK v1.12.0-val kezdve használja az **IPartner.Invoices** gyűjteményt, és hívja meg a **ById()** metódust a számlaazonosítóval, majd hívja meg a **ById()** metódust, majd hívja meg a **Documents()** és a **Statement() metódusokat** a számlakivonat eléréséhez.  Végül hívja meg a **Get() vagy** **a GetAsync() metódust.**
 
 ``` csharp
 // IPartner scopedPartnerOperations;
@@ -39,32 +35,32 @@ Ha azonosító alapján szeretné beolvasni a számla bevételezési utasítás�
 var invoiceStatement = scopedPartnerOperations.Invoices.ById(selectedInvoiceId).Receipts.ById(selectedReceipt).Documents.Statement.Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSample **osztály**: GetInvoiceReceiptStatement.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSample **osztály:** GetInvoiceReceiptStatement.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                            |
 |---------|------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/receipts/{Receipt-ID}/Documents/Statement http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító}/receipts/{nyugtaazonosító}/documents/statement HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Használja a következő lekérdezési paramétert a számla bevételezési utasításának beolvasásához.
+Az alábbi lekérdezési paraméterrel lekérdezheti a számlakivonatot.
 
 | Név       | Típus   | Kötelező | Leírás                                                                                    |
 |------------|--------|-----------------------------------------------------------------------------------------------------------|
-| számlázási azonosító | sztring | Igen      | Az érték egy számlázási azonosító, amely lehetővé teszi, hogy a viszonteladó egy adott számla eredményét szűrje. |
-| nyugta – azonosító | sztring | Igen      | Az érték egy nyugtát azonosító, amely lehetővé teszi, hogy a viszonteladó szűrni lehessen egy adott számla nyugtáit. |
+| számlaazonosító | sztring | Igen      | Az érték egy számlaazonosító, amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla eredményeit. |
+| nyugta-azonosító | sztring | Igen      | Az érték egy nyugtaazonosító, amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla nyugtáit. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Nincs
+None
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -78,11 +74,11 @@ MS-CorrelationId: 57eb2ca7-755f-450f-9187-eae1e75a0114
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus egy PDF-streamet ad vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus egy PDF-streamet ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,37 +1,33 @@
 ---
 title: Szolgáltatáskérés frissítése
-description: Egy meglévő ügyfélszolgálati kérelem frissítése, amelyet a felhőalapú megoldás szolgáltatója a Microsoftnál az ügyfél nevében nyújtott be.
+description: Egy meglévő ügyfélszolgálati kérelem frissítése, Felhőszolgáltató az ügyfél nevében nyújtott be egy kérelmet a Microsoftnak.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: a1df0d1f5fa4630b346d1c8b9cffabb86ce34cfb
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: efa7b2a98b6f95a763ca6e3811c43cc655c18e2b
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768368"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530089"
 ---
 # <a name="update-a-service-request"></a>Szolgáltatáskérés frissítése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Egy meglévő ügyfélszolgálati kérelem frissítése, Felhőszolgáltató az ügyfél nevében nyújtott be egy kérelmet a Microsoftnak.
 
-Egy meglévő ügyfélszolgálati kérelem frissítése, amelyet a felhőalapú megoldás szolgáltatója a Microsoftnál az ügyfél nevében nyújtott be.
-
-A partner Center irányítópultján ezt a műveletet a [felhasználó kiválasztásával](get-a-customer-by-name.md)végezheti el. Ezután válassza a **Service Management** elemet a bal oldali oldalsávon. A **támogatási kérelmek** fejléc alatt válassza ki a szóban forgó szolgáltatási kérelmet. A befejezéshez végezze el a kívánt módosításokat a szolgáltatási kérelemben, majd válassza a **Küldés lehetőséget.**
+A Partnerközpont a művelet végrehajtásához először ki kell [választania egy ügyfelet.](get-a-customer-by-name.md) Ezután válassza a **Szolgáltatáskezelés lehetőséget** a bal oldali oldalsávon. A Támogatási **kérelmek fejléc alatt** válassza ki a kérdéses szolgáltatáskérést. A befejezéshez módosításokat kell végeznie a szolgáltatáskérésen, majd válassza a Küldés **lehetőséget.**
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy szolgáltatási kérelem azonosítója.
+- Egy szolgáltatáskérés-azonosító.
 
 ## <a name="c"></a>C\#
 
-Az ügyfél szolgáltatási kérelmének frissítéséhez hívja meg a [**IServiceRequestCollection. ById**](/dotnet/api/microsoft.store.partnercenter.servicerequests.iservicerequestcollection.byid) metódust a szolgáltatási kérelem azonosítójával, és adja vissza a szolgáltatáskérelem felületét. Ezután hívja meg a [**IServiceRequest. patch**](/dotnet/api/microsoft.store.partnercenter.servicerequests.iservicerequest.patch) vagy a [**PatchAsync**](/dotnet/api/microsoft.store.partnercenter.servicerequests.iservicerequest.patchasync) metódust a szolgáltatáskérelem frissítéséhez. A frissített értékek megadásához hozzon létre egy új, üres [**ServiceRequest**](/dotnet/api/microsoft.store.partnercenter.models.servicerequests.servicerequest) objektumot, és csak a módosítani kívánt tulajdonságértékek legyenek beállítva. Ezután adja át ezt az objektumot a patch vagy a PatchAsync metódus meghívásával.
+Az ügyfél szolgáltatáskérésének frissítéséhez hívja meg az [**IServiceRequestCollection.ById**](/dotnet/api/microsoft.store.partnercenter.servicerequests.iservicerequestcollection.byid) metódust a szolgáltatáskérés azonosítójával, hogy azonosítsa és visszaadja a szolgáltatáskérési felületet. Ezután hívja meg az [**IServiceRequest.Patch**](/dotnet/api/microsoft.store.partnercenter.servicerequests.iservicerequest.patch) vagy [**a PatchAsync**](/dotnet/api/microsoft.store.partnercenter.servicerequests.iservicerequest.patchasync) metódust a szolgáltatáskérés frissítéséhez. A frissített értékekhez hozzon létre egy új, üres [**ServiceRequest**](/dotnet/api/microsoft.store.partnercenter.models.servicerequests.servicerequest) objektumot, és csak a módosítani kívánt tulajdonságértékeket állítsa be. Ezután adja át ezt az objektumot a Patch vagy PatchAsync metódus hívásában.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -43,31 +39,31 @@ ServiceRequest updatedServiceRequest = partnerOperations.ServiceRequests.ById(ex
 });
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: UpdatePartnerServiceRequest.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **osztály:** UpdatePartnerServiceRequest.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus    | Kérés URI-ja                                                                                 |
 |-----------|---------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/servicerequests/{ServiceRequest-ID} http/1.1 |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/servicerequests/{servicerequest-id} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A szolgáltatási kérelem frissítéséhez használja a következő URI-paramétert.
+A szolgáltatáskérés frissítéséhez használja a következő URI-paramétert.
 
 | Név                  | Típus     | Kötelező | Leírás                                 |
 |-----------------------|----------|----------|---------------------------------------------|
-| **ServiceRequest-azonosító** | **guid** | Y        | A szolgáltatási kérelmet azonosító GUID. |
+| **servicerequest-id** | **guid** | Y        | A szolgáltatáskérést azonosító GUID. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem törzsének tartalmaznia kell egy [ServiceRequest](service-request-resources.md) -erőforrást. Az egyetlen szükséges érték a frissítendő.
+A kérelem törzsének tartalmaznia kell egy [ServiceRequest erőforrást.](service-request-resources.md) Az egyetlen kötelező érték a frissíthető érték.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -115,11 +111,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy **Szolgáltatáskérelem** -erőforrást ad vissza, amely frissített tulajdonságokkal rendelkezik a válasz törzsében.
+Ha a művelet sikeres, ez a metódus egy **szolgáltatáskérési** erőforrást ad vissza, amely frissített tulajdonságokkal rendelkezik a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

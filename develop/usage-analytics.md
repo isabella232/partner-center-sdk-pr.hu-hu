@@ -1,26 +1,21 @@
 ---
 title: Elemzés
-description: A partner Center SDK és az API-k segítségével programozott módon kérhet le analitikus információkat. További információkért tekintse meg az itt felsorolt cikkeket.
+description: Az adattitkos Partnerközpont SDK API-k használatával programozott módon is lekérheti az alagiai adatokat. További információt az itt felsorolt cikkekben talál.
 ms.date: 07/27/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: d779b749b318f1cfadbbcc46943c533c9635b994
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 503d00d9d4acf307cfa9fad86a322be2e8549b73
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767852"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530293"
 ---
 # <a name="analytics"></a>Elemzés
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A partner Center SDK és az API-k segítségével programozott módon kérhet le analitikus információkat. További információkért tekintse meg az itt felsorolt cikkeket:
+Az adattitkos Partnerközpont SDK API-k használatával programozott módon is lekérheti az alagiai adatokat. További információt az itt felsorolt cikkekben talál:
 
 - [Partnerközpont-elemzések – forrásanyagok](partner-center-analytics-resources.md)
 - [Az összes Azure-beli használatelemzési adat lekérése](get-all-azure-usage-analytics.md)

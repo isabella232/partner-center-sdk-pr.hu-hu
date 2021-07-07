@@ -1,30 +1,25 @@
 ---
 title: Segédprogramok
-description: Ez a szakasz azt ismerteti, hogy a partnerek hogyan használhatják a partner centert a segédprogram-függvények programozott kezeléséhez.
+description: Ez a szakasz azt ismerteti, hogy a partnerek milyen módokon Partnerközpont a segédfunkciók programozott kezelését.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: f1cbb2a1cc1f221c6a920695eb3455c5ed3b6dc1
-ms.sourcegitcommit: d53d300dc7fb01aeb4ef85bf2e3a6b80f868dc57
+ms.openlocfilehash: 3dfe08a727663902da11a662d7fca2601d65712e
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "97768219"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111529850"
 ---
 # <a name="utilities"></a>Segédprogramok
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Ez a szakasz ismerteti, hogy a partnerek hogyan használhatják a partner centert a segédprogram-függvények programozott kezeléséhez.
+Ez a szakasz azt ismerteti, hogy a partnerek hogyan Partnerközpont a segédfunkciók programozott kezeléséhez.
 
 - [Cím ellenőrzése](validate-an-address.md)
 - [Címformázási szabályok lekérése piac alapján](get-market-specific-validation-data.md)
 - [Tartomány rendelkezésre állásának ellenőrzése](verify-domain-availability.md)
 - [Ügyfélfiók törlése az integrációs tesztkörnyezetből](delete-a-customer-account-from-the-integration-sandbox.md)
 
-További információ: [forgatókönyvek](scenarios.md).
+További információ: [Forgatókönyvek.](scenarios.md)

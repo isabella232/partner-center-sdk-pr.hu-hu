@@ -1,38 +1,35 @@
 ---
-title: Közvetett viszonteladó Microsoft partneri szerződésének aláírása állapotának ellenőrzése
-description: A AgreementStatus API segítségével ellenőrizheti, hogy a közvetett viszonteladó aláírta-e a Microsoft partneri szerződést.
+title: Közvetett viszonteladó aláírási állapotának Microsoft Partnerszerződés ellenőrzése
+description: Az AgreementStatus API használatával ellenőrizheti, hogy egy közvetett viszonteladó írta-e alá a Microsoft Partnerszerződés.
 ms.date: 07/24/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: fa9480424eccc933bc9c28c3879a195fbd5f2bb1
-ms.sourcegitcommit: 717e483a6eec23607b4e31ddfaa3e2691f3043e6
+ms.openlocfilehash: f83acc61624a72354c390905b1250bc021dd39aa
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711895"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111529834"
 ---
-# <a name="verify-an-indirect-resellers-microsoft-partner-agreement-signing-status"></a>Közvetett viszonteladó Microsoft partneri szerződésének aláírása állapotának ellenőrzése
+# <a name="verify-an-indirect-resellers-microsoft-partner-agreement-signing-status"></a>Közvetett viszonteladó aláírási állapotának Microsoft Partnerszerződés ellenőrzése
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Ellenőrizheti, hogy a közvetett viszonteladó aláírta-e a Microsoft partneri szerződést a Microsoft Partner Network (MPN) azonosító (PGA/PLA) vagy a Cloud Solution Provider (CSP) bérlői azonosító (Microsoft ID) használatával. Ezen azonosítók egyikével ellenőrizhető a Microsoft partneri szerződés aláírása állapota a **AgreementStatus** API használatával.
+Ellenőrizheti, hogy egy közvetett viszonteladó írta-e alá a Microsoft Partnerszerződés-t az Microsoft Partner Network(MPN) azonosítójával (PGA/PLA) vagy Felhőszolgáltató (CSP) bérlőazonosítójával (Microsoft ID). Ezen azonosítók egyikének használatával ellenőrizheti a Microsoft Partnerszerződés állapotát az **AgreementStatus** API-val.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Az MPN-azonosító (PGA/PLA) vagy a közvetett viszonteladóhoz tartozó CSP-bérlő azonosítója (Microsoft-azonosító). *A két azonosító közül egyet kell használnia.*
+- A közvetett viszonteladó MPN-azonosítója (PGA/PLA) vagy CSP-bérlőazonosítója (Microsoft ID). *A két azonosító egyikét kell használnia.*
 
 ## <a name="c"></a>C\#
 
-Közvetett viszonteladói Microsoft partneri szerződés aláírási állapotának beszerzése:
+Közvetett viszonteladó Microsoft Partnerszerződés aláírási állapotának legyűjtése:
 
-1. A **IAggregatePartner. Compliance** gyűjtemény használatával hívja meg a **AgreementSignatureStatus** tulajdonságot.
+1. Az **AgreementSignatureStatus** tulajdonságot az **IAggregatePartner.Compliance** gyűjtemény használatával hívható meg.
 
-2. Hívja meg a [**Get ()**](/dotnet/api/microsoft.store.partnercenter.compliance.iagreementsignaturestatus.get) vagy a [**GetAsync ()**](/dotnet/api/microsoft.store.partnercenter.compliance.iagreementsignaturestatus.getasync) metódust.
+2. Hívja meg a [**Get() vagy**](/dotnet/api/microsoft.store.partnercenter.compliance.iagreementsignaturestatus.get) [**a GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.compliance.iagreementsignaturestatus.getasync)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -42,36 +39,36 @@ var agreementSignatureStatusByMpnId = partnerOperations.Compliance.AgreementSign
 var agreementSignatureStatusByTenantId = partnerOperations.Compliance.AgreementSignatureStatus.Get(tenantId: "Enter Tenant Id");
 ```
 
-- Minta: **[konzol tesztelési alkalmazás](console-test-app.md)**
-- Projekt: **PartnerCenterSDK. FeaturesSamples**
-- Osztály: **GetAgreementSignatureStatus. cs**
+- Minta: **[Konzoltesztalkalmazás](console-test-app.md)**
+- Project: **PartnerCenterSDK.FeaturesSamples**
+- Osztály: **GetAgreementSignatureStatus.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus | Kérés URI-ja |
 | ------ | ----------- |
-| **GET** | *[{baseURL}](partner-center-rest-urls.md)*/v1/Compliance/{ProgramName}/agreementstatus? mpnId = {mpnId} &tenantId = {tenantId} |
+| **Kap** | *[{baseURL}](partner-center-rest-urls.md)*/v1/compliance/{ProgramName}/agreementstatus?mpnId={MpnId}&tenantId={TenantId} |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-A partner azonosításához a következő két lekérdezési paraméter egyikét kell megadnia. Ha nem adja meg a két lekérdezési paraméter egyikét sem, a rendszer **400 (hibás kérés)** hibaüzenetet kap.
+A partner azonosításához meg kell adnia az alábbi két lekérdezési paraméter egyikét. Ha nem adja meg a két lekérdezési paraméter valamelyikét, **400-as (Hibás kérés) hibaüzenetet kap.**
 
 | Név | Típus | Kötelező | Leírás |
 | ---- | ---- | -------- | ----------- |
-| **MpnId** | int | No | A közvetett viszonteladót azonosító Microsoft Partner Network azonosító (PGA/PLA). |
-| **TenantId** | GUID | No | Egy Microsoft-azonosító, amely azonosítja a közvetett viszonteladó CSP-fiókját. |
+| **MpnId** | int | Nem | Egy Microsoft Partner Network (PGA/PLA) azonosító, amely azonosítja a közvetett viszonteladót. |
+| **TenantId (Bérlőazonosító)** | GUID | Nem | A közvetett viszonteladó CSP-fiókját azonosító Microsoft-azonosító. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partner Center Rest](headers.md).
+További információ: REST [Partnerközpont.](headers.md)
 
-### <a name="request-examples"></a>Példák kérése
+### <a name="request-examples"></a>Példák kérésre
 
-#### <a name="request-using-mpn-id-pgapla"></a>Kérelem az MPN-AZONOSÍTÓval (PGA/PLA)
+#### <a name="request-using-mpn-id-pgapla"></a>Kérés MPN-azonosítóval (PGA/PLA)
 
-A következő példa a közvetett viszonteladói Microsoft partneri szerződés aláírási állapotát a közvetett viszonteladó Microsoft Partner Network AZONOSÍTÓjának használatával kéri le.
+A következő példakérés a közvetett viszonteladó aláírási állapotát Microsoft Partnerszerződés le a közvetett viszonteladó Microsoft Partner Network azonosítójával.
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/compliance/csp/agreementstatus?mpnid=1234567 HTTP/1.1
@@ -83,9 +80,9 @@ X-Locale: en-US
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="request-using-csp-tenant-id"></a>A CSP-bérlő AZONOSÍTÓját használó kérelem
+#### <a name="request-using-csp-tenant-id"></a>Kérelem CSP-bérlőazonosító használatával
 
-A következő példa lekéri a közvetett viszonteladó Microsoft partneri szerződésének aláírása állapotát a közvetett viszonteladó CSP-bérlői AZONOSÍTÓjának (Microsoft ID) használatával.
+A következő példakérés lekérése a közvetett viszonteladó Microsoft Partnerszerződés aláírási állapotát a közvetett viszonteladó CSP-bérlőazonosítójának (Microsoft ID) használatával.
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/compliance/csp/agreementstatus?tenantId=a2898e3a-06ca-454e-a0d0-c73b0ee36bba HTTP/1.1
@@ -99,13 +96,13 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: a [partneri központ Rest-hibája](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hiba.](error-codes.md)
 
 ### <a name="response-example-success"></a>Válasz példa (sikeres)
 
-A következő példában szereplő válasz sikeresen visszaadja, hogy a közvetett viszonteladó aláírta-e a Microsoft partneri szerződést.
+Az alábbi példaválasz sikeresen visszaadja, hogy a közvetett viszonteladó írta-e alá a Microsoft Partnerszerződés.
 
 ```http
 HTTP/1.1 200 OK
@@ -122,13 +119,13 @@ Connection: close
 }
 ```
 
-### <a name="response-examples-failure"></a>Válasz példák (hiba)
+### <a name="response-examples-failure"></a>Példák válaszra (hiba)
 
-Az alábbi példákhoz hasonló válaszokat kaphat, ha nem lehet visszaadni a közvetett viszonteladó Microsoft partneri szerződésének aláírási állapotát.
+Előfordulhat, hogy az alábbi példákhoz hasonló válaszokat kap, ha a közvetett viszonteladói regisztráció aláírási állapota Microsoft Partnerszerződés nem lehet visszaadni.
 
-#### <a name="non-guid-formatted-csp-tenant-id"></a>Nem GUID formátumú CSP-bérlő azonosítója
+#### <a name="non-guid-formatted-csp-tenant-id"></a>Nem GUID formátumú CSP-bérlőazonosító
 
-Az alábbi példában szereplő válasz akkor ad vissza, ha az API-nak átadott CSP-bérlő azonosítója nem GUID.
+A következő példaválasz akkor lesz visszaadva, ha az API-nak átadott CSP-bérlőazonosító nem GUID.
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -150,7 +147,7 @@ Connection: close
 
 #### <a name="non-numeric-mpn-id"></a>Nem numerikus MPN-azonosító
 
-Az alábbi példában szereplő válasz akkor ad vissza, ha az API-nak átadott MPN-azonosító (PGA/PLA) nem numerikus.
+Az alábbi példaválasz akkor lesz visszaadva, ha az API-nak átadott MPN-azonosító (PGA/PLA) nem numerikus.
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -170,9 +167,9 @@ Connection: close
 }
 ```
 
-#### <a name="no-mpn-id-or-csp-tenant-id"></a>Nincs MPN-azonosító vagy CSP-bérlő azonosítója
+#### <a name="no-mpn-id-or-csp-tenant-id"></a>Nincs MPN-azonosító vagy CSP-bérlőazonosító
 
-Ha nem adott meg MPN-azonosítót (PGA/PLA) vagy CSP-bérlői azonosítót az API-nak, akkor a következő példa válaszát adja vissza. A két azonosító típus egyikét át kell adnia az API-nak.
+A következő példaválasz akkor lesz visszaadva, ha nem adott át MPN-azonosítót (PGA/PLA) vagy CSP-bérlőazonosítót az API-nak. A két azonosítótípus valamelyikét át kell adni az API-nak.
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -192,9 +189,9 @@ Connection: close
 }
 ```
 
-#### <a name="both-mpn-id-and-csp-tenant-id-passed"></a>Az MPN-azonosító és a CSP-bérlő azonosítója is át lett adva
+#### <a name="both-mpn-id-and-csp-tenant-id-passed"></a>Az MPN-azonosító és a CSP-bérlőazonosító is átadott
 
-Ha az MPN-azonosítót (PGA/PLA) és a CSP-bérlői azonosítót is átadja az API-nak, a következő példa érkezik. A két azonosító típusnak *csak az egyikét* kell átadnia az API-nak.
+Az alábbi példaválasz akkor lesz visszaadva, ha az MPN-azonosítót (PGA/PLA) és a CSP-bérlőazonosítót is átadhatja az API-nak. A két *azonosítótípus közül* csak egyet kell átadnia az API-nak.
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -214,9 +211,9 @@ Connection: close
 }
 ```
 
-#### <a name="csp-indirect-reseller-mpn-id-pgapla-is-either-invalid-or-not-migrated-from-partner-membership-center-to-partner-center"></a>A CSP közvetett viszonteladói MPN-azonosítója (PGA/PLA) vagy érvénytelen, vagy nem települ át a partneri tagsági központból a partner központba
+#### <a name="csp-indirect-reseller-mpn-id-pgapla-is-either-invalid-or-not-migrated-from-partner-membership-center-to-partner-center"></a>CSP Indirect Reseller MPN-azonosító (PGA/PLA) érvénytelen, vagy nem migrálható Partner Membership Center-ről Partnerközpont
 
-A következő példa akkor ad vissza választ, ha az átadott közvetett viszonteladói MPN-azonosító (PGA/PLA) érvénytelen, vagy a partneri tagsági központból nem a partner központba lett áttelepítve. [További információ](https://partner.microsoft.com/resources/detail/migrate-pmc-pc-mpa-guide-pptx)
+A következő példaválasz akkor ad vissza, ha a közvetett viszonteladó MPN-azonosítója (PGA/PLA) érvénytelen, vagy nem migrálva lett Partner Membership Center-ről Partnerközpont. [További információ](https://partner.microsoft.com/resources/detail/migrate-pmc-pc-mpa-guide-pptx)
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -238,9 +235,9 @@ Connection: close
 }
 ```
 
-#### <a name="csp-indirect-provider-region-and-csp-indirect-reseller-region-does-not-match"></a>A CSP közvetett szolgáltató régiója és a CSP közvetett viszonteladói régiója nem egyezik
+#### <a name="csp-indirect-provider-region-and-csp-indirect-reseller-region-does-not-match"></a>CSP Indirect Provider régió és CSP Indirect Reseller régió nem egyezik
 
-A következő példa akkor ad vissza választ, ha a közvetett viszonteladói MPN-azonosító (PGA/PLA) régiója nem egyezik a közvetett szolgáltató régiójával. [További](/partner-center/mpa-indirect-provider-faq) információ a CSP-régiókról.
+Az alábbi példaválasz akkor lesz visszaadva, ha a közvetett viszonteladó MPN-azonosítója (PGA/PLA) régiója nem egyezik meg a közvetett szolgáltató régiójával. [További információ a](/partner-center/mpa-indirect-provider-faq) CSP-régiókról.
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -262,9 +259,9 @@ Connection: close
 }
 ```
 
-#### <a name="csp-indirect-reseller-account-exists-in-partner-center-but-hasnt-signed-the-mpa"></a>A CSP közvetett viszonteladói fiókja létezik a partner Centerben, de nem írta alá az MPA-t
+#### <a name="csp-indirect-reseller-account-exists-in-partner-center-but-hasnt-signed-the-mpa"></a>CSP Indirect Reseller fiók létezik a Partnerközpont de még nem írta alá az MPA-t
 
-A következő példa válaszát adja vissza, ha a fiókpartner közvetett viszonteladói fiókja nem írta alá a MPA-t. [További információ](/partner-center/mpa-indirect-provider-faq)
+Az alábbi példaválasz akkor lesz visszaadva, CSP Indirect Reseller a Partnerközpont nem írta alá az MPA-t. [További információ](/partner-center/mpa-indirect-provider-faq)
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -286,9 +283,9 @@ Connection: close
 }
 ```
 
-#### <a name="no-csp-indirect-reseller-account-is-associated-with-the-given-mpn-id"></a>Nincs társítva CSP közvetett viszonteladói fiók a megadott MPN-AZONOSÍTÓhoz
+#### <a name="no-csp-indirect-reseller-account-is-associated-with-the-given-mpn-id"></a>Nincs CSP Indirect Reseller fiók társítva az adott MPN-azonosítóval
 
-A következő példa akkor ad vissza választ, ha a fiókpartner felismeri a kérelemben átadott MPN-azonosítót (PGA/PLA), de a megadott MPN-AZONOSÍTÓhoz (PGA/PLA) nincs társítva CSP-regisztráció. [További információ](/partner-center/mpa-indirect-provider-faq)
+A következő példaválaszt a rendszer akkor ad vissza, Partnerközpont a rendszer felismeri a kérésben átadott MPN-azonosítót (PGA/PLA), de az adott MPN-azonosítóhoz (PGA/PLA) nincs CSP-regisztráció társítva. [További információ](/partner-center/mpa-indirect-provider-faq)
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -310,9 +307,9 @@ Connection: close
 }
 ```
 
-#### <a name="invalid-tenant-id"></a>Érvénytelen a bérlő azonosítója
+#### <a name="invalid-tenant-id"></a>Érvénytelen bérlőazonosító
 
-Ha a fiókpartner nem talál olyan fiókot, amely a kérelemben átadott bérlői AZONOSÍTÓhoz tartozik, akkor a következő példa érkezik.
+A következő példaválasz akkor lesz visszaadva Partnerközpont nem található a kérésben átadott bérlőazonosítóhoz társított fiók.
 
 ```http
 HTTP/1.1 400 Bad Request
@@ -332,9 +329,9 @@ Connection: close
 }
 ```
 
-#### <a name="no-mpa-found-with-the-given-tenant-id"></a>Nem található a megadott bérlői AZONOSÍTÓval rendelkező MPA
+#### <a name="no-mpa-found-with-the-given-tenant-id"></a>Nem található MPA a megadott bérlőazonosítóval
 
-Ha a fiókpartner nem talál a megadott bérlői AZONOSÍTÓval rendelkező MPA-aláírást, akkor a következő példában szereplő válasz érkezik. [További információ](/partner-center/mpa-indirect-provider-faq)
+Az alábbi példaválasz akkor lesz visszaadva, Partnerközpont nem található MPA-aláírás a megadott bérlőazonosítóval. [További információ](/partner-center/mpa-indirect-provider-faq)
 
 ```http
 HTTP/1.1 400 Bad Request
