@@ -4,52 +4,48 @@ description: Bővítmény vásárlása meglévő előfizetéshez.
 ms.date: 11/29/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 975a2516bccdc6274bfec5d6a3286a649fc4f808
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: d8b700a2ad41a37ca0ad745f3e7767449974b18a
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768312"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111547682"
 ---
 # <a name="purchase-an-add-on-to-a-subscription"></a>Bővítmény vásárlása egy előfizetéshez
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud for US Government Partnerközpontja
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont a Microsoft Cloud for US Government
 
 Bővítmény vásárlása meglévő előfizetéshez.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-- Egy előfizetés-azonosító. Ezt a meglévő előfizetést kell megvásárolnia.
+- Egy előfizetés-azonosító. Ez az a meglévő előfizetés, amelyhez bővítményajánlatot szeretne vásárolni.
 
-- A megvásárolni kívánt bővítményt azonosító ajánlat azonosítója.
+- Egy ajánlatazonosító, amely azonosítja a vásárolható bővítményajánlatot.
 
-## <a name="purchasing-an-add-on-through-code"></a>Kiegészítő csomag megvásárlása kód használatával
+## <a name="purchasing-an-add-on-through-code"></a>Bővítmény vásárlása kóddal
 
-Ha hozzáad egy bővítményt egy előfizetéshez, az eredeti előfizetési rendelést a bővítmény sorrendjével frissíti. A következő példában a Vevőkód az ügyfél-azonosító, a subscriptionId az előfizetés azonosítója, a addOnOfferId pedig a bővítmény ajánlatának azonosítója.
+Amikor bővítményt vásárol egy előfizetéshez, az eredeti előfizetési rendelést a bővítmény rendelésével frissíti. A következőben a customerId az ügyfél azonosítója, a subscriptionId az előfizetés azonosítója, az addOnOfferId pedig a bővítmény ajánlatazonosítója.
 
 A lépések a következők:
 
-1.  Adapter beszerzése az előfizetés műveleteihez.
+1.  Felület lekérte az előfizetés műveleteihez.
 
     ``` csharp
     var subscriptionOperations = partnerOperations.Customers.ById(customerId).Subscriptions.ById(subscriptionId);
     ```
 
-2.  Használja ezt a felületet egy előfizetési objektum létrehozásához. Így megkapja a szülő-előfizetés részleteit, beleértve a megrendelés azonosítóját is.
+2.  Ezzel a felülettel példányosithat egy előfizetési objektumot. Ez lekérte a szülő-előfizetés adatait, beleértve a rendelés azonosítóját is.
 
     ``` csharp
     var parentSubscription = subscriptionOperations.Get();
     ```
 
-3.  Új [**megrendelési**](/dotnet/api/microsoft.store.partnercenter.models.orders.order) objektum létrehozása Ez a megrendelési példány az előfizetés megvásárlásához használt eredeti megrendelés frissítésére szolgál. Vegyen fel egy egysoros tételt a bővítményt jelölő sorrendbe.
+3.  Új Order objektum [**példányosodása.**](/dotnet/api/microsoft.store.partnercenter.models.orders.order) Ezzel a rendelési példánysal frissítheti az előfizetés megvásárlásához használt eredeti rendelést. Adjon hozzá egy egysoros elemet a bővítményt képviselő sorrendhez.
     ``` csharp
     var orderToUpdate = new Order()
     {
@@ -68,16 +64,16 @@ A lépések a következők:
     };
     ```
 
-4.  Frissítse az előfizetés eredeti sorrendjét a bővítmény új sorrendjével.
+4.  Frissítse az előfizetés eredeti rendelését a bővítmény új rendelésével.
     ``` csharp
     Order updatedOrder = partnerOperations.Customers.ById(customerId).Orders.ById(parentSubscription.OrderId).Patch(orderToUpdate);
     ```
 
 ## <a name="c"></a>C\#
 
-Egy bővítmény megvásárlásához először az [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust kell beszereznie az ügyfél-azonosítóval, és az [**előfizetések. ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódussal kell megadnia azt az előfizetést, amely a kiegészítő ajánlattal rendelkezik. Ezzel a [**csatolóval**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription) kérheti le az előfizetés részleteit a [**Get**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.get)utasítás meghívásával. Miért van szüksége az előfizetés részleteire? Mivel szüksége van az előfizetési rendeléshez tartozó Order ID azonosítóra. Ez a bővítmény frissítésének sorrendje.
+Bővítmény vásárlásához először szerezzen be egy felületet az előfizetési műveletekhez. Ehhez hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához, és a [**Subscriptions.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust a bővítményajánlattal kapcsolatos előfizetés azonosításához. Ezen a [**felületen**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription) lekérhetőek az előfizetés részletei a [**Get hívása segítségével.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.get) Az előfizetés részletei tartalmazzák az előfizetési rendelés rendelésazonosítóját, amely a bővítménysel frissíthető rendelés.
 
-Ezután hozza létre az új [**megrendelési**](/dotnet/api/microsoft.store.partnercenter.models.orders.order) objektumot, és töltse fel egyetlen [**LineItem**](/dotnet/api/microsoft.store.partnercenter.models.orders.orderlineitem) -példánnyal, amely tartalmazza a bővítmény azonosítására szolgáló adatokat, ahogy az a következő kódrészletben látható. Ezzel az új objektummal frissítheti az előfizetési sorrendet a bővítmény használatával. Végül hívja meg a [**patch**](/dotnet/api/microsoft.store.partnercenter.orders.iorder.patch) metódust az előfizetési sorrend frissítéséhez, miután először azonosítja az ügyfelet a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) és a Orders [**. ById**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.byid).
+Ezután példányosítsa az új [**Order**](/dotnet/api/microsoft.store.partnercenter.models.orders.order) objektumot, és töltse fel egyetlen [**LineItem**](/dotnet/api/microsoft.store.partnercenter.models.orders.orderlineitem) példáncával, amely tartalmazza a bővítmény azonosításához szükséges információkat, ahogyan az alábbi kódrészletben látható. Ezzel az új objektummal frissítheti az előfizetési rendelést a bővítmény használatával. Végül hívja meg a [**Patch**](/dotnet/api/microsoft.store.partnercenter.orders.iorder.patch) metódust az előfizetési rendelés frissítéséhez, miután először azonosította az ügyfelet az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) azonosítóval, a rendelést pedig [**az Orders.ById azonosítóval.**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.byid)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -113,55 +109,55 @@ var orderToUpdate = new Order()
 Order updatedOrder = partnerOperations.Customers.ById(customerId).Orders.ById(parentSubscription.OrderId).Patch(orderToUpdate);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: AddSubscriptionAddOn.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **osztály:** AddSubscriptionAddOn.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus    | Kérés URI-ja                                                                                              |
 |-----------|----------------------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Orders/{Order-ID} http/1.1 |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/orders/{rendelésazonosító} HTTP/1.1 |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-A következő paraméterek használatával azonosíthatja az ügyfelet és a sorrendet.
+A következő paraméterekkel azonosíthatja az ügyfelet és a megrendelést.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                        |
 |------------------------|----------|----------|------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító** , amely azonosítja az ügyfelet. |
-| **megrendelés azonosítója**           | **guid** | Y        | A sorrend azonosítója.                                                              |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely azonosítja az ügyfelet. |
+| **rendelésazonosító**           | **guid** | Y        | A rendelés azonosítója.                                                              |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A következő táblázatok a kérés törzsének tulajdonságait ismertetik.
+Az alábbi táblázatok a kérelem törzsében lévő tulajdonságokat ismertetik.
 
 ## <a name="order"></a>Sorrend
 
 | Név                | Típus             | Kötelező | Leírás                                          |
 |---------------------|------------------|----------|------------------------------------------------------|
-| Id                  | sztring           | N        | A megrendelés azonosítója.                                        |
-| ReferenceCustomerId | sztring           | Y        | Az ügyfél-azonosító.                                     |
-| Listaelemek           | objektumok tömbje | Y        | [OrderLineItem](#orderlineitem) objektumok tömbje. |
-| CreationDate        | sztring           | N        | A rendelés létrehozásának dátuma dátum-idő formátumban. |
-| Attribútumok          | object           | N        | A "objektumtípus": "Order" kifejezést tartalmazza.                      |
+| Id                  | sztring           | N        | A rendelés azonosítója.                                        |
+| ReferenceCustomerId (ReferenciacustomerId) | sztring           | Y        | Az ügyfél azonosítója.                                     |
+| Sorsorok           | objektumok tömbje | Y        | [OrderLineItem objektumok tömbje.](#orderlineitem) |
+| CreationDate (Létrehozás dátuma)        | sztring           | N        | A rendelés létrehozási dátuma, dátum-idő formátumban. |
+| Attribútumok          | object           | N        | Tartalmazza az "ObjectType": "Order" típust.                      |
 
-## <a name="orderlineitem"></a>OrderLineItem
+## <a name="orderlineitem"></a>OrderLineItem (Megrendelési vonal)
 
 | Név                 | Típus   | Kötelező | Leírás                                                  |
 |----------------------|--------|----------|--------------------------------------------------------------|
-| LineItemNumber       | szám | Y        | A sor elemének száma, a 0-tól kezdődően.                       |
-| OfferId              | sztring | Y        | A bővítmény ajánlatának azonosítója.                                  |
+| LineItemNumber (Sor száma)       | szám | Y        | A sorelem száma, 0-val kezdve.                       |
+| OfferId (Ajánlatazonosító)              | sztring | Y        | A bővítmény ajánlatazonosítója.                                  |
 | SubscriptionId       | sztring | N        | A megvásárolt bővítmény-előfizetés azonosítója.                 |
-| ParentSubscriptionId | sztring | Y        | Annak a szülő-előfizetésnek az azonosítója, amelyhez a kiegészítő ajánlat tartozik. |
-| FriendlyName         | sztring | N        | A sorhoz tartozó rövid név                        |
+| ParentSubscriptionId (Szülő-előíróazonosító) | sztring | Y        | Annak a szülő előfizetésnek az azonosítója, amely a bővítményajánlattal rendelkezik. |
+| FriendlyName (Rövid név)         | sztring | N        | A sorelem rövid neve.                        |
 | Mennyiség             | szám | Y        | A licencek száma.                                      |
-| PartnerIdOnRecord    | sztring | N        | A rekord partnerének MPN-azonosítója.                         |
-| Attribútumok           | object | N        | A "objektumtípus": "OrderLineItem" kifejezést tartalmazza.                      |
+| PartnerIdOnRecord    | sztring | N        | A rekordpartner MPN-azonosítója.                         |
+| Attribútumok           | object | N        | Tartalmazza az "ObjectType": "OrderLineItem" adatokat.                      |
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -202,11 +198,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus visszaadja a frissített előfizetés sorrendjét a válasz törzsében.
+Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza a frissített előfizetési sorrendet.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

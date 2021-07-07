@@ -1,38 +1,33 @@
 ---
 title: A partner hivatalos vállalkozási profiljának frissítése
-description: A partner jogi üzleti profiljának frissítése.
+description: A partner jogi profiljának frissítése.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: parthpandyaMSFT
 ms.author: parthp
-ms.openlocfilehash: 6c61b51ab0680e36daa99c11dc8e8c3506259d29
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: cb9f5815e0019c5e9b648dfd865e9752f0afdf05
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768275"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530327"
 ---
 # <a name="update-the-partner-legal-business-profile"></a>A partner hivatalos vállalkozási profiljának frissítése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A partner jogi üzleti profiljának frissítése.
+A partner jogi profiljának frissítése.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
-A partner jogi üzleti profil frissítéséhez először hozza létre a **LegalBusinessProfile** objektumot, és töltse fel azt a meglévő profillal. További információ: [a partner jogi üzleti profiljának beszerzése](get-legal-business-profile.md). Ezután frissítse a módosítani kívánt tulajdonságokat. A következő kódrészlet szemlélteti a címek és az elsődleges névjegyek telefonszámának módosítását.
+A partner jogi üzleti profiljának frissítéséhez először példányosítenie kell egy **LegalBusinessProfile** objektumot, és fel kell töltve a meglévő profillal. További információ: [Partner jogi profiljának lekérte.](get-legal-business-profile.md) Ezután frissítse a módosítani szükséges tulajdonságokat. Az alábbi példakód a cím és az elsődleges kapcsolattartási telefonszámok megváltoztatását mutatja be.
 
-Ezután szerezzen be egy felületet a partner profiljának műveleti gyűjteményéből a **IAggregatePartner. Profiles** tulajdonságból. Ezután a **LegalBusinessProfile** tulajdonság értékének lekérésével beolvashatja a jogi üzleti profil műveleteihez szükséges felületet. Végül hívja meg az [**Update**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.update) vagy a [**UpdateAsync**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.updateasync) metódust a módosított objektummal a profil frissítéséhez.
+Ezután szerezze be a partnerprofil műveleti gyűjteményének interfészét az **IAggregatePartner.Profiles tulajdonságból.** Ezután lekéri a **LegalBusinessProfile** tulajdonság értékét, hogy lekérje a jogi üzletiprofil-műveletek felületét. Végül hívja meg az [**Update**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.update) vagy [**az UpdateAsync**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.updateasync) metódust a módosított objektummal a profil frissítéséhez.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -47,17 +42,17 @@ legalBusinessProfile.PrimaryContact.PhoneNumber = "4255550110";
 var updatedLegalBusinessProfile = partnerOperations.Profiles.LegalBusinessProfile.Update(legalBusinessProfile);
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                    |
 |---------|--------------------------------------------------------------------------------|
-| **PUT** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Profiles/legalbusiness http/1.1 |
+| **PUT** | [*{baseURL}*](partner-center-rest-urls.md)/v1/profiles/legalbusiness HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -127,11 +122,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz törzse tartalmazza a frissített **LegalBusinessProfile**
+Ha a művelet sikeres, a válasz törzse tartalmazza a **frissített LegalBusinessProfile adatokat**
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 ### <a name="response-example"></a>Példa válaszra
 

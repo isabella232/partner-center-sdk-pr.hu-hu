@@ -6,36 +6,32 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 9131a1c4c37d07b1994b67379ec8361fda13a371
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: d086d7ba72c9d9e42dc88684ddeafc9a597bfd7c
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767747"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973383"
 ---
 # <a name="create-user-accounts-for-a-customer"></a>Felhasználói fiókok létrehozása egy ügyfélnél
-
-**A következőkre vonatkozik:**
-
-- Partnerközpont
 
 Hozzon létre egy új felhasználói fiókot az ügyfél számára.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Új felhasználói fiók beszerzése az ügyfél számára:
+Új felhasználói fiók beszerzése egy ügyfél számára:
 
-1. Hozzon létre egy új **CustomerUser** -objektumot a megfelelő felhasználói adatokkal.
+1. Hozzon létre egy **új CustomerUser** objektumot a megfelelő felhasználói adatokkal.
 
-2. Használja a **IAggregatePartner. Customers** gyűjteményt, és hívja meg a **ById ()** metódust.
+2. Használja az **IAggregatePartner.Customers gyűjteményt,** és hívja meg a **ById() metódust.**
 
-3. Hívja meg a **Users (felhasználók** ) tulajdonságot, amelyet a **create** metódus követ.
+3. Hívja meg **a Users tulajdonságot,** majd a **Create metódust.**
 
 ``` csharp
 // string selectedCustomerId;
@@ -55,28 +51,28 @@ var userToCreate = new CustomerUser()
 User createdUser = partnerOperations.Customers.ById(selectedCustomerId).Users.Create(userToCreate);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSamples **osztály**: CustomerUserCreate.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSamples **osztály:** CustomerUserCreate.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus   | Kérés URI-ja                                                                                  |
 |----------|----------------------------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Users http/1.1 |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/users HTTP/1.1 |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-A megfelelő ügyfél azonosításához használja a következő lekérdezési paramétereket.
+Az alábbi lekérdezési paraméterekkel azonosíthatja a megfelelő ügyfelet.
 
 | Név | Típus | Kötelező | Leírás |
 |----- |----- | -------- |------------ |
-| **ügyfél – bérlő – azonosító** | **guid** | Y | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító**. Lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti. |
-| **felhasználói azonosító** | **guid** | N | Az érték egy olyan GUID formátumú **felhasználói azonosító** , amely egyetlen felhasználói fiókhoz tartozik. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító.** Lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfélre szűrje az eredményeket. |
+| **felhasználóazonosító** | **guid** | N | Az érték egy GUID formátumú felhasználói **azonosító,** amely egyetlen felhasználói fiókhoz tartozik. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -109,11 +105,11 @@ MS-CorrelationId: 8a53b025-d5be-4d98-ab20-229d1813de76
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus egy felhasználói fiókot ad vissza, beleértve a GUID azonosítót is.
+Sikeres művelet esetén ez a metódus egy felhasználói fiókot ad vissza, a GUID azonosítóval együtt.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

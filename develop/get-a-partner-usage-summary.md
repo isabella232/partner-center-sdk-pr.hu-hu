@@ -1,41 +1,37 @@
 ---
-title: Egy partner használati összegzésének beolvasása
-description: A PartnerUsageSummary-erőforrás használatával lekérheti az összes olyan ügyfél partneri használati összefoglalását, amely az aktuális számlázási időszakban megvásárolt egy adott Azure-szolgáltatást vagy erőforrást.
+title: Egy partner használati összegzésének lekért táblázata
+description: A PartnerUsageSummary erőforrás használatával lekértheti az összes olyan ügyfél partnerhasználati összegzését, aki adott Azure-szolgáltatást vagy -erőforrást vásárolt az aktuális számlázási időszakban.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: ba1885f46043a75274595239fe61ce3ef0998acf
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: f003980f1b521ad0ac26dbfd0d4821b9096fdd27
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767899"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111873904"
 ---
-# <a name="get-a-usage-summary-for-a-partner"></a>Egy partner használati összegzésének beolvasása
+# <a name="get-a-usage-summary-for-a-partner"></a>Egy partner használati összegzésének lekért táblázata
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+A **PartnerUsageSummary** erőforrással lekért partneri használati összegzést kaphat az összes olyan ügyfélről, aki adott Azure-szolgáltatást vagy -erőforrást vásárolt az aktuális számlázási időszakban.
 
-A **PartnerUsageSummary** -erőforrás használatával lekérheti az összes olyan ügyfél partneri használati összefoglalását, amely az aktuális számlázási időszakban megvásárolt egy adott Azure-szolgáltatást vagy erőforrást.
-
-*Az API által visszaadott összeg nem adja vissza az Azure-csomaggal rendelkező ügyfelek felhasználását.* A jövőben várhatóan elavulttá válik.
+*Az API által visszaadott összeg nem adja vissza az Azure-csomaghoz használó ügyfelek fogyasztását.* A jövőben elalasztást tervezünk.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
-Az adott Azure-szolgáltatást vagy-erőforrást az aktuális számlázási időszak alatt megvásárolt összes ügyfél használati összegzésének lekéréséhez:
+Az adott Azure-szolgáltatást vagy -erőforrást az aktuális számlázási időszakban megvásárolt összes ügyfél használati összegzésének lekérte:
 
-1. Használja a **IAggregatePartner**.
+1. Használja az **IAggregatePartnert.**
 
-2. Hívja meg a **UsageSummary** tulajdonságot, amelyet a **Get ()** vagy a **GetAsync ()** metódus követ:
+2. Hívja meg **a UsageSummary** tulajdonságot, majd a **Get() vagy** **a GetAsync() metódust:**
 
     ``` csharp
     // IAggregatePartner partnerOperations;
@@ -45,21 +41,21 @@ Az adott Azure-szolgáltatást vagy-erőforrást az aktuális számlázási idő
 
 Példaként tekintse meg a következőket:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **PartnerSDK. FeatureSamples**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **PartnerSDK.FeatureSamples**
 - Osztály: **GetPartnerUsageSummary.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                         |
 |---------|---------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/usagesummary http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/usagesummary HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -77,11 +73,11 @@ MS-CorrelationId: 47c36033-af5d-4457-80a4-512c1626fac4
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy **PartnerUsageSummary** -erőforrást ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy **PartnerUsageSummary** erőforrást ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek beolvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be ezt a kódot, a hiba típusát és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

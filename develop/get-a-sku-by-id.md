@@ -1,37 +1,33 @@
 ---
 title: Egy termékváltozat lekérése azonosító alapján
-description: Beolvas egy SKU-t a megadott termékhez a megadott SKU-azonosító használatával.
+description: Lekért egy termékváltozatot a megadott termékváltozat-azonosítóval.
 ms.date: 01/08/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 54ef72413d2d2b9e7154e82e4bbdd7427a79a2dd
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 9516a87a438a0a84a6f6069c1f9b2a2e97e90fba
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767935"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111873853"
 ---
 # <a name="get-a-sku-by-id"></a>Egy termékváltozat lekérése azonosító alapján
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-Beolvas egy SKU-t a megadott termékhez a megadott SKU-azonosító használatával.
+Lekért egy termékváltozatot a megadott termékváltozat-azonosítóval.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- A termék azonosítója.
+- Egy termékazonosító.
 
-- SKU-AZONOSÍTÓ.
+- Egy termékváltozat-azonosító.
 
 ## <a name="c"></a>C\#
 
-Egy adott SKU részleteinek beszerzéséhez először kövesse a [termék beolvasása azonosító](get-a-product-by-id.md) alapján az adott termék műveleteinek felületét. Az eredményül kapott felületen válassza a **SKU** tulajdonságot, hogy beszerezze a csatolót az SKU-hoz elérhető műveletekkel. Adja át az SKU AZONOSÍTÓját a **ById ()** metódusnak, és hívja a **Get ()** vagy a **GetAsync ()** függvényt az SKU részleteinek lekéréséhez.
+Egy adott termékváltozat részleteinek lekért lépéseit [](get-a-product-by-id.md) a Termék lekérte azonosító alapján lépéseit követve szerezze be az adott termék műveleteihez szükséges felületet. Az eredményül kapott felületen válassza a **Skus (Skus)** tulajdonságot a rendelkezésre álló SKUs-műveletekkel való interfész beszerzéséhez. Adja át a termékváltozat azonosítóját a **ById()** metódusnak, és hívja meg a **Get()** vagy **a GetAsync()** metódust a termékváltozat részleteinek lekéréshez.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -43,27 +39,27 @@ string skuId;
 var sku = partnerOperations.Products.ByCountry(countryCode).ById(productId).Skus.ById(skuId).Get();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                         |
 |---------|---------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Products/{Product-ID}/SKUs/{SKU-ID}? ország = {országkód} http/1.1   |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/termékváltozatok/{termékváltozat}?country={országkód} HTTP/1.1   |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A következő elérési út és lekérdezési paraméterek használatával szerezzen be egy SKU-t a megadott termékhez a megadott SKU-azonosító használatával.
+Az alábbi elérési út és lekérdezési paraméterek használatával lekérdezheti a megadott termékváltozatot a megadott termékváltozat-azonosítóval.
 
 | Név                   | Típus     | Kötelező | Leírás                                                     |
 |------------------------|----------|----------|-----------------------------------------------------------------|
-| termék azonosítója             | sztring   | Igen      | A terméket azonosító karakterlánc.                           |
-| SKU-azonosító                 | sztring   | Igen      | Egy karakterlánc, amely azonosítja az SKU-t.                               |
-| országkód           | sztring   | Igen      | Ország/régió azonosítója.                                            |
+| termékazonosító             | sztring   | Igen      | A terméket azonosító sztring.                           |
+| sku-id                 | sztring   | Igen      | A termékváltozatot azonosító sztring.                               |
+| országkód           | sztring   | Igen      | Egy ország-/régióazonosító.                                            |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -85,18 +81,18 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse [SKU](product-resources.md#sku) -erőforrást tartalmaz.
+Ha a művelet sikeres, a válasz törzse tartalmaz [egy SKU-erőforrást.](product-resources.md#sku)
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
 | HTTP-állapotkód     | Hibakód   | Leírás                                                                                               |
 |----------------------|--------------|-----------------------------------------------------------------------------------------------------------|
 | 404                  | 400013       | A termék nem található.                                                                                    |
-| 404                  | 400018       | Az SKU nem található.                                                                                        |
+| 404                  | 400018       | A termékváltozat nem található.                                                                                        |
 
 ### <a name="response-example"></a>Példa válaszra
 

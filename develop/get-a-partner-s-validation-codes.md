@@ -1,39 +1,35 @@
 ---
-title: A partner kormányzati közösségi felhő-ellenőrzési kódjainak beszerzése
-description: A partner kormányzati közösségi felhő-ellenőrzési kódjának beszerzése.
+title: Partner ellenőrzőkódok Government Community Cloud le
+description: Hogyan lehet lekérte a partnerek Government Community Cloud ellenőrző kódjait.
 ms.date: 11/08/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khakiali
 ms.author: alikhaki
-ms.openlocfilehash: d84a3d3c69d835e42565c4e6f1edb06ab338340a
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 04bccf587628337004a5825b534048945f791839
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768064"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111873870"
 ---
 # <a name="get-a-partners-validation-codes"></a>Egy partner ellenőrzési kódjainak lekérése
 
-**A következőkre vonatkozik**
+Ez a cikk bemutatja, hogyan gyűjti be egy partner Government Community Cloud érvényesítési kódjait. Az ügyfél kormányzati közösségi felhőben való létrehozásához érvényesítési kód szükséges.
 
-- Partnerközpont
-
-Hogyan szerezhet be egy partner kormányzati közösségi felhő-ellenőrzési kódjait. Egy érvényesítési kódnak kell lennie ahhoz, hogy ügyfelet hozzon létre a kormányzati közösségi felhőben.
-
-Ha szeretné, hogy a szervezete vagy az ügyfelek szervezete számára engedélyezett legyen az Office 365 Government GCC a CSP-hez, tekintse meg a következőt: [Office 365 Government GCC for CSP partner és ügyfél jogosultsági feltételei/partner-központ/CSP-GCC-validate).
+Ha érdekli, hogy szervezete vagy ügyfele szervezete jogosult-e Office 365 Kormányzati verzió GCC CSP használatára, tekintse meg az Office 365 Kormányzati verzió GCC CSP-partnerre és ügyfélre vonatkozó [jogosultsági feltételeket.](/partner-center/csp-gcc-validate)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Ellenőrzés megerősítése az űrlap kitöltése után [itt](https://products.office.com/government/eligibility-validation?ReqType=CSPPartner).
+- Megerősítést nyert az ellenőrzés az űrlap kitöltése [után itt.](https://products.office.com/government/eligibility-validation?ReqType=CSPPartner)
 
-- Az ügyfél minősítés nélkül.
+- Egy minősítéssel nem rendelkező ügyfél.
 
 ## <a name="c"></a>C\#
 
-A partner összes érvényesítési kódjának listájának lekéréséhez hívja meg a **GetValidationCodes**.
+Egy partner érvényesítési kódjai listájának lehívásához hívja meg a **GetValidationCodes kódot.**
 
 ``` csharp
 // create the partner operations
@@ -42,17 +38,17 @@ IAggregatePartner partnerOperations = PartnerService.Instance.CreatePartnerOpera
 var gccValidations = partnerOperations.Validations.GetValidationCodes();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                          |
 |---------|------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/all/validations http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/all/validations HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -70,11 +66,11 @@ MS-RequestId: 7266f5f6-30ca-4672-9eb6-6c9d6dd0e9d3
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus a válasz törzsében lévő [**ValidationCode**](utility-resources.md#validationcode) -erőforrások listáját adja vissza.
+Ha a művelet sikeres, ez a metódus a válasz törzsében található [**ValidationCode**](utility-resources.md#validationcode) erőforrások listáját adja vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

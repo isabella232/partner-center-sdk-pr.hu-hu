@@ -1,52 +1,47 @@
 ---
 title: Csatlakozzon a Partnerközpont API és az SDK korai felhasználói programjához
-description: A partnerek együttműködnek a Microsofttal a partneri funkciók és képességek fejlesztése terén.
+description: A partnerek együttműködhetnek a Microsofttal a partneri funkciók és képességek fejlesztésében.
 ms.date: 06/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 62770ea695f63e1be7dbd624f1239286620a6432
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 8bb46a84aaab41b8e65376ce580a40ce4bc1d188
+ms.sourcegitcommit: d20e7d572fee09a83a4b23a92da7ff09cfebe75a
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767988"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111906377"
 ---
 # <a name="join-the-partner-center-api-and-sdk-early-adopter-program"></a>Csatlakozzon a Partnerközpont API és az SDK korai felhasználói programjához
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+A partnerek együttműködhetnek a Microsofttal a Partnerközpont API- és SDK-funkciók és -képességek fejlesztésében.
 
-A partnerek együttműködnek a Microsofttal a partner Center API és az SDK funkcióinak és képességeinek fejlesztésében.
+## <a name="program-features"></a>Program funkciói
 
-## <a name="program-features"></a>Program szolgáltatásai
+A következő funkciók érhetők el az Partnerközpont API-hoz és az SDK korai befogadó programhoz csatlakozó partnerek számára:
 
-A következő funkciók érhetők el a partner Center API-hoz és az SDK korai bevezetési programhoz csatlakozó partnereink számára:
+- **Hozzáférés az Partnerközpont** API-k és az SDK előzetes verzióihoz: új funkciókat és képességeket jelentünk be a private Partnerközpont Early Adopter Program Yammer számára.
 
-- **Hozzáférés a partner Center API-k és az SDK előzetes verzióihoz**: új funkciók és képességek jelennek meg a Private partner Center korai alkalmazó program Yammer csoportjában.
+- **Havi webináriumok:** Havi webináriumot folytatunk a korai támogatók számára, hogy megválaszolják a kérdéseket, visszajelzéseket gyűjtsenek, ütemterveket és ütemterveket osszanak meg, és támogatást nyújtson az új funkciókhoz.
 
-- **Havi webes előadások**: a korai örökbefogadók havi webes előadása a kérdések megválaszolásához, visszajelzések összegyűjtéséhez, ütemezések és időkeretek megosztásához, valamint az új funkciók támogatásához nyújt segítséget.
-
-- **Támogatás a tárgyi szakértőktől**: a résztvevők visszajelzéseket küldhetnek, és a privát Yammer csoporton keresztül kommunikálhatnak a tulajdonosi szakértőkkel (KKV-kkal).
+- **Támogatás a szakértőktől:** a résztvevők visszajelzést adhatnak, és kommunikálhatnak a magánhálózati csoportban lévő Yammer szakértőkkel.
 
 ## <a name="join-the-program"></a>Csatlakozás a programhoz
 
-A programhoz való csatlakozáshoz **meglévő CSP-partnernek** vagy **jóváhagyott platform-gyártónak** kell lennie.
+A programhoz való csatlakozáshoz **meglévő CSP-partnernek** vagy jóváhagyott **platformszolgáltatónak** kell lennie.
 
-1. **Csatlakozzon a Yammer Group** [partner Center korai örökbefogadó programjához](https://www.yammer.com/cloudpartnercommunity/#/threads/inGroup?type=in_group&feedId=5944712&view=all). Időbe telik az alkalmazás áttekintése. E-mailben küldünk Önnek, amikor jóváhagyta a csoporthoz való csatlakozást.
+1. **Csatlakozzon a Yammer csoporthoz** [Partnerközpont Korai befogadó programhoz.](https://www.yammer.com/cloudpartnercommunity/#/threads/inGroup?type=in_group&feedId=5944712&view=all) Az alkalmazás áttekintése némi időt vehet el tőlünk. E-mailben értesítjük, ha jóváhagyták a csoporthoz való csatlakozást.
 
    > [!NOTE]
-   > Előfordulhat, hogy csatlakoznia kell a Microsoft Cloud Yammer közösségi hálózathoz, mielőtt csatlakoztatni tudja a partner Center korai bevezetési programjának Yammer csoportját.
+   > Előfordulhat, hogy csatlakoznia kell a Microsoft Cloud Yammer Community hálózatához, mielőtt csatlakozna a Partnerközpont Korai betöltőprogramja programhoz Yammer csoporthoz.
 
-2. **E-mail küldése a [pctap@microsoft.com](mailto:pctap@microsoft.com)** következőnek a Microsoft-azonosítójával vagy a Tipptel (éles környezetben végzett teszteléssel) és az elsődleges tartománnyal.
+2. **E-mail [pctap@microsoft.com](mailto:pctap@microsoft.com) küldése a címre** a Microsoft ID-val vagy a TiP (Tesztelés éles környezetben) tesztfiókkal és az elsődleges tartománnyal.
 
    > [!TIP]
-   > A Microsoft ID-t a **Fiókbeállítások** menüben, a **szervezeti profil** lapon találja.
+   > Microsoft-azonosítóját a Fiók  menü Szervezeti profil lapján Gépház **találja.**
 
-3. **Aktívan részt vehet** a programban az új funkciók korai, a Microsofttal való részvétel és a visszajelzések megadásával. A korai alkalmazó Közösségen belül másokkal is részt vehet.
+3. **Aktívan részt vehet** a programban azáltal, hogy korán teszteli az új funkciókat, kapcsolatba hoz a Microsofttal, és visszajelzést ad. Legyen aktív másokkal a korai befogadó közösségben.
 
    > [!IMPORTANT]
-   > A Microsoft fenntartja a jogot, hogy eltávolítsa az inaktív partnereket a programból.
+   > A Microsoft fenntartja a jogot az inaktív partnerek eltávolítására a programból.

@@ -1,102 +1,98 @@
 ---
 title: CSP-ügyfél – áruházkészítő – első lépések
-description: Hozzon létre egy online piactért a Cloud Solution Provider (CSP) ajánlatok értékesítéséhez a CSP Customer kirakat-készítő használatával.
+description: Hozzon létre egy online piacteret a felhőszolgáltatói (CSP-) ajánlatok a CSP Customer Storefront Builder használatával való értékesítéshez.
 ms.date: 05/29/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 83ae0c789f95485ec3eb272434e57421a8f93fb6
-ms.sourcegitcommit: 970031473b2e8cd3d08c6c097949c057a51df3ef
+ms.openlocfilehash: 8550492c7a4201a955c7b051b453103628612f3e
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "99505322"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111973349"
 ---
 # <a name="csp-customer-storefront-builder-quick-start-guide"></a>CSP-ügyfél – áruházkészítő – első lépések
 
-**A következőkre vonatkozik:**
+Hozzon létre egy online piacteret a felhőszolgáltatói (CSP-) ajánlatok a CSP Customer Storefront Builder használatával való értékesítéshez.
 
-- Partnerközpont
+## <a name="introduction-to-the-csp-customer-storefront-builder"></a>A CSP Customer Storefront Builder bemutatása
 
-Hozzon létre egy online piactért a Cloud Solution Provider (CSP) ajánlatok értékesítéséhez a CSP Customer kirakat-készítő használatával.
+A CSP Customer Storefront Builder segítségével a partnerek könnyedén létrehozhatnak egy online piacteret, ahol CSP-ajánlatokat értékesíthet az ügyfeleiknek. A legtöbb partner és kis értékesítési szervezet az értékesítésre szeretne összpontosítani egy online piactér fejlesztése helyett. A Partnerközpont SDK mintaalkalmazás szoftverfejlesztői készségeket igényel egy webhely létrehozásához és üzembe helyezéséhez. A CSP Customer Storefront Builder segítségével gyorsan és egyszerűen hozhat létre saját webhelyet. A webhelyet mintakódként is letöltheti, vagy közvetlenül üzembe helyezheti az Azure-előfizetésében egy Tranzakcióra kész webalkalmazással.
 
-## <a name="introduction-to-the-csp-customer-storefront-builder"></a>A CSP Customer kirakat-készítő bemutatása
+Ez a webhely teljes mértékben a partnerek tulajdonában áll, támogatott és karbantartott, és a Microsoft nem gyűjt adatokat vagy telemetriai adatokat a webhelyről. A CSP Customer Storefront Builder létrehoz egy webhelyet a partner számára, amely teljes mértékben megfelel a [Payment Card Industry Data Security Standard](https://www.pcisecuritystandards.org/) (PCI DSS).
 
-A CSP Customer Builder-szerkesztő segítségével a partnereink könnyedén létrehozhatnak egy online piactért a CSP-ajánlatok ügyfeleknek való értékesítéséhez. A legtöbb partner és kisméretű értékesítő szervezet nem az online piactér fejlesztése helyett az értékesítésre koncentrálhat. A partner Center SDK-beli alkalmazásnak a webhelyek létrehozásához és üzembe helyezéséhez szoftverfejlesztői ismeretekre van szüksége. A CSP Customer kirakat-készítő használatával gyorsan és egyszerűen létrehozhatja saját webhelyét. A webhelyet mintakódként is letöltheti, vagy közvetlenül is üzembe helyezheti az Azure-előfizetését, és készen áll a Transact webhelyre.
-
-Ez a webhely a partnerek teljes tulajdonú, támogatott és karbantartott, és a Microsoft nem gyűjt adatokat és telemetria a webhelyről. A CSP Customer kirakat-készítő létrehoz egy webhelyet a partnernek, amely teljes mértékben megfelel a [Payment Card Industry adatbiztonsági szabványának](https://www.pcisecuritystandards.org/) (PCI DSS).
-
-A CSP Customer kirakat-készítő kódja a [partner Center SDK EULA](/legal/partner-center/eula-partner-center-sdk)-ban elérhető licenc hatálya alá esik.
+A CSP Customer Storefront Builder kódja a következő licencszerződésben Partnerközpont SDK [vonatkozik.](/legal/partner-center/eula-partner-center-sdk)
 
 >[!NOTE]
->Ön felelős a kirakati webhelyek kezelésével, karbantartásával és a webhelyek létrehozásával kapcsolatos esetleges problémákkal. Olvassa el és Ismerje meg a [partner Center SDK EULA](/legal/partner-center/eula-partner-center-sdk)-ban szereplő feltételeket.
+>Ön felelős az áruházi webhely kezeléséért, karbantartásáért, valamint a webhely létrehozásából eredő problémákért. Olvassa el és értse meg a jelen Partnerközpont SDK [EULA-ban.](/legal/partner-center/eula-partner-center-sdk)
 
-További információkat a következő cikkekben talál: [CSP Customer web kirakat](csp-customer-web-storefront.md) és [Console test app](console-test-app.md).
+További információkért tekintse meg a következő cikkeket is: [CSP-ügyfél webáruháza és](csp-customer-web-storefront.md) [konzoltesztelő alkalmazás.](console-test-app.md)
 
 ## <a name="considerations"></a>Megfontolandó szempontok
 
-A CSP Customer kirakat-készítő célja a webhelyek létrehozásának gyors módja. A tervezés során a következő szempontokat kell figyelembe vennie:
+A CSP Customer Storefront Builder egy webhely gyors létrehozására szolgál. A tervezés során vegye figyelembe az alábbi szempontokat:
 
-- Az üzembe helyezést követően a Microsoft és a partner Center nem őrzi meg a partner webhelyének másolatát, illetve a CSP Customer kirakat-szerkesztőben hozzáadott adatokat.
+- Az üzembe helyezést Partnerközpont Microsoft és a microsoft nem tartja karban a partner webhelyének másolatát vagy a CSP Customer Storefront Builderhez hozzáadott adatokat.
 
-- A partner Center csak a CSP Customer kirakatok webhelyét helyezheti üzembe egy partner Azure-előfizetésében.
+- Partnerközpont csp ügyfél-áruház webhelyet csak egy partner Azure-előfizetésében helyezhet üzembe.
 
-- A webhely üzembe helyezése után a partner teljes mértékben tulajdonosa és felügyeli. A Microsoft nem fér hozzá ehhez a webhelyhez vagy a webhelyhez kapcsolódó bármilyen adathoz. A partnerek felelősek a webhely karbantartásával és felügyeletével kapcsolatban. A Microsoft nem biztosít élő webhelyeket vagy más, a CSP Customer kirakat-készítővel vagy a CSP-vel létrehozott webhelyekkel kapcsolatos egyéb támogatást.
+- Az üzembe helyezés után ez a webhely teljes mértékben a partner tulajdonában van, és a partner kezeli. A Microsoft nem rendelkezik hozzáféréssel ehhez a webhelyhez vagy a webhelyhez kapcsolódó adatokhoz. A partnerek felelnek a webhely karbantartásáért és kezeléséért. A Microsoft nem biztosít semmilyen élő webhelyet vagy egyéb támogatást a CSP Customer Storefront Builderrel vagy a CSP Customer Storefront Builderrel létrehozott webhelyekkel kapcsolatban.
 
-- A partner Center nem tud közvetlenül hozzáférni vagy frissíteni a webhelyet új vagy módosított SDK-vagy API-funkciókkal. Minden új funkciónak vagy fejlesztésnek a partnereknek kell lennie, fejlesztenie és kezelnie kell, beleértve az új partner Center SDK vagy API-funkciók hozzáadását.
+- Partnerközpont nem tudja közvetlenül elérni vagy frissíteni ezt a webhelyet az új vagy módosított SDK- vagy API-funkciókkal. Minden új funkciót vagy fejlesztést a partnereknek kell birtokolni, fejleszteniük és kezelniük, beleértve az új funkciók Partnerközpont SDK API-funkciókat.
 
-- A CSP Customer kirakat-készítő jelenleg lehetőséget biztosít a PayPal Pro/PayU Money (India) fiókhoz való fizetés konfigurálására. Ha a partnereknek módosítaniuk kell a fizetési processzort, módosítaniuk kell a kódot, hogy támogassák az előnyben részesített fizetési módot.
+- Ez a CSP Customer Storefront Builder jelenleg lehetővé teszi egy PayPal Pro/payU money (for India) fiókra történő fizetés konfigurálását. Ha a partnereknek módosítaniuk kell a fizetési feldolgozót, módosítaniuk kell a kódot, hogy támogassák az előnyben részesített fizetési módot.
 
-- A CSP Customer kirakatban hozzáadott fizetéssel kapcsolatos információk nem tárolódnak és nem maradnak meg a partner Centerben.
+- A CSP Customer Storefront Builderben hozzáadott fizetéssel kapcsolatos információkat a rendszer nem tárolja és nem tartja Partnerközpont.
 
-- A PayPal-fizetési konfiguráció minden olyan földrajzi helyen működni fog, ahol a PayPal elérhető. A PayPal rendelkezésre állását és támogatását kizárólag a PayPal vezérli, és a PayPal bármikor megszüntethető.
+- PayPal fizetési konfiguráció minden olyan földrajzi helyen működik, ahol PayPal van. PayPal rendelkezésre állás és támogatás kizárólag a PayPal szabályozható, és a szolgáltatás bármikor megszüntetheti PayPal.
 
-- A PayU-fizetési konfiguráció csak Indiában működik. A PayU rendelkezésre állását és támogatását kizárólag a PayU vezérli, és a PayU bármikor megszüntethető.
+- A payU fizetési konfiguráció jelenleg csak Indiában működik. A PayU rendelkezésre állását és támogatását kizárólag a PayU vezérli, és a PayU bármikor megszüntetheti.
 
-- Olvassa el és Ismerje meg a [partner Center SDK EULA](/legal/partner-center/eula-partner-center-sdk)-ban szereplő feltételeket.
+- Olvassa el és értse meg a jelen Partnerközpont SDK [EULA-ban.](/legal/partner-center/eula-partner-center-sdk)
 
-## <a name="using-the-csp-customer-storefront-builder"></a>A CSP Customer kirakat-készítő használata
+## <a name="using-the-csp-customer-storefront-builder"></a>A CSP Customer Storefront Builder használata
 
-A partner Centerben lévő CSP-partneri rendszergazdák közvetlenül a partnervállalat központból telepíthetik a CSP-ügyfelet. Minimális erőfeszítéssel új webhely helyezhető üzembe a partner bérlője számára. A üzembe helyezést követően a partnerek a webhely használatával konfigurálhatják a branding, az ajánlatokat és a fizetéssel kapcsolatos információkat, majd megoszthatják a webhely URL-címét az ügyfelekkel.
+A CSP-partnerek rendszergazdái Partnerközpont csp-ügyféltárolót közvetlenül a Partnerközpont. Minimális erőfeszítéssel új webhely helyezhető üzembe a partner bérlője számára. Az üzembe helyezést követően a partnerek a webhely használatával konfigurálják a márkajelzést, az ajánlatokat és a fizetéssel kapcsolatos információkat, majd megoszthatják a webhely URL-címét az ügyfelekkel.
 
-A kirakati webhely létrehozási folyamata a következő:
+Az áruházbeli webhely létrehozásának folyamata a következő:
 
 1. [A webhely üzembe helyezése](#deploy)
 
-2. [A kirakat konfigurálása](#configure)
+2. [Az áruház konfigurálása](#configure)
 
-3. [A kirakaton lévő Transact](#transact)
+3. [Tranzakció a áruházban](#transact)
 
 ### <a name="deploy"></a>Üzembe helyezés
 
-Központi telepítési beállítások:
+Üzembe helyezési lehetőségek:
 
-- A [partner Center kirakat mintakód](https://github.com/Microsoft/Partner-Center-Storefront) letöltése a githubról
-- Integráció az Azure-nal a konfigurált webhely üzembe helyezéséhez
-- Üzembe helyezés meglévő előfizetésen vagy saját előfizetés használata
+- Töltse le [Partnerközpont áruház mintakódját a](https://github.com/Microsoft/Partner-Center-Storefront) GitHub
+- Integrálás az Azure-ral a konfigurált webhely üzembe helyezéséhez
+- Üzembe helyezés meglévő előfizetésen vagy saját előfizetéssel
 
 ### <a name="configure"></a>Konfigurálás
 
-A kirakat testreszabásához nem szükségesek fejlesztési ismeretek.
+Az áruház testreszabásához nincs szükség fejlesztési készségekre.
 
-A konfiguráláshoz jelentkezzen be a partner Center rendszergazdai hitelesítő adataival:
+A konfiguráláshoz jelentkezzen be Partnerközpont rendszergazdai hitelesítő adataival:
 
-- **Branding**: cég neve, embléma, névjegyek és egyebek.
+- **Védjegyezés:** vállalatnév, embléma, névjegyek stb.
 
-- **Ajánlatok**: az összes CSP-ajánlat megtekintése. Kiválaszthatja, hogy az ügyfelek mely ajánlatokat tekinthetik meg és vásárolhatják meg. Emellett személyre szabhatja az ajánlat adatait, és hozzáadhatja az árát.
+- **Ajánlatok:** megtekintheti az összes CSP-ajánlatot. Kiválaszthatja, hogy az ügyfelek mely ajánlatokat nézik meg és vásárolhatják meg. Személyre szabhatja az ajánlat adatait, és hozzáadhatja az árat.
 
-- **PayPal-fizetési konfiguráció**: adja meg a PayPal fizetési fiókjának adatait. Ha nem rendelkezik PayPal-fiókkal, látogasson el [https://www.paypal.com](https://www.paypal.com) és hozzon létre egy új fiókot. A rendszer ezt a fiókot használja a PayPal számára az ügyfelek által teljesített kifizetések jóváírására. *A Microsoft nem felelős a partnerek és a PayPal közötti kapcsolatért. A PayPal használata a partner vagy a partner ügyfeleinek is megkövetelheti a további feltételek elfogadását.*
+- **PayPal konfigurálása:** adja meg PayPal fizetési fiókjának adatait. Ha még nincs fiókkal PayPal, látogasson el ide, és hozzon létre [https://www.paypal.com](https://www.paypal.com) egy új fiókot. A fiók az ügyfelek PayPal jóváírására lesz használva. *A partnerek és a partnerek közötti kapcsolatért nem a Microsoft PayPal. A PayPal megkövetelheti, hogy a partner vagy a partner ügyfelei további feltételeket is elfogadjanak.*
 
-- (*India esetében*) **PayU-fizetési konfiguráció**: adja meg a PayU pénz fizetési fiókjának adatait. Ha nem rendelkezik PayU-fiókkal, látogasson el [https://www.payumoney.com/](https://www.payumoney.com/) és hozzon létre egy új fiókot. A rendszer ezt a fiókot használja a PayU az ügyfelek által teljesített kifizetések jóváírására. *A Microsoft nem felelős a partnerek és a PayU közötti kapcsolatért. A PayU használata a partner vagy a partner ügyfeleinek is megkövetelheti a további feltételek elfogadását.*
+- (*India esetében*) **PayU payment configuration**(Fizetési konfiguráció): adja meg a PayU Money fizetési fiók adatait. Ha még nincs PayU-fiókja, látogasson el ide, és hozzon létre [https://www.payumoney.com/](https://www.payumoney.com/) egy új fiókot. Ez a fiók lesz használva a PayU-hoz az ügyfelek által történt kifizetések jóváírására. *A partnerek és a PayU közötti kapcsolatért nem a Microsoft a felelős. A PayU használata megkövetelheti, hogy a partner vagy a partner ügyfelei további feltételeket is elfogadjanak.*
 
 ### <a name="transact"></a>Tranzakciós
 
-- Az üzembe helyezést követően az ügyfelek azonnal vásárolhatnak és tranzakciókat.
+- Az üzembe helyezést követően az ügyfelek azonnal vásárolhatnak és tranzakciót is el tudnak kezdeni.
 
-- Az ügyfelek közvetlenül a partner Center SDK-val integrált partner portálról vásárolhatnak.
+- Az ügyfelek közvetlenül a partnerportálon vásárolhatnak, amely integrálva van a Partnerközpont SDK.
 
-#### <a name="customer-countries"></a>Vásárlói országok
+#### <a name="customer-countries"></a>Ügyfél országok
 
-Az ügyfelek a következő országokhoz tartozhatnak:
+Az ügyfelek a következő országokhoz tartoznak:
 
 | Országkód | Ország neve   |
 |--------------|----------------|
@@ -129,7 +125,7 @@ Az ügyfelek a következő országokhoz tartozhatnak:
 | NL           | Hollandia    |
 | NZ           | Új-Zéland    |
 | NO           | Norvégia         |
-| ENER           | Lengyelország         |
+| Po           | Lengyelország         |
 | PT           | Portugália       |
 | RO           | Románia        |
 | SK           | Szlovákia       |
@@ -140,126 +136,126 @@ Az ügyfelek a következő országokhoz tartozhatnak:
 | GB           | Egyesült Királyság |
 | USA           | Egyesült Államok  |
 
-## <a name="partner-experience-scenarios"></a>A partneri élmény forgatókönyvei
+## <a name="partner-experience-scenarios"></a>Partneri élmények forgatókönyvei
 
 ### <a name="deployment-scenario"></a>Központi telepítési forgatókönyv
 
-Bővített vagy testreszabott CSP ügyfél-kirakat üzembe helyezése:
+Továbbfejlesztett vagy testreszabott CSP-ügyféltároló üzembe helyezése:
 
-- Töltse le a [partneri központ kirakati mintáját](https://github.com/Microsoft/Partner-Center-Storefront) , hogy további testreszabásokat hajtson végre.
+- Töltse le [Partnerközpont áruházbeli mintakódot](https://github.com/Microsoft/Partner-Center-Storefront) a további testreszabások éhez.
 
-- A fejlesztéshez használja a Microsoft Visual Studio 2015 (vagy újabb) verzióját.
+- A Microsoft Visual Studio 2015 (vagy újabb) használatával fejleszthet.
 
-- További változásokat és fejlesztéseket (beleértve az engedélyeket, a tanúsítványokat, a jegyzék változásait és az egyéb elemeket) is kiépítheti.
+- További módosításokat és fejlesztéseket (például engedélyeket, tanúsítványokat, jegyzékváltozásokat és más elemeket) is felépíthet.
 
 ### <a name="configuration-scenario"></a>Konfigurációs forgatókönyv
 
-- Az újonnan létrehozott webhely társítva van egy partner bérlőhöz, és hozzáfér a partner bérlő összes rendszergazdai fiókjához.
+- Az újonnan létrehozott webhely egy partnerbérlőhöz van kapcsolva, és hozzáféréssel rendelkezik a partnerbérlő összes rendszergazdai fiókhoz.
 
-  - A partnerek a partner Center rendszergazdai hitelesítő adataikkal jelentkezhetnek be erre az új webhelyre.
+  - A partnerek bejelentkeznek erre az új webhelyre a Partnerközpont hitelesítő adataik használatával.
 
-- A kirakati alkalmazás jelenleg a francia, a spanyol, a holland, a német, a japán és az angol nyelveket támogatja. (Az angol a tartalék nyelvként szolgál.)
+- A storefront alkalmazás jelenleg a francia, a spanyol, a holland, a német, a japán és az angol nyelvet támogatja. (Az angol a tartalék nyelv.)
 
-  - A kirakat konfigurálja a területi beállításokat a partner alapértelmezett területi beállításaként a partner központjában található partner profiljában. Ez a területi beállítás a pénznemek, a dátumformátum és a honosított ajánlatok konfigurálására szolgál a tárházban.
+  - Az áruház a partner alapértelmezett területi beállítását használva konfigurálja a területi beállítást a Partnerközpont. Ezzel a területi beállításokkal konfigurálhatók a pénznemek, a dátumformátumok és a honosított ajánlatok az adattárban.
 
-- A partnerek a branding, az ajánlatokat és a PayPal-vagy PayU (India) fizetési adatokat is konfigurálhatják.
+- A partnerek konfigurálják a márkajelzést, az ajánlatokat PayPal vagy a payU (for India) fizetési adatait.
 
-- A partnerek frissíthetik a cég nevét, a céges emblémát, a fejléc képét, az értékesítési és támogatási partnereket, és így tovább.
+- A partnerek frissítheti a vállalat nevét, cégemblémát, fejlécképet, értékesítési és támogatási kapcsolattartókat stb.
 
-- A partnerek az összes, a saját területük alapján elérhető CSP-ajánlatot megtekinthetik.
+- A partnerek a saját területük alapján minden elérhető CSP-ajánlatot láthatnak.
 
-  - A partnerek kiválaszthatják, hogy mely ajánlatokat szeretnék megjeleníteni az összes ügyfelünk számára.
+  - A partnerek kiválaszthatja, hogy mely ajánlatokat szeretnék megmutatni az összes ügyfélnek.
 
-  - A CSP-partnerek kijelölhetnek egy vagy több ajánlatot, és frissíthetik a nevet, a mennyiséget, a szolgáltatás leírását és az árat.
-  - Az ár az éves díj. Ügyfeleinknek évente kell fizetniük.
+  - Egy CSP-partner kiválaszthat egy vagy több ajánlatot, és frissítheti a nevet, a mennyiséget, a funkció leírását és az árat.
+  - Az ár az éves ár. Az ügyfelek évente iratkoznak fel.
 
-- A partnerek bármikor konfigurálhatják az előre jóváhagyott tranzakciókat a (a) összes jelenlegi és jövőbeli ügyfelének, vagy (b) adott ügyfélnek.
+- A partnerek bármikor konfigurálhat előre jóváhagyott tranzakciókat (a) az összes jelenlegi és jövőbeli ügyfélhez vagy (b) adott ügyfélhez.
 
-  - Az előzetesen jóváhagyott ügyfeleknek nem kell fizetniük a portálon, amikor új előfizetéseket vesznek fel, további licenceket vásárolnak a meglévő előfizetésekhez, vagy megújítanak egy előfizetést.
+  - Az előzetesen jóváhagyott ügyfeleknek nem kell fizetniük a portálon, amikor új előfizetéseket adnak hozzá, további licenceket vásárolnak a meglévő előfizetéshez, vagy megújítják az előfizetést.
 
-  - Az előzetesen jóváhagyott ügyfelek nem lesznek átirányítva a PayPal szolgáltatásba vagy a PayU (India esetében) a tranzakciók során történő fizetésre.
+  - Az előzetesen jóváhagyott ügyfelek nem lesznek átirányítva a PayPal vagy PayU-hoz (India esetén) a tranzakciók során történő fizetésért.
 
-  - Az előzetesen jóváhagyott ügyfél-tranzakciók lehetővé teszik, hogy a partnerek offline számlázást és számlázást végezzenek az előre jóváhagyott ügyfelek számára.
+  - Az előre jóváhagyott ügyféltranzakciók lehetővé teszik, hogy a partner offline számlázást és számlázást végezzen az előre jóváhagyott ügyfeleinek.
 
-- A CSP-partnerek megadhatják a PayPal-fiókjuk adatait, például a PayPal-ügyfél AZONOSÍTÓját és a titkos kulcsot. A CSP-partner azt is kiválaszthatja, hogy egy sandbox vagy egy élő fiók használatával szeretne-e tesztelni.
+- A CSP-partnerek meg PayPal a fiókjuk adatait, például PayPal ügyfél-azonosítót és titkos adatokat. A CSP-partnerek azt is kiválaszthatja, hogy tesztgépet vagy élő fiókot szeretnék-e használni.
 
-  - A partnerek megtalálhatják ezeket az információkat a [https://developer.paypal.com/](https://developer.paypal.com/) **saját alkalmazások & hitelesítő adataival**. Ezt az információt egy aktuális alkalmazásból is beszerezheti, vagy létrehozhat egy új alkalmazást a PayPalben.
-  - Ha még nem rendelkezik ilyennel, hozzon létre egy új PayPal-fiókot. A rendszer ezt a fiókot használja a PayPal számára az ügyfelek által teljesített kifizetések jóváírására.
+  - A partnerek a hitelesítő adataimban [https://developer.paypal.com/](https://developer.paypal.com/) találhatják meg **& információkat.** Ezt az információt le is kaphatja egy aktuális alkalmazásból, vagy egy új alkalmazás létrehozásával a PayPal.
+  - Hozzon létre egy PayPal fiókot, ha még nem rendelkezik fiókkal. A fiók az ügyfelek PayPal jóváírására lesz használva.
 
-    - A PayPal üzleti fiók megnyitásával kapcsolatban lásd: [https://developer.paypal.com/docs/classic/lifecycle/goingLive/#register](https://developer.paypal.com/docs/classic/lifecycle/goingLive/#register) .
+    - Üzleti fiók megnyitásához PayPal lásd: [https://developer.paypal.com/docs/classic/lifecycle/goingLive/#register](https://developer.paypal.com/docs/classic/lifecycle/goingLive/#register) .
 
-    - A PayPal-beli homokozó-fiók létrehozásához lásd: [https://developer.paypal.com/docs/classic/lifecycle/ug_sandbox/](https://developer.paypal.com/docs/classic/lifecycle/ug_sandbox/) .
+    - Az új PayPal lásd: [https://developer.paypal.com/docs/classic/lifecycle/ug_sandbox/](https://developer.paypal.com/docs/classic/lifecycle/ug_sandbox/) .
 
-- (India esetében) a CSP-partner beviheti a PayU-fiók adatait, például a PayU ügyfél-azonosítót és a jelszót. A partnerek további információkat is találhatnak a szolgáltatással kapcsolatban [https://developer.payumoney.com/](https://developer.payumoney.com/) .
+- (Indiában) egy CSP-partner meg tudja megadni a PayU-pénzfiók adatait, például a PayU-ügyfél azonosítóját és jelszavát. A partnerek további információt találhatnak a rel [https://developer.payumoney.com/](https://developer.payumoney.com/) kapcsolatban.
 
-  - Ha még nem rendelkezik ilyennel, hozzon létre egy új PayU pénz-fiókot. PayU-fiók megnyitásához látogasson el a következő oldalra: [https://www.payumoney.com/merchant-account/#/](https://www.payumoney.com/merchant-account/#/) . A rendszer ezt a fiókot használja a PayU az ügyfelek által teljesített kifizetések jóváírására.
+  - Hozzon létre egy új PayU Money-fiókot, ha még nem rendelkezik ilyen fiókkal. A PayU Money-fiók megnyitásához látogasson el a [https://www.payumoney.com/merchant-account/#/](https://www.payumoney.com/merchant-account/#/) webhelyre. Ez a fiók lesz használva a PayU-hoz az ügyfelek által történt kifizetések jóváírására.
 
 ## <a name="customer-experience-scenarios"></a>Felhasználói élmény forgatókönyvei
 
-### <a name="new-customer-sign-up-scenario"></a>Új ügyfél-regisztrálási forgatókönyv
+### <a name="new-customer-sign-up-scenario"></a>Új ügyfél-regisztráció forgatókönyve
 
-- Alapértelmezés szerint a webhely nyilvánosan elérhető, és megjeleníti a partner katalógusát a kezdőlapon.
+- Alapértelmezés szerint a webhely nyilvánosan elérhető, és a partner katalógusát jeleníti meg a kezdőlapon.
 
-- Az ügyfelek mostantól nagy számú [ügyfélhez](#customer-countries)tartozhatnak.
+- Az ügyfelek mostantól nagy számú ügyfél [országhoz is tartoznak.](#customer-countries)
 
-- A hangsúly az Európai Szabadkereskedelmi Társulás (EFTA) országai, Észak-Amerika, Japán, India, Ausztrália és Új-Zéland régiójában volt.
-  - Ez a szolgáltatás a partner Center SDK-ban a regionális engedélyezési támogatást használja.
+- A hangsúly az Európai Szabad trade Association (EFTA) országok, a Észak-Amerika, Japán, India, Ausztrália és Új-Zéland régióira koncentrált.
+  - Ez a funkció a regionális engedélyezési támogatást használja a Partnerközpont SDK.
 
-- Az ügyfelek választhatnak egy ajánlatot a katalógusból a vásárláshoz.
-  - Hozzáadhatják az ügyfél nevét, a lakcímét és a tartományhoz kapcsolódó információkat.
+- Az ügyfelek a katalógusból választhatják ki a megvásárolni kívánt ajánlatot.
+  - Hozzáadhatják az ügyfélnevet, a címet és a tartománnyal kapcsolatos információkat.
 
-- Az ügyfeleket a PayPal-vagy PayU (India) pénztári felhasználói felületre irányítjuk. Az ügyfelek a következőkkel biztosíthatják a fizetést:
-  - Meglévő PayPal-vagy PayU-fiókja (India)
-  - Az országukban a PayPal vagy a PayU (India) által támogatott finanszírozási eszközök. Ezek közé tartozhatnak a hitelkártyák, a bankkártyák és a bankszámlák is.
+- Az ügyfelek a fizetési PayPal (India esetében) lesznek irányítva. Az ügyfelek a következő módokon fizethet:
+  - Meglévő PayPal vagy PayU-fiókjuk (India esetében)
+  - Az országuk által támogatott támogatási eszközök PayPal vagy PayU (India esetén). Ide tartozhatnak például a hitelkártyák, a bankkártyák és a banki fiókok.
 
-- A rendszer létrehoz egy ügyfél-bérlőt ehhez az ügyfélhez. A bérlői megrendelés sikeres létrehozása után az ügyfeleknek meg kell adni a fiók felhasználónevét, jelszavát és az előfizetés részleteit.
-  - Az ügyfelek megmenthetik a felhasználónevet és a jelszót, hogy továbbra is bejelentkezve maradjanak a további vásárlások.
-  - Minden előfizetés egy évig vásárolható meg, az ügyfelek pedig az előfizetés befejezési dátumát megelőző 30 napon belül megújíthatók.
+- Ehhez az ügyfélhez létrejön egy ügyfélbérlő. A bérlői rendelés sikeres létrehozása után az ügyfeleknek meg kell adni a fiók felhasználónevét, jelszavát és előfizetési adatait.
+  - Az ügyfelek mentheti a felhasználónevet és a jelszót, hogy bejelentkezve maradjanak a további vásárlások érdekében.
+  - Minden előfizetést egy évig vásárolnak, és az ügyfelek az előfizetés záró dátumát megelőző 30 napon belül újíthatók meg.
 
-### <a name="view-prior-purchases-scenario"></a>Korábbi vásárlási forgatókönyv megtekintése
+### <a name="view-prior-purchases-scenario"></a>Korábbi vásárlások forgatókönyvének megtekintése
 
-- Az ügyfél bejelentkezik az ügyfél bérlői felhasználónevével és jelszavával, és a **saját megrendelések** szakaszra kerül.
+- Az ügyfél az Ügyfél bérlői felhasználónevével és jelszavával jelentkezik be, és a Saját **rendelések szakaszra** kerül.
 
-- Az ügyfelek megtekinthetik a **saját megrendelések** lapot, ahol megtekinthetik a megvásárolt előfizetéseket, és igény szerint frissíthetik a frissítéseket.
+- Az ügyfelek a Saját rendelések oldalra **navigálva** megtekinthetik a megvásárolt előfizetéseket, és szükség esetén frissítéseket is el tudnak látni.
 
-- Az ügyfelek a **saját előfizetések** oldalra is felkereshetik, ahol megtekinthetik az összes előfizetést (a licenc-alapú és a használaton alapuló), beleértve a partner Centerben karbantartott felhasználókat is.
+- Az ügyfelek a Saját **előfizetések** oldalra navigálva megtekinthetik az összes előfizetést (licencalapú és használatalapú), beleértve az előfizetésben fenntartott előfizetéseket Partnerközpont.
 
-### <a name="add-licenses-to-existing-subscriptions-scenario"></a>Licencek hozzáadása meglévő előfizetésekhez forgatókönyv
+### <a name="add-licenses-to-existing-subscriptions-scenario"></a>Licencek hozzáadása meglévő előfizetési forgatókönyvekhez
 
-- A Custom **orders (megrendelések** ) szakaszban az ügyfelek további licenceket adhatnak hozzá a meglévő előfizetésekhez. Az ügyfelek bármikor hozzáadhatnak további licenceket az előfizetési év során.
+- A Saját **rendelések szakaszban** az ügyfelek további licenceket adhatnak hozzá a meglévő előfizetésekhez. Az ügyfelek az előfizetési év során bármikor további licenceket adhatnak hozzá.
 
-- Az egyes hozzáadott licencek nem változtatják meg az előfizetés befejezési dátumát. Az előfizetés díja azonban attól függően változik, hogy mikor adja hozzá a licencet, és ha ez a dátum az évben van. A díjszabást napi rendszerességgel számoljuk el, hogy csak az év hátralévő napjaiért számítson fel díjat.
+- Minden hozzáadott licenc nem módosítja az előfizetés záró dátumát. Az előfizetés ára azonban a licenc hozzáadásának dátuma és az év dátuma alapján változik. A díjszabás napi rendszerességgel van időzített, és csak az év hátralévő napjaiért kell díjat fizetni.
 
-### <a name="add-more-subscriptions-scenario"></a>További előfizetési forgatókönyv hozzáadása
+### <a name="add-more-subscriptions-scenario"></a>További előfizetések hozzáadása forgatókönyv
 
-- Az ügyfelek tetszőleges számú előfizetést vásárolhatnak az **előfizetések hozzáadása** szakaszban, a **saját megrendelések** menüpontban.
+- Az ügyfelek bármikor vásárolhatnak bármilyen számú előfizetést a Saját rendelések területen található **Előfizetések** hozzáadása **szakaszban.**
 
-- Az ügyfél kiválaszthat egy előfizetést, hozzáadhat egy mennyiséget, és kifizetheti a tranzakció befejezését, és azonnal megkezdheti az előfizetés használatát. Ha az ügyfél előzetesen jóváhagyott ügyfél, az előfizetés azonnal használatba vehető, és a rendszer elküld egy számlát az ügyfélnek fizetésre.
+- Az ügyfél kiválaszthat egy előfizetést, hozzáadhat egy mennyiséget, és fizethet a tranzakció befejezéséhez, és azonnal elkezdheti használni az előfizetést. Ha az ügyfél egy előre jóváhagyott ügyfél, az előfizetés azonnal használatra elérhető, és a rendszer számlát küld az ügyfélnek fizetésre.
 
-### <a name="renew-subscription-scenario"></a>Előfizetési forgatókönyv megújítása
+### <a name="renew-subscription-scenario"></a>Előfizetés megújítása forgatókönyv
 
-- Egy ügyfél megújíthat egy előfizetést az utolsó 30 napban az előfizetés befejezési dátuma előtt.
+- Az ügyfél az előfizetés záró dátumát megelőző 30 napban újíthatja meg az előfizetést.
 
 - Ez csak az elmúlt 30 napban érhető el.
 
-- Ha az utolsó 30 napban nem újítják meg az előfizetést, az előfizetés el lesz távolítva az ügyfél-bérlőhöz tartozó előfizetések listájából.
+- Ha az elmúlt 30 napban nem újította meg az előfizetést, az előfizetés el lesz távolítva az ügyfélbérlő előfizetési listájából.
 
-- A mennyiség nem frissíthető a megújítás során.
+- A megújítás során nem frissítheti a mennyiséget.
 
 ### <a name="payments-scenario"></a>Fizetési forgatókönyv
 
-- Ha az ügyfelet előzetesen jóváhagyják a rendszergazda által végzett tranzakciókra, a fenti forgatókönyvek esetében nem jelenik meg a fizetési élmény. Ehelyett a partner az előzetesen jóváhagyott ügyfélnek küldheti el a fizetési számlát.
+- Ha az ügyfelet előzetesen jóváhagyták a tranzakciókhoz a rendszergazda, a fenti forgatókönyvekben nem jelennek meg a fizetési mód. Ehelyett a partner elküldheti a számlát az előre jóváhagyott ügyfélnek.
 
-- Minden új vásárláshoz hozzáadhat további licenceket, előfizetéseket adhat hozzá, és megújíthatja azokat. Az ügyfél a webhely használatával fizethet a PayPal vagy a PayU (India) segítségével.
+- Minden új vásárláshoz további licenceket adhat hozzá, előfizetéseket adhat hozzá és újíthat meg. Az ügyfél ezen a webhelyen keresztül fizethet egy partnernek PayPal vagy PayU-val (India esetén).
 
-- Ez a webhely integrálva van a PayPal vagy a PayU (India esetében), és lehetővé teszi, hogy a partnerek elfogadják az ügyfelektől érkező kifizetéseket. A PayPal vagy a PayU (India) ezen összeget a partner számlájára jóváírja. PayPal-vagy PayU (India) a bankszámla-felügyelet ezen a webhelyen kívül van, és a PayPal.com vagy PayUmoney.com felügyeli.
+- Ez a webhely integrálva van PayPal vagy PayU-val (India esetén), és lehetővé teszi a partnerek számára, hogy fogadjanak el fizetéseket az ügyfeleiktől. PayPal vagy PayU -kreditek (India esetében) ezt az összeget egy partner fiókjában. PayPal vagy PayU (for India) banki számlakezelése ezen a webhelyen kívül található, és a PayPal.com vagy PayUmoney.com felügyelt.
 
-- Ez attól függ, hogy a partnerek a PayPal-orPayU (India) a PayPal.com vagy a PayUmoney.com-ben konfigurált fizetési konfigurációt konfigurálják. A Microsoft nem menti ezeket az információkat vagy a tényleges fizetési tranzakciókat a beállítás használatából eredően.
+- Ez attól függ, hogy a partnerek a PayPal.com vagy a PayPal.com webhelyen vagy az PayUmoney.com. A Microsoft nem menti ezeket az adatokat és a tényleges fizetési tranzakciókat, amelyek ennek a lehetőségnek a használata miatt adódnak.
 
-### <a name="prorated-pricing-scenario"></a>Arányos árképzési forgatókönyv
+### <a name="prorated-pricing-scenario"></a>Díjszabási forgatókönyv
 
-- Ez a webhely olyan esetekben támogatja az arányos díjszabást, amikor az ügyfelek további licenceket vesznek fel egy meglévő előfizetésbe.
+- Ez a webhely támogatja az árrített díjszabást olyan esetekben, amikor az ügyfelek további licenceket adnak hozzá egy meglévő előfizetéshez.
 
-- Minden előfizetés egy év után lejár, és az előfizetés megvásárlása után nem módosítható.
+- Minden előfizetés egy év után lejár, és az előfizetés vásárlása után nem módosítható.
 
-- Az előfizetés záró dátuma nem változik további licencek hozzáadásával. A lejárati dátumig a hátralévő napok száma után kell fizetni. Ha például az első napon az előfizetés költsége $365, és egy további licencet ad hozzá a második napon, akkor az új licenc díja $364 lesz. Ha újabb 10 nappal később ad hozzá egy licencet, a díj $354 lesz.
+- Az előfizetés záró dátuma nem változik további licencek hozzáadásával. Az ügyfelek a záró dátumig hátralévő napokért díjat számítunk fel. Ha például az első napon az előfizetés költsége 365 dollár, és hozzáad egy további licencet a második napon, az új licenc ára 364 dollár lesz. Ha 10 nappal később hozzáad még egy licencet, az ára 354 dollár lesz.

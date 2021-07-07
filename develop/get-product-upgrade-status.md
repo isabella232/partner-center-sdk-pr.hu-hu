@@ -1,45 +1,41 @@
 ---
-title: Az ügyfél termék-frissítési állapotának beolvasása
-description: A ProductUpgradeRequest-erőforrás segítségével meghatározhatja az ügyfél termék-verziófrissítésének állapotát egy új termékcsaládba, például egy Microsoft Azure (MS-AZR-0145P) előfizetésből egy Azure-csomagra.
+title: Az ügyfél termékfrissítési állapotának lekért állapota
+description: A ProductUpgradeRequest erőforrással megállapíthatja egy ügyfél termékfrissítésének állapotát egy új termékcsaládba, például egy Azure-csomagra való Microsoft Azure-előfizetésből (MS-AZR-0145P).
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 1819887d459ec72a48ea2b7a5a4121dc56718313
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 03d925dd0fae987226ad1f8e71fad380ba144b83
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767915"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445561"
 ---
-# <a name="get-the-product-upgrade-status-for-a-customer"></a>Az ügyfél termék-frissítési állapotának beolvasása
+# <a name="get-the-product-upgrade-status-for-a-customer"></a>Az ügyfél termékfrissítési állapotának lekért állapota
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-A [**ProductUpgradeRequest**](product-upgrade-resources.md#productupgraderequest) -erőforrás segítségével lekérheti a verziófrissítés állapotát egy új termékcsaládra. Ez az erőforrás akkor érvényes, ha egy Microsoft Azure (MS-AZR-0145P) előfizetésből egy Azure-csomagra frissíti az ügyfelet. Egy sikeres kérelem visszaadja a [**ProductUpgradesEligibility**](product-upgrade-resources.md#productupgradeseligibility) -erőforrást.
+A [**ProductUpgradeRequest**](product-upgrade-resources.md#productupgraderequest) erőforrással egy új termékcsaládra való frissítés állapotát kaphatja meg. Ez az erőforrás akkor érvényes, ha egy azure-Microsoft Azure (MS-AZR-0145P) előfizetésről frissít egy ügyfelet. A sikeres kérés a [**ProductUpgradesEligibility erőforrást adja**](product-upgrade-resources.md#productupgradeseligibility) vissza.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az App + User hitelesítő adataival. Kövesse a [Secure app modelt](enable-secure-app-model.md) , ha app + felhasználói hitelesítést használ a partner Center API-kkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést. Kövesse a [biztonságos alkalmazásmodellt,](enable-secure-app-model.md) ha App+User hitelesítést használ Partnerközpont API-okkal.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - A termékcsalád.
 
-- Frissítési kérelem verziófrissítése.
+- A frissítési kérelem frissítési azonosítója.
 
 ## <a name="c"></a>C\#
 
-Annak ellenőrzését, hogy az ügyfél jogosult-e az Azure-csomagra való frissítésre:
+Annak ellenőrzése, hogy egy ügyfél jogosult-e Azure-csomagra való frissítésre:
 
-1. Hozzon létre egy **ProductUpgradesRequest** objektumot, és válassza az ügyfél-azonosítót és az "Azure"-t a termék családjának.
+1. Hozzon létre **egy ProductUpgradesRequest** objektumot, és adja meg az ügyfél azonosítóját és az "Azure" értéket a termék családként.
 
-2. Használja a **IAggregatePartner. ProductUpgrades** gyűjteményt.
+2. Használja az **IAggregatePartner.ProductUpgrades gyűjteményt.**
 
-3. Hívja meg a **ById** metódust, és adja át a **upgrade-ID-** t.
+3. Hívja meg **a ById metódust,** és adja meg **az upgrade-id azonosítót.**
 
-4. Hívja meg a **CheckStatus** metódust, és adja meg a **ProductUpgradesRequest** objektumot, amely egy **ProductUpgradeStatus** objektumot ad vissza.
+4. Hívja meg a **CheckStatus** metódust, és adja át a **ProductUpgradesRequest** objektumot, amely egy **ProductUpgradeStatus** objektumot ad vissza.
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -63,29 +59,29 @@ if (productUpgradeEligibility.IsEligibile)
 
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus   | Kérés URI-ja |
 |----------|-----------------------------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/productUpgrades/{upgrade-ID}/status http/1.1 |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/productUpgrades/{upgrade-id}/status HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A következő lekérdezési paraméterrel adhatja meg azt az ügyfelet, akinek a termék verziófrissítési állapotát keresi.
+A következő lekérdezési paraméterrel adhatja meg azt az ügyfelet, akinek termékfrissítési állapotot kap.
 
 | Név               | Típus | Kötelező | Leírás                                                                                 |
 |--------------------|------|----------|---------------------------------------------------------------------------------------------|
-| **frissítési azonosító** | GUID | Igen | Az érték egy GUID formátumú frissítési azonosító. Ennek az azonosítónak a segítségével megadhatja a nyomon követett frissítést. |
+| **frissítési azonosító** | GUID | Igen | Az érték egy GUID-formátumú frissítési azonosító. Ezzel az azonosítóval megadhatja a nyomon követni kívánt frissítést. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem törzsének tartalmaznia kell egy [**ProductUpgradeRequest**](product-upgrade-resources.md#productupgraderequest) -erőforrást.
+A kérelem törzsének tartalmaznia kell egy [**ProductUpgradeRequest erőforrást.**](product-upgrade-resources.md#productupgraderequest)
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -115,11 +111,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy [**ProductUpgradesEligibility**](product-upgrade-resources.md#productupgradeseligibility) -erőforrást ad vissza a törzsben.
+Ha sikeres, ez a metódus egy [**ProductUpgradesEligibility erőforrást**](product-upgrade-resources.md#productupgradeseligibility) ad vissza a törzsben.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,52 +1,49 @@
 ---
 title: Eszközök listájának feltöltése a megadott ügyfél meglévő kötegére
-description: Az eszközökre vonatkozó információk listájának feltöltése egy meglévő kötegre a megadott ügyfél esetében. Ezzel társítja az eszközöket egy már létrehozott eszköz-köteghez.
+description: Az eszközökre vonatkozó információk listájának feltöltése egy meglévő kötegbe a megadott ügyfél számára. Ez egy már létrehozott eszközkötethez társítja az eszközöket.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: d01ac1a42c50416487167070be9d104562300baf
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 3fa9cff39113130c54cecfaef1f8ca28e0ac5adf
+ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768371"
+ms.lasthandoff: 06/05/2021
+ms.locfileid: "111530310"
 ---
 # <a name="upload-a-list-of-devices-to-an-existing-batch-for-the-specified-customer"></a>Eszközök listájának feltöltése a megadott ügyfél meglévő kötegére
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Németországhoz
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-
-Az eszközökre vonatkozó információk listájának feltöltése egy meglévő kötegre a megadott ügyfél esetében. Ezzel társítja az eszközöket egy már létrehozott eszköz-köteghez.
+Az eszközökre vonatkozó információk listájának feltöltése egy meglévő kötegbe a megadott ügyfél számára. Ez egy már létrehozott eszközkötethez társítja az eszközöket.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-- Az eszköz batch-azonosítója.
+- Az eszköz kötegazonosítója.
 
-- Az egyes eszközökre vonatkozó információkat biztosító eszköz-erőforrások listája.
+- Az egyes eszközökre vonatkozó információkat szolgáltató eszközerőforrások listája.
 
 ## <a name="c"></a>C\#
 
-Az eszközök listájának egy meglévő eszköz kötegbe való feltöltéséhez először létre kell vennie egy új [lista/DotNet/API/System. Collections. Generic. list -1) típusú [**eszközt**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device) , és fel kell töltenie a listát az eszközökkel. Az egyes eszközök azonosításához legalább az alábbi, feltöltött tulajdonságokat tartalmazó kombinációk szükségesek:
+Az eszközök listájának meglévő eszközkötetre való feltöltéséhez először példányosítenie kell egy új [List/dotnet/api/system.collections.generic.list-1) típusú eszközt, és töltse fel a listát az eszközökkel. [](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device) Az egyes eszközök azonosításához legalább a következő tulajdonságkombinációk szükségesek:
 
-- [**HardwareHash**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.hardwarehash)  +  [**Termék**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.productkey).
+- [**HardwareHash (Hardverhash)**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.hardwarehash)  +  [**ProductKey (Termékkulcs).**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.productkey)
 
-- [**HardwareHash**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.hardwarehash)  +  [**Serialnumber**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.serialnumber).
+- [**HardwareHash (Hardverhash)**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.hardwarehash)  +  [**SerialNumber**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.serialnumber)( Sorozatszám).
 
-- [**HardwareHash**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.hardwarehash)  +  [**Termék**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.productkey)  +  [**Serialnumber**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.serialnumber).
+- [**HardwareHash (Hardverhash)**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.hardwarehash)  +  [**ProductKey (Termékkulcs)**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.productkey)  +  [**SerialNumber**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.serialnumber)( Sorozatszám).
 
-- Csak [**HardwareHash**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.hardwarehash) .
+- [**Csak HardverHash.**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.hardwarehash)
 
-- Csak a [**termék**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.productkey) .
+- [**Csak ProductKey.**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.productkey)
 
-- [**Serialnumber**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.serialnumber)  +  [**OemManufacturerName**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.oemmanufacturername)  +  [**Modelname**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.modelname).
+- [**SerialNumber (Sorozatszám)**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.serialnumber)  +  [**OemManufacturerName**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.oemmanufacturername)  +  [**ModelName ( Modellnév).**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.device.modelname)
 
-Ezután hívja meg a [**IAggregatePartner. Customer. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval, és kérje le a felületet a műveletekre a megadott ügyfélen. Ezután hívja meg a [**DeviceBatches. ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevicesbatchcollection.byid) metódust az eszköz batch-azonosítójával, és szerezzen be egy illesztőfelületet a megadott köteg műveleteihez. Végül hívja meg az [**eszközöket. hozzon létre**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevicecollection.create) vagy [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevicecollection.createasync) metódust az eszközök listájával, és adja hozzá az eszközöket az eszköz kötegéhez.
+Ezután hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítóval a megadott ügyfél műveleteinek interfészének lekérése érdekében. Ezután hívja meg a [**DeviceBatches.ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevicesbatchcollection.byid) metódust az eszköz kötegazonosítójának használatával, hogy lekérte a megadott köteg műveleteinek interfészét. Végül hívja meg a [**Devices.Create**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevicecollection.create) vagy [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevicecollection.createasync) metódust az eszközök listájával, hogy hozzáadja az eszközöket az eszközkötemhez.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -74,38 +71,38 @@ var trackingLocation =
     partnerOperations.Customers.ById(selectedCustomerId).DeviceBatches.ById(selectedDeviceBatchId).Devices.Create(devicesToBeUploaded);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: CreateDevices.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** CreateDevices.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus   | Kérés URI-ja                                                                                                            |
 |----------|------------------------------------------------------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/deviceBatches/{devicebatch-ID}/Devices http/1.1 |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/deviceBatches/{devicebatch-id}/devices HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A kérelem létrehozásakor használja az alábbi elérési utat és a lekérdezési paramétereket.
+A kérelem létrehozásakor használja a következő elérési utat és lekérdezési paramétereket.
 
 | Név           | Típus   | Kötelező | Leírás                                           |
 |----------------|--------|----------|-------------------------------------------------------|
-| ügyfél-azonosító    | sztring | Igen      | Egy GUID-formázott karakterlánc, amely azonosítja az ügyfelet. |
-| devicebatch-azonosító | sztring | Igen      | Az eszköz kötegét azonosító karakterlánc-azonosító. |
+| ügyfélazonosító    | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet. |
+| devicebatch-id | sztring | Igen      | Az eszközkötetet azonosító sztringazonosító. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem törzsének tartalmaznia kell az [eszközbeállítások](device-deployment-resources.md#device) tömbjét. Az eszközök azonosítására szolgáló mezők alábbi kombinációit fogadja el:
+A kérelem törzsének eszközobjektumok [tömböt kell tartalmaznia.](device-deployment-resources.md#device) Az eszköz azonosítására a következő mezőkombinációk fogadhatóak el:
 
-- hardwareHash + termék.
+- hardwareHash + productKey.
 - hardwareHash + serialNumber.
-- hardwareHash + termék + serialNumber.
+- hardwareHash + productKey + serialNumber.
 - csak hardwareHash.
-- csak a termék.
+- Csak productKey.
 - serialNumber + oemManufacturerName + modelName.
 
 ### <a name="request-example"></a>Példa kérésre
@@ -153,11 +150,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz egy olyan **Location** fejlécet tartalmaz, amely rendelkezik egy URI-val, amely az eszköz feltöltési állapotának lekérésére használható. Mentse ezt az URI-t más kapcsolódó REST API-kkal való használatra.
+Ha ez sikeres, a válasz tartalmaz egy **Location** fejlécet, amely rendelkezik egy URI-azonosítóval, amely az eszköz feltöltési állapotának lekérésére használható. Mentse ezt az URI-t a többi kapcsolódó REST API-val való használathoz.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

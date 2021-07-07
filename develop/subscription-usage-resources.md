@@ -1,74 +1,70 @@
 ---
 title: Előfizetés használati erőforrásai
-description: Az előfizetés használati erőforrásai az előfizetéseket használati alapú számlázással írják le. Ezek az előfizetések napi és havi használati adatokat, valamint az egyes fizetési időszakok használati összegzését is magukban foglalják.
+description: Az előfizetés használati erőforrásai a használatalapú számlázással kapcsolatos előfizetéseket írják le. Ezek az előfizetések napi és havi használati rekordokkal, valamint az egyes fizetési időszakra vonatkozó használati adatok összegzésével vannak.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 8e23287d80f19084860f4597754448e81c01049f
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: dcb24dcf5ca8165ec23c4b187def38d05772e1de
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767836"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111547376"
 ---
 # <a name="subscription-usage-resources"></a>Előfizetés használati erőforrásai
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A következő előfizetés-használati források használatával lekérheti a használati adatokat egy adott előfizetéshez, amely használaton alapuló számlázást is biztosít. Ezek az előfizetések napi és havi használati adatokat, valamint az egyes fizetési időszakok használati összegzését is magukban foglalják.
+A következő előfizetési használati erőforrások használatával lekért használati adatokat kaphat egy adott, használatalapú számlázással kapcsolatos előfizetéshez. Ezek az előfizetések napi és havi használati rekordokkal, valamint az egyes fizetési időszakra vonatkozó használati adatok összegzésével vannak.
 
 ## <a name="subscriptiondailyusagerecord"></a>SubscriptionDailyUsageRecord
 
-*A **SubscriptionDailyUsageRecord** erőforrás elavult, és pontatlan eredményeket eredményezhet. Javasoljuk, hogy frissítse alkalmazásait az Azure-ban az [ügyfél kihasználtsági rekordjainak beszerzése](get-a-customer-s-utilization-record-for-azure.md) című témakörben leírt API-k használatára, és helyette [Microsoft Azure árakat](get-prices-for-microsoft-azure.md) .*
+*A **SubscriptionDailyUsageRecord** erőforrás elavult, és pontatlan eredményeket eredményezhet. Javasoljuk, hogy frissítse az alkalmazásait úgy, hogy azok az ügyfél Azure-beli kihasználtsági rekordjainak lekért és a szolgáltatásért Microsoft Azure [API-kat](get-prices-for-microsoft-azure.md) használják. [](get-a-customer-s-utilization-record-for-azure.md)*
 
-A **SubscriptionDailyUsageRecord** -erőforrás azt írja le, hogy az előfizetés mennyit használ egy nap alatt.
+A **SubscriptionDailyUsageRecord** erőforrás azt írja le, hogy egy adott nap mennyi előfizetést használ fel.
 
 | Tulajdonság         | Típus               | Leírás                                                                                   |
 |------------------|--------------------|-----------------------------------------------------------------------------------------------|
-| DateUsed         | sztring             | Az előfizetés által használt nap dátum és idő formátumban.                                 |
-| ResourceId       | sztring             | GUID. Az erőforrás egyedi azonosítója.                                                          |
+| DateUsed (Dátum)         | sztring             | A nap, dátum-idő formátumban, amikor az előfizetést használták.                                 |
+| ResourceId       | sztring             | Guid. Az erőforrás egyedi azonosítója.                                                          |
 | ResourceName nevű erőforrásáról     | sztring             | Az erőforrás neve.                                                                     |
-| TotalCost        | decimal             | Az előfizetésben lévő erőforrások adott napon való használatának becsült teljes költsége.     |
-| CurrencyLocale   | sztring             | A területi beállítás, amelyben az előfizetés használatban van, meghatározza a számlán használandó pénznemet. |
-| LastModifiedDate | sztring             | A rekord utolsó módosításának napja a dátum és idő formátumban.                             |
-| Attribútumok       | ResourceAttributes | Az erőforráshoz tartozó metaadat-attribútumok.                                        |
+| TotalCost (Teljes költség)        | tizedes tört             | Az előfizetésben található erőforrások használatának becsült teljes költsége a megadott napon.     |
+| CurrencyLocale   | sztring             | A területi beállítás, amelyben az előfizetést használták, meghatározza a számlán használni szükséges pénznemet. |
+| LastModifiedDate | sztring             | A dátum és idő formátumban a rekord utolsó módosításának napja.                             |
+| Attribútumok       | ResourceAttributes (Erőforrás-attribútumok) | Az erőforrásnak megfelelő metaadat-attribútumok.                                        |
 
 ## <a name="subscriptionmonthlyusagerecord"></a>SubscriptionMonthlyUsageRecord
 
-A **SubscriptionMonthlyUsageRecord** -erőforrás azt írja le, hogy egy adott hónapban mennyi előfizetés van használatban.
+A **SubscriptionMonthlyUsageRecord** erőforrás azt írja le, hogy egy adott hónapban mennyi előfizetést használtak fel.
 
 | Tulajdonság         | Típus               | Leírás                                                                                   |
 |------------------|--------------------|-----------------------------------------------------------------------------------------------|
-| Állapot           | sztring             | Az előfizetés állapota: "None", "Active", "felfüggesztett" vagy "törölve".                  |
-| PartnerOnRecord  | sztring             | "A partner MPN-azonosítója a rekordban."                                                        |
-| OfferId          | sztring             | GUID. Az előfizetéshez kapcsolódó ajánlat azonosítója.                                       |
-| Id               | sztring             | GUID. Az előfizetés vagy az erőforrás azonosítója.                                                 |
-| Name             | sztring             | Az előfizetés vagy az erőforrás neve.                                                     |
-| TotalCost        | decimal             | Az előfizetés erőforrásainak a megadott hónapban való használatának becsült teljes költsége.   |
-| CurrencyLocale   | sztring             | A területi beállítás, amelyben az előfizetés használatban van, meghatározza a számlán használandó pénznemet. Elérhető Microsoft Azure (MS-AZR-0145P) előfizetésekhez. |
-| CurrencyCode     | sztring             | Lekérdezi vagy beállítja a pénznemkódot. Elérhető az Azure-csomag előfizetési erőforrásaihoz.                                         |
-| USDTotalCost     | decimal             | Lekérdezi vagy beállítja a becsült teljes díjat USD-ben. Elérhető az Azure-csomagokhoz.                                         |
-| LastModifiedDate | sztring             | A rekord utolsó módosításának napja a dátum és idő formátumban.                             |
-| Attribútumok       | ResourceAttributes | Az erőforráshoz tartozó metaadat-attribútumok.                                        |
+| Állapot           | sztring             | Az előfizetés állapota: "nincs", "aktív", "felfüggesztve" vagy "törölve".                  |
+| PartnerOnRecord  | sztring             | "A rekordban van a partner MPN-azonosítója."                                                        |
+| OfferId (Ajánlatazonosító)          | sztring             | Guid. Az előfizetéshez kapcsolódó ajánlat azonosítója.                                       |
+| Id               | sztring             | Guid. Az előfizetés vagy erőforrás azonosítója.                                                 |
+| Name             | sztring             | Az előfizetés vagy erőforrás neve.                                                     |
+| TotalCost (Teljes költség)        | tizedes tört             | Az előfizetésben található erőforrások használatának becsült teljes költsége a megadott hónapban.   |
+| CurrencyLocale   | sztring             | A területi beállítás, amelyben az előfizetést használták, meghatározza a számlán használni szükséges pénznemet. Elérhető Microsoft Azure (MS-AZR-0145P) előfizetéshez. |
+| CurrencyCode     | sztring             | Lekért vagy beállítja a pénznemkódot. Elérhető az Azure-csomag előfizetési erőforrásaihoz.                                         |
+| USDTotalCost (UsdTotalCost)     | tizedes tört             | Lekért vagy beállítja a becsült teljes költséget USD-ben. Elérhető Azure-csomagokhoz.                                         |
+| LastModifiedDate | sztring             | A dátum és idő formátumban a rekord utolsó módosításának napja.                             |
+| Attribútumok       | ResourceAttributes (Erőforrás-attribútumok) | Az erőforrásnak megfelelő metaadat-attribútumok.                                        |
 
 ## <a name="subscriptionusagesummary"></a>SubscriptionUsageSummary
 
-A **SubscriptionUsageSummary** erőforrás azt írja le, hogy az aktuális számlázási időszakban milyen mértékben használták az adott előfizetést.
+A **SubscriptionUsageSummary** erőforrás azt írja le, hogy mennyi előfizetés volt használatban az aktuális számlázási időszakban.
 
 | Tulajdonság         | Típus               | Leírás                                                                                                            |
 |------------------|--------------------|------------------------------------------------------------------------------------------------------------------------|
-| ResourceId       | sztring             | GUID. Az előfizetés vagy az erőforrás azonosítója. A CustomerMonthlyUsageRecord kontextusában ez az azonosító az ügyfél azonosítója. |
-| ResourceName nevű erőforrásáról     | sztring             | Az előfizetés vagy az erőforrás neve. A CustomerMonthlyUsageRecord kontextusában ez a név az ügyfél neve. |
-| BillingStartDate | dátum               | Az aktuális számlázási időszak kezdő dátuma dátum és idő formátumban.                                                     |
-| BillingEndDate   | dátum               | Az aktuális számlázási időszak záró dátuma dátum-idő formátumban.                                                       |
-| TotalCost        | double             | Az előfizetés erőforrásainak a megadott számlázási időszakban történő használatának becsült teljes költsége.               |
-| CurrencyLocale   | sztring             | A területi beállítás, amelyben az előfizetés használatban van, meghatározza a számlán használandó pénznemet. Elérhető Microsoft Azure (MS-AZR-0145P) előfizetésekhez. |
-| CurrencyCode   | sztring             | Lekérdezi vagy beállítja a pénznemkódot. Elérhető az Azure-csomagokhoz.                                         |
-| USDTotalCost   | decimal             | Lekérdezi vagy beállítja a becsült teljes díjat USD-ben. Elérhető az Azure-csomag előfizetési erőforrásaihoz.                                         |
-| LastModifiedDate | sztring             | A rekord utolsó módosításának napja a dátum és idő formátumban.                                                      |
-| Hivatkozások            | ResourceLinks      | A SubscriptionUsageSummary megfelelő erőforrás-hivatkozások.                                                      |
-| Attribútumok       | ResourceAttributes | A SubscriptionUsageSummary megfelelő metaadat-attribútumok.                                                 |
+| ResourceId       | sztring             | Guid. Az előfizetés vagy erőforrás azonosítója. A CustomerMonthlyUsageRecord környezetben ez az azonosító az ügyfél azonosítója. |
+| ResourceName nevű erőforrásáról     | sztring             | Az előfizetés vagy erőforrás neve. A CustomerMonthlyUsageRecord kontextusában ez az ügyfél neve. |
+| BillingStartDate (Számlázási kezdő dátum) | dátum               | Az aktuális számlázási időszak kezdő dátuma, dátum-idő formátumban.                                                     |
+| BillingEndDate (Számlázási dátum)   | dátum               | Az aktuális számlázási időszak záró dátuma, dátum-idő formátumban.                                                       |
+| TotalCost (Teljes költség)        | double             | Az előfizetésben található erőforrások használatának becsült teljes költsége a megadott számlázási időszakban.               |
+| CurrencyLocale   | sztring             | Az előfizetés használatának területi beállítása határozza meg a számlán használni szükséges pénznemet. Elérhető Microsoft Azure (MS-AZR-0145P) előfizetéshez. |
+| CurrencyCode   | sztring             | Lekért vagy beállítja a pénznemkódot. Elérhető Azure-csomagokhoz.                                         |
+| USDTotalCost (UsdTotalCost)   | tizedes tört             | Lekért vagy beállítja a becsült teljes költséget USD-ben. Elérhető az Azure-csomag előfizetési erőforrásaihoz.                                         |
+| LastModifiedDate | sztring             | A nap, dátum és idő formátumban, amikor a rekordot utoljára módosították.                                                      |
+| Hivatkozások            | ResourceLinks (Erőforrás-hivatkozás)      | A SubscriptionUsageSummary erőforrás-hivatkozásai.                                                      |
+| Attribútumok       | ResourceAttributes (Erőforrás-attribútumok) | A SubscriptionUsageSummary attribútumnak megfelelő metaadat-attribútumok.                                                 |

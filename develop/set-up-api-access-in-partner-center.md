@@ -1,107 +1,102 @@
 ---
 title: API hozzáférésének beállítása a Partnerközpontban
-description: Fiókok beállítása a partner Center SDK-hoz való fejlesztéshez és teszteléshez az integrációs munkaterületen.
+description: Állítson be fiókokat a fejlesztéshez a Partnerközpont SDK és tesztelje az integrációs tesztkészletet.
 ms.date: 05/29/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 873ff2ff9cecbfa92429958d3bfe2aa79fc3ad9a
-ms.sourcegitcommit: d5de47c08ba661ba5de4935caa6843d7c2c91710
+ms.openlocfilehash: 2c564baa9b626ff6ce21f9bcc517902d7cf99244
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/28/2020
-ms.locfileid: "97768152"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111547427"
 ---
 # <a name="set-up-api-access-in-partner-center"></a>API hozzáférésének beállítása a Partnerközpontban
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont a Microsoft Cloud for US Government | Partnerközpont Microsoft Cloud Németországhoz
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud for US Government Partnerközpontja
-- A Microsoft Cloud Germany Partnerközpontja
-
-Ez a cikk azokat a fiókokat ismerteti, amelyeket a partneri központ SDK-val kell fejleszteni. Ez a cikk azt is ismerteti, hogyan lehet [integrációs homokozó-fiókot](#integration-sandbox-account) létrehozni és tesztelni az integrációs homokozóban.
+Ez a cikk a fejlesztéshez szükséges fiókokat ismerteti Partnerközpont SDK. Ez a cikk azt is bemutatja, hogyan hozhat létre [integrációs tesztfiókot és](#integration-sandbox-account) tesztelni az integrációs tesztboxban.
 
 >[!NOTE]
->Az API-k eléréséhez a bérlőnek CSP-Bérlőnek kell lennie, és rendelkeznie kell közvetett szolgáltatóval vagy közvetlen számlázási partnerrel.
+>Az API-khoz való hozzáféréshez a bérlőnek CSP-bérlőnek kell lennie, önnek pedig közvetett szolgáltatónak vagy közvetlen számlázási partnernek kell lennie.
 
-## <a name="account-definitions"></a>Fiókok definíciói
+## <a name="account-definitions"></a>Fiókdefiníciók
 
-Az API-integráció integrálásához és teszteléséhez a partner Center két típusú fiókot támogat:
+Az API-integráció integrálása és tesztelése érdekében a Partnerközpont kétféle fiókot támogat:
 
-### <a name="primary-partner-account"></a>Elsődleges partner fiók
+### <a name="primary-partner-account"></a>Elsődleges partnerfiók
 
-Ezzel a fiókkal valódi rendeléseket hozhat létre valódi ügyfelek számára. Ha módosításokat vagy tranzakciókat végez, amikor bejelentkezik az elsődleges fiókba, a partner Center SDK-val vagy a partner irányítópult felhasználói felületével, a rendszer a valódi ügyfelek számára hivatalos megrendelésként kezeli őket. Ezek a számlán jelennek meg, és a vállalat felelős azért, hogy fizessen értük.
+Ebben a fiókban hozhat létre valós rendeléseket valós ügyfelek számára. Ha módosításokat vagy tranzakciókat kell végeznie, amikor bejelentkezik az elsődleges fiókba, az Partnerközpont SDK vagy a Partner irányítópult felhasználói felületének használatával azok valós ügyfelek hivatalos rendeléseként lesznek kezelve. Ezek megjelennek a számlán, és a vállalat felelős a fizetésért.
 
 ### <a name="integration-sandbox-account"></a>Integrációs tesztkörnyezeti fiók
 
-Ez a fiók a kód és a partner Center API-k integrálásának tesztelésére szolgál, mielőtt széleskörűen telepítené. Az integrációs csomagba való bejelentkezéskor elvégzett módosítások és tranzakciók megjelennek a számlán, azonban nem kell megfizetnie a számla összegét. A számla PDF-fájlja a "fizetés nélkül" nyilatkozatot kapja. EZ EGY SANDBOX-SZÁMLA, ÉS NINCS SZÜKSÉG BEAVATKOZÁSRA. "
+Ez a fiók a kód tesztelésére és a Partnerközpont API-okkal való integrációjára való, mielőtt széles körben üzembe helyezi. Az integrációs sandbox-fiókba való bejelentkezve végrehajtott módosítások és tranzakciók megjelennek a számlán, azonban nem kell kifizetnie a számla összegét. A pdf formátumú számlához a "DO NOT PAY" (NEM FIZET). EZ EGY SANDBOX-SZÁMLA, ÉS NINCS SZÜKSÉG BEAVATKOZÁSRA."
 
-Az integrációs csomag fiókja és az elsődleges fiók egymástól függetlenül működik, és nem oszt meg rendszergazdai fiókokat, felhasználói fiókokat, ügyfeleket, rendeléseket, előfizetéseket és egyéb adatait.
+Az integrációs sandbox-fiók és az elsődleges fiók egymástól függetlenül működik, és nem oszt meg rendszergazdai fiókokat, felhasználói fiókokat, ügyfeleket, rendeléseket, előfizetéseket és más adatokat.
 
-Az integrációs munkaterületen korlátozott számú ügyféllel, rendeléssel, előfizetéssel és licenccel rendelkező tranzakciók támogatottak.
+Az integrációs védőfal csak korlátozott számú ügyfél, megrendelés, előfizetés, licenc stb. esetén támogatja a tranzakciókat.
 
-Házirend szerint az integrációs munkaterületek csak integrációs tesztelési célokat szolgálnak.
+Szabályzat szerint az integrációs tesztfiókok csak integrációs tesztelési célokra szolgálnak.
 
-Alapértelmezés szerint nincs integrációs tesztkörnyezeti fiók. Létre kell hoznia egyet, ha azt tervezi, hogy a partner Center SDK-t használja.
+Alapértelmezés szerint nincs integrációs tesztkörnyezeti fiók. Ha az alkalmazás használatát tervezi, saját magának kell létrehoznia Partnerközpont SDK.
 
-## <a name="set-up-your-accounts"></a>Fiókok beállítása
+## <a name="set-up-your-accounts"></a>A fiókok beállítása
 
-Ez a szakasz azt ismerteti, hogyan állíthat be egy elsődleges partneri fiókot és egy integrációs sandbox-fiókot a partner Center SDK-hoz.
+Ez a szakasz azt ismerteti, hogyan állíthat be elsődleges partnerfiókot és integrációs védőfalat a Partnerközpont SDK.
 
-### <a name="create-an-integration-sandbox"></a>Integrációs homokozó létrehozása
+### <a name="create-an-integration-sandbox"></a>Integrációs védőfal létrehozása
 
-1. Jelentkezzen be a partner-irányítópultra egy globális rendszergazdai fiókkal (az elsődleges partner fiókjával).
+1. Jelentkezzen be a Partner irányítópultra egy globális rendszergazdai fiókkal (az elsődleges partnerfiókkal).
 
-2. A **Beállítások** menüben (fogaskerék ikon) válassza a **partneri beállítások** lehetőséget.
+2. A **Gépház** (fogaskerék ikon) válassza a **Partnerbeállítások lehetőséget.**
 
-3. Válassza az **integrációs** munkaterületek fület.
+3. Válassza **az Integrációs védőfal** lapot.
 
     >[!NOTE]
-    >Ha nem lát integrációs munkaterületet, előfordulhat, hogy nem rendelkezik globális rendszergazdai fiókkal. Az is előfordulhat, hogy egy integrációs homokozó-fiókot használ, és már be van állítva egy integrációs homokozó.
+    >Ha nem látja az Integrációs védőfal lehetőséget, előfordulhat, hogy nincs globális rendszergazdai fiókja. Előfordulhat, hogy integrációs sandbox-fiókot használ, és már be van állítva egy integrációs védőfal.
 
-4. Adja meg az integrációs munkaterülethez tartozó rendszergazdai fiók kapcsolattartási adatait. Ezután válassza a **fiók létrehozása** lehetőséget. Várjon néhány percet, amíg egy megerősítő üzenetben létrejött a fiók.
+4. Adja meg az integrációs védőfal rendszergazdai fiókjának kapcsolattartási adatait. Ezután válassza a **Fiók létrehozása lehetőséget.** Várjon néhány percet, amíg megerősítő üzenet jelenik meg a fiók létrejöttével.
 
-5. Miután megtalálta a megerősítő üzenetet, jelentkezzen ki a partner irányítópulton.
+5. Miután megjelenik a megerősítést kérő üzenet, jelentkezzen ki a Partner irányítópultjáról.
 
-6. Jelentkezzen be újra az új integrációs homokozó rendszergazdai fiókjával. Ügyeljen arra, hogy a **username@domain** hitelesítő adatok formátumát az imént megadott jelszóval együtt használja.
+6. Jelentkezzen be újra az új integrációs sandbox rendszergazdai fiókjával. Győződjön meg arról, hogy a hitelesítő adatok formátumát és a **username@domain** megadott jelszót használja.
 
-7. Válassza a **fiók beállítása** a **jelenlegi feladatok** felett lehetőséget a sandbox-fiók beállításának befejezéséhez.
+7. Válassza **a Fiók beállítása az** Aktuális feladatok fölött **lehetőséget** a sandbox-fiók beállításának befejezéséhez.
 
 ### <a name="enable-api-access"></a>API-hozzáférés engedélyezése
 
 A fiók beállítása után engedélyeznie kell az API-hozzáférést, mielőtt használhatná a Partnerközpont SDK-t az integrációs tesztkörnyezettel. Az API-hoz való hozzáférést külön kell engedélyeznie az elsődleges partnerfiók és az integrációs tesztkörnyezeti fiók esetében is.
 
-1. Jelentkezzen be a partner irányítópultra egy globális rendszergazdai fiók használatával.
+1. Jelentkezzen be a Partner irányítópultra egy globális rendszergazdai fiókkal.
 
-2. A **Beállítások** menüben (fogaskerék ikon) válassza a **partneri beállítások** lehetőséget.
+2. A **Gépház** (fogaskerék ikon) válassza a **Partnerbeállítások lehetőséget.**
 
-3. A **Fiókbeállítások** lapon válassza az alkalmazás- **kezelés** lehetőséget.
+3. A **Fiókbeállítások lapon** válassza az **Alkalmazáskezelés lehetőséget.**
 
-4. Ha még nem rendelkezik meglévő alkalmazással, vegyen fel egy új webalkalmazást. Ha van meglévő webalkalmazása, kattintson a **Kulcs hozzáadása** gombra.
+4. Ha még nem rendelkezik meglévő alkalmazással, adjon hozzá egy új webalkalmazást. Ha már van webalkalmazása, válassza a Kulcs **hozzáadása** gombot.
 
-5. Másolja az alkalmazás regisztrációs adatait, különösen a **kulcsot** , ha webalkalmazást hoz létre, és tárolja biztonságos helyen.
+5. Másolja ki az alkalmazásregisztrációs adatokat, különösen a kulcsot, ha webalkalmazást hoz létre, és tárolja biztonságos helyen. 
 
-6. Jelentkezzen ki a partner irányítópultján.
+6. Jelentkezzen ki a Partner irányítópultjáról.
 
-7. Jelentkezzen be a szolgáltatásba az integrációs sandbox-fiókjával. Ismételje meg az 2-5-es lépéseket az API-hozzáférés engedélyezéséhez az integrációs homokozóban.
+7. Jelentkezzen be újra az integrációs sandbox-fiókjával. Ismételje meg a 2–5. lépést az API-hozzáférés az integrációs védőfalon való engedélyezéséhez.
 
 ## <a name="write-and-test-code"></a>Kód írása és tesztelése
 
-Kódot és tesztelési kódot írhat az integrációs homokozóban. A következő információkra lesz szüksége a [partneri központ hitelesítésének beállításához](partner-center-authentication.md) az Azure ad-ben.
+Az integrációs tesztkészletben kódot írhat és tesztelhet. A következő információkra lesz szüksége az Azure [AD-Partnerközpont beállításhoz.](partner-center-authentication.md)
 
-| Elemnév | Pont helye |
+| Elem neve | Elem helye |
 | --------- | ------------- |
-| Alkalmazás azonosítója/ügyfél-azonosítója | A **Beállítások** menüben (fogaskerék ikon) válassza a **partneri beállítások** lehetőséget. A **Fiókbeállítások** lapon válassza az alkalmazás- **kezelés** lehetőséget. Az alkalmazás azonosítója/ügyfél-azonosítója a **regisztrált Application app-azonosítóként** szerepel. |
-| Kulcs | Ha létrehozott egy webalkalmazást az API- [hozzáférés engedélyezése](#enable-api-access)szakaszban, akkor ez az 5. lépésben mentett kulcs. |
-| Tartomány | Az integrációs homokozó tartománya. |
+| Alkalmazásazonosító /ügyfél-azonosító | A **Gépház** (fogaskerék ikon) válassza a **Partnerbeállítások lehetőséget.** A **Fiókbeállítások lapon** válassza az **Alkalmazáskezelés lehetőséget.** Az alkalmazásazonosító/ügyfél-azonosító regisztrált **alkalmazásalkalmazás-azonosítóként szerepel a listában.** |
+| Kulcs | Ha az [API-hozzáférés](#enable-api-access)engedélyezése szakaszban létrehozott egy webalkalmazást, ezt a kulcsot mentette az 5. lépésben. |
+| Tartomány | Az integrációs védőfal tartománya. |
 
 ## <a name="run-tested-code"></a>Tesztelt kód futtatása
 
-Ha valódi ügyféladatokat szeretne használni a megoldásban, az integrációs csomag hitelesítő adatait az elsődleges partneri fiók hitelesítő adataira kell váltania.
+Ahhoz, hogy a megoldást valós ügyféladatokkal használva használva az integrációs védőfal hitelesítő adatairól az elsődleges partnerfiók hitelesítő adataira váltsa.
 
-Ha készen áll a tesztelt kód használatára az elsődleges partner fiókjában, be kell szereznie egy Azure AD biztonsági jogkivonatot. Ez a biztonsági jogkivonat a partner Center-alkalmazáson, a kulcson és a tartományon alapul (az integrációs homokozó alkalmazás, a kulcs és a tartomány helyett).
+Ha készen áll a tesztelt kód elsődleges partnerfiókban való használatára, be kell szereznie egy Azure AD biztonsági jogkivonatot. Ez a biztonsági jogkivonat a saját Partnerközpont, kulcson és tartományon alapul (az integrációs védőfali alkalmazás, a kulcs és a tartomány helyett).
 
-1. Kövesse a [partneri központ hitelesítésének](partner-center-authentication.md) lépéseit az Azure ad biztonsági jogkivonat beszerzéséhez az elsődleges partneri központ hitelesítő adataival. (Korábban ezeket a lépéseket követve beszerezhet egy Azure AD biztonsági jogkivonatot az integrációs munkaterülethez.)
+1. Az Azure AD [Partnerközpont hitelesítő](partner-center-authentication.md) adatait használó Azure AD biztonsági jogkivonat le Partnerközpont lépéseit. (Korábban ezeket a lépéseket követve lekért egy Azure AD biztonsági jogkivonatot az integrációs védőfalhoz.)
 
-2. Cserélje le az integrációs biztonsági tokent a kódban az elsődleges partner fiókjához tartozó új biztonsági jogkivonatra.
+2. Cserélje le a kódban az integrációs biztonsági jogkivonatot az elsődleges partnerfiók új biztonsági jogkivonatával.

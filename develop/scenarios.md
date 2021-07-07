@@ -1,61 +1,56 @@
 ---
-title: A partner Center API-forgatókönyvei
-description: Ismerje meg, hogyan használhatják a Cloud Solution Provider program partnerei a partner Center API-t az ügyfelek fiókjainak, rendeléseinek, támogatásának és számlázásának programozott kezeléséhez.
+title: Partnerközpont API-forgatókönyvek
+description: Megtudhatja, Felhőszolgáltató programpartnerek hogyan kezelhetik programozott módon az ügyfélfiókokat, a megrendeléseket, a támogatást és a számlázást a Partnerközpont API-val.
 ms.date: 10/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 14dbd501e3d075c3880fae6f362feef797cba133
-ms.sourcegitcommit: 8a5c37376a29e29fe0002a980082d4acc6b91131
+ms.openlocfilehash: d74400a975323d5f0f276dbdece3621d8b47a609
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "97768512"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111547478"
 ---
-# <a name="partner-center-api-scenarios-that-let-you-programmatically-manage-customer-accounts"></a>A partner Center API-forgatókönyvei, amelyekkel programozott módon kezelheti az ügyfelek fiókjait
+# <a name="partner-center-api-scenarios-that-let-you-programmatically-manage-customer-accounts"></a>Partnerközpont API-forgatókönyvek, amelyek lehetővé teszi az ügyfélfiókok programozott kezelését
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Középpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Ez a cikk néhány olyan módszert ismertet, amelyek segítségével a Felhőszolgáltató program partnerei a Partnerközpont API-val programozott módon kezelhetik az alábbi területeket:
 
-Ez a cikk a felhőalapú megoldás-szolgáltatói programban részt vevő partnerek néhány módját ismerteti a partner Center API-val programozott módon felügyelheti a következő területeket, például:
-
-- Felhasználói fiókok
+- Ügyfélfiókok
 - Orders (rendelések)
 - Előfizetések
 - Támogatás
 - Számlázás
 
-A partnervállalat különböző verziói érhetők el, amelyek különböző képességekkel rendelkeznek. Nem minden forgatókönyv támogatott a partner Center összes verziójában. További információért lásd: [a Microsoft nemzeti felhőhöz készült partneri központ fejlesztése](developing-for-partner-center-for-microsoft-national-cloud.md).
+A szolgáltatásoknak különböző verziói Partnerközpont, amelyek különböző képességeket tartalmaznak. Nem minden forgatókönyv támogatott a Partnerközpont. További információ: Fejlesztés Partnerközpont [a Microsoft országos felhőjében.](developing-for-partner-center-for-microsoft-national-cloud.md)
 
-## <a name="scenarios-supported-by-the-partner-center-sdk"></a>A partner Center SDK által támogatott forgatókönyvek
+## <a name="scenarios-supported-by-the-partner-center-sdk"></a>A Partnerközpont SDK
 
-A következő forgatókönyvek mindegyike három különböző módon hajtható végre:
+Az alábbi forgatókönyvek közül háromféleképpen teljesíthet:
 
-- Manuálisan a [partner Center](https://partner.microsoft.com/dashboard) irányítópultján.
+- Manuálisan a [Partnerközpont](https://partner.microsoft.com/dashboard) irányítópulton.
 
-- Programozott módon a partner Center által felügyelt API használatával.
+- Programozott módon, a Partnerközpont API használatával.
 
-- Programozott módon a partner Center REST API használatával.
+- Programozott módon a Partnerközpont REST API.
 
 | További információ a támogatott forgatókönyvekről:  | Tekintse meg ezt az erőforrást:     |
 |----------------------------------|--------------------------|
-| **Elemzés:** Ismerje meg, hogyan kérhet le elemzési adatokat az Azure-használattal,-előfizetésekkel,-licencekkel vagy-hivatkozásokkal kapcsolatban.         | [Elemzés](usage-analytics.md)  |
-| **Naplózási műveletek:** Ismerje meg, hogyan kérheti le a partner Center tevékenységeit és műveleteit tartalmazó korábbi naplózási rekordokat. | [Auditálási műveletek](audit.md)                     |
-| **Eszközök üzembe helyezése:** További információ az eszközök konfigurációs házirendjeiről, az eszközök kötegek használatáról és az eszközök metaadatairól. Ezek a forgatókönyvek az eszköz konfigurációs házirendjeinek hozzáadását, törlését, frissítését és beolvasását foglalják magukban.    | [Eszköz üzembe helyezése](device-deployment.md)  |
-| **Fiókok és profilok:** Ismerje meg, hogyan kérheti vagy frissítheti a partner számlázási profilokat, a jogi profilokat, az MPN-profilt, az üzleti profilokat vagy a támogatási profilokat Megtekintheti az ügyfelek és a közvetett viszonteladók listáját is. | [Fiókok és profilok kezelése](manage-profiles-and-information.md)                                                                        |
-| **Számlázás:** Ismerje meg a számlázási ciklust, az Azure-díjszabást és az Azure-kihasználtsági rekordokat, a számlák beszerzését, a partner folyószámla-egyenlegének beszerzését vagy az ügyfélszolgálati költségek beszerzését.  | [Számlázás kezelése](manage-billing.md)   |
-| **Azure-kiadások:** Információk az Azure-költségekről és a partnerek használatáról, az ügyfél-előfizetések használatáról, a mért használatról és az ügyfél-használati költségvetésről. A forgatókönyvek azt is tartalmazzák, hogyan lehet frissíteni az ügyfél-használati költségvetést. | [Azure-költség](azure-spending.md)  |
-| **Felhasználói fiókok kezelése:** Ismerje meg, hogyan végezheti el az ügyfél-fiókok felügyeletének számos aspektusát, például az ügyfelek fiókjainak létrehozását és törlését, az ügyfél felhasználói fiókjainak kezelését, az ügyfél-fiókadatok felügyeletét és érvényesítését, a felhasználói fiókok kezelését és a licencek hozzárendelését.  | [Ügyfelek kezelése](manage-customers.md)  |
-| **Megrendelések kezelése:** Ismerje meg, hogyan kezelheti az ügyfelek rendeléseit és előfizetéseit programozott módon. Ez a rész magában foglalja az Azure-foglalások megvásárlását, a megrendelések létrehozását, a katalógusból származó ajánlatok beszerzését és a próbaverziós átalakítási ajánlatok   | [Megrendelések kezelése](manage-orders.md)  |
-| **Támogatás biztosítása:** Megtudhatja, hogyan felügyelheti az ügyfelek szolgáltatásait, hogyan kérheti le vagy frissítheti az előfizetések támogatási partnereit, és hogyan kezelheti a szolgáltatási kérelmeket.  | [Támogatás biztosítása](provide-support.md)   |
-| **Hivatkozások:** Megtudhatja, hogyan hozhat létre átirányítást, hogyan kérheti le az átirányítási listát, vagy frissítheti az átirányítást.  | [Javaslatok](/partner/develop/referrals)  |
-| **Segédprogramok:** Megtudhatja, hogyan érvényesítheti a címeket, beolvashatja a címek formázási szabályait a piacon, ellenőrizheti a tartomány elérhetőségét, törölheti az ügyfél fiókját az integrációs munkaterületről, vagy megkérheti a partner Center tevékenységét | [Segédprogramok](utilities.md)  |
-| **Biztonság:** A többtényezős hitelesítéssel (MFA) kapcsolatos REST API-k ismertetése a partner Centerben. Ezek az API-k segítenek kikényszeríteni az MFA-t a partner bérlő minden felhasználói fiókjánál.  | [Partneri biztonsági követelmények állapota](partner-security-requirements.md)  |
+| **Elemzés:** Ismerje meg, hogyan lehet elemzési adatokat lekérni az Azure-használatról, -előfizetésről, -licencekről és -ajánlásokról.         | [Elemzés](usage-analytics.md)  |
+| **Naplózási műveletek:** Ismerje meg, hogyan lehet lekérni a Partnerközpont és műveletek előzményrekordjait. | [Auditálási műveletek](audit.md)                     |
+| **Eszköztelepítések:** Megismeri az eszközkonfigurációs szabályzatokat, az eszközkötkötekkel való munkát és az eszköz metaadatait. Ilyen forgatókönyv például az eszközkonfigurációs szabályzatok hozzáadása, törlése, frissítése és beolvasása.    | [Eszköz üzembe helyezése](device-deployment.md)  |
+| **Fiókok és profilok:** Ismerje meg, hogyan lehet lekért vagy frissíthet partner számlázási profilokat, jogi profilokat, MPN-profilokat, üzleti profilokat vagy támogatási profilokat. Le is kaphatja az ügyfelek vagy közvetett viszonteladók listáját. | [Fiókok és profilok kezelése](manage-profiles-and-information.md)                                                                        |
+| **Számlázás:** Olyan területekről tanulhat, mint a számlázási ciklus módosítása, az Azure-díjszabások és az Azure-beli kihasználtsági rekordok lekérte, a számlák lekérte, a partner aktuális számlaegyenlegének lekérte vagy az ügyfélszolgálati költségek lekérte.  | [Számlázás kezelése](manage-billing.md)   |
+| **Azure-kiadások:** Információk az Azure-kiadásokról és -partnerek használatáról, az ügyfél-előfizetések használatáról, a forgalmi díjas használatról és az ügyfelek használati költségvetéséről. A forgatókönyvek az ügyfelek használati költségvetésének frissítését is magukban foglalják. | [Azure-költség](azure-spending.md)  |
+| **Ügyfélfiókok kezelése:** Megtudhatja, hogyan adhatja meg az ügyfélfiókok kezelésének számos aspektusát, például az ügyfélfiókok vagy az ügyfél felhasználói fiókjainak létrehozását és törlését, az ügyfélfiókok részleteinek kezelését és érvényességét, a felhasználói fiókok kezelését és a licencek hozzárendelését.  | [Ügyfelek kezelése](manage-customers.md)  |
+| **Rendelések kezelése:** Ismerje meg, milyen módokon kezelheti programozott módon az ügyfelek rendeléseit és előfizetéseit. Ez a terület magában foglalja az Azure Reservations megvásárlását, a rendelések létrehozását, az ajánlatok katalógusból való beszerzését és a próbakonverziós ajánlatok felügyeletét.   | [Megrendelések kezelése](manage-orders.md)  |
+| **Támogatás biztosítása:** Megtudhatja, hogyan felügyelheti az ügyfelek szolgáltatásait, hogyan kérhet le vagy frissíthet támogatási kapcsolattartókat egy előfizetéshez, és hogyan kezelheti a szolgáltatáskéréseket.  | [Támogatás biztosítása](provide-support.md)   |
+| **Ajánlások:** Megtudhatja, hogyan hozhat létre terjesztést, hogyan olvashatja be a hivatkozások listáját, és hogyan frissítheti a hivatkozásokat.  | [Javaslatok](/partner/develop/referrals)  |
+| **Segédprogramok:** Megtudhatja, hogyan érvényesíthet egy címet, hogyan olvashatja be a címformázási szabályokat piac szerint, hogyan ellenőrizheti a tartományok rendelkezésre állását, hogyan törölheti az ügyfélfiókot az integrációs Partnerközpont vagy hogyan olvashatja be a Partnerközpont rekordját. | [Segédprogramok](utilities.md)  |
+| **Biztonság:** Ismerje meg a többtényezős hitelesítéshez (MFA) kapcsolódó REST API-kat a Partnerközpont. Ezek az API-k segítenek kikényszeríteni az MFA-t a partnerbérlő minden felhasználói fiókjához.  | [Partnerbiztonsági követelmények állapota](partner-security-requirements.md)  |
 
 ## <a name="next-steps"></a>Következő lépések
 
-- [Lásd a partneri központ mintáit](partner-center-samples.md)
+- [Lásd a Partnerközpont mintákat](partner-center-samples.md)
 - [Útmutató az első lépésekhez](get-started.md)

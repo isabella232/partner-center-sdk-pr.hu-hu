@@ -1,59 +1,55 @@
 ---
-title: Átvitel elutasítása
-description: Az előfizetések átvitelének elutasítása egy ügyfél számára.
+title: Átadás elutasítása
+description: Hogyan utasítható el az előfizetések átadása egy ügyfél számára.
 ms.date: 04/10/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: e4a182ff92a21cf72ca1c2da9de7e211b433725f
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: d09905979a89c9b2092462512c485524cd681d5f
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767860"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445374"
 ---
-# <a name="reject-a-transfer"></a>Átvitel elutasítása
-
-**A következőkre vonatkozik:**
-
-- Partnerközpont
+# <a name="reject-a-transfer"></a>Átadás elutasítása
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- Egy meglévő átvitelhez tartozó adatátviteli azonosító.
+- Egy meglévő átvitel átvitelazonosítója.
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus   | Kérés URI-ja                                                                                                 |
 |----------|-------------------------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Transfers/{Transfer-ID} http/1.1                    |
+| **Javítás** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/transfers/{transfer-id} HTTP/1.1                    |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A következő Path paraméter használatával azonosíthatja az ügyfelet, és megadhatja az elfogadásra váró átvitelt.
+Az alábbi elérésiút-paraméterrel azonosíthatja az ügyfelet, és megadhatja az elfogadni kívánt átvitelt.
 
 | Név            | Típus     | Kötelező | Leírás                                                            |
 |-----------------|----------|----------|------------------------------------------------------------------------|
 | **ügyfél-azonosító** | sztring   | Igen      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.             |
-| **átvitel-azonosító** | sztring   | Igen      | GUID formátumú átvitel-azonosító, amely azonosítja az átvitelt.             |
+| **transfer-id (átviteli azonosító)** | sztring   | Igen      | Az átvitelt azonosító GUID formátumú átviteli azonosító.             |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a táblázat a kérelem törzsének [TransferEntity](transfer-entity-resources.md) tulajdonságait ismerteti.
+Ez a táblázat a [kérés törzsében található TransferEntity](transfer-entity-resources.md) tulajdonságokat ismerteti.
 
 | Tulajdonság              | Típus          | Kötelező  | Leírás                                                                                |
 |-----------------------|---------------|-----------|--------------------------------------------------------------------------------------------|
-| id                    | sztring        | No    | A transferEntity sikeres létrehozásakor megadott transferEntity-azonosító.                               |
-| status                | sztring        | No    | A transferEntity állapota. Az átvitel elutasításához az értéket "elutasítás" értékre kell állítani|
+| id                    | sztring        | No    | A transferEntity sikeres létrehozásakor megadott transferEntity azonosító.                               |
+| status                | sztring        | No    | A transferEntity állapota. Az átadás elutasításához az értéket "elutasításként" kell beállítani|
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -72,11 +68,11 @@ Content-Length: 63
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus a válasz törzsében lévő [TransferEntity](transfer-entity-resources.md) -erőforrást adja vissza.
+Ha sikeres, ez a metódus visszaadja a válasz törzsében a megadott [TransferEntity](transfer-entity-resources.md) erőforrást.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,35 +1,31 @@
 ---
-title: Önkiszolgáló házirend frissítése
-description: Önkiszolgáló házirend frissítése.
+title: Önkiszolgáló szabályzat frissítése
+description: Önkiszolgáló szabályzat frissítése.
 ms.date: 04/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 4d53ab8e5b8ef5b7be83360a3f43ec7791b2e3b4
-ms.sourcegitcommit: 01e75175077611da92175c777a440a594fb05797
+ms.openlocfilehash: d94382e73fd2a79751fe5f8f8414df2befde584f
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "97768668"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445255"
 ---
 # <a name="update-a-selfservepolicy"></a>SelfServePolicy frissítése
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Ez a témakör az önkiszolgáló szabályzatok frissítését ismerteti.
+Ez a cikk az önkiszolgáló szabályzatok frissítését ismerteti.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja az Application + felhasználói hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az Application+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-Önkiszolgáló házirend törlése:
+Önkiszolgáló szabályzat törlése:
 
-1. Hívja meg a [**IAggregatePartner. SelfServePolicies. ById**](/dotnet/api/microsoft.store.partnercenter.iselfservepoliciescollection.byid) metódust az entitás-azonosítóval, és kérje le a házirendek műveleteire szolgáló felületet.
+1. Hívja meg az [**IAggregatePartner.SelfServePolicies.ById**](/dotnet/api/microsoft.store.partnercenter.iselfservepoliciescollection.byid) metódust az entitásazonosítóval, hogy lekérje a szabályzatok műveleteinek interfészét.
 
-2. A saját kiszolgálási szabályzat frissítéséhez hívja meg a [**put**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.put) vagy a [**PutAsync**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.putasync) metódust.
+2. Az önkiszolgáló szabályzat frissítéséhez hívja meg a [**Put**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.put) vagy [**PutAsync**](/dotnet/api/microsoft.store.partnercenter.SelfServePolicies.putasync) metódust.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -42,38 +38,38 @@ IPartner scopedPartnerOperations = partnerOperations.With(RequestContextFactory.
 partnerOperations.SelfServePolicies.ById(policy.id).Put(policy);
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus   | Kérés URI-ja                                                       |
 |----------|-------------------------------------------------------------------|
-| **PUT** | [*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy http/1.1 |
+| **PUT** | [*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-- A kérelem azonosítójának és korrelációs azonosítójának megadása kötelező.
-- További információért lásd a [partneri központ Rest-fejléceit](headers.md) .
+- Szükség van egy kérelem- és korrelációs azonosítóra.
+- További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a táblázat a kérelem törzsében szereplő kötelező tulajdonságokat ismerteti.
+Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 | Név                              | Típus   | Leírás                                 |
 |------------------------------------------------------------------|--------|---------------------------------------------|
-| [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy)| object | Az önkiszolgáló házirend adatai. |
+| [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy)| object | Az önkiszolgáló szabályzat adatai. |
 
 #### <a name="selfservepolicy"></a>SelfServePolicy
 
-Ez a táblázat ismerteti az új önkiszolgáló házirend létrehozásához szükséges [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) -erőforrás minimálisan szükséges mezőit.
+Ez a táblázat az új önkiszolgáló szabályzat létrehozásához szükséges [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) erőforrás minimálisan szükséges mezőit ismerteti.
 
 | Tulajdonság              | Típus             | Leírás                                                                                            |
 |-----------------------|------------------|--------------------------------------------------------------------------------------------------------|
-| id                    | sztring           | Önkiszolgáló házirend-azonosító, amelyet az önkiszolgáló házirend sikeres létrehozásakor kell megadni.     |
+| id                    | sztring           | Önkiszolgáló szabályzatazonosító, amely az önkiszolgáló szabályzat sikeres létrehozása után lesz megadva.     |
 | SelfServeEntity       | SelfServeEntity  | Az önkiszolgáló entitás, amely hozzáférést kap.                                                     |
-| Megadó fél               | Megadó fél          | A hozzáférést biztosító biztosító.                                                                    |
-| Engedélyek           | Engedély tömbje| [Engedélyezési](self-serve-policy-resources.md#permission) erőforrások tömbje.                                                      |
-| ETAG                  | sztring           | A ETAG.                                                                                               |
+| Grantor               | Grantor          | A hozzáférést megadó megadó.                                                                    |
+| Engedélyek           | Engedélytömb| [Engedélyerőforrások tömbje.](self-serve-policy-resources.md#permission)                                                      |
+| Etag                  | sztring           | Az Etag.                                                                                               |
 
 
 ### <a name="request-example"></a>Példa kérésre
@@ -110,18 +106,18 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez az API egy [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) -erőforrást ad vissza a frissített önkiszolgáló házirendhez.
+Sikeres művelet esetén ez az API egy [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) erőforrást ad vissza a frissített önkiszolgáló szabályzathoz.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 Ez a metódus a következő hibakódokat adja vissza:
 
 | HTTP-állapotkód     | Hibakód   | Leírás                                                                |
 |----------------------|--------------|----------------------------------------------------------------------------|
-| 404                  | 600039       | Az önkiszolgáló házirend nem található                                            |
-| 404                  | 600040       | Az önkiszolgáló házirend-azonosító helytelen                                  |
+| 404                  | 600039       | Az önkiszolgáló szabályzat nem található                                            |
+| 404                  | 600040       | Az önkiszolgáló szabályzatazonosító helytelen                                  |
 
 
 ### <a name="response-example"></a>Példa válaszra

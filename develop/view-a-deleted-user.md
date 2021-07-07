@@ -1,37 +1,33 @@
 ---
 title: Egy ügyfél törölt felhasználóinak megtekintése
-description: Lekéri az ügyfél által a törölt CustomerUser-erőforrások listáját az ügyfél azonosítója alapján. Igény szerint beállíthatja az oldalméret méretét. Meg kell adnia egy szűrőt.
+description: Lekérte az ügyfél törölt CustomerUser erőforrásainak listáját ügyfélazonosító alapján. Igény szerint meg is állíthatja az oldalméretet. Meg kell adnunk egy szűrőt.
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9b1a9b85e3eba7ae7ec1dab8e951134d03371604
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: f4fec958a9a6bb580d35de1cf3007e1db3b2b650
+ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768231"
+ms.lasthandoff: 06/04/2021
+ms.locfileid: "111445306"
 ---
 # <a name="view-deleted-users-for-a-customer"></a>Egy ügyfél törölt felhasználóinak megtekintése
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-Lekéri az ügyfél által a törölt CustomerUser-erőforrások listáját az ügyfél azonosítója alapján. Igény szerint beállíthatja az oldalméret méretét. Meg kell adnia egy szűrőt.
+Lekérte az ügyfél törölt CustomerUser erőforrásainak listáját ügyfélazonosító alapján. Igény szerint meg is állíthatja az oldalméretet. Meg kell adnunk egy szűrőt.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-## <a name="what-happens-when-you-delete-a-user-account"></a>Mi történik, amikor töröl egy felhasználói fiókot?
+## <a name="what-happens-when-you-delete-a-user-account"></a>Mi történik, ha töröl egy felhasználói fiókot?
 
-Felhasználói fiók törlésekor a felhasználói állapot "inaktív" értékre van állítva. Így harminc napig marad, amely után a felhasználói fiók és a hozzá tartozó adatok törlődnek, és helyreállíthatatlanul történnek. Ha a harminc napos ablakban szeretné visszaállítani a törölt felhasználói fiókot, tekintse meg a [törölt felhasználó visszaállítása az ügyfélre](restore-a-user-for-a-customer.md)című témakört. Ha törölve lett, és "inaktív" jelöléssel jelölte meg, a felhasználói fiókot a rendszer már nem adja vissza a felhasználói gyűjtemény tagjaként (például az [ügyfél összes felhasználói fiókjának lekérése lista](get-a-list-of-all-user-accounts-for-a-customer.md)használatával). A még nem törölt felhasználók listájának lekéréséhez le kell kérdezni az inaktív felhasználói fiókokat.
+Felhasználói fiók törlésekor a felhasználói állapot "inaktív" lesz. Ez 30 napig így marad, ezt követően a rendszer kiüríti a felhasználói fiókot és a hozzá tartozó adatokat, és nem állítható vissza. Ha egy törölt felhasználói fiókot szeretne visszaállítani a 30 napos időkereten belül, tekintse meg a Törölt felhasználó visszaállítása egy [ügyfélre vonatkozó útmutatót.](restore-a-user-for-a-customer.md) A törlést és az "inaktívként" megjelölt felhasználói fiókot a rendszer már nem a felhasználói gyűjtemény tagjaként visszaadja (például egy ügyfél összes felhasználói fiókjának lekért [listáját használva).](get-a-list-of-all-user-accounts-for-a-customer.md) A törölt, még nem véglegesen törölt felhasználók listájának lekérdezéséhez le kellkérdeznie az inaktívra beállított felhasználói fiókokat.
 
 ## <a name="c"></a>C\#
 
-A törölt felhasználók listájának lekéréséhez hozzon létre egy lekérdezést, amely azokat az ügyfelek felhasználóinak szűri, akiknek az állapota inaktív. Először hozza létre a szűrőt egy [**SimpleFieldFilter**](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter) objektumnak a paraméterekkel való létrehozásával, ahogy az a következő kódrészletben látható. Ezután hozza létre a lekérdezést a [**BuildIndexedQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildindexedquery) metódus használatával. Ha nem szeretné, hogy a lapozható eredmények legyenek, használja helyette a [**BuildSimpleQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildsimplequery) metódust. Ezután használja a [**IAggregatePartner. Customs. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval az ügyfél azonosításához. Végül hívja meg a [**lekérdezési**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.query) módszert a kérelem elküldéséhez.
+A törölt felhasználók listájának lekéréséhez állítson össze egy olyan lekérdezést, amely az inaktív állapotú ügyfelekre szűr. Először hozza létre a szűrőt egy [**SimpleFieldFilter**](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter) objektum példányosulatával a paraméterekkel az alábbi kódrészletben látható módon. Ezután hozza létre a lekérdezést a [**BuildIndexedQuery metódussal.**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildindexedquery) Ha nem szeretne lapozott eredményeket, használhatja helyette a [**BuildSimpleQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildsimplequery) metódust. Ezután használja az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Végül hívja meg [**a Query metódust**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.query) a kérés elküldéhez.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -47,29 +43,29 @@ var simpleQueryWithFilter = QueryFactory.Instance.BuildIndexedQuery(customerUser
 var customerUsers = partnerOperations.Customers.ById(selectedCustomerId).Users.Query(simpleQueryWithFilter);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: GetCustomerInactiveUsers.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** GetCustomerInactiveUsers.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                       |
 |---------|-------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Users? méret = {size} &szűrő = {Filter} http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/users?size={méret}&filter={filter} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A kérelem létrehozásakor használja az alábbi elérési utat és a lekérdezési paramétereket.
+A kérelem létrehozásakor használja a következő elérési utat és lekérdezési paramétereket.
 
 | Név        | Típus   | Kötelező | Leírás                                                                                                                                                                        |
 |-------------|--------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ügyfél-azonosító | guid   | Igen      | Az érték egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.                                                                                                            |
 | size        | int    | Nem       | Az egyszerre megjelenítendő eredmények száma. Ezt a paramétert nem kötelező megadni.                                                                                                     |
-| filter (szűrő)      | filter (szűrő) | Igen      | A felhasználói keresést szűrő lekérdezés. A törölt felhasználók beolvasásához a következő karakterláncot kell tartalmaznia és kódolnia: {"Field": "UserState", "value": "inaktív", "operátor": "Equals"}. |
+| filter (szűrő)      | filter (szűrő) | Igen      | A felhasználó keresését szűrő lekérdezés. A törölt felhasználók lekéréséhez bele kell foglalnia és kódolnia kell a következő sztringet: {"Field":"UserState","Value":"Inactive","Operator":"equals"}. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -89,11 +85,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus [CustomerUser](user-resources.md#customeruser) -erőforrások gyűjteményét adja vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus [CustomerUser-erőforrások](user-resources.md#customeruser) gyűjteményét adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

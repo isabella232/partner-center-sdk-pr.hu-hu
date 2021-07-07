@@ -4,21 +4,16 @@ description: A partneri sandbox képes támogatni a partner és az ügyfél köz
 ms.date: 05/01/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9bef4a15685ebbdc2212988f5ac5724b946cfd54
-ms.sourcegitcommit: 1aeaa12705a5945b8aab6bca254fedebd9c8bc4e
+ms.openlocfilehash: aa6c4fb9ef71bacfad7e0f1510fec15f6af60a05
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 05/21/2021
-ms.locfileid: "110243384"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111547393"
 ---
 # <a name="sandbox-capabilities-for-reseller-relationship"></a>A viszonteladói kapcsolatokhoz szükséges sandbox-képességek
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-- A 21Vianet által üzemeltetett Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
 Ez a cikk ismerteti, hogy mit támogat a sandbox a partner és az ügyfél közötti viszonteladói kapcsolatokhoz. 
 
@@ -33,9 +28,9 @@ Ez a cikk ismerteti, hogy mit támogat a sandbox a partner és az ügyfél köz�
 1.  A Sandbox Direct Bill-partnerek és a közvetett szolgáltatók kapcsolatokat hozhatnak létre a sandbox ügyféllel. 
 2.  A Sandbox Direct Bill-partnerek és a közvetett szolgáltatók nem hívnak meg sandbox-ügyfeleket.
 
-3. A Sandbox Direct Bill Partner és a Indirect Providers képesek eltávolítani a viszonteladói kapcsolatot Partnerközpont felhasználói felületről és API-ból.
+3. A Sandbox Direct Bill Partner és a Indirect Providers el tudják távolítani a viszonteladói kapcsolatot Partnerközpont felhasználói felületről és API-ból.
 
-4. A Viszonteladói kapcsolat eltávolítása védőfal hívja meg az Ügyfél törlése API-t. Ezzel eltávolítja a kapcsolatot, és törli az ügyfélbérlőt is. {baseURL}/v1/Customers/{customer-Tenant-id}
+4. A Viszonteladói kapcsolat eltávolítása védőfal hívja meg az Ügyfél törlése API-t. Ezzel eltávolítja a kapcsolatot, és törli az ügyfélbérlőt. {baseURL}/v1/Customers/{customer-Tenant-id}
 
 
     ### <a name="in-the-sandbox"></a>A sandboxban
@@ -44,19 +39,19 @@ Ez a cikk ismerteti, hogy mit támogat a sandbox a partner és az ügyfél köz�
 
     - Hozzáadhat meglévő ügyfeleket
 
-    - Nem lehet kapcsolatokat kérni az új ügyfelekkel
+    - Nem lehet kapcsolatokat kérni új ügyfelekkel
 
     **Közvetett szolgáltatók:**
 
     - Hozzáadhat meglévő ügyfeleket
 
-    - Nem lehet kapcsolatokat kérni az új ügyfelekkel
+    - Nem lehet kapcsolatokat kérni új ügyfelekkel
 
     - Nem lehet kapcsolat közvetett viszonteladóval
 
     **Közvetett viszonteladó:** 
 
-    -   Meglévő ügyfelekkel is lehet kapcsolat
+    -   Kapcsolat lehet meglévő ügyfelekkel
 
     -   Nem kérhet új kapcsolatokat, és nem adhat hozzá új ügyfeleket
 
@@ -64,17 +59,17 @@ Ez a cikk ismerteti, hogy mit támogat a sandbox a partner és az ügyfél köz�
 
     **Közvetlen számlázási partnerek:**
 
-    -   Felvehet új ügyfeleket
+    -   Hozzáadhat új ügyfeleket
 
-    -   Kapcsolatok kérése új ügyfelekkel
+    -   Kapcsolatok igénylése új ügyfelekkel
 
     **Közvetett szolgáltatók:**
 
-    -   Felvehet új ügyfeleket
+    -   Hozzáadhat új ügyfeleket
 
-    -   Kapcsolatok kérése új ügyfelekkel
+    -   Kapcsolatok igénylése új ügyfelekkel
 
-    -   Kapcsolat lehet közvetett viszonteladókhoz
+    -   Kapcsolat lehet közvetett viszonteladóval
 
     **Közvetett viszonteladók:**
 

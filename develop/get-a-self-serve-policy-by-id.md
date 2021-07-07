@@ -1,53 +1,49 @@
 ---
-title: Önkiszolgáló szabályzat lekérése azonosító alapján
-description: Lekérdezi a megadott önkiszolgálási házirendet az AZONOSÍTÓjának használatával.
+title: Önkiszolgáló szabályzat lekért azonosítója
+description: Lekérte a megadott önkiszolgáló szabályzatot az azonosítójával.
 ms.date: 04/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: ec01d0d9b7c3858cdacf1dbaad3b2b0bb7b6a1a4
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 074d7ba65c7aab91687a67f50e871cee913fc2bb
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767932"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111873836"
 ---
-# <a name="get-a-self-serve-policy-by-id"></a>Önkiszolgáló szabályzat lekérése azonosító alapján
+# <a name="get-a-self-serve-policy-by-id"></a>Önkiszolgáló szabályzat lekért azonosítója
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-Lekérdezi a megadott önkiszolgálási házirendet az AZONOSÍTÓjának használatával.
+Lekérte a megadott önkiszolgáló szabályzatot az azonosítójával.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az App + User hitelesítő adataival.
-- Önkiszolgáló házirend-azonosító.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
+- Egy önkiszolgáló szabályzatazonosító.
 
 ## <a name="examples"></a>Példák
 
 
-## <a name="span-idrest_requestspan-idrest_requestspan-idrest_requestrest-request"></a><span id="REST_Request"/><span id="rest_request"/><span id="REST_REQUEST"/>REST-kérelem
+## <a name="span-idrest_requestspan-idrest_requestspan-idrest_requestrest-request"></a><span id="REST_Request"/><span id="rest_request"/><span id="REST_REQUEST"/>REST-kérés
 
-**Kérelem szintaxisa**
+**Kérés szintaxisa**
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{ID} http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/SelfServePolicy/{id} HTTP/1.1 |
 
 **URI-paraméter**
 
-A megadott termék beolvasásához használja a következő elérésiút-paramétereket.
+A megadott termék lekért értékével az alábbi elérésiút-paramétereket használhatja.
 
 | Név                       | Típus         | Kötelező | Leírás                                                     |
 |----------------------------|--------------|----------|-----------------------------------------------------------------|
-| **SelfServePolicy-azonosító**     | **karakterlánc**   | Igen      | Az önkiszolgáló házirendet azonosító karakterlánc.                 |
+| **SelfServePolicy-id**     | **sztring**   | Igen      | Az önkiszolgáló szabályzatot azonosító sztring.                 |
 
-**Kérésfejlécek**
+**Kérelemfejlécek**
 
-- További információért lásd a [fejléceket](headers.md) .
+- További információ: [Fejlécek.](headers.md)
 
 **Kérelem törzse**
 
@@ -65,17 +61,17 @@ MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) -erőforrást tartalmaz.
+Ha ez sikeres, a válasz törzse tartalmaz egy [SelfServePolicy erőforrást.](self-serve-policy-resources.md#selfservepolicy)
 
-**Válasz sikeres és hibakódok**
+**Sikeres válasz és hibakódok**
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
 | HTTP-állapotkód     | Hibakód   | Leírás                                                                |
 |----------------------|--------------|----------------------------------------------------------------------------|
-| 404                  | 600039       | Az önkiszolgáló házirend nem található.                                                     |
+| 404                  | 600039       | Az önkiszolgáló szabályzat nem található.                                                     |
 
 **Példa válaszra**
 
