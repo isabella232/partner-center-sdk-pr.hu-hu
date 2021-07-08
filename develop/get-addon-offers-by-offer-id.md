@@ -1,38 +1,33 @@
 ---
 title: Bővítmények lekérése ajánlatazonosító alapján
-description: Az ajánlat-AZONOSÍTÓhoz tartozó bővítmények beszerzése.
+description: Az ajánlatazonosító bővítményei lekérte.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: 9ee22712b323c7439a192ed2e5af8d5e7eaf92a3
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: e3b0ab8007d3affa6912479b960f6dae3bc0bd28
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768051"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760334"
 ---
-# <a name="get-add-ons-for-an-offer-id"></a><span data-ttu-id="e7c1d-103">Bővítmények lekérése ajánlatazonosító alapján</span><span class="sxs-lookup"><span data-stu-id="e7c1d-103">Get add-ons for an offer ID</span></span>
+# <a name="get-add-ons-for-an-offer-id"></a><span data-ttu-id="7af82-103">Bővítmények lekérése ajánlatazonosító alapján</span><span class="sxs-lookup"><span data-stu-id="7af82-103">Get add-ons for an offer ID</span></span>
 
-<span data-ttu-id="e7c1d-104">**A következőkre vonatkozik**</span><span class="sxs-lookup"><span data-stu-id="e7c1d-104">**Applies To**</span></span>
+<span data-ttu-id="7af82-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="7af82-104">**Applies to**: Partner Center | Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="e7c1d-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="e7c1d-105">Partner Center</span></span>
-- <span data-ttu-id="e7c1d-106">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="e7c1d-106">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="e7c1d-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="e7c1d-107">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="e7c1d-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="e7c1d-108">Partner Center for Microsoft Cloud for US Government</span></span>
+<span data-ttu-id="7af82-105">Az ajánlatazonosító bővítményei lekérte.</span><span class="sxs-lookup"><span data-stu-id="7af82-105">How to get the add-ons for an offer ID.</span></span>
 
-<span data-ttu-id="e7c1d-109">Az ajánlat-AZONOSÍTÓhoz tartozó bővítmények beszerzése.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-109">How to get the add-ons for an offer ID.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="7af82-106">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="7af82-106">Prerequisites</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="e7c1d-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="e7c1d-110">Prerequisites</span></span>
+- <span data-ttu-id="7af82-107">Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="7af82-107">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="7af82-108">Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="7af82-108">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
 
-- <span data-ttu-id="e7c1d-111">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-111">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="e7c1d-112">Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-112">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
+- <span data-ttu-id="7af82-109">Egy ajánlatazonosító.</span><span class="sxs-lookup"><span data-stu-id="7af82-109">An offer ID.</span></span> <span data-ttu-id="7af82-110">Ha nem tudja az ajánlatazonosítót, tekintse meg a piaci ajánlatok [listájának lekért listáját.](get-a-list-of-offers-for-a-market.md)</span><span class="sxs-lookup"><span data-stu-id="7af82-110">If you don't have the offer ID, see [Get a list of offers for a market](get-a-list-of-offers-for-a-market.md).</span></span>
 
-- <span data-ttu-id="e7c1d-113">Egy ajánlat azonosítója.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-113">An offer ID.</span></span> <span data-ttu-id="e7c1d-114">Ha nem rendelkezik az ajánlat-AZONOSÍTÓval, tekintse [meg a piaci ajánlatok listájának beolvasása](get-a-list-of-offers-for-a-market.md)című témakört.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-114">If you don't have the offer ID, see [Get a list of offers for a market](get-a-list-of-offers-for-a-market.md).</span></span>
+## <a name="c"></a><span data-ttu-id="7af82-111">C\#</span><span class="sxs-lookup"><span data-stu-id="7af82-111">C\#</span></span>
 
-## <a name="c"></a><span data-ttu-id="e7c1d-115">C\#</span><span class="sxs-lookup"><span data-stu-id="e7c1d-115">C\#</span></span>
-
-<span data-ttu-id="e7c1d-116">Ha a bővítményeket azonosító alapján szeretné lekérni, először hívja meg a [**IAggregatePartner. offers. ByCountry**](/dotnet/api/microsoft.store.partnercenter.genericoperations.icountryselector-1.bycountry) metódust az országkód használatával, hogy az adott országon alapuló műveleteket kérjen.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-116">To get the add-ons for an offer by ID, first call the [**IAggregatePartner.Offers.ByCountry**](/dotnet/api/microsoft.store.partnercenter.genericoperations.icountryselector-1.bycountry) method with the country code to get an interface to offer operations based on the given country.</span></span> <span data-ttu-id="e7c1d-117">Ezután hívja meg a [**ByID**](/dotnet/api/microsoft.store.partnercenter.offers.ioffercollection.byid) metódust az ajánlat azonosítójával, és azonosítsa azt az ajánlatot, amelynek a bővítményeit le szeretné kérdezni.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-117">Then call the [**ByID**](/dotnet/api/microsoft.store.partnercenter.offers.ioffercollection.byid) method with the offer ID to identify the offer whose add-ons you want to retrieve.</span></span> <span data-ttu-id="e7c1d-118">Ezután az [**addons**](/dotnet/api/microsoft.store.partnercenter.offers.ioffer.addons) tulajdonsággal szerezzen be egy felületet az aktuális ajánlathoz tartozó kiegészítő műveletekhez.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-118">Next, use the [**AddOns**](/dotnet/api/microsoft.store.partnercenter.offers.ioffer.addons) property to get an interface to add-on operations for the current offer.</span></span> <span data-ttu-id="e7c1d-119">Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.getasync) metódust, hogy beolvassa a megadott ajánlat összes bővítményének gyűjteményét.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-119">Finally, call the [**Get**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.get) or [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.getasync) method to get a collection of all the add-ons for the specified offer.</span></span>
+<span data-ttu-id="7af82-112">Egy ajánlat bővítményei azonosító alapján való lehíváshoz először hívja meg az [**IAggregatePartner.Offers.ByCountry**](/dotnet/api/microsoft.store.partnercenter.genericoperations.icountryselector-1.bycountry) metódust az országkóddal, hogy lekért egy felületet, amely az adott ország alapján kínál műveleteket.</span><span class="sxs-lookup"><span data-stu-id="7af82-112">To get the add-ons for an offer by ID, first call the [**IAggregatePartner.Offers.ByCountry**](/dotnet/api/microsoft.store.partnercenter.genericoperations.icountryselector-1.bycountry) method with the country code to get an interface to offer operations based on the given country.</span></span> <span data-ttu-id="7af82-113">Ezután hívja meg [**a ByID**](/dotnet/api/microsoft.store.partnercenter.offers.ioffercollection.byid) metódust az ajánlat azonosítójával annak az ajánlatnak az azonosításához, amelynek bővítményét le szeretné hívni.</span><span class="sxs-lookup"><span data-stu-id="7af82-113">Then call the [**ByID**](/dotnet/api/microsoft.store.partnercenter.offers.ioffercollection.byid) method with the offer ID to identify the offer whose add-ons you want to retrieve.</span></span> <span data-ttu-id="7af82-114">Ezután az [**AddOns**](/dotnet/api/microsoft.store.partnercenter.offers.ioffer.addons) tulajdonság használatával lekért egy interfészt az aktuális ajánlat bővítményműveleteihez.</span><span class="sxs-lookup"><span data-stu-id="7af82-114">Next, use the [**AddOns**](/dotnet/api/microsoft.store.partnercenter.offers.ioffer.addons) property to get an interface to add-on operations for the current offer.</span></span> <span data-ttu-id="7af82-115">Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.get) vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.getasync) metódust a megadott ajánlat összes bővítményének gyűjteményéhez.</span><span class="sxs-lookup"><span data-stu-id="7af82-115">Finally, call the [**Get**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.get) or [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.getasync) method to get a collection of all the add-ons for the specified offer.</span></span>
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -42,34 +37,34 @@ ms.locfileid: "97768051"
 var offerAddOns = partnerOperations.Offers.ByCountry(countryCode).ById(offerId).AddOns.Get();
 ```
 
-<span data-ttu-id="e7c1d-120">**Példa**: [konzol tesztelési alkalmazás](console-test-app.md).</span><span class="sxs-lookup"><span data-stu-id="e7c1d-120">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="e7c1d-121">**Projekt**: partner Center SDK Samples **osztály**: GetOffer.cs</span><span class="sxs-lookup"><span data-stu-id="e7c1d-121">**Project**: Partner Center SDK Samples **Class**: GetOffer.cs</span></span>
+<span data-ttu-id="7af82-116">**Minta:** [Konzoltesztalkalmazás.](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="7af82-116">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="7af82-117">**Project**: Partnerközpont SDK **Osztály:** GetOffer.cs</span><span class="sxs-lookup"><span data-stu-id="7af82-117">**Project**: Partner Center SDK Samples **Class**: GetOffer.cs</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="e7c1d-122">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="e7c1d-122">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="7af82-118">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="7af82-118">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="e7c1d-123">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="e7c1d-123">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="7af82-119">Kérésszintaxis</span><span class="sxs-lookup"><span data-stu-id="7af82-119">Request syntax</span></span>
 
-| <span data-ttu-id="e7c1d-124">Metódus</span><span class="sxs-lookup"><span data-stu-id="e7c1d-124">Method</span></span>  | <span data-ttu-id="e7c1d-125">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="e7c1d-125">Request URI</span></span>                                                                                             |
+| <span data-ttu-id="7af82-120">Metódus</span><span class="sxs-lookup"><span data-stu-id="7af82-120">Method</span></span>  | <span data-ttu-id="7af82-121">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="7af82-121">Request URI</span></span>                                                                                             |
 |---------|---------------------------------------------------------------------------------------------------------|
-| <span data-ttu-id="e7c1d-126">**GET**</span><span class="sxs-lookup"><span data-stu-id="e7c1d-126">**GET**</span></span> | <span data-ttu-id="e7c1d-127">[*{baseURL}*](partner-center-rest-urls.md)/v1/offers/{Offer-ID}/addons? ország = {országkód} http/1.1</span><span class="sxs-lookup"><span data-stu-id="e7c1d-127">[*{baseURL}*](partner-center-rest-urls.md)/v1/offers/{offer-id}/addons?country={country-code} HTTP/1.1</span></span> |
+| <span data-ttu-id="7af82-122">**Kap**</span><span class="sxs-lookup"><span data-stu-id="7af82-122">**GET**</span></span> | <span data-ttu-id="7af82-123">[*{baseURL}*](partner-center-rest-urls.md)/v1/offers/{ajánlatazonosító}/addons?country={országkód} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="7af82-123">[*{baseURL}*](partner-center-rest-urls.md)/v1/offers/{offer-id}/addons?country={country-code} HTTP/1.1</span></span> |
 
-### <a name="uri-parameters"></a><span data-ttu-id="e7c1d-128">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="e7c1d-128">URI parameters</span></span>
+### <a name="uri-parameters"></a><span data-ttu-id="7af82-124">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="7af82-124">URI parameters</span></span>
 
-<span data-ttu-id="e7c1d-129">Az ajánlat-azonosító és az országkód megadásához használja a következő paramétereket.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-129">Use the following parameters to provide the offer ID and country code.</span></span>
+<span data-ttu-id="7af82-125">A következő paraméterekkel használhatja az ajánlat azonosítóját és országkódját.</span><span class="sxs-lookup"><span data-stu-id="7af82-125">Use the following parameters to provide the offer ID and country code.</span></span>
 
-| <span data-ttu-id="e7c1d-130">Név</span><span class="sxs-lookup"><span data-stu-id="e7c1d-130">Name</span></span>         | <span data-ttu-id="e7c1d-131">Típus</span><span class="sxs-lookup"><span data-stu-id="e7c1d-131">Type</span></span>       | <span data-ttu-id="e7c1d-132">Kötelező</span><span class="sxs-lookup"><span data-stu-id="e7c1d-132">Required</span></span> | <span data-ttu-id="e7c1d-133">Leírás</span><span class="sxs-lookup"><span data-stu-id="e7c1d-133">Description</span></span>                       |
+| <span data-ttu-id="7af82-126">Név</span><span class="sxs-lookup"><span data-stu-id="7af82-126">Name</span></span>         | <span data-ttu-id="7af82-127">Típus</span><span class="sxs-lookup"><span data-stu-id="7af82-127">Type</span></span>       | <span data-ttu-id="7af82-128">Kötelező</span><span class="sxs-lookup"><span data-stu-id="7af82-128">Required</span></span> | <span data-ttu-id="7af82-129">Leírás</span><span class="sxs-lookup"><span data-stu-id="7af82-129">Description</span></span>                       |
 |--------------|------------|----------|-----------------------------------|
-| <span data-ttu-id="e7c1d-134">**ajánlat azonosítója**</span><span class="sxs-lookup"><span data-stu-id="e7c1d-134">**offer-id**</span></span> | <span data-ttu-id="e7c1d-135">**guid**</span><span class="sxs-lookup"><span data-stu-id="e7c1d-135">**guid**</span></span>   | <span data-ttu-id="e7c1d-136">Y</span><span class="sxs-lookup"><span data-stu-id="e7c1d-136">Y</span></span>        | <span data-ttu-id="e7c1d-137">Az ajánlatot azonosító GUID.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-137">A GUID that identifies the offer.</span></span> |
-| <span data-ttu-id="e7c1d-138">**ország**</span><span class="sxs-lookup"><span data-stu-id="e7c1d-138">**country**</span></span>  | <span data-ttu-id="e7c1d-139">**karakterlánc**</span><span class="sxs-lookup"><span data-stu-id="e7c1d-139">**string**</span></span> | <span data-ttu-id="e7c1d-140">Y</span><span class="sxs-lookup"><span data-stu-id="e7c1d-140">Y</span></span>        | <span data-ttu-id="e7c1d-141">Az országkód (például `US` ).</span><span class="sxs-lookup"><span data-stu-id="e7c1d-141">The country code (for example `US`).</span></span>       |
+| <span data-ttu-id="7af82-130">**ajánlatazonosító**</span><span class="sxs-lookup"><span data-stu-id="7af82-130">**offer-id**</span></span> | <span data-ttu-id="7af82-131">**guid**</span><span class="sxs-lookup"><span data-stu-id="7af82-131">**guid**</span></span>   | <span data-ttu-id="7af82-132">Y</span><span class="sxs-lookup"><span data-stu-id="7af82-132">Y</span></span>        | <span data-ttu-id="7af82-133">Az ajánlatot azonosító GUID.</span><span class="sxs-lookup"><span data-stu-id="7af82-133">A GUID that identifies the offer.</span></span> |
+| <span data-ttu-id="7af82-134">**Ország**</span><span class="sxs-lookup"><span data-stu-id="7af82-134">**country**</span></span>  | <span data-ttu-id="7af82-135">**sztring**</span><span class="sxs-lookup"><span data-stu-id="7af82-135">**string**</span></span> | <span data-ttu-id="7af82-136">Y</span><span class="sxs-lookup"><span data-stu-id="7af82-136">Y</span></span>        | <span data-ttu-id="7af82-137">Az országkód (például `US` ).</span><span class="sxs-lookup"><span data-stu-id="7af82-137">The country code (for example `US`).</span></span>       |
 
-### <a name="request-headers"></a><span data-ttu-id="e7c1d-142">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="e7c1d-142">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="7af82-138">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="7af82-138">Request headers</span></span>
 
-<span data-ttu-id="e7c1d-143">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="e7c1d-143">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="7af82-139">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="7af82-139">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="e7c1d-144">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="e7c1d-144">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="7af82-140">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="7af82-140">Request body</span></span>
 
-<span data-ttu-id="e7c1d-145">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-145">None.</span></span>
+<span data-ttu-id="7af82-141">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="7af82-141">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="e7c1d-146">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="e7c1d-146">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="7af82-142">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="7af82-142">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/offers/195416C1-3447-423A-B37B-EE59A99A19C4/addons?country=us HTTP/1.1
@@ -81,15 +76,15 @@ X-Locale: en-US
 Host: api.partnercenter.microsoft.com
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="e7c1d-147">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="e7c1d-147">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="7af82-143">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="7af82-143">REST response</span></span>
 
-<span data-ttu-id="e7c1d-148">Ha ez sikeres, a metódus a válasz törzsében adja meg az [ajánlati](offer-resources.md) objektumok gyűjteményét.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-148">If successful, this method returns a collection of [Offer](offer-resources.md) objects in the response body.</span></span>
+<span data-ttu-id="7af82-144">Ha a művelet sikeres, ez a metódus ajánlatobjektumok [gyűjteményét](offer-resources.md) adja vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="7af82-144">If successful, this method returns a collection of [Offer](offer-resources.md) objects in the response body.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="e7c1d-149">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="e7c1d-149">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="7af82-145">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="7af82-145">Response success and error codes</span></span>
 
-<span data-ttu-id="e7c1d-150">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-150">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="e7c1d-151">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-151">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="e7c1d-152">A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.</span><span class="sxs-lookup"><span data-stu-id="e7c1d-152">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
+<span data-ttu-id="7af82-146">Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="7af82-146">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="7af82-147">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="7af82-147">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="7af82-148">A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="7af82-148">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="e7c1d-153">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="e7c1d-153">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="7af82-149">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="7af82-149">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK

@@ -1,43 +1,38 @@
 ---
 title: Az ügyfelek listájának lekérése
-description: Az összes partner ügyfeleit képviselő erőforrások gyűjteményének beszerzése.
+description: A partner összes ügyfelet képviselő erőforrások gyűjteményének lekért gyűjtése.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 2dd8469458809ab38b6d6081adc91d6d1184d2d0
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 840c9d1a61451763d37a19639f99b12f1deb7521
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768295"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874346"
 ---
-# <a name="get-a-list-of-customers"></a><span data-ttu-id="4bda0-103">Az ügyfelek listájának lekérése</span><span class="sxs-lookup"><span data-stu-id="4bda0-103">Get a list of customers</span></span>
+# <a name="get-a-list-of-customers"></a><span data-ttu-id="a88aa-103">Az ügyfelek listájának lekérése</span><span class="sxs-lookup"><span data-stu-id="a88aa-103">Get a list of customers</span></span>
 
-<span data-ttu-id="4bda0-104">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="4bda0-104">**Applies to:**</span></span>
+<span data-ttu-id="a88aa-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="a88aa-104">**Applies to**: Partner Center | Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="4bda0-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="4bda0-105">Partner Center</span></span>
-- <span data-ttu-id="4bda0-106">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="4bda0-106">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="4bda0-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="4bda0-107">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="4bda0-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="4bda0-108">Partner Center for Microsoft Cloud for US Government</span></span>
-
-<span data-ttu-id="4bda0-109">Ez a cikk azt ismerteti, hogyan szerezhet be egy olyan erőforrás-gyűjteményt, amely az összes partner ügyfelet képviseli.</span><span class="sxs-lookup"><span data-stu-id="4bda0-109">This article describes how to get a collection of resources that represents all of a partner's customers.</span></span>
+<span data-ttu-id="a88aa-105">Ez a cikk bemutatja, hogyan gyűjti össze a partner összes ügyfelet képviselő erőforrásokat.</span><span class="sxs-lookup"><span data-stu-id="a88aa-105">This article describes how to get a collection of resources that represents all of a partner's customers.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="4bda0-110">Ezt a műveletet a partner Center irányítópultján is végrehajthatja.</span><span class="sxs-lookup"><span data-stu-id="4bda0-110">You can also perform this operation in the Partner Center dashboard.</span></span> <span data-ttu-id="4bda0-111">A főoldalon az **ügyfél-kezelés** területen válassza az **ügyfelek megtekintése** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="4bda0-111">On the main page, under **Customer management**, select **View Customers**.</span></span> <span data-ttu-id="4bda0-112">Vagy az oldalsávon válassza az **ügyfelek** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="4bda0-112">Or, on the sidebar, select **Customers**.</span></span>
+> <span data-ttu-id="a88aa-106">Ezt a műveletet az irányítópulton Partnerközpont is végrehajthatja.</span><span class="sxs-lookup"><span data-stu-id="a88aa-106">You can also perform this operation in the Partner Center dashboard.</span></span> <span data-ttu-id="a88aa-107">A főoldal **Ügyfélkezelés területén** válassza az **Ügyfelek megtekintése lehetőséget.**</span><span class="sxs-lookup"><span data-stu-id="a88aa-107">On the main page, under **Customer management**, select **View Customers**.</span></span> <span data-ttu-id="a88aa-108">Vagy az oldalsávon válassza az Ügyfelek **lehetőséget.**</span><span class="sxs-lookup"><span data-stu-id="a88aa-108">Or, on the sidebar, select **Customers**.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="4bda0-113">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="4bda0-113">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="a88aa-109">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="a88aa-109">Prerequisites</span></span>
 
-- <span data-ttu-id="4bda0-114">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="4bda0-114">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="4bda0-115">Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.</span><span class="sxs-lookup"><span data-stu-id="4bda0-115">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
+- <span data-ttu-id="a88aa-110">Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="a88aa-110">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="a88aa-111">Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="a88aa-111">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
 
-## <a name="c"></a><span data-ttu-id="4bda0-116">C\#</span><span class="sxs-lookup"><span data-stu-id="4bda0-116">C\#</span></span>
+## <a name="c"></a><span data-ttu-id="a88aa-112">C\#</span><span class="sxs-lookup"><span data-stu-id="a88aa-112">C\#</span></span>
 
-<span data-ttu-id="4bda0-117">Az összes ügyfél listájának lekérése:</span><span class="sxs-lookup"><span data-stu-id="4bda0-117">To get a list of all customers:</span></span>
+<span data-ttu-id="a88aa-113">Az összes ügyfél listájának lekért listája:</span><span class="sxs-lookup"><span data-stu-id="a88aa-113">To get a list of all customers:</span></span>
 
-1. <span data-ttu-id="4bda0-118">A [**IAggregatePartner. Customs**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjtemény használatával hozzon létre egy **IPartner** objektumot.</span><span class="sxs-lookup"><span data-stu-id="4bda0-118">Use the [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) collection to create an **IPartner** object.</span></span>
+1. <span data-ttu-id="a88aa-114">Az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjtemény használatával hozzon létre **egy IPartner** objektumot.</span><span class="sxs-lookup"><span data-stu-id="a88aa-114">Use the [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) collection to create an **IPartner** object.</span></span>
 
-2. <span data-ttu-id="4bda0-119">Kérje le az ügyfelek listáját a [**query ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.query) vagy a [**QueryAsync ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.queryasync) metódus használatával.</span><span class="sxs-lookup"><span data-stu-id="4bda0-119">Retrieve the customer list using the [**Query()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.query) or [**QueryAsync()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.queryasync) methods.</span></span> <span data-ttu-id="4bda0-120">(A lekérdezések létrehozásával kapcsolatos utasításokért tekintse meg a [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) osztályt.)</span><span class="sxs-lookup"><span data-stu-id="4bda0-120">(For instructions on creating a query, see the [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) class.)</span></span>
+2. <span data-ttu-id="a88aa-115">Az ügyféllista lekérdezése a [**Query() vagy**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.query) [**a QueryAsync() metódusokkal.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.queryasync)</span><span class="sxs-lookup"><span data-stu-id="a88aa-115">Retrieve the customer list using the [**Query()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.query) or [**QueryAsync()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.queryasync) methods.</span></span> <span data-ttu-id="a88aa-116">(A lekérdezések létrehozásával vonatkozó utasításokért lásd a [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) osztályt.)</span><span class="sxs-lookup"><span data-stu-id="a88aa-116">(For instructions on creating a query, see the [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) class.)</span></span>
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -50,21 +45,21 @@ var customersBatch = scopedPartnerOperations.Customers.Query(QueryFactory.Instan
 var customersEnumerator = scopedPartnerOperations.Enumerators.Customers.Create(customersBatch);
 ```
 
-<span data-ttu-id="4bda0-121">Példaként tekintse meg a következőket:</span><span class="sxs-lookup"><span data-stu-id="4bda0-121">For an example, see the following:</span></span>
+<span data-ttu-id="a88aa-117">Példaként tekintse meg a következőket:</span><span class="sxs-lookup"><span data-stu-id="a88aa-117">For an example, see the following:</span></span>
 
-- <span data-ttu-id="4bda0-122">Minta: [konzol tesztelési alkalmazás](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="4bda0-122">Sample: [Console test app](console-test-app.md)</span></span>
-- <span data-ttu-id="4bda0-123">Projekt: **PartnerSDK. FeatureSamples**</span><span class="sxs-lookup"><span data-stu-id="4bda0-123">Project: **PartnerSDK.FeatureSamples**</span></span>
-- <span data-ttu-id="4bda0-124">Osztály: **CustomerPaging.cs**</span><span class="sxs-lookup"><span data-stu-id="4bda0-124">Class: **CustomerPaging.cs**</span></span>
+- <span data-ttu-id="a88aa-118">Minta: [Konzoltesztalkalmazás](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="a88aa-118">Sample: [Console test app](console-test-app.md)</span></span>
+- <span data-ttu-id="a88aa-119">Project: **PartnerSDK.FeatureSamples**</span><span class="sxs-lookup"><span data-stu-id="a88aa-119">Project: **PartnerSDK.FeatureSamples**</span></span>
+- <span data-ttu-id="a88aa-120">Osztály: **CustomerPaging.cs**</span><span class="sxs-lookup"><span data-stu-id="a88aa-120">Class: **CustomerPaging.cs**</span></span>
 
-## <a name="java"></a><span data-ttu-id="4bda0-125">Java</span><span class="sxs-lookup"><span data-stu-id="4bda0-125">Java</span></span>
+## <a name="java"></a><span data-ttu-id="a88aa-121">Java</span><span class="sxs-lookup"><span data-stu-id="a88aa-121">Java</span></span>
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-<span data-ttu-id="4bda0-126">Az összes ügyfél listájának lekérése:</span><span class="sxs-lookup"><span data-stu-id="4bda0-126">To get a list of all customers:</span></span>
+<span data-ttu-id="a88aa-122">Az összes ügyfél listájának lekért listája:</span><span class="sxs-lookup"><span data-stu-id="a88aa-122">To get a list of all customers:</span></span>
 
-1. <span data-ttu-id="4bda0-127">Használja az [**IAggregatePartner. getCustomers**] függvényt az ügyfél műveleteire mutató hivatkozás beszerzéséhez.</span><span class="sxs-lookup"><span data-stu-id="4bda0-127">Use the [**IAggregatePartner.getCustomers**] function to get a reference to the customer operations.</span></span>
+1. <span data-ttu-id="a88aa-123">Az [**IAggregatePartner.getCustomers**] függvény használatával lekért hivatkozás az ügyfélműveletekkel kapcsolatban.</span><span class="sxs-lookup"><span data-stu-id="a88aa-123">Use the [**IAggregatePartner.getCustomers**] function to get a reference to the customer operations.</span></span>
 
-2. <span data-ttu-id="4bda0-128">Kérje le az ügyfél listáját a **query ()** függvény használatával.</span><span class="sxs-lookup"><span data-stu-id="4bda0-128">Retrieve the customer list using the **query()** function.</span></span>
+2. <span data-ttu-id="a88aa-124">Az ügyféllista lekérése a **query() függvény** használatával.</span><span class="sxs-lookup"><span data-stu-id="a88aa-124">Retrieve the customer list using the **query()** function.</span></span>
 
 ```java
 // Query the customers, get the first page if a page size was set, otherwise get all customers
@@ -88,41 +83,41 @@ while (customersEnumerator.hasValue())
 }
 ```
 
-## <a name="powershell"></a><span data-ttu-id="4bda0-129">PowerShell</span><span class="sxs-lookup"><span data-stu-id="4bda0-129">PowerShell</span></span>
+## <a name="powershell"></a><span data-ttu-id="a88aa-125">PowerShell</span><span class="sxs-lookup"><span data-stu-id="a88aa-125">PowerShell</span></span>
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-<span data-ttu-id="4bda0-130">Futtassa a [**Get-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomer.md) parancsot paraméterek nélkül, hogy teljes listát kapjon az ügyfelekről.</span><span class="sxs-lookup"><span data-stu-id="4bda0-130">Execute the [**Get-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomer.md) command with no parameters to get a complete list of customers.</span></span>
+<span data-ttu-id="a88aa-126">Hajtsa végre [**a Get-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomer.md) parancsot paraméterek nélkül az ügyfelek teljes listájának leállításához.</span><span class="sxs-lookup"><span data-stu-id="a88aa-126">Execute the [**Get-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomer.md) command with no parameters to get a complete list of customers.</span></span>
 
 ```powershell
 Get-PartnerCustomer
 ```
 
-## <a name="rest-request"></a><span data-ttu-id="4bda0-131">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="4bda0-131">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="a88aa-127">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="a88aa-127">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="4bda0-132">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="4bda0-132">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="a88aa-128">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="a88aa-128">Request syntax</span></span>
 
-| <span data-ttu-id="4bda0-133">Metódus</span><span class="sxs-lookup"><span data-stu-id="4bda0-133">Method</span></span>  | <span data-ttu-id="4bda0-134">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="4bda0-134">Request URI</span></span>                                                                   |
+| <span data-ttu-id="a88aa-129">Metódus</span><span class="sxs-lookup"><span data-stu-id="a88aa-129">Method</span></span>  | <span data-ttu-id="a88aa-130">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="a88aa-130">Request URI</span></span>                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| <span data-ttu-id="4bda0-135">**GET**</span><span class="sxs-lookup"><span data-stu-id="4bda0-135">**GET**</span></span> | <span data-ttu-id="4bda0-136">[*{baseURL}*](partner-center-rest-urls.md)/v1/Customers? méret = {size} http/1.1</span><span class="sxs-lookup"><span data-stu-id="4bda0-136">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers?size={size} HTTP/1.1</span></span> |
+| <span data-ttu-id="a88aa-131">**Kap**</span><span class="sxs-lookup"><span data-stu-id="a88aa-131">**GET**</span></span> | <span data-ttu-id="a88aa-132">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers?size={size} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="a88aa-132">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers?size={size} HTTP/1.1</span></span> |
 
-#### <a name="uri-parameter"></a><span data-ttu-id="4bda0-137">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="4bda0-137">URI parameter</span></span>
+#### <a name="uri-parameter"></a><span data-ttu-id="a88aa-133">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="a88aa-133">URI parameter</span></span>
 
-<span data-ttu-id="4bda0-138">Használja az alábbi lekérdezési paramétert az ügyfelek listájának lekéréséhez.</span><span class="sxs-lookup"><span data-stu-id="4bda0-138">Use the following query parameter to get a list of customers.</span></span>
+<span data-ttu-id="a88aa-134">Az alábbi lekérdezési paraméterrel lekérdezheti az ügyfelek listáját.</span><span class="sxs-lookup"><span data-stu-id="a88aa-134">Use the following query parameter to get a list of customers.</span></span>
 
-| <span data-ttu-id="4bda0-139">Név</span><span class="sxs-lookup"><span data-stu-id="4bda0-139">Name</span></span>     | <span data-ttu-id="4bda0-140">Típus</span><span class="sxs-lookup"><span data-stu-id="4bda0-140">Type</span></span>    | <span data-ttu-id="4bda0-141">Kötelező</span><span class="sxs-lookup"><span data-stu-id="4bda0-141">Required</span></span> | <span data-ttu-id="4bda0-142">Leírás</span><span class="sxs-lookup"><span data-stu-id="4bda0-142">Description</span></span>                                        |
+| <span data-ttu-id="a88aa-135">Név</span><span class="sxs-lookup"><span data-stu-id="a88aa-135">Name</span></span>     | <span data-ttu-id="a88aa-136">Típus</span><span class="sxs-lookup"><span data-stu-id="a88aa-136">Type</span></span>    | <span data-ttu-id="a88aa-137">Kötelező</span><span class="sxs-lookup"><span data-stu-id="a88aa-137">Required</span></span> | <span data-ttu-id="a88aa-138">Leírás</span><span class="sxs-lookup"><span data-stu-id="a88aa-138">Description</span></span>                                        |
 |----------|---------|----------|----------------------------------------------------|
-| <span data-ttu-id="4bda0-143">**méret**</span><span class="sxs-lookup"><span data-stu-id="4bda0-143">**size**</span></span> | <span data-ttu-id="4bda0-144">**int**</span><span class="sxs-lookup"><span data-stu-id="4bda0-144">**int**</span></span> | <span data-ttu-id="4bda0-145">Y</span><span class="sxs-lookup"><span data-stu-id="4bda0-145">Y</span></span>        | <span data-ttu-id="4bda0-146">Az egyszerre megjelenítendő eredmények száma.</span><span class="sxs-lookup"><span data-stu-id="4bda0-146">The number of results to be displayed at one time.</span></span> |
+| <span data-ttu-id="a88aa-139">**Méret**</span><span class="sxs-lookup"><span data-stu-id="a88aa-139">**size**</span></span> | <span data-ttu-id="a88aa-140">**int**</span><span class="sxs-lookup"><span data-stu-id="a88aa-140">**int**</span></span> | <span data-ttu-id="a88aa-141">Y</span><span class="sxs-lookup"><span data-stu-id="a88aa-141">Y</span></span>        | <span data-ttu-id="a88aa-142">Az egyszerre megjelenítendő eredmények száma.</span><span class="sxs-lookup"><span data-stu-id="a88aa-142">The number of results to be displayed at one time.</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="4bda0-147">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="4bda0-147">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="a88aa-143">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="a88aa-143">Request headers</span></span>
 
-<span data-ttu-id="4bda0-148">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="4bda0-148">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="a88aa-144">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="a88aa-144">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="4bda0-149">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="4bda0-149">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="a88aa-145">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="a88aa-145">Request body</span></span>
 
-<span data-ttu-id="4bda0-150">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="4bda0-150">None.</span></span>
+<span data-ttu-id="a88aa-146">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="a88aa-146">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="4bda0-151">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="4bda0-151">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="a88aa-147">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="a88aa-147">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers?size=40 HTTP/1.1
@@ -132,15 +127,15 @@ MS-RequestId: 3705fc6d-4127-4a87-bdba-9658f73fe019
 MS-CorrelationId: b12260fb-82de-4701-a25f-dcd367690645
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="4bda0-152">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="4bda0-152">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="a88aa-148">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="a88aa-148">REST response</span></span>
 
-<span data-ttu-id="4bda0-153">Ha ez sikeres, ez a metódus a válasz törzsében lévő [ügyfél](customer-resources.md#customer) -erőforrások gyűjteményét adja vissza.</span><span class="sxs-lookup"><span data-stu-id="4bda0-153">If successful, this method returns a collection of [Customer](customer-resources.md#customer) resources in the response body.</span></span>
+<span data-ttu-id="a88aa-149">Ha a művelet sikeres, ez a metódus ügyfélerőforrások [gyűjteményét](customer-resources.md#customer) adja vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="a88aa-149">If successful, this method returns a collection of [Customer](customer-resources.md#customer) resources in the response body.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="4bda0-154">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="4bda0-154">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="a88aa-150">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="a88aa-150">Response success and error codes</span></span>
 
-<span data-ttu-id="4bda0-155">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="4bda0-155">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="4bda0-156">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="4bda0-156">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="4bda0-157">A teljes listát lásd: [hibakódok](error-codes.md).</span><span class="sxs-lookup"><span data-stu-id="4bda0-157">For a full list, see [Error Codes](error-codes.md).</span></span>
+<span data-ttu-id="a88aa-151">Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="a88aa-151">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="a88aa-152">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="a88aa-152">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="a88aa-153">A teljes listát lásd: [Hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="a88aa-153">For a full list, see [Error Codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="4bda0-158">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="4bda0-158">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="a88aa-154">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="a88aa-154">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK
