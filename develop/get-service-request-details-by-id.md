@@ -1,35 +1,31 @@
 ---
-title: A szolgáltatási kérelem részleteinek beolvasása azonosító alapján.
-description: Meglévő ügyfél-szolgáltatási kérelem adatainak beolvasása azonosító alapján.
+title: Szolgáltatáskérési adatok lekérése azonosító alapján.
+description: Egy meglévő ügyfélszolgálati kérelem részleteinek lekérése azonosító alapján.
 ms.date: 02/06/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: c79fd3f5e5609a1893891e9b2a8078f8678497b3
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 66488cf9592d630cb1f0237d379e8df5ead6a3a8
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768475"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548770"
 ---
 # <a name="get-service-request-details-by-id"></a>Szolgáltatáskérés részleteinek lekérése azonosító alapján
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Egy meglévő ügyfél-szolgáltatási kérelem részleteinek beolvasása a szolgáltatási kérelem azonosítójának használatával.
+Meglévő ügyfélszolgálati kérelem részleteinek lekérése a szolgáltatáskérés azonosítójának használatával.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy szolgáltatási kérelem azonosítója.
+- Egy szolgáltatáskérés-azonosító.
 
 ## <a name="c"></a>C\#
 
-Egy meglévő ügyfél-szolgáltatási kérelem részleteinek lekéréséhez hívja meg a [**IServiceRequestCollection. ById**](/dotnet/api/microsoft.store.partnercenter.servicerequests.iservicerequestcollection.byid) metódust, és adjon meg egy [**ServiceRequest.id**](/dotnet/api/microsoft.store.partnercenter.models.servicerequests.servicerequest.id#Microsoft_Store_PartnerCenter_Models_ServiceRequests_ServiceRequest_Id) az adott [**ServiceRequest**](/dotnet/api/microsoft.store.partnercenter.models.servicerequests.servicerequest) objektumhoz tartozó felület azonosításához és visszaküldéséhez.
+Egy meglévő ügyfélszolgálati kérelem részleteinek lekéréshez hívja meg az [**IServiceRequestCollection.ById**](/dotnet/api/microsoft.store.partnercenter.servicerequests.iservicerequestcollection.byid) metódust, és adja át a [**ServiceRequest.Id-t**](/dotnet/api/microsoft.store.partnercenter.models.servicerequests.servicerequest.id#Microsoft_Store_PartnerCenter_Models_ServiceRequests_ServiceRequest_Id) az adott [**ServiceRequest**](/dotnet/api/microsoft.store.partnercenter.models.servicerequests.servicerequest) objektum azonosításához és az ahhoz való visszaküldéshez.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -44,25 +40,25 @@ Console.WriteLine(string.Format("The primary contact for the service request {0}
 ));
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus    | Kérés URI-ja                                                                                 |
 |-----------|---------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/servicerequests/{ServiceRequest-ID} http/1.1  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/servicerequests/{servicerequest-id} HTTP/1.1  |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A megadott Szolgáltatáskérelem beszerzéséhez használja a következő URI-paramétert.
+A megadott szolgáltatáskérés lekéréshez használja a következő URI-paramétert.
 
 | Név                  | Típus     | Kötelező | Leírás                                 |
 |-----------------------|----------|----------|---------------------------------------------|
-| **ServiceRequest-azonosító** | **guid** | Y        | A szolgáltatási kérelmet azonosító GUID. |
+| **servicerequest-id** | **guid** | Y        | A szolgáltatáskérést azonosító GUID. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -84,11 +80,11 @@ Content-Length: 0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy **szolgáltatási kérelem** erőforrást ad vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus egy **szolgáltatáskérési** erőforrást ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

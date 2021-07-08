@@ -1,34 +1,29 @@
 ---
 title: Partner számlázási profiljának lekérése
-description: Lekéri a partner számlázási profilját jelképező objektumot.
+description: Lekért egy objektumot, amely a partner számlázási profilját képviseli.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 94c5ff8fc351282ca3b4721511f02ba6a0cc403c
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 225d8ea2d92933838ae47eaf3308276aa1f1684c
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768435"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548974"
 ---
 # <a name="get-partner-billing-profile"></a>Partner számlázási profiljának lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Lekéri a partner számlázási profilját jelképező objektumot.
+Lekért egy objektumot, amely a partner számlázási profilját képviseli.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
-Partner számlázási profil beszerzéséhez használja a **IAggregatePartner. Profiles** gyűjteményt, és hívja meg a **BillingProfile** tulajdonságot. Végül hívja meg a [**Get ()**](/dotnet/api/microsoft.store.partnercenter.profiles.ibillingprofile.get) vagy a [**GetAsync ()**](/dotnet/api/microsoft.store.partnercenter.profiles.ibillingprofile.getasync) metódust.
+A partner számlázási profiljának lehívásához használja **az IAggregatePartner.Profiles** gyűjteményt, és hívja meg **a BillingProfile** tulajdonságot. Végül hívja meg a [**Get() vagy**](/dotnet/api/microsoft.store.partnercenter.profiles.ibillingprofile.get) [**a GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.profiles.ibillingprofile.getasync)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -36,19 +31,19 @@ Partner számlázási profil beszerzéséhez használja a **IAggregatePartner. P
 BillingProfile billingProfile = partnerOperations.Profiles.BillingProfile.Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerCenterSDK. FeaturesSamples **osztály**: GetBillingProfile.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerCenterSDK.FeaturesSamples **osztály:** GetBillingProfile.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                              |
 |---------|--------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Profiles/Billing http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/profiles/billing HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -66,11 +61,11 @@ MS-CorrelationId: 1bb03149-88d2-4bc2-9cc1-d6e83890fa9e
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy **BillingProfile** objektumot ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy **BillingProfile** objektumot ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

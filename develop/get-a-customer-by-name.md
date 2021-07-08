@@ -1,42 +1,37 @@
 ---
 title: Az ügyfelek listájának lekérése keresési mező alapján szűrve
-description: Egy szűrőnek megfelelő ügyfél-erőforrások gyűjteményét kéri le. Igény szerint beállíthatja az oldalméret méretét. A szűrést vállalat neve, tartomány, közvetett viszonteladó vagy közvetett felhőalapú megoldás-szolgáltató (CSP) alapján végezheti el.
+description: Lekért egy szűrőnek megfelelő ügyfélerőforrás-gyűjteményt. Igény szerint meg is állíthatja az oldalméretet. Szűrhet vállalatnév, tartomány, közvetett viszonteladó vagy közvetett felhőszolgáltató (CSP) alapján.
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: aad9524dbe2c9edbbd7c1d50da7a448f6872fcb9
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 663b8509d8704f9c443796d9fbcf72fb9c5b7fb2
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768124"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874958"
 ---
 # <a name="get-a-list-of-customers-filtered-by-a-search-field"></a>Az ügyfelek listájának lekérése keresési mező alapján szűrve
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Egy szűrőnek megfelelő [ügyfél](customer-resources.md#customer) -erőforrások gyűjteményét kéri le. Igény szerint beállíthatja az oldalméret méretét. A szűrést vállalat neve, tartomány, közvetett viszonteladó vagy közvetett felhőalapú megoldás-szolgáltató (CSP) alapján végezheti el.
+Lekért egy [szűrőnek](customer-resources.md#customer) megfelelő ügyfélerőforrás-gyűjteményt. Igény szerint meg is állíthatja az oldalméretet. Szűrhet vállalatnév, tartomány, közvetett viszonteladó vagy közvetett felhőszolgáltató (CSP) alapján.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Felhasználó által létrehozott szűrő.
+- Felhasználó által felépített szűrő.
 
 ## <a name="c"></a>C\#
 
-Egy szűrőnek megfelelő ügyfelek gyűjteményének lekéréséhez először hozzon létre egy [**SimpleFieldFilter**](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter) objektumot a szűrő létrehozásához. Meg kell adnia egy karakterláncot, amely tartalmazza a [**CustomerSearchField**](/dotnet/api/microsoft.store.partnercenter.models.customers.customersearchfield), és a szűrési művelet típusát adja meg [**FieldFilterOperation. StartsWith**](/dotnet/api/microsoft.store.partnercenter.models.query.fieldfilteroperation)néven. Ez az egyetlen, az ügyfelek végpontja által támogatott szűrési művelet. Emellett meg kell adnia a szűréshez használandó karakterláncot is.
+A szűrőnek megfelelő ügyfelek gyűjteményének lekért létrehozásához először hozzon létre egy [**SimpleFieldFilter**](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter) objektumot. A [**CustomerSearchField**](/dotnet/api/microsoft.store.partnercenter.models.customers.customersearchfield)mezőt tartalmazó sztringet kell átadnia, és a szűrőművelet típusát [**FieldFilterOperation.StartsWith**](/dotnet/api/microsoft.store.partnercenter.models.query.fieldfilteroperation)értékkel kell jeleznie. Ez az egyetlen mezőszűrő művelet, amelyet az ügyfelek végpontja támogat. A szűréshez meg kell adnia a sztringet is.
 
-Ezután hozza létre a [**iQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.iquery) objektumot a lekérdezésnek való átadáshoz. ehhez hívja meg a [**BuildSimpleQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildsimplequery) metódust, és adja át a szűrőt. A BuildSimplyQuery csak az [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) osztály által támogatott lekérdezések egyike.
+Ezután példányosított egy [**iQuery-objektumot**](/dotnet/api/microsoft.store.partnercenter.models.query.iquery) a lekérdezésnek való átadáshoz a [**BuildSimpleQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildsimplequery) metódus hívásával és a szűrő átadásával. A BuildSimplyQuery csak egy a [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) osztály által támogatott lekérdezéstípusok közül.
 
-Végül, a szűrő végrehajtásához és az eredmény beszerzéséhez először használja a [**IAggregatePartner. Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) felületet a partner ügyfél-műveleteihez. Ezután hívja meg a [**lekérdezés**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.query) vagy a [**QueryAsync**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.queryasync) metódust.
+Végül a szűrő végrehajtásához és az eredmény lekért eredményéhez először használja az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) metódust, hogy lekért egy felületet a partner ügyfélműveleteihez. Ezután hívja meg a [**Query**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.query) vagy [**a QueryAsync metódust.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.queryasync)
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -57,46 +52,46 @@ var myQuery = QueryFactory.Instance.BuildSimpleQuery(fieldFilter);
 var customers = partnerOperations.Customers.Query(myQuery);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: FilterCustomers.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** FilterCustomers.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                   |
 |---------|-----------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers? méret = {size} &szűrő = {Filter} http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers?size={size}&filter={filter} HTTP/1.1 |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-Használja a következő lekérdezési paramétereket.
+Használja az alábbi lekérdezési paramétereket.
 
 | Név   | Típus   | Kötelező | Leírás                                                                    |
 |--------|--------|----------|--------------------------------------------------------------------------------|
 | size   | int    | Nem       | Az egyszerre megjelenítendő eredmények száma. Ezt a paramétert nem kötelező megadni. |
-| filter (szűrő) | filter (szűrő) | Igen      | Az ügyfelekre alkalmazandó szűrő. Ennek kódolású sztringnek kell lennie.              |
+| filter (szűrő) | filter (szűrő) | Igen      | Az ügyfelekre alkalmazandó szűrő. Ennek kódolt sztringnek kell lennie.              |
 
-### <a name="filter-syntax"></a>Szűrési szintaxis
+### <a name="filter-syntax"></a>Szűrőszintaxis
 
-A Filter paramétert vesszővel elválasztott, kulcs-érték párokból álló sorozatként kell összeállítani. Minden kulcsot és értéket külön kell megadni, és kettősponttal kell elválasztani őket. A teljes szűrőt kódolni kell.
+A szűrőparamétert vesszővel tagolt kulcs-érték párok sorozataként kell összerakni. Minden kulcsot és értéket külön kell idézni, és kettősponttal kell elválasztani egymástól. A teljes szűrőt kódolni kell.
 
-A kódolás nélküli példa a következőképpen néz ki:
+Egy nem kódolatlan példa a következő:
 
 ```http
 ?filter{"Field":"CompanyName","Value":"cont","Operator":"starts_with"}
 ```
 
-A következő táblázat a szükséges kulcs-érték párokat ismerteti:
+Az alábbi táblázat a szükséges kulcs-érték párokat ismerteti:
 
 | Kulcs      | Érték                                                                                                                    |
 |----------|--------------------------------------------------------------------------------------------------------------------------|
-| Mező    | A szűrni kívánt mező. Az érvényes értékek a [**CustomerSearchField**](/dotnet/api/microsoft.store.partnercenter.models.customers.customersearchfield)-ben találhatók. |
-| Érték    | A szűréshez használandó érték. A rendszer figyelmen kívül hagyja az érték esetét.                                                                |
-| Operátor | Az alkalmazni kívánt operátor. Ez az ügyfél-forgatókönyv egyetlen támogatott értéke a "kezdete \_ ".                            |
+| Mező    | A szűrni való mező. Az érvényes értékek a [**CustomerSearchField mezőben találhatók.**](/dotnet/api/microsoft.store.partnercenter.models.customers.customersearchfield) |
+| Érték    | A szűrési érték. A rendszer figyelmen kívül hagyja az érték kis- és nagyját.                                                                |
+| Operátor | Az alkalmazandó operátor. Ebben az ügyfélforgatókönyvben az egyetlen támogatott érték a \_ "kezdete".                            |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -117,11 +112,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus a válasz törzsében lévő [ügyfél](customer-resources.md#customer) -erőforrások egyező gyűjteményét adja vissza.
+Ha ez a módszer sikeres, a válasz törzsében egyező [Ügyfél-erőforrások](customer-resources.md#customer) gyűjteményét adja vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

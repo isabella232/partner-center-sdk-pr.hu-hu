@@ -1,41 +1,37 @@
 ---
-title: Ügyfél használati költségkeretének beszerzése
-description: A SpendingBudget objektummal frissítheti az ügyfél-használati összegzést (a CustomerUsageSummary-erőforrást).
+title: Az ügyfél használati költségének lekért költségvetése
+description: A költségkeret (a SpendingBudget objektum) használatával frissítheti az ügyfelek használati összegzését (a CustomerUsageSummary erőforrást).
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 8be9ceaab6b7546de8eacba1e52e8766719e5125
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: b55f59fff7e5d7865811ecab3e901848126d31f7
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768104"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874873"
 ---
-# <a name="get-a-customers-usage-spending-budget"></a>Ügyfél használati költségkeretének beszerzése
+# <a name="get-a-customers-usage-spending-budget"></a>Az ügyfél használati költségének lekért költségvetése
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Frissítheti a **SpendingBudget** objektumot az [ügyfél-használati összegzésben (a **CustomerUsageSummary** -erőforrás)](customer-usage-resources.md#customerusagesummary).
+A költségkeretet **(a SpendingBudget** objektumot) az ügyfél használati összegzésében [ **(a CustomerUsageSummary** erőforrásban) frissítheti.](customer-usage-resources.md#customerusagesummary)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
 Az ügyfél használati költségkeretének frissítése:
 
-1. Hozzon létre egy új [**SpendingBudget**](/dotnet/api/microsoft.store.partnercenter.models.usage.spendingbudget) -objektumot a frissített mennyiséggel.
+1. Hozzon létre egy [**új SpendingBudget**](/dotnet/api/microsoft.store.partnercenter.models.usage.spendingbudget) objektumot a frissített mennyiséggel.
 
-2. A [**IAggregatePartner. Customs**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection) gyűjtemény használatával hívja meg a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a megadott ügyfél-azonosítóval.
+2. Az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection) gyűjtemény használatával hívja meg a [**ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a megadott ügyfél azonosítóval.
 
-3. Hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.getasync) metódust az ügyfél használati költségkeretének beszerzéséhez.
+3. Hívja meg [**a Get**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.get) vagy [**GetAsync metódust**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.getasync) az ügyfél használati költségvetésének lehívása érdekében.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -51,13 +47,13 @@ var newUsageBudget = new SpendingBudget()
 var usageBudget = partnerOperations.Customers.ById(selectedCustomerId).UsageBudget.Get();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus    | Kérés URI-ja                                                                                             |
 |-----------|---------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/usagebudget http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/usagebudget HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -65,11 +61,11 @@ A számlázási profil frissítéséhez használja a következő lekérdezési p
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -89,11 +85,11 @@ X-Locale: "en-US"
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a módszer a felhasználó költségkeretét adja vissza a frissített mennyiséggel.
+Ha ez a módszer sikeres, a felhasználó költségkeretét adja vissza a frissített összeggel.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

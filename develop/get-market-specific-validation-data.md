@@ -1,48 +1,44 @@
 ---
 title: Címformázási szabályok lekérése piac alapján
-description: Szerezze be a várt címformátum-formátumot a piac ISO-kódja alapján.
+description: A piac iso-kódja alapján szerezze be a várt címformátumot.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: c755a38c11ed9803edb7777a0f661c1fbc5a6107
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: d5233d059ea6e71c28df36b2242659c28c5dd857
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767879"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111549042"
 ---
 # <a name="get-address-formatting-rules-by-market"></a>Címformázási szabályok lekérése piac alapján
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
 
-Szerezze be a várt címformátum-formátumot a piac ISO-kódja alapján.
+A piac iso-kódja alapján szerezze be a várt címformátumot.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                 |
 |---------|---------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/countryvalidationrules/{isocode-ID} http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/countryvalidationrules/{isocode-id} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
 | Név           | Típus       | Kötelező | Leírás                         |
 |----------------|------------|----------|-------------------------------------|
-| **isocode-azonosító** | **karakterlánc** | Y        | A két karakterből álló ISO-országkód. |
+| **isocode-id** | **sztring** | Y        | A két karakterből áll ISO országkód. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -60,11 +56,11 @@ MS-CorrelationId: 5cfd634d-b936-47af-87f0-0f0217425dcc
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy **CountryInformation** objektumot ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy **CountryInformation** objektumot ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

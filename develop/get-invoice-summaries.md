@@ -1,43 +1,38 @@
 ---
 title: Számla összegzéseinek lekérése
-description: Az egyes pénznemekhez tartozó számla-összefoglaló erőforrások használatával megjelenítheti az ismétlődő és egyszeri költségek egyenlegét és teljes díját.
+description: A számlaösszegző erőforrást minden pénznemtípushoz használhatja az ismétlődő és egyszeri díjak egyenlegének és teljes díjának a megjelenítése érdekében.
 ms.date: 09/24/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 82cd669117db72e1819d941f48f8ea69b2eddaec
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: fb6ff839c56c7b0b77a9904abf05d95ca0500b00
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767684"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111549110"
 ---
 # <a name="get-invoice-summaries"></a>Számla összegzéseinek lekérése
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A **InvoiceSummaries** lekérheti a számla összegzését, amely az ismétlődő és egyszeri költségek egyenlegét és teljes díját mutatja. A **InvoiceSummaries** -erőforrás az egyes pénznemek típusaihoz tartozó számla összegzését tartalmazza.
+Az **InvoiceSummaries** segítségével lekérhet egy számlaösszegzést, amely az ismétlődő és egyszeri díjak egyenlegét és teljes díjait jeleníti meg. Az **InvoiceSummaries erőforrás** minden pénznemtípushoz tartalmaz egy számlaösszegzést.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Érvényes fiókazonosító.
+- Egy érvényes számlaazonosító.
 
 ## <a name="c"></a>C\#
 
-Egy olyan [**InvoiceSummaries**](invoice-resources.md#invoicesummaries) -gyűjtemény beolvasása, amely [**InvoiceSummary**](invoice-resources.md#invoicesummary) tartalmaz az egyes pénznemek típusaihoz:
+Egy [**InvoiceSummaries gyűjtemény lekérése,**](invoice-resources.md#invoicesummaries) amely az egyes pénznemtípushoz tartozó [**InvoiceSummary**](invoice-resources.md#invoicesummary) adatokat tartalmazza:
 
-1. Az **összegzések** tulajdonság meghívásához használja a **IAggregatePartner. számlák** gyűjteményt.
+1. Használja az **IAggregatePartner.Invoices gyűjteményt** az **Summaries tulajdonság hívására.**
 
-2. Hívja meg a **Get ()** metódust.
-3. Egy adott [**InvoiceSummary**](invoice-resources.md#invoicesummary)egyenlegének beszerzéséhez nyissa meg az adott tag **BalanceAmount** tulajdonságát.
+2. Hívja meg a **Get() metódust.**
+3. Egy önálló [**InvoiceSummary egyenlegének lekért összegéhez a**](invoice-resources.md#invoicesummary)gyűjtemény adott tagját kell elérnie a **BalanceAmount** tulajdonsághoz.
 
 ``` csharp
 // IAggregatePartner scopedPartnerOperations;
@@ -49,19 +44,19 @@ var invoiceSummaries = scopedPartnerOperations.Invoices.Summaries.Get();
 Console.Out.WriteLine("Current Account Balance:  {0:C}", invoiceSummaries[0].BalanceAmount);
 ```
 
-További információkért tekintse meg a következő példában szereplő kódot:
+További információért tekintse meg az alábbi példakódot:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **PartnerSDK. FeatureSample**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **PartnerSDK.FeatureSample**
 - Osztály: **GetInvoiceSummaries.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/summaries http/1.1     |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/summaries HTTP/1.1     |
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
@@ -69,7 +64,7 @@ Nincsenek.
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -88,11 +83,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy [**InvoiceSummaries**](invoice-resources.md#invoicesummaries) -erőforrást ad vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus egy [**InvoiceSummaries erőforrást**](invoice-resources.md#invoicesummaries) ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

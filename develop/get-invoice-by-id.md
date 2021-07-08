@@ -1,42 +1,37 @@
 ---
-title: Számla beolvasása azonosító alapján
-description: Egy adott számla beolvasása a számla azonosítója alapján.
+title: Számla lekérte azonosító alapján
+description: Lekér egy adott számlát a számlaazonosítóval.
 ms.date: 06/10/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 17880265d06e8e5eaacc5470d83c49defd10ad51
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: c888786a6b6ca941629bb7aac95227021c37a7fc
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767687"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111549161"
 ---
-# <a name="get-invoice-by-id"></a>Számla beolvasása azonosító alapján
+# <a name="get-invoice-by-id"></a>Számla lekérte azonosító alapján
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Egy adott számla beolvasása a számla azonosítója alapján.
+Lekér egy adott számlát a számlaazonosítóval.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Érvényes számla-azonosító.
+- Egy érvényes számlaazonosító.
 
 ## <a name="c"></a>C\#
 
-Számla beszerzése azonosító alapján:
+Számla lekért száma azonosító alapján:
 
-1. Használja a **IPartner. számlákon** gyűjteményt, és hívja meg a **ById ()** metódust.
+1. Használja az **IPartner.Invoices gyűjteményt,** és hívja meg a **ById() metódust.**
 
-2. Hívja meg a **Get ()** vagy a **GetAsync ()** metódust.
+2. Hívja meg **a Get() vagy** **a GetAsync() metódust.**
 
 ``` csharp
 // IPartner scopedPartnerOperations;
@@ -45,31 +40,31 @@ Számla beszerzése azonosító alapján:
 var invoice = scopedPartnerOperations.Invoices.ById(selectedInvoiceId).Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSample **osztály**: GetInvoice.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** GetInvoice.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID} http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító} HTTP/1.1 |
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
-A számla beszerzéséhez használja a következő lekérdezési paramétert.
+A számla lekérdezhető a következő lekérdezési paraméterrel.
 
 | Név           | Típus       | Kötelező | Leírás                                                                                        |
 |----------------|------------|----------|----------------------------------------------------------------------------------------------------|
-| **számlázási azonosító** | **karakterlánc** | Igen      | Az érték egy **Számlázási azonosító** , amely lehetővé teszi, hogy a viszonteladó egy adott számla eredményét szűrje. |
+| **számlaazonosító** | **sztring** | Igen      | Az érték egy **számlaazonosító,** amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla eredményeit. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Nincs
+None
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -83,11 +78,11 @@ MS-CorrelationId: 57eb2ca7-755f-450f-9187-eae1e75a0114
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy [Számlázási](invoice-resources.md#invoice) erőforrást ad vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus egy [invoice erőforrást](invoice-resources.md#invoice) ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

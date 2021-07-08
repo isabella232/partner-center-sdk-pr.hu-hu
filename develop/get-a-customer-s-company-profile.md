@@ -1,38 +1,33 @@
 ---
 title: Egy ügyfél vállalati profiljának lekérése
-description: Lekéri egy ügyfél vállalati profilját.
+description: Lekérte egy ügyfél céges profilját.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: c26a86ecb96e5e7942ba179f8a3cc704abab7df5
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: a1c0c8401207f4b0bb33755a8eabc66de0ad9ff9
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768123"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874975"
 ---
 # <a name="get-a-customers-company-profile"></a>Egy ügyfél vállalati profiljának lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Lekéri egy ügyfél vállalati profilját.
+Lekérte egy ügyfél céges profilját.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Az ügyfél vállalati profiljának lekéréséhez hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval az ügyfél azonosításához. Ezután szerezze be az ügyfél [**ICustomerProfileCollection**](/dotnet/api/microsoft.store.partnercenter.customers.profiles.icustomerprofilecollection) felületét a [**profilok**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.profiles) tulajdonságból a vállalati tulajdonság eléréséhez. Ezután szerezze be a [**ICustomerReadonlyProfile**](/dotnet/api/microsoft.store.partnercenter.customers.profiles.icustomerreadonlyprofile-1) felületet a [**ICustomerProfileCollection. Company**](/dotnet/api/microsoft.store.partnercenter.customers.profiles.icustomerprofilecollection.company) tulajdonságból, és hívja meg a [**Get ()**](/dotnet/api/microsoft.store.partnercenter.customers.profiles.icustomerreadonlyprofile-1.get) vagy a [**GetAsync ()**](/dotnet/api/microsoft.store.partnercenter.customers.profiles.icustomerreadonlyprofile-1.getasync) metódust.
+Az ügyfél céges profiljának lehíváshoz hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az ügyfél [**ICustomerProfileCollection**](/dotnet/api/microsoft.store.partnercenter.customers.profiles.icustomerprofilecollection) felületét a [**Profiles**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.profiles) (Profilok) tulajdonságból a Vállalati tulajdonság eléréséhez. Ezután szerezze be az [**ICustomerReadonlyProfile**](/dotnet/api/microsoft.store.partnercenter.customers.profiles.icustomerreadonlyprofile-1) felületet az [**ICustomerProfileCollection.Company**](/dotnet/api/microsoft.store.partnercenter.customers.profiles.icustomerprofilecollection.company) tulajdonságból, és hívja meg a [**Get()**](/dotnet/api/microsoft.store.partnercenter.customers.profiles.icustomerreadonlyprofile-1.get) vagy [**GetAsync() metódusokat.**](/dotnet/api/microsoft.store.partnercenter.customers.profiles.icustomerreadonlyprofile-1.getasync)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -41,13 +36,13 @@ Az ügyfél vállalati profiljának lekéréséhez hívja meg a [**IAggregatePar
 var companyProfile = partnerOperations.Customers.ById(customerId).Profiles.Company.Get();
 ```
 
-**Minta**: [töltse le a partner Center SDK](https://go.microsoft.com/fwlink/p/?LinkId=746681)-t. **Projekt**: PartnerSdk. FeatureSamples **osztály**: GetCustomerCompanyProfile.cs
+**Minta:** [Töltse le a Partnerközpont SDK.](https://go.microsoft.com/fwlink/p/?LinkId=746681) **Project:** PartnerSdk.FeatureSamples **osztály:** GetCustomerCompanyProfile.cs
 
 ## <a name="java"></a>Java
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-Az ügyfél vállalati profiljának lekéréséhez hívja meg a **IAggregatePartner. getCustomers (). byId** függvényt az ügyfél-azonosítóval az ügyfél azonosításához. Ezután szerezze be az ügyfél **ICustomerProfileCollection** felületét a [**getProfiles**] függvényből a vállalati tulajdonság eléréséhez. Ezután szerezze be a **ICustomerReadonlyProfile** felületet a **ICustomerProfileCollection. getCompany** függvényből, és hívja meg a **Get** függvényt.
+Az ügyfél céges profiljának lehíváshoz hívja meg az **IAggregatePartner.getCustomers().byId** függvényt az ügyfél azonosítóját az ügyfél azonosításához. Ezután szerezze be az ügyfél **ICustomerProfileCollection** felületét a [**getProfiles**] függvényből a Vállalati tulajdonság eléréséhez. Ezután szerezze be az **ICustomerReadonlyProfile** felületet az **ICustomerProfileCollection.getCompany függvényből,** és hívja meg a **get** függvényt.
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -56,29 +51,29 @@ Az ügyfél vállalati profiljának lekéréséhez hívja meg a **IAggregatePart
 CustomerCompanyProfile companyProfile = partnerOperations.getCustomers().byId(customerId).getProfiles().getCompany().get();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                             |
 |---------|-------------------------------------------------------------------------|
-| **GET** | *{baseURL}*/v1/Customers/{Customer-Tenant-ID}/Profiles/Company http/1.1 |
+| **Kap** | *{baseURL}*/v1/customers/{customer-tenant-id}/profiles/company HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A vállalati profil beszerzéséhez használja a következő lekérdezési paramétert.
+A következő lekérdezési paraméterrel lekérdezheti a vállalati profilt.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Nincs
+None
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -95,11 +90,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus a válasz törzsében adja vissza az adatokat.
+Ha ez a metódus sikeres, a válasz törzsében található információkat adja vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

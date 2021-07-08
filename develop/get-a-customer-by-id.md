@@ -1,38 +1,33 @@
 ---
 title: Egy ügyfél lekérése azonosító alapján
-description: Beolvas egy ügyfél-AZONOSÍTÓnak megfelelő ügyfél-erőforrást.
+description: Lekért egy ügyfél-erőforrást, amely megfelel egy ügyfél-azonosítónak.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: dd4301dbb6f749b675fe624daf7f63751806f856
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 196d653c789c4b4e1327f0c6e5d2531a18681a71
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768127"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874992"
 ---
 # <a name="get-a-customer-by-id"></a>Egy ügyfél lekérése azonosító alapján
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Beolvas egy ügyfél-AZONOSÍTÓnak megfelelő **ügyfél** -erőforrást.
+Lekért egy ügyfél-erőforrást, amely megfelel egy ügyfél-azonosítónak. 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja az App + felhasználói hitelesítő adatokat vagy csak az alkalmazáson belüli hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az alkalmazás+felhasználói hitelesítő adatokat vagy a csak az alkalmazásra vonatkozó hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Az ügyfél azonosító alapján történő beszerzéséhez használja a [**IAggregatePartner. Customs**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, hívja meg a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust, majd hívja meg a [**Get ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.get) vagy a [**GetAsync ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.getasync) metódust.
+Ha azonosító alapján szeretnék lehívni az ügyfelet, használja az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, hívja meg a [**ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust, majd hívja meg a [**Get()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.get) vagy [**a GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.getasync)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -41,13 +36,13 @@ Az ügyfél azonosító alapján történő beszerzéséhez használja a [**IAgg
 Customer customerInfo = partnerOperations.Customers.ById(customerIdToRetrieve).Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSamples **osztály**: CustomerInformation.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSamples **osztály:** CustomerInformation.cs
 
 ## <a name="java"></a>Java
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-Az ügyfél azonosító alapján történő beszerzéséhez használja a **IAggregatePartner. getCustomers** függvényt, hívja meg a **byId ()** függvényt, majd hívja meg a **Get ()** függvényt.
+Az ügyfél azonosító alapján való lehíváshoz használja az **IAggregatePartner.getCustomers** függvényt, hívja meg a **byId()** függvényt, majd hívja meg a **get()** függvényt.
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -60,19 +55,19 @@ Customer customerInfo = partnerOperations.getCustomers().byId(customerIdToRetrie
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-Az ügyfél azonosító alapján történő beszerzéséhez hajtsa végre a [**Get-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomer.md) parancsot, és határozza meg a **Vevőkód** paramétert.
+Ha azonosító alapján kell lekérte az ügyfelet, hajtsa végre a [**Get-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomer.md) parancsot, és adja meg a **CustomerId paramétert.**
 
 ```powershell
 Get-PartnerCustomer -CustomerId '2ca7de6c-c05c-46b5-b689-32e53573a97a'
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                            |
 |---------|----------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID} http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -80,11 +75,11 @@ Használja az alábbi lekérdezési paramétert egy adott ügyfélhez.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -102,11 +97,11 @@ MS-RequestId: 74ca1db9-df92-41c6-a362-a16433b0542b
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy [ügyfél](customer-resources.md#customer) -erőforrást ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy [Customer erőforrást](customer-resources.md#customer) ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

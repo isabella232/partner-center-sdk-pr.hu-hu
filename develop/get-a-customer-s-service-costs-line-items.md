@@ -1,43 +1,39 @@
 ---
 title: Egy ügyfél szolgáltatásdíjai sorelemeinek lekérése
-description: Lekéri az ügyfél szolgáltatási költségeit a megadott számlázási időszakra vonatkozóan.
+description: Lekérte az ügyfél szolgáltatási költségsorának elemeit a megadott számlázási időszakra vonatkozóan.
 ms.date: 07/12/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: c2034eaf11342493797688b44b634b8e9598e2e4
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 1bc2914d7c8d41c6d806131444fdc241aa1feb90
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768119"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874941"
 ---
 # <a name="get-a-customers-service-costs-line-items"></a>Egy ügyfél szolgáltatásdíjai sorelemeinek lekérése
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Lekéri az ügyfél szolgáltatási költségeit a megadott számlázási időszakra vonatkozóan.
+Lekérte az ügyfél szolgáltatási költségsorának elemeit a megadott számlázási időszakra vonatkozóan.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az App + User hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- Számlázási időszak jelzője ( **`mostrecent`** ).
+- A számlázási időszak jelzője ( **`mostrecent`** ).
 
 ## <a name="c"></a>C\#
 
-A megadott ügyfélhez tartozó szolgáltatási költségek összegzésének beolvasása:
+A megadott ügyfél szolgáltatási költségeinek összegzése:
 
-1. Hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval az ügyfél azonosításához.
+1. Az ügyfél azonosításához hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával.
 
-2. Az [**ServiceCosts**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.servicecosts) tulajdonság használatával beszerezhet egy felületet az ügyfélszolgálati költségek gyűjtési műveleteihez.
+2. A [**ServiceCosts tulajdonság**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.servicecosts) használatával lekért felület az ügyfélszolgálati költségek gyűjtési műveleteihez.
 
-3. Hívja meg a [**ByBillingPeriod**](/dotnet/api/microsoft.store.partnercenter.customers.servicecosts.icustomerservicecostscollection.bybillingperiod) metódust a [**ServiceCostsBillingPeriod**](/dotnet/api/microsoft.store.partnercenter.models.servicecosts.servicecostsbillingperiod) enumerálás egyik tagjával a [**IServiceCostsCollection**](/dotnet/api/microsoft.store.partnercenter.customers.servicecosts.iservicecostscollection)visszaadásához.
+3. Hívja meg a [**ByBillingPeriod**](/dotnet/api/microsoft.store.partnercenter.customers.servicecosts.icustomerservicecostscollection.bybillingperiod) metódust a [**ServiceCostsBillingPeriod**](/dotnet/api/microsoft.store.partnercenter.models.servicecosts.servicecostsbillingperiod) enumerálás egy tagjára egy [**IServiceCostsCollection érték visszaadásaként.**](/dotnet/api/microsoft.store.partnercenter.customers.servicecosts.iservicecostscollection)
 
-4. A [**IServiceCostsCollection. listaelemek. Get**](/dotnet/api/microsoft.store.partnercenter.customers.servicecosts.iservicecostlineitemscollection.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.customers.servicecosts.iservicecostlineitemscollection.getasync) metódus használatával beolvashatja az ügyfél szolgáltatási költségeinek sorát.
+4. Az [**IServiceCostsCollection.LineItems.Get**](/dotnet/api/microsoft.store.partnercenter.customers.servicecosts.iservicecostlineitemscollection.get) vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.customers.servicecosts.iservicecostlineitemscollection.getasync) metódussal lekérte az ügyfél szolgáltatásiköltség-sor tételét.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -46,26 +42,26 @@ A megadott ügyfélhez tartozó szolgáltatási költségek összegzésének beo
 var serviceCostsSummary = partnerOperations.Customers.ById(selectedCustomerId).ServiceCosts.ByBillingPeriod(ServiceCostsBillingPeriod.MostRecent).LineItems.Get();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                             |
 |---------|-------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/servicecosts/{Billing-period}/lineitems http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/servicecosts/{számlázási időszak}/lineitems HTTP/1.1 |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-A következő elérésiút-paraméterek használatával azonosíthatja az ügyfelet és a számlázási időszakot.
+Az ügyfél és a számlázási időszak azonosításához használja az alábbi elérésiút-paramétereket.
 
 | Név           | Típus   | Kötelező | Leírás                                                                                                                      |
 |----------------|--------|----------|----------------------------------------------------------------------------------------------------------------------------------|
 | ügyfél-azonosító    | guid   | Igen      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.                                                                       |
-| számlázási időszak | sztring | Igen      | A számlázási időszakot jelölő mutató. Az egyetlen támogatott érték a MostRecent. A karakterlánc esetében nincs jelentősége. |
+| számlázási időszak | sztring | Igen      | A számlázási időszakot jelölő jelző. Az egyetlen támogatott érték a MostRecent. A sztringben nem számít a kis- és a nagy- és a kis- és a nagy- és a nagy-nagyszomba |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -85,14 +81,14 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz törzse egy [ServiceCostLineItem](service-costs-resources.md) -erőforrást tartalmaz, amely információt nyújt a szolgáltatás költségeiről.
+Ha ez sikeres, a válasz törzse tartalmaz egy [ServiceCostLineItem](service-costs-resources.md) erőforrást, amely információkat nyújt a szolgáltatás költségeiről.
 
 > [!IMPORTANT]
-> A következő tulajdonságok *csak* a Service Cost line-elemekre vonatkoznak, ahol a termék *egyszeri vásárlás*: **Termékkód**, **productName**, **SkuID**, **skuName**, **availabilityId**, **publisherId**, **közzétevő neve**, **termAndBillingCycle**, **discountDetails**. Ezek a tulajdonságok *nem vonatkoznak* azokra a szervizsorok elemekre, amelyekben a termék *ismétlődő vásárlás*. Ezek a tulajdonságok például *nem vonatkoznak* az előfizetés-alapú Office 365-re és az Azure-ra.
+> A következő  tulajdonságok csak azokra a szolgáltatási *költségsorelemekre* vonatkoznak, ahol a termék egy alkalommal vásárolható meg: **productId**, **productName,** **skuId**, **skuName**, **availabilityId**, **publisherId**, **publisherName**, **termAndBillingCycle**, **discountDetails**. Ezek a *tulajdonságok nem vonatkoznak azokra* a szolgáltatássorelemekre, ahol a termék ismétlődő *vásárlás.* Ezek a tulajdonságok például *nem vonatkoznak az* előfizetés-alapú Office 365 azure-ban.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

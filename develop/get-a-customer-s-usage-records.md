@@ -1,39 +1,35 @@
 ---
-title: Használati rekordok beolvasása az összes ügyfél számára
-description: A CustomerMonthlyUsageRecord erőforrás-gyűjtemény használatával lekérheti az összes olyan ügyfél használati adatait, akik egy adott Azure-szolgáltatást vagy-erőforrást vásároltak.
+title: Az összes ügyfél használati rekordjainak lekért száma
+description: A CustomerMonthlyUsageRecord erőforrás-gyűjtemény használatával lekért használati rekordok minden olyan ügyfélhez, aki egy adott Azure-szolgáltatást vagy -erőforrást vásárolt.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: da829a6de3690a9b1117ce9dfa58fbe381cafd81
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 6b3fb0e1989336810f2afcc2a5bfc3a1d2849b7f
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767980"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874890"
 ---
-# <a name="get-usage-records-for-all-customers"></a>Használati rekordok beolvasása az összes ügyfél számára
+# <a name="get-usage-records-for-all-customers"></a>Az összes ügyfél használati rekordjainak lekért száma
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A partnerek a **CustomerMonthlyUsageRecord** erőforrás-gyűjtemény használatával lekérhetik az összes ügyfelet használó használati rekordokat. Ez az erőforrás az összes ügyfél használati rekordjait jelképezi. Ezek az ügyfelek Microsoft Azure (MS-AZR-0145P) előfizetéssel vagy egy Azure-csomaggal rendelkeznek.
+A partnerek a **CustomerMonthlyUsageRecord erőforrás-gyűjtemény** használatával lekért használati adatokat kaphatnak minden ügyfélhez. Ez az erőforrás az összes ügyfél használati adatait képviseli. Ide tartoznak azok az ügyfelek, akik Microsoft Azure (MS-AZR-0145P) előfizetéssel vagy Azure-csomaggal rendelkezik.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Az adott Azure-szolgáltatást vagy-erőforrást az aktuális számlázási időszak alatt megvásárolt összes ügyfél összes használati rekordjának lekérése:
+Az adott Azure-szolgáltatást vagy -erőforrást az aktuális számlázási időszakban megvásároló összes ügyfél összes használati rekordját le kell kapnia:
 
-1. A **IAggregatePartner. Customs** gyűjtemény használatával hívja meg a **ById ()** metódust.
+1. Az **IAggregatePartner.Customers gyűjtemény** használatával hívja meg a **ById() metódust.**
 
-2. Hívja meg a **UsageRecords** tulajdonságot, majd hívja meg a **Get ()** vagy a **GetAsync ()** metódust.
+2. Hívja **meg a UsageRecords** tulajdonságot, majd hívja meg a **Get() vagy** a **GetAsync() metódust.**
 
     ``` csharp
     // IAggregatePartner partnerOperations;
@@ -42,21 +38,21 @@ Az adott Azure-szolgáltatást vagy-erőforrást az aktuális számlázási idő
 
 Példaként tekintse meg a következő mintát:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **PartnerSDK. FeatureSamples**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **PartnerSDK.FeatureSamples**
 - Osztály: **GetCustomerUsageRecords.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/usagerecords http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/usagerecords HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -74,15 +70,15 @@ MS-CorrelationId: 47c36033-af5d-4457-80a4-512c1626fac4
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy **CustomerMonthlyUsageRecord** -erőforrást ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy **CustomerMonthlyUsageRecord** erőforrást ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek beolvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, a hibatípust és a további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
-A **isUpgraded** tulajdonsággal azonosíthatók azok az ügyfelek, akik Azure-csomaggal rendelkeznek. Ha a **isUpgraded** értéke **igaz**, az azt jelenti, hogy az ügyfelek rendelkeznek Azure-csomagokkal.
+Az **isUpgraded** tulajdonság használatával azonosíthatja az Azure-csomagokkal kapcsolatos ügyfeleket. Ha az **isUpgraded** értéke **igaz,** az azt jelenti, hogy az ügyfelek Azure-csomagokkal vannak.
 
 ```http
 HTTP/1.1 200 OK

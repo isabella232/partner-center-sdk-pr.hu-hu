@@ -1,34 +1,29 @@
 ---
 title: A partner hivatalos vállalkozási profiljának lekérése
-description: Ismerje meg, hogyan használhatja az API-kat a jogi üzleti profil beszerzéséhez.
+description: Megtudhatja, hogyan használhatja az API-kat a jogi üzleti profilja lekért útjára.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 1d488c8deb9f01110e92327035ce0c3c023fcb46
-ms.sourcegitcommit: f72173df911aee3ab29b008637190b4d85ffebfe
+ms.openlocfilehash: ba0654e364674bc2db129a0904d411c6fb67cbb9
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 04/06/2021
-ms.locfileid: "106500022"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111549059"
 ---
 # <a name="get-the-partner-legal-business-profile"></a>A partner hivatalos vállalkozási profiljának lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Partner jogi üzleti profiljának beszerzése.
+A partner jogi üzleti profiljának lekért létrehozása.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-A partner jogi üzleti profil beszerzéséhez először a **IAggregatePartner. Profiles** tulajdonságból kap egy felületet a partneri profil műveleteinek gyűjteményéhez. Ezután a **LegalBusinessProfile** tulajdonság értékének lekérésével kérjen le egy felületet a jogi üzleti profil műveleteihez. Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.getasync) metódust a profil lekéréséhez.
+A partner jogi üzleti profiljának legyűjtéséhez először szerezze be a partnerprofil-műveletek gyűjteményének felületét az **IAggregatePartner.Profiles tulajdonságból.** Ezután lekéri a **LegalBusinessProfile** tulajdonság értékét, hogy lekérje a jogi üzleti profil műveleteinek felületét. Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.getasync) metódust a profil lekéréshez.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -36,19 +31,19 @@ A partner jogi üzleti profil beszerzéséhez először a **IAggregatePartner. P
 var billingProfile = partnerOperations.Profiles.LegalBusinessProfile.Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: GetLegalBusinessProfile. cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** GetLegalBusinessProfile.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                    |
 |---------|--------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Profiles/legalbusiness http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/profiles/legalbusiness HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -69,11 +64,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy **LegalBusinessProfile** objektumot ad vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus egy **LegalBusinessProfile** objektumot ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

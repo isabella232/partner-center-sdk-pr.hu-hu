@@ -1,56 +1,51 @@
 ---
 title: Számla sorelemeinek lekérése
-description: A partner Center API-k használatával lekérheti a számla sor (lezárt számlázási sor) részleteit a megadott számláról.
+description: A megadott számlához tartozó számlasorelem (lezárt számlázási sorelem) részleteinek gyűjteményét a következő API Partnerközpont le.
 ms.date: 01/27/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: ddc49e4d83518b809402a65f990f3e9c2658e64b
-ms.sourcegitcommit: 4ec053c56fd210b174fe657aa7b86faf4e2b5a7c
+ms.openlocfilehash: 944dddef64ec980d92c292a7f5b9f5eb4e7cecb6
+ms.sourcegitcommit: 15c6cfe72284cf5d4ea3535120e83e473c33f5ec
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/29/2021
-ms.locfileid: "105730228"
+ms.lasthandoff: 06/22/2021
+ms.locfileid: "112443172"
 ---
 # <a name="get-invoice-line-items"></a>Számla sorelemeinek lekérése
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+A következő módszerekkel lekértheti egy adott számla számlasor-elemeinek (más néven lezárt számlázási sorelemeknek) a gyűjtemény adatait.
 
-A következő módszerekkel beolvashatja a számla sorok tételeinek (más néven lezárt számlázási sorok) gyűjteményének részleteit egy adott számlához.
+*A hibajavítások kivételével ez az API már nem frissül.* Frissítse az alkalmazásokat úgy, hogy a **Piactér** helyett az egyszer használható **API-t hívják meg.** Az **onetime** API további funkciókat biztosít, és továbbra is frissülni fog.
 
-*A hibajavítások kivételével ez az API már nem frissül.* Frissítse alkalmazásait, hogy a **piactér** helyett az **egykori** API-t hívja meg. Az **egykori** API további funkciókat biztosít, és továbbra is frissülni fog.
+A piactér helyett **az egyidős használatával** lekérdezheti az összes kereskedelmi használatú **sorelemet.** Vagy kövesse a estimate links hívásban található hivatkozásokat.
 
-Az **egyszeri** verziót kell használnia a **piactér** helyett az összes kereskedelmi fogyasztási sor elem lekérdezéséhez. A hivatkozásokat a becsült hivatkozások hívásban is követheti.
-
-Ez az API az **Azure** és az **Office** Microsoft Azure (MS-AZR-0145P) előfizetések és az Office-ajánlatok **szolgáltatói** típusait is támogatja, így az API szolgáltatás visszafelé kompatibilis lesz.
+Ez az API  az **Azure** és az **Office** for Microsoft Azure (MS-AZR-0145P) előfizetések és Office-ajánlatok szolgáltatótípusát is támogatja, ami visszamenőlegesen kompatibilissé teszi az API-funkciót.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Egy fiókazonosító. Ez azonosítja azt a számlát, amelynek a sorát be kell olvasni.
+- Egy számlaazonosító. Ez azonosítja a számlát, amelynek lekéri a sorelemeket.
 
 ## <a name="c"></a>C\#
 
-A megadott számla vonali elemeinek beolvasása:
+A megadott számlához tartozó sorelemek lekért száma:
 
-1. Hívja meg a [**ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) metódust, hogy lekérje a megadott számla műveleteinek számlázására szolgáló felületet.
+1. Hívja meg [**a ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) metódust a megadott számlához tartozó számlázási műveletek interfészének lehívása érdekében.
 
-2. Hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódust a számla objektum lekéréséhez. A számla objektum a megadott számla összes adatát tartalmazza.
-3. A számla objektum [**InvoiceDetails**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoice.invoicedetails) tulajdonságával hozzáférhet a [**InvoiceDetail**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail) objektumok egy gyűjteményéhez, amelyek mindegyike egy [**BillingProvider**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.billingprovider) és egy [**InvoiceLineItemType**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.invoicelineitemtype)tartalmaz. A **BillingProvider** azonosítja a számla részletes adatainak forrását (például az **Office**, az **Azure**, az **egykori**), a **InvoiceLineItemType** pedig a típust (például **BillingLineItem**).
+2. A [**számlaobjektum lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal. A számlaobjektum a megadott számla összes adatát tartalmazza.
+3. A számlaobjektum [**InvoiceDetails**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoice.invoicedetails) tulajdonságával hozzáférést kap az [**InvoiceDetail**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail) objektumok gyűjteményéhez, amelyek mindegyikében található egy [**BillingProvider**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.billingprovider) és egy [**InvoiceLineItemType.**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.invoicelineitemtype) A **BillingProvider** azonosítja a számla részletes információinak forrását (például **Office,** **Azure**, **OneTime**), az **InvoiceLineItemType** pedig meghatározza a típust (például **BillingLineItem).**
 
-Az alábbi mintakód egy **foreach** hurkot használ a **InvoiceDetails** -gyűjtemény feldolgozásához. A rendszer minden egyes **InvoiceDetail** -példányhoz beolvassa a sorok egy külön gyűjteményét.
+Az alábbi példakód egy **foreach ciklust** használ az **InvoiceDetails gyűjtemény feldolgozásához.** A rendszer minden **InvoiceDetail-példányhoz** külön sorelemek gyűjteményét olvassa be.
 
-Egy **InvoiceDetail** -példánynak megfelelő sorok gyűjteményének beolvasása:
+Az InvoiceDetail példánynak megfelelő sorelemek **gyűjteményének lekért** száma:
 
-1. Adja át a példány **BillingProvider** és **InvoiceLineItemType** a [**by**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by) metódusnak.
+1. Adja át a példány **BillingProvider** és **InvoiceLineItemType** tulajdonságát a [**By metódusnak.**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by)
 
-2. A társított sorok beolvasásához hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.getasync) metódust.
-3. Hozzon létre egy enumerálást a gyűjtemény átjárásához az alábbi példában látható módon.
+2. A [**társított sorelemek lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.getasync) metódussal.
+3. Hozzon létre egy enumerátort, amely az alábbi példában látható módon lépked a gyűjteményen.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -99,75 +94,75 @@ foreach (var invoiceDetail in invoice.InvoiceDetails)
 }
 ```
 
-Ehhez hasonló példát a következő témakörben talál:
+Hasonló példát a következőben láthat:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **partner Center SDK-minták**
-- Osztály: **GetInvoiceLineItems. cs**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **Partnerközpont SDK minták**
+- Osztály: **GetInvoiceLineItems.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
-A kérést a számlázási szolgáltató megfelelő szintaxisával teheti meg a forgatókönyvben.
+A kérést a forgatókönyvben használt számlázási szolgáltatónak megfelelő szintaxissal készítse el.
 
 #### <a name="office"></a>Office
 
-A következő szintaxis akkor érvényes, ha a számlázási szolgáltató **iroda**.
+A következő szintaxis akkor érvényes, ha a számlázási szolgáltató **Office.**
 
 | Metódus  | Kérés URI-ja                                                                                                                                                     |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? szolgáltató = Office&invoicelineitemtype = billinglineitems&méret = {size} &eltolás = {offset} http/1.1                               |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=office&invoicelineitemtype=billinglineitems&size={size}&offset={offset} HTTP/1.1                               |
 
 #### <a name="microsoft-azure-ms-azr-0145p-subscription"></a>Microsoft Azure (MS-AZR-0145P) előfizetés
 
-A következő szintaxisok érvényesek, ha a számlázási szolgáltató Microsoft Azure (MS-AZR-0145P) előfizetéssel rendelkezik.
+Az alábbi szintaxisok akkor érvényesek, ha a számlázási szolgáltató Microsoft Azure (MS-AZR-0145P) előfizetéssel rendelkezik.
 
 | Metódus  | Kérés URI-ja                                                                                                                                                     |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? Provider = Azure&invoicelineitemtype = billinglineitems&méret = {size} &eltolás = {offset} http/1.1  |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? Provider = Azure&invoicelineitemtype = usagelineitems&méret = {size} &eltolás = {offset} http/1.1  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=azure&invoicelineitemtype=billinglineitems&size={size}&offset={offset} HTTP/1.1  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=azure&invoicelineitemtype=usagelineitems&size={size}&offset={offset} HTTP/1.1  |
 
-##### <a name="onetime"></a>Elvégezni
+##### <a name="onetime"></a>OneTime (Egyidő)
 
-A következő szintaxisok akkor érvényesek, ha a számlázási szolgáltató az **egykori**. Ez magában foglalja az Azure-foglalások, a szoftverek, az Azure-csomagok és a kereskedelmi piactér-termékek díját.
+Az alábbi szintaxisok akkor érvényesek, ha a számlázási szolgáltató **OneTime**. Ebbe beletartoznak az Azure Reservations, a szoftverek, az Azure-csomagok és a kereskedelmi piactéren elérhető termékek díjai.
 
 | Metódus  | Kérés URI-ja                                                                                                                                                     |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? Provider = egykori&invoicelineitemtype = billinglineitems&méret = {size} http/1.1  |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems/onetime/billinglineitems&mérete = {size}? SeekOperation = tovább                           |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=billinglineitems&size={size} HTTP/1.1  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító}/lineitems/onetime/billinglineitems&size={size}?seekOperation=Next                           |
 
 #### <a name="previous-syntaxes"></a>Korábbi szintaxisok
 
-Ha a következő szintaxist használja, ügyeljen arra, hogy a megfelelő szintaxist használja a használati esethez.
+Ha a következő szintaxisokat használja, mindenképpen a megfelelő szintaxist használja a saját esetének megfelelően.
 
-*A hibajavítások kivételével ez az API már nem frissül.* Frissítse alkalmazásait, hogy a **piactér** helyett az **egykori** API-t hívja meg. Az **egykori** API további funkciókat biztosít, és továbbra is frissülni fog.
+*A hibajavítások kivételével ez az API már nem frissül.* Frissítse az alkalmazásokat úgy, hogy a **Piactér** helyett az egyszer használható **API-t hívják meg.** Az **onetime** API további funkciókat biztosít, és továbbra is frissülni fog.
 
-Az **egyszeri** verziót kell használnia a **piactér** helyett az összes kereskedelmi fogyasztási sor elem lekérdezéséhez. A hivatkozásokat a becsült hivatkozások hívásban is követheti.
+A piactér helyett **az egyidős használatával** lekérdezheti az összes kereskedelmi használatú **sorelemet.** Vagy kövesse a estimate links hívásban található hivatkozásokat.
 
-| Metódus | Kérés URI-ja | Szintaxis használati esetének leírása |
+| Metódus | Kérés URI-ja | Szintaxishasználati eset leírása |
 | ------ | ----------- | -------------------------------- |
-| GET | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems/{Billing-Provider}/{Invoice-line-Item-Type} http/1.1                              | Ezzel a szintaxissal teljes listát adhat vissza az adott számlához tartozó összes sor tételről. |
-| GET | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems/{Billing-Provider}/{Invoice-line-Item-Type}? méret = {size} &eltolás = {ELTOLÁS} http/1.1  | Nagyméretű számlák esetén ezt a szintaxist egy megadott mérettel és 0 alapú eltolással használhatja a sorok lapozható listájának visszaadásához. |
-| GET | [*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems/OneTime/{Invoice-line-Item-Type}? SeekOperation = Next                               | Ezt a szintaxist használhatja egy olyan számla számlázására, amely egy **egyszeri** számlázási szolgáltatói értékkel rendelkezik, és a **következőre** állítja be a **seekOperation** , hogy beolvassa a számla sorok következő oldalát. |
+| GET | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító}/lineitems/{számlázási-szolgáltató}/{számlasor-elem-típus} HTTP/1.1                              | Ezzel a szintaxissal az adott számla összes sorelemének teljes listáját használhatja. |
+| GET | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító}/lineitems/{számlázási-szolgáltató}/{számlasor-elem-típus}?size={méret}&offset={offset} HTTP/1.1  | Nagy számlák esetén ezt a szintaxist használhatja a megadott mérettel és 0 alapú eltolással a sorelemek lapszámolt listájának visszaadására. |
+| GET | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító}/lineitems/OneTime/{számlasor-elem-típus}?seekOperation=Next                               | Ezt a szintaxist egy **OneTime** számlázási szolgáltatói értékkel tartozó számlához használhatja, és beállíthatja a **seekOperation** értékét **Tovább** értékre a számlasorelemek következő oldalának lekért értékével. |
 
 ##### <a name="uri-parameters"></a>URI-paraméterek
 
-A kérelem létrehozásakor használja az alábbi URI-és lekérdezési paramétereket.
+A kérelem létrehozásakor használja a következő URI-t és lekérdezési paramétereket.
 
 | Név                   | Típus   | Kötelező | Leírás                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
-| számlázási azonosító             | sztring | Yes      | A számlát azonosító karakterlánc.                             |
-| számlázási szolgáltató       | sztring | Yes      | A számlázási szolgáltató: "Office", "Azure", "egykori". A korábbi verziókban külön adatmodellek vannak az Office & Azure-tranzakciók számára. A modernnek azonban egyetlen adatmodellje van az összes tranzakcióban az "egykori" érték alapján szűrve.            |
-| számla-sor-tétel típusa | sztring | Yes      | A számla részleteinek típusa: "BillingLineItems", "UsageLineItems". |
-| size                   | szám | No       | A visszaadni kívánt elemek maximális száma. Alapértelmezett maximális méret = 2000    |
-| offset                 | szám | No       | A visszaadni kívánt első sor nulla alapú indexe.            |
-| seekOperation          | sztring | No       | Ha a **számlázási szolgáltató** az **egykorinál** egyenlő, állítsa a **SeekOperation** egyenlő értékre a **következővel** , hogy beolvassa a számla sorok következő oldalát. |
-| hasPartnerEarnedCredit | logikai | No | Az az érték, amely azt jelzi, hogy a rendszer visszaküldi-e a sorban lévő, partner által létrehozott jóváírást Megjegyzés: ezt a paramétert csak akkor alkalmazza a rendszer, ha a számlázási szolgáltató típusa az egykori, a InvoiceLineItemType pedig UsageLineItems. |
+| számlaazonosító             | sztring | Igen      | A számlát azonosító sztring.                             |
+| számlázási szolgáltató       | sztring | Igen      | A számlázási szolgáltató: "Office", "Azure", "OneTime". A régi modellben az Azure-tranzakciókhoz külön adatmodellek Office & rendelkezésre. A modern azonban egyetlen adatmodellel rendelkezik az összes tranzakcióra a "OneTime" érték alapján szűrve.            |
+| invoice-line-item-type | sztring | Igen      | A számla részleteinek típusa: "BillingLineItems", "UsageLineItems". |
+| size                   | szám | Nem       | A visszaadott elemek maximális száma. Alapértelmezett maximális méret = 2000    |
+| offset                 | szám | Nem       | Az első visszaadni kívánt sorelem nullaalapú indexe.            |
+| seekOperation          | sztring | No       | Ha **a számlázási szolgáltató** értéke **OneTime**, állítsa a **seekOperation** értékeként a **Tovább** elemet a számlasorelemek következő oldalának lekért értékhez. |
+| hasPartnerEarnedCredit | logikai | Nem | Az érték, amely jelzi, hogy a partneri jóváírással kapott sorelemeket kell-e visszaadni. Megjegyzés: ez a paraméter csak akkor lesz alkalmazva, ha a számlázási szolgáltató típusa OneTime, az InvoiceLineItemType pedig UsageLineItems. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -175,24 +170,24 @@ Nincsenek.
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz tartalmazza a sor elem részleteinek gyűjteményét.
+Ha ez sikeres, a válasz sorelem-részletek gyűjteményét tartalmazza.
 
-*A sor **ChargeType** a **megvásárolt** érték az **új** elemre van leképezve. Az érték- **visszatérítés** a **megszakításra** van leképezve.*
+*A **ChargeType** sorelem esetében a **Purchase** érték az Új értékre van **leképezve.** A **Refund (Visszatérítés)** érték a Cancel (Lemondás) **értékre van leképezve.***
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
-### <a name="rest-request-response-examples"></a>REST-kérelem – válasz példák
+### <a name="rest-request-response-examples"></a>REST-kérés-válasz példák
 
-### <a name="request-response-example-1"></a>Kérelem – válasz 1. példa
+### <a name="request-response-example-1"></a>1. kérelem-válasz példa
 
 Ebben a példában a részletek a következők:
 
-- **BillingProvider**: **iroda**
-- **InvoiceLineItemType**: **BillingLineItems**
+- **BillingProvider**: **Office**
+- **InvoiceLineItemType:** **BillingLineItems**
 
-#### <a name="request-example-1"></a>1. példa kérés
+#### <a name="request-example-1"></a>1. kérési példa
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/1234000000/lineitems?provider=Office&nvoicelineitemtype=BillingLineItems&size=2&offset=0 HTTP/1.1
@@ -205,7 +200,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-1"></a>1. válasz – példa
+#### <a name="response-example-1"></a>1. válasz példa
 
 ```http
 HTTP/1.1 200 OK
@@ -307,14 +302,14 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 }
 ```
 
-### <a name="request-response-example-2"></a>Kérelem – válasz 2. példa
+### <a name="request-response-example-2"></a>2. kérés-válasz példa
 
 A következő példában a részletek a következők:
 
-- **BillingProvider**: **Azure**
-- **InvoiceLineItemType**: **BillingLineItems**
+- **BillingProvider:** **Azure**
+- **InvoiceLineItemType:** **BillingLineItems**
 
-#### <a name="request-example-2"></a>2. példa a kérelemre
+#### <a name="request-example-2"></a>2. kérési példa
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/1234000000/lineitems?provider=Azure&invoicelineitemtype=BillingLineItems&size=2&offset=0 HTTP/1.1
@@ -327,7 +322,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-2"></a>2. válasz – példa
+#### <a name="response-example-2"></a>2. válasz példa
 
 ```http
 HTTP/1.1 200 OK
@@ -445,14 +440,14 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 }
 ```
 
-### <a name="request-response-example-3"></a>Kérelem – válasz 3. példa
+### <a name="request-response-example-3"></a>3. kérés-válasz példa
 
 A következő példában a részletek a következők:
 
-- **BillingProvider**: **Azure**
-- **InvoiceLineItemType**: **UsageLineItems**
+- **BillingProvider:** **Azure**
+- **InvoiceLineItemType:** **UsageLineItems**
 
-#### <a name="request-example-3"></a>3. példa a kérelemre
+#### <a name="request-example-3"></a>3. kérési példa
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/1234000000/lineitems?provider=Azure&invoicelineitemtype=UsageLineItems&size=2&offset=0 HTTP/1.1
@@ -465,7 +460,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-3"></a>3. válasz – példa
+#### <a name="response-example-3"></a>3. válasz példa
 
 ```http
 HTTP/1.1 200 OK
@@ -563,14 +558,14 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 }
 ```
 
-### <a name="request-response-example-4"></a>Kérelem – válasz 4. példa
+### <a name="request-response-example-4"></a>4. kérés-válasz példa
 
 A következő példában a részletek a következők:
 
-- **BillingProvider**: **egykori**
-- **InvoiceLineItemType**: **BillingLineItems**
+- **BillingProvider:** **OneTime**
+- **InvoiceLineItemType:** **BillingLineItems**
 
-#### <a name="request-example-4"></a>4. példa kérése
+#### <a name="request-example-4"></a>4. kérési példa
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/G000024135/lineitems/OneTime/BillingLineItems?size=2&offset=0 HTTP/1.1
@@ -583,7 +578,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-4"></a>4. válasz – példa
+#### <a name="response-example-4"></a>4. válasz példa
 
 ```http
 HTTP/1.1 200 OK
@@ -597,111 +592,179 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 
  {
     "continuationToken": "d19617b8-fbe5-4684-a5d8-0230972fb0cf,0705c4a9-39f7-4261-ba6d-53e24a9ce47d_a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=,0d81c700-98b4-4b13-9129-ffd5620f72e7",
-    "totalCount": 2,
+    {
+    {
+    "totalCount": 3,
     "items": [
         {
-            "partnerId": "6480d686-cfb4-424d-a945-6b9b9f000000",
-            "customerId": "org:9060d13d-c5ed-482e-b059-a15a38000000",
-            "customerName": "recipientCustomerName",
-            "customerDomainName": "recipientCustomerDomain",
-            "invoiceNumber": "1234000000",
-            "quoteId": "abcd12345678",
-            "mpnId": "4870137",
-            "resellerMpnId": 0,
-            "orderId": "QDOx5ZN3YR9uYhm4M1MGQJ_0nievUOrx1",
-            "orderDate": "2018-02-08T22:31:42.9397946Z",
-            "productId": "productid",
-            "skuId": "skuid",
-            "availabilityId": "availabilityid",
-            "productName": "TEST PRODUCT",
-            "skuName": "TEST SKU TITLE",
-            "chargeType": "New",
-            "unitPrice": 431.8,
-            "effectiveUnitPrice": 496.07,
-            "unitType": "Seats",
-            "quantity": 1,
-            "subtotal": 431.8,
-            "taxTotal": 38.87,
-            "totalForCustomer": 470.67,
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "c139c4bf-2e8b-4ab5-8bed-d9f50dcca7a2",
+            "customerName": "Test_Test_Office R2 Reduce Seats Validation",
+            "customerDomainName": "testcustomerr2t2reduce.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "G000773581",
+            "mpnId": "5357564",
+            "resellerMpnId": "4649221",
+            "orderId": "94e858b6d855",
+            "orderDate": "2021-05-20T18:30:06.6045692Z",
+            "productId": "CFQ7TTC0LH0R",
+            "skuId": "0002",
+            "availabilityId": "CFQ7TTC0K5RQ",
+            "productName": "Microsoft 365 Phone System - Virtual User",
+            "skuName": "Microsoft 365 Phone System - Virtual User",
+            "productQualifiers": [
+                "AddOn",
+                "Trial"
+            ],
+            "chargeType": "new",
+            "unitPrice": "0",
+            "effectiveUnitPrice": "0",
+            "unitType": "",
+            "quantity": "25",
+            "subtotal": "0",
+            "taxTotal": "0",
+            "totalForCustomer": "0",
             "currency": "USD",
-            "providerName": "Test Networks Inc",
-            "providerId": "12343810",
+            "publisherName": "Microsoft Corporation",
+            "publisherId": "",
             "subscriptionDescription": "",
-            "subscriptionId": "281e26fe-9ce7-415b-911c-f39232000000",
-            "subscriptionStartDate": "2019-01-03T19:53:55.1292512+00:00",
-            "subscriptionEndDate": "2019-02-02T19:53:55.1292512+00:00",
-            "termAndBillingCycle": "1 Month Subscription",
-            "alternateId": "1234278124b8",
-            "priceAdjustmentDescription": "[\"100.0% Tier 1 Discount\"]",
-            "creditReasonCode": "Azure Consumption Credit",
+            "subscriptionId": "86646af9-e80a-4aa0-da80-3fd2b792c2cc",
+            "subscriptionStartDate": "2021-05-20T00:00:00Z",
+            "subscriptionEndDate": "2021-06-19T00:00:00Z",
+            "chargeStartDate": "2021-05-20T00:00:00Z",
+            "chargeEndDate": "2021-06-19T00:00:00Z",
+            "termAndBillingCycle": "One-Month commitment for trial",
+            "alternateId": "94e858b6d855",
+            "referenceId": "0cf1202a-5b7d-4219-966e-93c637113708",
+            "priceAdjustmentDescription": "",
+            "discountDetails": "",
             "pricingCurrency": "USD",
-            "pcToBCExchangeRate": 1,
-            "pcToBCExchangeRateDate": "2019-09-30T23:59:59Z",
-            "billableQuantity": 0.0159369774,
-            "meterDescription": "Bandwidth - Data Transfer In (GB) - Zone 2",
-            "billingFrequency": "Monthly",
-            "reservationOrderId": "883d475b-0000-2222-0000-8818752f1234",
+            "pcToBCExchangeRate": "1",
+            "pcToBCExchangeRateDate": "2021-05-01T00:00:00",
+            "billableQuantity": "25",
+            "meterDescription": "",
+            "billingFrequency": "",
+            "reservationOrderId": "99f246cf-ed96-41b4-b0cd-0aa43eb1fe91",
             "invoiceLineItemType": "billing_line_items",
             "billingProvider": "one_time",
+            "promotionId": "",
+            "attributes": {
+                "objectType": "OneTimeInvoiceLineItem"
+            }
+            
+        },
+        {
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "835a59a7-3172-47b5-bdef-d9cc65f4d0e4",
+            "customerName": "TEST_TEST Test Promotions 01",
+            "customerDomainName": "kyletestpromos01.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "G000773581",
+            "mpnId": "5357564",
+            "resellerMpnId": "0",
+            "orderId": "5f9d52bb1408",
+            "orderDate": "2021-05-20T18:48:30.6168285Z",
+            "productId": "CFQ7TTC0HL8W",
+            "skuId": "0001",
+            "availabilityId": "CFQ7TTC0K59S",
+            "productName": "Power BI Premium Per User",
+            "skuName": "Power BI Premium Per User",
+            "productQualifiers": [],
+            "chargeType": "new",
+            "unitPrice": "16",
+            "effectiveUnitPrice": "14.4",
+            "unitType": "",
+            "quantity": "50",
+            "subtotal": "720",
+            "taxTotal": "73",
+            "totalForCustomer": "793",
+            "currency": "USD",
+            "publisherName": "Microsoft Corporation",
+            "publisherId": "",
+            "subscriptionDescription": "",
+            "subscriptionId": "9d7d1f3d-c8de-461c-db6d-91debd5129f0",
+            "subscriptionStartDate": "2021-05-20T00:00:00Z",
+            "subscriptionEndDate": "2022-05-19T00:00:00Z",
+            "chargeStartDate": "2021-05-20T00:00:00Z",
+            "chargeEndDate": "2021-06-19T00:00:00Z",
+            "termAndBillingCycle": "One-Year commitment for monthly/yearly billing",
+            "alternateId": "5f9d52bb1408",
+            "referenceId": "28b535e0-68f4-40b5-84f7-8ed9241eb149",
+            "priceAdjustmentDescription": "[\"Price for given billing period\",\"You are getting a discount due to a pre-determined override.\",\"You are getting a discount for being a partner.\",\"You are getting a price guarantee for your price.\",\"Price for given term\"]",
+            "discountDetails": "",
+            "pricingCurrency": "USD",
+            "pcToBCExchangeRate": "1",
+            "pcToBCExchangeRateDate": "2021-05-01T00:00:00",
+            "billableQuantity": "50",
+            "meterDescription": "",
+            "billingFrequency": "Monthly",
+            "reservationOrderId": "8fdebb4a-7110-496e-9570-623e4c992797",
+            "invoiceLineItemType": "billing_line_items",
+            "billingProvider": "one_time",
+            "promotionId": "78bcf906-b945-4210-8818-cfb93caf12a1",
+            "attributes/objectType": "OneTimeInvoiceLineItem",
             "attributes": {
                 "objectType": "OneTimeInvoiceLineItem"
             }
         },
         {
-            "partnerId": "6480d686-cfb4-424d-a945-6b9b9f4badc2",
-            "customerId": "org:9060d13d-c5ed-482e-b059-a15a38cbb28e",
-            "customerName": "recipientCustomerName",
-            "customerDomainName": "recipientCustomerDomain",
-            "invoiceNumber": "1234000000",
-            "quoteId": "abcd12345678",
-            "mpnId": "4870137",
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "c139c4bf-2e8b-4ab5-8bed-d9f50dcca7a2",
+            "customerName": "Test_Test_Office R2 Reduce Seats Validation",
+            "customerDomainName": "testcustomerr2t2reduce.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "T000773581",
+            "mpnId": "1234567",
             "resellerMpnId": 0,
-            "orderId": "QDOx5ZN3YR9uYhm4M1MGQJ_0nievUOrx1",
-            "orderDate": "2018-02-08T22:31:42.9397946Z",
-            "productId": "productid",
-            "skuId": "skuid",
-            "availabilityId": "availabilityid",
-            "productName": "TEST PRODUCT",
-            "skuName": "TEST SKU TITLE",
+            "orderId": "HJVtMZMkgQ2miuCiNv0RSr51zQDans0m1",
+            "orderDate": "2019-02-04T17:59:52.9460102Z",
+            "productId": "DZH318Z0BXWC",
+            "skuId": "0002",
+            "availabilityId": "DZH318Z0BP8B",
+            "productName": "Test WAF-as-a-Service",
+            "skuName": "Test WaaS - Medium Plan",
             "chargeType": "New",
-            "unitPrice": 26.35,
-            "effectiveUnitPrice": 496.07,
-            "unitType": "1 Hour",
+            "unitPrice": 820,
+            "effectiveUnitPrice": 820,
+            "unitType": "",
             "quantity": 1,
-            "subtotal": 26.35,
-            "taxTotal": 2.37,
-            "totalForCustomer": 28.72,
+            "subtotal": 820,
+            "taxTotal": 0,
+            "totalForCustomer": 0,
             "currency": "USD",
-            "providerName": "Test Networks Inc",
-            "providerId": "12343810",
+            "publisherName": "Test Networks, Inc.",
+            "publisherId": "21223810",
             "subscriptionDescription": "",
-            "subscriptionId": "281e26fe-9ce7-415b-911c-f39232ea904a",
-            "subscriptionStartDate": "2019-01-03T19:53:55.1292512+00:00",
-            "subscriptionEndDate": "2019-02-02T19:53:55.1292512+00:00",
-            "termAndBillingCycle": "1 Month Subscription",
-            "alternateId": "1234578124b8",
-            "priceAdjustmentDescription": "[\"100.0% Tier 1 Discount\"]",
+            "subscriptionId": "12345678-9cf0-4a1f-9514-7fcc7fe9d1fe",
+            "subscriptionStartDate": "2019-02-01T00:00:00Z",
+            "subscriptionEndDate": "2020-01-31T00:00:00Z",
+            "chargeStartDate": "2019-02-04T09:22:40.1767993-08:00",
+            "chargeEndDate": "2019-03-03T09:22:40.1767993-08:00",
+            "termAndBillingCycle": "1 Year Subscription",
+            "alternateId": "123456ad566",
+            "priceAdjustmentDescription": "[\"15.0% Partner earned credit for services managed\"]",
+            "discountDetails": "",
             "pricingCurrency": "USD",
             "pcToBCExchangeRate": 1,
-            "pcToBCExchangeRateDate": "2019-09-30T23:59:59Z",
-            "billableQuantity": 0.0130687981,
+            "pcToBCExchangeRateDate": "2019-08-01T00:00:00Z",
+            "billableQuantity": 3.1618,
             "meterDescription": "Bandwidth - Data Transfer In (GB) - Zone 2",
-            "reservationOrderId": "",
-            "invoiceLineItemType": "billing_line_items",
-            "billingProvider": "one_time",
+            "reservationOrderId": "883d475b-0000-1234-0000-8818752f1234",
             "attributes": {
                 "objectType": "OneTimeInvoiceLineItem"
             }
         }
+    ]
+}
     ],
     "links": {
         "self": {
-            "uri": "/invoices/G000024135/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2",
+            "uri": "/invoices/G000773581/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2",
             "method": "GET",
             "headers": []
         },
         "next": {
-            "uri": "/invoices/G000024135/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2?seekOperation=Next",
+            "uri": "/invoices/G000773581/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2?seekOperation=Next",
             "method": "GET",
             "headers": [
                 {
@@ -717,15 +780,15 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 }
 ```
 
-### <a name="request-response-example-5"></a>Kérelem – válasz 5. példa
+### <a name="request-response-example-5"></a>5. kérelem-válasz példa
 
-A következő példában egy folytatási tokent használó lapozás található. A részletek a következők:
+A következő példában egy folytatási token használatával lapozunk. A részletek a következők:
 
-- **BillingProvider**: **egykori**
-- **InvoiceLineItemType**: **BillingLineItems**
-- **SeekOperation**: **következő**
+- **BillingProvider:** **OneTime**
+- **InvoiceLineItemType:** **BillingLineItems**
+- **SeekOperation:** **Tovább**
 
-#### <a name="request-example-5"></a>5. példa kérés
+#### <a name="request-example-5"></a>5. példa kérése
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/G000024135/lineitems/OneTime/BillingLineItems?seekOperation=Next HTTP/1.1
@@ -739,7 +802,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-5"></a>5. válasz – példa
+#### <a name="response-example-5"></a>5. válasz példa
 
 ```http
 HTTP/1.1 200 OK
@@ -752,59 +815,174 @@ MS-ServerId: 202010406
 Date: Thu, 07 Sep 2017 23:31:09 GMT
 
 {
-    "totalCount": 1,
+    {
+    {
+    "totalCount": 3,
     "items": [
         {
-            "partnerId": "6480d686-cfb4-424d-a945-6b9b9f000000",
-            "customerId": "org:9060d13d-c5ed-482e-b059-a15a38000000",
-            "customerName": "recipientCustomerName",
-            "customerDomainName": "recipientCustomerDomain",
-            "invoiceNumber": "1234000000",
-            "quoteId": "abcd12345678",
-            "mpnId": "4870137",
-            "resellerMpnId": 0,
-            "orderId": "NeqT31Kziwf8gkCXM9YQToWTqU-9Jbm81",
-            "orderDate": "2018-02-08T22:31:47.1751688Z",
-            "productId": "DZH318Z0BQ3P",
-            "skuId": "001F",
-            "availabilityId": "DZH318Z0DR0H",
-            "productName": "Reserved VM Instance, Standard_D1, AP East, 3 years",
-            "skuName": "D Series",
-            "chargeType": "New",
-            "unitPrice": 1447,
-            "effectiveUnitPrice": 496.07,
-            "unitType": "Seats",
-            "quantity": 1,
-            "subtotal": 1447,
-            "taxTotal": 130.24,
-            "totalForCustomer": 1577.24,
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "c139c4bf-2e8b-4ab5-8bed-d9f50dcca7a2",
+            "customerName": "Test_Test_Office R2 Reduce Seats Validation",
+            "customerDomainName": "testcustomerr2t2reduce.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "G000773581",
+            "mpnId": "5357564",
+            "resellerMpnId": "4649221",
+            "orderId": "94e858b6d855",
+            "orderDate": "2021-05-20T18:30:06.6045692Z",
+            "productId": "CFQ7TTC0LH0R",
+            "skuId": "0002",
+            "availabilityId": "CFQ7TTC0K5RQ",
+            "productName": "Microsoft 365 Phone System - Virtual User",
+            "skuName": "Microsoft 365 Phone System - Virtual User",
+            "productQualifiers": [
+                "AddOn",
+                "Trial"
+            ],
+            "chargeType": "new",
+            "unitPrice": "0",
+            "effectiveUnitPrice": "0",
+            "unitType": "",
+            "quantity": "25",
+            "subtotal": "0",
+            "taxTotal": "0",
+            "totalForCustomer": "0",
             "currency": "USD",
-            "providerName": "Test Networks Inc",
-            "providerId": "12343810",
+            "publisherName": "Microsoft Corporation",
+            "publisherId": "",
             "subscriptionDescription": "",
-            "subscriptionId": "281e26fe-9ce7-415b-911c-f39232000000",
-            "subscriptionStartDate": "2019-01-03T19:53:55.1292512+00:00",
-            "subscriptionEndDate": "2019-02-02T19:53:55.1292512+00:00",
-            "termAndBillingCycle": "1 Month Subscription",
-            "alternateId": "1234568124b8",
+            "subscriptionId": "86646af9-e80a-4aa0-da80-3fd2b792c2cc",
+            "subscriptionStartDate": "2021-05-20T00:00:00Z",
+            "subscriptionEndDate": "2021-06-19T00:00:00Z",
+            "chargeStartDate": "2021-05-20T00:00:00Z",
+            "chargeEndDate": "2021-06-19T00:00:00Z",
+            "termAndBillingCycle": "One-Month commitment for trial",
+            "alternateId": "94e858b6d855",
+            "referenceId": "0cf1202a-5b7d-4219-966e-93c637113708",
             "priceAdjustmentDescription": "",
+            "discountDetails": "",
             "pricingCurrency": "USD",
-            "pcToBCExchangeRate": 1,
-            "pcToBCExchangeRateDate": "2019-09-30T23:59:59Z",
-            "billableQuantity": 0.0130687981,
-            "meterDescription": "Bandwidth - Data Transfer In (GB) - Zone 2",
-            "reservationOrderId": "",
-            "billingFrequency": "Monthly",
+            "pcToBCExchangeRate": "1",
+            "pcToBCExchangeRateDate": "2021-05-01T00:00:00",
+            "billableQuantity": "25",
+            "meterDescription": "",
+            "billingFrequency": "",
+            "reservationOrderId": "99f246cf-ed96-41b4-b0cd-0aa43eb1fe91",
             "invoiceLineItemType": "billing_line_items",
             "billingProvider": "one_time",
+            "promotionId": "",
+            "attributes": {
+                "objectType": "OneTimeInvoiceLineItem"
+            }
+            
+        },
+        {
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "835a59a7-3172-47b5-bdef-d9cc65f4d0e4",
+            "customerName": "TEST_TEST Test Promotions 01",
+            "customerDomainName": "kyletestpromos01.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "G000773581",
+            "mpnId": "5357564",
+            "resellerMpnId": "0",
+            "orderId": "5f9d52bb1408",
+            "orderDate": "2021-05-20T18:48:30.6168285Z",
+            "productId": "CFQ7TTC0HL8W",
+            "skuId": "0001",
+            "availabilityId": "CFQ7TTC0K59S",
+            "productName": "Power BI Premium Per User",
+            "skuName": "Power BI Premium Per User",
+            "productQualifiers": [],
+            "chargeType": "new",
+            "unitPrice": "16",
+            "effectiveUnitPrice": "14.4",
+            "unitType": "",
+            "quantity": "50",
+            "subtotal": "720",
+            "taxTotal": "73",
+            "totalForCustomer": "793",
+            "currency": "USD",
+            "publisherName": "Microsoft Corporation",
+            "publisherId": "",
+            "subscriptionDescription": "",
+            "subscriptionId": "9d7d1f3d-c8de-461c-db6d-91debd5129f0",
+            "subscriptionStartDate": "2021-05-20T00:00:00Z",
+            "subscriptionEndDate": "2022-05-19T00:00:00Z",
+            "chargeStartDate": "2021-05-20T00:00:00Z",
+            "chargeEndDate": "2021-06-19T00:00:00Z",
+            "termAndBillingCycle": "One-Year commitment for monthly/yearly billing",
+            "alternateId": "5f9d52bb1408",
+            "referenceId": "28b535e0-68f4-40b5-84f7-8ed9241eb149",
+            "priceAdjustmentDescription": "[\"Price for given billing period\",\"You are getting a discount due to a pre-determined override.\",\"You are getting a discount for being a partner.\",\"You are getting a price guarantee for your price.\",\"Price for given term\"]",
+            "discountDetails": "",
+            "pricingCurrency": "USD",
+            "pcToBCExchangeRate": "1",
+            "pcToBCExchangeRateDate": "2021-05-01T00:00:00",
+            "billableQuantity": "50",
+            "meterDescription": "",
+            "billingFrequency": "Monthly",
+            "reservationOrderId": "8fdebb4a-7110-496e-9570-623e4c992797",
+            "invoiceLineItemType": "billing_line_items",
+            "billingProvider": "one_time",
+            "promotionId": "78bcf906-b945-4210-8818-cfb93caf12a1",
+            "attributes/objectType": "OneTimeInvoiceLineItem",
+            "attributes": {
+                "objectType": "OneTimeInvoiceLineItem"
+            }
+        },
+        {
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "c139c4bf-2e8b-4ab5-8bed-d9f50dcca7a2",
+            "customerName": "Test_Test_Office R2 Reduce Seats Validation",
+            "customerDomainName": "testcustomerr2t2reduce.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "T000773581",
+            "mpnId": "1234567",
+            "resellerMpnId": 0,
+            "orderId": "HJVtMZMkgQ2miuCiNv0RSr51zQDans0m1",
+            "orderDate": "2019-02-04T17:59:52.9460102Z",
+            "productId": "DZH318Z0BXWC",
+            "skuId": "0002",
+            "availabilityId": "DZH318Z0BP8B",
+            "productName": "Test WAF-as-a-Service",
+            "skuName": "Test WaaS - Medium Plan",
+            "chargeType": "New",
+            "unitPrice": 820,
+            "effectiveUnitPrice": 820,
+            "unitType": "",
+            "quantity": 1,
+            "subtotal": 820,
+            "taxTotal": 0,
+            "totalForCustomer": 0,
+            "currency": "USD",
+            "publisherName": "Test Networks, Inc.",
+            "publisherId": "21223810",
+            "subscriptionDescription": "",
+            "subscriptionId": "12345678-9cf0-4a1f-9514-7fcc7fe9d1fe",
+            "subscriptionStartDate": "2019-02-01T00:00:00Z",
+            "subscriptionEndDate": "2020-01-31T00:00:00Z",
+            "chargeStartDate": "2019-02-04T09:22:40.1767993-08:00",
+            "chargeEndDate": "2019-03-03T09:22:40.1767993-08:00",
+            "termAndBillingCycle": "1 Year Subscription",
+            "alternateId": "123456ad566",
+            "priceAdjustmentDescription": "[\"15.0% Partner earned credit for services managed\"]",
+            "discountDetails": "",
+            "pricingCurrency": "USD",
+            "pcToBCExchangeRate": 1,
+            "pcToBCExchangeRateDate": "2019-08-01T00:00:00Z",
+            "billableQuantity": 3.1618,
+            "meterDescription": "Bandwidth - Data Transfer In (GB) - Zone 2",
+            "reservationOrderId": "883d475b-0000-1234-0000-8818752f1234",
             "attributes": {
                 "objectType": "OneTimeInvoiceLineItem"
             }
         }
+    ]
+}
     ],
     "links": {
         "self": {
-            "uri": "/invoices/G000024135/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2",
+            "uri": "/invoices/G000773581/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2",
             "method": "GET",
             "headers": []
         }
@@ -813,4 +991,5 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
         "objectType": "Collection"
     }
 }
+
 ```

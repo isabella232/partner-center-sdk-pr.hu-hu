@@ -1,43 +1,37 @@
 ---
-title: Ügyfél közvetlen aláírási állapotának beolvasása a Microsoft ügyfél-szerződéshez.
-description: A DirectSignedCustomerAgreementStatus-erőforrás segítségével lekérheti a Microsoft ügyfél-szerződés közvetlen aláírásának (közvetlen elfogadásának) állapotát.
+title: Lekérte az ügyfél közvetlen aláírási állapotát a Microsoft Ügyfélszerződés.
+description: A DirectSignedCustomerAgreementStatus erőforrás használatával lekértheti az ügyfél közvetlen aláírásának (közvetlen elfogadásának) állapotát a Microsoft Ügyfélszerződés.
 ms.date: 02/11/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 267e3aa63a94c5045977ad566eb5061df3b59882
-ms.sourcegitcommit: bbdb5f7c9ddd42c2fc4eaadbb67d61aeeae805ca
+ms.openlocfilehash: a17775614b4eb328514b2b32b4cac1e513019cff
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/24/2021
-ms.locfileid: "105030556"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111549178"
 ---
-# <a name="get-the-status-of-a-customers-direct-signing-direct-acceptance-of-microsoft-customer-agreement"></a>Ügyfél közvetlen aláírása (közvetlen elfogadás) állapotának lekérése a Microsoft ügyfél-szerződésből
+# <a name="get-the-status-of-a-customers-direct-signing-direct-acceptance-of-microsoft-customer-agreement"></a>Az ügyfél közvetlen aláírásának (közvetlen elfogadásának) állapotát Microsoft Ügyfélszerződés
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont
 
-- Partnerközpont
+**Nem vonatkozik a következőre:** Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-A **DirectSignedCustomerAgreementStatus** erőforrást jelenleg csak a Microsoft nyilvános felhőben támogatja a partner Center.
+A **DirectSignedCustomerAgreementStatus** erőforrást jelenleg csak a Microsoft nyilvános Partnerközpont támogatja.
 
-Ez az erőforrás *nem alkalmazható* a következőre:
-
-- A 21Vianet által üzemeltetett Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Ez a cikk azt ismerteti, hogyan kérheti le a Microsoft ügyfél-szerződés közvetlen elfogadásának állapotát.
+Ez a cikk azt ismerteti, hogyan lehet lekérni az ügyfél által a Microsoft Ügyfélszerződés.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Az ügyfél Microsoft-szerződéssel kapcsolatos közvetlen elfogadásának állapotának lekéréséhez hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval. Ezután használja a [**szerződések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.agreements) tulajdonságot egy [**ICustomerAgreementCollection**](/dotnet/api/microsoft.store.partnercenter.agreements.icustomeragreementcollection) -felület lekéréséhez. Végül hívja `GetDirectSignedCustomerAgreementStatus()` meg vagy kérje `GetDirectSignedCustomerAgreementStatusAsync()` le az állapotot.
+Az ügyfél általi közvetlen ügyfél-elfogadás állapotának Microsoft Ügyfélszerződés hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítóval. Ezután a [**Agreements tulajdonság**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.agreements) használatával lekér egy [**ICustomerAgreementCollection felületet.**](/dotnet/api/microsoft.store.partnercenter.agreements.icustomeragreementcollection) Végül hívja meg a `GetDirectSignedCustomerAgreementStatus()` vagy `GetDirectSignedCustomerAgreementStatusAsync()` a et az állapot lekérése.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -45,19 +39,19 @@ Az ügyfél Microsoft-szerződéssel kapcsolatos közvetlen elfogadásának áll
 var customerDirectSigningStatus = partnerOperations.Customers.ById(selectedCustomerId).Agreements.GetDirectSignedCustomerAgreementStatus();
 ```
 
-**Példa**: [konzolos minta alkalmazás](https://github.com/microsoft/Partner-Center-DotNet-Samples). **Projekt**: SdkSamples **osztály**: GetDirectSignedCustomerAgreementStatus. cs
+**Minta:** [Konzol mintaalkalmazás.](https://github.com/microsoft/Partner-Center-DotNet-Samples) **Project:** SdkSamples **osztály:** GetDirectSignedCustomerAgreementStatus.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-Az ügyfél Microsoft-szerződéssel kapcsolatos közvetlen elfogadásának állapotának lekéréséhez hozzon létre egy REST-kérelmet az ügyfél [DirectSignedCustomerAgreementStatus](./customer-agreement-direct-sign-status-resource.md) beolvasásához.
+Az Microsoft Ügyfélszerződés ügyfél általi közvetlen elfogadás állapotának lekérésére hozzon létre egy REST-kérést, amely lekéri a [DirectSignedCustomerAgreementStatus](./customer-agreement-direct-sign-status-resource.md) adatokat az ügyfél számára.
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
-Használja a következő kérelem szintaxisát:
+Használja a következő kérésszintaxist:
 
 | Metódus | Kérés URI-ja                                                                                      |
 |--------|--------------------------------------------------------------------------------------------------|
-| GET    | [*\{ BASEURL \}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/directSignedMicrosoftCustomerAgreementStatus http/1.1 |
+| GET    | [*\{ baseURL \}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/directSignedMicrosoftCustomerAgreementStatus HTTP/1.1 |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
@@ -65,11 +59,11 @@ A kérelemhez a következő URI-paramétereket használhatja:
 
 | Név             | Típus | Kötelező | Leírás                                                                               |
 |------------------|------|----------|-------------------------------------------------------------------------------------------|
-| ügyfél – bérlő – azonosító | GUID | Igen | Az érték egy GUID-formátumú **CustomerTenantId** , amely lehetővé teszi az ügyfél BÉRLŐi azonosítójának megadását. |
+| ügyfél-bérlő-azonosító | GUID | Igen | Az érték egy GUID formátumú **CustomerTenantId,** amely lehetővé teszi az ügyfél bérlőazonosítójának megadását. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -87,19 +81,19 @@ MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy [ **DirectSignedCustomerAgreementStatus** -erőforrást](./customer-agreement-direct-sign-status-resource.md) ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy [ **DirectSignedCustomerAgreementStatus**](./customer-agreement-direct-sign-status-resource.md) erőforrást ad vissza a válasz törzsében.
 
-Az erőforrás rendelkezik egy **isSigned** tulajdonsággal, amely az ügyfél közvetlen aláírása (közvetlen elfogadás) állapotát jelzi.
+Az erőforrás rendelkezik **egy isSigned tulajdonságtal,** amely az ügyfél közvetlen aláírási (közvetlen elfogadási) állapotát jelzi.
 
-- A **true** érték azt jelzi, hogy a szerződés aláírása (elfogadva) közvetlenül az ügyfél által történt.
+- A true **(igaz) érték** azt jelzi, hogy a szerződést közvetlenül az ügyfél írta alá (fogadta el).
 
-- A **false** érték azt jelzi, hogy a szerződés *nem* lett aláírva (elfogadva) közvetlenül az ügyfél által.
+- A false **(hamis)** érték  azt jelzi, hogy a szerződést nem közvetlenül az ügyfél írta alá (fogadta el).
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.
 
-A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

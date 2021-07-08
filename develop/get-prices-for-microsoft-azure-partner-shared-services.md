@@ -1,33 +1,29 @@
 ---
 title: Díjak lekérése a Microsoft Azure Partner Shared Servicestől
-description: Azure Rate-kártya beszerzése Microsoft Azure partner megosztott szolgáltatások díjszabásával.
+description: Azure-díjkártya lekért díjszabása a partneri Microsoft Azure szolgáltatásainak áraival.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: cd396c35b6b89de4d0f092ba4da738a2ed0ac633
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 0008d7474f7e57bbbd765afdf2487ee279848ac3
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768479"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548804"
 ---
 # <a name="get-prices-for-microsoft-azure-partner-shared-services"></a>Díjak lekérése a Microsoft Azure Partner Shared Servicestől
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Azure-díjkártyák [lekért díjszabása](azure-rate-card-resources.md) a partneri Microsoft Azure szolgáltatásokért.
 
-[Azure Rate-kártya](azure-rate-card-resources.md) beszerzése Microsoft Azure partner megosztott szolgáltatások díjszabásával.
+Az árak piac és pénznem szerint különböznek, és ez az API figyelembe veszi a helyet. Alapértelmezés szerint az API a partnerprofil beállításait használja a Partnerközpont böngészőnyelven, és ezek a beállítások testre szabhatók. A helytudatosság különösen fontos, ha az értékesítéseket több piacon kezeli egyetlen központi irodából.
 
-Az árak a piac és a pénznem alapján eltérnek, és ez az API figyelembe veszi a helyet. Alapértelmezés szerint az API a partner-profil beállításait a partner Centerben és a böngésző nyelvén használja, és ezek a beállítások testreszabhatók. A hely ismertsége különösen akkor fontos, ha egyetlen, központosított irodában több piacon kezel értékesítéseket.
-
-## <a name="example-code"></a>Példa kódja
+## <a name="example-code"></a>Példakód
 
 ## <a name="c"></a>C\#
 
-Az Azure Rate kártya beszerzéséhez hívja meg a [**IAzureRateCard. GetShared**](/dotnet/api/microsoft.store.partnercenter.ratecards.iazureratecard.getshared) metódust egy olyan [**AzureRateCard**](/dotnet/api/microsoft.store.partnercenter.models.ratecards.azureratecard) -erőforrás visszaadásához, amely tartalmazza az Azure-árakat.
+Az Azure Rate Card beszerzéséhez hívja meg az [**IAzureRateCard.GetShared**](/dotnet/api/microsoft.store.partnercenter.ratecards.iazureratecard.getshared) metódust az Azure-árakat tartalmazó [**AzureRateCard**](/dotnet/api/microsoft.store.partnercenter.models.ratecards.azureratecard) erőforrás visszaadása érdekében.
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -39,7 +35,7 @@ var azureRateCard = partner.RateCards.Azure.GetShared();
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-Az Azure Rate kártya beszerzéséhez hívja meg a **IAzureRateCard. getShared** függvényt, hogy visszaállítsa az árfolyam-kártya adatait, amelyek tartalmazzák az Azure-árakat.
+Az Azure Rate Card beszerzéséhez hívja meg az **IAzureRateCard.getShared** függvényt az Azure-árakat tartalmazó díjszabási kártya részleteinek visszaadás érdekében.
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -51,32 +47,32 @@ AzureRateCard azureRateCard = partner.getRateCards().getAzure().getShared();
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-Az Azure-kártya beszerzéséhez hajtsa végre a [**Get-PartnerAzureRateCard**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerAzureRateCard.md) parancsot, és a **SharedServices** paramétert megadhatja az Azure-árakat tartalmazó kártya adatainak visszaadásához.
+Az Azure-kártya beszerzéséhez hajtsa végre a [**Get-PartnerAzureRateCard**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerAzureRateCard.md) parancsot, és adja meg a **SharedServices** paramétert az Azure-árakat tartalmazó díjszabási kártya részleteinek visszaadása érdekében.
 
 ```powershell
 Get-PartnerAzureRateCard -SharedServices
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                               |
 |---------|---------------------------------------------------------------------------|
-| **GET** | *{baseURL}*/v1/ratecards/Azure-Shared? pénznem = {pénznem} &régió = {régió} |
+| **Kap** | *{baseURL}*/v1/ratecards/azure-shared?currency={currency}&régió={régió} |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
 | Név     | Típus   | Kötelező | Leírás                                                                                                                                                                               |
 |----------|--------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| currency | sztring | No       | Nem kötelező három betűs ISO-kódot megadni ahhoz a pénznemhez, amelyben az erőforrás-díjszabást megadja (például `EUR` ). Az alapértelmezett érték a partneri profil piacához társított pénznem. |
-| régió   | sztring | No       | Opcionális kétbetűs ISO ország-vagy régiókód, amely azt jelzi, hogy az ajánlat melyik piacon vásárolható meg (például `FR` ). Az alapértelmezett érték a partner profiljában beállított ország/régió kódja.        |
+| currency | sztring | No       | Nem kötelező hárombetűs ISO-kód az erőforrás-díjszabást megszabadtó pénznemhez `EUR` (például). Az alapértelmezett pénznem a partnerprofilban a piachoz társított pénznem. |
+| régió   | sztring | No       | Választható kétbetűs ISO-ország-/régiókód, amely az ajánlat vásárlásának piacát jelzi `FR` (például). Az alapértelmezett érték a partnerprofilban beállított ország-/régiókód.        |
 
-Ha az opcionális X-locale fejléc szerepel a kérelemben, annak értéke határozza meg a válaszban szereplő adatokhoz használt nyelvet.
+Ha a kérés tartalmazza az opcionális X-Locale fejlécet, az értéke határozza meg a válaszban szereplő részletek nyelvét.
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -97,11 +93,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a kérelem sikeres, egy [Azure Rate Card](azure-rate-card-resources.md) -erőforrást ad vissza.
+Ha a kérés sikeres, egy [Azure Rate Card-erőforrást ad](azure-rate-card-resources.md) vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
