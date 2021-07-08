@@ -1,33 +1,29 @@
 ---
 title: Díjak lekérése a Microsoft Azure Partner Shared Servicestől
-description: Azure Rate-kártya beszerzése Microsoft Azure partner megosztott szolgáltatások díjszabásával.
+description: Azure-díjkártya lekért díjszabása a partneri Microsoft Azure szolgáltatásainak áraival.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: cd396c35b6b89de4d0f092ba4da738a2ed0ac633
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 0008d7474f7e57bbbd765afdf2487ee279848ac3
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768479"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548804"
 ---
-# <a name="get-prices-for-microsoft-azure-partner-shared-services"></a><span data-ttu-id="5b349-103">Díjak lekérése a Microsoft Azure Partner Shared Servicestől</span><span class="sxs-lookup"><span data-stu-id="5b349-103">Get prices for Microsoft Azure Partner Shared Services</span></span>
+# <a name="get-prices-for-microsoft-azure-partner-shared-services"></a><span data-ttu-id="64e8f-103">Díjak lekérése a Microsoft Azure Partner Shared Servicestől</span><span class="sxs-lookup"><span data-stu-id="64e8f-103">Get prices for Microsoft Azure Partner Shared Services</span></span>
 
-<span data-ttu-id="5b349-104">**A következőkre vonatkozik**</span><span class="sxs-lookup"><span data-stu-id="5b349-104">**Applies To**</span></span>
+<span data-ttu-id="64e8f-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="64e8f-104">**Applies to**: Partner Center | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="5b349-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="5b349-105">Partner Center</span></span>
-- <span data-ttu-id="5b349-106">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="5b349-106">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="5b349-107">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="5b349-107">Partner Center for Microsoft Cloud for US Government</span></span>
+<span data-ttu-id="64e8f-105">Azure-díjkártyák [lekért díjszabása](azure-rate-card-resources.md) a partneri Microsoft Azure szolgáltatásokért.</span><span class="sxs-lookup"><span data-stu-id="64e8f-105">How to get an [Azure Rate Card](azure-rate-card-resources.md) with prices for Microsoft Azure Partner Shared Services.</span></span>
 
-<span data-ttu-id="5b349-108">[Azure Rate-kártya](azure-rate-card-resources.md) beszerzése Microsoft Azure partner megosztott szolgáltatások díjszabásával.</span><span class="sxs-lookup"><span data-stu-id="5b349-108">How to get an [Azure Rate Card](azure-rate-card-resources.md) with prices for Microsoft Azure Partner Shared Services.</span></span>
+<span data-ttu-id="64e8f-106">Az árak piac és pénznem szerint különböznek, és ez az API figyelembe veszi a helyet.</span><span class="sxs-lookup"><span data-stu-id="64e8f-106">Prices differ by market and currency, and this API takes location into consideration.</span></span> <span data-ttu-id="64e8f-107">Alapértelmezés szerint az API a partnerprofil beállításait használja a Partnerközpont böngészőnyelven, és ezek a beállítások testre szabhatók.</span><span class="sxs-lookup"><span data-stu-id="64e8f-107">By default, the API uses your partner profile settings in Partner Center and your browser language, and those settings are customizable.</span></span> <span data-ttu-id="64e8f-108">A helytudatosság különösen fontos, ha az értékesítéseket több piacon kezeli egyetlen központi irodából.</span><span class="sxs-lookup"><span data-stu-id="64e8f-108">The location awareness is especially relevant if you manage sales in multiple markets from a single, centralized office.</span></span>
 
-<span data-ttu-id="5b349-109">Az árak a piac és a pénznem alapján eltérnek, és ez az API figyelembe veszi a helyet.</span><span class="sxs-lookup"><span data-stu-id="5b349-109">Prices differ by market and currency, and this API takes location into consideration.</span></span> <span data-ttu-id="5b349-110">Alapértelmezés szerint az API a partner-profil beállításait a partner Centerben és a böngésző nyelvén használja, és ezek a beállítások testreszabhatók.</span><span class="sxs-lookup"><span data-stu-id="5b349-110">By default, the API uses your partner profile settings in Partner Center and your browser language, and those settings are customizable.</span></span> <span data-ttu-id="5b349-111">A hely ismertsége különösen akkor fontos, ha egyetlen, központosított irodában több piacon kezel értékesítéseket.</span><span class="sxs-lookup"><span data-stu-id="5b349-111">The location awareness is especially relevant if you manage sales in multiple markets from a single, centralized office.</span></span>
+## <a name="example-code"></a><span data-ttu-id="64e8f-109">Példakód</span><span class="sxs-lookup"><span data-stu-id="64e8f-109">Example Code</span></span>
 
-## <a name="example-code"></a><span data-ttu-id="5b349-112">Példa kódja</span><span class="sxs-lookup"><span data-stu-id="5b349-112">Example Code</span></span>
+## <a name="c"></a><span data-ttu-id="64e8f-110">C\#</span><span class="sxs-lookup"><span data-stu-id="64e8f-110">C\#</span></span>
 
-## <a name="c"></a><span data-ttu-id="5b349-113">C\#</span><span class="sxs-lookup"><span data-stu-id="5b349-113">C\#</span></span>
-
-<span data-ttu-id="5b349-114">Az Azure Rate kártya beszerzéséhez hívja meg a [**IAzureRateCard. GetShared**](/dotnet/api/microsoft.store.partnercenter.ratecards.iazureratecard.getshared) metódust egy olyan [**AzureRateCard**](/dotnet/api/microsoft.store.partnercenter.models.ratecards.azureratecard) -erőforrás visszaadásához, amely tartalmazza az Azure-árakat.</span><span class="sxs-lookup"><span data-stu-id="5b349-114">To obtain the Azure Rate Card, call the [**IAzureRateCard.GetShared**](/dotnet/api/microsoft.store.partnercenter.ratecards.iazureratecard.getshared) method to return an [**AzureRateCard**](/dotnet/api/microsoft.store.partnercenter.models.ratecards.azureratecard) resource that contains the Azure prices.</span></span>
+<span data-ttu-id="64e8f-111">Az Azure Rate Card beszerzéséhez hívja meg az [**IAzureRateCard.GetShared**](/dotnet/api/microsoft.store.partnercenter.ratecards.iazureratecard.getshared) metódust az Azure-árakat tartalmazó [**AzureRateCard**](/dotnet/api/microsoft.store.partnercenter.models.ratecards.azureratecard) erőforrás visszaadása érdekében.</span><span class="sxs-lookup"><span data-stu-id="64e8f-111">To obtain the Azure Rate Card, call the [**IAzureRateCard.GetShared**](/dotnet/api/microsoft.store.partnercenter.ratecards.iazureratecard.getshared) method to return an [**AzureRateCard**](/dotnet/api/microsoft.store.partnercenter.models.ratecards.azureratecard) resource that contains the Azure prices.</span></span>
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -35,11 +31,11 @@ ms.locfileid: "97768479"
 var azureRateCard = partner.RateCards.Azure.GetShared();
 ```
 
-## <a name="java"></a><span data-ttu-id="5b349-115">Java</span><span class="sxs-lookup"><span data-stu-id="5b349-115">Java</span></span>
+## <a name="java"></a><span data-ttu-id="64e8f-112">Java</span><span class="sxs-lookup"><span data-stu-id="64e8f-112">Java</span></span>
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-<span data-ttu-id="5b349-116">Az Azure Rate kártya beszerzéséhez hívja meg a **IAzureRateCard. getShared** függvényt, hogy visszaállítsa az árfolyam-kártya adatait, amelyek tartalmazzák az Azure-árakat.</span><span class="sxs-lookup"><span data-stu-id="5b349-116">To obtain the Azure Rate Card, call the **IAzureRateCard.getShared** function to return rate card details that contains the Azure prices.</span></span>
+<span data-ttu-id="64e8f-113">Az Azure Rate Card beszerzéséhez hívja meg az **IAzureRateCard.getShared** függvényt az Azure-árakat tartalmazó díjszabási kártya részleteinek visszaadás érdekében.</span><span class="sxs-lookup"><span data-stu-id="64e8f-113">To obtain the Azure Rate Card, call the **IAzureRateCard.getShared** function to return rate card details that contains the Azure prices.</span></span>
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -47,42 +43,42 @@ var azureRateCard = partner.RateCards.Azure.GetShared();
 AzureRateCard azureRateCard = partner.getRateCards().getAzure().getShared();
 ```
 
-## <a name="powershell"></a><span data-ttu-id="5b349-117">PowerShell</span><span class="sxs-lookup"><span data-stu-id="5b349-117">PowerShell</span></span>
+## <a name="powershell"></a><span data-ttu-id="64e8f-114">PowerShell</span><span class="sxs-lookup"><span data-stu-id="64e8f-114">PowerShell</span></span>
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-<span data-ttu-id="5b349-118">Az Azure-kártya beszerzéséhez hajtsa végre a [**Get-PartnerAzureRateCard**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerAzureRateCard.md) parancsot, és a **SharedServices** paramétert megadhatja az Azure-árakat tartalmazó kártya adatainak visszaadásához.</span><span class="sxs-lookup"><span data-stu-id="5b349-118">To obtain the Azure Card, execute the [**Get-PartnerAzureRateCard**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerAzureRateCard.md) command and specify the **SharedServices** parameter to return rate card details that contains the Azure prices.</span></span>
+<span data-ttu-id="64e8f-115">Az Azure-kártya beszerzéséhez hajtsa végre a [**Get-PartnerAzureRateCard**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerAzureRateCard.md) parancsot, és adja meg a **SharedServices** paramétert az Azure-árakat tartalmazó díjszabási kártya részleteinek visszaadása érdekében.</span><span class="sxs-lookup"><span data-stu-id="64e8f-115">To obtain the Azure Card, execute the [**Get-PartnerAzureRateCard**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerAzureRateCard.md) command and specify the **SharedServices** parameter to return rate card details that contains the Azure prices.</span></span>
 
 ```powershell
 Get-PartnerAzureRateCard -SharedServices
 ```
 
-## <a name="rest-request"></a><span data-ttu-id="5b349-119">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="5b349-119">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="64e8f-116">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="64e8f-116">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="5b349-120">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="5b349-120">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="64e8f-117">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="64e8f-117">Request syntax</span></span>
 
-| <span data-ttu-id="5b349-121">Metódus</span><span class="sxs-lookup"><span data-stu-id="5b349-121">Method</span></span>  | <span data-ttu-id="5b349-122">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="5b349-122">Request URI</span></span>                                                               |
+| <span data-ttu-id="64e8f-118">Metódus</span><span class="sxs-lookup"><span data-stu-id="64e8f-118">Method</span></span>  | <span data-ttu-id="64e8f-119">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="64e8f-119">Request URI</span></span>                                                               |
 |---------|---------------------------------------------------------------------------|
-| <span data-ttu-id="5b349-123">**GET**</span><span class="sxs-lookup"><span data-stu-id="5b349-123">**GET**</span></span> | <span data-ttu-id="5b349-124">*{baseURL}*/v1/ratecards/Azure-Shared? pénznem = {pénznem} &régió = {régió}</span><span class="sxs-lookup"><span data-stu-id="5b349-124">*{baseURL}*/v1/ratecards/azure-shared?currency={currency}&region={region}</span></span> |
+| <span data-ttu-id="64e8f-120">**Kap**</span><span class="sxs-lookup"><span data-stu-id="64e8f-120">**GET**</span></span> | <span data-ttu-id="64e8f-121">*{baseURL}*/v1/ratecards/azure-shared?currency={currency}&régió={régió}</span><span class="sxs-lookup"><span data-stu-id="64e8f-121">*{baseURL}*/v1/ratecards/azure-shared?currency={currency}&region={region}</span></span> |
 
-### <a name="uri-parameters"></a><span data-ttu-id="5b349-125">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="5b349-125">URI parameters</span></span>
+### <a name="uri-parameters"></a><span data-ttu-id="64e8f-122">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="64e8f-122">URI parameters</span></span>
 
-| <span data-ttu-id="5b349-126">Név</span><span class="sxs-lookup"><span data-stu-id="5b349-126">Name</span></span>     | <span data-ttu-id="5b349-127">Típus</span><span class="sxs-lookup"><span data-stu-id="5b349-127">Type</span></span>   | <span data-ttu-id="5b349-128">Kötelező</span><span class="sxs-lookup"><span data-stu-id="5b349-128">Required</span></span> | <span data-ttu-id="5b349-129">Leírás</span><span class="sxs-lookup"><span data-stu-id="5b349-129">Description</span></span>                                                                                                                                                                               |
+| <span data-ttu-id="64e8f-123">Név</span><span class="sxs-lookup"><span data-stu-id="64e8f-123">Name</span></span>     | <span data-ttu-id="64e8f-124">Típus</span><span class="sxs-lookup"><span data-stu-id="64e8f-124">Type</span></span>   | <span data-ttu-id="64e8f-125">Kötelező</span><span class="sxs-lookup"><span data-stu-id="64e8f-125">Required</span></span> | <span data-ttu-id="64e8f-126">Leírás</span><span class="sxs-lookup"><span data-stu-id="64e8f-126">Description</span></span>                                                                                                                                                                               |
 |----------|--------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span data-ttu-id="5b349-130">currency</span><span class="sxs-lookup"><span data-stu-id="5b349-130">currency</span></span> | <span data-ttu-id="5b349-131">sztring</span><span class="sxs-lookup"><span data-stu-id="5b349-131">string</span></span> | <span data-ttu-id="5b349-132">No</span><span class="sxs-lookup"><span data-stu-id="5b349-132">No</span></span>       | <span data-ttu-id="5b349-133">Nem kötelező három betűs ISO-kódot megadni ahhoz a pénznemhez, amelyben az erőforrás-díjszabást megadja (például `EUR` ).</span><span class="sxs-lookup"><span data-stu-id="5b349-133">Optional three letter ISO code for the currency in which the resource rates will be provided (for example `EUR`).</span></span> <span data-ttu-id="5b349-134">Az alapértelmezett érték a partneri profil piacához társított pénznem.</span><span class="sxs-lookup"><span data-stu-id="5b349-134">The default is the currency associated with the market in the partner profile.</span></span> |
-| <span data-ttu-id="5b349-135">régió</span><span class="sxs-lookup"><span data-stu-id="5b349-135">region</span></span>   | <span data-ttu-id="5b349-136">sztring</span><span class="sxs-lookup"><span data-stu-id="5b349-136">string</span></span> | <span data-ttu-id="5b349-137">No</span><span class="sxs-lookup"><span data-stu-id="5b349-137">No</span></span>       | <span data-ttu-id="5b349-138">Opcionális kétbetűs ISO ország-vagy régiókód, amely azt jelzi, hogy az ajánlat melyik piacon vásárolható meg (például `FR` ).</span><span class="sxs-lookup"><span data-stu-id="5b349-138">Optional two-letter ISO country/region code that indicates the market where the offer is purchased (for example `FR`).</span></span> <span data-ttu-id="5b349-139">Az alapértelmezett érték a partner profiljában beállított ország/régió kódja.</span><span class="sxs-lookup"><span data-stu-id="5b349-139">The default is the country/region code set in the partner profile.</span></span>        |
+| <span data-ttu-id="64e8f-127">currency</span><span class="sxs-lookup"><span data-stu-id="64e8f-127">currency</span></span> | <span data-ttu-id="64e8f-128">sztring</span><span class="sxs-lookup"><span data-stu-id="64e8f-128">string</span></span> | <span data-ttu-id="64e8f-129">No</span><span class="sxs-lookup"><span data-stu-id="64e8f-129">No</span></span>       | <span data-ttu-id="64e8f-130">Nem kötelező hárombetűs ISO-kód az erőforrás-díjszabást megszabadtó pénznemhez `EUR` (például).</span><span class="sxs-lookup"><span data-stu-id="64e8f-130">Optional three letter ISO code for the currency in which the resource rates will be provided (for example `EUR`).</span></span> <span data-ttu-id="64e8f-131">Az alapértelmezett pénznem a partnerprofilban a piachoz társított pénznem.</span><span class="sxs-lookup"><span data-stu-id="64e8f-131">The default is the currency associated with the market in the partner profile.</span></span> |
+| <span data-ttu-id="64e8f-132">régió</span><span class="sxs-lookup"><span data-stu-id="64e8f-132">region</span></span>   | <span data-ttu-id="64e8f-133">sztring</span><span class="sxs-lookup"><span data-stu-id="64e8f-133">string</span></span> | <span data-ttu-id="64e8f-134">No</span><span class="sxs-lookup"><span data-stu-id="64e8f-134">No</span></span>       | <span data-ttu-id="64e8f-135">Választható kétbetűs ISO-ország-/régiókód, amely az ajánlat vásárlásának piacát jelzi `FR` (például).</span><span class="sxs-lookup"><span data-stu-id="64e8f-135">Optional two-letter ISO country/region code that indicates the market where the offer is purchased (for example `FR`).</span></span> <span data-ttu-id="64e8f-136">Az alapértelmezett érték a partnerprofilban beállított ország-/régiókód.</span><span class="sxs-lookup"><span data-stu-id="64e8f-136">The default is the country/region code set in the partner profile.</span></span>        |
 
-<span data-ttu-id="5b349-140">Ha az opcionális X-locale fejléc szerepel a kérelemben, annak értéke határozza meg a válaszban szereplő adatokhoz használt nyelvet.</span><span class="sxs-lookup"><span data-stu-id="5b349-140">If the optional X-Locale header is included in the request, its value determines the language used for the details in the response.</span></span>
+<span data-ttu-id="64e8f-137">Ha a kérés tartalmazza az opcionális X-Locale fejlécet, az értéke határozza meg a válaszban szereplő részletek nyelvét.</span><span class="sxs-lookup"><span data-stu-id="64e8f-137">If the optional X-Locale header is included in the request, its value determines the language used for the details in the response.</span></span>
 
-### <a name="request-headers"></a><span data-ttu-id="5b349-141">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="5b349-141">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="64e8f-138">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="64e8f-138">Request headers</span></span>
 
-<span data-ttu-id="5b349-142">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="5b349-142">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="64e8f-139">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="64e8f-139">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="5b349-143">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="5b349-143">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="64e8f-140">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="64e8f-140">Request body</span></span>
 
-<span data-ttu-id="5b349-144">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="5b349-144">None.</span></span>
+<span data-ttu-id="64e8f-141">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="64e8f-141">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="5b349-145">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="5b349-145">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="64e8f-142">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="64e8f-142">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/ratecards/azure-shared HTTP/1.1
@@ -95,15 +91,15 @@ Host: api.partnercenter.microsoft.com
 Connection: Keep-Alive
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="5b349-146">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="5b349-146">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="64e8f-143">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="64e8f-143">REST response</span></span>
 
-<span data-ttu-id="5b349-147">Ha a kérelem sikeres, egy [Azure Rate Card](azure-rate-card-resources.md) -erőforrást ad vissza.</span><span class="sxs-lookup"><span data-stu-id="5b349-147">If the request is successful, it returns an [Azure Rate Card](azure-rate-card-resources.md) resource.</span></span>
+<span data-ttu-id="64e8f-144">Ha a kérés sikeres, egy [Azure Rate Card-erőforrást ad](azure-rate-card-resources.md) vissza.</span><span class="sxs-lookup"><span data-stu-id="64e8f-144">If the request is successful, it returns an [Azure Rate Card](azure-rate-card-resources.md) resource.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="5b349-148">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="5b349-148">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="64e8f-145">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="64e8f-145">Response success and error codes</span></span>
 
-<span data-ttu-id="5b349-149">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="5b349-149">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="5b349-150">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="5b349-150">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="5b349-151">A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.</span><span class="sxs-lookup"><span data-stu-id="5b349-151">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
+<span data-ttu-id="64e8f-146">Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="64e8f-146">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="64e8f-147">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="64e8f-147">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="64e8f-148">A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="64e8f-148">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="5b349-152">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="5b349-152">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="64e8f-149">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="64e8f-149">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK

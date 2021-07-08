@@ -1,38 +1,33 @@
 ---
 title: Egy ügyfél lekérése azonosító alapján
-description: Beolvas egy ügyfél-AZONOSÍTÓnak megfelelő ügyfél-erőforrást.
+description: Lekért egy ügyfél-erőforrást, amely megfelel egy ügyfél-azonosítónak.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: dd4301dbb6f749b675fe624daf7f63751806f856
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 196d653c789c4b4e1327f0c6e5d2531a18681a71
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768127"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874992"
 ---
-# <a name="get-a-customer-by-id"></a><span data-ttu-id="f7237-103">Egy ügyfél lekérése azonosító alapján</span><span class="sxs-lookup"><span data-stu-id="f7237-103">Get a customer by ID</span></span>
+# <a name="get-a-customer-by-id"></a><span data-ttu-id="d04a7-103">Egy ügyfél lekérése azonosító alapján</span><span class="sxs-lookup"><span data-stu-id="d04a7-103">Get a customer by ID</span></span>
 
-<span data-ttu-id="f7237-104">**A következőkre vonatkozik**</span><span class="sxs-lookup"><span data-stu-id="f7237-104">**Applies To**</span></span>
+<span data-ttu-id="d04a7-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="d04a7-104">**Applies to**: Partner Center | Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="f7237-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="f7237-105">Partner Center</span></span>
-- <span data-ttu-id="f7237-106">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="f7237-106">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="f7237-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="f7237-107">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="f7237-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="f7237-108">Partner Center for Microsoft Cloud for US Government</span></span>
+<span data-ttu-id="d04a7-105">Lekért egy ügyfél-erőforrást, amely megfelel egy ügyfél-azonosítónak. </span><span class="sxs-lookup"><span data-stu-id="d04a7-105">Gets a **Customer** resource that corresponds to a customer ID.</span></span>
 
-<span data-ttu-id="f7237-109">Beolvas egy ügyfél-AZONOSÍTÓnak megfelelő **ügyfél** -erőforrást.</span><span class="sxs-lookup"><span data-stu-id="f7237-109">Gets a **Customer** resource that corresponds to a customer ID.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="d04a7-106">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="d04a7-106">Prerequisites</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="f7237-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="f7237-110">Prerequisites</span></span>
+- <span data-ttu-id="d04a7-107">Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="d04a7-107">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="d04a7-108">Ez a forgatókönyv támogatja az alkalmazás+felhasználói hitelesítő adatokat vagy a csak az alkalmazásra vonatkozó hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="d04a7-108">This scenario supports app+user credentials or app-only authentication.</span></span>
 
-- <span data-ttu-id="f7237-111">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="f7237-111">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="f7237-112">Ez a forgatókönyv támogatja az App + felhasználói hitelesítő adatokat vagy csak az alkalmazáson belüli hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="f7237-112">This scenario supports app+user credentials or app-only authentication.</span></span>
+- <span data-ttu-id="d04a7-109">Egy ügyfélazonosító ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="d04a7-109">A customer ID (`customer-tenant-id`).</span></span> <span data-ttu-id="d04a7-110">Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard)</span><span class="sxs-lookup"><span data-stu-id="d04a7-110">If you don't know the customer's ID, you can look it up in the Partner Center [dashboard](https://partner.microsoft.com/dashboard).</span></span> <span data-ttu-id="d04a7-111">Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.**</span><span class="sxs-lookup"><span data-stu-id="d04a7-111">Select **CSP** from the Partner Center menu, followed by **Customers**.</span></span> <span data-ttu-id="d04a7-112">Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.**</span><span class="sxs-lookup"><span data-stu-id="d04a7-112">Select the customer from the customer list, then select **Account**.</span></span> <span data-ttu-id="d04a7-113">Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.**</span><span class="sxs-lookup"><span data-stu-id="d04a7-113">On the customer’s Account page, look for the **Microsoft ID** in the **Customer Account Info** section.</span></span> <span data-ttu-id="d04a7-114">A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="d04a7-114">The Microsoft ID is the same as the customer ID  (`customer-tenant-id`).</span></span>
 
-- <span data-ttu-id="f7237-113">Ügyfél-azonosító ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="f7237-113">A customer ID (`customer-tenant-id`).</span></span> <span data-ttu-id="f7237-114">Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard).</span><span class="sxs-lookup"><span data-stu-id="f7237-114">If you don't know the customer's ID, you can look it up in the Partner Center [dashboard](https://partner.microsoft.com/dashboard).</span></span> <span data-ttu-id="f7237-115">Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**.</span><span class="sxs-lookup"><span data-stu-id="f7237-115">Select **CSP** from the Partner Center menu, followed by **Customers**.</span></span> <span data-ttu-id="f7237-116">Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget.</span><span class="sxs-lookup"><span data-stu-id="f7237-116">Select the customer from the customer list, then select **Account**.</span></span> <span data-ttu-id="f7237-117">Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban.</span><span class="sxs-lookup"><span data-stu-id="f7237-117">On the customer’s Account page, look for the **Microsoft ID** in the **Customer Account Info** section.</span></span> <span data-ttu-id="f7237-118">A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).</span><span class="sxs-lookup"><span data-stu-id="f7237-118">The Microsoft ID is the same as the customer ID  (`customer-tenant-id`).</span></span>
+## <a name="c"></a><span data-ttu-id="d04a7-115">C\#</span><span class="sxs-lookup"><span data-stu-id="d04a7-115">C\#</span></span>
 
-## <a name="c"></a><span data-ttu-id="f7237-119">C\#</span><span class="sxs-lookup"><span data-stu-id="f7237-119">C\#</span></span>
-
-<span data-ttu-id="f7237-120">Az ügyfél azonosító alapján történő beszerzéséhez használja a [**IAggregatePartner. Customs**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, hívja meg a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust, majd hívja meg a [**Get ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.get) vagy a [**GetAsync ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.getasync) metódust.</span><span class="sxs-lookup"><span data-stu-id="f7237-120">To get a customer by ID, use your [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) collection, call the [**ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) method, then call the [**Get()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.get) or [**GetAsync()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.getasync) methods.</span></span>
+<span data-ttu-id="d04a7-116">Ha azonosító alapján szeretnék lehívni az ügyfelet, használja az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, hívja meg a [**ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust, majd hívja meg a [**Get()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.get) vagy [**a GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.getasync)</span><span class="sxs-lookup"><span data-stu-id="d04a7-116">To get a customer by ID, use your [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) collection, call the [**ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) method, then call the [**Get()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.get) or [**GetAsync()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.getasync) methods.</span></span>
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -41,13 +36,13 @@ ms.locfileid: "97768127"
 Customer customerInfo = partnerOperations.Customers.ById(customerIdToRetrieve).Get();
 ```
 
-<span data-ttu-id="f7237-121">**Példa**: [konzol tesztelési alkalmazás](console-test-app.md).</span><span class="sxs-lookup"><span data-stu-id="f7237-121">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="f7237-122">**Projekt**: PartnerSDK. FeatureSamples **osztály**: CustomerInformation.cs</span><span class="sxs-lookup"><span data-stu-id="f7237-122">**Project**: PartnerSDK.FeatureSamples **Class**: CustomerInformation.cs</span></span>
+<span data-ttu-id="d04a7-117">**Minta:** [Konzoltesztalkalmazás.](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="d04a7-117">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="d04a7-118">**Project:** PartnerSDK.FeatureSamples **osztály:** CustomerInformation.cs</span><span class="sxs-lookup"><span data-stu-id="d04a7-118">**Project**: PartnerSDK.FeatureSamples **Class**: CustomerInformation.cs</span></span>
 
-## <a name="java"></a><span data-ttu-id="f7237-123">Java</span><span class="sxs-lookup"><span data-stu-id="f7237-123">Java</span></span>
+## <a name="java"></a><span data-ttu-id="d04a7-119">Java</span><span class="sxs-lookup"><span data-stu-id="d04a7-119">Java</span></span>
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-<span data-ttu-id="f7237-124">Az ügyfél azonosító alapján történő beszerzéséhez használja a **IAggregatePartner. getCustomers** függvényt, hívja meg a **byId ()** függvényt, majd hívja meg a **Get ()** függvényt.</span><span class="sxs-lookup"><span data-stu-id="f7237-124">To get a customer by ID, use your **IAggregatePartner.getCustomers** function, call the **byId()** function, then call the **get()** function.</span></span>
+<span data-ttu-id="d04a7-120">Az ügyfél azonosító alapján való lehíváshoz használja az **IAggregatePartner.getCustomers** függvényt, hívja meg a **byId()** függvényt, majd hívja meg a **get()** függvényt.</span><span class="sxs-lookup"><span data-stu-id="d04a7-120">To get a customer by ID, use your **IAggregatePartner.getCustomers** function, call the **byId()** function, then call the **get()** function.</span></span>
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -56,41 +51,41 @@ Customer customerInfo = partnerOperations.Customers.ById(customerIdToRetrieve).G
 Customer customerInfo = partnerOperations.getCustomers().byId(customerIdToRetrieve).get();
 ```
 
-## <a name="powershell"></a><span data-ttu-id="f7237-125">PowerShell</span><span class="sxs-lookup"><span data-stu-id="f7237-125">PowerShell</span></span>
+## <a name="powershell"></a><span data-ttu-id="d04a7-121">PowerShell</span><span class="sxs-lookup"><span data-stu-id="d04a7-121">PowerShell</span></span>
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-<span data-ttu-id="f7237-126">Az ügyfél azonosító alapján történő beszerzéséhez hajtsa végre a [**Get-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomer.md) parancsot, és határozza meg a **Vevőkód** paramétert.</span><span class="sxs-lookup"><span data-stu-id="f7237-126">To get a customer by ID, execute the [**Get-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomer.md) command and specify the **CustomerId** parameter.</span></span>
+<span data-ttu-id="d04a7-122">Ha azonosító alapján kell lekérte az ügyfelet, hajtsa végre a [**Get-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomer.md) parancsot, és adja meg a **CustomerId paramétert.**</span><span class="sxs-lookup"><span data-stu-id="d04a7-122">To get a customer by ID, execute the [**Get-PartnerCustomer**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomer.md) command and specify the **CustomerId** parameter.</span></span>
 
 ```powershell
 Get-PartnerCustomer -CustomerId '2ca7de6c-c05c-46b5-b689-32e53573a97a'
 ```
 
-## <a name="rest-request"></a><span data-ttu-id="f7237-127">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="f7237-127">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="d04a7-123">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="d04a7-123">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="f7237-128">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="f7237-128">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="d04a7-124">Kérésszintaxis</span><span class="sxs-lookup"><span data-stu-id="d04a7-124">Request syntax</span></span>
 
-| <span data-ttu-id="f7237-129">Metódus</span><span class="sxs-lookup"><span data-stu-id="f7237-129">Method</span></span>  | <span data-ttu-id="f7237-130">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="f7237-130">Request URI</span></span>                                                                            |
+| <span data-ttu-id="d04a7-125">Metódus</span><span class="sxs-lookup"><span data-stu-id="d04a7-125">Method</span></span>  | <span data-ttu-id="d04a7-126">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="d04a7-126">Request URI</span></span>                                                                            |
 |---------|----------------------------------------------------------------------------------------|
-| <span data-ttu-id="f7237-131">**GET**</span><span class="sxs-lookup"><span data-stu-id="f7237-131">**GET**</span></span> | <span data-ttu-id="f7237-132">[*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID} http/1.1</span><span class="sxs-lookup"><span data-stu-id="f7237-132">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id} HTTP/1.1</span></span> |
+| <span data-ttu-id="d04a7-127">**Kap**</span><span class="sxs-lookup"><span data-stu-id="d04a7-127">**GET**</span></span> | <span data-ttu-id="d04a7-128">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="d04a7-128">[*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id} HTTP/1.1</span></span> |
 
-### <a name="uri-parameter"></a><span data-ttu-id="f7237-133">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="f7237-133">URI parameter</span></span>
+### <a name="uri-parameter"></a><span data-ttu-id="d04a7-129">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="d04a7-129">URI parameter</span></span>
 
-<span data-ttu-id="f7237-134">Használja az alábbi lekérdezési paramétert egy adott ügyfélhez.</span><span class="sxs-lookup"><span data-stu-id="f7237-134">Use the following query parameter to a specific customer.</span></span>
+<span data-ttu-id="d04a7-130">Használja az alábbi lekérdezési paramétert egy adott ügyfélhez.</span><span class="sxs-lookup"><span data-stu-id="d04a7-130">Use the following query parameter to a specific customer.</span></span>
 
-| <span data-ttu-id="f7237-135">Név</span><span class="sxs-lookup"><span data-stu-id="f7237-135">Name</span></span>                   | <span data-ttu-id="f7237-136">Típus</span><span class="sxs-lookup"><span data-stu-id="f7237-136">Type</span></span>     | <span data-ttu-id="f7237-137">Kötelező</span><span class="sxs-lookup"><span data-stu-id="f7237-137">Required</span></span> | <span data-ttu-id="f7237-138">Leírás</span><span class="sxs-lookup"><span data-stu-id="f7237-138">Description</span></span>                                                                                                                                            |
+| <span data-ttu-id="d04a7-131">Név</span><span class="sxs-lookup"><span data-stu-id="d04a7-131">Name</span></span>                   | <span data-ttu-id="d04a7-132">Típus</span><span class="sxs-lookup"><span data-stu-id="d04a7-132">Type</span></span>     | <span data-ttu-id="d04a7-133">Kötelező</span><span class="sxs-lookup"><span data-stu-id="d04a7-133">Required</span></span> | <span data-ttu-id="d04a7-134">Leírás</span><span class="sxs-lookup"><span data-stu-id="d04a7-134">Description</span></span>                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span data-ttu-id="f7237-139">**ügyfél – bérlő – azonosító**</span><span class="sxs-lookup"><span data-stu-id="f7237-139">**customer-tenant-id**</span></span> | <span data-ttu-id="f7237-140">**guid**</span><span class="sxs-lookup"><span data-stu-id="f7237-140">**guid**</span></span> | <span data-ttu-id="f7237-141">Y</span><span class="sxs-lookup"><span data-stu-id="f7237-141">Y</span></span>        | <span data-ttu-id="f7237-142">Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti.</span><span class="sxs-lookup"><span data-stu-id="f7237-142">The value is a GUID formatted **customer-tenant-id** that allows the reseller to filter the results for a given customer that belongs to the reseller.</span></span> |
+| <span data-ttu-id="d04a7-135">**ügyfél-bérlő-azonosító**</span><span class="sxs-lookup"><span data-stu-id="d04a7-135">**customer-tenant-id**</span></span> | <span data-ttu-id="d04a7-136">**guid**</span><span class="sxs-lookup"><span data-stu-id="d04a7-136">**guid**</span></span> | <span data-ttu-id="d04a7-137">Y</span><span class="sxs-lookup"><span data-stu-id="d04a7-137">Y</span></span>        | <span data-ttu-id="d04a7-138">Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit.</span><span class="sxs-lookup"><span data-stu-id="d04a7-138">The value is a GUID formatted **customer-tenant-id** that allows the reseller to filter the results for a given customer that belongs to the reseller.</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="f7237-143">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="f7237-143">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="d04a7-139">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="d04a7-139">Request headers</span></span>
 
-<span data-ttu-id="f7237-144">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="f7237-144">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="d04a7-140">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="d04a7-140">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="f7237-145">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="f7237-145">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="d04a7-141">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="d04a7-141">Request body</span></span>
 
-<span data-ttu-id="f7237-146">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="f7237-146">None.</span></span>
+<span data-ttu-id="d04a7-142">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="d04a7-142">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="f7237-147">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="f7237-147">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="d04a7-143">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="d04a7-143">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id> HTTP/1.1
@@ -100,15 +95,15 @@ MS-CorrelationId: a176c585-b5de-4d65-824c-67a6deb45cd9
 MS-RequestId: 74ca1db9-df92-41c6-a362-a16433b0542b
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="f7237-148">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="f7237-148">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="d04a7-144">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="d04a7-144">REST response</span></span>
 
-<span data-ttu-id="f7237-149">Ha ez sikeres, ez a metódus egy [ügyfél](customer-resources.md#customer) -erőforrást ad vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="f7237-149">If successful, this method returns a [Customer](customer-resources.md#customer) resource in the response body.</span></span>
+<span data-ttu-id="d04a7-145">Ha sikeres, ez a metódus egy [Customer erőforrást](customer-resources.md#customer) ad vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="d04a7-145">If successful, this method returns a [Customer](customer-resources.md#customer) resource in the response body.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="f7237-150">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="f7237-150">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="d04a7-146">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="d04a7-146">Response success and error codes</span></span>
 
-<span data-ttu-id="f7237-151">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="f7237-151">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="f7237-152">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="f7237-152">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="f7237-153">A teljes listát lásd: [hibakódok](error-codes.md).</span><span class="sxs-lookup"><span data-stu-id="f7237-153">For the full list, see [Error Codes](error-codes.md).</span></span>
+<span data-ttu-id="d04a7-147">Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="d04a7-147">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="d04a7-148">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="d04a7-148">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="d04a7-149">A teljes listát lásd: [Hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="d04a7-149">For the full list, see [Error Codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="f7237-154">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="f7237-154">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="d04a7-150">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="d04a7-150">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK

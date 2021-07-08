@@ -1,43 +1,38 @@
 ---
 title: Számla összegzéseinek lekérése
-description: Az egyes pénznemekhez tartozó számla-összefoglaló erőforrások használatával megjelenítheti az ismétlődő és egyszeri költségek egyenlegét és teljes díját.
+description: A számlaösszegző erőforrást minden pénznemtípushoz használhatja az ismétlődő és egyszeri díjak egyenlegének és teljes díjának a megjelenítése érdekében.
 ms.date: 09/24/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 82cd669117db72e1819d941f48f8ea69b2eddaec
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: fb6ff839c56c7b0b77a9904abf05d95ca0500b00
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767684"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111549110"
 ---
-# <a name="get-invoice-summaries"></a><span data-ttu-id="c1608-103">Számla összegzéseinek lekérése</span><span class="sxs-lookup"><span data-stu-id="c1608-103">Get invoice summaries</span></span>
+# <a name="get-invoice-summaries"></a><span data-ttu-id="17a92-103">Számla összegzéseinek lekérése</span><span class="sxs-lookup"><span data-stu-id="17a92-103">Get invoice summaries</span></span>
 
-<span data-ttu-id="c1608-104">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="c1608-104">**Applies to:**</span></span>
+<span data-ttu-id="17a92-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="17a92-104">**Applies to**: Partner Center | Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="c1608-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="c1608-105">Partner Center</span></span>
-- <span data-ttu-id="c1608-106">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="c1608-106">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="c1608-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="c1608-107">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="c1608-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="c1608-108">Partner Center for Microsoft Cloud for US Government</span></span>
+<span data-ttu-id="17a92-105">Az **InvoiceSummaries** segítségével lekérhet egy számlaösszegzést, amely az ismétlődő és egyszeri díjak egyenlegét és teljes díjait jeleníti meg.</span><span class="sxs-lookup"><span data-stu-id="17a92-105">You can use the **InvoiceSummaries** to retrieve an invoice summary that shows the balance and total charges of both recurring and one-time charges.</span></span> <span data-ttu-id="17a92-106">Az **InvoiceSummaries erőforrás** minden pénznemtípushoz tartalmaz egy számlaösszegzést.</span><span class="sxs-lookup"><span data-stu-id="17a92-106">The **InvoiceSummaries** resource contains an invoice summary for each currency type.</span></span>
 
-<span data-ttu-id="c1608-109">A **InvoiceSummaries** lekérheti a számla összegzését, amely az ismétlődő és egyszeri költségek egyenlegét és teljes díját mutatja.</span><span class="sxs-lookup"><span data-stu-id="c1608-109">You can use the **InvoiceSummaries** to retrieve an invoice summary which shows the balance and total charges of both recurring and one-time charges.</span></span> <span data-ttu-id="c1608-110">A **InvoiceSummaries** -erőforrás az egyes pénznemek típusaihoz tartozó számla összegzését tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="c1608-110">The **InvoiceSummaries** resource contains an invoice summary for each currency type.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="17a92-107">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="17a92-107">Prerequisites</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="c1608-111">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="c1608-111">Prerequisites</span></span>
+- <span data-ttu-id="17a92-108">Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="17a92-108">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="17a92-109">Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.</span><span class="sxs-lookup"><span data-stu-id="17a92-109">This scenario supports authentication with App+User credentials only.</span></span>
 
-- <span data-ttu-id="c1608-112">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="c1608-112">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="c1608-113">Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.</span><span class="sxs-lookup"><span data-stu-id="c1608-113">This scenario supports authentication with App+User credentials only.</span></span>
+- <span data-ttu-id="17a92-110">Egy érvényes számlaazonosító.</span><span class="sxs-lookup"><span data-stu-id="17a92-110">A valid invoice identifier.</span></span>
 
-- <span data-ttu-id="c1608-114">Érvényes fiókazonosító.</span><span class="sxs-lookup"><span data-stu-id="c1608-114">A valid invoice identifier.</span></span>
+## <a name="c"></a><span data-ttu-id="17a92-111">C\#</span><span class="sxs-lookup"><span data-stu-id="17a92-111">C\#</span></span>
 
-## <a name="c"></a><span data-ttu-id="c1608-115">C\#</span><span class="sxs-lookup"><span data-stu-id="c1608-115">C\#</span></span>
+<span data-ttu-id="17a92-112">Egy [**InvoiceSummaries gyűjtemény lekérése,**](invoice-resources.md#invoicesummaries) amely az egyes pénznemtípushoz tartozó [**InvoiceSummary**](invoice-resources.md#invoicesummary) adatokat tartalmazza:</span><span class="sxs-lookup"><span data-stu-id="17a92-112">To retrieve an [**InvoiceSummaries**](invoice-resources.md#invoicesummaries) collection that contains an [**InvoiceSummary**](invoice-resources.md#invoicesummary) for each currency type:</span></span>
 
-<span data-ttu-id="c1608-116">Egy olyan [**InvoiceSummaries**](invoice-resources.md#invoicesummaries) -gyűjtemény beolvasása, amely [**InvoiceSummary**](invoice-resources.md#invoicesummary) tartalmaz az egyes pénznemek típusaihoz:</span><span class="sxs-lookup"><span data-stu-id="c1608-116">To retrieve an [**InvoiceSummaries**](invoice-resources.md#invoicesummaries) collection that contains an [**InvoiceSummary**](invoice-resources.md#invoicesummary) for each currency type:</span></span>
+1. <span data-ttu-id="17a92-113">Használja az **IAggregatePartner.Invoices gyűjteményt** az **Summaries tulajdonság hívására.**</span><span class="sxs-lookup"><span data-stu-id="17a92-113">Use your **IAggregatePartner.Invoices** collection to call the **Summaries** property.</span></span>
 
-1. <span data-ttu-id="c1608-117">Az **összegzések** tulajdonság meghívásához használja a **IAggregatePartner. számlák** gyűjteményt.</span><span class="sxs-lookup"><span data-stu-id="c1608-117">Use your **IAggregatePartner.Invoices** collection to call the **Summaries** property.</span></span>
-
-2. <span data-ttu-id="c1608-118">Hívja meg a **Get ()** metódust.</span><span class="sxs-lookup"><span data-stu-id="c1608-118">Call the **Get()** method.</span></span>
-3. <span data-ttu-id="c1608-119">Egy adott [**InvoiceSummary**](invoice-resources.md#invoicesummary)egyenlegének beszerzéséhez nyissa meg az adott tag **BalanceAmount** tulajdonságát.</span><span class="sxs-lookup"><span data-stu-id="c1608-119">To get the balance of an individual [**InvoiceSummary**](invoice-resources.md#invoicesummary), access the **BalanceAmount** property for that member of the collection.</span></span>
+2. <span data-ttu-id="17a92-114">Hívja meg a **Get() metódust.**</span><span class="sxs-lookup"><span data-stu-id="17a92-114">Call the **Get()** method.</span></span>
+3. <span data-ttu-id="17a92-115">Egy önálló [**InvoiceSummary egyenlegének lekért összegéhez a**](invoice-resources.md#invoicesummary)gyűjtemény adott tagját kell elérnie a **BalanceAmount** tulajdonsághoz.</span><span class="sxs-lookup"><span data-stu-id="17a92-115">To get the balance of an individual [**InvoiceSummary**](invoice-resources.md#invoicesummary), access the **BalanceAmount** property for that member of the collection.</span></span>
 
 ``` csharp
 // IAggregatePartner scopedPartnerOperations;
@@ -49,33 +44,33 @@ var invoiceSummaries = scopedPartnerOperations.Invoices.Summaries.Get();
 Console.Out.WriteLine("Current Account Balance:  {0:C}", invoiceSummaries[0].BalanceAmount);
 ```
 
-<span data-ttu-id="c1608-120">További információkért tekintse meg a következő példában szereplő kódot:</span><span class="sxs-lookup"><span data-stu-id="c1608-120">For more information, see the following example code:</span></span>
+<span data-ttu-id="17a92-116">További információért tekintse meg az alábbi példakódot:</span><span class="sxs-lookup"><span data-stu-id="17a92-116">For more information, see the following example code:</span></span>
 
-- <span data-ttu-id="c1608-121">Minta: [konzol tesztelési alkalmazás](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="c1608-121">Sample: [Console test app](console-test-app.md)</span></span>
-- <span data-ttu-id="c1608-122">Projekt: **PartnerSDK. FeatureSample**</span><span class="sxs-lookup"><span data-stu-id="c1608-122">Project: **PartnerSDK.FeatureSample**</span></span>
-- <span data-ttu-id="c1608-123">Osztály: **GetInvoiceSummaries.cs**</span><span class="sxs-lookup"><span data-stu-id="c1608-123">Class: **GetInvoiceSummaries.cs**</span></span>
+- <span data-ttu-id="17a92-117">Minta: [Konzoltesztalkalmazás](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="17a92-117">Sample: [Console test app](console-test-app.md)</span></span>
+- <span data-ttu-id="17a92-118">Project: **PartnerSDK.FeatureSample**</span><span class="sxs-lookup"><span data-stu-id="17a92-118">Project: **PartnerSDK.FeatureSample**</span></span>
+- <span data-ttu-id="17a92-119">Osztály: **GetInvoiceSummaries.cs**</span><span class="sxs-lookup"><span data-stu-id="17a92-119">Class: **GetInvoiceSummaries.cs**</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="c1608-124">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="c1608-124">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="17a92-120">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="17a92-120">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="c1608-125">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="c1608-125">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="17a92-121">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="17a92-121">Request syntax</span></span>
 
-| <span data-ttu-id="c1608-126">Metódus</span><span class="sxs-lookup"><span data-stu-id="c1608-126">Method</span></span>  | <span data-ttu-id="c1608-127">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="c1608-127">Request URI</span></span>                                                                   |
+| <span data-ttu-id="17a92-122">Metódus</span><span class="sxs-lookup"><span data-stu-id="17a92-122">Method</span></span>  | <span data-ttu-id="17a92-123">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="17a92-123">Request URI</span></span>                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| <span data-ttu-id="c1608-128">**GET**</span><span class="sxs-lookup"><span data-stu-id="c1608-128">**GET**</span></span> | <span data-ttu-id="c1608-129">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/summaries http/1.1</span><span class="sxs-lookup"><span data-stu-id="c1608-129">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/summaries HTTP/1.1</span></span>     |
+| <span data-ttu-id="17a92-124">**Kap**</span><span class="sxs-lookup"><span data-stu-id="17a92-124">**GET**</span></span> | <span data-ttu-id="17a92-125">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/summaries HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="17a92-125">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/summaries HTTP/1.1</span></span>     |
 
-#### <a name="uri-parameter"></a><span data-ttu-id="c1608-130">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="c1608-130">URI parameter</span></span>
+#### <a name="uri-parameter"></a><span data-ttu-id="17a92-126">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="17a92-126">URI parameter</span></span>
 
-<span data-ttu-id="c1608-131">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="c1608-131">None.</span></span>
+<span data-ttu-id="17a92-127">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="17a92-127">None.</span></span>
 
-### <a name="request-headers"></a><span data-ttu-id="c1608-132">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="c1608-132">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="17a92-128">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="17a92-128">Request headers</span></span>
 
-<span data-ttu-id="c1608-133">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="c1608-133">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="17a92-129">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="17a92-129">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="c1608-134">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="c1608-134">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="17a92-130">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="17a92-130">Request body</span></span>
 
-<span data-ttu-id="c1608-135">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="c1608-135">None.</span></span>
+<span data-ttu-id="17a92-131">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="17a92-131">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="c1608-136">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="c1608-136">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="17a92-132">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="17a92-132">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/summaries HTTP/1.1
@@ -86,15 +81,15 @@ MS-CorrelationId: 57eb2ca7-755f-450f-9187-eae1e75a0114
 Connection: Keep-Alive
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="c1608-137">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="c1608-137">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="17a92-133">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="17a92-133">REST response</span></span>
 
-<span data-ttu-id="c1608-138">Ha ez sikeres, ez a metódus egy [**InvoiceSummaries**](invoice-resources.md#invoicesummaries) -erőforrást ad vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="c1608-138">If successful, this method returns an [**InvoiceSummaries**](invoice-resources.md#invoicesummaries) resource in the response body.</span></span>
+<span data-ttu-id="17a92-134">Ha a művelet sikeres, ez a metódus egy [**InvoiceSummaries erőforrást**](invoice-resources.md#invoicesummaries) ad vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="17a92-134">If successful, this method returns an [**InvoiceSummaries**](invoice-resources.md#invoicesummaries) resource in the response body.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="c1608-139">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="c1608-139">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="17a92-135">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="17a92-135">Response success and error codes</span></span>
 
-<span data-ttu-id="c1608-140">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="c1608-140">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="c1608-141">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="c1608-141">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="c1608-142">A teljes listát lásd: [hibakódok](error-codes.md).</span><span class="sxs-lookup"><span data-stu-id="c1608-142">For the full list, see [Error Codes](error-codes.md).</span></span>
+<span data-ttu-id="17a92-136">Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="17a92-136">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="17a92-137">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="17a92-137">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="17a92-138">A teljes listát lásd: [Hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="17a92-138">For the full list, see [Error Codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="c1608-143">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="c1608-143">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="17a92-139">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="17a92-139">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK

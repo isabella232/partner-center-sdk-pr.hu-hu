@@ -1,39 +1,34 @@
 ---
 title: Számlabecslés hivatkozásainak lekérése
-description: A lekérdezési egyeztetési sor részleteire vonatkozó becsült hivatkozások gyűjteményét lekérheti.
+description: A lekérdezés egyeztetési sorelemének részleteire mutató becslési hivatkozások gyűjteményét is lekérdezheti.
 ms.date: 09/24/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 ms.assetid: ''
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 10801cdb1f9d4f50a1f8fc86c2d0eaf8610ed68c
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 719becd3fac5605c4ad48ab86d483ba7903d65d8
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767887"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111549144"
 ---
-# <a name="get-invoice-estimate-links"></a><span data-ttu-id="562dc-103">Számlabecslés hivatkozásainak lekérése</span><span class="sxs-lookup"><span data-stu-id="562dc-103">Get invoice estimate links</span></span>
+# <a name="get-invoice-estimate-links"></a><span data-ttu-id="42791-103">Számlabecslés hivatkozásainak lekérése</span><span class="sxs-lookup"><span data-stu-id="42791-103">Get invoice estimate links</span></span>
 
-<span data-ttu-id="562dc-104">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="562dc-104">**Applies to:**</span></span>
+<span data-ttu-id="42791-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="42791-104">**Applies to**: Partner Center | Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="562dc-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="562dc-105">Partner Center</span></span>
-- <span data-ttu-id="562dc-106">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="562dc-106">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="562dc-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="562dc-107">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="562dc-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="562dc-108">Partner Center for Microsoft Cloud for US Government</span></span>
+<span data-ttu-id="42791-105">A nem kiszámlázatlan egyeztetési sorelemek lekérdezési részleteinek lekérdezéséhez becslési hivatkozásokat is kaphat.</span><span class="sxs-lookup"><span data-stu-id="42791-105">You can get estimate links to help query details for unbilled reconciliation line items.</span></span>
 
-<span data-ttu-id="562dc-109">A becslési hivatkozásokra kattintva megtekintheti a nem számlázott egyeztetési sorok részleteinek lekérdezését.</span><span class="sxs-lookup"><span data-stu-id="562dc-109">You can get estimate links to help query details for unbilled reconciliation line items.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="42791-106">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="42791-106">Prerequisites</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="562dc-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="562dc-110">Prerequisites</span></span>
+- <span data-ttu-id="42791-107">Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="42791-107">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="42791-108">Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.</span><span class="sxs-lookup"><span data-stu-id="42791-108">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
 
-- <span data-ttu-id="562dc-111">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="562dc-111">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="562dc-112">Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.</span><span class="sxs-lookup"><span data-stu-id="562dc-112">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
+- <span data-ttu-id="42791-109">Egy számlaazonosító.</span><span class="sxs-lookup"><span data-stu-id="42791-109">An invoice identifier.</span></span> <span data-ttu-id="42791-110">Ez azonosítja a számlát, amelynek lekéri a sorelemeket.</span><span class="sxs-lookup"><span data-stu-id="42791-110">This identifies the invoice for which to retrieve the line items.</span></span>
 
-- <span data-ttu-id="562dc-113">Egy fiókazonosító.</span><span class="sxs-lookup"><span data-stu-id="562dc-113">An invoice identifier.</span></span> <span data-ttu-id="562dc-114">Ez azonosítja azt a számlát, amelynek a sorát be kell olvasni.</span><span class="sxs-lookup"><span data-stu-id="562dc-114">This identifies the invoice for which to retrieve the line items.</span></span>
+## <a name="c"></a><span data-ttu-id="42791-111">C\#</span><span class="sxs-lookup"><span data-stu-id="42791-111">C\#</span></span>
 
-## <a name="c"></a><span data-ttu-id="562dc-115">C\#</span><span class="sxs-lookup"><span data-stu-id="562dc-115">C\#</span></span>
-
-<span data-ttu-id="562dc-116">Az alábbi mintakód bemutatja, hogyan kérheti le a becslési hivatkozásokat egy adott pénznemhez tartozó nem számlázott sorok lekérdezéséhez.</span><span class="sxs-lookup"><span data-stu-id="562dc-116">The following example code shows how you can get the estimate links to query unbilled line items for a given currency.</span></span> <span data-ttu-id="562dc-117">A válasz tartalmazza az egyes időszakok becsült hivatkozásait (például az aktuális és az előző hónapot).</span><span class="sxs-lookup"><span data-stu-id="562dc-117">The response contains the estimate links for each period (for example, the current and previous month).</span></span>
+<span data-ttu-id="42791-112">Az alábbi példakód bemutatja, hogyan lehet lekérdezni a nem kiszámlázatlan sorelemek lekérdezésére mutató becslési hivatkozásokat egy adott pénznemre.</span><span class="sxs-lookup"><span data-stu-id="42791-112">The following example code shows how you can get the estimate links to query unbilled line items for a given currency.</span></span> <span data-ttu-id="42791-113">A válasz tartalmazza az egyes időtartamok (például az aktuális és az előző hónap) becslési hivatkozását.</span><span class="sxs-lookup"><span data-stu-id="42791-113">The response contains the estimate links for each period (for example, the current and previous month).</span></span>
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -46,40 +41,40 @@ ms.locfileid: "97767887"
 var estimateLinks = scopedPartnerOperations.Invoices.Estimates.Links.ByCurrency(curencyCode).Get();
 ```
 
-<span data-ttu-id="562dc-118">Ehhez hasonló példát a következő témakörben talál:</span><span class="sxs-lookup"><span data-stu-id="562dc-118">For a similar example, see the following:</span></span>
+<span data-ttu-id="42791-114">Hasonló példát a következőben láthat:</span><span class="sxs-lookup"><span data-stu-id="42791-114">For a similar example, see the following:</span></span>
 
-- <span data-ttu-id="562dc-119">Minta: [konzol tesztelési alkalmazás](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="562dc-119">Sample: [Console test app](console-test-app.md)</span></span>
-- <span data-ttu-id="562dc-120">Projekt: **partner Center SDK-minták**</span><span class="sxs-lookup"><span data-stu-id="562dc-120">Project: **Partner Center SDK Samples**</span></span>
-- <span data-ttu-id="562dc-121">Osztály: **GetEstimatesLinks.cs**</span><span class="sxs-lookup"><span data-stu-id="562dc-121">Class: **GetEstimatesLinks.cs**</span></span>
+- <span data-ttu-id="42791-115">Minta: [Konzoltesztalkalmazás](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="42791-115">Sample: [Console test app](console-test-app.md)</span></span>
+- <span data-ttu-id="42791-116">Project: **Partnerközpont SDK minták**</span><span class="sxs-lookup"><span data-stu-id="42791-116">Project: **Partner Center SDK Samples**</span></span>
+- <span data-ttu-id="42791-117">Osztály: **GetEstimatesLinks.cs**</span><span class="sxs-lookup"><span data-stu-id="42791-117">Class: **GetEstimatesLinks.cs**</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="562dc-122">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="562dc-122">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="42791-118">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="42791-118">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="562dc-123">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="562dc-123">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="42791-119">Kérésszintaxis</span><span class="sxs-lookup"><span data-stu-id="42791-119">Request syntax</span></span>
 
-| <span data-ttu-id="562dc-124">Metódus</span><span class="sxs-lookup"><span data-stu-id="562dc-124">Method</span></span>  | <span data-ttu-id="562dc-125">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="562dc-125">Request URI</span></span>                                                                                                 |
+| <span data-ttu-id="42791-120">Metódus</span><span class="sxs-lookup"><span data-stu-id="42791-120">Method</span></span>  | <span data-ttu-id="42791-121">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="42791-121">Request URI</span></span>                                                                                                 |
 |---------|-------------------------------------------------------------------------------------------------------------|
-| <span data-ttu-id="562dc-126">**GET**</span><span class="sxs-lookup"><span data-stu-id="562dc-126">**GET**</span></span> | <span data-ttu-id="562dc-127">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/Estimates/Links? CurrencyCode = {CURRENCYCODE} http/1.1</span><span class="sxs-lookup"><span data-stu-id="562dc-127">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/estimates/links?currencycode={currencycode} HTTP/1.1</span></span> |
+| <span data-ttu-id="42791-122">**Kap**</span><span class="sxs-lookup"><span data-stu-id="42791-122">**GET**</span></span> | <span data-ttu-id="42791-123">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/estimates/links?currencycode={currencycode} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="42791-123">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/estimates/links?currencycode={currencycode} HTTP/1.1</span></span> |
 
-#### <a name="uri-parameters"></a><span data-ttu-id="562dc-128">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="562dc-128">URI parameters</span></span>
+#### <a name="uri-parameters"></a><span data-ttu-id="42791-124">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="42791-124">URI parameters</span></span>
 
-<span data-ttu-id="562dc-129">A kérelem létrehozásakor használja a következő URI és lekérdezési paramétert.</span><span class="sxs-lookup"><span data-stu-id="562dc-129">Use the following URI and query parameter when creating the request.</span></span>
+<span data-ttu-id="42791-125">A kérelem létrehozásakor használja a következő URI-t és lekérdezési paramétert.</span><span class="sxs-lookup"><span data-stu-id="42791-125">Use the following URI and query parameter when creating the request.</span></span>
 
-| <span data-ttu-id="562dc-130">Név</span><span class="sxs-lookup"><span data-stu-id="562dc-130">Name</span></span>                   | <span data-ttu-id="562dc-131">Típus</span><span class="sxs-lookup"><span data-stu-id="562dc-131">Type</span></span>   | <span data-ttu-id="562dc-132">Kötelező</span><span class="sxs-lookup"><span data-stu-id="562dc-132">Required</span></span> | <span data-ttu-id="562dc-133">Leírás</span><span class="sxs-lookup"><span data-stu-id="562dc-133">Description</span></span>                                                       |
+| <span data-ttu-id="42791-126">Név</span><span class="sxs-lookup"><span data-stu-id="42791-126">Name</span></span>                   | <span data-ttu-id="42791-127">Típus</span><span class="sxs-lookup"><span data-stu-id="42791-127">Type</span></span>   | <span data-ttu-id="42791-128">Kötelező</span><span class="sxs-lookup"><span data-stu-id="42791-128">Required</span></span> | <span data-ttu-id="42791-129">Leírás</span><span class="sxs-lookup"><span data-stu-id="42791-129">Description</span></span>                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
-| <span data-ttu-id="562dc-134">currencyCode</span><span class="sxs-lookup"><span data-stu-id="562dc-134">currencyCode</span></span>           | <span data-ttu-id="562dc-135">sztring</span><span class="sxs-lookup"><span data-stu-id="562dc-135">string</span></span> | <span data-ttu-id="562dc-136">Igen</span><span class="sxs-lookup"><span data-stu-id="562dc-136">Yes</span></span>      | <span data-ttu-id="562dc-137">A nem számlázott sorok pénznemkódja.</span><span class="sxs-lookup"><span data-stu-id="562dc-137">The currency code for the unbilled line items.</span></span>                    |
+| <span data-ttu-id="42791-130">currencyCode</span><span class="sxs-lookup"><span data-stu-id="42791-130">currencyCode</span></span>           | <span data-ttu-id="42791-131">sztring</span><span class="sxs-lookup"><span data-stu-id="42791-131">string</span></span> | <span data-ttu-id="42791-132">Igen</span><span class="sxs-lookup"><span data-stu-id="42791-132">Yes</span></span>      | <span data-ttu-id="42791-133">A ki nemszámlázatlan sorelemek pénznemkódja.</span><span class="sxs-lookup"><span data-stu-id="42791-133">The currency code for the unbilled line items.</span></span>                    |
 
-### <a name="request-headers"></a><span data-ttu-id="562dc-138">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="562dc-138">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="42791-134">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="42791-134">Request headers</span></span>
 
-<span data-ttu-id="562dc-139">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="562dc-139">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="42791-135">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="42791-135">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="562dc-140">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="562dc-140">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="42791-136">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="42791-136">Request body</span></span>
 
-<span data-ttu-id="562dc-141">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="562dc-141">None.</span></span>
+<span data-ttu-id="42791-137">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="42791-137">None.</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="562dc-142">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="562dc-142">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="42791-138">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="42791-138">Request example</span></span>
 
 ```http
-GET https://api.partnercenter.microsoft.com/v1/invoices/estimates/links?currencycode=usd HTTP/1.1
+GET https://api.partnercenter.microsoft.com/v1/invoices/estimates/links?currencycode=usd HTTP/1.1
 Authorization: Bearer <token>
 Accept: application/json
 MS-RequestId: 1234ecb8-37af-45f4-a1a1-358de3ca2b9e
@@ -89,15 +84,15 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="562dc-143">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="562dc-143">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="42791-139">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="42791-139">REST response</span></span>
 
-<span data-ttu-id="562dc-144">Ha a művelet sikeres, a válasz tartalmazza a nem számlázott becslések beolvasására vonatkozó hivatkozásokat.</span><span class="sxs-lookup"><span data-stu-id="562dc-144">If successful, the response contains the links to retrieve unbilled estimates.</span></span>
+<span data-ttu-id="42791-140">Ha ez sikeres, a válasz tartalmazza a nemszámlázatlan becslések lekérésének hivatkozását.</span><span class="sxs-lookup"><span data-stu-id="42791-140">If successful, the response contains the links to retrieve unbilled estimates.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="562dc-145">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="562dc-145">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="42791-141">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="42791-141">Response success and error codes</span></span>
 
-<span data-ttu-id="562dc-146">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="562dc-146">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="562dc-147">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="562dc-147">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="562dc-148">A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.</span><span class="sxs-lookup"><span data-stu-id="562dc-148">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
+<span data-ttu-id="42791-142">Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="42791-142">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="42791-143">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="42791-143">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="42791-144">A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="42791-144">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="562dc-149">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="562dc-149">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="42791-145">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="42791-145">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK

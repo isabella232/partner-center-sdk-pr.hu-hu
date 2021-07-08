@@ -1,56 +1,51 @@
 ---
 title: Számla sorelemeinek lekérése
-description: A partner Center API-k használatával lekérheti a számla sor (lezárt számlázási sor) részleteit a megadott számláról.
+description: A megadott számlához tartozó számlasorelem (lezárt számlázási sorelem) részleteinek gyűjteményét a következő API Partnerközpont le.
 ms.date: 01/27/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: ddc49e4d83518b809402a65f990f3e9c2658e64b
-ms.sourcegitcommit: 4ec053c56fd210b174fe657aa7b86faf4e2b5a7c
+ms.openlocfilehash: 944dddef64ec980d92c292a7f5b9f5eb4e7cecb6
+ms.sourcegitcommit: 15c6cfe72284cf5d4ea3535120e83e473c33f5ec
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/29/2021
-ms.locfileid: "105730228"
+ms.lasthandoff: 06/22/2021
+ms.locfileid: "112443172"
 ---
-# <a name="get-invoice-line-items"></a><span data-ttu-id="c1643-103">Számla sorelemeinek lekérése</span><span class="sxs-lookup"><span data-stu-id="c1643-103">Get invoice line items</span></span>
+# <a name="get-invoice-line-items"></a><span data-ttu-id="c4ad4-103">Számla sorelemeinek lekérése</span><span class="sxs-lookup"><span data-stu-id="c4ad4-103">Get invoice line items</span></span>
 
-<span data-ttu-id="c1643-104">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="c1643-104">**Applies to:**</span></span>
+<span data-ttu-id="c4ad4-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="c4ad4-104">**Applies to**: Partner Center | Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="c1643-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="c1643-105">Partner Center</span></span>
-- <span data-ttu-id="c1643-106">A 21Vianet által üzemeltetett Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="c1643-106">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="c1643-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="c1643-107">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="c1643-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="c1643-108">Partner Center for Microsoft Cloud for US Government</span></span>
+<span data-ttu-id="c4ad4-105">A következő módszerekkel lekértheti egy adott számla számlasor-elemeinek (más néven lezárt számlázási sorelemeknek) a gyűjtemény adatait.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-105">You can use the following methods to get collection details for of invoice line items (also known as closed billing line items) for a specified invoice.</span></span>
 
-<span data-ttu-id="c1643-109">A következő módszerekkel beolvashatja a számla sorok tételeinek (más néven lezárt számlázási sorok) gyűjteményének részleteit egy adott számlához.</span><span class="sxs-lookup"><span data-stu-id="c1643-109">You can use the following methods to get a collection details for of invoice line items (also known as closed billing line items) for a specified invoice.</span></span>
+<span data-ttu-id="c4ad4-106">*A hibajavítások kivételével ez az API már nem frissül.*</span><span class="sxs-lookup"><span data-stu-id="c4ad4-106">*Except for bug fixes, this API is no longer being updated.*</span></span> <span data-ttu-id="c4ad4-107">Frissítse az alkalmazásokat úgy, hogy a **Piactér** helyett az egyszer használható **API-t hívják meg.**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-107">You should update your applications to call the **onetime** API instead of **marketplace**.</span></span> <span data-ttu-id="c4ad4-108">Az **onetime** API további funkciókat biztosít, és továbbra is frissülni fog.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-108">The **onetime** API provides additional functionality, and will continue to be updated.</span></span>
 
-<span data-ttu-id="c1643-110">*A hibajavítások kivételével ez az API már nem frissül.*</span><span class="sxs-lookup"><span data-stu-id="c1643-110">*Except for bug fixes, this API is no longer being updated.*</span></span> <span data-ttu-id="c1643-111">Frissítse alkalmazásait, hogy a **piactér** helyett az **egykori** API-t hívja meg.</span><span class="sxs-lookup"><span data-stu-id="c1643-111">You should update your applications to call the **onetime** API instead of **marketplace**.</span></span> <span data-ttu-id="c1643-112">Az **egykori** API további funkciókat biztosít, és továbbra is frissülni fog.</span><span class="sxs-lookup"><span data-stu-id="c1643-112">The **onetime** API provides additional functionality, and will continue to be updated.</span></span>
+<span data-ttu-id="c4ad4-109">A piactér helyett **az egyidős használatával** lekérdezheti az összes kereskedelmi használatú **sorelemet.**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-109">You should use **onetime** to query all commercial consumption line items instead of **marketplace**.</span></span> <span data-ttu-id="c4ad4-110">Vagy kövesse a estimate links hívásban található hivatkozásokat.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-110">Or, you can follow the links in the estimate links call.</span></span>
 
-<span data-ttu-id="c1643-113">Az **egyszeri** verziót kell használnia a **piactér** helyett az összes kereskedelmi fogyasztási sor elem lekérdezéséhez.</span><span class="sxs-lookup"><span data-stu-id="c1643-113">You should use **onetime** to query all commercial consumption line items instead of **marketplace**.</span></span> <span data-ttu-id="c1643-114">A hivatkozásokat a becsült hivatkozások hívásban is követheti.</span><span class="sxs-lookup"><span data-stu-id="c1643-114">Or, you can follow the links in the estimate links call.</span></span>
+<span data-ttu-id="c4ad4-111">Ez az API  az **Azure** és az **Office** for Microsoft Azure (MS-AZR-0145P) előfizetések és Office-ajánlatok szolgáltatótípusát is támogatja, ami visszamenőlegesen kompatibilissé teszi az API-funkciót.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-111">This API also supports the **provider** types of **azure** and **office** for Microsoft Azure (MS-AZR-0145P) subscriptions and Office offers, which makes the API feature backward compatible.</span></span>
 
-<span data-ttu-id="c1643-115">Ez az API az **Azure** és az **Office** Microsoft Azure (MS-AZR-0145P) előfizetések és az Office-ajánlatok **szolgáltatói** típusait is támogatja, így az API szolgáltatás visszafelé kompatibilis lesz.</span><span class="sxs-lookup"><span data-stu-id="c1643-115">This API also supports the **provider** types of **azure** and **office** for Microsoft Azure (MS-AZR-0145P) subscriptions and Office offers, which makes the API feature backward compatible.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="c4ad4-112">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="c4ad4-112">Prerequisites</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="c1643-116">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="c1643-116">Prerequisites</span></span>
+- <span data-ttu-id="c4ad4-113">Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="c4ad4-113">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="c4ad4-114">Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-114">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
 
-- <span data-ttu-id="c1643-117">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="c1643-117">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="c1643-118">Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.</span><span class="sxs-lookup"><span data-stu-id="c1643-118">This scenario supports authentication with both standalone App and App+User credentials.</span></span>
+- <span data-ttu-id="c4ad4-115">Egy számlaazonosító.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-115">An invoice identifier.</span></span> <span data-ttu-id="c4ad4-116">Ez azonosítja a számlát, amelynek lekéri a sorelemeket.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-116">This identifies the invoice for which to retrieve the line items.</span></span>
 
-- <span data-ttu-id="c1643-119">Egy fiókazonosító.</span><span class="sxs-lookup"><span data-stu-id="c1643-119">An invoice identifier.</span></span> <span data-ttu-id="c1643-120">Ez azonosítja azt a számlát, amelynek a sorát be kell olvasni.</span><span class="sxs-lookup"><span data-stu-id="c1643-120">This identifies the invoice for which to retrieve the line items.</span></span>
+## <a name="c"></a><span data-ttu-id="c4ad4-117">C\#</span><span class="sxs-lookup"><span data-stu-id="c4ad4-117">C\#</span></span>
 
-## <a name="c"></a><span data-ttu-id="c1643-121">C\#</span><span class="sxs-lookup"><span data-stu-id="c1643-121">C\#</span></span>
+<span data-ttu-id="c4ad4-118">A megadott számlához tartozó sorelemek lekért száma:</span><span class="sxs-lookup"><span data-stu-id="c4ad4-118">To get the line items for the specified invoice:</span></span>
 
-<span data-ttu-id="c1643-122">A megadott számla vonali elemeinek beolvasása:</span><span class="sxs-lookup"><span data-stu-id="c1643-122">To get the line items for the specified invoice:</span></span>
+1. <span data-ttu-id="c4ad4-119">Hívja meg [**a ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) metódust a megadott számlához tartozó számlázási műveletek interfészének lehívása érdekében.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-119">Call the [**ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) method to get an interface to invoice operations for the specified invoice.</span></span>
 
-1. <span data-ttu-id="c1643-123">Hívja meg a [**ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) metódust, hogy lekérje a megadott számla műveleteinek számlázására szolgáló felületet.</span><span class="sxs-lookup"><span data-stu-id="c1643-123">Call the [**ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) method to get an interface to invoice operations for the specified invoice.</span></span>
+2. <span data-ttu-id="c4ad4-120">A [**számlaobjektum lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-120">Call the [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) or [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) method to retrieve the invoice object.</span></span> <span data-ttu-id="c4ad4-121">A számlaobjektum a megadott számla összes adatát tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-121">The invoice object contains all of the information for the specified invoice.</span></span>
+3. <span data-ttu-id="c4ad4-122">A számlaobjektum [**InvoiceDetails**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoice.invoicedetails) tulajdonságával hozzáférést kap az [**InvoiceDetail**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail) objektumok gyűjteményéhez, amelyek mindegyikében található egy [**BillingProvider**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.billingprovider) és egy [**InvoiceLineItemType.**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.invoicelineitemtype)</span><span class="sxs-lookup"><span data-stu-id="c4ad4-122">Use the invoice object's [**InvoiceDetails**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoice.invoicedetails) property to get access to a collection of [**InvoiceDetail**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail) objects, each of which contains a [**BillingProvider**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.billingprovider) and an [**InvoiceLineItemType**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.invoicelineitemtype).</span></span> <span data-ttu-id="c4ad4-123">A **BillingProvider** azonosítja a számla részletes információinak forrását (például **Office,** **Azure**, **OneTime**), az **InvoiceLineItemType** pedig meghatározza a típust (például **BillingLineItem).**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-123">The **BillingProvider** identifies the source of the invoice detail information (such as **Office**, **Azure**, **OneTime**), and the **InvoiceLineItemType** specifies the type (for example, **BillingLineItem**).</span></span>
 
-2. <span data-ttu-id="c1643-124">Hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódust a számla objektum lekéréséhez.</span><span class="sxs-lookup"><span data-stu-id="c1643-124">Call the [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) or [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) method to retrieve the invoice object.</span></span> <span data-ttu-id="c1643-125">A számla objektum a megadott számla összes adatát tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="c1643-125">The invoice object contains all of the information for the specified invoice.</span></span>
-3. <span data-ttu-id="c1643-126">A számla objektum [**InvoiceDetails**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoice.invoicedetails) tulajdonságával hozzáférhet a [**InvoiceDetail**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail) objektumok egy gyűjteményéhez, amelyek mindegyike egy [**BillingProvider**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.billingprovider) és egy [**InvoiceLineItemType**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.invoicelineitemtype)tartalmaz.</span><span class="sxs-lookup"><span data-stu-id="c1643-126">Use the invoice object's [**InvoiceDetails**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoice.invoicedetails) property to get access to a collection of [**InvoiceDetail**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail) objects, each of which contains a [**BillingProvider**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.billingprovider) and an [**InvoiceLineItemType**](/dotnet/api/microsoft.store.partnercenter.models.invoices.invoicedetail.invoicelineitemtype).</span></span> <span data-ttu-id="c1643-127">A **BillingProvider** azonosítja a számla részletes adatainak forrását (például az **Office**, az **Azure**, az **egykori**), a **InvoiceLineItemType** pedig a típust (például **BillingLineItem**).</span><span class="sxs-lookup"><span data-stu-id="c1643-127">The **BillingProvider** identifies the source of the invoice detail information (such as **Office**, **Azure**, **OneTime**), and the **InvoiceLineItemType** specifies the type (for example, **BillingLineItem**).</span></span>
+<span data-ttu-id="c4ad4-124">Az alábbi példakód egy **foreach ciklust** használ az **InvoiceDetails gyűjtemény feldolgozásához.**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-124">The following example code uses a **foreach** loop to process the **InvoiceDetails** collection.</span></span> <span data-ttu-id="c4ad4-125">A rendszer minden **InvoiceDetail-példányhoz** külön sorelemek gyűjteményét olvassa be.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-125">A separate collection of line items is retrieved for each **InvoiceDetail** instance.</span></span>
 
-<span data-ttu-id="c1643-128">Az alábbi mintakód egy **foreach** hurkot használ a **InvoiceDetails** -gyűjtemény feldolgozásához.</span><span class="sxs-lookup"><span data-stu-id="c1643-128">The following example code uses a **foreach** loop to process the **InvoiceDetails** collection.</span></span> <span data-ttu-id="c1643-129">A rendszer minden egyes **InvoiceDetail** -példányhoz beolvassa a sorok egy külön gyűjteményét.</span><span class="sxs-lookup"><span data-stu-id="c1643-129">A separate collection of line items is retrieved for each **InvoiceDetail** instance.</span></span>
+<span data-ttu-id="c4ad4-126">Az InvoiceDetail példánynak megfelelő sorelemek **gyűjteményének lekért** száma:</span><span class="sxs-lookup"><span data-stu-id="c4ad4-126">To get a collection of line items that correspond to an **InvoiceDetail** instance:</span></span>
 
-<span data-ttu-id="c1643-130">Egy **InvoiceDetail** -példánynak megfelelő sorok gyűjteményének beolvasása:</span><span class="sxs-lookup"><span data-stu-id="c1643-130">To get a collection of line items that correspond to an **InvoiceDetail** instance:</span></span>
+1. <span data-ttu-id="c4ad4-127">Adja át a példány **BillingProvider** és **InvoiceLineItemType** tulajdonságát a [**By metódusnak.**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by)</span><span class="sxs-lookup"><span data-stu-id="c4ad4-127">Pass the instance's **BillingProvider** and **InvoiceLineItemType** to the [**By**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by) method.</span></span>
 
-1. <span data-ttu-id="c1643-131">Adja át a példány **BillingProvider** és **InvoiceLineItemType** a [**by**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by) metódusnak.</span><span class="sxs-lookup"><span data-stu-id="c1643-131">Pass the instance's **BillingProvider** and **InvoiceLineItemType** to the [**By**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by) method.</span></span>
-
-2. <span data-ttu-id="c1643-132">A társított sorok beolvasásához hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.getasync) metódust.</span><span class="sxs-lookup"><span data-stu-id="c1643-132">Call the [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.get) or [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.getasync) method to retrieve the associated line items.</span></span>
-3. <span data-ttu-id="c1643-133">Hozzon létre egy enumerálást a gyűjtemény átjárásához az alábbi példában látható módon.</span><span class="sxs-lookup"><span data-stu-id="c1643-133">Create an enumerator to traverse the collection as shown in the following example.</span></span>
+2. <span data-ttu-id="c4ad4-128">A [**társított sorelemek lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.getasync) metódussal.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-128">Call the [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.get) or [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicelineitemcollection.getasync) method to retrieve the associated line items.</span></span>
+3. <span data-ttu-id="c4ad4-129">Hozzon létre egy enumerátort, amely az alábbi példában látható módon lépked a gyűjteményen.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-129">Create an enumerator to traverse the collection as shown in the following example.</span></span>
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -99,100 +94,100 @@ foreach (var invoiceDetail in invoice.InvoiceDetails)
 }
 ```
 
-<span data-ttu-id="c1643-134">Ehhez hasonló példát a következő témakörben talál:</span><span class="sxs-lookup"><span data-stu-id="c1643-134">For a similar example, see the following:</span></span>
+<span data-ttu-id="c4ad4-130">Hasonló példát a következőben láthat:</span><span class="sxs-lookup"><span data-stu-id="c4ad4-130">For a similar example, see the following:</span></span>
 
-- <span data-ttu-id="c1643-135">Minta: [konzol tesztelési alkalmazás](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="c1643-135">Sample: [Console test app](console-test-app.md)</span></span>
-- <span data-ttu-id="c1643-136">Projekt: **partner Center SDK-minták**</span><span class="sxs-lookup"><span data-stu-id="c1643-136">Project: **Partner Center SDK Samples**</span></span>
-- <span data-ttu-id="c1643-137">Osztály: **GetInvoiceLineItems. cs**</span><span class="sxs-lookup"><span data-stu-id="c1643-137">Class: **GetInvoiceLineItems.cs**</span></span>
+- <span data-ttu-id="c4ad4-131">Minta: [Konzoltesztalkalmazás](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="c4ad4-131">Sample: [Console test app](console-test-app.md)</span></span>
+- <span data-ttu-id="c4ad4-132">Project: **Partnerközpont SDK minták**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-132">Project: **Partner Center SDK Samples**</span></span>
+- <span data-ttu-id="c4ad4-133">Osztály: **GetInvoiceLineItems.cs**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-133">Class: **GetInvoiceLineItems.cs**</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="c1643-138">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="c1643-138">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="c4ad4-134">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="c4ad4-134">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="c1643-139">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="c1643-139">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="c4ad4-135">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-135">Request syntax</span></span>
 
-<span data-ttu-id="c1643-140">A kérést a számlázási szolgáltató megfelelő szintaxisával teheti meg a forgatókönyvben.</span><span class="sxs-lookup"><span data-stu-id="c1643-140">Make your request using the appropriate syntax for the billing provider in your scenario.</span></span>
+<span data-ttu-id="c4ad4-136">A kérést a forgatókönyvben használt számlázási szolgáltatónak megfelelő szintaxissal készítse el.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-136">Make your request using the appropriate syntax for the billing provider in your scenario.</span></span>
 
-#### <a name="office"></a><span data-ttu-id="c1643-141">Office</span><span class="sxs-lookup"><span data-stu-id="c1643-141">Office</span></span>
+#### <a name="office"></a><span data-ttu-id="c4ad4-137">Office</span><span class="sxs-lookup"><span data-stu-id="c4ad4-137">Office</span></span>
 
-<span data-ttu-id="c1643-142">A következő szintaxis akkor érvényes, ha a számlázási szolgáltató **iroda**.</span><span class="sxs-lookup"><span data-stu-id="c1643-142">The following syntax applies when the billing provider is **Office**.</span></span>
+<span data-ttu-id="c4ad4-138">A következő szintaxis akkor érvényes, ha a számlázási szolgáltató **Office.**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-138">The following syntax applies when the billing provider is **Office**.</span></span>
 
-| <span data-ttu-id="c1643-143">Metódus</span><span class="sxs-lookup"><span data-stu-id="c1643-143">Method</span></span>  | <span data-ttu-id="c1643-144">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="c1643-144">Request URI</span></span>                                                                                                                                                     |
+| <span data-ttu-id="c4ad4-139">Metódus</span><span class="sxs-lookup"><span data-stu-id="c4ad4-139">Method</span></span>  | <span data-ttu-id="c4ad4-140">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="c4ad4-140">Request URI</span></span>                                                                                                                                                     |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span data-ttu-id="c1643-145">**GET**</span><span class="sxs-lookup"><span data-stu-id="c1643-145">**GET**</span></span> | <span data-ttu-id="c1643-146">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? szolgáltató = Office&invoicelineitemtype = billinglineitems&méret = {size} &eltolás = {offset} http/1.1</span><span class="sxs-lookup"><span data-stu-id="c1643-146">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=office&invoicelineitemtype=billinglineitems&size={size}&offset={offset} HTTP/1.1</span></span>                               |
+| <span data-ttu-id="c4ad4-141">**Kap**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-141">**GET**</span></span> | <span data-ttu-id="c4ad4-142">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=office&invoicelineitemtype=billinglineitems&size={size}&offset={offset} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="c4ad4-142">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=office&invoicelineitemtype=billinglineitems&size={size}&offset={offset} HTTP/1.1</span></span>                               |
 
-#### <a name="microsoft-azure-ms-azr-0145p-subscription"></a><span data-ttu-id="c1643-147">Microsoft Azure (MS-AZR-0145P) előfizetés</span><span class="sxs-lookup"><span data-stu-id="c1643-147">Microsoft Azure (MS-AZR-0145P) subscription</span></span>
+#### <a name="microsoft-azure-ms-azr-0145p-subscription"></a><span data-ttu-id="c4ad4-143">Microsoft Azure (MS-AZR-0145P) előfizetés</span><span class="sxs-lookup"><span data-stu-id="c4ad4-143">Microsoft Azure (MS-AZR-0145P) subscription</span></span>
 
-<span data-ttu-id="c1643-148">A következő szintaxisok érvényesek, ha a számlázási szolgáltató Microsoft Azure (MS-AZR-0145P) előfizetéssel rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="c1643-148">The following syntaxes apply when the billing provider has a Microsoft Azure (MS-AZR-0145P) subscription.</span></span>
+<span data-ttu-id="c4ad4-144">Az alábbi szintaxisok akkor érvényesek, ha a számlázási szolgáltató Microsoft Azure (MS-AZR-0145P) előfizetéssel rendelkezik.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-144">The following syntaxes apply when the billing provider has a Microsoft Azure (MS-AZR-0145P) subscription.</span></span>
 
-| <span data-ttu-id="c1643-149">Metódus</span><span class="sxs-lookup"><span data-stu-id="c1643-149">Method</span></span>  | <span data-ttu-id="c1643-150">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="c1643-150">Request URI</span></span>                                                                                                                                                     |
+| <span data-ttu-id="c4ad4-145">Metódus</span><span class="sxs-lookup"><span data-stu-id="c4ad4-145">Method</span></span>  | <span data-ttu-id="c4ad4-146">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="c4ad4-146">Request URI</span></span>                                                                                                                                                     |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span data-ttu-id="c1643-151">**GET**</span><span class="sxs-lookup"><span data-stu-id="c1643-151">**GET**</span></span> | <span data-ttu-id="c1643-152">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? Provider = Azure&invoicelineitemtype = billinglineitems&méret = {size} &eltolás = {offset} http/1.1</span><span class="sxs-lookup"><span data-stu-id="c1643-152">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=azure&invoicelineitemtype=billinglineitems&size={size}&offset={offset} HTTP/1.1</span></span>  |
-| <span data-ttu-id="c1643-153">**GET**</span><span class="sxs-lookup"><span data-stu-id="c1643-153">**GET**</span></span> | <span data-ttu-id="c1643-154">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? Provider = Azure&invoicelineitemtype = usagelineitems&méret = {size} &eltolás = {offset} http/1.1</span><span class="sxs-lookup"><span data-stu-id="c1643-154">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=azure&invoicelineitemtype=usagelineitems&size={size}&offset={offset} HTTP/1.1</span></span>  |
+| <span data-ttu-id="c4ad4-147">**Kap**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-147">**GET**</span></span> | <span data-ttu-id="c4ad4-148">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=azure&invoicelineitemtype=billinglineitems&size={size}&offset={offset} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="c4ad4-148">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=azure&invoicelineitemtype=billinglineitems&size={size}&offset={offset} HTTP/1.1</span></span>  |
+| <span data-ttu-id="c4ad4-149">**Kap**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-149">**GET**</span></span> | <span data-ttu-id="c4ad4-150">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=azure&invoicelineitemtype=usagelineitems&size={size}&offset={offset} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="c4ad4-150">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=azure&invoicelineitemtype=usagelineitems&size={size}&offset={offset} HTTP/1.1</span></span>  |
 
-##### <a name="onetime"></a><span data-ttu-id="c1643-155">Elvégezni</span><span class="sxs-lookup"><span data-stu-id="c1643-155">OneTime</span></span>
+##### <a name="onetime"></a><span data-ttu-id="c4ad4-151">OneTime (Egyidő)</span><span class="sxs-lookup"><span data-stu-id="c4ad4-151">OneTime</span></span>
 
-<span data-ttu-id="c1643-156">A következő szintaxisok akkor érvényesek, ha a számlázási szolgáltató az **egykori**.</span><span class="sxs-lookup"><span data-stu-id="c1643-156">The following syntaxes apply when the billing provider is **OneTime**.</span></span> <span data-ttu-id="c1643-157">Ez magában foglalja az Azure-foglalások, a szoftverek, az Azure-csomagok és a kereskedelmi piactér-termékek díját.</span><span class="sxs-lookup"><span data-stu-id="c1643-157">This includes charges for Azure reservations, software, Azure plans, and commercial marketplace products.</span></span>
+<span data-ttu-id="c4ad4-152">Az alábbi szintaxisok akkor érvényesek, ha a számlázási szolgáltató **OneTime**.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-152">The following syntaxes apply when the billing provider is **OneTime**.</span></span> <span data-ttu-id="c4ad4-153">Ebbe beletartoznak az Azure Reservations, a szoftverek, az Azure-csomagok és a kereskedelmi piactéren elérhető termékek díjai.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-153">This includes charges for Azure reservations, software, Azure plans, and commercial marketplace products.</span></span>
 
-| <span data-ttu-id="c1643-158">Metódus</span><span class="sxs-lookup"><span data-stu-id="c1643-158">Method</span></span>  | <span data-ttu-id="c1643-159">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="c1643-159">Request URI</span></span>                                                                                                                                                     |
+| <span data-ttu-id="c4ad4-154">Metódus</span><span class="sxs-lookup"><span data-stu-id="c4ad4-154">Method</span></span>  | <span data-ttu-id="c4ad4-155">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="c4ad4-155">Request URI</span></span>                                                                                                                                                     |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span data-ttu-id="c1643-160">**GET**</span><span class="sxs-lookup"><span data-stu-id="c1643-160">**GET**</span></span> | <span data-ttu-id="c1643-161">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems? Provider = egykori&invoicelineitemtype = billinglineitems&méret = {size} http/1.1</span><span class="sxs-lookup"><span data-stu-id="c1643-161">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=billinglineitems&size={size} HTTP/1.1</span></span>  |
-| <span data-ttu-id="c1643-162">**GET**</span><span class="sxs-lookup"><span data-stu-id="c1643-162">**GET**</span></span> | <span data-ttu-id="c1643-163">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems/onetime/billinglineitems&mérete = {size}? SeekOperation = tovább</span><span class="sxs-lookup"><span data-stu-id="c1643-163">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems/onetime/billinglineitems&size={size}?seekOperation=Next</span></span>                           |
+| <span data-ttu-id="c4ad4-156">**Kap**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-156">**GET**</span></span> | <span data-ttu-id="c4ad4-157">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=billinglineitems&size={size} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="c4ad4-157">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=billinglineitems&size={size} HTTP/1.1</span></span>  |
+| <span data-ttu-id="c4ad4-158">**Kap**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-158">**GET**</span></span> | <span data-ttu-id="c4ad4-159">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító}/lineitems/onetime/billinglineitems&size={size}?seekOperation=Next</span><span class="sxs-lookup"><span data-stu-id="c4ad4-159">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems/onetime/billinglineitems&size={size}?seekOperation=Next</span></span>                           |
 
-#### <a name="previous-syntaxes"></a><span data-ttu-id="c1643-164">Korábbi szintaxisok</span><span class="sxs-lookup"><span data-stu-id="c1643-164">Previous syntaxes</span></span>
+#### <a name="previous-syntaxes"></a><span data-ttu-id="c4ad4-160">Korábbi szintaxisok</span><span class="sxs-lookup"><span data-stu-id="c4ad4-160">Previous syntaxes</span></span>
 
-<span data-ttu-id="c1643-165">Ha a következő szintaxist használja, ügyeljen arra, hogy a megfelelő szintaxist használja a használati esethez.</span><span class="sxs-lookup"><span data-stu-id="c1643-165">If you are using the following syntaxes, be sure to use the appropriate syntax for your use case.</span></span>
+<span data-ttu-id="c4ad4-161">Ha a következő szintaxisokat használja, mindenképpen a megfelelő szintaxist használja a saját esetének megfelelően.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-161">If you are using the following syntaxes, be sure to use the appropriate syntax for your use case.</span></span>
 
-<span data-ttu-id="c1643-166">*A hibajavítások kivételével ez az API már nem frissül.*</span><span class="sxs-lookup"><span data-stu-id="c1643-166">*Except for bug fixes, this API is no longer being updated.*</span></span> <span data-ttu-id="c1643-167">Frissítse alkalmazásait, hogy a **piactér** helyett az **egykori** API-t hívja meg.</span><span class="sxs-lookup"><span data-stu-id="c1643-167">You should update your applications to call the **onetime** API instead of **marketplace**.</span></span> <span data-ttu-id="c1643-168">Az **egykori** API további funkciókat biztosít, és továbbra is frissülni fog.</span><span class="sxs-lookup"><span data-stu-id="c1643-168">The **onetime** API provides additional functionality, and will continue to be updated.</span></span>
+<span data-ttu-id="c4ad4-162">*A hibajavítások kivételével ez az API már nem frissül.*</span><span class="sxs-lookup"><span data-stu-id="c4ad4-162">*Except for bug fixes, this API is no longer being updated.*</span></span> <span data-ttu-id="c4ad4-163">Frissítse az alkalmazásokat úgy, hogy a **Piactér** helyett az egyszer használható **API-t hívják meg.**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-163">You should update your applications to call the **onetime** API instead of **marketplace**.</span></span> <span data-ttu-id="c4ad4-164">Az **onetime** API további funkciókat biztosít, és továbbra is frissülni fog.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-164">The **onetime** API provides additional functionality, and will continue to be updated.</span></span>
 
-<span data-ttu-id="c1643-169">Az **egyszeri** verziót kell használnia a **piactér** helyett az összes kereskedelmi fogyasztási sor elem lekérdezéséhez.</span><span class="sxs-lookup"><span data-stu-id="c1643-169">You should use **onetime** to query all commercial consumption line items instead of **marketplace**.</span></span> <span data-ttu-id="c1643-170">A hivatkozásokat a becsült hivatkozások hívásban is követheti.</span><span class="sxs-lookup"><span data-stu-id="c1643-170">Or, you can follow the links in the estimate links call.</span></span>
+<span data-ttu-id="c4ad4-165">A piactér helyett **az egyidős használatával** lekérdezheti az összes kereskedelmi használatú **sorelemet.**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-165">You should use **onetime** to query all commercial consumption line items instead of **marketplace**.</span></span> <span data-ttu-id="c4ad4-166">Vagy kövesse a estimate links hívásban található hivatkozásokat.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-166">Or, you can follow the links in the estimate links call.</span></span>
 
-| <span data-ttu-id="c1643-171">Metódus</span><span class="sxs-lookup"><span data-stu-id="c1643-171">Method</span></span> | <span data-ttu-id="c1643-172">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="c1643-172">Request URI</span></span> | <span data-ttu-id="c1643-173">Szintaxis használati esetének leírása</span><span class="sxs-lookup"><span data-stu-id="c1643-173">Description of syntax use case</span></span> |
+| <span data-ttu-id="c4ad4-167">Metódus</span><span class="sxs-lookup"><span data-stu-id="c4ad4-167">Method</span></span> | <span data-ttu-id="c4ad4-168">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="c4ad4-168">Request URI</span></span> | <span data-ttu-id="c4ad4-169">Szintaxishasználati eset leírása</span><span class="sxs-lookup"><span data-stu-id="c4ad4-169">Description of syntax use case</span></span> |
 | ------ | ----------- | -------------------------------- |
-| <span data-ttu-id="c1643-174">GET</span><span class="sxs-lookup"><span data-stu-id="c1643-174">GET</span></span> | <span data-ttu-id="c1643-175">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems/{Billing-Provider}/{Invoice-line-Item-Type} http/1.1</span><span class="sxs-lookup"><span data-stu-id="c1643-175">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems/{billing-provider}/{invoice-line-item-type} HTTP/1.1</span></span>                              | <span data-ttu-id="c1643-176">Ezzel a szintaxissal teljes listát adhat vissza az adott számlához tartozó összes sor tételről.</span><span class="sxs-lookup"><span data-stu-id="c1643-176">You can use this syntax to return a full list of every line item for the given invoice.</span></span> |
-| <span data-ttu-id="c1643-177">GET</span><span class="sxs-lookup"><span data-stu-id="c1643-177">GET</span></span> | <span data-ttu-id="c1643-178">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems/{Billing-Provider}/{Invoice-line-Item-Type}? méret = {size} &eltolás = {ELTOLÁS} http/1.1</span><span class="sxs-lookup"><span data-stu-id="c1643-178">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems/{billing-provider}/{invoice-line-item-type}?size={size}&offset={offset} HTTP/1.1</span></span>  | <span data-ttu-id="c1643-179">Nagyméretű számlák esetén ezt a szintaxist egy megadott mérettel és 0 alapú eltolással használhatja a sorok lapozható listájának visszaadásához.</span><span class="sxs-lookup"><span data-stu-id="c1643-179">For large invoices, you can use this syntax with a specified size and 0-based offset to return a paged list of line items.</span></span> |
-| <span data-ttu-id="c1643-180">GET</span><span class="sxs-lookup"><span data-stu-id="c1643-180">GET</span></span> | <span data-ttu-id="c1643-181">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID}/lineitems/OneTime/{Invoice-line-Item-Type}? SeekOperation = Next</span><span class="sxs-lookup"><span data-stu-id="c1643-181">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems/OneTime/{invoice-line-item-type}?seekOperation=Next</span></span>                               | <span data-ttu-id="c1643-182">Ezt a szintaxist használhatja egy olyan számla számlázására, amely egy **egyszeri** számlázási szolgáltatói értékkel rendelkezik, és a **következőre** állítja be a **seekOperation** , hogy beolvassa a számla sorok következő oldalát.</span><span class="sxs-lookup"><span data-stu-id="c1643-182">You can use this syntax for an invoice with a billing-provider value of **OneTime** and set **seekOperation** to **Next** to get the next page of invoice line items.</span></span> |
+| <span data-ttu-id="c4ad4-170">GET</span><span class="sxs-lookup"><span data-stu-id="c4ad4-170">GET</span></span> | <span data-ttu-id="c4ad4-171">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító}/lineitems/{számlázási-szolgáltató}/{számlasor-elem-típus} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="c4ad4-171">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems/{billing-provider}/{invoice-line-item-type} HTTP/1.1</span></span>                              | <span data-ttu-id="c4ad4-172">Ezzel a szintaxissal az adott számla összes sorelemének teljes listáját használhatja.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-172">You can use this syntax to return a full list of every line item for the given invoice.</span></span> |
+| <span data-ttu-id="c4ad4-173">GET</span><span class="sxs-lookup"><span data-stu-id="c4ad4-173">GET</span></span> | <span data-ttu-id="c4ad4-174">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító}/lineitems/{számlázási-szolgáltató}/{számlasor-elem-típus}?size={méret}&offset={offset} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="c4ad4-174">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems/{billing-provider}/{invoice-line-item-type}?size={size}&offset={offset} HTTP/1.1</span></span>  | <span data-ttu-id="c4ad4-175">Nagy számlák esetén ezt a szintaxist használhatja a megadott mérettel és 0 alapú eltolással a sorelemek lapszámolt listájának visszaadására.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-175">For large invoices, you can use this syntax with a specified size and 0-based offset to return a paged list of line items.</span></span> |
+| <span data-ttu-id="c4ad4-176">GET</span><span class="sxs-lookup"><span data-stu-id="c4ad4-176">GET</span></span> | <span data-ttu-id="c4ad4-177">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító}/lineitems/OneTime/{számlasor-elem-típus}?seekOperation=Next</span><span class="sxs-lookup"><span data-stu-id="c4ad4-177">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems/OneTime/{invoice-line-item-type}?seekOperation=Next</span></span>                               | <span data-ttu-id="c4ad4-178">Ezt a szintaxist egy **OneTime** számlázási szolgáltatói értékkel tartozó számlához használhatja, és beállíthatja a **seekOperation** értékét **Tovább** értékre a számlasorelemek következő oldalának lekért értékével.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-178">You can use this syntax for an invoice with a billing-provider value of **OneTime** and set **seekOperation** to **Next** to get the next page of invoice line items.</span></span> |
 
-##### <a name="uri-parameters"></a><span data-ttu-id="c1643-183">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="c1643-183">URI parameters</span></span>
+##### <a name="uri-parameters"></a><span data-ttu-id="c4ad4-179">URI-paraméterek</span><span class="sxs-lookup"><span data-stu-id="c4ad4-179">URI parameters</span></span>
 
-<span data-ttu-id="c1643-184">A kérelem létrehozásakor használja az alábbi URI-és lekérdezési paramétereket.</span><span class="sxs-lookup"><span data-stu-id="c1643-184">Use the following URI and query parameters when creating the request.</span></span>
+<span data-ttu-id="c4ad4-180">A kérelem létrehozásakor használja a következő URI-t és lekérdezési paramétereket.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-180">Use the following URI and query parameters when creating the request.</span></span>
 
-| <span data-ttu-id="c1643-185">Név</span><span class="sxs-lookup"><span data-stu-id="c1643-185">Name</span></span>                   | <span data-ttu-id="c1643-186">Típus</span><span class="sxs-lookup"><span data-stu-id="c1643-186">Type</span></span>   | <span data-ttu-id="c1643-187">Kötelező</span><span class="sxs-lookup"><span data-stu-id="c1643-187">Required</span></span> | <span data-ttu-id="c1643-188">Leírás</span><span class="sxs-lookup"><span data-stu-id="c1643-188">Description</span></span>                                                       |
+| <span data-ttu-id="c4ad4-181">Név</span><span class="sxs-lookup"><span data-stu-id="c4ad4-181">Name</span></span>                   | <span data-ttu-id="c4ad4-182">Típus</span><span class="sxs-lookup"><span data-stu-id="c4ad4-182">Type</span></span>   | <span data-ttu-id="c4ad4-183">Kötelező</span><span class="sxs-lookup"><span data-stu-id="c4ad4-183">Required</span></span> | <span data-ttu-id="c4ad4-184">Leírás</span><span class="sxs-lookup"><span data-stu-id="c4ad4-184">Description</span></span>                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
-| <span data-ttu-id="c1643-189">számlázási azonosító</span><span class="sxs-lookup"><span data-stu-id="c1643-189">invoice-id</span></span>             | <span data-ttu-id="c1643-190">sztring</span><span class="sxs-lookup"><span data-stu-id="c1643-190">string</span></span> | <span data-ttu-id="c1643-191">Yes</span><span class="sxs-lookup"><span data-stu-id="c1643-191">Yes</span></span>      | <span data-ttu-id="c1643-192">A számlát azonosító karakterlánc.</span><span class="sxs-lookup"><span data-stu-id="c1643-192">A string that identifies the invoice.</span></span>                             |
-| <span data-ttu-id="c1643-193">számlázási szolgáltató</span><span class="sxs-lookup"><span data-stu-id="c1643-193">billing-provider</span></span>       | <span data-ttu-id="c1643-194">sztring</span><span class="sxs-lookup"><span data-stu-id="c1643-194">string</span></span> | <span data-ttu-id="c1643-195">Yes</span><span class="sxs-lookup"><span data-stu-id="c1643-195">Yes</span></span>      | <span data-ttu-id="c1643-196">A számlázási szolgáltató: "Office", "Azure", "egykori".</span><span class="sxs-lookup"><span data-stu-id="c1643-196">The billing provider: "Office", "Azure", "OneTime".</span></span> <span data-ttu-id="c1643-197">A korábbi verziókban külön adatmodellek vannak az Office & Azure-tranzakciók számára.</span><span class="sxs-lookup"><span data-stu-id="c1643-197">In the legacy, we have separate data models for Office & Azure transactions.</span></span> <span data-ttu-id="c1643-198">A modernnek azonban egyetlen adatmodellje van az összes tranzakcióban az "egykori" érték alapján szűrve.</span><span class="sxs-lookup"><span data-stu-id="c1643-198">However, the modern has one single data model across all transactions filtered through the "OneTime" value.</span></span>            |
-| <span data-ttu-id="c1643-199">számla-sor-tétel típusa</span><span class="sxs-lookup"><span data-stu-id="c1643-199">invoice-line-item-type</span></span> | <span data-ttu-id="c1643-200">sztring</span><span class="sxs-lookup"><span data-stu-id="c1643-200">string</span></span> | <span data-ttu-id="c1643-201">Yes</span><span class="sxs-lookup"><span data-stu-id="c1643-201">Yes</span></span>      | <span data-ttu-id="c1643-202">A számla részleteinek típusa: "BillingLineItems", "UsageLineItems".</span><span class="sxs-lookup"><span data-stu-id="c1643-202">The type of invoice detail: "BillingLineItems", "UsageLineItems".</span></span> |
-| <span data-ttu-id="c1643-203">size</span><span class="sxs-lookup"><span data-stu-id="c1643-203">size</span></span>                   | <span data-ttu-id="c1643-204">szám</span><span class="sxs-lookup"><span data-stu-id="c1643-204">number</span></span> | <span data-ttu-id="c1643-205">No</span><span class="sxs-lookup"><span data-stu-id="c1643-205">No</span></span>       | <span data-ttu-id="c1643-206">A visszaadni kívánt elemek maximális száma.</span><span class="sxs-lookup"><span data-stu-id="c1643-206">The maximum number of items to return.</span></span> <span data-ttu-id="c1643-207">Alapértelmezett maximális méret = 2000</span><span class="sxs-lookup"><span data-stu-id="c1643-207">Default max size = 2000</span></span>    |
-| <span data-ttu-id="c1643-208">offset</span><span class="sxs-lookup"><span data-stu-id="c1643-208">offset</span></span>                 | <span data-ttu-id="c1643-209">szám</span><span class="sxs-lookup"><span data-stu-id="c1643-209">number</span></span> | <span data-ttu-id="c1643-210">No</span><span class="sxs-lookup"><span data-stu-id="c1643-210">No</span></span>       | <span data-ttu-id="c1643-211">A visszaadni kívánt első sor nulla alapú indexe.</span><span class="sxs-lookup"><span data-stu-id="c1643-211">The zero-based index of the first line item to return.</span></span>            |
-| <span data-ttu-id="c1643-212">seekOperation</span><span class="sxs-lookup"><span data-stu-id="c1643-212">seekOperation</span></span>          | <span data-ttu-id="c1643-213">sztring</span><span class="sxs-lookup"><span data-stu-id="c1643-213">string</span></span> | <span data-ttu-id="c1643-214">No</span><span class="sxs-lookup"><span data-stu-id="c1643-214">No</span></span>       | <span data-ttu-id="c1643-215">Ha a **számlázási szolgáltató** az **egykorinál** egyenlő, állítsa a **SeekOperation** egyenlő értékre a **következővel** , hogy beolvassa a számla sorok következő oldalát.</span><span class="sxs-lookup"><span data-stu-id="c1643-215">If **billing-provider** equals **OneTime**, set **seekOperation** equal to **Next** to get the next page of invoice line items.</span></span> |
-| <span data-ttu-id="c1643-216">hasPartnerEarnedCredit</span><span class="sxs-lookup"><span data-stu-id="c1643-216">hasPartnerEarnedCredit</span></span> | <span data-ttu-id="c1643-217">logikai</span><span class="sxs-lookup"><span data-stu-id="c1643-217">bool</span></span> | <span data-ttu-id="c1643-218">No</span><span class="sxs-lookup"><span data-stu-id="c1643-218">No</span></span> | <span data-ttu-id="c1643-219">Az az érték, amely azt jelzi, hogy a rendszer visszaküldi-e a sorban lévő, partner által létrehozott jóváírást</span><span class="sxs-lookup"><span data-stu-id="c1643-219">The value indicating if to return the line items with partner earned credit applied.</span></span> <span data-ttu-id="c1643-220">Megjegyzés: ezt a paramétert csak akkor alkalmazza a rendszer, ha a számlázási szolgáltató típusa az egykori, a InvoiceLineItemType pedig UsageLineItems.</span><span class="sxs-lookup"><span data-stu-id="c1643-220">Note: this parameter will be only applied when billing provider type is OneTime and InvoiceLineItemType is UsageLineItems.</span></span> |
+| <span data-ttu-id="c4ad4-185">számlaazonosító</span><span class="sxs-lookup"><span data-stu-id="c4ad4-185">invoice-id</span></span>             | <span data-ttu-id="c4ad4-186">sztring</span><span class="sxs-lookup"><span data-stu-id="c4ad4-186">string</span></span> | <span data-ttu-id="c4ad4-187">Igen</span><span class="sxs-lookup"><span data-stu-id="c4ad4-187">Yes</span></span>      | <span data-ttu-id="c4ad4-188">A számlát azonosító sztring.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-188">A string that identifies the invoice.</span></span>                             |
+| <span data-ttu-id="c4ad4-189">számlázási szolgáltató</span><span class="sxs-lookup"><span data-stu-id="c4ad4-189">billing-provider</span></span>       | <span data-ttu-id="c4ad4-190">sztring</span><span class="sxs-lookup"><span data-stu-id="c4ad4-190">string</span></span> | <span data-ttu-id="c4ad4-191">Igen</span><span class="sxs-lookup"><span data-stu-id="c4ad4-191">Yes</span></span>      | <span data-ttu-id="c4ad4-192">A számlázási szolgáltató: "Office", "Azure", "OneTime".</span><span class="sxs-lookup"><span data-stu-id="c4ad4-192">The billing provider: "Office", "Azure", "OneTime".</span></span> <span data-ttu-id="c4ad4-193">A régi modellben az Azure-tranzakciókhoz külön adatmodellek Office & rendelkezésre.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-193">In the legacy, we have separate data models for Office & Azure transactions.</span></span> <span data-ttu-id="c4ad4-194">A modern azonban egyetlen adatmodellel rendelkezik az összes tranzakcióra a "OneTime" érték alapján szűrve.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-194">However, the modern has one single data model across all transactions filtered through the "OneTime" value.</span></span>            |
+| <span data-ttu-id="c4ad4-195">invoice-line-item-type</span><span class="sxs-lookup"><span data-stu-id="c4ad4-195">invoice-line-item-type</span></span> | <span data-ttu-id="c4ad4-196">sztring</span><span class="sxs-lookup"><span data-stu-id="c4ad4-196">string</span></span> | <span data-ttu-id="c4ad4-197">Igen</span><span class="sxs-lookup"><span data-stu-id="c4ad4-197">Yes</span></span>      | <span data-ttu-id="c4ad4-198">A számla részleteinek típusa: "BillingLineItems", "UsageLineItems".</span><span class="sxs-lookup"><span data-stu-id="c4ad4-198">The type of invoice detail: "BillingLineItems", "UsageLineItems".</span></span> |
+| <span data-ttu-id="c4ad4-199">size</span><span class="sxs-lookup"><span data-stu-id="c4ad4-199">size</span></span>                   | <span data-ttu-id="c4ad4-200">szám</span><span class="sxs-lookup"><span data-stu-id="c4ad4-200">number</span></span> | <span data-ttu-id="c4ad4-201">Nem</span><span class="sxs-lookup"><span data-stu-id="c4ad4-201">No</span></span>       | <span data-ttu-id="c4ad4-202">A visszaadott elemek maximális száma.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-202">The maximum number of items to return.</span></span> <span data-ttu-id="c4ad4-203">Alapértelmezett maximális méret = 2000</span><span class="sxs-lookup"><span data-stu-id="c4ad4-203">Default max size = 2000</span></span>    |
+| <span data-ttu-id="c4ad4-204">offset</span><span class="sxs-lookup"><span data-stu-id="c4ad4-204">offset</span></span>                 | <span data-ttu-id="c4ad4-205">szám</span><span class="sxs-lookup"><span data-stu-id="c4ad4-205">number</span></span> | <span data-ttu-id="c4ad4-206">Nem</span><span class="sxs-lookup"><span data-stu-id="c4ad4-206">No</span></span>       | <span data-ttu-id="c4ad4-207">Az első visszaadni kívánt sorelem nullaalapú indexe.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-207">The zero-based index of the first line item to return.</span></span>            |
+| <span data-ttu-id="c4ad4-208">seekOperation</span><span class="sxs-lookup"><span data-stu-id="c4ad4-208">seekOperation</span></span>          | <span data-ttu-id="c4ad4-209">sztring</span><span class="sxs-lookup"><span data-stu-id="c4ad4-209">string</span></span> | <span data-ttu-id="c4ad4-210">No</span><span class="sxs-lookup"><span data-stu-id="c4ad4-210">No</span></span>       | <span data-ttu-id="c4ad4-211">Ha **a számlázási szolgáltató** értéke **OneTime**, állítsa a **seekOperation** értékeként a **Tovább** elemet a számlasorelemek következő oldalának lekért értékhez.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-211">If **billing-provider** equals **OneTime**, set **seekOperation** equal to **Next** to get the next page of invoice line items.</span></span> |
+| <span data-ttu-id="c4ad4-212">hasPartnerEarnedCredit</span><span class="sxs-lookup"><span data-stu-id="c4ad4-212">hasPartnerEarnedCredit</span></span> | <span data-ttu-id="c4ad4-213">logikai</span><span class="sxs-lookup"><span data-stu-id="c4ad4-213">bool</span></span> | <span data-ttu-id="c4ad4-214">Nem</span><span class="sxs-lookup"><span data-stu-id="c4ad4-214">No</span></span> | <span data-ttu-id="c4ad4-215">Az érték, amely jelzi, hogy a partneri jóváírással kapott sorelemeket kell-e visszaadni.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-215">The value indicating if to return the line items with partner earned credit applied.</span></span> <span data-ttu-id="c4ad4-216">Megjegyzés: ez a paraméter csak akkor lesz alkalmazva, ha a számlázási szolgáltató típusa OneTime, az InvoiceLineItemType pedig UsageLineItems.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-216">Note: this parameter will be only applied when billing provider type is OneTime and InvoiceLineItemType is UsageLineItems.</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="c1643-221">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="c1643-221">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="c4ad4-217">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="c4ad4-217">Request headers</span></span>
 
-<span data-ttu-id="c1643-222">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="c1643-222">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="c4ad4-218">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="c4ad4-218">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="c1643-223">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="c1643-223">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="c4ad4-219">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="c4ad4-219">Request body</span></span>
 
-<span data-ttu-id="c1643-224">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="c1643-224">None.</span></span>
+<span data-ttu-id="c4ad4-220">Nincsenek.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-220">None.</span></span>
 
-## <a name="rest-response"></a><span data-ttu-id="c1643-225">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="c1643-225">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="c4ad4-221">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="c4ad4-221">REST response</span></span>
 
-<span data-ttu-id="c1643-226">Ha a művelet sikeres, a válasz tartalmazza a sor elem részleteinek gyűjteményét.</span><span class="sxs-lookup"><span data-stu-id="c1643-226">If successful, the response contains the collection of line item details.</span></span>
+<span data-ttu-id="c4ad4-222">Ha ez sikeres, a válasz sorelem-részletek gyűjteményét tartalmazza.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-222">If successful, the response contains the collection of line item details.</span></span>
 
-<span data-ttu-id="c1643-227">*A sor **ChargeType** a **megvásárolt** érték az **új** elemre van leképezve. Az érték- **visszatérítés** a **megszakításra** van leképezve.*</span><span class="sxs-lookup"><span data-stu-id="c1643-227">*For the line item **ChargeType**, the value **Purchase** is mapped to **New**. The value **Refund** is mapped to **Cancel**.*</span></span>
+<span data-ttu-id="c4ad4-223">*A **ChargeType** sorelem esetében a **Purchase** érték az Új értékre van **leképezve.** A **Refund (Visszatérítés)** érték a Cancel (Lemondás) **értékre van leképezve.***</span><span class="sxs-lookup"><span data-stu-id="c4ad4-223">*For the line item **ChargeType**, the value **Purchase** is mapped to **New**. The value **Refund** is mapped to **Cancel**.*</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="c1643-228">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="c1643-228">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="c4ad4-224">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="c4ad4-224">Response success and error codes</span></span>
 
-<span data-ttu-id="c1643-229">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="c1643-229">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="c1643-230">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="c1643-230">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="c1643-231">A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.</span><span class="sxs-lookup"><span data-stu-id="c1643-231">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
+<span data-ttu-id="c4ad4-225">Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-225">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="c4ad4-226">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-226">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="c4ad4-227">A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="c4ad4-227">For the full list, see [Partner Center REST error codes](error-codes.md).</span></span>
 
-### <a name="rest-request-response-examples"></a><span data-ttu-id="c1643-232">REST-kérelem – válasz példák</span><span class="sxs-lookup"><span data-stu-id="c1643-232">REST request-response examples</span></span>
+### <a name="rest-request-response-examples"></a><span data-ttu-id="c4ad4-228">REST-kérés-válasz példák</span><span class="sxs-lookup"><span data-stu-id="c4ad4-228">REST request-response examples</span></span>
 
-### <a name="request-response-example-1"></a><span data-ttu-id="c1643-233">Kérelem – válasz 1. példa</span><span class="sxs-lookup"><span data-stu-id="c1643-233">Request-response example 1</span></span>
+### <a name="request-response-example-1"></a><span data-ttu-id="c4ad4-229">1. kérelem-válasz példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-229">Request-response example 1</span></span>
 
-<span data-ttu-id="c1643-234">Ebben a példában a részletek a következők:</span><span class="sxs-lookup"><span data-stu-id="c1643-234">In this example, the details are as follows:</span></span>
+<span data-ttu-id="c4ad4-230">Ebben a példában a részletek a következők:</span><span class="sxs-lookup"><span data-stu-id="c4ad4-230">In this example, the details are as follows:</span></span>
 
-- <span data-ttu-id="c1643-235">**BillingProvider**: **iroda**</span><span class="sxs-lookup"><span data-stu-id="c1643-235">**BillingProvider**: **Office**</span></span>
-- <span data-ttu-id="c1643-236">**InvoiceLineItemType**: **BillingLineItems**</span><span class="sxs-lookup"><span data-stu-id="c1643-236">**InvoiceLineItemType**: **BillingLineItems**</span></span>
+- <span data-ttu-id="c4ad4-231">**BillingProvider**: **Office**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-231">**BillingProvider**: **Office**</span></span>
+- <span data-ttu-id="c4ad4-232">**InvoiceLineItemType:** **BillingLineItems**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-232">**InvoiceLineItemType**: **BillingLineItems**</span></span>
 
-#### <a name="request-example-1"></a><span data-ttu-id="c1643-237">1. példa kérés</span><span class="sxs-lookup"><span data-stu-id="c1643-237">Request example 1</span></span>
+#### <a name="request-example-1"></a><span data-ttu-id="c4ad4-233">1. kérési példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-233">Request example 1</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/1234000000/lineitems?provider=Office&nvoicelineitemtype=BillingLineItems&size=2&offset=0 HTTP/1.1
@@ -205,7 +200,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-1"></a><span data-ttu-id="c1643-238">1. válasz – példa</span><span class="sxs-lookup"><span data-stu-id="c1643-238">Response example 1</span></span>
+#### <a name="response-example-1"></a><span data-ttu-id="c4ad4-234">1. válasz példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-234">Response example 1</span></span>
 
 ```http
 HTTP/1.1 200 OK
@@ -307,14 +302,14 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 }
 ```
 
-### <a name="request-response-example-2"></a><span data-ttu-id="c1643-239">Kérelem – válasz 2. példa</span><span class="sxs-lookup"><span data-stu-id="c1643-239">Request-response example 2</span></span>
+### <a name="request-response-example-2"></a><span data-ttu-id="c4ad4-235">2. kérés-válasz példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-235">Request-response example 2</span></span>
 
-<span data-ttu-id="c1643-240">A következő példában a részletek a következők:</span><span class="sxs-lookup"><span data-stu-id="c1643-240">In the following example, the details are as follows:</span></span>
+<span data-ttu-id="c4ad4-236">A következő példában a részletek a következők:</span><span class="sxs-lookup"><span data-stu-id="c4ad4-236">In the following example, the details are as follows:</span></span>
 
-- <span data-ttu-id="c1643-241">**BillingProvider**: **Azure**</span><span class="sxs-lookup"><span data-stu-id="c1643-241">**BillingProvider**: **Azure**</span></span>
-- <span data-ttu-id="c1643-242">**InvoiceLineItemType**: **BillingLineItems**</span><span class="sxs-lookup"><span data-stu-id="c1643-242">**InvoiceLineItemType**: **BillingLineItems**</span></span>
+- <span data-ttu-id="c4ad4-237">**BillingProvider:** **Azure**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-237">**BillingProvider**: **Azure**</span></span>
+- <span data-ttu-id="c4ad4-238">**InvoiceLineItemType:** **BillingLineItems**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-238">**InvoiceLineItemType**: **BillingLineItems**</span></span>
 
-#### <a name="request-example-2"></a><span data-ttu-id="c1643-243">2. példa a kérelemre</span><span class="sxs-lookup"><span data-stu-id="c1643-243">Request example 2</span></span>
+#### <a name="request-example-2"></a><span data-ttu-id="c4ad4-239">2. kérési példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-239">Request example 2</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/1234000000/lineitems?provider=Azure&invoicelineitemtype=BillingLineItems&size=2&offset=0 HTTP/1.1
@@ -327,7 +322,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-2"></a><span data-ttu-id="c1643-244">2. válasz – példa</span><span class="sxs-lookup"><span data-stu-id="c1643-244">Response example 2</span></span>
+#### <a name="response-example-2"></a><span data-ttu-id="c4ad4-240">2. válasz példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-240">Response example 2</span></span>
 
 ```http
 HTTP/1.1 200 OK
@@ -445,14 +440,14 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 }
 ```
 
-### <a name="request-response-example-3"></a><span data-ttu-id="c1643-245">Kérelem – válasz 3. példa</span><span class="sxs-lookup"><span data-stu-id="c1643-245">Request-response example 3</span></span>
+### <a name="request-response-example-3"></a><span data-ttu-id="c4ad4-241">3. kérés-válasz példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-241">Request-response example 3</span></span>
 
-<span data-ttu-id="c1643-246">A következő példában a részletek a következők:</span><span class="sxs-lookup"><span data-stu-id="c1643-246">In the following example, the details are as follows:</span></span>
+<span data-ttu-id="c4ad4-242">A következő példában a részletek a következők:</span><span class="sxs-lookup"><span data-stu-id="c4ad4-242">In the following example, the details are as follows:</span></span>
 
-- <span data-ttu-id="c1643-247">**BillingProvider**: **Azure**</span><span class="sxs-lookup"><span data-stu-id="c1643-247">**BillingProvider**: **Azure**</span></span>
-- <span data-ttu-id="c1643-248">**InvoiceLineItemType**: **UsageLineItems**</span><span class="sxs-lookup"><span data-stu-id="c1643-248">**InvoiceLineItemType**: **UsageLineItems**</span></span>
+- <span data-ttu-id="c4ad4-243">**BillingProvider:** **Azure**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-243">**BillingProvider**: **Azure**</span></span>
+- <span data-ttu-id="c4ad4-244">**InvoiceLineItemType:** **UsageLineItems**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-244">**InvoiceLineItemType**: **UsageLineItems**</span></span>
 
-#### <a name="request-example-3"></a><span data-ttu-id="c1643-249">3. példa a kérelemre</span><span class="sxs-lookup"><span data-stu-id="c1643-249">Request example 3</span></span>
+#### <a name="request-example-3"></a><span data-ttu-id="c4ad4-245">3. kérési példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-245">Request example 3</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/1234000000/lineitems?provider=Azure&invoicelineitemtype=UsageLineItems&size=2&offset=0 HTTP/1.1
@@ -465,7 +460,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-3"></a><span data-ttu-id="c1643-250">3. válasz – példa</span><span class="sxs-lookup"><span data-stu-id="c1643-250">Response example 3</span></span>
+#### <a name="response-example-3"></a><span data-ttu-id="c4ad4-246">3. válasz példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-246">Response example 3</span></span>
 
 ```http
 HTTP/1.1 200 OK
@@ -563,14 +558,14 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 }
 ```
 
-### <a name="request-response-example-4"></a><span data-ttu-id="c1643-251">Kérelem – válasz 4. példa</span><span class="sxs-lookup"><span data-stu-id="c1643-251">Request-response example 4</span></span>
+### <a name="request-response-example-4"></a><span data-ttu-id="c4ad4-247">4. kérés-válasz példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-247">Request-response example 4</span></span>
 
-<span data-ttu-id="c1643-252">A következő példában a részletek a következők:</span><span class="sxs-lookup"><span data-stu-id="c1643-252">In the following example, the details are as follows:</span></span>
+<span data-ttu-id="c4ad4-248">A következő példában a részletek a következők:</span><span class="sxs-lookup"><span data-stu-id="c4ad4-248">In the following example, the details are as follows:</span></span>
 
-- <span data-ttu-id="c1643-253">**BillingProvider**: **egykori**</span><span class="sxs-lookup"><span data-stu-id="c1643-253">**BillingProvider**: **OneTime**</span></span>
-- <span data-ttu-id="c1643-254">**InvoiceLineItemType**: **BillingLineItems**</span><span class="sxs-lookup"><span data-stu-id="c1643-254">**InvoiceLineItemType**: **BillingLineItems**</span></span>
+- <span data-ttu-id="c4ad4-249">**BillingProvider:** **OneTime**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-249">**BillingProvider**: **OneTime**</span></span>
+- <span data-ttu-id="c4ad4-250">**InvoiceLineItemType:** **BillingLineItems**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-250">**InvoiceLineItemType**: **BillingLineItems**</span></span>
 
-#### <a name="request-example-4"></a><span data-ttu-id="c1643-255">4. példa kérése</span><span class="sxs-lookup"><span data-stu-id="c1643-255">Request example 4</span></span>
+#### <a name="request-example-4"></a><span data-ttu-id="c4ad4-251">4. kérési példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-251">Request example 4</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/G000024135/lineitems/OneTime/BillingLineItems?size=2&offset=0 HTTP/1.1
@@ -583,7 +578,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-4"></a><span data-ttu-id="c1643-256">4. válasz – példa</span><span class="sxs-lookup"><span data-stu-id="c1643-256">Response example 4</span></span>
+#### <a name="response-example-4"></a><span data-ttu-id="c4ad4-252">4. válasz példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-252">Response example 4</span></span>
 
 ```http
 HTTP/1.1 200 OK
@@ -597,111 +592,179 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 
  {
     "continuationToken": "d19617b8-fbe5-4684-a5d8-0230972fb0cf,0705c4a9-39f7-4261-ba6d-53e24a9ce47d_a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=,0d81c700-98b4-4b13-9129-ffd5620f72e7",
-    "totalCount": 2,
+    {
+    {
+    "totalCount": 3,
     "items": [
         {
-            "partnerId": "6480d686-cfb4-424d-a945-6b9b9f000000",
-            "customerId": "org:9060d13d-c5ed-482e-b059-a15a38000000",
-            "customerName": "recipientCustomerName",
-            "customerDomainName": "recipientCustomerDomain",
-            "invoiceNumber": "1234000000",
-            "quoteId": "abcd12345678",
-            "mpnId": "4870137",
-            "resellerMpnId": 0,
-            "orderId": "QDOx5ZN3YR9uYhm4M1MGQJ_0nievUOrx1",
-            "orderDate": "2018-02-08T22:31:42.9397946Z",
-            "productId": "productid",
-            "skuId": "skuid",
-            "availabilityId": "availabilityid",
-            "productName": "TEST PRODUCT",
-            "skuName": "TEST SKU TITLE",
-            "chargeType": "New",
-            "unitPrice": 431.8,
-            "effectiveUnitPrice": 496.07,
-            "unitType": "Seats",
-            "quantity": 1,
-            "subtotal": 431.8,
-            "taxTotal": 38.87,
-            "totalForCustomer": 470.67,
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "c139c4bf-2e8b-4ab5-8bed-d9f50dcca7a2",
+            "customerName": "Test_Test_Office R2 Reduce Seats Validation",
+            "customerDomainName": "testcustomerr2t2reduce.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "G000773581",
+            "mpnId": "5357564",
+            "resellerMpnId": "4649221",
+            "orderId": "94e858b6d855",
+            "orderDate": "2021-05-20T18:30:06.6045692Z",
+            "productId": "CFQ7TTC0LH0R",
+            "skuId": "0002",
+            "availabilityId": "CFQ7TTC0K5RQ",
+            "productName": "Microsoft 365 Phone System - Virtual User",
+            "skuName": "Microsoft 365 Phone System - Virtual User",
+            "productQualifiers": [
+                "AddOn",
+                "Trial"
+            ],
+            "chargeType": "new",
+            "unitPrice": "0",
+            "effectiveUnitPrice": "0",
+            "unitType": "",
+            "quantity": "25",
+            "subtotal": "0",
+            "taxTotal": "0",
+            "totalForCustomer": "0",
             "currency": "USD",
-            "providerName": "Test Networks Inc",
-            "providerId": "12343810",
+            "publisherName": "Microsoft Corporation",
+            "publisherId": "",
             "subscriptionDescription": "",
-            "subscriptionId": "281e26fe-9ce7-415b-911c-f39232000000",
-            "subscriptionStartDate": "2019-01-03T19:53:55.1292512+00:00",
-            "subscriptionEndDate": "2019-02-02T19:53:55.1292512+00:00",
-            "termAndBillingCycle": "1 Month Subscription",
-            "alternateId": "1234278124b8",
-            "priceAdjustmentDescription": "[\"100.0% Tier 1 Discount\"]",
-            "creditReasonCode": "Azure Consumption Credit",
+            "subscriptionId": "86646af9-e80a-4aa0-da80-3fd2b792c2cc",
+            "subscriptionStartDate": "2021-05-20T00:00:00Z",
+            "subscriptionEndDate": "2021-06-19T00:00:00Z",
+            "chargeStartDate": "2021-05-20T00:00:00Z",
+            "chargeEndDate": "2021-06-19T00:00:00Z",
+            "termAndBillingCycle": "One-Month commitment for trial",
+            "alternateId": "94e858b6d855",
+            "referenceId": "0cf1202a-5b7d-4219-966e-93c637113708",
+            "priceAdjustmentDescription": "",
+            "discountDetails": "",
             "pricingCurrency": "USD",
-            "pcToBCExchangeRate": 1,
-            "pcToBCExchangeRateDate": "2019-09-30T23:59:59Z",
-            "billableQuantity": 0.0159369774,
-            "meterDescription": "Bandwidth - Data Transfer In (GB) - Zone 2",
-            "billingFrequency": "Monthly",
-            "reservationOrderId": "883d475b-0000-2222-0000-8818752f1234",
+            "pcToBCExchangeRate": "1",
+            "pcToBCExchangeRateDate": "2021-05-01T00:00:00",
+            "billableQuantity": "25",
+            "meterDescription": "",
+            "billingFrequency": "",
+            "reservationOrderId": "99f246cf-ed96-41b4-b0cd-0aa43eb1fe91",
             "invoiceLineItemType": "billing_line_items",
             "billingProvider": "one_time",
+            "promotionId": "",
+            "attributes": {
+                "objectType": "OneTimeInvoiceLineItem"
+            }
+            
+        },
+        {
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "835a59a7-3172-47b5-bdef-d9cc65f4d0e4",
+            "customerName": "TEST_TEST Test Promotions 01",
+            "customerDomainName": "kyletestpromos01.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "G000773581",
+            "mpnId": "5357564",
+            "resellerMpnId": "0",
+            "orderId": "5f9d52bb1408",
+            "orderDate": "2021-05-20T18:48:30.6168285Z",
+            "productId": "CFQ7TTC0HL8W",
+            "skuId": "0001",
+            "availabilityId": "CFQ7TTC0K59S",
+            "productName": "Power BI Premium Per User",
+            "skuName": "Power BI Premium Per User",
+            "productQualifiers": [],
+            "chargeType": "new",
+            "unitPrice": "16",
+            "effectiveUnitPrice": "14.4",
+            "unitType": "",
+            "quantity": "50",
+            "subtotal": "720",
+            "taxTotal": "73",
+            "totalForCustomer": "793",
+            "currency": "USD",
+            "publisherName": "Microsoft Corporation",
+            "publisherId": "",
+            "subscriptionDescription": "",
+            "subscriptionId": "9d7d1f3d-c8de-461c-db6d-91debd5129f0",
+            "subscriptionStartDate": "2021-05-20T00:00:00Z",
+            "subscriptionEndDate": "2022-05-19T00:00:00Z",
+            "chargeStartDate": "2021-05-20T00:00:00Z",
+            "chargeEndDate": "2021-06-19T00:00:00Z",
+            "termAndBillingCycle": "One-Year commitment for monthly/yearly billing",
+            "alternateId": "5f9d52bb1408",
+            "referenceId": "28b535e0-68f4-40b5-84f7-8ed9241eb149",
+            "priceAdjustmentDescription": "[\"Price for given billing period\",\"You are getting a discount due to a pre-determined override.\",\"You are getting a discount for being a partner.\",\"You are getting a price guarantee for your price.\",\"Price for given term\"]",
+            "discountDetails": "",
+            "pricingCurrency": "USD",
+            "pcToBCExchangeRate": "1",
+            "pcToBCExchangeRateDate": "2021-05-01T00:00:00",
+            "billableQuantity": "50",
+            "meterDescription": "",
+            "billingFrequency": "Monthly",
+            "reservationOrderId": "8fdebb4a-7110-496e-9570-623e4c992797",
+            "invoiceLineItemType": "billing_line_items",
+            "billingProvider": "one_time",
+            "promotionId": "78bcf906-b945-4210-8818-cfb93caf12a1",
+            "attributes/objectType": "OneTimeInvoiceLineItem",
             "attributes": {
                 "objectType": "OneTimeInvoiceLineItem"
             }
         },
         {
-            "partnerId": "6480d686-cfb4-424d-a945-6b9b9f4badc2",
-            "customerId": "org:9060d13d-c5ed-482e-b059-a15a38cbb28e",
-            "customerName": "recipientCustomerName",
-            "customerDomainName": "recipientCustomerDomain",
-            "invoiceNumber": "1234000000",
-            "quoteId": "abcd12345678",
-            "mpnId": "4870137",
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "c139c4bf-2e8b-4ab5-8bed-d9f50dcca7a2",
+            "customerName": "Test_Test_Office R2 Reduce Seats Validation",
+            "customerDomainName": "testcustomerr2t2reduce.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "T000773581",
+            "mpnId": "1234567",
             "resellerMpnId": 0,
-            "orderId": "QDOx5ZN3YR9uYhm4M1MGQJ_0nievUOrx1",
-            "orderDate": "2018-02-08T22:31:42.9397946Z",
-            "productId": "productid",
-            "skuId": "skuid",
-            "availabilityId": "availabilityid",
-            "productName": "TEST PRODUCT",
-            "skuName": "TEST SKU TITLE",
+            "orderId": "HJVtMZMkgQ2miuCiNv0RSr51zQDans0m1",
+            "orderDate": "2019-02-04T17:59:52.9460102Z",
+            "productId": "DZH318Z0BXWC",
+            "skuId": "0002",
+            "availabilityId": "DZH318Z0BP8B",
+            "productName": "Test WAF-as-a-Service",
+            "skuName": "Test WaaS - Medium Plan",
             "chargeType": "New",
-            "unitPrice": 26.35,
-            "effectiveUnitPrice": 496.07,
-            "unitType": "1 Hour",
+            "unitPrice": 820,
+            "effectiveUnitPrice": 820,
+            "unitType": "",
             "quantity": 1,
-            "subtotal": 26.35,
-            "taxTotal": 2.37,
-            "totalForCustomer": 28.72,
+            "subtotal": 820,
+            "taxTotal": 0,
+            "totalForCustomer": 0,
             "currency": "USD",
-            "providerName": "Test Networks Inc",
-            "providerId": "12343810",
+            "publisherName": "Test Networks, Inc.",
+            "publisherId": "21223810",
             "subscriptionDescription": "",
-            "subscriptionId": "281e26fe-9ce7-415b-911c-f39232ea904a",
-            "subscriptionStartDate": "2019-01-03T19:53:55.1292512+00:00",
-            "subscriptionEndDate": "2019-02-02T19:53:55.1292512+00:00",
-            "termAndBillingCycle": "1 Month Subscription",
-            "alternateId": "1234578124b8",
-            "priceAdjustmentDescription": "[\"100.0% Tier 1 Discount\"]",
+            "subscriptionId": "12345678-9cf0-4a1f-9514-7fcc7fe9d1fe",
+            "subscriptionStartDate": "2019-02-01T00:00:00Z",
+            "subscriptionEndDate": "2020-01-31T00:00:00Z",
+            "chargeStartDate": "2019-02-04T09:22:40.1767993-08:00",
+            "chargeEndDate": "2019-03-03T09:22:40.1767993-08:00",
+            "termAndBillingCycle": "1 Year Subscription",
+            "alternateId": "123456ad566",
+            "priceAdjustmentDescription": "[\"15.0% Partner earned credit for services managed\"]",
+            "discountDetails": "",
             "pricingCurrency": "USD",
             "pcToBCExchangeRate": 1,
-            "pcToBCExchangeRateDate": "2019-09-30T23:59:59Z",
-            "billableQuantity": 0.0130687981,
+            "pcToBCExchangeRateDate": "2019-08-01T00:00:00Z",
+            "billableQuantity": 3.1618,
             "meterDescription": "Bandwidth - Data Transfer In (GB) - Zone 2",
-            "reservationOrderId": "",
-            "invoiceLineItemType": "billing_line_items",
-            "billingProvider": "one_time",
+            "reservationOrderId": "883d475b-0000-1234-0000-8818752f1234",
             "attributes": {
                 "objectType": "OneTimeInvoiceLineItem"
             }
         }
+    ]
+}
     ],
     "links": {
         "self": {
-            "uri": "/invoices/G000024135/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2",
+            "uri": "/invoices/G000773581/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2",
             "method": "GET",
             "headers": []
         },
         "next": {
-            "uri": "/invoices/G000024135/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2?seekOperation=Next",
+            "uri": "/invoices/G000773581/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2?seekOperation=Next",
             "method": "GET",
             "headers": [
                 {
@@ -717,15 +780,15 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 }
 ```
 
-### <a name="request-response-example-5"></a><span data-ttu-id="c1643-257">Kérelem – válasz 5. példa</span><span class="sxs-lookup"><span data-stu-id="c1643-257">Request-response example 5</span></span>
+### <a name="request-response-example-5"></a><span data-ttu-id="c4ad4-253">5. kérelem-válasz példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-253">Request-response example 5</span></span>
 
-<span data-ttu-id="c1643-258">A következő példában egy folytatási tokent használó lapozás található.</span><span class="sxs-lookup"><span data-stu-id="c1643-258">In the following example, there is paging using a continuation token.</span></span> <span data-ttu-id="c1643-259">A részletek a következők:</span><span class="sxs-lookup"><span data-stu-id="c1643-259">The details are as follows:</span></span>
+<span data-ttu-id="c4ad4-254">A következő példában egy folytatási token használatával lapozunk.</span><span class="sxs-lookup"><span data-stu-id="c4ad4-254">In the following example, there is paging using a continuation token.</span></span> <span data-ttu-id="c4ad4-255">A részletek a következők:</span><span class="sxs-lookup"><span data-stu-id="c4ad4-255">The details are as follows:</span></span>
 
-- <span data-ttu-id="c1643-260">**BillingProvider**: **egykori**</span><span class="sxs-lookup"><span data-stu-id="c1643-260">**BillingProvider**: **OneTime**</span></span>
-- <span data-ttu-id="c1643-261">**InvoiceLineItemType**: **BillingLineItems**</span><span class="sxs-lookup"><span data-stu-id="c1643-261">**InvoiceLineItemType**: **BillingLineItems**</span></span>
-- <span data-ttu-id="c1643-262">**SeekOperation**: **következő**</span><span class="sxs-lookup"><span data-stu-id="c1643-262">**SeekOperation**: **Next**</span></span>
+- <span data-ttu-id="c4ad4-256">**BillingProvider:** **OneTime**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-256">**BillingProvider**: **OneTime**</span></span>
+- <span data-ttu-id="c4ad4-257">**InvoiceLineItemType:** **BillingLineItems**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-257">**InvoiceLineItemType**: **BillingLineItems**</span></span>
+- <span data-ttu-id="c4ad4-258">**SeekOperation:** **Tovább**</span><span class="sxs-lookup"><span data-stu-id="c4ad4-258">**SeekOperation**: **Next**</span></span>
 
-#### <a name="request-example-5"></a><span data-ttu-id="c1643-263">5. példa kérés</span><span class="sxs-lookup"><span data-stu-id="c1643-263">Request example 5</span></span>
+#### <a name="request-example-5"></a><span data-ttu-id="c4ad4-259">5. példa kérése</span><span class="sxs-lookup"><span data-stu-id="c4ad4-259">Request example 5</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/G000024135/lineitems/OneTime/BillingLineItems?seekOperation=Next HTTP/1.1
@@ -739,7 +802,7 @@ MS-PartnerCenter-Application: Partner Center .NET SDK Samples
 Host: api.partnercenter.microsoft.com
 ```
 
-#### <a name="response-example-5"></a><span data-ttu-id="c1643-264">5. válasz – példa</span><span class="sxs-lookup"><span data-stu-id="c1643-264">Response example 5</span></span>
+#### <a name="response-example-5"></a><span data-ttu-id="c4ad4-260">5. válasz példa</span><span class="sxs-lookup"><span data-stu-id="c4ad4-260">Response example 5</span></span>
 
 ```http
 HTTP/1.1 200 OK
@@ -752,59 +815,174 @@ MS-ServerId: 202010406
 Date: Thu, 07 Sep 2017 23:31:09 GMT
 
 {
-    "totalCount": 1,
+    {
+    {
+    "totalCount": 3,
     "items": [
         {
-            "partnerId": "6480d686-cfb4-424d-a945-6b9b9f000000",
-            "customerId": "org:9060d13d-c5ed-482e-b059-a15a38000000",
-            "customerName": "recipientCustomerName",
-            "customerDomainName": "recipientCustomerDomain",
-            "invoiceNumber": "1234000000",
-            "quoteId": "abcd12345678",
-            "mpnId": "4870137",
-            "resellerMpnId": 0,
-            "orderId": "NeqT31Kziwf8gkCXM9YQToWTqU-9Jbm81",
-            "orderDate": "2018-02-08T22:31:47.1751688Z",
-            "productId": "DZH318Z0BQ3P",
-            "skuId": "001F",
-            "availabilityId": "DZH318Z0DR0H",
-            "productName": "Reserved VM Instance, Standard_D1, AP East, 3 years",
-            "skuName": "D Series",
-            "chargeType": "New",
-            "unitPrice": 1447,
-            "effectiveUnitPrice": 496.07,
-            "unitType": "Seats",
-            "quantity": 1,
-            "subtotal": 1447,
-            "taxTotal": 130.24,
-            "totalForCustomer": 1577.24,
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "c139c4bf-2e8b-4ab5-8bed-d9f50dcca7a2",
+            "customerName": "Test_Test_Office R2 Reduce Seats Validation",
+            "customerDomainName": "testcustomerr2t2reduce.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "G000773581",
+            "mpnId": "5357564",
+            "resellerMpnId": "4649221",
+            "orderId": "94e858b6d855",
+            "orderDate": "2021-05-20T18:30:06.6045692Z",
+            "productId": "CFQ7TTC0LH0R",
+            "skuId": "0002",
+            "availabilityId": "CFQ7TTC0K5RQ",
+            "productName": "Microsoft 365 Phone System - Virtual User",
+            "skuName": "Microsoft 365 Phone System - Virtual User",
+            "productQualifiers": [
+                "AddOn",
+                "Trial"
+            ],
+            "chargeType": "new",
+            "unitPrice": "0",
+            "effectiveUnitPrice": "0",
+            "unitType": "",
+            "quantity": "25",
+            "subtotal": "0",
+            "taxTotal": "0",
+            "totalForCustomer": "0",
             "currency": "USD",
-            "providerName": "Test Networks Inc",
-            "providerId": "12343810",
+            "publisherName": "Microsoft Corporation",
+            "publisherId": "",
             "subscriptionDescription": "",
-            "subscriptionId": "281e26fe-9ce7-415b-911c-f39232000000",
-            "subscriptionStartDate": "2019-01-03T19:53:55.1292512+00:00",
-            "subscriptionEndDate": "2019-02-02T19:53:55.1292512+00:00",
-            "termAndBillingCycle": "1 Month Subscription",
-            "alternateId": "1234568124b8",
+            "subscriptionId": "86646af9-e80a-4aa0-da80-3fd2b792c2cc",
+            "subscriptionStartDate": "2021-05-20T00:00:00Z",
+            "subscriptionEndDate": "2021-06-19T00:00:00Z",
+            "chargeStartDate": "2021-05-20T00:00:00Z",
+            "chargeEndDate": "2021-06-19T00:00:00Z",
+            "termAndBillingCycle": "One-Month commitment for trial",
+            "alternateId": "94e858b6d855",
+            "referenceId": "0cf1202a-5b7d-4219-966e-93c637113708",
             "priceAdjustmentDescription": "",
+            "discountDetails": "",
             "pricingCurrency": "USD",
-            "pcToBCExchangeRate": 1,
-            "pcToBCExchangeRateDate": "2019-09-30T23:59:59Z",
-            "billableQuantity": 0.0130687981,
-            "meterDescription": "Bandwidth - Data Transfer In (GB) - Zone 2",
-            "reservationOrderId": "",
-            "billingFrequency": "Monthly",
+            "pcToBCExchangeRate": "1",
+            "pcToBCExchangeRateDate": "2021-05-01T00:00:00",
+            "billableQuantity": "25",
+            "meterDescription": "",
+            "billingFrequency": "",
+            "reservationOrderId": "99f246cf-ed96-41b4-b0cd-0aa43eb1fe91",
             "invoiceLineItemType": "billing_line_items",
             "billingProvider": "one_time",
+            "promotionId": "",
+            "attributes": {
+                "objectType": "OneTimeInvoiceLineItem"
+            }
+            
+        },
+        {
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "835a59a7-3172-47b5-bdef-d9cc65f4d0e4",
+            "customerName": "TEST_TEST Test Promotions 01",
+            "customerDomainName": "kyletestpromos01.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "G000773581",
+            "mpnId": "5357564",
+            "resellerMpnId": "0",
+            "orderId": "5f9d52bb1408",
+            "orderDate": "2021-05-20T18:48:30.6168285Z",
+            "productId": "CFQ7TTC0HL8W",
+            "skuId": "0001",
+            "availabilityId": "CFQ7TTC0K59S",
+            "productName": "Power BI Premium Per User",
+            "skuName": "Power BI Premium Per User",
+            "productQualifiers": [],
+            "chargeType": "new",
+            "unitPrice": "16",
+            "effectiveUnitPrice": "14.4",
+            "unitType": "",
+            "quantity": "50",
+            "subtotal": "720",
+            "taxTotal": "73",
+            "totalForCustomer": "793",
+            "currency": "USD",
+            "publisherName": "Microsoft Corporation",
+            "publisherId": "",
+            "subscriptionDescription": "",
+            "subscriptionId": "9d7d1f3d-c8de-461c-db6d-91debd5129f0",
+            "subscriptionStartDate": "2021-05-20T00:00:00Z",
+            "subscriptionEndDate": "2022-05-19T00:00:00Z",
+            "chargeStartDate": "2021-05-20T00:00:00Z",
+            "chargeEndDate": "2021-06-19T00:00:00Z",
+            "termAndBillingCycle": "One-Year commitment for monthly/yearly billing",
+            "alternateId": "5f9d52bb1408",
+            "referenceId": "28b535e0-68f4-40b5-84f7-8ed9241eb149",
+            "priceAdjustmentDescription": "[\"Price for given billing period\",\"You are getting a discount due to a pre-determined override.\",\"You are getting a discount for being a partner.\",\"You are getting a price guarantee for your price.\",\"Price for given term\"]",
+            "discountDetails": "",
+            "pricingCurrency": "USD",
+            "pcToBCExchangeRate": "1",
+            "pcToBCExchangeRateDate": "2021-05-01T00:00:00",
+            "billableQuantity": "50",
+            "meterDescription": "",
+            "billingFrequency": "Monthly",
+            "reservationOrderId": "8fdebb4a-7110-496e-9570-623e4c992797",
+            "invoiceLineItemType": "billing_line_items",
+            "billingProvider": "one_time",
+            "promotionId": "78bcf906-b945-4210-8818-cfb93caf12a1",
+            "attributes/objectType": "OneTimeInvoiceLineItem",
+            "attributes": {
+                "objectType": "OneTimeInvoiceLineItem"
+            }
+        },
+        {
+            "partnerId": "934f3416-bc2f-47f3-b492-77e517d4e572",
+            "customerId": "c139c4bf-2e8b-4ab5-8bed-d9f50dcca7a2",
+            "customerName": "Test_Test_Office R2 Reduce Seats Validation",
+            "customerDomainName": "testcustomerr2t2reduce.onmicrosoft.com",
+            "customerCountry": "US",
+            "invoiceNumber": "T000773581",
+            "mpnId": "1234567",
+            "resellerMpnId": 0,
+            "orderId": "HJVtMZMkgQ2miuCiNv0RSr51zQDans0m1",
+            "orderDate": "2019-02-04T17:59:52.9460102Z",
+            "productId": "DZH318Z0BXWC",
+            "skuId": "0002",
+            "availabilityId": "DZH318Z0BP8B",
+            "productName": "Test WAF-as-a-Service",
+            "skuName": "Test WaaS - Medium Plan",
+            "chargeType": "New",
+            "unitPrice": 820,
+            "effectiveUnitPrice": 820,
+            "unitType": "",
+            "quantity": 1,
+            "subtotal": 820,
+            "taxTotal": 0,
+            "totalForCustomer": 0,
+            "currency": "USD",
+            "publisherName": "Test Networks, Inc.",
+            "publisherId": "21223810",
+            "subscriptionDescription": "",
+            "subscriptionId": "12345678-9cf0-4a1f-9514-7fcc7fe9d1fe",
+            "subscriptionStartDate": "2019-02-01T00:00:00Z",
+            "subscriptionEndDate": "2020-01-31T00:00:00Z",
+            "chargeStartDate": "2019-02-04T09:22:40.1767993-08:00",
+            "chargeEndDate": "2019-03-03T09:22:40.1767993-08:00",
+            "termAndBillingCycle": "1 Year Subscription",
+            "alternateId": "123456ad566",
+            "priceAdjustmentDescription": "[\"15.0% Partner earned credit for services managed\"]",
+            "discountDetails": "",
+            "pricingCurrency": "USD",
+            "pcToBCExchangeRate": 1,
+            "pcToBCExchangeRateDate": "2019-08-01T00:00:00Z",
+            "billableQuantity": 3.1618,
+            "meterDescription": "Bandwidth - Data Transfer In (GB) - Zone 2",
+            "reservationOrderId": "883d475b-0000-1234-0000-8818752f1234",
             "attributes": {
                 "objectType": "OneTimeInvoiceLineItem"
             }
         }
+    ]
+}
     ],
     "links": {
         "self": {
-            "uri": "/invoices/G000024135/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2",
+            "uri": "/invoices/G000773581/lineitems?provider=OneTime&nvoicelineitemtype=BillingLineItems&size=2",
             "method": "GET",
             "headers": []
         }
@@ -813,4 +991,5 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
         "objectType": "Collection"
     }
 }
+
 ```

@@ -1,42 +1,37 @@
 ---
-title: Számla beolvasása azonosító alapján
-description: Egy adott számla beolvasása a számla azonosítója alapján.
+title: Számla lekérte azonosító alapján
+description: Lekér egy adott számlát a számlaazonosítóval.
 ms.date: 06/10/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 17880265d06e8e5eaacc5470d83c49defd10ad51
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: c888786a6b6ca941629bb7aac95227021c37a7fc
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767687"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111549161"
 ---
-# <a name="get-invoice-by-id"></a><span data-ttu-id="8d79d-103">Számla beolvasása azonosító alapján</span><span class="sxs-lookup"><span data-stu-id="8d79d-103">Get invoice by ID</span></span>
+# <a name="get-invoice-by-id"></a><span data-ttu-id="95941-103">Számla lekérte azonosító alapján</span><span class="sxs-lookup"><span data-stu-id="95941-103">Get invoice by ID</span></span>
 
-<span data-ttu-id="8d79d-104">**A következőkre vonatkozik:**</span><span class="sxs-lookup"><span data-stu-id="8d79d-104">**Applies to:**</span></span>
+<span data-ttu-id="95941-104">**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government</span><span class="sxs-lookup"><span data-stu-id="95941-104">**Applies to**: Partner Center | Partner Center operated by 21Vianet | Partner Center for Microsoft Cloud Germany | Partner Center for Microsoft Cloud for US Government</span></span>
 
-- <span data-ttu-id="8d79d-105">Partnerközpont</span><span class="sxs-lookup"><span data-stu-id="8d79d-105">Partner Center</span></span>
-- <span data-ttu-id="8d79d-106">A 21Vianet által üzemeltetett partneri központ</span><span class="sxs-lookup"><span data-stu-id="8d79d-106">Partner Center operated by 21Vianet</span></span>
-- <span data-ttu-id="8d79d-107">A Microsoft Cloud Germany Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="8d79d-107">Partner Center for Microsoft Cloud Germany</span></span>
-- <span data-ttu-id="8d79d-108">A Microsoft Cloud for US Government Partnerközpontja</span><span class="sxs-lookup"><span data-stu-id="8d79d-108">Partner Center for Microsoft Cloud for US Government</span></span>
+<span data-ttu-id="95941-105">Lekér egy adott számlát a számlaazonosítóval.</span><span class="sxs-lookup"><span data-stu-id="95941-105">Retrieves a given invoice using the invoice ID.</span></span>
 
-<span data-ttu-id="8d79d-109">Egy adott számla beolvasása a számla azonosítója alapján.</span><span class="sxs-lookup"><span data-stu-id="8d79d-109">Retrieves a given invoice using the invoice ID.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="95941-106">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="95941-106">Prerequisites</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="8d79d-110">Előfeltételek</span><span class="sxs-lookup"><span data-stu-id="8d79d-110">Prerequisites</span></span>
+- <span data-ttu-id="95941-107">Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md)</span><span class="sxs-lookup"><span data-stu-id="95941-107">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="95941-108">Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.</span><span class="sxs-lookup"><span data-stu-id="95941-108">This scenario supports authentication with App+User credentials only.</span></span>
 
-- <span data-ttu-id="8d79d-111">A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok.</span><span class="sxs-lookup"><span data-stu-id="8d79d-111">Credentials as described in [Partner Center authentication](partner-center-authentication.md).</span></span> <span data-ttu-id="8d79d-112">Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.</span><span class="sxs-lookup"><span data-stu-id="8d79d-112">This scenario supports authentication with App+User credentials only.</span></span>
+- <span data-ttu-id="95941-109">Egy érvényes számlaazonosító.</span><span class="sxs-lookup"><span data-stu-id="95941-109">A valid Invoice ID.</span></span>
 
-- <span data-ttu-id="8d79d-113">Érvényes számla-azonosító.</span><span class="sxs-lookup"><span data-stu-id="8d79d-113">A valid Invoice ID.</span></span>
+## <a name="c"></a><span data-ttu-id="95941-110">C\#</span><span class="sxs-lookup"><span data-stu-id="95941-110">C\#</span></span>
 
-## <a name="c"></a><span data-ttu-id="8d79d-114">C\#</span><span class="sxs-lookup"><span data-stu-id="8d79d-114">C\#</span></span>
+<span data-ttu-id="95941-111">Számla lekért száma azonosító alapján:</span><span class="sxs-lookup"><span data-stu-id="95941-111">To get an invoice by ID:</span></span>
 
-<span data-ttu-id="8d79d-115">Számla beszerzése azonosító alapján:</span><span class="sxs-lookup"><span data-stu-id="8d79d-115">To get an invoice by ID:</span></span>
+1. <span data-ttu-id="95941-112">Használja az **IPartner.Invoices gyűjteményt,** és hívja meg a **ById() metódust.**</span><span class="sxs-lookup"><span data-stu-id="95941-112">Use your **IPartner.Invoices** collection and call the **ById()** method.</span></span>
 
-1. <span data-ttu-id="8d79d-116">Használja a **IPartner. számlákon** gyűjteményt, és hívja meg a **ById ()** metódust.</span><span class="sxs-lookup"><span data-stu-id="8d79d-116">Use your **IPartner.Invoices** collection and call the **ById()** method.</span></span>
-
-2. <span data-ttu-id="8d79d-117">Hívja meg a **Get ()** vagy a **GetAsync ()** metódust.</span><span class="sxs-lookup"><span data-stu-id="8d79d-117">Call the **Get()** or **GetAsync()** methods.</span></span>
+2. <span data-ttu-id="95941-113">Hívja meg **a Get() vagy** **a GetAsync() metódust.**</span><span class="sxs-lookup"><span data-stu-id="95941-113">Call the **Get()** or **GetAsync()** methods.</span></span>
 
 ``` csharp
 // IPartner scopedPartnerOperations;
@@ -45,33 +40,33 @@ ms.locfileid: "97767687"
 var invoice = scopedPartnerOperations.Invoices.ById(selectedInvoiceId).Get();
 ```
 
-<span data-ttu-id="8d79d-118">**Példa**: [konzol tesztelési alkalmazás](console-test-app.md).</span><span class="sxs-lookup"><span data-stu-id="8d79d-118">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="8d79d-119">**Projekt**: PartnerSDK. FeatureSample **osztály**: GetInvoice.cs</span><span class="sxs-lookup"><span data-stu-id="8d79d-119">**Project**: PartnerSDK.FeatureSample **Class**: GetInvoice.cs</span></span>
+<span data-ttu-id="95941-114">**Minta:** [Konzoltesztalkalmazás.](console-test-app.md)</span><span class="sxs-lookup"><span data-stu-id="95941-114">**Sample**: [Console test app](console-test-app.md).</span></span> <span data-ttu-id="95941-115">**Project:** PartnerSDK.FeatureSample **osztály:** GetInvoice.cs</span><span class="sxs-lookup"><span data-stu-id="95941-115">**Project**: PartnerSDK.FeatureSample **Class**: GetInvoice.cs</span></span>
 
-## <a name="rest-request"></a><span data-ttu-id="8d79d-120">REST-kérelem</span><span class="sxs-lookup"><span data-stu-id="8d79d-120">REST request</span></span>
+## <a name="rest-request"></a><span data-ttu-id="95941-116">REST-kérés</span><span class="sxs-lookup"><span data-stu-id="95941-116">REST request</span></span>
 
-### <a name="request-syntax"></a><span data-ttu-id="8d79d-121">Kérelem szintaxisa</span><span class="sxs-lookup"><span data-stu-id="8d79d-121">Request syntax</span></span>
+### <a name="request-syntax"></a><span data-ttu-id="95941-117">Kérés szintaxisa</span><span class="sxs-lookup"><span data-stu-id="95941-117">Request syntax</span></span>
 
-| <span data-ttu-id="8d79d-122">Metódus</span><span class="sxs-lookup"><span data-stu-id="8d79d-122">Method</span></span>  | <span data-ttu-id="8d79d-123">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="8d79d-123">Request URI</span></span>                                                                   |
+| <span data-ttu-id="95941-118">Metódus</span><span class="sxs-lookup"><span data-stu-id="95941-118">Method</span></span>  | <span data-ttu-id="95941-119">Kérés URI-ja</span><span class="sxs-lookup"><span data-stu-id="95941-119">Request URI</span></span>                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| <span data-ttu-id="8d79d-124">**GET**</span><span class="sxs-lookup"><span data-stu-id="8d79d-124">**GET**</span></span> | <span data-ttu-id="8d79d-125">[*{baseURL}*](partner-center-rest-urls.md)/v1/Invoices/{Invoice-ID} http/1.1</span><span class="sxs-lookup"><span data-stu-id="8d79d-125">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id} HTTP/1.1</span></span> |
+| <span data-ttu-id="95941-120">**Kap**</span><span class="sxs-lookup"><span data-stu-id="95941-120">**GET**</span></span> | <span data-ttu-id="95941-121">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{számlaazonosító} HTTP/1.1</span><span class="sxs-lookup"><span data-stu-id="95941-121">[*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id} HTTP/1.1</span></span> |
 
-#### <a name="uri-parameter"></a><span data-ttu-id="8d79d-126">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="8d79d-126">URI parameter</span></span>
+#### <a name="uri-parameter"></a><span data-ttu-id="95941-122">URI-paraméter</span><span class="sxs-lookup"><span data-stu-id="95941-122">URI parameter</span></span>
 
-<span data-ttu-id="8d79d-127">A számla beszerzéséhez használja a következő lekérdezési paramétert.</span><span class="sxs-lookup"><span data-stu-id="8d79d-127">Use the following query parameter to get the invoice.</span></span>
+<span data-ttu-id="95941-123">A számla lekérdezhető a következő lekérdezési paraméterrel.</span><span class="sxs-lookup"><span data-stu-id="95941-123">Use the following query parameter to get the invoice.</span></span>
 
-| <span data-ttu-id="8d79d-128">Név</span><span class="sxs-lookup"><span data-stu-id="8d79d-128">Name</span></span>           | <span data-ttu-id="8d79d-129">Típus</span><span class="sxs-lookup"><span data-stu-id="8d79d-129">Type</span></span>       | <span data-ttu-id="8d79d-130">Kötelező</span><span class="sxs-lookup"><span data-stu-id="8d79d-130">Required</span></span> | <span data-ttu-id="8d79d-131">Leírás</span><span class="sxs-lookup"><span data-stu-id="8d79d-131">Description</span></span>                                                                                        |
+| <span data-ttu-id="95941-124">Név</span><span class="sxs-lookup"><span data-stu-id="95941-124">Name</span></span>           | <span data-ttu-id="95941-125">Típus</span><span class="sxs-lookup"><span data-stu-id="95941-125">Type</span></span>       | <span data-ttu-id="95941-126">Kötelező</span><span class="sxs-lookup"><span data-stu-id="95941-126">Required</span></span> | <span data-ttu-id="95941-127">Leírás</span><span class="sxs-lookup"><span data-stu-id="95941-127">Description</span></span>                                                                                        |
 |----------------|------------|----------|----------------------------------------------------------------------------------------------------|
-| <span data-ttu-id="8d79d-132">**számlázási azonosító**</span><span class="sxs-lookup"><span data-stu-id="8d79d-132">**invoice-id**</span></span> | <span data-ttu-id="8d79d-133">**karakterlánc**</span><span class="sxs-lookup"><span data-stu-id="8d79d-133">**string**</span></span> | <span data-ttu-id="8d79d-134">Igen</span><span class="sxs-lookup"><span data-stu-id="8d79d-134">Yes</span></span>      | <span data-ttu-id="8d79d-135">Az érték egy **Számlázási azonosító** , amely lehetővé teszi, hogy a viszonteladó egy adott számla eredményét szűrje.</span><span class="sxs-lookup"><span data-stu-id="8d79d-135">The value is an **invoice-id** that allows the reseller to filter the results for a given invoice.</span></span> |
+| <span data-ttu-id="95941-128">**számlaazonosító**</span><span class="sxs-lookup"><span data-stu-id="95941-128">**invoice-id**</span></span> | <span data-ttu-id="95941-129">**sztring**</span><span class="sxs-lookup"><span data-stu-id="95941-129">**string**</span></span> | <span data-ttu-id="95941-130">Igen</span><span class="sxs-lookup"><span data-stu-id="95941-130">Yes</span></span>      | <span data-ttu-id="95941-131">Az érték egy **számlaazonosító,** amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla eredményeit.</span><span class="sxs-lookup"><span data-stu-id="95941-131">The value is an **invoice-id** that allows the reseller to filter the results for a given invoice.</span></span> |
 
-### <a name="request-headers"></a><span data-ttu-id="8d79d-136">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="8d79d-136">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="95941-132">Kérésfejlécek</span><span class="sxs-lookup"><span data-stu-id="95941-132">Request headers</span></span>
 
-<span data-ttu-id="8d79d-137">További információ: a [partneri központ Rest-fejlécei](headers.md).</span><span class="sxs-lookup"><span data-stu-id="8d79d-137">For more information, see [Partner Center REST headers](headers.md).</span></span>
+<span data-ttu-id="95941-133">További információ: [REST Partnerközpont fejlécek.](headers.md)</span><span class="sxs-lookup"><span data-stu-id="95941-133">For more information, see [Partner Center REST headers](headers.md).</span></span>
 
-### <a name="request-body"></a><span data-ttu-id="8d79d-138">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="8d79d-138">Request body</span></span>
+### <a name="request-body"></a><span data-ttu-id="95941-134">A kérés törzse</span><span class="sxs-lookup"><span data-stu-id="95941-134">Request body</span></span>
 
-<span data-ttu-id="8d79d-139">Nincs</span><span class="sxs-lookup"><span data-stu-id="8d79d-139">None</span></span>
+<span data-ttu-id="95941-135">None</span><span class="sxs-lookup"><span data-stu-id="95941-135">None</span></span>
 
-### <a name="request-example"></a><span data-ttu-id="8d79d-140">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="8d79d-140">Request example</span></span>
+### <a name="request-example"></a><span data-ttu-id="95941-136">Példa kérésre</span><span class="sxs-lookup"><span data-stu-id="95941-136">Request example</span></span>
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/<invoice-id> HTTP/1.1
@@ -81,15 +76,15 @@ MS-RequestId: 8ac25aa5-9537-4b6d-b782-aa0c8e979e99
 MS-CorrelationId: 57eb2ca7-755f-450f-9187-eae1e75a0114
 ```
 
-## <a name="rest-response"></a><span data-ttu-id="8d79d-141">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="8d79d-141">REST response</span></span>
+## <a name="rest-response"></a><span data-ttu-id="95941-137">REST-válasz</span><span class="sxs-lookup"><span data-stu-id="95941-137">REST response</span></span>
 
-<span data-ttu-id="8d79d-142">Ha ez sikeres, ez a metódus egy [Számlázási](invoice-resources.md#invoice) erőforrást ad vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="8d79d-142">If successful, this method returns an [Invoice](invoice-resources.md#invoice) resource in the response body.</span></span>
+<span data-ttu-id="95941-138">Ha a művelet sikeres, ez a metódus egy [invoice erőforrást](invoice-resources.md#invoice) ad vissza a válasz törzsében.</span><span class="sxs-lookup"><span data-stu-id="95941-138">If successful, this method returns an [Invoice](invoice-resources.md#invoice) resource in the response body.</span></span>
 
-### <a name="response-success-and-error-codes"></a><span data-ttu-id="8d79d-143">Válasz sikeres és hibakódok</span><span class="sxs-lookup"><span data-stu-id="8d79d-143">Response success and error codes</span></span>
+### <a name="response-success-and-error-codes"></a><span data-ttu-id="95941-139">Sikeres válasz és hibakódok</span><span class="sxs-lookup"><span data-stu-id="95941-139">Response success and error codes</span></span>
 
-<span data-ttu-id="8d79d-144">Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi.</span><span class="sxs-lookup"><span data-stu-id="8d79d-144">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="8d79d-145">A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt.</span><span class="sxs-lookup"><span data-stu-id="8d79d-145">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="8d79d-146">A teljes listát lásd: [hibakódok](error-codes.md).</span><span class="sxs-lookup"><span data-stu-id="8d79d-146">For the full list, see [Error Codes](error-codes.md).</span></span>
+<span data-ttu-id="95941-140">Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.</span><span class="sxs-lookup"><span data-stu-id="95941-140">Each response comes with an HTTP status code that indicates success or failure and additional debugging information.</span></span> <span data-ttu-id="95941-141">Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be.</span><span class="sxs-lookup"><span data-stu-id="95941-141">Use a network trace tool to read this code, error type, and additional parameters.</span></span> <span data-ttu-id="95941-142">A teljes listát lásd: [Hibakódok.](error-codes.md)</span><span class="sxs-lookup"><span data-stu-id="95941-142">For the full list, see [Error Codes](error-codes.md).</span></span>
 
-### <a name="response-example"></a><span data-ttu-id="8d79d-147">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="8d79d-147">Response example</span></span>
+### <a name="response-example"></a><span data-ttu-id="95941-143">Példa válaszra</span><span class="sxs-lookup"><span data-stu-id="95941-143">Response example</span></span>
 
 ```http
 HTTP/1.1 200 OK
