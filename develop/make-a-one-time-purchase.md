@@ -1,27 +1,24 @@
 ---
 title: Egyszeri vásárlás
-description: Szoftverek és foglalási termékek, például a szoftveres előfizetések, az örökös szoftverek és az Azure-beli fenntartott virtuálisgép-példányok egyszeri vásárlása a partner Center API használatával.
+description: Szoftver- és foglalási termékek, például szoftver-előfizetések, állandó szoftverek és Azure Reserved Virtual Machine- (VM-) példányok vásárlása az Partnerközpont API használatával.
 ms.date: 10/09/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 17a5f5c1e845ba36a94d7ce909df30e0146ba448
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 1ca2d5b7ad6ba1196d74a8cdb748ab808192d569
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767808"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548379"
 ---
 # <a name="make-a-one-time-purchase"></a>Egyszeri vásárlás
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Szoftverek és foglalási termékek, például a szoftveres előfizetések, az örökös szoftverek és az Azure-beli fenntartott virtuálisgép-példányok egyszeri vásárlása a partner Center API használatával.
+Szoftver- és foglalási termékek, például szoftver-előfizetések, állandó szoftverek és Azure Reserved Virtual Machine- (VM-) példányok vásárlása az Partnerközpont API használatával.
 
 > [!NOTE]
-> A szoftveres előfizetések nem érhetők el az alábbi piacokon:
+> A szoftver-előfizetések a következő piacokon nem érhetők el:
 >
 > | Nem elérhető piacok            | Nem elérhető piacok (folytatás...) | Nem elérhető piacok (folytatás...)      |
 > |--------------------------------|-----------------------------------|------------------------------------------|
@@ -37,7 +34,7 @@ Szoftverek és foglalási termékek, például a szoftveres előfizetések, az �
 > | Bonaire                        | Heard-sziget és McDonald-szigetek | Saint Vincent és Grenadine-szigetek         |
 > | Bouvet-sziget                  | Man-sziget                       | Szamoa                                    |
 > | Brazília                         | Jan Mayen                         | San Marino                               |
-> | Brit indiai-óceáni terület | Jersey                            | São Tomé és Príncipe                    |
+> | Brit indiai-óceáni terület | Jersey                            | Sémo Tomé és Príncipe                    |
 > | Brit Virgin-szigetek         | Kiribati                          | Seychelle-szigetek                               |
 > | Burkina Faso                   | Koszovó                            | Sierra Leone                             |
 > | Burundi                        | Laosz                              | Sint Eustatius                           |
@@ -46,7 +43,7 @@ Szoftverek és foglalási termékek, például a szoftveres előfizetések, az �
 > | Csád                           | Madagaszkár                        | Szomália                                  |
 > | Kína                          | Malawi                            | Dél-Georgia és Déli-Sandwich-szigetek |
 > | Karácsony-sziget               | Maldív-szigetek                          | Dél-Szudán                              |
-> | Cocos (Keeling)-szigetek        | Mali                              | Szent Ilona, Ascension, Tristan da Cunha   |
+> | Cocos (Keeling)-szigetek        | Mali                              | St Foga, Ascension, Tristan da Amilyenha   |
 > | Comore-szigetek                        | Marshall-szigetek                  | Suriname                                 |
 > | Kongó                          | Martinique                        | Svalbard                                 |
 > | Kongó (KDK)                    | Mauritánia                        | Szváziföld                                |
@@ -56,7 +53,7 @@ Szoftverek és foglalási termékek, például a szoftveres előfizetések, az �
 > | Egyenlítői-Guinea              | Mozambik                        | Tonga                                    |
 > | Eritrea                        | Mianmar                           | Turks- és Caicos-szigetek                 |
 > | Falkland-szigetek               | Nauru                             | Tuvalu                                   |
-> | Francia Guyana                  | Új-Kaledónia                     | Amerikai Egyesült Államok lakatlan külbirtokai                    |
+> | Francia Guyana                  | Új-Kaledónia                     | Az Usa-beli, outlying-szigetek                    |
 > | Francia Polinézia               | Niger                             | Vanuatu                                  |
 > | Francia Déli Területek    | Niue                              | Vatikán                             |
 > | Gabon                          | Norfolk-sziget                    | Wallis és Futuna                        |
@@ -65,117 +62,117 @@ Szoftverek és foglalási termékek, például a szoftveres előfizetések, az �
 >
 &nbsp;
 > [!NOTE]
-> Az örökös szoftverek megvásárlásához előzőleg minősítéssel kell rendelkeznie. További információért forduljon az ügyfélszolgálathoz.
+> A folyamatos szoftver megvásárlásához előzőleg minősített szoftvernek kell lennie. További információért forduljon az ügyfélszolgálathoz.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-## <a name="making-a-one-time-purchase"></a>Egyszeri vásárlás készítése
+## <a name="making-a-one-time-purchase"></a>Egyszeres vásárlás
 
-Egyszeri vásárláshoz hajtsa végre a következő lépéseket:
+Az egyszeres vásárláshoz kövesse az alábbi lépéseket:
 
-1. [Engedélyezés](#enablement) – (csak Azure-beli fenntartott VM-példány) regisztráljon egy aktív CSP Azure-előfizetést, amely lehetővé teszi a foglalási termékek megvásárlását.
+1. [Engedélyezés –](#enablement) (csak Azure-beli fenntartott virtuálisgép-példány) Regisztráljon egy aktív CSP Azure-előfizetést, hogy lehetővé tegye számára bármilyen foglalási termék megvásárlását.
 
-2. [Felderítés](#discovery) – keresse meg és válassza ki a megvásárolni kívánt termékeket és SKU-ket, és ellenőrizze azok rendelkezésre állását.
+2. [Felderítés](#discovery) – Megkeresheti és kiválaszthatja a megvásárolni kívánt termékeket és terméktermékeket, és ellenőrizheti azok rendelkezésre állását.
 
-3. [Rendelés beküldése](#order-submission) – hozzon létre egy bevásárlókocsiot a megrendelés elemeivel, és küldje el.
+3. [Megrendelés beküldve](#order-submission) – Hozzon létre egy bevásárlókosarat a rendelésben lévő elemekkel, és küldje el.
 
-4. [Rendelési adatok beolvasása](#get-order-details) – megtekintheti egy megrendelés részleteit, az ügyfél összes rendelését, vagy megtekintheti a rendeléseket számlázási ciklus típusa szerint.
+4. [Megrendelés részleteinek](#get-order-details) lekérte – Áttekinti egy megrendelés részleteit, az ügyfél összes rendelését, vagy megtekintheti a megrendeléseket a számlázási ciklus típusa szerint.
 
-Az egyszeri vásárlást követően a következő forgatókönyvek bemutatják, hogyan kezelheti a termékeinek életciklusát a jogosultságokkal kapcsolatos információk beszerzésével, valamint az egyenleg-utasítások, a számlák és a számlázási összefoglalók beolvasásával.
+Az egyszeres vásárlást követően a következő forgatókönyvek azt mutatják be, hogyan kezelheti a termékek életciklusát a jogosultságokkal kapcsolatos információk lekérésével, valamint az egyenleg kimutatások, számlák és számlaösszegzők lekérésével.
 
 - [Életciklus-kezelés](#lifecycle-management)
 
-- [Számlázás és egyeztetés](#invoice-and-reconciliation)
+- [Számla és egyeztetés](#invoice-and-reconciliation)
 
 ## <a name="enablement"></a>Engedélyezés
 
-Miután azonosította azt az aktív előfizetést, amelyhez hozzá kívánja adni az Azure-beli fenntartott VM-példányt, regisztrálnia kell az előfizetést, hogy az engedélyezve legyen. Egy meglévő [előfizetési](subscription-resources.md) erőforrás regisztrálásához, hogy az engedélyezve legyen, tekintse meg az [előfizetés regisztrálása](register-a-subscription.md)című témakört.
+Miután azonosította az aktív előfizetést, amelybe hozzá szeretné adni az Azure-beli fenntartott virtuálisgép-példányt, regisztrálnia kell az előfizetést, hogy engedélyezve legyen. Ha egy meglévő [előfizetési](subscription-resources.md) erőforrást úgy kell regisztrálnia, hogy az engedélyezve legyen, tekintse meg az [előfizetés regisztrálását.](register-a-subscription.md)
 
-Az előfizetés regisztrálása után ellenőrizze, hogy a regisztrációs folyamat befejeződött-e a regisztráció állapotának ellenőrzésével. A lépés elvégzéséhez lásd: [előfizetés-regisztráció állapotának beolvasása](get-subscription-registration-status.md).
+Az előfizetés regisztrálása után a regisztrációs állapot ellenőrzésével ellenőriznie kell, hogy a regisztrációs folyamat befejeződött-e. Ehhez a lépéshez lásd: [Előfizetés regisztrációs állapotának lekért állapota.](get-subscription-registration-status.md)
 
 ## <a name="discovery"></a>Felderítés
 
-Ha az előfizetés engedélyezve lett, készen áll a termékek és az SKU-k kiválasztására, és a rendelkezésre állásuk ellenőrzését a következő partner Center API-modellek használatával:
+Ha az előfizetés engedélyezve van, kiválaszthatja a termékeket és a terméktermékeket, és ellenőrizheti azok rendelkezésre állását az alábbi api-Partnerközpont használatával:
 
-- [Termék](product-resources.md#product) – a megvásárolható termékek vagy szolgáltatások csoportosítási konstrukciója. Egy termék önmagában nem egy megvásárolható tétel.
+- [Termék](product-resources.md#product) – Egy csoportosítási szerkezet a cserélhető termékekhez vagy szolgáltatásokhoz. A termék önmagában nem cserélhető elem.
 
-- [SKU](product-resources.md#sku) – egy terméken belül megvásárolható készlet-tartási egység (SKU). A SKU a termék különböző alakzatait jelöli.
+- [Termékváltozat](product-resources.md#sku) – Egy termék alatt található, cserélhető terméken (Stock Keeping Unit, SKU). A termékkódok a termék különböző alakjai.
 
-- [Rendelkezésre állás](product-resources.md#availability) – olyan konfiguráció, amelyben az SKU megvásárolható (például ország, pénznem és iparági szegmens).
+- [Rendelkezésre állás](product-resources.md#availability) – Olyan konfiguráció, amelyben egy termékváltozat megvásárolható (például ország, pénznem és iparági szegmens).
 
-Egyszeri vásárlás előtt végezze el a következő lépéseket:
+Az egyszeres vásárlás előtt kövesse az alábbi lépéseket:
 
-1. Azonosítsa és kérje le a megvásárolni kívánt terméket és SKU-t. Ezt a lépést először a termékek és az SKU listázásával, vagy ha már ismeri a termék és az SKU azonosítóit, jelölje ki őket.
+1. Azonosítsa és lekéri a megvásárolni kívánt terméket és termékváltozatot. Ezt a lépést a termékek és a termékváltozatok listázásával használhatja először, vagy ha már ismeri a termék és a termékváltozat adatait, jelölje ki őket.
 
-   - [Termékek listájának lekérése](get-a-list-of-products.md)
-   - [Termék beszerzése a termék AZONOSÍTÓjának használatával](get-a-product-by-id.md)
-   - [A termékhez tartozó SKU-termékek listájának beolvasása](get-a-list-of-skus-for-a-product.md)
-   - [SKU beszerzése az SKU azonosító használatával](get-a-sku-by-id.md)
+   - [Termékek listájának lekért listája](get-a-list-of-products.md)
+   - [Termék lekérte a termékazonosítót](get-a-product-by-id.md)
+   - [Termék termékterméktermék-listájának lekért listája](get-a-list-of-skus-for-a-product.md)
+   - [Termékváltozat lekérte a termékváltozat azonosítójával](get-a-sku-by-id.md)
 
-2. Egy SKU leltárának keresése. Erre a lépésre csak a **InventoryCheck** előfeltételként megjelölt SKU-ra van szükség.
+2. Ellenőrizze a leltárban, hogy van-e termékváltozat. Erre a lépésre csak az **InventoryCheck** előfeltételként megjelölt termékkódok esetén van szükség.
 
    - [Leltár ellenőrzése](check-inventory.md)
 
-3. Az [SKU](product-resources.md#sku) [rendelkezésre állásának](product-resources.md#availability) beolvasása. A megrendelés elhelyezésekor szüksége lesz a rendelkezésre állás **CatalogItemId** . Az érték beszerzéséhez használja a következő API-k egyikét:
+3. A [termékváltozat](product-resources.md#availability) rendelkezésre [állásának lekérése.](product-resources.md#sku) A rendelés leadáskor szüksége lesz a rendelkezésre állás **CatalogItemId-ére.** Ezt az értéket a következő API-k egyikével használhatja:
 
-   - [Az SKU-ban lévő elérhetőségek listájának lekérése](get-a-list-of-availabilities-for-a-sku.md)
-   - [Rendelkezésre állási azonosító használata](get-an-availability-by-id.md)
+   - [Termékváltozatok rendelkezésre állási listájának lekért listája](get-a-list-of-availabilities-for-a-sku.md)
+   - [Rendelkezésre állás lekérte a rendelkezésre állási azonosítóval](get-an-availability-by-id.md)
 
-## <a name="order-submission"></a>Megrendelés beküldése
+## <a name="order-submission"></a>Rendelés beküldve
 
-A megrendelés elküldéséhez kövesse az alábbi lépéseket:
+A rendelés elküldhez kövesse az alábbi lépéseket:
 
-1. Hozzon létre egy cartot a megvásárolni kívánt katalógus-elemek gyűjteményének tárolására. Amikor létrehoz egy [kosarat](cart-resources.md), a rendszer automatikusan csoportosítja a [szekér elemeit](cart-resources.md#cartlineitem) attól függően, hogy mit vásárolhat együtt ugyanabban a [sorrendben](order-resources.md).
+1. Hozzon létre egy kosárt, amely a megvásárolni kívánt katalóguselemek gyűjteményét tartalmazza. A kosár [létrehozásakor](cart-resources.md)a [](cart-resources.md#cartlineitem) kosársor elemei automatikusan csoportosítva lesznek az alapján, hogy mi vásárolható együtt ugyanabban a [rendelésben.](order-resources.md)
 
    - [Bevásárlókocsi létrehozása](create-a-cart.md)
    - [Bevásárlókocsi frissítése](update-a-cart.md)
 
-2. Látogasson el a kosárba. A kosár megkeresése egy [megrendelés](order-resources.md)létrehozását eredményezi.
+2. Nézze meg a kosárt. A kosár ellenőrzésekor a rendelés is létre lesz [hozva.](order-resources.md)
 
-   - [A kosár pénztárának kifizetése](checkout-a-cart.md)
+   - [A kosár kiveszi](checkout-a-cart.md)
 
-## <a name="get-order-details"></a>Megrendelés részleteinek beolvasása
+## <a name="get-order-details"></a>Megrendelés részleteinek lekérte
 
-Miután létrehozta a rendelést, lekérheti egy adott megrendelés részleteit a megrendelés AZONOSÍTÓjának használatával, vagy megtekintheti az ügyfél rendeléseinek listáját. A megrendelés elküldése és az ügyfél rendeléseinek listájában akár 15 percet is igénybe vehet.
+Miután létrehozta a rendelést, lekérheti egy adott rendelés részleteit a rendelés azonosítójával, vagy lekérheti egy ügyfél rendelési listáját. A rendelés beküldés és az ügyfél rendelési listájában való megjelenése között akár 15 perces késés is lehet.
 
-- Egy adott megrendelés részleteinek beszerzése a megrendelés AZONOSÍTÓjának használatával. Lásd: [Order by id](get-an-order-by-id.md).
+- Egy adott rendelés részleteinek lekért adatai a rendelés azonosítójával. Lásd: [Rendelés lekért azonosítója.](get-an-order-by-id.md)
 
-- Az ügyfél-AZONOSÍTÓval rendelkező ügyfél rendeléseinek listájának lekérése. Lásd: az [összes ügyfél rendelésének beolvasása](get-all-of-a-customer-s-orders.md).
+- Egy ügyfél rendelési listájának lekért listája az ügyfél azonosítójával. Lásd: [Egy ügyfél összes rendelésének lekért rendelése.](get-all-of-a-customer-s-orders.md)
 
-- Annak érdekében, hogy egy adott ügyfélhez tartozó megrendelések listáját lekérje a [számlázási ciklus típusa](product-resources.md#billingcycletype) alapján, amely lehetővé teszi a megrendelések (egyszeri költségek) és az éves vagy havi számlázott rendelések külön rendelését. Lásd: [a megrendelések listájának lekérése az ügyfél és a számlázási ciklus típusa alapján](get-a-list-of-orders-by-customer-and-billing-cycle-type.md).
+- Ha le kell kapnia egy [](product-resources.md#billingcycletype) ügyfél rendelési listáját a számlázási ciklus típusa szerint, amely lehetővé teszi a rendelések (egyszeres díjak) és az éves vagy havi számlázt rendelések külön-külön való felsorolását. Lásd: [Rendelések listájának lekérte ügyfél és számlázási ciklustípus szerint.](get-a-list-of-orders-by-customer-and-billing-cycle-type.md)
 
 ## <a name="lifecycle-management"></a>Életciklus-kezelés
 
-A fiókpartner egyszeri vásárlások életciklusának kezelésének részeként lekérheti a [jogosultságokkal](entitlement-resources.md)kapcsolatos információkat, és lekérheti a foglalás részleteit a foglalási rendelés azonosítójának használatával. Ennek módjáról a [jogosultságok beszerzése](get-a-collection-of-entitlements.md)című témakörben talál példákat.
+Az Partnerközpont-ban az egyszer megvásárolt vásárlások életciklusának részeként lekérheti a jogosultságokkal kapcsolatos információkat, és lekérheti a foglalás részleteit a foglalási rendelés azonosítójával. [](entitlement-resources.md) Erre vonatkozó példákért lásd: [Jogosultságok lekérte.](get-a-collection-of-entitlements.md)
 
-## <a name="invoice-and-reconciliation"></a>Számlázás és egyeztetés
+## <a name="invoice-and-reconciliation"></a>Számla és egyeztetés
 
-Az alábbi forgatókönyvek azt mutatják be, hogyan lehet programozott módon megtekinteni az ügyfél [számláit](invoice-resources.md), és beolvasni a fiók egyenlegeit és összegzéseit, amelyek egyszeri díjat tartalmaznak.
+Az alábbi forgatókönyvek azt mutatják be, hogyan [](invoice-resources.md)lehet programozott módon megtekinteni az ügyfél számláit, és hogyan lehet lekért fiókegyenlegeket és összegzéseket, amelyek tartalmazzák az egyszeres díjakat.
 
-### <a name="balance-and-payment"></a>Egyenleg és fizetés
+### <a name="balance-and-payment"></a>Egyenleg és kifizetés
 
-Az aktuális fiók egyenlegének alapértelmezett pénznemben való beszerzéséhez, amely az ismétlődő és az egyszeri költségek egyenlege, tekintse [meg az aktuális fiók egyenlegének beolvasása](get-the-reseller-s-current-account-balance.md) című témakört.
+Ha az aktuális számlaegyenleget az alapértelmezett pénznemtípusban,amely az ismétlődő és az egyszeri díjak egyenlegét is figyelembe veszi, tekintse meg az aktuális számlaegyenleg [lekért beállítását.](get-the-reseller-s-current-account-balance.md)
 
-### <a name="multi-currency-balance-and-payment"></a>Több pénznemre kiterjedő egyenleg és fizetés
+### <a name="multi-currency-balance-and-payment"></a>Több pénznem egyenlege és kifizetése
 
-Az aktuális fiók egyenlegének beszerzéséhez, valamint a számla összegzésének összefoglalásához, amely tartalmazza az egyes ügyfelek pénznem-típusaira vonatkozó ismétlődő és egyszeri díjat is, tekintse meg a [számla összegzésének beolvasása](get-invoice-summaries.md)című témakört.
+Az aktuális számlaegyenleg és a számlaösszegzéseket tartalmazó számlaösszegzések gyűjtéséhez, amelyek ismétlődő és egyszeri díjakat is tartalmaznak az egyes ügyfelek pénznemtípusaihoz, lásd: Számlaösszegzések [lekérte.](get-invoice-summaries.md)
 
 ### <a name="invoices"></a>Számlák
 
-Az ismétlődő és egy egyszeri díjat is tartalmazó számlák gyűjteményének beszerzéséhez tekintse meg [a számlák gyűjteményének beolvasása](get-a-collection-of-invoices.md)című témakört.
+Az ismétlődő és egyszeri díjakat is bemutató számlák gyűjteményének lekért [lásd: Számlák gyűjteményének begyűjtése.](get-a-collection-of-invoices.md)
 
 ### <a name="single-invoice"></a>Egyetlen számla
 
-Ha a számla AZONOSÍTÓjának használatával szeretne beolvasni egy adott számlát, tekintse meg a [számla beszerzése azonosító alapján](get-invoice-by-id.md)című témakört.
+Egy adott számla számlaazonosítóval való lekérését lásd: [Számla lekérése azonosító alapján.](get-invoice-by-id.md)
 
-### <a name="reconciliation"></a>Licencegyeztetési
+### <a name="reconciliation"></a>Egyeztetés
 
-A számlasor-elemek részleteinek (egyeztetési sorok) egy adott AZONOSÍTÓhoz tartozó gyűjteményének lekéréséhez tekintse meg a [Számlázási sorok beolvasása](get-invoiceline-items.md)című cikket.
+Egy adott számlaazonosító számlasorelem-részleteinek (egyeztetési sorelemek) gyűjteményét lásd: [Számlasorelemek begyűjtése.](get-invoiceline-items.md)
 
-### <a name="download-an-invoice-as-a-pdf"></a>Számla letöltése PDF-ként
+### <a name="download-an-invoice-as-a-pdf"></a>Számla letöltése PDF-fájlként
 
-Ha a számla AZONOSÍTÓjának használatával szeretne beolvasni egy számlafogadó-utasítást a PDF-űrlapon, olvassa el a [Számlakivonat beolvasása](get-invoice-statement.md)című témakört.
+A számlakivonat PDF formátumban, számlaazonosítóval való lekéréséhez lásd: [Számlakivonat lekérése.](get-invoice-statement.md)

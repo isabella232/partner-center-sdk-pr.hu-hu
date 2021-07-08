@@ -1,36 +1,31 @@
 ---
 title: Szervezet profiljának lekérése
-description: Beolvas egy objektumot, amely a partner szervezeti profilját jelképezi.
+description: Lekért egy objektumot, amely a partner szervezeti profilját képviseli.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: 132a1e0efa3efea69d4bf649e55b412e300b0685
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 1c7272761612e573388d4facea1a78808a5bad52
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768452"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760555"
 ---
 # <a name="get-an-organization-profile"></a>Szervezet profiljának lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Beolvas egy objektumot, amely a partner szervezeti profilját jelképezi.
+Lekért egy objektumot, amely a partner szervezeti profilját képviseli.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
-A szervezeti profil beszerzéséhez használja a **IAggregatePartner. Profiles** gyűjteményt, és hívja meg a **OrganizationProfile** tulajdonságot. Végül hívja meg a [**Get ()**](/dotnet/api/microsoft.store.partnercenter.profiles.iorganizationprofile.get) vagy a [**GetAsync ()**](/dotnet/api/microsoft.store.partnercenter.profiles.iorganizationprofile.getasync) metódust.
+A szervezeti profil lehíváshoz használja az **IAggregatePartner.Profiles** gyűjteményt, és hívja meg az **OrganizationProfile** tulajdonságot. Végül hívja meg a [**Get() vagy**](/dotnet/api/microsoft.store.partnercenter.profiles.iorganizationprofile.get) [**a GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.profiles.iorganizationprofile.getasync)
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -38,13 +33,13 @@ A szervezeti profil beszerzéséhez használja a **IAggregatePartner. Profiles**
 OrganizationProfile organizationProfile = partnerOperations.Profiles.OrganizationProfile.Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerCenterSDK. FeaturesSamples **osztály**: GetOrganizationProfile.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerCenterSDK.FeaturesSamples **osztály:** GetOrganizationProfile.cs
 
 ## <a name="java"></a>Java
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-A szervezeti profil beszerzéséhez használja a **IAggregatePartner. getProfiles** függvényt, és hívja meg a **getOrganizationProfile** függvényt. Végül hívja meg a **Get ()** függvényt.
+A szervezeti profil lehíváshoz használja az **IAggregatePartner.getProfiles** függvényt, és hívja meg a **getOrganizationProfile** függvényt. Végül hívja meg a **get()** függvényt.
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -56,23 +51,23 @@ OrganizationProfile organizationProfile = partnerOperations.getProfiles().getOrg
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-A szervezet profiljának beszerzéséhez hajtsa végre a [**Get-PartnerOrganizationProfile**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerOrganizationProfile.md) parancsot.
+A szervezeti profil lekért végrehajtásához hajtsa végre a [**Get-PartnerOrganizationProfile**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerOrganizationProfile.md) parancsot.
 
 ```powershell
 Get-PartnerOrganizationProfile
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Profiles/Organization http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/profiles/organization HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -90,11 +85,11 @@ MS-CorrelationId: 1bb03149-88d2-4bc2-9cc1-d6e83890fa9e
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy **OrganizationProfile** objektumot ad vissza a válasz törzsében.
+Sikeres művelet esetén ez a metódus egy **OrganizationProfile** objektumot ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

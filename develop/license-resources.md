@@ -1,106 +1,102 @@
 ---
-title: Licenc-erőforrások
+title: Licencerőforrások
 description: A licencekkel kapcsolatos erőforrásokat ismerteti.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 681f53ec73122a4861e6f1a2f96560336481a068
-ms.sourcegitcommit: d53d300dc7fb01aeb4ef85bf2e3a6b80f868dc57
+ms.openlocfilehash: 27d44f89ac89f365e77e073c425ca45ab3638c68
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "97768199"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548396"
 ---
-# <a name="license-resources"></a>Licenc-erőforrások
+# <a name="license-resources"></a>Licencerőforrások
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
 A licencekkel kapcsolatos erőforrásokat ismerteti.
 
 ## <a name="license"></a>Licenc
 
-A felhasználói licenc leírása.
+Felhasználói licencet ír le.
 
 >[!NOTE]
->Nem támogatott a 21Vianet által működtetett partner Centerben.
+>Nem támogatott a 21Vianet Partnerközpont által üzemeltetett virtuális hálózatokon.
 
 | Tulajdonság     | Típus                                                           | Leírás                                                    |
 |--------------|----------------------------------------------------------------|----------------------------------------------------------------|
-| servicePlans | ServicePlan-erőforrások tömbje                                 | A licencnek megfelelő szolgáltatási csomagok gyűjteménye |
-| productSKU   | ProductSku                                                     | A licencnek megfelelő termék SKU-jának.        |
-| attribútumok   | [ResourceAttributes](utility-resources.md#resourceattributes) | A licenchez tartozó metaadat-attribútumok.          |
+| servicePlans (szolgáltatássíkok) | ServicePlan-erőforrások tömbje                                 | A licencnek megfelelő szolgáltatás csomagok gyűjteménye |
+| productSKU (termékváltozat)   | ProductSku (Termékváltozat)                                                     | A licencnek megfelelő termékváltozat.        |
+| Attribútumok   | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A licencnek megfelelő metaadat-attribútumok.          |
 
-## <a name="licenseupdate"></a>LicenseUpdate
+## <a name="licenseupdate"></a>LicenseUpdate (Licencupdate)
 
-A felhasználók licencének hozzárendeléséhez vagy eltávolításához használt információkat tartalmazza.
+A licencek felhasználókhoz való hozzárendelésének vagy eltávolításának információit biztosítja.
 
 | Tulajdonság         | Típus                                                           | Leírás                                               |
 |------------------|----------------------------------------------------------------|-----------------------------------------------------------|
-| licensestoAssign | objektumok tömbje                                               | [LicenseAssignment](#licenseassignment) objektumok tömbje. |
-| licensesToRemove | sztringek tömbje                                               | Az eltávolítandó licencek termék SKU-azonosítói.    |
-| licenseWarnings  | objektumok tömbje                                               | [LicenseWarning](#licensewarning) objektumok tömbje.       |
-| attribútumok       | [ResourceAttributes](utility-resources.md#resourceattributes) | A metaadatok attribútumai.                                  |
+| licensestoAssign | objektumok tömbje                                               | [LicenseAssignment objektumok tömbje.](#licenseassignment) |
+| licensesToRemove | sztringek tömbje                                               | Az eltávolítható licencek termékváltozat-azonosítói.    |
+| licenseWarnings  | objektumok tömbje                                               | [LicenseWarning objektumok tömbje.](#licensewarning)       |
+| Attribútumok       | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | A metaadat-attribútumok.                                  |
 
-## <a name="licenseassignment"></a>LicenseAssignment
+## <a name="licenseassignment"></a>LicenseAssignment (Licenc hozzárendelése)
 
-A licenc-frissítési művelethez szükséges információkat tartalmazza.
+A licencfrissítési művelethez szükséges információkat biztosítja.
 
 | Tulajdonság      | Típus             | Leírás                                                                |
 |---------------|------------------|----------------------------------------------------------------------------|
-| excludedPlans | sztringek tömbje | A felhasználó számára a rendelkezésre állásból kizárandó szolgáltatáscsomag-azonosítók. |
-| skuId         | sztring           | A licenc termék SKU-azonosítója.                                |
+| excludedPlans (kizártsíkok) | sztringek tömbje | A szolgáltatásterv-azonosítókat ki kell zárni a rendelkezésre állásból a felhasználó számára. |
+| skuId (termékváltozatazonosító)         | sztring           | A licenc termékváltozat-azonosítója.                                |
 
 ## <a name="licensewarning"></a>LicenseWarning
 
-A licenc-frissítési művelet során bekövetkezett figyelmeztetési információkat tartalmaz.
+A licencfrissítési művelet során történt figyelmeztetési információkat tartalmazza.
 
 | Tulajdonság     | Típus             | Leírás                                         |
 |--------------|------------------|-----------------------------------------------------|
-| code         | sztring           | A figyelmeztetési kód.                                   |
+| code         | sztring           | A figyelmeztető kód.                                   |
 | message      | sztring           | A figyelmeztető üzenet.                                |
-| servicePlans | sztringek tömbje | A figyelmeztetéshez társított szolgáltatási csomag neve. |
+| servicePlans (szolgáltatássíkok) | sztringek tömbje | A figyelmeztetéshez társított szolgáltatásterv-nevek. |
 
-## <a name="productsku"></a>ProductSku
+## <a name="productsku"></a>ProductSku (Termékváltozat)
 
-A termék részleteit ismerteti.
+Ismerteti a termékadatokat.
 
 | Tulajdonság       | Típus             | Leírás                                         |
 |----------------|------------------|-----------------------------------------------------|
-| id             | sztring           | A termék azonosítója.                             |
-| name           | sztring           | Az egyszerű felhasználói azonosító.                      |
-| skuPartNumber  | sztring           | A termékhez tartozó SKU-cikkszám neve. Például az Office 365 E3 csomag esetében ez az érték `EnterprisePack` . Ez a tulajdonság az azonosító helyett használható, ha az azonosító nem érhető el.                |
-| targetType     | sztring           | A termék céljának típusa. Ez a tulajdonság határozza meg, hogy a termék alkalmazható-e a `User` vagy a értékre `Tenant` .                                                                    |
-| licenseGroupId | sztring           | A productSku-licencet kezelő szolgáltató vagy szolgáltatás csoport-azonosítóján keresztül azonosítja. A termékek a jobb kezelhetőség érdekében a licencfeltételeket elkülönítve vannak.<br/><br/>                                                                                     `group1` – Az összes olyan termék, amelynek licenceit Azure Active Directory kezelheti (HRE).<br/><br/>                                            `group2` -Minecraft-termékek licencei.                                         |
+| id             | sztring           | A termékazonosító.                             |
+| name           | sztring           | Az egyszerű felhasználó azonosítója.                      |
+| skuPartNumber  | sztring           | A termék termékváltozatának részszáma. Az E3 Office 365 például ez az érték `EnterprisePack` . Ez a tulajdonság használható az azonosító helyén, ha az azonosító nem érhető el.                |
+| targetType (céltípus)     | sztring           | A termék céltípusa. Ez a tulajdonság azonosítja, hogy a termék alkalmazható-e egy vagy `User` egy `Tenant` termékre.                                                                    |
+| licenseGroupId (licenccsoport-azonosító) | sztring           | Csoportazonosítón keresztül azonosítja a productSku licencet kezelő szolgáltatót vagy szolgáltatást. A jobb kezelhetőség érdekében a termékek licenccsoportok szerint vannak elkülönítve.<br/><br/>                                                                                     `group1`– Minden olyan termék, amelynek licencét a Azure Active Directory (AAD) tudja kezelni.<br/><br/>                                            `group2`– Minecraft terméklicencek használata.                                         |
 
 ## <a name="serviceplan"></a>ServicePlan
 
-A termék SKU-ban található telepíthető szolgáltatás. Egy terméknek számos szolgáltatási csomagja lehet.
+Egy termékváltozaton belül üzembe helyezhető szolgáltatást azonosít. Egy termék számos szolgáltatási csomagból lehet.
 
 | Tulajdonság         | Típus   | Leírás                                                                                                       |
 |------------------|--------|-------------------------------------------------------------------------------------------------------------------|
-| id               | sztring | A szolgáltatási csomag azonosítója.                                                                                      |
-| displayName      | sztring | A szolgáltatási csomag honosított megjelenítendő neve.                                                                  |
-| serviceName      | sztring | A szolgáltatás neve.                                                                                                 |
-| capabilityStatus | sztring | A szolgáltatáscsomag szolgáltatási tervének állapota.                                                                      |
-| targetType       | sztring | A szolgáltatási csomag célként megadott típusa. Ez a tulajdonság határozza meg, hogy a termék alkalmazható-e "felhasználó" vagy "bérlő" esetén. |
+| id               | sztring | A szolgáltatás csomagazonosítója.                                                                                      |
+| displayName      | sztring | A szolgáltatásterv honosított megjelenítendő neve.                                                                  |
+| serviceName (szolgáltatásnév)      | sztring | A szolgáltatás neve.                                                                                                 |
+| capabilityStatus (kapacitásállapot) | sztring | A szolgáltatás csomagállapota.                                                                      |
+| targetType (céltípus)       | sztring | A szolgáltatás csomag céltípusa. Ez a tulajdonság azonosítja, hogy a termék alkalmazható-e a "Felhasználó" vagy a "Bérlő" tulajdonságra. |
 
 ## <a name="subscribedsku"></a>SubscribedSku
 
-Egy bérlő által birtokolt előfizetett termék leírása.
+Egy bérlő által birtokolt, előfizetett terméket ír le.
 
 | Tulajdonság         | Típus                                                           | Leírás                                                                                       |
 |------------------|----------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| availableUnits   | egész szám                                                        | A hozzárendeléshez rendelkezésre álló egységek száma. Ez az érték teljes egységként felhasznált egységként lesz kiszámítva. |
+| availableUnits (elérhető egység)   | egész szám                                                        | A hozzárendelésre elérhető egységek száma. Ezt az értéket az összes egység – felhasznált egységek alapján számítjuk ki. |
 | activeUnits      | egész szám                                                        | A hozzárendeléshez aktív egységek száma.                                                        |
 | consumedUnits    | egész szám                                                        | A felhasznált egységek száma.                                                                     |
 | suspendedUnits   | egész szám                                                        | A felfüggesztett egységek száma.                                                                    |
-| totalUnits       | egész szám                                                        | Az egységek teljes száma. Ezt az értéket az aktív és a figyelmeztetési egységek összegeként számítjuk ki.         |
-| warningUnits     | egész szám                                                        | A figyelmeztetési egységek száma.                                                                      |
-| productSku       | ProductSku                                                     | A termék SKU-jának.                                                                                  |
-| servicePlans     | ServicePlan-erőforrások tömbje                                 | Egy termék szolgáltatási csomagjainak gyűjteménye.                                                     |
-| capabilityStatus | sztring                                                         | Egy termék SKU-állapota.                                                                      |
-| attribútumok       | [ResourceAttributes](utility-resources.md#resourceattributes) | Az erőforráshoz tartozó metaadat-attribútumok.                                            |
+| totalUnits (összes egység)       | egész szám                                                        | Az egységek teljes száma. Ezt az értéket az aktív és a figyelmeztető egységek összegeként számítjuk ki.         |
+| warningUnits     | egész szám                                                        | A figyelmeztető egységek száma.                                                                      |
+| productSku (termékváltozat)       | ProductSku (Termékváltozat)                                                     | A termékváltozat.                                                                                  |
+| servicePlans (szolgáltatássíkok)     | ServicePlan-erőforrások tömbje                                 | Egy termék szolgáltatás-csomaggyűjteménye.                                                     |
+| capabilityStatus (kapacitásállapot) | sztring                                                         | Egy termék termékváltozatának állapota.                                                                      |
+| Attribútumok       | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | Az erőforrásnak megfelelő metaadat-attribútumok.                                            |

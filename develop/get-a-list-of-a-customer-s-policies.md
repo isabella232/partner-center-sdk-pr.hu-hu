@@ -1,41 +1,38 @@
 ---
 title: Egy ügyfél szabályzati listájának lekérése
-description: A megadott ügyfél konfigurációs házirendjei gyűjteményének beolvasása.
+description: A megadott ügyfél konfigurációs házirendek gyűjteményének lekérése.
 ms.date: 07/25/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 16886b1adca393ed2967f2a4fe74a379bef1c1c7
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: bf6ace0d2425e28d80c4f2310878c2d2a9e2a876
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768100"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874584"
 ---
 # <a name="get-a-list-of-a-customers-policies"></a>Egy ügyfél szabályzati listájának lekérése
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Németországhoz
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-
-Ez a cikk azt ismerteti, hogyan kérhető le a megadott ügyfél konfigurációs házirendjeinek gyűjteménye.
+Ez a cikk azt ismerteti, hogyan lehet lekérni a megadott ügyfél konfigurációs szabályzatának gyűjteményét.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Az összes ügyfél szabályzatának beszerzése:
+Az ügyfél összes szabályzatának listáját a következővel lehet lekérte:
 
-1. Hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval, és kérje le a felületet a műveletekre a megadott ügyfélen.
+1. Hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával, hogy lekérje a műveletek interfészét a megadott ügyfélen.
 
-2. Kérje le a [**ConfigurationPolicies**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.configurationpolicies) tulajdonságot, és szerezzen be egy felületet a konfigurációs házirend-gyűjtési műveletekhez.
-3. A [**Get**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicycollection.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicycollection.getasync) metódus meghívásával kérheti le a szabályzatok gyűjteményét.
+2. A [**ConfigurationPolicies tulajdonság lekérésével**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.configurationpolicies) lekéri a konfigurációs szabályzatgyűjtemény műveleteinek felületét.
+3. A [**szabályzatgyűjtemény lekéréséhez**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicycollection.get) hívja meg a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicycollection.getasync) metódust.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -46,33 +43,33 @@ var configPolicies = partnerOperations.Customers.ById(selectedCustomerId).Config
 
 Példaként tekintse meg a következőket:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **partner Center SDK-minták**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **Partnerközpont SDK minták**
 - Osztály: **GetAllConfigurationPolicies.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                              |
 |---------|------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/policies http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/policies HTTP/1.1 |
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
-A kérelem létrehozásakor használja a következő Path paramétert:
+A kérelem létrehozásakor használja a következő elérésiút-paramétert:
 
 | Név        | Típus   | Kötelező | Leírás                                           |
 |-------------|--------|----------|-------------------------------------------------------|
-| ügyfél-azonosító | sztring | Igen      | Egy GUID-formázott karakterlánc, amely azonosítja az ügyfelet. |
+| ügyfél-azonosító | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Nincs
+None
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -89,11 +86,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse tartalmazza a [ConfigurationPolicy](device-deployment-resources.md#configurationpolicy) -erőforrások gyűjteményét.
+Ha a művelet sikeres, a válasz törzse [tartalmazza a ConfigurationPolicy erőforrások gyűjteményét.](device-deployment-resources.md#configurationpolicy)
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. Teljes listát a következő témakörben talál: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a REST Partnerközpont [hibakódokat.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

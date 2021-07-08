@@ -1,54 +1,49 @@
 ---
 title: Termékek listájának lekérése (ügyfél alapján)
-description: Az ügyfél-azonosítóval termékek gyűjteményét veheti igénybe az ügyfél által.
+description: Az ügyfélazonosítók segítségével lekért termékgyűjtemények ügyfél szerint.
 ms.assetid: ''
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 98a099c458535123f675c6452db950b087b9f387
-ms.sourcegitcommit: d53d300dc7fb01aeb4ef85bf2e3a6b80f868dc57
+ms.openlocfilehash: a7cb2430aa93beb89e4d1f9b8c89a016d66624ca
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "97768175"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874193"
 ---
 # <a name="get-a-list-of-products-by-customer"></a>Termékek listájának lekérése (ügyfél alapján)
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A következő módszerekkel egy meglévő ügyfélhez tartozó termékek gyűjteményét kérheti le.
+Az alábbi módszerekkel lekért termékek gyűjteményét egy meglévő ügyfél számára.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus | Kérés URI-ja                                                                                                              |
 |--------|--------------------------------------------------------------------------------------------------------------------------|
-| POST   | [*\{ baseURL \}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Products? targetView = {targetView} http/1.1 |
+| POST   | [*\{ baseURL \}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/products?targetView={targetView} HTTP/1.1 |
 
-#### <a name="request-uri-parameters"></a>Kérelem URI-paraméterei
+#### <a name="request-uri-parameters"></a>URI-paraméterek kérése
 
 | Név               | Típus | Kötelező | Leírás                                                                                 |
 |--------------------|------|----------|---------------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | GUID | Igen | Az érték egy GUID-formátumú **ügyfél-bérlői azonosító**, amely egy ügyfél megadását lehetővé tevő azonosító. |
-| **targetView** | sztring | Igen | Meghatározza a katalógus céljának nézetét. A támogatott értékek a következők: <br/><br/>**Azure**, amely tartalmazza az összes Azure-elemet<br/><br/>**AzureReservations**, amely tartalmazza az összes Azure foglalási elemet<br/><br/>**AzureReservationsVM**, amely tartalmazza az összes virtuális gép (VM) foglalási elemét<br/><br/>**AzureReservationsSQL**, amely az összes SQL-foglalási elemet tartalmazza<br/><br/>**AzureReservationsCosmosDb**, amely tartalmazza az összes Cosmos-adatbázis foglalási elemét.<br/><br/>**MicrosoftAzure**, amely Microsoft Azure előfizetések (**MS-AZR-0145P**) és az Azure-csomagok elemeit tartalmazza<br/><br/>**OnlineServices**, amely tartalmazza az összes online szolgáltatási elemet, beleértve a kereskedelmi piactér termékeit is<br/><br/>**Szoftver**, amely tartalmazza az összes szoftver elemet<br/><br/>**SoftwareSUSELinux**, amely tartalmazza az összes szoftver SUSE Linux-elemet<br/><br/>**SoftwarePerpetual**, amely tartalmazza az összes örökös szoftver elemet.<br/><br/>**SoftwareSubscriptions**, amely tartalmazza az összes szoftver-előfizetési elemet  |
+| **ügyfél-bérlő-azonosító** | GUID | Igen | Az érték egy GUID-formátumú **ügyfél-bérlő-azonosító,** amely egy olyan azonosító, amellyel megadhatja az ügyfelet. |
+| **targetView** | sztring | Igen | A katalógus célnézetét azonosítja. A támogatott értékek a következőek: <br/><br/>**Azure**, amely az összes Azure-elemet tartalmazza<br/><br/>**AzureReservations**, amely az összes Azure-foglalási elemet tartalmazza<br/><br/>**AzureReservationsVM,** amely az összes virtuálisgép-foglalási elemet tartalmazza<br/><br/>**AzureReservationsSQL,** amely az összes SQL tartalmazza<br/><br/>**AzureReservationsCosmosDb,** amely a Cosmos-adatbázis összes foglalási elemét tartalmazza<br/><br/>**MicrosoftAzure**, amely a Microsoft Azure **(MS-AZR-0145P)** és az Azure-csomagok elemeit tartalmazza<br/><br/>**OnlineServices**, amely az összes online szolgáltatási elemet tartalmazza, beleértve a kereskedelmi piactéren elérhető termékeket is<br/><br/>**Szoftver,** amely az összes szoftverelemet tartalmazza<br/><br/>**SoftwareSUSELinux**, amely az összes szoftveres SUSE Linux-elemet tartalmazza<br/><br/>**SzoftverPerpetual**, amely az összes állandó szoftverelemet tartalmazza<br/><br/>**SoftwareSubscriptions**, amely az összes szoftver-előfizetési elemet tartalmazza  |
 
 ### <a name="request-header"></a>Kérelem fejléce
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -56,7 +51,7 @@ Nincsenek.
 
 ### <a name="request-example"></a>Példa kérésre
 
-Az adott ügyfél számára elérhető Azure-alapú használati termékek listájának kérése. A Microsoft Azure (MS-AZR-0145P) és az Azure-csomagok termékeit a nyilvános felhőben lévő ügyfelek számára is visszaadja a rendszer:
+Egy adott ügyfél számára elérhető Azure-beli használatalapú termékek listájának lekérése. A rendszer a nyilvános Microsoft Azure (MS-AZR-0145P) és az Azure-csomagokhoz is visszaadja a termékeket:
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers/65543400-f8b0-4783-8530-6d35ab8c6801/products?targetView=MicrosoftAzure HTTP/1.1
@@ -66,17 +61,17 @@ MS-RequestId: 83643f5e-5dfd-4375-88ed-054412460dc8
 MS-CorrelationId: b1939cb2-e83d-4fb0-989f-514fb741b734
 ```
 
-## <a name="rest-response"></a>Rest-válasz
+## <a name="rest-response"></a>REST-válasz
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
 | HTTP-állapotkód | Hibakód   | Leírás                     |
 |------------------|--------------|---------------------------------|
-| 403 | 400036 | A kért targetView való hozzáférés nem engedélyezett. |
+| 403 | 400036 | A kért targetView-hoz való hozzáférés nem engedélyezett. |
 
 ### <a name="response-example"></a>Példa válaszra
 

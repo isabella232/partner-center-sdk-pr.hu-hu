@@ -1,27 +1,24 @@
 ---
 title: Azure-foglalások megvásárlása
-description: A partner Center API-val a meglévő Microsoft Azure-előfizetéssel (MS-AZR-0145P) vagy az Azure-csomaggal vásárolhat Azure-foglalásokat az ügyfelek számára.
+description: Az Azure Reservationst az ügyfelek számára a Partnerközpont API-val vásárolhatja meg a meglévő Microsoft Azure-előfizetésén (MS-AZR-0145P) vagy Azure-csomagon keresztül.
 ms.date: 11/01/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 4c09f65ae5105a74be41a7ec45824e3889217a1c
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 0b9ce4a808ac12c32bd67888fc92808baeb0e575
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767863"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111547767"
 ---
 # <a name="purchase-azure-reservations"></a>Azure-foglalások megvásárlása
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Ha a partner Center API-val szeretne Azure-foglalást vásárolni egy ügyfélhez, meglévő Microsoft Azure (**MS-AZR-0145P**) előfizetéssel vagy Azure-csomaggal kell rendelkeznie.
+Ahhoz, hogy Azure-foglalást vásároljon egy ügyfél számára a Partnerközpont API-val, meglévő Microsoft Azure-**(MS-AZR-0145P)** előfizetéssel vagy Azure-csomagtal kell rendelkezik számukra.
 
 > [!NOTE]
-> Az Azure-foglalások nem érhetők el az alábbi piacokon:
+> Az Azure-foglalások a következő piacokon nem érhetők el:
 >
 > | Nem elérhető piacok            | Nem elérhető piacok (folytatás...) | Nem elérhető piacok (folytatás...)      |
 > |--------------------------------|-----------------------------------|------------------------------------------|
@@ -37,7 +34,7 @@ Ha a partner Center API-val szeretne Azure-foglalást vásárolni egy ügyfélhe
 > | Bonaire                        | Heard-sziget és McDonald-szigetek | Saint Vincent és Grenadine-szigetek         |
 > | Bouvet-sziget                  | Man-sziget                       | Szamoa                                    |
 > | Brazília                         | Jan Mayen                         | San Marino                               |
-> | Brit indiai-óceáni terület | Jersey                            | São Tomé és Príncipe                    |
+> | Brit indiai-óceáni terület | Jersey                            | Sémo Tomé és Príncipe                    |
 > | Brit Virgin-szigetek         | Kiribati                          | Seychelle-szigetek                               |
 > | Burkina Faso                   | Koszovó                            | Sierra Leone                             |
 > | Burundi                        | Laosz                              | Sint Eustatius                           |
@@ -46,7 +43,7 @@ Ha a partner Center API-val szeretne Azure-foglalást vásárolni egy ügyfélhe
 > | Csád                           | Madagaszkár                        | Szomália                                  |
 > | Kína                          | Malawi                            | Dél-Georgia és Déli-Sandwich-szigetek |
 > | Karácsony-sziget               | Maldív-szigetek                          | Dél-Szudán                              |
-> | Cocos (Keeling)-szigetek        | Mali                              | Szent Ilona, Ascension, Tristan da Cunha   |
+> | Cocos (Keeling)-szigetek        | Mali                              | St Majda, Ascension, Tristan da Canha   |
 > | Comore-szigetek                        | Marshall-szigetek                  | Suriname                                 |
 > | Kongó                          | Martinique                        | Svalbard                                 |
 > | Kongó (KDK)                    | Mauritánia                        | Szváziföld                                |
@@ -56,7 +53,7 @@ Ha a partner Center API-val szeretne Azure-foglalást vásárolni egy ügyfélhe
 > | Egyenlítői-Guinea              | Mozambik                        | Tonga                                    |
 > | Eritrea                        | Mianmar                           | Turks- és Caicos-szigetek                 |
 > | Falkland-szigetek               | Nauru                             | Tuvalu                                   |
-> | Francia Guyana                  | Új-Kaledónia                     | Amerikai Egyesült Államok lakatlan külbirtokai                    |
+> | Francia Guyana                  | Új-Kaledónia                     | Az Usa-beli, outlying-szigetek                    |
 > | Francia Polinézia               | Niger                             | Vanuatu                                  |
 > | Francia Déli Területek    | Niue                              | Vatikán                             |
 > | Gabon                          | Norfolk-sziget                    | Wallis és Futuna                        |
@@ -66,128 +63,128 @@ Ha a partner Center API-val szeretne Azure-foglalást vásárolni egy ügyfélhe
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- Egy aktív CSP Azure-előfizetés vagy egy Azure-csomag előfizetés-azonosítója.
+- Aktív CSP Azure-előfizetés vagy Azure-csomag előfizetés-azonosítója.
 
-## <a name="how-to-purchase-microsoft-azure-reservations"></a>Microsoft Azure foglalások megvásárlása
+## <a name="how-to-purchase-microsoft-azure-reservations"></a>Foglalások Microsoft Azure vásárlása
 
-Miután azonosította az aktív CSP Azure-előfizetést, amelyhez Azure-foglalást kíván hozzáadni a alkalmazáshoz, a következő lépésekkel vásárolhatja meg:
+Miután azonosította az aktív CSP Azure-előfizetést, amelybe Azure-foglalást szeretne hozzáadni, a következő lépésekkel vásárolhatja meg:
 
-1. [Engedélyezés](#enablement) – aktív CSP Azure-előfizetés regisztrálása, amely lehetővé teszi az Azure-foglalások megvásárlását.
+1. [Engedélyezés – Regisztráljon](#enablement) egy aktív CSP Azure-előfizetést, hogy lehetővé tegye az Azure Reservations megvásárlását.
 
-2. [Felderítés](#discovery) – keresse meg és válassza ki a megvásárolni kívánt Azure foglalási termékeket és SKU-ket, és ellenőrizze azok rendelkezésre állását.
+2. [Felderítés](#discovery) – Keresse meg és válassza ki a megvásárolni kívánt Azure-beli foglalási termékeket és termékegységeket (SKUs), és ellenőrizze azok rendelkezésre állását.
 
-3. [Rendelés beküldése](#order-submission) – hozzon létre egy bevásárlókocsiot a megrendelés elemeivel, és küldje el.
+3. [Megrendelés beküldve](#order-submission) – Hozzon létre egy bevásárlókosarat a rendelésben lévő elemekkel, és küldje el.
 
-4. [Rendelési adatok beolvasása](#get-order-details) – megtekintheti egy megrendelés részleteit, az ügyfél összes rendelését, vagy megtekintheti a rendeléseket számlázási ciklus típusa szerint.
+4. [Megrendelés részleteinek](#get-order-details) lekérte – Áttekinti egy megrendelés részleteit, az ügyfél összes rendelését, vagy megtekintheti a megrendeléseket a számlázási ciklus típusa szerint.
 
-Az Azure-foglalások megvásárlása után az alábbi forgatókönyvek azt mutatják be, hogyan kezelheti az életciklusát az Azure-beli foglalási jogosultságokkal kapcsolatos információk beszerzésével, valamint az egyenleg-utasítások, a számlák és a számlázási összefoglalók beolvasásának módjával.
+Miután megvásárolta az Azure Reservationst, a következő forgatókönyvek azt mutatják be, hogyan kezelheti az életciklusát az Azure-beli foglalási jogosultságok információinak lekérésével, valamint az egyenlegre vonatkozó utasítások, számlák és számlaösszegzők lekérésével.
 
 - [Életciklus-kezelés](#lifecycle-management)
-- [Számlázás és egyeztetés](#invoice-and-reconciliation)
+- [Számla és egyeztetés](#invoice-and-reconciliation)
 
 ## <a name="enablement"></a>Engedélyezés
 
-Az engedélyezés azt jelenti, hogy egy meglévő Microsoft Azure (**MS-AZR-0145P**) előfizetés egy Azure-beli fenntartott VM-példányhoz való társításához regisztrálja az előfizetést, hogy az engedélyezve legyen az Azure-foglalásokhoz. A regisztráció a Azure Reserved VM Instances megvásárlásának előfeltétele.
+Az engedélyezés azt jelenti, hogy egy meglévő Microsoft Azure-**(MS-AZR-0145P)** előfizetést társít egy Azure-beli fenntartott virtuálisgép-példányhoz úgy, hogy regisztrálja az előfizetést, hogy engedélyezve legyen az Azure Reservations számára. A regisztráció előfeltétele a Azure Reserved VM Instances.
 
-A következők miatt előfizetésre van szükség:
+A következő feladatok támogatásához előfizetés szükséges:
 
-1. Annak ellenőrzését, hogy az ügyfél jogosult-e az erőforrások üzembe helyezésére, és így a Azure Reserved VM Instances vásárlása egy adott régióban vagy sem.
+1. Annak ellenőrzése, hogy az ügyfél jogosult-e erőforrások üzembe helyezésére, és Azure Reserved VM Instances-előfizetést vásárolni egy régióban vagy sem.
 
-2. A kapacitás prioritásának biztosítása az előfizetésben üzemelő példányok számára. Ez csak az egyetlen hatókörű Azure Reserved VM Instancesre vonatkozik, ha a **kapacitás prioritása** lehetőség ki van választva.
+2. Kapacitási prioritást biztosít az előfizetésen üzemelő példányok számára. Ez csak egy hatókörre vonatkozik, Azure Reserved VM Instances a kapacitás prioritása **beállítás** van kiválasztva.
 
-Miután azonosította azt az aktív előfizetést, amelyhez hozzá kívánja adni az Azure-foglalást, regisztrálnia kell az előfizetést, hogy az engedélyezve legyen az Azure-foglalásokhoz. Meglévő [előfizetési](subscription-resources.md) erőforrás regisztrálásához, hogy engedélyezve legyen az Azure-foglalások rendezése, lásd: [előfizetés regisztrálása](register-a-subscription.md).
+Miután azonosította az aktív előfizetést, amelybe hozzá szeretné adni az Azure-foglalást, regisztrálnia kell az előfizetést, hogy engedélyezve legyen az Azure Reservationshez. Ha regisztrálnia kell egy meglévő [előfizetési](subscription-resources.md) erőforrást, hogy az azure-foglalások rendelése engedélyezve legyen, tekintse meg [az előfizetés regisztrálását.](register-a-subscription.md)
 
-Az előfizetés regisztrálása után ellenőrizze, hogy a regisztrációs folyamat befejeződött-e a regisztráció állapotának ellenőrzésével. Ehhez tekintse meg az [előfizetés regisztrációs állapotának beszerzése](get-subscription-registration-status.md)című témakört.
+Az előfizetés regisztrálása után a regisztrációs állapot ellenőrzésével ellenőriznie kell, hogy a regisztrációs folyamat befejeződött-e. Ehhez lásd: [Előfizetés regisztrációs állapotának lekért állapota.](get-subscription-registration-status.md)
 
 > [!NOTE]
-> Az Azure-csomaggal rendelkező ügyfelek Microsoft Azure foglalásának megvásárlásakor először regisztrálnia kell az Azure-csomagot. A Microsoft Azure (**MS-AZR-0145P**) előfizetéshez hasonlóan az Azure-csomagot egy partner Center- [előfizetési](subscription-resources.md) erőforrás képviseli. Ezért ugyanezt a [regisztrációs előfizetési](register-a-subscription.md) módszert használhatja az Azure-csomag regisztrálásához.
+> Ha azure Microsoft Azure csomaggal vásárol egy ügyfelet, először regisztrálnia kell az Azure-csomagját. A Microsoft Azure (**MS-AZR-0145P**) előfizetéshez hasonlóan az Azure-csomagokat egy [Partnerközpont-előfizetési](subscription-resources.md) erőforrás képviseli. Ezért használhatja ugyanazt az Előfizetés regisztrálása [metódust](register-a-subscription.md) az Azure-csomag regisztrálásához.
 
 ## <a name="discovery"></a>Felderítés
 
-Ha az előfizetés engedélyezve van az Azure-foglalások megvásárlásához, készen áll a termékek és az SKU-k kiválasztására, és a rendelkezésre állásuk ellenőrzését a következő partner Center API-modellekkel:
+Miután engedélyezte az előfizetés számára az Azure Reservations megvásárlását, kiválaszthatja a termékeket és a terméktermékeket, és ellenőrizheti azok rendelkezésre állását az alábbi API-Partnerközpont használatával:
 
-- [Termék](product-resources.md#product) – a megvásárolható termékek vagy szolgáltatások csoportosítási konstrukciója. Egy termék önmagában nem egy megvásárolható tétel.
+- [Termék](product-resources.md#product) – Egy csoportosítási szerkezet a cserélhető termékekhez vagy szolgáltatásokhoz. A termék önmagában nem cserélhető elem.
 
-- [SKU](product-resources.md#sku) – egy terméken belül megvásárolható készlet-tartási egység (SKU). Ezek a termék különböző alakzatait jelölik.
+- [Termékváltozat](product-resources.md#sku) – Egy terméken elérhető, véglegesen cserélhető termékváltozat. Ezek a termék különböző alakjai.
 
-- [Rendelkezésre állás](product-resources.md#availability) – olyan konfiguráció, amelyben az SKU megvásárolható (például ország, pénznem és iparági szegmens).
+- [Rendelkezésre állás](product-resources.md#availability) – Olyan konfiguráció, amelyben egy termékváltozat megvásárolható (például ország, pénznem és iparági szegmens).
 
-Az Azure-foglalás megvásárlása előtt végezze el a következő lépéseket:
+Azure-foglalás vásárlása előtt kövesse az alábbi lépéseket:
 
-1. Azonosítsa és kérje le a megvásárolni kívánt terméket és SKU-t. Ezt úgy teheti meg, hogy először felsorolja a termékeket és az SKU-t, vagy ha már ismeri a termék és az SKU azonosítóit, és kiválasztja őket.
+1. Azonosítsa és lekéri a megvásárolni kívánt terméket és termékváltozatot. Ehhez először listázást kell választania a termékekről és a termékváltozatról, vagy ha már ismeri a termék és a termékváltozatok listáját, válassza ki őket.
 
    - [Termékek listájának lekérése (ország alapján)](get-a-list-of-products.md)
-   - [Termék beszerzése a termék AZONOSÍTÓjának használatával](get-a-product-by-id.md)
+   - [Termék lekérte a termékazonosítót](get-a-product-by-id.md)
    - [Egy termék termékváltozatait tartalmazó lista lekérése (ország alapján)](get-a-list-of-skus-for-a-product.md)
-   - [SKU beszerzése az SKU azonosító használatával](get-a-sku-by-id.md)
+   - [Termékváltozat lekérte a termékváltozat azonosítójával](get-a-sku-by-id.md)
 
-2. Egy SKU leltárának keresése. Erre a lépésre csak a **InventoryCheck** előfeltételként megjelölt SKU-ra van szükség.
+2. Ellenőrizze a leltárban, hogy van-e termékváltozat. Erre a lépésre csak az **InventoryCheck** előfeltételként megjelölt termékkódok esetén van szükség.
 
    - [Leltár ellenőrzése](check-inventory.md)
 
-3. Az [SKU](product-resources.md#sku) [rendelkezésre állásának](product-resources.md#availability) beolvasása. A megrendelés elhelyezésekor szüksége lesz a rendelkezésre állás **CatalogItemId** . Az érték beszerzéséhez használja a következő API-k egyikét:
+3. A [termékváltozat](product-resources.md#availability) rendelkezésre [állásának lekérése.](product-resources.md#sku) A rendelés leadáskor szüksége lesz a rendelkezésre állás **CatalogItemId-ére.** Ezt az értéket a következő API-k egyikével használhatja:
 
    - [Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ország alapján)](get-a-list-of-availabilities-for-a-sku.md)
-   - [Rendelkezésre állási azonosító használata](get-an-availability-by-id.md)
+   - [Rendelkezésre állás lekérte a rendelkezésre állási azonosítóval](get-an-availability-by-id.md)
 
 > [!IMPORTANT]
-> Minden Microsoft Azure foglalási termék különböző elérhetőséggel rendelkezik Microsoft Azure (**MS-AZR-0145P**) előfizetéshez és az Azure-csomaghoz. A [termékek (országonként) listájának](get-a-list-of-products.md)lekéréséhez vagy a [termékhez tartozó SKU-EK listájának](get-a-list-of-skus-for-a-product.md)lekéréséhez, vagy az Azure-csomaghoz tartozó [SKU (ország szerint) elérhetőségi listájának](get-a-list-of-availabilities-for-a-sku.md) lekéréséhez a "reservationScope = AzurePlan" paramétert kell megadnia.
+> Minden Microsoft Azure termék eltérő Microsoft Azure (**MS-AZR-0145P**) előfizetéshez és Azure-csomaghoz. A terméklistát [(ország szerint)](get-a-list-of-products.md)vagy termékváltozatok listájának lekérte (országonként) vagy egy termékváltozat rendelkezésre állási listájának lekért [listáját (ország szerint),](get-a-list-of-availabilities-for-a-sku.md) adja meg a "reservationScope=AzurePlan" paramétert. [](get-a-list-of-skus-for-a-product.md)
 
-## <a name="order-submission"></a>Megrendelés beküldése
+## <a name="order-submission"></a>Rendelés beküldve
 
-Az Azure foglalási sorrendjének elküldéséhez tegye a következőket:
+Az Azure-foglalási rendelés elküld végrehajtásához tegye a következőket:
 
-1. Hozzon létre egy cartot a megvásárolni kívánt katalógus-elemek gyűjteményének tárolására. Amikor létrehoz egy [kosarat](cart-resources.md), a rendszer automatikusan csoportosítja a [szekér elemeit](cart-resources.md#cartlineitem) attól függően, hogy mit vásárolhat együtt ugyanabban a [sorrendben](order-resources.md).
+1. Hozzon létre egy kosárt, amely a megvásárolni kívánt katalóguselemek gyűjteményét tartalmazza. A kosár [létrehozásakor](cart-resources.md)a [](cart-resources.md#cartlineitem) kosársor elemei automatikusan csoportosítva lesznek az alapján, hogy mi vásárolható együtt ugyanabban a [rendelésben.](order-resources.md)
 
    - [Bevásárlókocsi létrehozása](create-a-cart.md)
    - [Bevásárlókocsi frissítése](update-a-cart.md)
 
-2. Látogasson el a kosárba. A kosár megkeresése egy [megrendelés](order-resources.md)létrehozását eredményezi.
+2. Nézze meg a kosárt. A kosár ellenőrzésekor a rendelés is létre lesz [hozva.](order-resources.md)
 
-   - [A kosár pénztárának kifizetése](checkout-a-cart.md)
+   - [A kosár kiveszi](checkout-a-cart.md)
 
-## <a name="get-order-details"></a>Megrendelés részleteinek beolvasása
+## <a name="get-order-details"></a>Megrendelés részleteinek lekérte
 
-Miután létrehozta az Azure foglalási sorrendjét, lekérheti egy adott megrendelés részleteit a megrendelés azonosítójával, vagy megtekintheti az ügyfél rendeléseinek listáját. A megrendelés elküldése és az ügyfél rendeléseinek listájában akár 15 percet is igénybe vehet.
+Az Azure-beli foglalási rendelés létrehozása után lekérheti egy adott rendelés részleteit a rendelés azonosítójával, vagy lekérheti egy ügyfél rendelési listáját. A rendelés beküldés és az ügyfél rendelési listájában való megjelenése között akár 15 perces késés is lehet.
 
-- Egy adott megrendelés részleteinek beszerzése a megrendelés AZONOSÍTÓjának használatával. Lásd: [Order by id](get-an-order-by-id.md).
+- Egy adott rendelés részleteinek lekért adatai a rendelés azonosítójával. Lásd: [Rendelés lekért azonosítója.](get-an-order-by-id.md)
 
-- Az ügyfél-AZONOSÍTÓval rendelkező ügyfél rendeléseinek listájának lekérése. Lásd: az [összes ügyfél rendelésének beolvasása](get-all-of-a-customer-s-orders.md).
+- Egy ügyfél rendelési listájának lekért listája az ügyfél azonosítójával. Lásd: [Egy ügyfél összes rendelésének lekért rendelése.](get-all-of-a-customer-s-orders.md)
 
-- A [számlázási ciklus típusa](product-resources.md#billingcycletype) alapján megjelenő megrendelések listájának lekéréséhez, amely lehetővé teszi, hogy az Azure foglalási rendeléseket (egyszeri költségek) és az éves vagy havi számlázott rendeléseket külön lehessen kilistázni. Lásd: [a megrendelések listájának lekérése az ügyfél és a számlázási ciklus típusa alapján](get-a-list-of-orders-by-customer-and-billing-cycle-type.md).
+- Ha le kell kapnia egy ügyfél rendelési listáját a számlázási ciklus típusa [szerint,](product-resources.md#billingcycletype) amely lehetővé teszi az Azure-beli foglalási rendelések (egyszeres díjak) és az éves vagy havi számlázású rendelések külön-külön való felsorolását. Lásd: [Rendelések listájának lekérte ügyfél és számlázási ciklustípus szerint.](get-a-list-of-orders-by-customer-and-billing-cycle-type.md)
 
 ## <a name="lifecycle-management"></a>Életciklus-kezelés
 
-Az Azure-foglalások a partner Centerben való kezelésének részeként lekérheti az Azure-beli foglalási [jogosultságokkal](entitlement-resources.md)kapcsolatos információkat, és lekérheti a foglalás részleteit a foglalási rendelés azonosítójának használatával. Ennek módjáról a [jogosultságok beszerzése](get-a-collection-of-entitlements.md)című témakörben talál példákat.   
+Az Azure Reservations életciklusának Partnerközpont részeként lekérheti az Azure-beli foglalás [](entitlement-resources.md)jogosultságai adatait, és lekérheti a foglalás részleteit a foglalási rendelés azonosítójával. Erre vonatkozó példákért lásd: [Jogosultságok lekérte.](get-a-collection-of-entitlements.md)   
 
-## <a name="invoice-and-reconciliation"></a>Számlázás és egyeztetés
+## <a name="invoice-and-reconciliation"></a>Számla és egyeztetés
 
-Az alábbi forgatókönyvek azt mutatják be, hogyan lehet programozott módon megtekinteni az ügyfél [számláit](invoice-resources.md), és beolvasni a fiók egyenlegeit és összegzéseit, amelyek az Azure-foglalások egyszeri díjait tartalmazzák.
+A következő forgatókönyvek azt mutatják be, hogyan [](invoice-resources.md)lehet programozott módon megtekinteni az ügyfél számláit, és hogyan lehet lekért fiókegyenlegeket és összegzéseket, amelyek tartalmazzák az Azure-foglalások egyszeres díjeit.
 
-### <a name="balance-and-payment"></a>Egyenleg és fizetés
+### <a name="balance-and-payment"></a>Egyenleg és kifizetés
 
-Az aktuális fiók egyenlegének alapértelmezett pénznembeli beszerzéséhez, amely az ismétlődő és egyszeri (Azure-foglalási) díjak egyenlege, lásd: [az aktuális fiók egyenlegének beolvasása](get-the-reseller-s-current-account-balance.md) .
+Ha az aktuális számlaegyenleget az alapértelmezett pénznemtípusban,amely az ismétlődő és az egyszeri (Azure-foglalási) díjak egyenlegét is tartalmazza, lásd: Az aktuális fiókegyenleg [lekért összege](get-the-reseller-s-current-account-balance.md)
 
-### <a name="multi-currency-balance-and-payment"></a>Több pénznemre kiterjedő egyenleg és fizetés
+### <a name="multi-currency-balance-and-payment"></a>Több pénznem egyenlege és kifizetése
 
-Az aktuális fiók egyenlegének beszerzéséhez, valamint a számla összegzésének összefoglalásához, amely tartalmazza az egyes ügyfelek pénznem-típusaira vonatkozó ismétlődő és egyszeri díjat is, tekintse meg a [számla összegzésének beolvasása](get-invoice-summaries.md)című témakört.
+Az aktuális számlaegyenleg és a számlaösszegzéseket tartalmazó számlaösszegzések gyűjtéséhez, amelyek ismétlődő és egyszeri díjakat is tartalmaznak az egyes ügyfelek pénznemtípusaihoz, lásd: Számlaösszegzések [lekérte.](get-invoice-summaries.md)
 
 ### <a name="invoices"></a>Számlák
 
-Az ismétlődő és egy egyszeri díjat is tartalmazó számlák gyűjteményének beszerzéséhez tekintse meg [a számlák gyűjteményének beolvasása](get-a-collection-of-invoices.md)című témakört. 
+Az ismétlődő és egyszeri díjakat is bemutató számlák gyűjteményének lekért [lásd: Számlák gyűjteményének begyűjtése.](get-a-collection-of-invoices.md) 
 
 ### <a name="single-invoice"></a>Egyetlen számla
 
-Ha a számla AZONOSÍTÓjának használatával szeretne beolvasni egy adott számlát, tekintse meg a [számla beszerzése azonosító alapján](get-invoice-by-id.md)című témakört.  
+Egy adott számla számlaazonosítóval való lekérését lásd: [Számla lekérése azonosító alapján.](get-invoice-by-id.md)  
 
-### <a name="reconciliation"></a>Licencegyeztetési
+### <a name="reconciliation"></a>Egyeztetés
 
-A számlasor-elemek részleteinek (egyeztetési sorok) egy adott AZONOSÍTÓhoz tartozó gyűjteményének lekéréséhez tekintse meg a [Számlázási sorok beolvasása](get-invoiceline-items.md)című cikket.  
+Egy adott számlaazonosító számlasorelem-részleteinek (egyeztetési sorelemek) gyűjteményét lásd: [Számlasorelemek begyűjtése.](get-invoiceline-items.md)  
 
-### <a name="download-an-invoice-as-a-pdf"></a>Számla letöltése PDF-ként
+### <a name="download-an-invoice-as-a-pdf"></a>Számla letöltése PDF-fájlként
 
-Ha a számla AZONOSÍTÓjának használatával szeretne beolvasni egy számlafogadó-utasítást a PDF-űrlapon, olvassa el a [Számlakivonat beolvasása](get-invoice-statement.md)című témakört.
+A számlakivonat PDF formátumban, számlaazonosítóval való lekéréséhez lásd: [Számlakivonat lekérése.](get-invoice-statement.md)

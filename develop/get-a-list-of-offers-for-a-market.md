@@ -1,36 +1,31 @@
 ---
 title: Egy piac ajánlati listájának lekérése
-description: Beolvas egy gyűjteményt, amely egy adott piac összes ajánlatát tartalmazza.
+description: Lekért egy gyűjteményt, amely egy adott piac összes ajánlatát tartalmazza.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: 3a004f6f8f8de8cd398d82c300793e4f196efaaa
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 6f4fd821879545db4e781fe3202c8ee11f167615
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767947"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874244"
 ---
 # <a name="get-a-list-of-offers-for-a-market"></a>Egy piac ajánlati listájának lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Beolvas egy gyűjteményt, amely egy adott piac összes ajánlatát tartalmazza.
+Lekért egy gyűjteményt, amely egy adott piac összes ajánlatát tartalmazza.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-Egy adott piacon elérhető ajánlatok listájának lekéréséhez használja a **IAggregatePartner. ajánlatok** gyűjteményét, válassza ki a piacot országonként, és hívja meg a **Get ()** vagy a **Get aszinkron ()** metódust.
+Egy adott piacon található ajánlatok listájának lehívásához használja **az IAggregatePartner.Offers** gyűjteményt, válassza ki a piacot ország szerint, és hívja meg a **Get()** vagy a **Get Async() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -38,28 +33,28 @@ Egy adott piacon elérhető ajánlatok listájának lekéréséhez használja a 
 ResourceCollection<Offer> offers = partnerOperations.Offers.ByCountry("US").Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSample **osztály**: offers.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** Offers.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                          |
 |---------|--------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/offers? ország = {ország-azonosító} http/1.1   |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/offers?country={country-id} HTTP/1.1   |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Ez a táblázat felsorolja az ajánlatok beszerzéséhez szükséges lekérdezési paramétereket.
+Ez a táblázat felsorolja az ajánlatok lekért lekérdezési paramétereit.
 
 | Név           | Típus       | Kötelező | Leírás            |
 |----------------|------------|----------|------------------------|
-| **ország azonosítója** | **karakterlánc** | Y        | Az ország/régió azonosítója. |
+| **country-id (országazonosító)** | **sztring** | Y        | Az ország/régió azonosítója. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-- A rendszer karakterláncként formázott **területi beállítás** megadása kötelező.
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+- Szükség **van egy sztringként** formázott területi azonosítóra.
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -78,11 +73,11 @@ X-Locale: <locale-id>
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus a válasz törzsében adja vissza az **ajánlati** erőforrások gyűjteményét.
+Ha a művelet sikeres, ez a metódus ajánlat-erőforrások **gyűjteményét** adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

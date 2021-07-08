@@ -1,195 +1,190 @@
 ---
 title: Partnerközpont – elemzések
-description: A partner Center Analytics nyilvános API dokumentációja.
+description: Partnerközpont Analytics nyilvános API dokumentációja.
 ms.date: 06/11/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 4b14ee929f3020079f409be8817e077673d3219f
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 03d7d252a415524c6573c1bf62b8b9c1518a1b9f
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767772"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548090"
 ---
 # <a name="partner-center-analytics---resources"></a>Partnerközpont-elemzések – forrásanyagok
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Az elemzési API lehetővé teszi, hogy programozott módon hozzáférjen a felhasználói élményben bemutatott adatszolgáltatásokhoz.
+Az Analytics API lehetővé teszi, hogy programozott módon hozzáférjen a Felhasználói élményben megjelenő adatokhoz.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ezek a forgatókönyvek csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatják.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ezek a forgatókönyvek csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatják.
 
-## <a name="csp-program-azure-usage-analytics"></a>CSP program: Azure-használati elemzés
+## <a name="csp-program-azure-usage-analytics"></a>CSP-program: Azure-használatelemzés
 
-A következő forgatókönyv bemutatja, hogyan használhatja az Analytics API-t az összes partner Center Azure-használati elemzési információ lekéréséhez.
+A következő forgatókönyv bemutatja, hogyan használhatja az Analytics API-t az azure Partnerközpont összes adatának lekérésére.
 
 - [Az összes Azure-beli használatelemzési adat lekérése](get-all-azure-usage-analytics.md)
 
-Ez a forgatókönyv az [Azure-használati](#azure-usage-resource) erőforrások gyűjteményében lévő elemzési adatokat adja vissza.
+Ez a forgatókönyv azure-beli használati erőforrások [gyűjteményében](#azure-usage-resource) adja vissza az elemzési adatokat.
 
-## <a name="azure-usage-resource"></a>Azure-használati erőforrás
+## <a name="azure-usage-resource"></a>Azure használati erőforrás
 
-Az Azure-használat összes analitikai adatait jelöli.
+Az Azure-használat összes elemzési adatát jelöli.
 
 | Tulajdonság | Típus | Leírás |
 |----------|------|-------------|
-| CustomerTenantId | sztring | Az ügyfél bérlői azonosítója. |
-| Customername ( | sztring | Az ügyfél neve. |
+| CustomerTenantId | sztring | Az ügyfél bérlőazonosítója. |
+| customerName (ügyfél neve) | sztring | Az ügyfél neve. |
 | subscriptionId | sztring | Az előfizetés azonosítója. |
 | subscriptionName | sztring | Az előfizetés neve. |
 | usageDate | sztring | A használat dátuma. |
-| resourceLocation | sztring | A Nyugat-Európa adatközpontjának helye, például:. |
-| meterCategory | sztring | A mérőszám kategóriája, adatkezelés, például. |
-| Fogyasztásmérő alkategóriája | sztring | A fogyasztásmérő alkategóriája, például a redundáns földrajzi érték. |
-| meterUnit | sztring | A mérő egység, például gigabájt vagy óra. |
-| reservationOrderId | sztring | Egy Azure-beli virtuális gép fenntartott példányának foglalási sorrendje. |
-| reservationId | sztring | Fenntartott példányok egy adott RI-sorrendben. |
-| serviceType | sztring | Megadja a virtuális gép típusát. Például Standard_E4s_v3. |
+| resourceLocation | sztring | Az adatközpont helye, például Nyugat-Európa. |
+| meterCategory | sztring | A fogyasztásmérő kategóriája, például adatkezelés. |
+| meterSubcategory | sztring | A fogyasztásmérő alkategóriája, például georedundáns. |
+| meterUnit | sztring | A fogyasztásmérő egység, például gigabájt vagy óra. |
+| reservationOrderId | sztring | Egy Azure-beli virtuális gép fenntartott példányának foglalási rendelése. |
+| reservationId | sztring | Fenntartott példányok egy adott fenntartott példány megrendelése alatt. |
+| serviceType (szolgáltatástípus) | sztring | A virtuális gép típusát jelzi. Például: Standard_E4s_v3. |
 | quantity | hosszú | A fogyasztásmérő egységben használt számokat jelzi. |
 
-## <a name="csp-program-indirect-resellers-analytics"></a>CSP-program: közvetett viszonteladói elemzés
+## <a name="csp-program-indirect-resellers-analytics"></a>CSP-program: közvetett viszonteladók elemzése
 
-A következő forgatókönyv bemutatja, hogyan használhatja az Analytics API-t az összes partner Center közvetett viszonteladó elemzési információjának lekéréséhez.
+A következő forgatókönyv bemutatja, hogyan használhatja az Analytics API-t az összes közvetett Partnerközpont viszonteladó elemzési információinak lekérésére.
 
 - [Az összes közvetett viszonteladó elemzési adatainak lekérése](get-all-indirect-resellers-analytics.md)
 
-Ez a forgatókönyv a [közvetett viszonteladói](#indirect-resellers-resource) erőforrások gyűjteményében lévő elemzési adatokat adja vissza.
+Ez a forgatókönyv közvetett viszonteladói erőforrások gyűjteményében adja vissza az [elemzési adatokat.](#indirect-resellers-resource)
 
-## <a name="indirect-resellers-resource"></a>Közvetett viszonteladók erőforrásai
+## <a name="indirect-resellers-resource"></a>Közvetett viszonteladói erőforrás
 
-A közvetett viszonteladók összes analitikai adatmennyiségét jelöli.
+A közvetett viszonteladók összes elemzési adatát jelöli.
 
 | Tulajdonság | Típus | Leírás |
 |----------|------|-------------|
-| partnerTenantId | sztring | Annak a partnernek a bérlői azonosítója, amelyhez közvetett viszonteladói adatmennyiséget kíván beolvasni. |
+| partnerTenantId | sztring | Annak a partnernek a bérlőazonosítója, amelyhez közvetett viszonteladói adatokat szeretne lekérni. |
 | id | sztring | Közvetett viszonteladó azonosítója. |
-| name | sztring | Annak a partnernek a neve, amelyhez közvetett viszonteladói adatmennyiséget kíván beolvasni. |
-| piac | sztring | Annak a partnernek a piaca, amelyhez közvetett viszonteladói adatmennyiséget kíván beolvasni. |
-| firstSubscriptionCreationDate | karakterlánc UTC-dátum időformátuma | Az első előfizetés létrehozásának dátuma, amely alapján a közvetett viszonteladói adatok lekérését kéri. |
-| latestSubscriptionCreationDate | karakterlánc UTC-dátum időformátuma | A legújabb előfizetés létrehozásának dátuma. |
-| firstSubscriptionEndDate | karakterlánc UTC-dátum időformátuma | Az előfizetés első befejezése után. |
-| latestSubscriptionEndDate | karakterlánc UTC-dátum időformátuma | Az előfizetés befejezésének utolsó dátuma. |
-| firstSubscriptionSuspendedDate | karakterlánc UTC-dátum időformátuma | Az előfizetés felfüggesztésének első időpontja. |
-| latestSubscriptionSuspendedDate | karakterlánc UTC-dátum időformátuma | Az előfizetés felfüggesztésének utolsó dátuma. |
-| firstSubscriptionDeprovisionedDate | karakterlánc UTC-dátum időformátuma | Az előfizetés első kiépítésekor. |
-| latestSubscriptionDeprovisionedDate | karakterlánc UTC-dátum időformátuma | Az előfizetés megszűnésének utolsó dátuma. |
-| subscriptionCount | double | Az összes hozzáadott értékhez tartozó előfizetés száma |
-| licenseCount | double | Az összes hozzáadott értékhez tartozó licencek száma |
+| name | sztring | Annak a partnernek a neve, amelyhez közvetett viszonteladói adatokat szeretne lekérni. |
+| piac | sztring | Annak a partnernek a piaca, amelyhez közvetett viszonteladói adatokat szeretne lekérni. |
+| firstSubscriptionCreationDate | sztring UTC dátum-idő formátumban | Annak az első előfizetésnek a létrehozási dátuma, amely alapján közvetett viszonteladói adatokat szeretne lekérni. |
+| latestSubscriptionCreationDate | sztring UTC dátum-idő formátumban | A legújabb előfizetés létrehozásának dátuma. |
+| firstSubscriptionEndDate | sztring UTC dátum-idő formátumban | Az első alkalommal, amikor egy előfizetés véget ért. |
+| latestSubscriptionEndDate | sztring UTC dátum-idő formátumban | Az előfizetések végének legkésőbbi dátuma. |
+| firstSubscriptionSuspendedDate | sztring UTC dátum-idő formátumban | Az előfizetések első felfüggesztésekor. |
+| latestSubscriptionSuspendedDate | sztring UTC dátum-idő formátumban | Az előfizetés felfüggesztésének utolsó dátuma. |
+| firstSubscriptionDeprovisionedDate | sztring UTC dátum-idő formátumban | Az előfizetések első megszüntetésekor. |
+| latestSubscriptionDeprovisionedDate | sztring UTC dátum-idő formátumban | Bármely előfizetés megszüntetésének legkésőbbi dátuma. |
+| subscriptionCount (előfizetés száma) | double | Előfizetések száma az összes hozzáadott értékkel felkelt viszonteladónál |
+| licenseCount (licencszám) | double | Az összes hozzáadott értékkel rendelkező viszonteladó licencszáma |
 | indirectResellerCount | double | Közvetett viszonteladók száma |
 
 ## <a name="csp-program-subscription-analytics"></a>CSP-program: előfizetés-elemzés
 
-Az alábbi forgatókönyvek azt mutatják be, hogyan használhatja az Analytics API-t az összes partner Center-előfizetési elemzési adat beolvasására, a keresési lekérdezéssel való szűrésére, vagy a dátumok vagy kifejezések alapján történő csoportosítására.
+A következő forgatókönyvek azt mutatják be, hogyan használhatja az Analytics API-t az összes Partnerközpont-előfizetés elemzési információinak lekérésére, keresési lekérdezéssel való szűrésére, illetve dátumok vagy kifejezések alapján való csoportosítására.
 
 - [Az összes előfizetés elemzési adatainak lekérése](get-all-subscription-analytics.md)
 - [Előfizetés keresési lekérdezés szerint szűrt elemzési adatainak lekérése](get-subscription-analytics-by-search-query.md)
 - [Előfizetés dátumok vagy feltételek szerint csoportosított elemzési adatainak lekérése](get-subscription-analytics-grouped-by-dates-or-terms.md)
 
-Az összes ilyen forgatókönyv az elemzési adatokat az [előfizetési](#subscription-resource) erőforrások gyűjteményében adja vissza.
+Az összes ilyen forgatókönyv az előfizetési [](#subscription-resource) erőforrások gyűjteményében adja vissza az elemzési adatokat.
 
 ## <a name="subscription-resource"></a>Előfizetési erőforrás
 
-Az előfizetéshez tartozó összes analitikai adatmennyiséget jelöli.
+Egy előfizetés összes elemzési adatát jelöli.
 
 |         Tulajdonság          |              Típus              |                                                                      Leírás                                                                       |
 |---------------------------|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-|     customerTenantId      |             sztring             |                                              Egy GUID-formázott karakterlánc, amely azonosítja az ügyfél bérlőjét.                                              |
-|       Customername (        |             sztring             |                                                               Az ügyfél neve.                                                                |
-|      customerMarket       |             sztring             |                                                 Az az ország/régió, amelyben az ügyfél üzleti tevékenységet végez.                                                 |
+|     customerTenantId (customerTenantId)      |             sztring             |                                              Egy GUID-formátumú sztring, amely azonosítja az ügyfélbérlőt.                                              |
+|       customerName (ügyfél neve)        |             sztring             |                                                               Az ügyfél neve.                                                                |
+|      customerMarket       |             sztring             |                                                 Az az ország/régió, ahol az ügyfél üzleti tevékenységhez tartozik.                                                 |
 |            id             |             sztring             |                                                              Az előfizetés azonosítója.                                                              |
-|          status           |             sztring             |                                          Az előfizetés állapota: "ACTIVE", "FELFÜGGESZTett" vagy "kiépített".                                           |
-|        productName        |             sztring             |                                                                A termék neve.                                                                |
-|     Ügynökparamétert      |             sztring             |       Az előfizetés típusa. **Megjegyzés**: Ez a mező megkülönbözteti a kis-és nagybetűket. A támogatott értékek a következők: "Office", "Azure", "Microsoft365", "Dynamics", "EMS".       |
-|     autoRenewEnabled      |            boolean             |                                         Egy érték, amely azt jelzi, hogy az előfizetés automatikusan megújul-e.                                          |
-|         partnerId         |             sztring             | Az MPN-azonosító. Közvetlen viszonteladó esetén ez a paraméter lesz a partner MPN-azonosítója. Közvetett viszonteladó esetén ez a paraméter a közvetett viszonteladó MPN-azonosítója lesz. |
-|       friendlyName        |             sztring             |                                                             Az előfizetés neve.                                                              |
-|        partnerName        |             sztring             |                                              Annak a partnernek a neve, akivel az előfizetést megvásárolták                                               |
-|       providerName        |             sztring             |            Ha az előfizetési tranzakció a közvetett viszonteladóhoz kapcsolódik, a szolgáltató neve az a közvetett szolgáltató, aki megvásárolta az előfizetést.             |
-|    effectiveStartDate     | karakterlánc UTC-dátum időformátuma |                                                           Az előfizetés megkezdésének dátuma.                                                            |
-|     commitmentEndDate     | karakterlánc UTC-dátum időformátuma |                                                            Az előfizetés befejezésének dátuma.                                                             |
-|    currentStateEndDate    | karakterlánc UTC-dátum időformátuma |                                           Az előfizetés aktuális állapotának változási dátuma.                                            |
-| trialToPaidConversionDate | karakterlánc UTC-dátum időformátuma |                                 Az előfizetés próbaverzióról fizetettre való konvertálása dátuma. Az alapértelmezett érték null.                                 |
-|      trialStartDate       | karakterlánc UTC-dátum időformátuma |                                Az előfizetés Próbaidőszakának elindításának dátuma. Az alapértelmezett érték null.                                 |
-|       trialEndDate        | karakterlánc UTC-dátum időformátuma |                                  Az előfizetés Próbaidőszakának lejárta. Az alapértelmezett érték null.                                  |
-|       lastUsageDate       | karakterlánc UTC-dátum időformátuma |                                        Az előfizetés legutóbbi használatának dátuma. Az alapértelmezett érték null.                                        |
-|     deprovisionedDate     | karakterlánc UTC-dátum időformátuma |                                      Az előfizetés megszüntetésének dátuma. Az alapértelmezett érték null.                                      |
-|      lastRenewalDate      | karakterlánc UTC-dátum időformátuma |                                       Az előfizetés utolsó megújításának dátuma az alapértelmezett érték null.                                       |
-|       licenseCount        |             szám             |                                                             A licencek teljes száma.                                                              |
-|     subscriptionCount     |             szám             |                        Az előfizetések száma. Megjegyzés: ez az érték csak az összesítési lekérdezés válaszában jelenik meg.                         |
+|          status           |             sztring             |                                          Az előfizetés állapota: "ACTIVE", "SUSPENDED" vagy "DEPROVISIONED".                                           |
+|        Productname        |             sztring             |                                                                A termék neve.                                                                |
+|     subscriptionType (előfizetés típusa)      |             sztring             |       Az előfizetés típusa. **Megjegyzés:** Ez a mező megkülönbözteti a kis- és nagybetűket. Támogatott értékek: "Office", "Azure", "Microsoft365", "Dynamics", "EMS".       |
+|     autoRenewEnabled      |            boolean             |                                         Egy érték, amely jelzi, hogy az előfizetés automatikusan megújul-e.                                          |
+|         partnerazonosító         |             sztring             | Az Microsoft Partner Network (MPN) azonosítója. Közvetlen viszonteladó esetén ez a paraméter a partner MPN-azonosítója lesz. Közvetett viszonteladó esetén ez a paraméter a közvetett viszonteladó MPN-azonosítója lesz. |
+|       friendlyName (rövid név)        |             sztring             |                                                             Az előfizetés neve.                                                              |
+|        partnerName        |             sztring             |                                              Annak a partnernek a neve, aki számára az előfizetést megvásárolták                                               |
+|       providerName (szolgáltató neve)        |             sztring             |            Ha az előfizetési tranzakció a közvetett viszonteladóra történik, a szolgáltató neve az a közvetett szolgáltató, aki megvásárolta az előfizetést.             |
+|    effectiveStartDate     | sztring UTC dátum-idő formátumban |                                                           Az előfizetés kezdési dátuma.                                                            |
+|     commitmentEndDate     | sztring UTC dátum-idő formátumban |                                                            Az előfizetés végének dátuma.                                                             |
+|    currentStateEndDate    | sztring UTC dátum-idő formátumban |                                           Az előfizetés aktuális állapotának változásának dátuma.                                            |
+| trialToPaidConversionDate | sztring UTC dátum-idő formátumban |                                 Az a dátum, amikor az előfizetés próbaverzióról fizetősre vált. Az alapértelmezett érték a null.                                 |
+|      trialStartDate       | sztring UTC dátum-idő formátumban |                                Az előfizetés próbaidőszakának elindulásának dátuma. Az alapértelmezett érték a null.                                 |
+|       trialEndDate        | sztring UTC dátum-idő formátumban |                                  Az előfizetés próbaidőszakának végének dátuma. Az alapértelmezett érték a null.                                  |
+|       lastUsageDate (lastUsageDate)       | sztring UTC dátum-idő formátumban |                                        Az előfizetés utolsó használt dátuma. Az alapértelmezett érték a null.                                        |
+|     megszüntetésDate     | sztring UTC dátum-idő formátumban |                                      Az előfizetés megszüntetésének dátuma. Az alapértelmezett érték a null.                                      |
+|      lastRenewalDate (lastRenewalDate)      | sztring UTC dátum-idő formátumban |                                       Az előfizetés utolsó megújításának dátuma. Az alapértelmezett érték a null.                                       |
+|       licenseCount (licencszám)        |             szám             |                                                             A licencek teljes száma.                                                              |
+|     subscriptionCount (előfizetés száma)     |             szám             |                        Az előfizetések száma. Megjegyzés: Ez az érték csak egy összesítési lekérdezés válaszában jelenik meg.                         |
 
-## <a name="search-analytics"></a>Keresési elemzés
+## <a name="search-analytics"></a>Kereséselemzés
 
 > [!NOTE]
-> A keresési elemzés beszerzéséhez nem szükséges a CSP-program tagsága.
+> A CSP-programtagság nem szükséges a keresési elemzésekhez.
 
-A következő forgatókönyv bemutatja, hogyan használhatja az Analytics API-t az összes partner Center keresési elemzési információ lekéréséhez.
+A következő forgatókönyv bemutatja, hogyan használhatja az Analytics API-t a keresési Partnerközpont adatok lekérésére.
 
 - [Az összes keresés elemzési adatainak lekérése](get-all-search-analytics.md)
 
-Ez a forgatókönyv az elemzési információkat a [keresési](#search-resource) erőforrások gyűjteményében adja vissza.
+Ez a forgatókönyv keresési erőforrások [](#search-resource) gyűjteményében adja vissza az elemzési adatokat.
 
 ## <a name="search-resource"></a>Erőforrás keresése
 
-A keresés összes analitikai adatmennyiségét jelöli.
+A kereséshez szükséges összes elemzési adatot jelöli.
 
 | Tulajdonság | Típus | Leírás |
 |----------|------|-------------|
-| companyName | sztring | A számlázási vállalat neve. |
-| contactButtonClicked | Logikai | Azt jelzi, hogy a Contact (kapcsolattartó) gombra kattintott-e. |
-| keywordCountry | sztring | A keresésben megadott ország. |
-| detailsViewed | Logikai | Azt jelzi, hogy megtörténtek-e a keresési adatok megtekintése. |
-| keywordIndustryFocus | sztring | Az iparágban való keresés, például az egészségügy területén. |
-| mpnId | sztring | A Microsoft Partner Network (MPN) azonosítója. Közvetlen viszonteladó esetén ez a paraméter lesz a partner MPN-azonosítója. Közvetett viszonteladó esetén ez a paraméter a közvetett viszonteladó MPN-azonosítója lesz. |
-| partnerMarket | sztring | Területi beállítás, amelyben a partner üzleti tevékenységet végez. |
-| keywordProduct | sztring | A keresésben megadott termék. |
-| referralSubmitted | Logikai | Azt jelzi, hogy elküldtek-e egy hivatkozást. |
-| searchDate | karakterlánc UTC-dátum időformátuma | A keresési lekérdezés bekövetkezésének dátuma. |
-| keywordSearchText | sztring | A keresésben megadott szöveg |
-| searchResultPageViews | hosszú | Az a szám, ahányszor a partner megérkezett a keresési eredményben. Egy válasz része csak összesítéssel.
-| contactClicks | hosszú | Az a szám, ahányszor a névjegy gombra kattintott. Egy válasz része csak összesítéssel.
-| referralCount | hosszú | A keresésből generált átirányítások száma. Egy válasz része csak összesítéssel.
-| profileViews | hosszú | A partner profil megtekintésének száma. Egy válasz része csak összesítéssel.
+| companyName (vállalat neve) | sztring | A számlázási vállalat neve. |
+| contactButtonClicked | Logikai | Jelzi, hogy a kapcsolat gombra kattintott-e. |
+| keywordCountry (kulcsszó országa) | sztring | A keresésben megadott ország. |
+| detailsViewed (részletekmegtekintve) | Logikai | Azt jelzi, hogy megtekintett-e keresési adatokat. |
+| keywordIndustryFocus | sztring | Az iparág, amelybe például az egészségügyben kell keresni. |
+| mpnId | sztring | Az Microsoft Partner Network (MPN) azonosítója. Közvetlen viszonteladó esetén ez a paraméter a partner MPN-azonosítója lesz. Közvetett viszonteladó esetén ez a paraméter a közvetett viszonteladó MPN-azonosítója lesz. |
+| partnerMarket | sztring | A partner üzleti helyének területi megszabadása. |
+| kulcsszóTermék | sztring | A keresésben megadott termék. |
+| referralSubmitted | Logikai | Jelzi, hogy a rendszer elküldt-e egy ajánlást. |
+| searchDate (Keresésidátum) | sztring UTC dátum- és időformátumban | A keresési lekérdezés beesésének dátuma. |
+| kulcsszóKeresésSzöveg | sztring | A keresésben megadott szöveg. |
+| searchResultPageViews | hosszú | Az a szám, a hányszor került fel a partner a keresési eredménybe. A válasz egy része csak összesítés esetén.
+| contactClicks | hosszú | A kapcsolattartási gombra való kattintások száma. A válasz egy része csak összesítés esetén.
+| referralCount | hosszú | A keresésből generált hivatkozások száma. A válasz egy része csak összesítés esetén.
+| profileViews | hosszú | A partnerprofil megtekintésének száma. A válasz egy része csak összesítés esetén.
 
-## <a name="referrals-analytics"></a>Átirányítási elemzés
+## <a name="referrals-analytics"></a>Ajánlóelemzés
 
 > [!NOTE]
-> A CSP-program tagsága nem szükséges az átirányítási elemzések beszerzéséhez.
+> A CSP-programtagság nem szükséges a hivatkozások elemzéséhez.
 
-A következő forgatókönyv bemutatja, hogyan használhatja az Analytics API-t az összes partner Center-hivatkozás elemzési információjának lekéréséhez.
+A következő forgatókönyv bemutatja, hogyan használhatja az Analytics API-t az összes Partnerközpont elemzési információ lekérésére.
 
 - [Az összes javaslat elemzési adatainak lekérése](get-all-referrals-analytics.md)
 
-Ez a forgatókönyv az elemzési adatokat az [átirányítási](#referrals-resource) erőforrások gyűjteményében adja vissza.
+Ez a forgatókönyv a hivatkozási erőforrások gyűjteményében adja vissza az elemzési [adatokat.](#referrals-resource)
 
 > [!NOTE]
-> Az átirányítási elemzés nem érhető el a 21Vianet által működtetett partneri Központ számára.
+> A 21Vianet által üzemeltetett Partnerközpont nem érhetők el a hivatkozások elemzései.
 
-## <a name="referrals-resource"></a>Átirányítási erőforrások
+## <a name="referrals-resource"></a>Hivatkozási erőforrás
 
-Az átirányításhoz tartozó összes analitikai adatmennyiséget jelöli.
+Egy hivatkozás összes elemzési adatát jelöli.
 
 | Tulajdonság | Típus | Leírás |
 |----------|------|-------------|
-| id | sztring | Az ügyfél bérlői azonosítója.  |
-| status | sztring | Azt jelzi, hogy az átirányítást egy ügyfélhez vezette-e.  |
-| customerMarket | sztring | Az az ország/régió, amelyben az ügyfél üzleti tevékenységet végez. |
-| Customername ( | sztring | Az ügyfél neve. |
-| customerOrgSize | sztring | Az ügyfél szervezetében dolgozó alkalmazottak számát jelző tartomány. Például: "10to50employees". |
-| acceptedDate | karakterlánc UTC-dátum időformátuma | Az átirányítás elfogadásának dátuma. |
-| acknowledgedDate | karakterlánc UTC-dátum időformátuma | Az átirányítás visszaigazolásának dátuma. |
-| archivedDate | karakterlánc UTC-dátum időformátuma | Az átirányítás archiválásának dátuma. |
-| declinedDate | karakterlánc UTC-dátum időformátuma | Az átirányítás elutasításának dátuma. |
-| expiredDate | karakterlánc UTC-dátum időformátuma | Az átirányítás érvényességének dátuma. |
-| lostDate | karakterlánc UTC-dátum időformátuma | Az átirányítás megszakadásának dátuma. |
-| missedDate | karakterlánc UTC-dátum időformátuma | Az átirányítás kihagyott dátuma. |
-| createdDate | karakterlánc UTC-dátum időformátuma | Az átirányítás létrehozásának dátuma. |
-| skippedDate | karakterlánc UTC-dátum időformátuma | Az átirányítás kihagyott dátuma. |
-| wonDate | karakterlánc UTC-dátum időformátuma | Az átirányítás megnyerésének dátuma. |
-| partnerMarket | sztring |  Az ország/régió, amelyben a partner üzleti tevékenységet végez. |
+| id | sztring | Az ügyfél bérlőazonosítója.  |
+| status | sztring | Jelzi, hogy a hivatkozás egy ügyfélhez vezetett-e.  |
+| customerMarket | sztring | Az az ország/régió, ahol az ügyfél üzleti tevékenységhez tartozik. |
+| customerName (ügyfél neve) | sztring | Az ügyfél neve. |
+| customerOrgSize | sztring | Az ügyfél szervezetében dolgozók számát jelző tartomány. Például: "10to50employees". |
+| acceptedDate (elfogadvadátum) | sztring UTC dátum- és időformátumban | A hivatkozás elfogadási dátuma. |
+| acknowledgedDate (nyugtázásdátum) | sztring UTC dátum- és időformátumban | A hivatkozás nyugtázásának dátuma. |
+| archivedDate (archiváltdátum) | sztring UTC dátum- és időformátumban | A hivatkozás archiválásának dátuma. |
+| declinedDate (elutasítottddátum) | sztring UTC dátum-idő formátumban | A hivatkozás elutasításának dátuma. |
+| expiredDate (lejártdátum) | sztring UTC dátum-idő formátumban | A hivatkozás lejáratának dátuma. |
+| lostDate (Elveszettdátum) | sztring UTC dátum-idő formátumban | A hivatkozás elveszett dátuma. |
+| missedDate (kihagyottdátum) | sztring UTC dátum-idő formátumban | A hivatkozás kihagyásának dátuma. |
+| createdDate (Létrehozásidátum) | sztring UTC dátum-idő formátumban | A hivatkozás létrehozási dátuma. |
+| skippedDate (kihagyottdátum) | sztring UTC dátum-idő formátumban | A hivatkozás kihagyásának dátuma. |
+| wonDate (wonDate) | sztring UTC dátum-idő formátumban | A hivatkozás megnyert dátuma. |
+| partnerMarket | sztring |  Az ország/régió, ahol a partner üzleti tevékenységhez tartozik. |

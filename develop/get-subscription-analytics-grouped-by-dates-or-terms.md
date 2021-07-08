@@ -1,98 +1,93 @@
 ---
-title: Előfizetési elemzések beolvasása dátumok vagy kifejezések szerint csoportosítva
-description: Előfizetés-elemzési információk beszerzése dátumok vagy kifejezések szerint csoportosítva.
+title: Előfizetés-elemzések lekért dátumai vagy feltételei szerint csoportosítva
+description: Előfizetés-elemzési információk lekért dátumok vagy kifejezések szerint csoportosítva.
 ms.date: 06/27/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 4a9946027fa89f5a93fff5eede86e36a6be5b721
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 8192a9863d53ec8697a7341cd38c69200614bd4a
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767908"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548719"
 ---
-# <a name="get-subscription-analytics-grouped-by-dates-or-terms"></a>Előfizetési elemzések beolvasása dátumok vagy kifejezések szerint csoportosítva
+# <a name="get-subscription-analytics-grouped-by-dates-or-terms"></a>Előfizetés-elemzések lekért dátumai vagy feltételei szerint csoportosítva
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Az előfizetések elemzési információinak beszerzése az ügyfelek számára dátumok vagy kifejezések szerint csoportosítva.
+Hogyan lehet lekért előfizetési elemzési adatokat az ügyfelekről dátumok vagy kifejezések szerint csoportosítva.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus | Kérés URI-ja |
 |--------|-------------|
-| **GET** | [*\{ baseURL \}*](partner-center-rest-urls.md)/partner/v1/Analytics/Subscriptions? groupby = {groupby_queries} |
+| **Kap** | [*\{ baseURL \}*](partner-center-rest-urls.md)/partner/v1/analytics/subscriptions?groupby={groupby_queries} |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-Használja a következő szükséges elérésiút-paramétereket a szervezet azonosításához és az eredmények csoportosításához.
+Használja a következő kötelező elérésiút-paramétereket a szervezet azonosításához és az eredmények csoportosításához.
 
 | Név | Típus | Kötelező | Leírás |
 |------|------|----------|-------------|
-| groupby_queries | karakterláncok és dateTime párok | Igen | Az eredmény szűrésére szolgáló feltételek és dátumok. |
+| groupby_queries | sztringpárok és dateTime | Igen | Az eredmény szűréséhez megadott kifejezések és dátumok. |
 
-### <a name="groupby-syntax"></a>GroupBy szintaxisa
+### <a name="groupby-syntax"></a>GroupBy-szintaxis
 
-A Group By paraméternek vesszővel tagolt, mező típusú értékből kell állnia.
+A csoportosítási paraméternek vesszővel elválasztott mezőértékek sorozataként kell össze lennie.
 
-A kódolás nélküli példa a következőképpen néz ki:
+Egy nem kódolatlan példa a következő:
 
 ```http
 ?groupby=termField1,dateField1,termField2
 ```
 
-A következő táblázat a Group By által támogatott mezők listáját tartalmazza.
+Az alábbi táblázat a csoportosítási csoportok támogatott mezőinek listáját tartalmazza.
 
 | Mező | Típus | Leírás |
 |-------|------|-------------|
-| customerTenantId | sztring | Egy GUID-formázott karakterlánc, amely azonosítja az ügyfél bérlőjét. |
-| Customername ( | sztring | Az ügyfél neve. |
-| customerMarket | sztring | Az az ország/régió, amelyben az ügyfél üzleti tevékenységet végez. |
-| id | sztring | Egy GUID-formázott karakterlánc, amely azonosítja az előfizetést. |
-| status | sztring | Az előfizetés állapota. A támogatott értékek a következők: "ACTIVE", "FELFÜGGESZTett" vagy "kiépített". |
-| productName | sztring | A termék neve. |
-| Ügynökparamétert | sztring | Az előfizetés típusa. Megjegyzés: Ez a mező megkülönbözteti a kis-és nagybetűket. A támogatott értékek a következők: "Office", "Azure", "Microsoft365", "Dynamics", "EMS". |
-| autoRenewEnabled | Logikai | Egy érték, amely azt jelzi, hogy az előfizetés automatikusan megújul-e. |
-| partnerId  | sztring | Az MPN-azonosító. Közvetlen viszonteladó esetén ez a paraméter lesz a partner MPN-azonosítója. Közvetett viszonteladó esetén ez a paraméter a közvetett viszonteladó MPN-azonosítója lesz. |
-| friendlyName | sztring | Az előfizetés neve. |
-| partnerName | sztring | Annak a partnernek a neve, akivel az előfizetést megvásárolták |
-| providerName | sztring | Ha az előfizetési tranzakció a közvetett viszonteladóhoz kapcsolódik, a szolgáltató neve az a közvetett szolgáltató, aki megvásárolta az előfizetést.
-| creationDate | karakterlánc UTC-dátum időformátuma | Az előfizetés létrehozásának dátuma. |
-| effectiveStartDate | karakterlánc UTC-dátum időformátuma | Az előfizetés megkezdésének dátuma. |
-| commitmentEndDate | karakterlánc UTC-dátum időformátuma | Az előfizetés befejezésének dátuma. |
-| currentStateEndDate | karakterlánc UTC-dátum időformátuma | Az előfizetés aktuális állapotának változási dátuma. |
-| trialToPaidConversionDate | karakterlánc UTC-dátum időformátuma | Az előfizetés próbaverzióról fizetettre való konvertálása dátuma. Az alapértelmezett érték null. |
-| trialStartDate | karakterlánc UTC-dátum időformátuma | Az előfizetés Próbaidőszakának elindításának dátuma. Az alapértelmezett érték null. |
-| lastUsageDate | karakterlánc UTC-dátum időformátuma | Az előfizetés legutóbbi használatának dátuma. Az alapértelmezett érték null. |
-| deprovisionedDate | karakterlánc UTC-dátum időformátuma | Az előfizetés megszüntetésének dátuma. Az alapértelmezett érték null. |
-| lastRenewalDate | karakterlánc UTC-dátum időformátuma | Az előfizetés utolsó megújításának dátuma. Az alapértelmezett érték null. |
+| customerTenantId (customerTenantId) | sztring | Egy GUID-formátumú sztring, amely azonosítja az ügyfélbérlőt. |
+| customerName (ügyfél neve) | sztring | Az ügyfél neve. |
+| customerMarket | sztring | Az az ország/régió, ahol az ügyfél üzleti tevékenységhez tartozik. |
+| id | sztring | Egy GUID-formátumú sztring, amely azonosítja az előfizetést. |
+| status | sztring | Az előfizetés állapota. A támogatott értékek: "ACTIVE", "SUSPENDED" vagy "DEPROVISIONED". |
+| Productname | sztring | A termék neve. |
+| subscriptionType (előfizetés típusa) | sztring | Az előfizetés típusa. Megjegyzés: Ez a mező megkülönbözteti a kis- és nagybetűket. Támogatott értékek: "Office", "Azure", "Microsoft365", "Dynamics", "EMS". |
+| autoRenewEnabled | Logikai | Egy érték, amely jelzi, hogy az előfizetés automatikusan megújul-e. |
+| partnerazonosító  | sztring | Az MPN-azonosító. Közvetlen viszonteladó esetén ez a paraméter a partner MPN-azonosítója lesz. Közvetett viszonteladó esetén ez a paraméter a közvetett viszonteladó MPN-azonosítója lesz. |
+| friendlyName (rövid név) | sztring | Az előfizetés neve. |
+| partnerName | sztring | Annak a partnernek a neve, aki számára az előfizetést megvásárolták |
+| providerName (szolgáltató neve) | sztring | Ha az előfizetési tranzakció a közvetett viszonteladóra történik, a szolgáltató neve az a közvetett szolgáltató, aki megvásárolta az előfizetést.
+| creationDate (Létrehozás dátuma) | sztring UTC dátum-idő formátumban | Az előfizetés létrehozási dátuma. |
+| effectiveStartDate | sztring UTC dátum-idő formátumban | Az előfizetés kezdési dátuma. |
+| commitmentEndDate | sztring UTC dátum-idő formátumban | Az előfizetés végének dátuma. |
+| currentStateEndDate | sztring UTC dátum-idő formátumban | Az a dátum, amikor az előfizetés aktuális állapota megváltozik. |
+| trialToPaidConversionDate (trialToPaidConversionDate) | sztring UTC dátum-idő formátumban | Az a dátum, amikor az előfizetés próbaverzióról fizetősre vált. Az alapértelmezett érték a null. |
+| trialStartDate | sztring UTC dátum-idő formátumban | Az előfizetés próbaidőszakának elindulásának dátuma. Az alapértelmezett érték a null. |
+| lastUsageDate (lastUsageDate) | sztring UTC dátum-idő formátumban | Az előfizetés utolsó használt dátuma. Az alapértelmezett érték a null. |
+| megszüntetésDate | sztring UTC dátum-idő formátumban | Az előfizetés megszüntetésének dátuma. Az alapértelmezett érték a null. |
+| lastRenewalDate (lastRenewalDate) | sztring UTC dátum-idő formátumban | Az előfizetés utolsó megújításának dátuma. Az alapértelmezett érték a null. |
 
 ### <a name="filter-fields"></a>Mezők szűrése
 
-A következő táblázat az opcionális szűrési mezőket és azok leírásait tartalmazza:
+A következő táblázat a nem kötelező szűrőmezőket és azok leírását tartalmazza:
 
 | Mező | Típus |  Leírás |
 |-------|------|--------------|
-| top | int | A kérelemben visszaadni kívánt adatsorok száma. Ha az érték nincs megadva, a maximális érték és az alapértelmezett érték 10000. Ha több sor van a lekérdezésben, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldalának lekérésére használható. |
-| kihagyása | int | A lekérdezésben kihagyni kívánt sorok száma. Használja ezt a paramétert a nagy adathalmazokon keresztüli lapra. Például a Top = 10000 és a skip = 0 lekérdezi az első 10000 adatsort, a Top = 10000 és a skip = 10000 lekéri a következő 10000 sort. |
-| filter (szűrő) | sztring | Egy vagy több olyan utasítás, amely a válasz sorait szűri. Minden szűrő-utasítás tartalmaz egy mezőnevet a válasz törzsében, valamint egy olyan értéket, amely a **`eq`** , a **`ne`** vagy bizonyos mezőkhöz társítva van **`contains`** . Az utasítások kombinálhatók a vagy a használatával **`and`** **`or`** . A karakterlánc-értékeket szimpla idézőjelek között kell megadni a Filter paraméterben. Tekintse meg a következő szakaszt a szűrhető mezők és a mezők által támogatott operátorok listájához. |
-| aggregationLevel | sztring | Meghatározza azt az időtartományt, amely esetében az összesített adatokat le kell olvasni. A következő karakterláncok egyike lehet: **nap**, **hét** vagy **hónap**. Ha az érték nincs megadva, az alapértelmezett érték a **dateRange**. **Megjegyzés**: Ez a paraméter csak akkor érvényes, ha a groupBy paraméter részeként egy Date mezőt ad át. |
-| groupBy | sztring | Olyan utasítás, amely csak a megadott mezőkre alkalmazza az adatösszesítést. |
+| top | int | A kérelemben visszaadni kívánt adatsorok száma. Ha az érték nincs megadva, a maximális érték és az alapértelmezett érték 10000. Ha a lekérdezés több sort tartalmaz, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldal lekérésére használható. |
+| Ugrál | int | A lekérdezésben kihagyni kívánt sorok száma. Ezzel a paraméterrel nagy adatkészletek között lapokat laposszunk. Például a top=10000 és a skip=0 lekéri az első 10000 adatsort, a top=10000 és a skip=10000 pedig a következő 10000 adatsort. |
+| filter (szűrő) | sztring | Egy vagy több utasítás, amely szűri a válasz sorait. Minden filter utasítás tartalmaz egy mezőnevet a válasz törzséből, valamint egy értéket, amely a , vagy bizonyos mezőkhöz, az operátorhoz **`eq`** **`ne`** van **`contains`** társítva. Az utasítások kombinálhatók a vagy **`and`** a **`or`** használatával. A sztringértékeket a szűrőparaméterben idézőjelek közé kell tenni. A következő szakaszban felsoroljuk a szűrhető mezőket, valamint az ezekhez a mezőkhöz támogatott operátorokat. |
+| aggregationLevel | sztring | Megadja az összesített adatok lekérésének időtartományát. A következő sztringek egyike lehet: **day,** **week**, vagy **month.** Ha az érték nincs megadva, az alapértelmezett érték **a dateRange.** **Megjegyzés:** Ez a paraméter csak akkor érvényes, ha egy dátummezőt ad át a groupBy paraméter részeként. |
+| groupBy | sztring | Olyan utasítás, amely csak a megadott mezőkre alkalmazza az adatösszesítőt. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -112,11 +107,11 @@ Content-Length: 0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse az [előfizetési](partner-center-analytics-resources.md#subscription-resource) erőforrások gyűjteményét tartalmazza a megadott feltételek és dátumok szerint csoportosítva.
+Ha ez sikeres, a válasz [](partner-center-analytics-resources.md#subscription-resource) törzse a megadott feltételek és dátumok szerint csoportosított előfizetési erőforrások gyűjteményét tartalmazza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

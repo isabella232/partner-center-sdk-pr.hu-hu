@@ -1,41 +1,39 @@
 ---
-title: Az MFA bevezetési állapotának beolvasása
-description: Szerezze be a multi-Factor Authentication bevezetési állapotának listáját az egyes partnereknél a partner REST API használatával.
+title: Az MFA bevezetésének állapotának lekérte
+description: Lekért egy listát az egyes partnerek többtényezős hitelesítés bevezetésének állapotáról a partneri REST API.
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 ms.date: 05/29/2020
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: f82d163b704323c81e2948b78eb9b9d1a14ddc52
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 9b8848c2a4531dd6609f86aae6876cec436eeea9
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767888"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760521"
 ---
-# <a name="get-mfa-adoption-status"></a>MFA bevezetési állapotának beolvasása
+# <a name="get-mfa-adoption-status"></a>Az MFA bevezetésének állapotának lekérte
 
-A következőkre vonatkozik:
+**A következőre vonatkozik:** Partnerközpont API
 
-- Partnerközpont API
-
-Ez a cikk azt ismerteti, hogyan kérhető le a többtényezős hitelesítés (MFA) bevezetési állapota a bérlőn belüli egyes partnerek számára.
+Ez a cikk a többtényezős hitelesítés (MFA) bérlőn belüli egyes partnerekre vonatkozó bevezetésének állapotát ismerteti.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az App + User hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                               |
 |---------|---------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/applicationmfaadoptionstatus> |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/applicationmfaadoptionstatus> |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-- További információért lásd a [partneri központ Rest-fejléceit](headers.md) .
+- További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -52,11 +50,11 @@ Content-Type: application/json
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy API-kérelem gyűjteményét adja vissza, amely a válasz törzsében az [alkalmazás erőforrásai alapján van összesítve](mfa-resources.md#api-request-summarized-by-application) .
+Ha ez a metódus sikeres, a válasz törzsében az alkalmazás-erőforrások által összegezve visszaadott [API-kérések](mfa-resources.md#api-request-summarized-by-application) gyűjteményét.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,56 +1,52 @@
 ---
 title: Licencek hozzárendelése egy felhasználóhoz
-description: Megtudhatja, hogyan rendelhet hozzá licenceket egy ügyfél-felhasználóhoz a partner Center API-kon keresztül, például C \# vagy REST API-k használatával.
+description: Megtudhatja, hogyan rendelhet licenceket egy ügyfélfelhasználóhoz Partnerközpont API-kon keresztül, például c vagy \# REST API-k használatával.
 ms.date: 10/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 6eb0b953b9157e48074415bb3207e2946cfb2ab4
-ms.sourcegitcommit: d1104d5c27f8fb3908a87532f80c432f0147ef5d
+ms.openlocfilehash: 88ce0f185b0b043c4a7862b7f9808fb8805d40b9
+ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/13/2020
-ms.locfileid: "97768547"
+ms.lasthandoff: 06/10/2021
+ms.locfileid: "111974369"
 ---
-# <a name="assign-licenses-to-a-user-via-partner-center-apis"></a>Licencek kiosztása egy felhasználónak a partner Center API-kon keresztül
+# <a name="assign-licenses-to-a-user-via-partner-center-apis"></a>Licencek hozzárendelése egy felhasználóhoz Partnerközpont API-kon keresztül
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Licencek kiosztása az ügyfél felhasználói számára.
+Licencek hozzárendelése egy ügyfélfelhasználóhoz.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-- Felhasználói azonosító. Ez az azonosító azonosítja azt a felhasználót, akihez a licencet hozzá kell rendelni.
+- Ügyfélfelhasználó-azonosító. Ez az azonosító azonosítja a felhasználót, akihez a licencet hozzá kell rendelni.
 
-- A licenchez tartozó terméket azonosító termék SKU-azonosítója.
+- A termék termékváltozat-azonosítója, amely azonosítja a terméket a licenchez.
 
-## <a name="assigning-licenses-through-code"></a>Licencek kiosztása kód használatával
+## <a name="assigning-licenses-through-code"></a>Licencek kóddal való hozzárendelése
 
-Amikor licenceket rendel egy felhasználóhoz, ki kell választania az ügyfél előfizetett SKU-gyűjteményéből. Ezután, miután azonosította a hozzárendelni kívánt termékeket, minden termékhez be kell szereznie a termék SKU-AZONOSÍTÓját a hozzárendelések elvégzéséhez. Minden [**SubscribedSku**](/dotnet/api/microsoft.store.partnercenter.models.licenses.subscribedsku) -példány tartalmaz egy [**ProductSku**](/dotnet/api/microsoft.store.partnercenter.models.licenses.subscribedsku.productsku) -tulajdonságot, amelyből hivatkozhat a [**ProductSku**](/dotnet/api/microsoft.store.partnercenter.models.licenses.productsku) objektumra, és lekérheti az [**azonosítót**](/dotnet/api/microsoft.store.partnercenter.models.licenses.productsku.id).
+Amikor licenceket rendel egy felhasználóhoz, választania kell az ügyfél előfizetéses termékkód-gyűjteményéből. Ezt követően, miután azonosította a hozzárendelni kívánt termékeket, be kell szereznie az egyes termékek termékváltozat-azonosítóját a hozzárendelések kiosztásához. Minden [**SubscribedSku példány**](/dotnet/api/microsoft.store.partnercenter.models.licenses.subscribedsku) tartalmaz egy [**ProductSku**](/dotnet/api/microsoft.store.partnercenter.models.licenses.subscribedsku.productsku) tulajdonságot, amelyből hivatkozhat a [**ProductSku**](/dotnet/api/microsoft.store.partnercenter.models.licenses.productsku) objektumra, és le tudja szerezni az [**azonosítót.**](/dotnet/api/microsoft.store.partnercenter.models.licenses.productsku.id)
 
-A licenc-hozzárendelési kérelemnek egyetlen licencszerződésből származó licenceket kell tartalmaznia. Nem rendelhet hozzá például licenceket a [**Group1**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licensegroupid) és a **Group2** alkalmazáshoz ugyanabban a kérésben. Egy adott kérelemben egynél több csoport licencének hozzárendelésére tett kísérlet a megfelelő hibával meghiúsul. Ha szeretné megtudni, hogy milyen licencek érhetők el a licencszerződésben, tekintse meg az [elérhető licencek listájának beszerzése a licencszerződés alapján](get-a-list-of-available-licenses-by-license-group.md)című témakört.
+A licenc-hozzárendelési kérelemnek egyetlen licenccsoport licencét kell tartalmaznia. Például nem rendelhet licenceket a [**Group1**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licensegroupid) és **a Group2** csoporthoz ugyanabban a kérésben. Ha egy kérésben egynél több csoport licencét kísérelik meg hozzárendelni, az egy megfelelő hibával meghiúsul. A licenccsoport szerint elérhető licencekről az Elérhető licencek listájának lekért listája [licenccsoport szerint.](get-a-list-of-available-licenses-by-license-group.md)
 
-A licencek kód használatával történő hozzárendelésének lépései a következők:
+A licencek kódon keresztüli hozzárendelésének lépései a következőek:
 
-1. [**LicenseAssignment**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment) objektum példányának létrehozása. Ezzel az objektummal adhatja meg a Hozzárendelendő termékhez tartozó SKU-t és szolgáltatási terveket.
+1. Egy [**LicenseAssignment objektum példányosítása.**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment) Ezzel az objektummal adhatja meg a hozzárendelni kívánt termékváltozatot és szolgáltatásterveket.
 
     ``` csharp
     LicenseAssignment license = new LicenseAssignment();
     ```
 
-2. Töltse fel az objektum tulajdonságait az alább látható módon. Ez a kód feltételezi, hogy már rendelkezik a termék SKU-azonosítójával, és az összes elérhető szolgáltatáscsomag hozzá lesz rendelve (azaz a None nem lesz kizárva).
+2. Töltse ki az objektum tulajdonságait az alább látható módon. Ez a kód feltételezi, hogy már rendelkezik a termék termékváltozat-azonosítójával, és hogy az összes elérhető szolgáltatás csomag hozzá lesz rendelve (ez azt jelenti, hogy egyik sem lesz kizárva).
 
     ```csharp
     license.SkuId = selectedProductSkuId;
     license.ExcludedPlans = null;
     ```
 
-3. Ha nem rendelkezik a termék SKU-azonosítójával, le kell kérnie az előfizetett SKU-gyűjteményt, és be kell szereznie a termék SKU-AZONOSÍTÓját az egyik közül. Íme egy példa, ha ismeri a termék SKU-nevét.
+3. Ha nem tudja a termék termékváltozat-azonosítóját, le kellkérni az előfizetett termékváltozatok gyűjteményét, és le kell szereznie a termék termékváltozat-azonosítóját az egyikből. Példa a termékváltozat nevének nevére.
 
     ```csharp
     var customerSubscribedSkus = partnerOperations.Customers.ById(selectedCustomerId).SubscribedSkus.Get();
@@ -59,21 +55,21 @@ A licencek kód használatával történő hozzárendelésének lépései a köv
     license.ExcludedPlans = null;
     ```
 
-4. Ezután hozza létre a [**LicenseAssignment**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment)típusú új listát, és adja hozzá a License objektumot. Több licencet is hozzárendelhet úgy, hogy mindegyiket egyenként hozzáadja a listához. A listában szereplő licenceknek ugyanabból a csoportból kell származnia.
+4. Ezután példányositsa a [**LicenseAssignment**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment)típusú új listát, és adja hozzá a licencobjektumot. Több licencet is hozzárendelhet, ha egyenként hozzáadja azokat a listához. A listában szereplő licenceknek ugyanattól a licenccsoporttól kell tartozni.
 
     ```csharp
     List<LicenseAssignment> licenseList = new List<LicenseAssignment>();
     licenseList.Add(license);
     ```
 
-5. Hozzon létre egy [**LicenseUpdate**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate) -példányt, és rendelje hozzá a licenc-hozzárendelések listáját a [**LicensesToAssign**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate.licensestoassign) tulajdonsághoz.
+5. Hozzon [**létre egy LicenseUpdate példányt,**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate) és rendelje hozzá a licenc-hozzárendelések listáját a [**LicensesToAssign tulajdonsághoz.**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate.licensestoassign)
 
     ```csharp
     LicenseUpdate updateLicense = new LicenseUpdate();
     updateLicense.LicensesToAssign = licenseList;
     ```
 
-6. A licencek hozzárendeléséhez hívja meg a [**create**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicenseupdates.create) vagy a [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicenseupdates.createasync) metódust, és adja át a licenc frissítése objektumot a lent látható módon.
+6. Hívja meg [**a Create**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicenseupdates.create) vagy [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicenseupdates.createasync) metódust, és adja át a licencfrissítési objektumot az alább látható módon a licencek hozzárendeléséhez.
 
     ```csharp
     var assignLicense = partnerOperations.Customers.ById(selectedCustomerId).Users.ById(selectedCustomerUserId).LicenseUpdates.Create(updateLicense);
@@ -81,11 +77,11 @@ A licencek kód használatával történő hozzárendelésének lépései a köv
 
 ## <a name="c"></a>C\#
 
-Ahhoz, hogy licencet rendeljen egy ügyfél-felhasználóhoz, először hozza létre a [**LicenseAssignment**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment) objektumot, és töltse fel a [**SkuID**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment.skuid) és a [**ExcludedPlans**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment.excludedplans) tulajdonságait. Ezzel az objektummal adhatja meg a kizárni kívánt termék SKU-jának kiosztását és a szolgáltatási terveket. Ezután hozza létre a **LicenseAssignment** típusú új listát, és adja hozzá a licenc objektumot a listához. Ezután hozzon létre egy [**LicenseUpdate**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate) -példányt, és rendelje hozzá a licenc-hozzárendelések listáját a [**LicensesToAssign**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate.licensestoassign) tulajdonsághoz.
+Ha egy licencet szeretne hozzárendelni egy ügyfélfelhasználóhoz, először példányosítenie kell egy [**LicenseAssignment**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment) objektumot, és ki kell feltöltenie az [**Skuid**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment.skuid) és [**excludedPlans**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment.excludedplans) tulajdonságokat. Ezzel az objektummal adhatja meg a hozzárendelni kívánt termékváltozatot és a kizárni kívánt szolgáltatásterveket. Ezután példányositsa a **LicenseAssignment** típusú új listát, és adja hozzá a licencobjektumot a listához. Ezután hozzon létre [**egy LicenseUpdate példányt,**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate) és rendelje hozzá a licenc-hozzárendelések listáját a [**LicensesToAssign tulajdonsághoz.**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate.licensestoassign)
 
-Ezután használja a [**IAggregatePartner. Customs. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval az ügyfél azonosításához, valamint a Users [**. ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) METÓDUSt a felhasználói azonosítóval a felhasználó azonosításához. Ezután szerezzen be egy felületet az ügyfél felhasználói licencek frissítési műveleteihez a [**LicenseUpdates**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.licenseupdates) tulajdonságból.
+Ezután használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához, a [**Users.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust pedig a felhasználói azonosítóval a felhasználó azonosításához. Ezután szerezze be az ügyfélfelhasználói licencfrissítési műveletek felületét a [**LicenseUpdates tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.licenseupdates)
 
-Végül hívja meg a [**create**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicenseupdates.create) vagy a [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicenseupdates.createasync) metódust, és adja át a licenc frissítése objektumot a licenc hozzárendeléséhez.
+Végül hívja meg a [**Create**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicenseupdates.create) vagy [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicenseupdates.createasync) metódust, és adja át a licencfrissítési objektumot a licenc hozzárendeléséhez.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -110,32 +106,32 @@ updateLicense.LicensesToAssign = licenseList;
 var assignLicense = partnerOperations.Customers.ById(selectedCustomerId).Users.ById(selectedCustomerUserId).LicenseUpdates.Create(updateLicense);
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: CustomerUserAssignLicenses.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** CustomerUserAssignLicenses.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                                                    |
 |----------|----------------------------------------------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Users/{User-ID}/licenseupdates http/1.1 |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/users/{felhasználói azonosító}/licenseupdates HTTP/1.1 |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-Az ügyfél és a felhasználó azonosításához használja a következő elérésiút-paramétereket.
+Az ügyfél és a felhasználó azonosításához használja az alábbi elérésiút-paramétereket.
 
 | Név        | Típus   | Kötelező | Leírás                                       |
 |-------------|--------|----------|---------------------------------------------------|
 | ügyfél-azonosító | sztring | Igen      | Egy GUID formátumú azonosító, amely azonosítja az ügyfelet. |
-| felhasználói azonosító     | sztring | Igen      | A felhasználó azonosítására szolgáló GUID formátumú azonosító.     |
+| felhasználói azonosító     | sztring | Igen      | A felhasználót azonosító GUID formátumú azonosító.     |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Adjon meg egy [LicenseUpdate](license-resources.md#licenseupdate) -erőforrást a kérelem törzsében, amely meghatározza a hozzárendelni kívánt licenceket.
+Foglaljon bele [egy LicenseUpdate erőforrást](license-resources.md#licenseupdate) a kérelem törzsébe, amely megadja a hozzárendelni szükséges licenceket.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -168,11 +164,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a rendszer a 201-as HTTP-válasz állapotkódot adja vissza, és a válasz törzse tartalmaz egy [LicenseUpdate](license-resources.md#licenseupdate) -erőforrást a licencelési adatokkal.
+Sikeres művelet esetén a rendszer visszaad egy 201-es HTTP-válaszállapotkódot, és a válasz törzse tartalmaz egy [LicenseUpdate](license-resources.md#licenseupdate) erőforrást a licencinformációk alapján.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example-success"></a>Válasz példa (sikeres)
 
@@ -198,7 +194,7 @@ Date: Thu, 20 Apr 2017 21:50:39 GMT
 }
 ```
 
-### <a name="response-example-license-isnt-available"></a>Válasz példa (a licenc nem érhető el)
+### <a name="response-example-license-isnt-available"></a>Példaválasz (a licenc nem érhető el)
 
 ```http
 HTTP/1.1 400 Bad Request

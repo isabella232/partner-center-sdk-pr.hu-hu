@@ -1,62 +1,57 @@
 ---
-title: Előfizetés-elemzés beszerzése keresési lekérdezés alapján
-description: A keresési lekérdezés által szűrt előfizetés-elemzési információk beolvasása.
+title: Előfizetés-elemzés lekérdező lekérdezéssel
+description: Előfizetés-elemzési információk keresési lekérdezés alapján szűrve való lekérdezhetők.
 ms.date: 05/10/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: c1046ea3c7e813eedae4890eebf6356337c80ede
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 8df777b9a88206f8b22579f0f445c54d80f7cd64
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767911"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548736"
 ---
 # <a name="get-subscription-analytics-information-filtered-by-a-search-query"></a>Előfizetés keresési lekérdezés szerint szűrt elemzési adatainak lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Az előfizetés elemzési információinak beszerzése az ügyfelek számára keresési lekérdezés alapján szűrve.
+Előfizetés-elemzési információk lekérdezhetők az ügyfelekről keresési lekérdezés alapján szűrve.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak a felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus | Kérés URI-ja |
 |--------|-------------|
-| **GET** | [*\{ baseURL \}*](partner-center-rest-urls.md)/partner/v1/Analytics/Subscriptions? Filter = {filter_string} |
+| **Kap** | [*\{ baseURL \}*](partner-center-rest-urls.md)/partner/v1/analytics/subscriptions?filter={filter_string} |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-A következő szükséges elérésiút-paraméter használatával azonosíthatja a szervezetét, és szűrheti a keresést.
+A szervezet azonosításához és a keresés szűréséhez használja a következő szükséges elérésiút-paramétert.
 
 | Név | Típus | Kötelező | Leírás |
 |------|------|----------|-------------|
-| filter_string | sztring | Igen | Az előfizetés-elemzésre alkalmazni kívánt szűrő. Az ebben a paraméterben használandó szintaxis, mezők és operátorok szűrése szintaxis és szűrés mezők szakaszban talál. |
+| filter_string | sztring | Igen | Az előfizetés-elemzésre alkalmazandó szűrő. A paraméterben használható szintaxist, mezőket és operátorokat a Szűrőszintaxis és a Szűrőmezők szakaszban láthatja. |
 
-### <a name="filter-syntax"></a>Szűrési szintaxis
+### <a name="filter-syntax"></a>Szűrőszintaxis
 
-A Filter paraméternek mező, érték és operátor kombinációk sorozatának kell lennie. Több kombináció is egyesíthető a **`and`** vagy **`or`** operátorok használatával.
+A szűrőparaméternek mező-, érték- és operátorkombinációk sorozatának kell lennie. Több kombináció kombinálható a vagy **`and`** **`or`** operátorok használatával.
 
-A kódolás nélküli példa a következőképpen néz ki:
+Egy nem kódolatlan példa a következő:
 
-- Karakterlánc `?filter=Field operator 'Value'`
-- Logikai `?filter=Field operator Value`
+- Karakterlánc: `?filter=Field operator 'Value'`
+- Logikai: `?filter=Field operator Value`
 - Tartalmaz `?filter=contains(field,'value')`
 
 ### <a name="filter-fields"></a>Mezők szűrése
 
-A kérelem Filter paraméterében egy vagy több olyan utasítás található, amely a válasz sorait szűri. Minden utasítás tartalmaz egy mezőt és egy értéket, amely társítva van a **`eq`** vagy **`ne`** operátorokhoz. Egyes mezők a,, **`contains`** , **`gt`** **`lt`** **`ge`** és **`le`** operátorokat is támogatják. Az utasítások kombinálhatók a **`and`** vagy **`or`** operátorok használatával.
+A kérés szűrőparamétere egy vagy több olyan utasításokat tartalmaz, amelyek szűrik a válasz sorait. Minden utasítás tartalmaz egy mezőt és egy értéket, amely a vagy az **`eq`** **`ne`** operátorhoz van társítva. Egyes mezők a **`contains`** , , , és **`gt`** **`lt`** **`ge`** **`le`** operátorokat is támogatják. Az utasítások vagy operátorok **`and`** használatával **`or`** kombinálhatók.
 
-A következő példák a szűrési karakterláncokra mutatnak:
+Az alábbiakban példákat talál a szűrősringek használatára:
 
 ```http
 autoRenewEnabled eq true
@@ -64,35 +59,35 @@ autoRenewEnabled eq true
 autoRenewEnabled eq true and customerMarket eq 'US'
 ```
 
-A következő táblázat a Filter paraméter támogatott mezőinek és támogatási operátorának listáját tartalmazza. A karakterlánc-értékeket szimpla idézőjelek között kell megadni.
+Az alábbi táblázat a szűrőparaméter támogatott mezőit és támogató operátorait tartalmazza. A sztringértékeket idézőjelek közé kell tenni.
 
 | Paraméter | Támogatott operátorok | Leírás |
 |-----------|---------------------|-------------|
-| autoRenewEnabled | `eq`, `ne` | Egy érték, amely azt jelzi, hogy az előfizetés automatikusan megújul-e. |
-| commitmentEndDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le`  | Az előfizetés befejezésének dátuma. |
-| creationDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le`  | Az előfizetés létrehozásának dátuma. |
-| currentStateEndDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés aktuális állapotának változási dátuma. |
-| customerMarket | `eq`, `ne` | Az az ország/régió, amelyben az ügyfél üzleti tevékenységet végez. |
-| Customername ( | `contains` | Az ügyfél neve. |
-| customerTenantId | `eq`, `ne` | Egy GUID-formázott karakterlánc, amely azonosítja az ügyfél bérlőjét. |
-| deprovisionedDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés megszüntetésének dátuma. Az alapértelmezett érték null. |
-| effectiveStartDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés megkezdésének dátuma. |
-| friendlyName | `contains` | Az előfizetés neve. |
-| id | `eq`, `ne` | Egy GUID-formázott karakterlánc, amely azonosítja az előfizetést. |
-| lastRenewalDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés utolsó megújításának dátuma. Az alapértelmezett érték null. |
-| lastUsageDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés legutóbbi használatának dátuma. Az alapértelmezett érték null. |
-| partnerId | `eq`, `ne` | Az MPN-azonosító. Közvetlen viszonteladó esetén ez az érték lesz a partner MPN-azonosítója. Közvetett viszonteladó esetén ez az érték lesz a közvetett viszonteladó MPN-azonosítója. |
-| partnerName | sztring | Annak a partnernek a neve, akivel az előfizetést megvásárolták |
-| productName | `contains`, `eq`, `ne` | A termék neve. |
-| providerName | sztring | Ha az előfizetési tranzakció a közvetett viszonteladóhoz kapcsolódik, a szolgáltató neve az a közvetett szolgáltató, aki megvásárolta az előfizetést.|
-| status | `eq`, `ne` | Az előfizetés állapota. A támogatott értékek a következők: "ACTIVE", "FELFÜGGESZTett" vagy "kiépített". |
-| Ügynökparamétert | `eq`, `ne` | Az előfizetés típusa. **Megjegyzés**: Ez a mező megkülönbözteti a kis-és nagybetűket. A támogatott értékek a következők: "Office", "Azure", "Microsoft365", "Dynamics", "EMS". |
-| trialStartDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés Próbaidőszakának elindításának dátuma. Az alapértelmezett érték null. |
-| trialToPaidConversionDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le`  | Az előfizetés próbaverzióról fizetettre való konvertálása dátuma. Az alapértelmezett érték null. |
+| autoRenewEnabled | `eq`, `ne` | Egy érték, amely jelzi, hogy az előfizetés automatikusan megújul-e. |
+| commitmentEndDate (kötelezettségvállalási deddátum) | `eq`, `ne`, `gt`, `lt`, `ge`, `le`  | Az előfizetés végének dátuma. |
+| creationDate (Létrehozás dátuma) | `eq`, `ne`, `gt`, `lt`, `ge`, `le`  | Az előfizetés létrehozási dátuma. |
+| currentStateEndDate (aktuális állapot: Dátum) | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az a dátum, amikor az előfizetés aktuális állapota megváltozik. |
+| customerMarket | `eq`, `ne` | Az az ország/régió, ahol az ügyfél üzleti tevékenységhez tartozik. |
+| customerName (ügyfél neve) | `contains` | Az ügyfél neve. |
+| customerTenantId (customerTenantId) | `eq`, `ne` | Egy GUID-formátumú sztring, amely azonosítja az ügyfélbérlőt. |
+| megszüntetésDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés megszüntetésének dátuma. Az alapértelmezett érték a null. |
+| effectiveStartDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés kezdési dátuma. |
+| friendlyName (rövid név) | `contains` | Az előfizetés neve. |
+| id | `eq`, `ne` | Egy GUID-formátumú sztring, amely azonosítja az előfizetést. |
+| lastRenewalDate (lastRenewalDate) | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés utolsó megújításának dátuma. Az alapértelmezett érték a null. |
+| lastUsageDate (lastUsageDate) | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés utolsó felhasznált dátuma. Az alapértelmezett érték a null. |
+| partnerazonosító | `eq`, `ne` | Az MPN-azonosító. Közvetlen viszonteladó esetén ez az érték a partner MPN-azonosítója lesz. Közvetett viszonteladó esetén ez az érték a közvetett viszonteladó MPN-azonosítója lesz. |
+| partnerName | sztring | Annak a partnernek a neve, aki számára az előfizetést megvásárolták |
+| Productname | `contains`, `eq`, `ne` | A termék neve. |
+| providerName (szolgáltató neve) | sztring | Ha az előfizetési tranzakció a közvetett viszonteladóra történik, a szolgáltató neve az a közvetett szolgáltató, aki megvásárolta az előfizetést.|
+| status | `eq`, `ne` | Az előfizetés állapota. A támogatott értékek: "ACTIVE", "SUSPENDED" vagy "DEPROVISIONED". |
+| subscriptionType (előfizetés típusa) | `eq`, `ne` | Az előfizetés típusa. **Megjegyzés:** Ez a mező megkülönbözteti a kis- és nagybetűket. Támogatott értékek: "Office", "Azure", "Microsoft365", "Dynamics", "EMS". |
+| trialStartDate (próbaindításidátum) | `eq`, `ne`, `gt`, `lt`, `ge`, `le` | Az előfizetés próbaidőszakának elindulásának dátuma. Az alapértelmezett érték a null. |
+| trialToPaidConversionDate | `eq`, `ne`, `gt`, `lt`, `ge`, `le`  | Az a dátum, amikor az előfizetés próbaverzióról fizetősre vált. Az alapértelmezett érték a null. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -112,11 +107,11 @@ Content-Length: 0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz törzse olyan [előfizetési](partner-center-analytics-resources.md#subscription-resource) erőforrások gyűjteményét tartalmazza, amelyek megfelelnek a szűrési feltételeknek.
+Ha ez sikeres, a válasz törzse a szűrési feltételeknek megfelelő [előfizetési](partner-center-analytics-resources.md#subscription-resource) erőforrások gyűjteményét tartalmazza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,54 +1,50 @@
 ---
 title: Egy előfizetés Azure-jogosultsági listájának lekérése
-description: A AzureEntitlement-erőforrás segítségével beszerezhet egy, az előfizetéshez tartozó Azure-jogosultsági erőforrások gyűjteményét.
+description: Az AzureEntitlement erőforrással lekért Azure-jogosultságú erőforrások gyűjteményét, amelyek egy előfizetéshez tartoznak.
 ms.date: 07/06/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: d7d0a10c571dc073bd49e82084f3b7ece7234daf
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 280da155122ed9efd99838d7819fb34f8f7ec52c
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767952"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874363"
 ---
 # <a name="get-a-list-of-azure-entitlements-for-a-subscription"></a>Egy előfizetés Azure-jogosultsági listájának lekérése
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Használhatja az [Azure jogosultsági erőforrást](subscription-resources.md#azureentitlement) (**AzureEntitlement**) az előfizetéshez tartozó erőforrások gyűjteményének beszerzéséhez.
+Az [Azure-jogosultsági](subscription-resources.md#azureentitlement) erőforrás **(AzureEntitlement**) használatával egy előfizetéshez tartozó erőforrások gyűjteményét kaphatja meg.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                                   |
 |---------|---------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Subscriptions/{Subscription-ID}/azureentitlements http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{előfizetés-azonosító}/azureentitlements HTTP/1.1 |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-A következő táblázat felsorolja a szükséges lekérdezési paramétereket az előfizetéshez tartozó összes Azure-jogosultság beszerzéséhez.
+Az alábbi táblázat felsorolja az előfizetés összes Azure-jogosultságának lekérdezhető lekérdezési paramétereit.
 
 | Név                   | Típus     | Kötelező | Leírás                           |
 |------------------------|----------|----------|---------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az ügyfélhez tartozó GUID. |
-| **előfizetés-azonosító**       | **guid** | Y        | Az előfizetéshez tartozó GUID.    |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az ügyfélnek megfelelő GUID. |
+| **subscription-id**       | **guid** | Y        | Az előfizetéshez tartozó GUID.    |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -67,11 +63,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus [**AzureEntitlement**](subscription-resources.md#azureentitlement) -erőforrások gyűjteményét adja vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus [**azureentitlement-erőforrások**](subscription-resources.md#azureentitlement) gyűjteményét adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

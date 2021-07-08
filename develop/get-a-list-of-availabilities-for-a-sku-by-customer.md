@@ -1,59 +1,54 @@
 ---
 title: Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ügyfél alapján)
-description: Az ügyfél, a termék és az SKU-azonosítók használatával a megadott termékre és SKU-ra vonatkozó elérhetőségek gyűjteménye beszerezhető.
+description: Egy adott termékhez és termékváltozathoz az ügyfél, a termék- és termékváltozat-azonosítók használatával kaphat rendelkezésre állási gyűjteményt az ügyféltől.
 ms.assetid: ''
 ms.date: 10/23/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 5f4067916fea911963182954eed77f4e230e79d6
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: b237bbd17a6108bbcb4e23529cf476a6b8306f68
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767959"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874550"
 ---
 # <a name="get-a-list-of-availabilities-for-a-sku-by-customer"></a>Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ügyfél alapján)
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A következő módszerekkel kérheti le a rendelkezésre állási gyűjteményt egy adott termékhez és SKU-hoz egy adott ügyfél számára.
+A következő módszerekkel kaphat rendelkezésre állási gyűjteményt egy adott termékhez és termékváltozathoz, amelyek egy adott ügyfél számára elérhetők.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- A termék azonosítója (**termékazonosító**).
+- Egy termékazonosító (**termékazonosító).**
 
-- SKU-azonosító (**SKU-azonosító**).
+- Egy termékváltozat-azonosító (**sku-id**).
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus | Kérés URI-ja                                                                                                                 |
 |--------|-----------------------------------------------------------------------------------------------------------------------------|
-| POST   | [*\{ BASEURL \}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Products/{Product-ID}/SKUs/{SKU-ID} http/1.1 |
+| POST   | [*\{ baseURL \}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/products/{termékazonosító}/skus/{sku-id} HTTP/1.1 |
 
-### <a name="request-uri-parameters"></a>Kérelem URI-paraméterei
+### <a name="request-uri-parameters"></a>URI-paraméterek kérése
 
 | Név               | Típus | Kötelező | Leírás                                                                                 |
 |--------------------|------|----------|---------------------------------------------------------------------------------------------|
-| ügyfél – bérlő – azonosító | GUID | Igen | Az érték egy GUID-formátumú **ügyfél-bérlői azonosító**, amely egy ügyfél megadását lehetővé tevő azonosító. |
-| termék azonosítója | sztring | Igen | A terméket azonosító karakterlánc. |
-| SKU-azonosító | sztring | Igen | Egy karakterlánc, amely azonosítja az SKU-t. |
+| ügyfél-bérlő-azonosító | GUID | Igen | Az érték egy GUID-formátumú **ügyfél-bérlő-azonosító,** amely egy olyan azonosító, amellyel megadhatja az ügyfelet. |
+| termékazonosító | sztring | Igen | A terméket azonosító sztring. |
+| sku-id | sztring | Igen | A termékváltozatot azonosító sztring. |
 
 ### <a name="request-header"></a>Kérelem fejléce
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -71,15 +66,15 @@ MS-CorrelationId: b1939cb2-e83d-4fb0-989f-514fb741b734
 
 ## <a name="rest-response"></a>REST-válasz
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
 | HTTP-állapotkód | Hibakód | Leírás |
 |------------------|------------|-------------|
-| 404 | 400013 | A fölérendelt termék nem található. |
+| 404 | 400013 | A szülőtermék nem található. |
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,42 +1,40 @@
 ---
 title: Partnerközpont – REST API-referencia
-description: Ismerje meg, hogy a CSP-partnerek hogyan használhatják a partner Center REST API-kat a CRM-és számlázási szoftverek Microsoft-rendszerekkel való integrálásához, hogy jobban kezeljék az ügyfelek fiókjait
+description: Ismerje meg, hogy a CSP-partnerek hogyan használhatjak Partnerközpont REST API-kat CRM- és számlázási szoftvereik Microsoft-rendszerekkel való integrálásához az ügyfélfiókok jobb kezelése érdekében.
 ms.date: 11/10/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: 3f83b2b73c3480f76646cae4fcbbcbacd31d4b3f
-ms.sourcegitcommit: 8a5c37376a29e29fe0002a980082d4acc6b91131
+ms.openlocfilehash: 18621fdb94f91f066b69a11f7d557410d653787e
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "97768503"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548039"
 ---
-# <a name="partner-center-rest-api-reference-to-rest-urls-rest-headers-rest-resources-and-rest-events"></a>A partner Center REST API a REST URL-címekre, a REST-fejlécekre, a REST-erőforrásokra és a REST-eseményekre
+# <a name="partner-center-rest-api-reference-to-rest-urls-rest-headers-rest-resources-and-rest-events"></a>Partnerközpont REST API REST URL-címekre, REST-fejlécekre, REST-erőforrásokra és REST-eseményekre való hivatkozás
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+## <a name="partner-center-rest-api"></a>Partnerközpont REST API
 
-## <a name="partner-center-rest-api"></a>Partner Center REST API
+A Partnerközpont REST API segítségével Felhőszolgáltató (CSP) partnerek integrálják meglévő CRM- vagy számlázási szoftvereiket az ügyfélfiókokat kezelő, rendeléseket kezelő, előfizetéseket kezelő és támogatási kéréseket kezelő Microsoft-rendszerekkel.
 
-A partner Center REST API segíti a Cloud Solution Provider (CSP) partnerei számára a meglévő CRM-vagy számlázási szoftverek integrálását a felhasználói fiókokat kezelő Microsoft-rendszerekkel, a megrendelések megrendelésével, az előfizetések kezelésével és a támogatási kérelmek kezelésével.
+Az API-val kapcsolatos további információkért, beleértve a mintakódot is, a [Forgatókönyvek](scenarios.md) témakörben talál, beleértve a háttér-áttekintést.
 
-További információ arról, hogy mit tehet az API, beleértve a mintakódt is, a [forgatókönyvek](scenarios.md) témakörben, beleértve a háttér áttekintését.
+A kódolás megkezdése előtt olvassa el az [Első lépések témakört.](get-started.md) Ez a cikk a teszt- és éles fiókok beállításáról, a hitelesítés megfelelő beállításáról és a mintakód megkeresésről tartalmaz információkat.
 
-A kódolás megkezdése előtt olvassa el az [első lépések](get-started.md) témakört. Ez a cikk a tesztelési és üzemi fiókok beállításával, a hitelesítés működésének beszerzésével és a mintakód megkeresésével kapcsolatos információkat tartalmaz.
+Az egyes API-okat magyarázó referencia-útmutatóért lásd: [Partnerközpont REST API.](/rest/api/partner-center-rest/)
 
 ## <a name="topics"></a>Témakörök
 
 | Témakör | Leírás |
 | ----- | ----------- |
-| [Partnerközpont – REST URL-címek](partner-center-rest-urls.md) | Meghatározza a partner központ különböző verzióihoz REST API végpontokat. |
-| [Partnerközpont – REST-fejlécek](headers.md) | Meghatározza a REST API által használt kérelem és válasz fejléceit. |
-| [Partnerközpont – REST-erőforrások](partner-center-rest-resources.md) | Azokat a JSON-szerkezeteket határozza meg, amelyek a REST API használatához szükséges objektumokat jelölik. |
-| [Partnerközpont – REST-események](partner-center-webhook-events.md) | Meghatározza a partner Center webhookok által támogatott REST-erőforrás-módosítási eseményeket. |
-| [Partnerközpont – támogatott nyelvek és területi beállítások](partner-center-supported-languages-and-locales.md) | Felsorolja a partner Center API-k által támogatott területi beállításokat, nyelveket és ország/régió kódokat. |
-| [Partnerközpont – webhookok](partner-center-webhooks.md) | Események fogadása, visszahívás hitelesítése és a partner Center webhook API-k használata egy esemény regisztrációjának létrehozásához, megtekintéséhez és frissítéséhez. |
+| [Partnerközpont REST API](/rest/api/partner-center-rest/) | Az egyes REST API elérhető Partnerközpont. |
+| [Partnerközpont – REST URL-címek](partner-center-rest-urls.md) | Meghatározza a REST API különböző verzióinak végpontjainak Partnerközpont. |
+| [Partnerközpont – REST-fejlécek](headers.md) | Meghatározza a kérés és a válasz fejlécét, amelyet a REST API. |
+| [Partnerközpont – REST-erőforrások](partner-center-rest-resources.md) | Meghatározza azokat a JSON-szerkezeteket, amelyek a REST API. |
+| [Partnerközpont – REST-események](partner-center-webhook-events.md) | Meghatározza a webhookok által támogatott REST-Partnerközpont eseményeket. |
+| [Partnerközpont – támogatott nyelvek és területi beállítások](partner-center-supported-languages-and-locales.md) | Az API-k által támogatott területi listákat, nyelveket és ország-/régiókódokat Partnerközpont sorolja fel. |
+| [Partnerközpont – webhookok](partner-center-webhooks.md) | Események fogadása, visszahívás hitelesítése és Partnerközpont webhook API-k használata eseményregisztráció létrehozásához, megtekintéséhez és frissítéséhez. |

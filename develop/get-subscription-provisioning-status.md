@@ -1,40 +1,35 @@
 ---
 title: Előfizetés kiépítési állapotának lekérése
-description: Az előfizetés kiépítési állapotának lekérése egy ügyfél-előfizetéshez.
+description: Hogyan lehet lekérte az előfizetés kiépítési állapotát egy ügyfél-előfizetéshez.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 38544aa380ba0a6a8804ae45f7d8ae7cb431d3ba
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: f8797fa494cd77f11a1179d6406ca021f0d7788c
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768436"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548702"
 ---
 # <a name="get-subscription-provisioning-status"></a>Előfizetés kiépítési állapotának lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Az előfizetés kiépítési állapotának lekérése egy ügyfél-előfizetéshez.
+Hogyan lehet lekérte az előfizetés kiépítési állapotát egy ügyfél-előfizetéshez.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
-- A művelet végrehajtásához delegált rendszergazdai engedélyek szükségesek az előfizetéshez.
+- A művelet végrehajtásához delegált rendszergazdai engedélyek szükségesek az előfizetésen.
 
 ## <a name="c"></a>C\#
 
-Az előfizetés kiépítési állapotának lekéréséhez először a [**IAggregatePartner. Customs. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust használja az ügyfél-azonosítóval az ügyfél azonosításához. Ezután kérjen meg egy illesztőfelületet az előfizetési műveletekhez az [**előfizetések. ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódus meghívásával az előfizetés-azonosítóval. Ezután a [**ProvisioningStatus**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.provisioningstatus) tulajdonsággal szerezzen be egy felületet az aktuális előfizetés kiépítési állapotának műveleteihez, majd hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionprovisioningstatus.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionprovisioningstatus.getasync) metódust a [**SubscriptionProvisioningStatus**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscriptionprovisioningstatus) objektum lekéréséhez.
+Az előfizetés kiépítési állapotának lehöz először használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután az előfizetési műveletek interfészének lehívásához hívja meg a [**Subscriptions.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust az előfizetés azonosítójával. Ezután a [**ProvisioningStatus**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.provisioningstatus) tulajdonság használatával szerezzen be egy felületet az aktuális előfizetés kiépítési állapotműveletéhez, majd hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionprovisioningstatus.get) vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionprovisioningstatus.getasync) metódust a [**SubscriptionProvisioningStatus**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscriptionprovisioningstatus) objektum lekéréséhez.
 
 ``` csharp
 // IAggregatePartner partnerOperations.
@@ -45,26 +40,26 @@ Az előfizetés kiépítési állapotának lekéréséhez először a [**IAggreg
 var provisioningStatus = partnerOperations.Customers.ById(customerId).Subscriptions.ById(subscriptionID).ProvisioningStatus.Get();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                                        |
 |---------|------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-ID}/Subscriptions/{Subscription-ID}/provisioningstatus http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/subscriptions/{előfizetés-azonosító}/provisioningstatus HTTP/1.1 |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-A következő elérésiút-paraméterek használatával azonosíthatja az ügyfelet és az előfizetést.
+Az ügyfél és az előfizetés azonosításához használja az alábbi elérésiút-paramétereket.
 
 | Név            | Típus   | Kötelező | Leírás                                               |
 |-----------------|--------|----------|-----------------------------------------------------------|
-| ügyfél-azonosító     | sztring | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja az ügyfelet.     |
-| előfizetés-azonosító | sztring | Igen      | Egy GUID formátumú karakterlánc, amely azonosítja az előfizetést. |
+| ügyfél-azonosító     | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.     |
+| subscription-id (előfizetés-azonosító) | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az előfizetést. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -84,11 +79,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse [SubscriptionProvisioningStatus](subscription-resources.md#subscriptionprovisioningstatus) -erőforrást tartalmaz.
+Ha ez sikeres, a válasz törzse tartalmaz egy [SubscriptionProvisioningStatus erőforrást.](subscription-resources.md#subscriptionprovisioningstatus)
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
@@ -115,6 +110,6 @@ Date: Thu, 20 Apr 2017 19:23:39 GMT
 
 ## <a name="remarks"></a>Megjegyzések
 
-- A licenc módosításakor a [SubscriptionProvisioningStatus](subscription-resources.md#subscriptionprovisioningstatus) állapot mezőjében a "függő" értékre van állítva.
+- Licenc módosításakor a [SubscriptionProvisioningStatus](subscription-resources.md#subscriptionprovisioningstatus) állapotmezője "pending" (függőben) lesz.
 
-- Az állapot mező tizenöt percenként frissül.
+- Az állapot mező 15 percenként frissül.

@@ -1,30 +1,25 @@
 ---
 title: Fiókok és profilok kezelése
-description: Ez a szakasz azokat a módszereket ismerteti, amelyekkel a felhőalapú megoldások szolgáltatói partnerei használhatják a partner centert a felhasználói fiókjaik és profiljaik programozott kezeléséhez.
+description: Ez a szakasz azt ismerteti, Felhőszolgáltató partnerek hogyan használhatjak a Partnerközpont felhasználói fiókjaik és profiljaik programozott kezelésére.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: parthpandyaMSFT
 ms.author: parthp
-ms.openlocfilehash: 802e6c48a9ee6d5fffdbac54a55f8cbe366283cb
-ms.sourcegitcommit: d53d300dc7fb01aeb4ef85bf2e3a6b80f868dc57
+ms.openlocfilehash: ce0770568d9532e6bfa8f3092d479e5d0a2597ea
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "97768187"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548141"
 ---
 # <a name="manage-accounts-and-profiles"></a>Fiókok és profilok kezelése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Ez a szakasz azt ismerteti, hogy Felhőszolgáltató partnerek hogyan Partnerközpont felhasználói fiókjaik és profiljaik programozott kezeléséhez.
 
-Ez a szakasz azt ismerteti, hogy a felhőalapú megoldások szolgáltatói partnerei hogyan használhatják a partner centert a felhasználói fiókjaik és profiljaik programozott kezeléséhez.
-
-- [Jogi üzleti profil beszerzése](get-legal-business-profile.md)
+- [Jogi üzleti profil lekért](get-legal-business-profile.md)
 - [Szervezet profiljának lekérése](get-an-organization-profile.md)
 - [Partner számlázási profiljának lekérése](get-partner-billing-profile.md)
 - [A Microsoft Partner Network-profil lekérése](get-partner-network-profile.md)
@@ -36,7 +31,7 @@ Ez a szakasz azt ismerteti, hogy a felhőalapú megoldások szolgáltatói partn
 
 Együttműködés más partnerekkel
 
-- [Partner beolvasása MPN-azonosító alapján](get-partner-by-mpn-id.md)
-- [Összes előfizetés beolvasása partner szerint](get-all-subscriptions-by-partner.md)
+- [Partner lekérte MPN-azonosító alapján](get-partner-by-mpn-id.md)
+- [Az összes előfizetés lekérte partner szerint](get-all-subscriptions-by-partner.md)
 
-További információ: [forgatókönyvek](scenarios.md).
+További információ: [Forgatókönyvek.](scenarios.md)

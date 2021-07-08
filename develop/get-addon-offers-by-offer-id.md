@@ -1,38 +1,33 @@
 ---
 title: Bővítmények lekérése ajánlatazonosító alapján
-description: Az ajánlat-AZONOSÍTÓhoz tartozó bővítmények beszerzése.
+description: Az ajánlatazonosító bővítményei lekérte.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: 9ee22712b323c7439a192ed2e5af8d5e7eaf92a3
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: e3b0ab8007d3affa6912479b960f6dae3bc0bd28
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768051"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760334"
 ---
 # <a name="get-add-ons-for-an-offer-id"></a>Bővítmények lekérése ajánlatazonosító alapján
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Az ajánlat-AZONOSÍTÓhoz tartozó bővítmények beszerzése.
+Az ajánlatazonosító bővítményei lekérte.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Egy ajánlat azonosítója. Ha nem rendelkezik az ajánlat-AZONOSÍTÓval, tekintse [meg a piaci ajánlatok listájának beolvasása](get-a-list-of-offers-for-a-market.md)című témakört.
+- Egy ajánlatazonosító. Ha nem tudja az ajánlatazonosítót, tekintse meg a piaci ajánlatok [listájának lekért listáját.](get-a-list-of-offers-for-a-market.md)
 
 ## <a name="c"></a>C\#
 
-Ha a bővítményeket azonosító alapján szeretné lekérni, először hívja meg a [**IAggregatePartner. offers. ByCountry**](/dotnet/api/microsoft.store.partnercenter.genericoperations.icountryselector-1.bycountry) metódust az országkód használatával, hogy az adott országon alapuló műveleteket kérjen. Ezután hívja meg a [**ByID**](/dotnet/api/microsoft.store.partnercenter.offers.ioffercollection.byid) metódust az ajánlat azonosítójával, és azonosítsa azt az ajánlatot, amelynek a bővítményeit le szeretné kérdezni. Ezután az [**addons**](/dotnet/api/microsoft.store.partnercenter.offers.ioffer.addons) tulajdonsággal szerezzen be egy felületet az aktuális ajánlathoz tartozó kiegészítő műveletekhez. Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.getasync) metódust, hogy beolvassa a megadott ajánlat összes bővítményének gyűjteményét.
+Egy ajánlat bővítményei azonosító alapján való lehíváshoz először hívja meg az [**IAggregatePartner.Offers.ByCountry**](/dotnet/api/microsoft.store.partnercenter.genericoperations.icountryselector-1.bycountry) metódust az országkóddal, hogy lekért egy felületet, amely az adott ország alapján kínál műveleteket. Ezután hívja meg [**a ByID**](/dotnet/api/microsoft.store.partnercenter.offers.ioffercollection.byid) metódust az ajánlat azonosítójával annak az ajánlatnak az azonosításához, amelynek bővítményét le szeretné hívni. Ezután az [**AddOns**](/dotnet/api/microsoft.store.partnercenter.offers.ioffer.addons) tulajdonság használatával lekért egy interfészt az aktuális ajánlat bővítményműveleteihez. Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.get) vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.offers.iofferaddons.getasync) metódust a megadott ajánlat összes bővítményének gyűjteményéhez.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -42,28 +37,28 @@ Ha a bővítményeket azonosító alapján szeretné lekérni, először hívja 
 var offerAddOns = partnerOperations.Offers.ByCountry(countryCode).ById(offerId).AddOns.Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: partner Center SDK Samples **osztály**: GetOffer.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** GetOffer.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                             |
 |---------|---------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/offers/{Offer-ID}/addons? ország = {országkód} http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/offers/{ajánlatazonosító}/addons?country={országkód} HTTP/1.1 |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-Az ajánlat-azonosító és az országkód megadásához használja a következő paramétereket.
+A következő paraméterekkel használhatja az ajánlat azonosítóját és országkódját.
 
 | Név         | Típus       | Kötelező | Leírás                       |
 |--------------|------------|----------|-----------------------------------|
-| **ajánlat azonosítója** | **guid**   | Y        | Az ajánlatot azonosító GUID. |
-| **ország**  | **karakterlánc** | Y        | Az országkód (például `US` ).       |
+| **ajánlatazonosító** | **guid**   | Y        | Az ajánlatot azonosító GUID. |
+| **Ország**  | **sztring** | Y        | Az országkód (például `US` ).       |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -83,11 +78,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a metódus a válasz törzsében adja meg az [ajánlati](offer-resources.md) objektumok gyűjteményét.
+Ha a művelet sikeres, ez a metódus ajánlatobjektumok [gyűjteményét](offer-resources.md) adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

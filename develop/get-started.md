@@ -1,64 +1,59 @@
 ---
 title: Bevezetés
-description: A partner Center SDK egy felügyelt API-t és egy REST API biztosít a partnerek számára az ügyfelek, az előfizetések és a megrendelések kezeléséhez.
+description: A Partnerközpont SDK tartalmaz egy felügyelt API-t és egy REST API, amelyek segítségével a partnerek kezelhetik az ügyfelek, az előfizetések és a rendelési adatokat.
 ms.date: 09/29/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9c2af1e11dbda19489a27e37c7f3de8ede90fd1c
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: b5d05f26d63574ef876519091dc1c33c05f36e25
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767912"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548753"
 ---
 # <a name="get-started"></a>Bevezetés
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A partner Center SDK egy felügyelt API-t és egy REST API biztosít a partnerek számára az ügyfelek, az előfizetések és a megrendelések kezeléséhez.
+A Partnerközpont SDK tartalmaz egy felügyelt API-t és egy REST API, amelyek segítségével a partnerek kezelhetik az ügyfelek, az előfizetések és a rendelési adatokat.
 
 ## <a name="get-the-code"></a>A kód letöltése
 
-[A partner Center SDK letöltése](https://go.microsoft.com/fwlink/p/?LinkId=746681)
+[A Partnerközpont SDK](https://go.microsoft.com/fwlink/p/?LinkId=746681)
 
 > [!NOTE]
-> Az API-hozzáférés a közvetett viszonteladók számára nem támogatott forgatókönyv.
+> A közvetett viszonteladók Partnerközpont api-hozzáférése nem támogatott forgatókönyv.
 
-## <a name="determine-your-version-of-partner-center"></a>A partner központ verziójának meghatározása
+## <a name="determine-your-version-of-partner-center"></a>Az alkalmazás verziójának Partnerközpont
 
-A partner központ egyes verziói nem rendelkeznek a teljes SDK-val. További információ: [a Microsoft nemzeti felhőhöz készült partneri központ fejlesztése](developing-for-partner-center-for-microsoft-national-cloud.md).
+A Partnerközpont egyes verziói nem érhetők el a teljes SDK-val. További információ: [Developing for Partnerközpont for Microsoft National Cloud](developing-for-partner-center-for-microsoft-national-cloud.md).
 
-## <a name="get-the-samples"></a>A minták beszerzése
+## <a name="get-the-samples"></a>A minták lekért száma
 
-További információ a C# kódrészletekről, a REST-mintákról és a minta alkalmazásról: [partner Center-minták](partner-center-samples.md).
+A C#-kódrészletekkel, a REST-mintákkal és a mintaalkalmazással kapcsolatos további információkért tekintse meg az [Partnerközpont példákat.](partner-center-samples.md)
 
-## <a name="test-vs-production"></a>Tesztelés és éles üzem
+## <a name="test-vs-production"></a>Tesztelés és éles környezet
 
-A kód első írásakor és tesztelésekor az Integration sandbox-fiókot (és a hozzá tartozó jogkivonatokat) kell használnia, így nem kell véletlenül új díjakat fizetnie, amelyeket a vállalata fizet. További információ erről a tesztelési környezetről: [API-hozzáférés beállítása a partner Centerben](set-up-api-access-in-partner-center.md).
+A kód első írásakor és tesztelése közben érdemes az integrációs tesztfiókot (és a megfelelő jogkivonatokat) használni, hogy véletlenül se legyen olyan új díj, amelyért a cég fizet. További információ erről a tesztkörnyezetről: [API-hozzáférés beállítása a Partnerközpont.](set-up-api-access-in-partner-center.md)
 
-Ha a megoldást tesztelik, és készen állnak a valós ügyfél-fiókokra, frissítenie kell a jogkivonatokat, hogy egy Azure AD-ügyfélalkalmazás és egy, az elsődleges partner Center-fióknak megfelelő titkos kulcsot használjon.
+Ha a megoldás tesztelve van, és készen áll a valós ügyfélfiókok használatára, frissítenie kell a jogkivonatokat, hogy az Elsődleges ügyfélfióknak megfelelő Azure AD-ügyfélalkalmazást és titkos Partnerközpont használ.
 
-A teszteléssel és a hibakereséssel kapcsolatos tippeket és javaslatokat, beleértve a teszteléssel és [a hibakereséssel](test-and-debug.md)kapcsolatos további információkat is.
+A teszteléssel és hibakereséssel kapcsolatos tippekért és javaslatokért, beleértve az éles környezetben végzett teszteléssel (TiP) és az integrációs tesztekkel kapcsolatos további információkat, lásd: Tesztelés és [hibakeresés.](test-and-debug.md)
 
 ## <a name="configure-your-authentication"></a>A hitelesítés konfigurálása
 
-Az Azure AD-hitelesítés konfigurálásához, hogy használhassa a partner Center API-kat, lásd: a [partner Center hitelesítése](partner-center-authentication.md).
+Ha az Azure AD-hitelesítést a Partnerközpont API-k használatára konfigurálja, [lásd: Partnerközpont hitelesítés.](partner-center-authentication.md)
 
 > [!IMPORTANT]
-> A Microsoft a Microsoft Azure multi-Factor Authentication (MFA) architektúrán keresztül biztonságos, méretezhető keretrendszert biztosít a Cloud Solution Provider (CSP) partnerek és a Vezérlőpult-szállítók (CPV) hitelesítéséhez.
-A partner Center az Azure AD-t használja a hitelesítéshez, a partner Center API-k használatához pedig helyesen kell konfigurálnia a hitelesítési beállításokat.
+> A Microsoft egy biztonságos, skálázható keretrendszert vezet be a felhőszolgáltató (CSP) partnerek és a vezérlőpult-szállítók (CPV) hitelesítéséhez az Microsoft Azure többtényezős hitelesítési (MFA) architektúrán keresztül.
+Partnerközpont Azure AD-t használ a hitelesítéshez, a Partnerközpont API-khoz pedig megfelelően kell konfigurálnia a hitelesítési beállításokat.
 >
-> További információt a [biztonságos alkalmazás modelljének engedélyezése](enable-secure-app-model.md)című témakörben talál.
+> További információ: [Biztonságos alkalmazásmodell engedélyezése.](enable-secure-app-model.md)
 
 ## <a name="get-help"></a>Segítség kérése
 
-A partnerek támogatást kérhetnek a [partner Center SDK Yammer csoportjában](https://go.microsoft.com/fwlink/p/?LinkID=717360). Ha további személyre szabott segítséget szeretne kapni, a fejlesztők az MPN-támogatás előnyeit vagy a Premier szintű támogatás is használhatják.
+A partnerek a következő csoportban [kaphatnak Partnerközpont SDK Yammer támogatást:](https://go.microsoft.com/fwlink/p/?LinkID=717360). Ha személyre szabottabb segítséget szeretné kapni, a fejlesztők az MPN támogatási előnyeit vagy a Premier szintű támogatás.
 
 ## <a name="join-the-partner-center-api-and-sdk-early-adopter-program"></a>Csatlakozzon a Partnerközpont API és az SDK korai felhasználói programjához
 
-Ha szeretné megtudni, hogyan dolgozhat a Microsofttal a partneri funkciók és képességek fejlesztésével kapcsolatban, tekintse meg a következő témakört: [Csatlakozás a partner Center API-hoz és az SDK korai](early-adopter-program.md)bevezetési programhoz.
+Ha meg szeretne tudni, hogyan működhet együtt a Microsofttal a partneri funkciók és képességek fejlesztésében, tekintse meg a Join the Partnerközpont API and SDK Early Adopter Program (Csatlakozás az Partnerközpont API-hoz és az [SDK early Adopter Programhoz) részt.](early-adopter-program.md)

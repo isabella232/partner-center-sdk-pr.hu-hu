@@ -1,26 +1,21 @@
 ---
-title: Ajánlatok erőforrásai
-description: A viszonteladói katalógusban szereplő, az ügyfelek számára elérhetővé tenni kívánt termék leírása.
+title: Erőforrások ajánlata
+description: Egy, a viszonteladói katalógusban felsorolt terméket ismertet, amely az ügyfeleknek kínálhat.
 ms.date: 03/15/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 45af02705d2a03c7586ba6bf3a5537c3e4eec3c7
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 704e5580f2cdf84fc82b627e3b2ca165b81a3af5
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767775"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548107"
 ---
-# <a name="offer-resources"></a>Ajánlatok erőforrásai
+# <a name="offer-resources"></a>Erőforrások ajánlata
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A viszonteladói katalógusban szereplő, az ügyfelek számára elérhetővé tenni kívánt termék leírása.
+Egy, a viszonteladói katalógusban felsorolt terméket ismertet, amely az ügyfeleknek kínálhat.
 
 ## <a name="offer"></a>Ajánlat
 
@@ -29,64 +24,64 @@ A viszonteladói katalógusban szereplő, az ügyfelek számára elérhetővé t
 | id                          | sztring                    | Az ajánlat azonosítója.                                                                                           |
 | name                        | sztring                    | Az ajánlat neve.                                                                                                 |
 | leírás                 | sztring                    | Az ajánlat leírása.                                                                                     |
-| minimumQuantity             | int                       | A rendelkezésre álló minimális mennyiség.                                                                                 |
-| maximumQuantity             | int                       | A rendelkezésre álló maximális mennyiség.                                                                                 |
-| rang                        | int                       | Az ajánlat rangsorolása vagy prioritása más kategóriákhoz képest ugyanabban a termékcsaládban. Ezt a tulajdonságot csak akkor kell beállítani, ha egy adott termékcsaládhoz több ajánlat is van.  |
-| URI                         | sztring                    | Az ajánlat URI-ja.                                                                                                  |
-| területi beállítás                      | sztring                    | Az a területi beállítás, amelyben az ajánlat érvényes.                                                                          |
+| minimumQuantity (minimálisquantitás)             | int                       | Az elérhető minimális mennyiség.                                                                                 |
+| maximumQuantity (Maximálisquantitás)             | int                       | Az elérhető maximális mennyiség.                                                                                 |
+| rang                        | int                       | Az ajánlat rangsorolása vagy prioritása az ugyanabban a termékvonalon a többi kategóriához képest. Ezt a tulajdonságot csak akkor kell beállítani, ha egy adott terméksorhoz több ajánlat is van.  |
+| Uri                         | sztring                    | Az ajánlat URI-ját.                                                                                                  |
+| területi beállítás                      | sztring                    | Az a területi beállítás, amelyre az ajánlat vonatkozik.                                                                          |
 | ország                     | sztring                    | Az az ország/régió, ahol az ajánlat érvényes.                                                                    |
-| category                    | [OfferCategory](#offercategory)           | Az ajánlat kategóriája.                                                                   |
-| limitUnitOfMeasure          | sztring                    | A vásárlás korlátozásának típusát jelző érték. A lehetséges értékek a következők:<br/> "Nincs" – az előfizetések számának korlátozása a megvásárolt ajánlat alapján.<br/> "Párhuzamos" – az ügyfél bérlője számára egy adott időpontban létezhető előfizetések száma, beleértve az aktív vagy a megszakított előfizetéseket is. Ez az érték főként olyan kisméretű üzleti ajánlatokra vonatkozik, ahol a licencek száma kevesebb, mint 300. A de-provisionioned előfizetések nem számítanak.<br/> "Élettartam" – az ügyfél bérlője számára elérhető előfizetések száma. Ez az érték a legtöbb esetben alkalmazható a próbaverzióra. A de-provisionioned előfizetések nem számítanak.      |
-| korlát                       | int                       | Az ajánlat által a limitUnitOfMeasure alapján megvásárolható előfizetések mennyisége.                |
-| prerequisiteOffers          | sztring                    | Az előfeltételt jelentő ajánlatok.                                                                                        |
-| isAddOn                     | boolean                   | Egy érték, amely azt jelzi, hogy ez a példány addon-e.                                                           |
-| hasAddOns                   | boolean                   | Egy érték, amely azt jelzi, hogy az ajánlat rendelkezik-e kiegészítéssel.                                                           |
-| isAvailableForPurchase      | boolean                   | Egy érték, amely azt jelzi, hogy a példány megvásárolható-e.                                             |
-| számlázás                     | sztring                    | Megadja a tétel megvásárlásának számlázási típusát: "None", "használati" vagy "licenc".                           |
-| supportedBillingCycles      | sztringek tömbje          | Az ajánlat által támogatott számlázási ciklusokat jelzi. A támogatott értékek a [BillingCycleType](product-resources.md#billingcycletype) található tagok nevei   |
-| isAutoRenewable             | boolean                   | Egy érték, amely azt jelzi, hogy az ajánlat automatikusan megújítható-e.                                                      |
+| category                    | [OfferCategory (Ajánlatkategória)](#offercategory)           | Az ajánlat kategóriája.                                                                   |
+| limitUnitOfMeasure          | sztring                    | A vásárlási korlátozás típusát jelző érték. A lehetséges értékek a következők:<br/> "Nincs" – A megvásárolt ajánlat alapján nincs korlátozva az előfizetések száma.<br/> "Egyidejű" – Az ügyfélbérlőben egy adott időpontban létező előfizetések száma, beleértve az aktív vagy lemondott előfizetéseket is. Ez az érték főleg kisvállalati ajánlatokra vonatkozik, ahol a licencszám kevesebb, mint 300. A nem kiépített előfizetések nem számítanak.<br/> "LifeTime" (Élettartam) – Az ügyfélbérlő teljes élettartama alatt létező előfizetések száma. Ez az érték a próbaverziókra a leginkább alkalmazható. A nem kiépített előfizetések nem számítanak.      |
+| korlát                       | int                       | Az ajánlathoz megvásárolható előfizetések száma a limitUnitOfMeasure alapján.                |
+| prerequisiteOffers          | sztring                    | Az előfeltételként szükséges ajánlatok.                                                                                        |
+| isAddOn (IsAddOn)                     | boolean                   | Egy érték, amely azt jelzi, hogy ez a példány bővítmény-e.                                                           |
+| hasAddOns (hasAddOns)                   | boolean                   | Egy érték, amely jelzi, hogy az ajánlat rendelkezik-e bővítményekkel.                                                           |
+| isAvailableForPurchase      | boolean                   | Egy érték, amely jelzi, hogy ez a példány megvásárolható-e.                                             |
+| számlázás                     | sztring                    | Megadja a tételvásárlás számlázási típusát: "nincs", "használat" vagy "licenc".                           |
+| supportedBillingCycles      | sztringek tömbje          | Az ajánlat által támogatott számlázási ciklusokat jelzi. A támogatott értékek a [BillingCycleType](product-resources.md#billingcycletype) típusban található tagnevek   |
+| isAutoRenewable             | boolean                   | Egy érték, amely jelzi, hogy az ajánlat automatikusan megújul-e.                                                      |
 | upgradeTargetOffers         | sztringek tömbje          | Azon ajánlatok listája, amelyekre ez az ajánlat frissíthető.                                                          |
-| conversionTargetOffers      | sztringek tömbje          | Azon ajánlatok listája, amelyeket az ajánlat átalakíthat.                                                         |
-| reselleeQualifications      | sztringek tömbje          | Az ügyfél által megkövetelt minősítések ahhoz, hogy egy partner megvásárolja az ajánlatot az adott ügyfél számára.     |
-| resellerQualifications      | sztringek tömbje          | A partner által az ajánlat megvásárlásához szükséges minősítések az ügyfelek számára.                       |
-| salesGroupId                | sztring                    | Az ajánlatok különálló megrendelésekre való csoportosítására szolgáló sztring.                                                             |
-| Isztriai                     | boolean                   | Egy érték, amely azt jelzi, hogy ez egy próbaverziós ajánlat.                                                               |
-| product                     | [OfferProduct](#offerproduct)           | Az ajánlat termékének beolvasása.                                                                           |
-| unitType                    | sztring                    | Az egység típusa                                                                                      |
-| linkek                       | [OfferLinks](#offerlinks)               | Az ajánlat "További információ" hivatkozása.                                                                    |
-| attribútumok                  | [ResourceAttributes](utility-resources.md#resourceattributes) | Az ajánlathoz tartozó metaadat-attribútumok.                         |
+| conversionTargetOffers      | sztringek tömbje          | Azon ajánlatok listája, amelyekre az ajánlat konvertálható.                                                         |
+| resleleQualifications      | sztringek tömbje          | Az ügyfél által az adott ügyfél számára az ajánlat megvásárlásához szükséges minősítések.     |
+| resellerQualifications      | sztringek tömbje          | A partner által az ajánlat ügyfél számára való megvásárlásához szükséges minősítések.                       |
+| salesGroupId (értékesítési csoportazonosító)                | sztring                    | Egy sztring, amely az ajánlatokat külön rendelésekbe csoportosítja.                                                             |
+| isTrial (isTrial)                     | boolean                   | Egy érték, amely jelzi, hogy ez próbaverziós ajánlat-e.                                                               |
+| product                     | [OfferProduct (Ajánlattermék)](#offerproduct)           | Lekérte az ajánlat termékét.                                                                           |
+| unitType (egységtípus)                    | sztring                    | Az egység típusa.                                                                                      |
+| Linkek                       | [OfferLinks (Ajánlatkapcsolatok)](#offerlinks)               | Az ajánlat "További információ" hivatkozása.                                                                    |
+| Attribútumok                  | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | Az ajánlatnak megfelelő metaadat-attribútumok.                         |
 
-## <a name="offercategory"></a>OfferCategory
+## <a name="offercategory"></a>OfferCategory (Ajánlatkategória)
 
-Az ajánlat kategorizálását ismerteti. Ebbe beletartozik az ajánlat kategóriájának rangsorolása vagy prioritása, mint az azonos termékcsalád többi részén.
+Egy ajánlat kategorizálását ismerteti. Ez magában foglalja az ajánlatkategória rangsorolását vagy prioritását az ugyanabban a termékvonalon található többi termékhez képest.
 
 | Tulajdonság   | Típus                                                           | Leírás                                                                                                                                                                |
 |------------|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| id         | sztring                                                         | A kategória azonosítója.                                                                                                                                                   |
+| id         | sztring                                                         | A kategóriaazonosító.                                                                                                                                                   |
 | name       | sztring                                                         | A kategória neve.                                                                                                                                                         |
-| rang       | int                                                            | A kategória rangsorolása vagy prioritása más kategóriákhoz képest ugyanabban az ajánlatban. Ezt a tulajdonságot csak akkor kell beállítani, ha egy adott ajánlathoz több ajánlati kategória is tartozik. |
-| területi beállítás     | sztring                                                         | Az a területi beállítás, amelyben az ajánlat érvényes.                                                                                                                        |
+| rang       | int                                                            | A kategória rangsorolása vagy prioritása az ugyanazon ajánlat többi kategóriájához képest. Ezt a tulajdonságot csak akkor kell beállítani, ha egy adott ajánlathoz egynél több ajánlatkategória tartozik. |
+| területi beállítás     | sztring                                                         | Az a területi beállítás, amelyre az ajánlat vonatkozik.                                                                                                                        |
 | ország    | sztring                                                         | Az az ország/régió, ahol az ajánlat érvényes.                                                                                                                   |
-| linkek      | [ResourceLinks](utility-resources.md#resourcelinks)           | A OfferCategory megfelelő erőforrás-hivatkozások.                                                                                                                     |
-| attribútumok | [ResourceAttributes](utility-resources.md#resourceattributes) | A OfferCategory megfelelő metaadat-attribútumok.                                                                                                                |
+| Linkek      | [ResourceLinks (Erőforrás-hivatkozás)](utility-resources.md#resourcelinks)           | Az OfferCategory erőforrás-hivatkozásai.                                                                                                                     |
+| Attribútumok | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | Az OfferCategory attribútumainak megfelelő metaadat-attribútumok.                                                                                                                |
 
-## <a name="offerlinks"></a>OfferLinks
+## <a name="offerlinks"></a>OfferLinks (Ajánlatkapcsolatok)
 
-Hivatkozásokat tartalmaz az ajánlatra vonatkozó további információk megismeréséhez.
+Hivatkozásokat tartalmaz az ajánlattal kapcsolatos további információkért.
 
 | Tulajdonság  | Típus | Leírás                 |
 |-----------|------|-----------------------------|
 | learnMore | Hivatkozás | A "További információ" hivatkozás.      |
-| önálló      | Hivatkozás | Saját URI                |
-| következő      | Hivatkozás | Az elemek következő lapja.     |
-| korábbi  | Hivatkozás | Az elemek előző lapja. |
+| Önálló      | Hivatkozás | Az ön-URI                |
+| Következő      | Hivatkozás | Az elemek következő oldala.     |
+| Előző  | Hivatkozás | Az elemek előző oldala. |
 
-## <a name="offerproduct"></a>OfferProduct
+## <a name="offerproduct"></a>OfferProduct (Ajánlattermék)
 
-Olyan termék vagy szolgáltatás, amelynek több ajánlata is van társítva, amelyek mindegyike különböző funkciókkal rendelkezik, és különböző felhasználói igényeket céloz meg.
+Olyan termék vagy szolgáltatás, amely több ajánlattal is társítva lehet, különböző funkciókkal és különböző ügyfél-igényekkel.
 
 | Tulajdonság | Típus   | Leírás              |
 |----------|--------|--------------------------|
-| Id       | sztring | A kategória azonosítója. |
+| Id       | sztring | A kategóriaazonosító. |
 | Name     | sztring | A kategória neve.       |
-| Unit (Egység)     | sztring | A termék egysége.        |
+| Unit (Egység)     | sztring | A termékegység.        |

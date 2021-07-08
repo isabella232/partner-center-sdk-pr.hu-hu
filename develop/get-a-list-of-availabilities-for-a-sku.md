@@ -1,47 +1,43 @@
 ---
 title: Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ország alapján)
-description: A megadott termékhez és SKU-hoz tartozó elérhetőségek gyűjteményének beszerzése az ügyfél országa szerint.
+description: A megadott termékhez és termékváltozathoz való rendelkezésre állások gyűjteményének lekérte az ügyfél országa szerint.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: b97a4ce85b5edd9de1301a577988f8c54096ebeb
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: b29c005e74ad8a4da547a888b78e4599e74ebd02
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767956"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874533"
 ---
 # <a name="get-a-list-of-availabilities-for-a-sku-by-country"></a>Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ország alapján)
 
-**A következőkre vonatkozik:**
-
-- Partnerközpont
-
-Ez a cikk azt ismerteti, hogyan kérhető le egy adott országban egy adott termékre és SKU-ra vonatkozó elérhetőségek gyűjteménye.
+Ez a cikk azt ismerteti, hogyan lehet rendelkezésre állási gyűjteményt lekért egy adott országban egy adott termékhez és termékváltozathoz.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- A termék azonosítója.
+- Egy termékazonosító.
 
-- SKU-azonosító.
+- Egy termékváltozat-azonosító.
 
 - Egy ország.
 
 ## <a name="c"></a>C\#
 
-Az [SKU](product-resources.md#sku)-beli [elérhetőségek](product-resources.md#availability) listájának lekérése:
+Egy termékváltozat [rendelkezésre állási](product-resources.md#availability) listájának [lekért listája:](product-resources.md#sku)
 
-1. Az adott SKU műveleteihez tartozó csatoló beszerzéséhez kövesse az [SKU beolvasása azonosító alapján](get-a-sku-by-id.md) című témakör lépéseit.
+1. Az adott termékváltozat műveleteihez szükséges felület lekért felületének lekért lépéseit az [SKU](get-a-sku-by-id.md) azonosító alapján való lekért lépéseit követve.
 
-2. Az SKU felületén válassza ki az **elérhetőségek** tulajdonságot, hogy egy illesztőfelületet kapjon az elérhetőségi műveletekhez.
+2. A termékváltozat felületén válassza az **Availabilities (Rendelkezésre** állások) tulajdonságot, hogy lekérte a rendelkezésre állási műveletekhez szükséges interfészt.
 
-3. Választható Használja a **ByTargetSegment ()** metódust az elérhetőségek a célként megadott szegmens alapján történő szűréséhez.
+3. (Nem kötelező) A **ByTargetSegment()** metódussal szűrheti a rendelkezésre állásokat célszegmens szerint.
 
-4. A **Get ()** vagy a **GetAsync ()** hívásával kérheti le az ehhez az SKU-hoz tartozó elérhetőségek gyűjteményét.
+4. A termékváltozat rendelkezésre állási gyűjteményének lekéréséhez hívja meg a **Get()** vagy a **GetAsync()** metódust.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -66,39 +62,39 @@ var availabilities = partnerOperations.Products.ByCountry(countryCode).ById(prod
 
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                                              |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Products/{Product-ID}/SKUs/{SKU-ID}/availabilities? ország = {országkód} &targetSegment = {Target-szegmens} http/1.1     |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/termékváltozatok/{sku-id}/availabilities?country={országkód}&targetSegment={target-segment} HTTP/1.1     |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-Használja az alábbi elérési utat és a lekérdezési paramétereket az SKU-ban található elérhetőségek listájának lekéréséhez.
+Az alábbi elérési út és lekérdezési paraméterek használatával lekérdezheti a termékváltozatok rendelkezésre állási listáját.
 
 | Név                   | Típus     | Kötelező | Leírás                                                     |
 |------------------------|----------|----------|-----------------------------------------------------------------|
-| termék azonosítója             | sztring   | Igen      | A terméket azonosító karakterlánc.                           |
-| SKU-azonosító                 | sztring   | Igen      | Egy karakterlánc, amely azonosítja az SKU-t.                               |
-| országkód           | sztring   | Igen      | Ország/régió azonosítója.                                            |
-| cél szegmens         | sztring   | No       | A szűréshez használt cél szegmenst azonosító karakterlánc. |
-| reservationScope | sztring   | No | Ha egy Azure-beli foglalási SKU-hoz tartozó elérhetőségek listáját kérdezi le, akkor a AzurePlan-ra `reservationScope=AzurePlan` vonatkozó elérhetőségek listájának lekéréséhez válassza a következőt:. Zárja be ezt a paramétert, hogy lekérje a Microsoft Azure (MS-AZR-0145P) előfizetésekre vonatkozó elérhetőségek listáját.  |
+| termékazonosító             | sztring   | Igen      | A terméket azonosító sztring.                           |
+| sku-id                 | sztring   | Igen      | A termékváltozatot azonosító sztring.                               |
+| országkód           | sztring   | Igen      | Egy ország-/régióazonosító.                                            |
+| célszegmens         | sztring   | No       | A szűréshez használt célszegmenst azonosító sztring. |
+| reservationScope | sztring   | No | Az Azure-foglalási termékváltozatok rendelkezésre állási listájának lekérdezésekor adja meg a értéket az AzurePlanra vonatkozó rendelkezésre `reservationScope=AzurePlan` állások listájának lekérdezőjéhez. Zárja ki ezt a paramétert a Microsoft Azure (MS-AZR-0145P) előfizetések esetében elérhető rendelkezésre állások listájának lekértéhez.  |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
 Nincsenek.
 
-### <a name="request-examples"></a>Példák kérése
+### <a name="request-examples"></a>Példák kérésre
 
-#### <a name="availabilities-for-sku-by-country"></a>SKU-beli elérhetőségek országonként
+#### <a name="availabilities-for-sku-by-country"></a>Termékváltozatok rendelkezésre állása országonként
 
-Ezt a példát követve lekérheti az adott SKU-ra vonatkozó elérhetőségek listáját ország szerint:
+Kövesse ezt a példát egy adott termékváltozat rendelkezésre állási listájának országonkénti lekért listájához:
 
 ```http
 GET http:// api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ3Q/skus/0001/availabilities?country=US HTTP/1.1
@@ -108,9 +104,9 @@ MS-RequestId: 70324727-62d8-4195-8f99-70ea25058d02
 MS-CorrelationId: 83b644b5-e54a-4bdc-b354-f96c525b3c58
 ```
 
-#### <a name="availabilities-for-vm-reservations-azure-plan"></a>VIRTUÁLIS gépek foglalásának elérhetősége (Azure-csomag)
+#### <a name="availabilities-for-vm-reservations-azure-plan"></a>Virtuálisgép-foglalások rendelkezésre állása (Azure-csomag)
 
-Ezt a példát követve megtekintheti az ország szerint az Azure-beli virtuálisgép-foglalási SKU-ket. Ez a példa az Azure-csomagokra vonatkozó SKU-ra vonatkozik:
+Kövesse ezt a példát az Azure-beli virtuális gépek foglalási termékkódok országonkénti rendelkezésre állási listájának lekért listájához. Ez a példa az Azure-csomagokra vonatkozó SKUS-okat példázhatja:
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ3Q/skus/0001/availabilities?country=US&targetView=AzureReservationsVM&reservationScope=AzurePlan HTTP/1.1
@@ -120,9 +116,9 @@ MS-RequestId: 031160b2-b0b0-4d40-b2b1-aaa9bb84211d
 MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 ```
 
-#### <a name="availabilities-for-vm-reservations-for-microsoft-azure-ms-azr-0145p-subscriptions"></a>Microsoft Azure (MS-AZR-0145P) előfizetések virtuális gépekre vonatkozó foglalásai
+#### <a name="availabilities-for-vm-reservations-for-microsoft-azure-ms-azr-0145p-subscriptions"></a>Virtuálisgép-foglalások rendelkezésre állása Microsoft Azure (MS-AZR-0145P) előfizetések esetében
 
-Ez a példa a Microsoft Azure (MS-AZR-0145P) előfizetésekre alkalmazható Azure-beli virtuálisgép-foglalások országbeli elérhetőségi listájának beszerzésére szolgál.
+Ebben a példában az egyes országok szerinti elérhetőségek listáját azon Azure-beli virtuális gépek foglalásainál adhatja meg, amelyek Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkoznak.
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/productsDZH318Z0BQ3Q/skus/0001/availabilities?country=US&targetView=AzureAzureReservationsVM HTTP/1.1
@@ -134,17 +130,17 @@ MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse [**rendelkezésre állási**](product-resources.md#availability) erőforrások gyűjteményét tartalmazza.
+Ha ez sikeres, a válasz törzse rendelkezésre állási [**erőforrások gyűjteményét**](product-resources.md#availability) tartalmazza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. Teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [hibakódok.](error-codes.md)
 
 Ez a metódus a következő hibakódokat adja vissza:
 
 | HTTP-állapotkód     | Hibakód   | Leírás                                                                                               |
 |----------------------|--------------|-----------------------------------------------------------------------------------------------------------|
-| 403                  | 400030       | A kért **targetSegment** való hozzáférés nem engedélyezett.                                                     |
+| 403                  | 400030       | A kért **targetSegment szolgáltatáshoz való hozzáférés** nem engedélyezett.                                                     |
 
 ### <a name="response-example"></a>Példa válaszra
 

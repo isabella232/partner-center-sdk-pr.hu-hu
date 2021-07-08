@@ -1,41 +1,37 @@
 ---
 title: Partnerközpont-tevékenység rekordjának lekérése
-description: Műveletek rekordjának lekérése egy partner felhasználó vagy alkalmazás által egy adott időszakban.
+description: Műveletrekord lekérése egy partnerfelhasználó vagy alkalmazás által egy adott időszakra vonatkozóan.
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 2f37eae8bb96c1c1e7008e8c566b085e25d8807d
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: aec933d4b681d99080619505792bde56bdd25580
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768228"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111873971"
 ---
 # <a name="get-a-record-of-partner-center-activity"></a>Partnerközpont-tevékenység rekordjának lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Ez a cikk azt ismerteti, hogyan lehet lekérni egy partnerfelhasználó vagy alkalmazás által egy adott időszakban végrehajtott műveletek rekordját.
 
-Ez a cikk azt ismerteti, hogyan kérhető le olyan műveletek rekordja, amelyeket egy adott időtartamon belül egy partner felhasználó vagy alkalmazás hajtott végre.
-
-Ezzel az API-val lekérheti az előző 30 nap naplózási rekordjait az aktuális dátumból, illetve a Kezdődátum és/vagy a befejezési dátummal megadott dátumtartományt. Vegye figyelembe azonban, hogy a teljesítmény miatt a tevékenység naplójának adatelérhetősége az előző 90 napra korlátozódik. Az aktuális dátum előtt 90 nappal nagyobb kezdési dátummal rendelkező kérések esetén a rendszer rossz kérési kivételt (hibakód: 400) és megfelelő üzenetet kap.
+Ezzel az API-val lekérhetők az előző 30 nap naplórekordjai az aktuális dátumból, vagy a kezdő és/vagy a záró dátum megadva megadott dátumtartományból. Vegye figyelembe azonban, hogy teljesítménybeli okokból a tevékenységnapló adatainak rendelkezésre állása az előző 90 napra van korlátozva. Az aktuális dátum előtti 90 napnál korábbi kezdési dátumú kérések hibás kérési kivételt (hibakód: 400) és egy megfelelő üzenetet kapnak.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
 ## <a name="c"></a>C\#
 
-A partner Center-műveletek rekordjának lekéréséhez először hozza létre a lekérdezni kívánt rekordok dátumtartományt. A következő példa csak kezdő dátumot használ, de a befejezési dátumot is megadhatja. További információ: [**lekérdezési**](/dotnet/api/microsoft.store.partnercenter.auditrecords.iauditrecordscollection.query) módszer. Ezután hozza létre a szükséges változókat az alkalmazni kívánt szűrő típusához, és rendelje hozzá a megfelelő értékeket. Ha például a vállalat neve alsztring alapján szeretne szűrni, hozzon létre egy változót az alsztring tárolásához. Az ügyfél-azonosító alapján történő szűréshez hozzon létre egy változót az azonosító tárolásához.
+A műveletrekordok Partnerközpont először hozza létre a lekérni kívánt rekordok dátumtartományát. Az alábbi példakód csak kezdő dátumot használ, de záró dátumot is tartalmazhat. További információkért lásd a [**Query metódust.**](/dotnet/api/microsoft.store.partnercenter.auditrecords.iauditrecordscollection.query) Ezután hozza létre az alkalmazni kívánt szűrőtípushoz szükséges változókat, és rendelje hozzá a megfelelő értékeket. Ha például a vállalat nevesztring alsztring alapján szűr, hozzon létre egy változót, amely a karakterlánc alsztringet fogja tartani. Az ügyfél-azonosító alapján való szűréshez hozzon létre egy változót az azonosítóhoz.
 
-A következő példában a rendszer minta kódot biztosít a vállalat neve alsztring, az ügyfél azonosítója vagy az erőforrástípus alapján történő szűréshez. Válassza ki az egyiket, és véleményezze a többiet. Minden esetben először hozzon létre egy [**SimpleFieldFilter**](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter) objektumot az alapértelmezett [**konstruktor**](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter.-ctor) használatával a szűrő létrehozásához. Meg kell adnia egy karakterláncot, amely a keresendő mezőt tartalmazza, és a megfelelő operátort kell alkalmaznia, ahogy az látható. Meg kell adnia a szűréshez használandó karakterláncot is.
+A következő példában mintakód van megtéve a cégnév alsztring, ügyfél-azonosító vagy erőforrástípus alapján való szűréshez. Válasszon ki egyet, és jelölje meg megjegyzésként a többit. Minden esetben először példányosunk egy [**SimpleFieldFilter**](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter) objektumot [](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter.-ctor) az alapértelmezett konstruktor használatával a szűrő létrehozásához. Meg kell adni egy sztringet, amely tartalmazza a kereshető mezőt, valamint az alkalmazandó megfelelő operátort, ahogy az ábrán látható. A szűréshez meg kell adnia a sztringet is.
 
-Ezután a [**AuditRecords**](/dotnet/api/microsoft.store.partnercenter.ipartner.auditrecords) tulajdonsággal szerezzen be egy felületet a rekordok naplózásához, és hívja meg a [**lekérdezés**](/dotnet/api/microsoft.store.partnercenter.auditrecords.iauditrecordscollection.query) vagy a [**QueryAsync**](/dotnet/api/microsoft.store.partnercenter.auditrecords.iauditrecordscollection.queryasync) metódust a szűrő végrehajtásához és az eredmény első oldalát ábrázoló [**AuditRecord**](/dotnet/api/microsoft.store.partnercenter.models.auditing.auditrecord) gyűjteményének lekéréséhez. Adja át a metódust a kezdő dátumnak, az itt látható példában nem használt nem kötelező befejezési dátumnak, valamint egy entitásra vonatkozó lekérdezést jelölő [**IQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.iquery) objektumnak. A IQuery objektum létrehozása a fent létrehozott szűrőnek a [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) [**BuildSimpleQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildsimplequery) metódusba való átadásával történik.
+Ezután az [**AuditRecords**](/dotnet/api/microsoft.store.partnercenter.ipartner.auditrecords) tulajdonság használatával lekérdezheti a rekordműveleteket naplózható felületet, és a [**Query**](/dotnet/api/microsoft.store.partnercenter.auditrecords.iauditrecordscollection.query) vagy [**QueryAsync**](/dotnet/api/microsoft.store.partnercenter.auditrecords.iauditrecordscollection.queryasync) metódust hívva végrehajtja a szűrőt, és lekérdezheti az eredmény első oldalát képviselő [**AuditRecord-gyűjteményt.**](/dotnet/api/microsoft.store.partnercenter.models.auditing.auditrecord) Adja át a metódusnak a kezdő dátumot, egy opcionális záró dátumot, amely itt nem használatos a példában, valamint egy [**IQuery-objektumot,**](/dotnet/api/microsoft.store.partnercenter.models.query.iquery) amely egy entitáson való lekérdezést képvisel. Az IQuery objektum úgy jön létre, hogy a fent létrehozott szűrőt átküldi a [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) [**BuildSimpleQuery metódusának.**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildsimplequery)
 
-Miután megtörtént az elemek kezdeti lapja, használja a [**enumerálások. AuditRecords. Create**](/dotnet/api/microsoft.store.partnercenter.factory.iresourcecollectionenumeratorfactory-1.create) metódust egy olyan enumerálás létrehozásához, amelyet a többi oldalon való iterációhoz használhat.
+Ha már megvan az elemek kezdeti oldala, az [**Enumerators.AuditRecords.Create**](/dotnet/api/microsoft.store.partnercenter.factory.iresourcecollectionenumeratorfactory-1.create) metódussal hozzon létre egy enumerátort, amely a fennmaradó oldalakon való iteráláshoz használható.
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -77,19 +73,19 @@ while (auditRecordEnumerator.HasValue)
 }
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: a partner Center SDK Samples **mappája**: naplózás
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Mappa:** Naplózás
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                                                                                                    |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/auditrecords? StartDate = {STARTDATE} http/1.1                                                                                                     |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/auditrecords? StartDate = {startDate} &endDate = {ENDDATE} http/1.1                                                                                   |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/auditrecords? StartDate = {startDate} &endDate = {endDate} &Filter = {"mező": "cégnév", "érték": "{searchSubstring}", "operátor": "alkarakterlánc"} http/1.1 |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/auditrecords? StartDate = {startDate} &endDate = {endDate} &Filter = {"mező": "Vevőkód", "value": "{Vevőkód}", "operátor": "Equals"} http/1.1          |
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/auditrecords? StartDate = {startDate} &endDate = {endDate} &Filter = {"mező": "resourcetype", "value": "{resourcetype}", "operátor": "Equals"} http/1.1      |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/auditrecords?startDate={startDate} HTTP/1.1                                                                                                     |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/auditrecords?startDate={startDate}&endDate={endDate} HTTP/1.1                                                                                   |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/auditrecords?startDate={startDate}&endDate={endDate}&filter={"Field":"CompanyName","Value":"{searchSubstring}","Operator":"substring"} HTTP/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/auditrecords?startDate={startDate}&endDate={endDate}&filter={"Field":"CustomerId","Value":"{customerId}","Operator":"equals"} HTTP/1.1          |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/auditrecords?startDate={startDate}&endDate={endDate}&filter={"Field":"ResourceType","Value":"{resourceType}","Operator":"equals"} HTTP/1.1      |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -97,30 +93,30 @@ A kérelem létrehozásakor használja a következő lekérdezési paramétereke
 
 | Név      | Típus   | Kötelező | Leírás                                                                                                                                                                                                                |
 |-----------|--------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| startDate | dátum   | Nem       | A kezdő dátum éééé-hh-nn formátumban. Ha nincs megadva, az eredményhalmaz alapértelmezett értéke a kérelem dátuma előtt 30 nappal lesz. Ez a paraméter nem kötelező, ha szűrő van megadva.                                          |
-| endDate   | dátum   | Nem       | A befejezési dátum éééé-hh-nn formátumban. Ez a paraméter nem kötelező, ha szűrő van megadva. Ha a befejezési dátum ki van hagyva, vagy NULL értékre van állítva, a kérelem a maximális ablakot adja vissza, vagy a mai napon a befejezési dátumot használja, attól függően, hogy melyik a kisebb. |
-| filter (szűrő)    | sztring | No       | Az alkalmazni kívánt szűrő. A paraméternek kódolt sztringnek kell lennie. Ez a paraméter nem kötelező, ha meg van adva a kezdő dátum vagy a befejezési dátum.                                                                                              |
+| startDate (kezdőDátum) | dátum   | Nem       | A kezdődátum yyyy-mm-dd formátumban. Ha nincs megjelölve, az eredményhalmaz alapértelmezés szerint 30 nappal a kérés dátuma előtt lesz. Ez a paraméter nem kötelező szűrő megadása esetén.                                          |
+| endDate (endDate)   | dátum   | Nem       | A záró dátum yyyy-mm-dd formátumban. Ez a paraméter nem kötelező szűrő megadása esetén. Ha a záró dátum nincs megadva vagy null értékűre van állítva, a kérés a maximális ablakot adja vissza, vagy a mai napot használja záró dátumként (amelyik kisebb). |
+| filter (szűrő)    | sztring | No       | Az alkalmazandó szűrő. Ennek a paraméternek kódolt sztringnek kell lennie. Ez a paraméter nem kötelező, ha a kezdő dátum vagy a záró dátum meg van adva.                                                                                              |
 
-### <a name="filter-syntax"></a>Szűrési szintaxis
-A Filter paramétert vesszővel elválasztott, kulcs-érték párokból álló sorozatként kell összeállítani. Minden kulcsot és értéket külön kell megadni, és kettősponttal kell elválasztani őket. A teljes szűrőt kódolni kell.
+### <a name="filter-syntax"></a>Szűrőszintaxis
+A szűrőparamétert vesszővel tagolt kulcs-érték párok sorozataként kell összerakni. Minden kulcsot és értéket külön kell idézni, és kettősponttal kell elválasztani egymástól. A teljes szűrőt kódolni kell.
 
-A kódolás nélküli példa a következőképpen néz ki:
+Egy nem kódolatlan példa a következő:
 
 ```
 ?filter{"Field":"CompanyName","Value":"bri","Operator":"substring"}
 ```
 
-A következő táblázat a szükséges kulcs-érték párokat ismerteti:
+Az alábbi táblázat a szükséges kulcs-érték párokat ismerteti:
 
 | Kulcs                 | Érték                             |
 |:--------------------|:----------------------------------|
-| Mező               | A szűrni kívánt mező. A támogatott értékek a [kérelem szintaxisában](get-a-record-of-partner-center-activity-by-user.md#rest-request)találhatók.                                         |
-| Érték               | A szűréshez használandó érték. A rendszer figyelmen kívül hagyja az érték esetét. A következő érték-paraméterek támogatottak a [kérelem szintaxisában](get-a-record-of-partner-center-activity-by-user.md#rest-request)látható módon:<br/><br/>                                                                *searchSubstring* – cserélje le a nevet a vállalat nevével. Megadhat egy olyan alkarakterláncot, amely megfelel a vállalat nevének (például: `bri` egyezés `Fabrikam, Inc` ).<br/>**Példa:**`"Value":"bri"`<br/><br/>                                                                *Vevőkód* – cserélje le egy GUID formátumú karakterláncot, amely az ügyfél azonosítóját jelöli.<br/>**Példa:**`"Value":"0c39d6d5-c70d-4c55-bc02-f620844f3fd1"`<br/><br/>                                                                                        *resourceType* – cserélje le annak az erőforrásnak a típusára, amelyre a naplózási rekordokat (például az előfizetést) be kell olvasni. Az elérhető erőforrástípusok a [resourcetype](/dotnet/api/microsoft.store.partnercenter.models.auditing.resourcetype)-ben vannak meghatározva.<br/>**Példa:**`"Value":"Subscription"`                                 |
-| Operátor          | Az alkalmazni kívánt operátor. A támogatott operátorok a [kérelem szintaxisában](get-a-record-of-partner-center-activity-by-user.md#rest-request)találhatók.   |
+| Mező               | A szűrni való mező. A támogatott értékek a [kérelemszintaxisban találhatók.](get-a-record-of-partner-center-activity-by-user.md#rest-request)                                         |
+| Érték               | A szűrési érték. A rendszer figyelmen kívül hagyja az érték kis- és nagyját. A kérelemszintaxisban látható módon a következő [értékparaméterek támogatottak:](get-a-record-of-partner-center-activity-by-user.md#rest-request)<br/><br/>                                                                *searchSubstring* – Cserélje le a helyére a vállalat nevét. A név egy részének megfelelő karakterláncot is megadhatja (például a megfelel a `bri` következőnek: `Fabrikam, Inc` ).<br/>**Példa:**`"Value":"bri"`<br/><br/>                                                                *customerId* – Cserélje le a helyére az ügyfél azonosítóját képviselő GUID formátumú sztringet.<br/>**Példa:**`"Value":"0c39d6d5-c70d-4c55-bc02-f620844f3fd1"`<br/><br/>                                                                                        *resourceType* – Cserélje le a helyére azt az erőforrástípust, amelyhez lekéri a naplórekordokat (például előfizetés). Az elérhető erőforrástípusok a [ResourceType típusban vannak meghatározva.](/dotnet/api/microsoft.store.partnercenter.models.auditing.resourcetype)<br/>**Példa:**`"Value":"Subscription"`                                 |
+| Operátor          | Az alkalmazandó operátor. A támogatott operátorok a [Kérelemszintaxisban találhatók.](get-a-record-of-partner-center-activity-by-user.md#rest-request)   |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-- További információért lásd a [parti központ Rest-fejléceit](headers.md) .
+- További információ: [Parter Center REST-fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -141,11 +137,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus a szűrőknek megfelelő tevékenységek egy halmazát adja vissza.
+Ha ez a módszer sikeres, a szűrőknek megfelelő tevékenységeket ad vissza.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,40 +1,35 @@
 ---
 title: Aktiválási hivatkozás lekérése megrendelési sorelem alapján
-description: Lekérdezi az előfizetés aktiválási hivatkozását Order Line elem alapján.
+description: Lekért egy előfizetés-aktiválási hivatkozást rendeléssorelem alapján.
 ms.date: 08/16/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: c0e84888870571cf6bd21306f527863f2aa7ee85
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: aa02a5a5b4a281b96e32ee6d239cc440cf8af4ec
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768052"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760776"
 ---
 # <a name="get-activation-link-by-order-line-item"></a>Aktiválási hivatkozás lekérése megrendelési sorelem alapján
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
+Lekért egy kereskedelmi piactéri előfizetés aktiválási hivatkozását a rendelési sor tételszáma alapján.
 
-A kereskedelmi piactér-előfizetés aktiválási hivatkozásának beolvasása a sorszám alapján.
-
-A partner Center irányítópultján ehhez a művelethez válasszon ki egy **adott előfizetést** a főoldalon, vagy válassza az **előfizetés elem** melletti **Ugrás a közzétevőhöz webhelyre** hivatkozást az **előfizetések** lapon az aktiváláshoz.
+Az Partnerközpont-irányítópulton ezt a műveletet úgy használhatja, hogy  kiválaszt egy adott előfizetést **az** Előfizetés alatt a főoldalon, vagy az  Előfizetések lapon az aktiválni kívánt előfizetés melletti Ugrás az **Publisher** webhelyre hivatkozást.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Befejeződött a megrendelés az aktiválást igénylő termékkel.
+- Kész rendelés az aktiválni szükséges termékkel.
 
 ## <a name="c"></a>C\#
 
-Egy sor aktiválási hivatkozásának beszerzéséhez használja a [**IAggregatePartner. Customs**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, és hívja meg a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a kiválasztott ügyfél-azonosítóval. Ezután hívja meg a [**megrendelések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) tulajdonságot és a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.byid) metódust a megadott  [**Rendeléskód**](/dotnet/api/microsoft.store.partnercenter.models.orders.order.id)értékkel. Ezt követően hívja meg a [**listaelemek**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.get) a **ById ()** metódussal a sor cikkszám-azonosítójával.  Végül hívja meg a **ActivationLinks ()** metódust.
+Egy sorelem aktiválási hivatkozásának lehívásához használja az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, és hívja meg a [**ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a kiválasztott ügyfél-azonosítóval. Ezután hívja meg [**az Orders tulajdonságot**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) és a [**ById() metódust**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.byid) a megadott [**OrderId értékével.**](/dotnet/api/microsoft.store.partnercenter.models.orders.order.id) Ezután hívja meg a [**LineItems metódust**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.get) **a ById() metódussal** és a sortételszám azonosítóját.  Végül hívja meg az **ActivationLinks() metódust.**
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -46,17 +41,17 @@ Egy sor aktiválási hivatkozásának beszerzéséhez használja a [**IAggregate
 var partnerOperations.Customers.ById(customerId).Orders.ById(orderId).OrderLineItems.ById(lineItemNumber).ActivationLinks();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                                               |
 |---------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{customerId}/Orders/{orderId}/lineitems/{lineItemNumber}/activationlinks http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customerId}/orders/{orderId}/lineitems/{lineItemNumber}/activationlinks HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -74,11 +69,11 @@ MS-CorrelationId: b12260fb-82de-4701-a25f-dcd367690645
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus a válasz törzsében lévő [ügyfél](customer-resources.md#customer) -erőforrások gyűjteményét adja vissza.
+Ha a művelet sikeres, ez a metódus ügyfélerőforrások [gyűjteményét](customer-resources.md#customer) adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,35 +1,31 @@
 ---
 title: Egy termék lekérése azonosító alapján
-description: A megadott termék-erőforrás beolvasása termékazonosító használatával.
+description: Lekérte a megadott termékerőforrást egy termékazonosítóval.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: 8aca626597e9ec903ebecca7d55577ba636c518e
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 769a4307dc3cebdc7ebbdcf51d9f2b67a9f4b7c2
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767896"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874023"
 ---
 # <a name="get-a-product-by-id"></a>Egy termék lekérése azonosító alapján
 
-**A következőkre vonatkozik**
-
-- Partnerközpont
-
-A megadott termék-erőforrás beolvasása termékazonosító használatával.
+Lekérte a megadott termékerőforrást egy termékazonosítóval.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- A termék azonosítója.
+- Egy termékazonosító.
 
 ## <a name="c"></a>C\#
 
-Ha azonosító alapján szeretne megkeresni egy adott terméket, használja a **IAggregatePartner. Products** gyűjteményt, válassza ki az országot a **ByCountry ()** metódus használatával, majd hívja meg a **ById ()** metódust. Végül hívja a **Get ()** vagy a **GetAsync ()** metódust a termék visszaküldéséhez.
+Egy adott termék azonosító alapján való megkereséhez használja az **IAggregatePartner.Products** gyűjteményt, válassza ki az országot a **ByCountry()** metódussal, majd hívja meg a **ById() metódust.** Végül hívja meg a **Get() vagy** **a GetAsync()** metódust a termék visszaküldésére.
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -41,7 +37,7 @@ Product productDetail = partnerOperations.Products.ByCountry("US").ById("DZH318Z
 
 [!INCLUDE [Partner Center Java SDK support details](<../includes/java-sdk-support.md>)]
 
-Ha azonosító alapján szeretne megkeresni egy adott terméket, használja a **IAggregatePartner. getProducts** függvényt, válassza ki az országot a **byCountry ()** függvény használatával, majd hívja meg a **byId ()** függvényt. Végül hívja meg a **Get ()** függvényt a termék visszaküldéséhez.
+Ha azonosító alapján keres egy adott terméket, használja az **IAggregatePartner.getProducts** függvényt, válassza ki az országot a **byCountry()** függvény használatával, majd hívja meg a **byId()** függvényt. Végül hívja meg a **get()** függvényt a termék visszaküldésére.
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -53,32 +49,32 @@ Product productDetail = partnerOperations.getProducts().byCountry("US").byId("DZ
 
 [!INCLUDE [Partner Center PowerShell module support details](<../includes/powershell-module-support.md>)]
 
-Ha azonosító alapján szeretne megkeresni egy adott terméket, hajtsa végre a [**Get-PartnerProduct**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerProduct.md) parancsot, és határozza meg a **Termékkód** paramétert. Ha nincs megadva a **országhívószám** paraméter, a rendszer a viszonteladóhoz társított országot fogja használni.
+Ha azonosító alapján keres egy adott terméket, hajtsa végre a [**Get-PartnerProduct**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerProduct.md) parancsot, és adja meg a **ProductId paramétert.** A **CountryCode** paraméter beállítások, ha nincs megadva, akkor a viszonteladóhoz társított ország lesz használva.
 
 ```powershell
 Get-PartnerProduct -ProductId 'DZH318Z0BQ3Q'
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                   |
 |---------|-----------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Products/{Product-ID}? ország = {ország} http/1.1  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}?country={country} HTTP/1.1  |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-A megadott termék beolvasásához használja a következő elérésiút-paramétereket.
+A megadott termék lekért értékével az alábbi elérésiút-paramétereket használhatja.
 
 | Név                   | Típus     | Kötelező | Leírás                                                     |
 |------------------------|----------|----------|-----------------------------------------------------------------|
-| termék azonosítója             | sztring   | Igen      | A terméket azonosító karakterlánc.                           |
-| ország                | sztring   | Igen      | Ország/régió azonosítója.                                            |
+| termékazonosító             | sztring   | Igen      | A terméket azonosító sztring.                           |
+| ország                | sztring   | Igen      | Egy ország-/régióazonosító.                                            |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -96,11 +92,11 @@ MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse tartalmazza a [termék](product-resources.md#product) erőforrását.
+Ha ez sikeres, a válasz törzse tartalmaz egy [Product erőforrást.](product-resources.md#product)
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben talál: [partner Center hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 

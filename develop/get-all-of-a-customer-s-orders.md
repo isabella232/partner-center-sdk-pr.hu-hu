@@ -1,42 +1,37 @@
 ---
 title: Egy ügyfél összes megrendelésének lekérése
-description: Egy adott ügyfélhez tartozó összes megrendelés gyűjteményének beolvasása.
+description: Lekért egy adott ügyfél összes rendelésének gyűjteményét.
 ms.date: 06/19/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 4d71cd138421704d94a55a9fe21e074d92638815
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: e8f23e90cbb5afb45e519e2c58fd0d3b9ea2de6a
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768359"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760300"
 ---
 # <a name="get-all-of-a-customers-orders"></a>Egy ügyfél összes megrendelésének lekérése
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Egy adott ügyfélhez tartozó összes megrendelés gyűjteményének beolvasása. A megrendelés elküldése és az ügyfél rendeléseinek gyűjteménye között akár 15 percet is igénybe vehet.
+Lekért egy adott ügyfél összes rendelésének gyűjteményét. A rendelés beküldési ideje és az ügyfél rendelésgyűjteményében való megjelenése között akár 15 perces késés is lehet.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Az ügyfél összes rendelése gyűjteményének beszerzése:
+Egy ügyfél összes rendelésének gyűjteményét a következővel szerezheti be:
 
-1. Használja a [**IAggregatePartner. Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, és hívja meg a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust.
+1. Használja az [**IAggregatePartner.Customers gyűjteményt,**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) és hívja meg a [**ById() metódust.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid)
 
-2. Hívja meg a [**megrendelések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) tulajdonságot, majd a [**Get ()**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.get) vagy a [**GetAsync ()**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.getasync) metódust.
+2. Hívja meg [**az Orders**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) tulajdonságot, majd a [**Get() vagy**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.get) a [**GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.getasync)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -45,27 +40,27 @@ Az ügyfél összes rendelése gyűjteményének beszerzése:
 var orders = partnerOperations.Customers.ById(selectedCustomerId).Orders.Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerSDK. FeatureSamples **osztály**: GetOrders.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSamples **osztály:** GetOrders.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                   |
 |---------|-----------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Orders http/1.1  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/orders HTTP/1.1  |
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
-Az összes megrendelés beolvasásához használja a következő lekérdezési paramétert.
+Az alábbi lekérdezési paraméterrel lekérdezheti az összes rendelést.
 
 | Név                   | Típus     | Kötelező | Leírás                                               |
 |------------------------|----------|----------|-----------------------------------------------------------|
-| ügyfél – bérlő – azonosító     | sztring   | Igen      | Az ügyfélhez tartozó GUID formátumú karakterlánc.    |
+| ügyfél-bérlő-azonosító     | sztring   | Igen      | Az ügyfélnek megfelelő GUID formátumú sztring.    |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -84,11 +79,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus a [megrendelési](order-resources.md) erőforrások gyűjteményét adja vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus az [Order](order-resources.md) erőforrások gyűjteményét adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

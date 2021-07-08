@@ -1,39 +1,35 @@
 ---
-title: Használati összefoglalás beszerzése az ügyfél összes előfizetéséhez
-description: A CustomerUsageSummary-erőforrás segítségével lekérheti az adott Azure-szolgáltatás vagy-erőforrás ügyfél általi használatát az aktuális számlázási időszak alatt.
+title: Egy ügyfél összes előfizetésének használati összegzése
+description: A CustomerUsageSummary erőforrással lekértheti egy adott Azure-szolgáltatás vagy -erőforrás ügyfélhasználatát az aktuális számlázási időszakban.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 0c918434367a3514e6a6ad6034b4897c33f51025
-ms.sourcegitcommit: cfedd76e573c5616cf006f826f4e27f08281f7b4
+ms.openlocfilehash: 88c69637c94b9263ede6924cf2dd09513aa00f70
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "97767960"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874618"
 ---
-# <a name="get-a-usage-summary-for-all-of-a-customers-subscriptions"></a>Használati összefoglalás beszerzése az ügyfél összes előfizetéséhez
+# <a name="get-a-usage-summary-for-all-of-a-customers-subscriptions"></a>Egy ügyfél összes előfizetésének használati összegzése
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-A **CustomerUsageSummary** -erőforrás segítségével lekérheti az adott Azure-szolgáltatás vagy-erőforrás ügyfél általi használatát az aktuális számlázási időszak alatt.
+A **CustomerUsageSummary** erőforrással lekértheti egy adott Azure-szolgáltatás vagy -erőforrás ügyfélhasználatát az aktuális számlázási időszakban.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Az ügyfél-előfizetések használati összegzésének beszerzése:
+Az ügyfél összes előfizetésének használati összegzése:
 
-1. A **IAggregatePartner. Customs** gyűjtemény használatával hívja meg a **ById ()** metódust.
+1. Az **IAggregatePartner.Customers gyűjtemény** használatával hívja meg a **ById()** metódust.
 
-2. Hívja meg a **UsageSummary** tulajdonságot, amelyet a **Get ()** vagy a **GetAsync ()** metódus követ:
+2. Hívja meg **a UsageSummary** tulajdonságot, majd a **Get() vagy** **a GetAsync() metódust:**
 
     ``` csharp
     // IAggregatePartner partnerOperations;
@@ -44,29 +40,29 @@ Az ügyfél-előfizetések használati összegzésének beszerzése:
 
 Példaként tekintse meg a következőket:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **PartnerSDK. FeatureSamples**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **PartnerSDK.FeatureSamples**
 - Osztály: **GetCustomerUsageSummary.cs**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                         |
 |---------|-----------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/usagesummary http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/usagesummary HTTP/1.1 |
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
-Ez a táblázat felsorolja a szükséges lekérdezési paramétert, hogy lekérje az ügyfél névleges használati adatait.
+Ez a táblázat felsorolja az ügyfél minősített használati információinak lekérdezhető lekérdezési paraméterét.
 
 | Név                   | Típus     | Kötelező | Leírás                           |
 |------------------------|----------|----------|---------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az ügyfélhez tartozó GUID. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az ügyfélnek megfelelő GUID. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -84,17 +80,17 @@ MS-CorrelationId: 47c36033-af5d-4457-80a4-512c1626fac4
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy **CustomerUsageSummary** -erőforrást ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy **CustomerUsageSummary** erőforrást ad vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek beolvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be ezt a kódot, a hiba típusát és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
-### <a name="response-example-for-microsoft-azure-ms-azr-0145p-subscription"></a>Válasz példa Microsoft Azure (MS-AZR-0145P) előfizetésre
+### <a name="response-example-for-microsoft-azure-ms-azr-0145p-subscription"></a>Példa válasz Microsoft Azure (MS-AZR-0145P) előfizetésre
 
-Ebben a példában az ügyfél egy **145P Azure TB** -ajánlatot vásárolt.
+Ebben a példában az ügyfél megvásárolt egy **145P Azure PayG-ajánlatot.**
 
-*Microsoft Azure (MS-AZR-0145P) előfizetéssel rendelkező ügyfelek esetében nem változik az API-válasz.*
+*A Microsoft Azure (MS-AZR-0145P) előfizetéssel nem változik az API-válasz.*
 
 ```http
 HTTP/1.1 200 OK
@@ -131,14 +127,14 @@ Date: Tue, 17 Sep 2019 20:31:45 GMT
 }
 ```
 
-### <a name="response-example-for-azure-plan"></a>Válasz példa az Azure-csomagra
+### <a name="response-example-for-azure-plan"></a>Azure-csomag válasz példája
 
-Ebben a példában az ügyfél egy Azure-csomagot vásárolt.
+Ebben a példában az ügyfél megvásárolt egy Azure-csomag.
 
-*Az Azure-csomagokkal rendelkező ügyfelek esetében az API-válasz módosításai a következők:*
+*Az Azure-csomaggal használó ügyfelek esetében az API-válasz a következő változásokat tartalmazza:*
 
-- a **currencyLocale** helyére a **currencyCode**
-- a **usdTotalCost** egy új mező
+- **A currencyLocale** helyett **a currencyCode található**
+- **Az usdTotalCost** egy új mező
 
 ```http
 HTTP/1.1 200 OK

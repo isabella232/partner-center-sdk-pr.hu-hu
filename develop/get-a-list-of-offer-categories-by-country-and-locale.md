@@ -1,38 +1,33 @@
 ---
 title: Ajánlatkategóriák listájának lekérése piac alapján
-description: Megtudhatja, hogyan szerezhet be egy olyan gyűjteményt, amely az adott országban/régióban található összes ajánlatot tartalmazza, és az összes Microsoft-felhőre vonatkozó területi beállítással rendelkezik.
+description: Megtudhatja, hogyan szerez be egy olyan gyűjteményt, amely az összes ajánlatkategóriát tartalmazza egy adott országban/régióban és területi adatokat az összes Microsoft-felhőhöz.
 ms.date: 07/25/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 05aad095c6cb8eaee4cbf7ce976ca1b4b7a408c4
-ms.sourcegitcommit: f72173df911aee3ab29b008637190b4d85ffebfe
+ms.openlocfilehash: e699355f07dda3941eafed32f5f635d94000abd1
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 04/06/2021
-ms.locfileid: "106500056"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874278"
 ---
 # <a name="get-a-list-of-offer-categories-by-market"></a>Ajánlatkategóriák listájának lekérése piac alapján
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Ez a cikk azt ismerteti, hogyan szerezhet be egy olyan gyűjteményt, amely az adott országban/régióban és területi beállításban szereplő összes ajánlati kategóriát tartalmazza.
+Ez a cikk azt ismerteti, hogyan lehet egy adott ország/régió és területi terület összes ajánlatkategóriáját tartalmazó gyűjteményt lekért.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-Az ajánlati kategóriák listájának lekérése egy adott országban/régióban és területi beállításban:
+Egy adott ország/régió és területi terület ajánlatkategóriái listájának lekért listája:
 
-1. A [**IAggregatePartner. Operations**](/dotnet/api/microsoft.store.partnercenter.iaggregatepartner) gyűjtemény használatával hívja meg a [**with ()**](/dotnet/api/microsoft.store.partnercenter.iaggregatepartner.with) metódust egy adott környezetben.
+1. Az [**IAggregatePartner.Operations gyűjtemény**](/dotnet/api/microsoft.store.partnercenter.iaggregatepartner) használatával hívja meg az [**With()**](/dotnet/api/microsoft.store.partnercenter.iaggregatepartner.with) metódust egy adott környezetben.
 
 2. Vizsgálja meg az eredményül kapott objektum [**OfferCategories**](/dotnet/api/microsoft.store.partnercenter.ipartner.offercategories) tulajdonságát.
 
@@ -44,31 +39,31 @@ ResourceCollection<OfferCategory> offerCategoryResults = partnerOperations.With(
 
 Példaként tekintse meg a következőket:
 
-- Minta: [konzol tesztelési alkalmazás](console-test-app.md)
-- Projekt: **PartnerSDK. FeatureSample**
-- Osztály: **PartnerSDK. FeatureSample**
+- Minta: [Konzoltesztalkalmazás](console-test-app.md)
+- Project: **PartnerSDK.FeatureSample**
+- Osztály: **PartnerSDK.FeatureSample**
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                  |
 |---------|----------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/offercategories? ország = {ország-azonosító} http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/offercategories?country={country-id} HTTP/1.1 |
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
-Ez a táblázat felsorolja a szükséges lekérdezési paramétereket az ajánlati kategóriák beszerzéséhez.
+Ez a táblázat felsorolja az ajánlatkategóriák lekérdezhető lekérdezési paramétereit.
 
 | Név           | Típus       | Kötelező | Leírás            |
 |----------------|------------|----------|------------------------|
-| **ország azonosítója** | **sztring** | Y        | Az ország/régió azonosítója. |
+| **country-id (országazonosító)** | **sztring** | Y        | Az ország/régió azonosítója. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-A rendszer karakterláncként formázott **területi beállítás** megadása kötelező.
+Szükség **van egy sztringként** formázott területi azonosítóra.
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -88,11 +83,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus **OfferCategory** -erőforrások gyűjteményét adja vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus **OfferCategory-erőforrások** gyűjteményét adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

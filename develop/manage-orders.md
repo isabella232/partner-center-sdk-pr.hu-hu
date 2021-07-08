@@ -1,25 +1,21 @@
 ---
 title: Megrendelések kezelése
-description: Ez a szakasz azt ismerteti, hogy a felhőalapú megoldások szolgáltatói partnerei hogyan használhatják a partner centert az ügyfelek rendeléseinek és előfizetésének programozott kezeléséhez.
+description: Ez a szakasz azt ismerteti, hogy Felhőszolgáltató partnerek hogyan használhatjak a Partnerközpont ügyfélrendelések és -előfizetések programozott kezeléséhez.
 ms.date: 08/16/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: b3df171ecf0e86cb07372deec420244af56f05d1
-ms.sourcegitcommit: d53d300dc7fb01aeb4ef85bf2e3a6b80f868dc57
+ms.openlocfilehash: 390baa87c96706e60582811774b74fcf11567058
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "97768196"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548158"
 ---
 # <a name="manage-orders"></a>Megrendelések kezelése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Ez a szakasz azt ismerteti, hogy a felhőalapú megoldások szolgáltatói partnerei hogyan használhatják a partner centert az ügyfelek rendeléseinek és előfizetésének programozott kezeléséhez.
+Ez a szakasz azt ismerteti, hogy Felhőszolgáltató partnerek hogyan Partnerközpont ügyfélrendelések és -előfizetések programozott kezeléséhez.
 
 ## <a name="purchase-azure-reserved-vm-instances"></a>Vásárlás Azure Reserved VM Instances
 
@@ -29,21 +25,21 @@ Ez a szakasz azt ismerteti, hogy a felhőalapú megoldások szolgáltatói partn
 
 - [Egyszeri vásárlás](make-a-one-time-purchase.md)
 
-## <a name="get-offers-from-the-catalog"></a>Ajánlatok letöltése a katalógusból
+## <a name="get-offers-from-the-catalog"></a>Ajánlatok lekérte a katalógusból
 
-- [Az ajánlatok kategóriáinak listázása ország és területi beállítás szerint](get-a-list-of-offer-categories-by-country-and-locale.md)
+- [Az ajánlatkategóriák listájának lekért listája ország és területi hely szerint](get-a-list-of-offer-categories-by-country-and-locale.md)
 - [Egy piac ajánlati listájának lekérése](get-a-list-of-offers-for-a-market.md)
 - [Ajánlat lekérése azonosító alapján](get-an-offer-by-id.md)
 - [Bővítmények lekérése ajánlatazonosító alapján](get-addon-offers-by-offer-id.md)
-- [Termékek listájának lekérése](get-a-list-of-products.md)
+- [Termékek listájának lekért listája](get-a-list-of-products.md)
 - [Egy termék lekérése azonosító alapján](get-a-product-by-id.md)
-- [A termékhez tartozó SKU-termékek listájának beolvasása](get-a-list-of-skus-for-a-product.md)
+- [Termék termékkel kapcsolatos termékkódok listájának lekért listája](get-a-list-of-skus-for-a-product.md)
 - [Egy termékváltozat lekérése azonosító alapján](get-a-sku-by-id.md)
-- [Az SKU-ban lévő elérhetőségek listájának lekérése](get-a-list-of-availabilities-for-a-sku.md)
+- [Termékváltozatok rendelkezésre állási listájának lekért listája](get-a-list-of-availabilities-for-a-sku.md)
 - [Rendelkezésre állás lekérése azonosító alapján](get-an-availability-by-id.md)
 - [Leltár ellenőrzése](check-inventory.md)
 
-## <a name="manage-an-order"></a>Megrendelés kezelése
+## <a name="manage-an-order"></a>Rendelés kezelése
 
 - [Rendelés visszavonása az integrációs tesztkörnyezetből](cancel-an-order-from-the-integration-sandbox.md)
 - [Kosár tartalmának kifizetése](checkout-a-cart.md)
@@ -55,12 +51,12 @@ Ez a szakasz azt ismerteti, hogy a felhőalapú megoldások szolgáltatói partn
 - [Katalóguselemek vásárlása](purchase-catalog-items.md)
 - [Kosár frissítése](update-a-cart.md)
 
-## <a name="enable-a-subscription-for-azure-reserved-vm-instance-purchases"></a>Előfizetés engedélyezése az Azure-beli fenntartott VM-példányok vásárlásához
+## <a name="enable-a-subscription-for-azure-reserved-vm-instance-purchases"></a>Előfizetés engedélyezése azure-beli fenntartott virtuálisgép-példányok vásárlásához
 
 - [Előfizetés regisztrálása](register-a-subscription.md)
 - [Előfizetés regisztrációs állapotának lekérése](get-subscription-registration-status.md)
 
-## <a name="get-subscription-details"></a>Előfizetés részleteinek beolvasása
+## <a name="get-subscription-details"></a>Előfizetési adatok lekérte
 
 - [Egy előfizetés lekérése azonosító alapján](get-a-subscription-by-id.md)
 - [Az előfizetések listájának lekérése megrendelés alapján](get-a-list-of-subscriptions-by-order.md)
@@ -75,4 +71,4 @@ Ez a szakasz azt ismerteti, hogy a felhőalapú megoldások szolgáltatói partn
 - [Előfizetés átváltása](transition-a-subscription.md)
 - [Kereskedelmi piactéri előfizetés lemondása](cancel-an-azure-marketplace-subscription.md)
 
-További információ az ajánlatok áttekintéséről, a megrendelések létrehozásáról vagy az előfizetések használatáról: [forgatókönyvek](scenarios.md).
+Az ajánlatok áttekintésével, a megrendelések létrehozásával vagy az előfizetésekkel való munka folyamatával kapcsolatos további információkért lásd: [Forgatókönyvek.](scenarios.md)

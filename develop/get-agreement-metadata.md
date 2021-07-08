@@ -1,47 +1,43 @@
 ---
 title: Microsoft Cloud szerződés szerződési metaadatainak lekérése
-description: Ez a cikk azt ismerteti, hogyan lehet beolvasni Microsoft Cloud szerződés metaadatait.
+description: Ez a cikk a szerződés metaadatainak lekért Microsoft Cloud szerződés.
 ms.date: 02/12/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: c6a404eb38c4c31d3e69bb598872b932d8985529
-ms.sourcegitcommit: 58801b7a09c19ce57617ec4181a008a673b725f0
+ms.openlocfilehash: 2588327e72a13de75eb9e02675edbd535491adc4
+ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "97768048"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111760793"
 ---
 # <a name="get-agreement-metadata-for-microsoft-cloud-agreement"></a>Microsoft Cloud szerződés szerződési metaadatainak lekérése
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont
 
-- Partnerközpont
+**Nem vonatkozik a következőre:** Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-> [!NOTE]
-> A **AgreementMetaData** -erőforrást jelenleg a Microsoft nyilvános felhőben a partner Center támogatja. Nem alkalmazható a következőre:
-> - A 21Vianet által üzemeltetett partneri központ
-> - A Microsoft Cloud Germany Partnerközpontja
-> - A Microsoft Cloud for US Government Partnerközpontja
+Az **AgreementMetaData** erőforrást jelenleg csak a Microsoft nyilvános Partnerközpont támogatja.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Ha a partner Center .NET SDK-t használja, a 1,9-es vagy újabb verzió szükséges.
+- Ha az Partnerközpont .NET SDK-t használja, 1.9-es vagy újabb verzió szükséges.
 
-- Ha a partner Center Java SDK-t használja, a 1,8-es vagy újabb verzió szükséges.
+- Ha az Partnerközpont Java SDK-t használja, 1.8-as vagy újabb verzió szükséges.
 
-- A [partner Center-hitelesítésben](./partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja az alkalmazások és a felhasználók hitelesítését.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](./partner-center-authentication.md) Ez a forgatókönyv támogatja az alkalmazás- és felhasználóhitelesítést.
 
-## <a name="net-version-114-or-newer"></a>.NET (1,14-es vagy újabb verzió)
+## <a name="net-version-114-or-newer"></a>.NET (1.14-es vagy újabb verzió)
 
-Microsoft Cloud szerződéshez tartozó szerződés metaadatainak beolvasása:
+A szerződés metaadatainak lekérése Microsoft Cloud szerződés:
 
-1. Először kérje le a **IAggregatePartner. AgreementDetails** gyűjteményt.
+1. Először is olvassa be az **IAggregatePartner.AgreementDetails gyűjteményt.**
 
-2. Hívja meg a **ByAgreementType** metódust a gyűjtemény Microsoft Cloud szerződésre való szűréséhez.
+2. Hívja **meg a ByAgreementType metódust** a gyűjtemény szűréséhez a Microsoft Cloud szerződés.
 
-3. Végül hívja a **Get** vagy a **GetAsync** metódust.
+3. Végül hívja meg a **Get** vagy **a GetAsync metódust.**
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -51,13 +47,13 @@ string agreementType = "MicrosoftCloudAgreement";
 var microsoftCloudAgreementDetails = partnerOperations.AgreementDetails.ByAgreementType(agreementType).Get().Items.Single();
 ```
 
-Teljes minta a [GetAgreementDetails](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetAgreementDetails.cs) osztályban található a [konzol tesztelése alkalmazás](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples) projektben.
+A teljes minta megtalálható a [GetAgreementDetails](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetAgreementDetails.cs) osztályban a konzol [tesztalkalmazás](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples) projektjében.
 
-## <a name="net-version-19---113"></a>.NET (1,9-1,13-es verzió)
+## <a name="net-version-19---113"></a>.NET (1.9-es és 1.13-as verzió)
 
-A Microsoft Cloud szerződés metaadatainak beolvasása:
+A szerződés metaadatainak lekérése a Microsoft Cloud szerződés:
 
-Először kérje le a **IAggregatePartner. AgreementDetails** gyűjteményt, majd hívja meg a **Get** vagy a **GetAsync** metódust. Ezután keresse meg a gyűjteményen belüli tételt, amely megfelel a Microsoft Cloud szerződésnek:
+Először olvassa be az **IAggregatePartner.AgreementDetails** gyűjteményt, majd hívja meg a **Get** vagy **GetAsync metódusokat.** Ezután keresse meg az elemet a gyűjteményben, amely megfelel a Microsoft Cloud szerződés:
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -71,9 +67,9 @@ AgreementMetaData microsoftCloudAgreement = agreements.Items.FirstOrDefault (agr
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-A Microsoft Cloud szerződés metaadatainak beolvasása:
+A szerződés metaadatainak lekérése a Microsoft Cloud szerződés:
 
-Először hívja meg a **IAggregatePartner. getAgreementDetails** függvényt, majd hívja meg a **Get** függvényt. Ezután keresse meg a gyűjteményen belüli tételt, amely megfelel a Microsoft Cloud szerződésnek:
+Először hívja meg az **IAggregatePartner.getAgreementDetails** függvényt, majd a **get függvényt.** Ezután keresse meg az elemet a gyűjteményben, amely megfelel a Microsoft Cloud szerződés:
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -91,33 +87,33 @@ for (AgreementMetaData metadata : agreements)
 }
 ```
 
-Teljes minta a [GetAgreementDetails](https://github.com/microsoft/Partner-Center-Java-Samples/blob/master/sdk/src/main/java/com/microsoft/store/partnercenter/samples/agreements/GetAgreementDetails.java) osztályban található a [konzol tesztelése alkalmazás](https://github.com/Microsoft/Partner-Center-Java-Samples) projektben.
+A teljes minta megtalálható a [GetAgreementDetails](https://github.com/microsoft/Partner-Center-Java-Samples/blob/master/sdk/src/main/java/com/microsoft/store/partnercenter/samples/agreements/GetAgreementDetails.java) osztályban a konzol [tesztalkalmazás](https://github.com/Microsoft/Partner-Center-Java-Samples) projektjében.
 
 ## <a name="powershell"></a>PowerShell
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-A Microsoft Cloud szerződés metaadatainak beolvasása:
+A szerződés metaadatainak lekérése a Microsoft Cloud szerződés:
 
-Használja a [**Get-PartnerAgreementDetail**](/powershell/module/partnercenter/get-partneragreementdetail) parancsot. Ezután keresse meg a gyűjteményen belüli tételt, amely megfelel a Microsoft Cloud szerződésnek:
+Használja a [**Get-PartnerAgreementDetail**](/powershell/module/partnercenter/get-partneragreementdetail) parancsot. Ezután keresse meg az elemet a gyűjteményben, amely megfelel a Microsoft Cloud szerződés:
 
 ```powershell
 Get-PartnerAgreementDetail | Where-Object {$_.AgreementType -eq 'MicrosoftCloudAgreement'} | Select-Object -First 1
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-Microsoft Cloud szerződés metaadatainak lekéréséhez először hozzon létre egy REST-kérelmet a **AgreementMetaData** -gyűjtemény lekéréséhez. Ezután keresse meg a gyűjtemény azon elemét, amely megfelel a Microsoft Cloud szerződésnek.
+A szerződés metaadatainak lekéréséhez Microsoft Cloud szerződés hozzon létre egy REST-kérést az **AgreementMetaData gyűjtemény lekéréséhez.** Ezután keresse meg a gyűjteményben azt az elemet, amely megfelel a Microsoft Cloud szerződés.
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus | Kérés URI-ja                                                         |
 |--------|---------------------------------------------------------------------|
-| GET    | [*\{ BASEURL \}*](partner-center-rest-urls.md)/v1/Agreements http/1.1 |
+| GET    | [*\{ baseURL \}*](partner-center-rest-urls.md)/v1/agreements HTTP/1.1 |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -135,11 +131,11 @@ MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus **AgreementMetaData** -erőforrások gyűjteményét adja vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus **agreementMetaData-erőforrások** gyűjteményét adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát a következő témakörben tekintheti meg: [partner Center Rest](error-codes.md)-hibakódok.
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
@@ -172,4 +168,4 @@ MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
 }
 ```
 
-A Microsoft Cloud Szerződésnek megfelelő válaszban található erőforrás azonosításához keresse meg azt az erőforrást, amelynek **agreementType** tulajdonságának értéke "MicrosoftCloudAgreement".
+Az erőforrás azonosításához a válaszban, amely megfelel a Microsoft Cloud szerződés, keresse meg azt az erőforrást, amelynek **agreementType** tulajdonsága a "MicrosoftCloudAgreement" értéket használja.

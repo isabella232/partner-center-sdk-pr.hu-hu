@@ -1,43 +1,38 @@
 ---
 title: A megrendelések listájának lekérése ügyfél és a számlázási ciklus típusa alapján
-description: Lekérdezi az ügyfél és a számlázási ciklus megadott típusához tartozó rendelési erőforrások gyűjteményét.
+description: Lekérte a megadott ügyfél- és számlázási ciklustípus megrendelési erőforrásainak gyűjteményét.
 ms.date: 06/19/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: 43fe08b0791851f915e2b39a25394db5ffd022ca
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: c52a556887dba065c4ccd1a82d6223624d0ad1f2
+ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768232"
+ms.lasthandoff: 06/09/2021
+ms.locfileid: "111874227"
 ---
 # <a name="get-a-list-of-orders-by-customer-and-billing-cycle-type"></a>A megrendelések listájának lekérése ügyfél és a számlázási ciklus típusa alapján
 
-**A következőkre vonatkozik:**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A 21Vianet által üzemeltetett partneri központ
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Lekérdezi a megrendelés erőforrásainak egy gyűjteményét, amely megfelel egy adott ügyfél-és számlázási ciklus típusának. A megrendelés elküldése és az ügyfél rendeléseinek gyűjteménye között akár 15 percet is igénybe vehet.
+Lekért rendelési erőforrások egy adott ügyfél- és számlázási ciklustípusnak megfelelő gyűjteményét. A rendelés beküldési ideje és az ügyfél rendelésgyűjteményében való megjelenése között akár 15 perces késés is lehet.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az alkalmazás + felhasználó hitelesítő adataival.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Ügyfél rendeléseinek gyűjteménye:
+Ügyfélrendelések gyűjteményének lekért száma:
 
-1. Használja a [**IAggregatePartner. Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, és hívja meg a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a kiválasztott ügyfél-azonosítóval.
+1. Használja az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, és hívja meg a [**ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a kiválasztott ügyfél-azonosítóval.
 
-2. Hívja meg a [**megrendelések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) tulajdonságot és a **ByBillingCycleType ()** metódust a megadott  [**BillingCycleType**](product-resources.md#billingcycletype).
-3. Hívja meg a [**Get ()**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.get) vagy a [**GetAsync ()**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.getasync) metódust.
+2. Hívja meg [**az Orders tulajdonságot**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) és a **ByBillingCycleType() metódust** a megadott [**BillingCycleType típussal.**](product-resources.md#billingcycletype)
+3. Hívja meg a [**Get() vagy**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.get) [**a GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.getasync)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -47,26 +42,26 @@ Lekérdezi a megrendelés erőforrásainak egy gyűjteményét, amely megfelel e
 var orders = partnerOperations.Customers.ById(selectedCustomerId).Orders.ByBillingCycleType(selectedBillingCycleType).Get();
 ```
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                                    |
 |---------|--------------------------------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/Orders? billingType = {számlázási-ciklus-típus} http/1.1  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/orders?billingType={billing-cycle-type} HTTP/1.1  |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-Ez a táblázat felsorolja a szükséges lekérdezési paramétereket, amelyekkel az ügyfél-azonosító és a számlázási ciklus típusa alapján kérheti le a megrendelések gyűjteményét.
+Ez a táblázat a megrendelések gyűjteményének az ügyfélazonosító és a számlázási ciklus típusa alapján való lekérdezhető lekérdezési paramétereit sorolja fel.
 
 | Név                   | Típus     | Kötelező | Leírás                                               |
 |------------------------|----------|----------|-----------------------------------------------------------|
-| ügyfél – bérlő – azonosító     | sztring   | Igen      | Az ügyfélhez tartozó GUID formátumú karakterlánc.    |
-| számlázási ciklus – típus     | sztring   | No       | A számlázási ciklus típusának megfelelő karakterlánc.         |
+| ügyfél-bérlő-azonosító     | sztring   | Igen      | Az ügyfélnek megfelelő GUID formátumú sztring.    |
+| számlázási ciklus típusa     | sztring   | No       | A számlázási ciklus típusának megfelelő sztring.         |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -85,11 +80,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus a [megrendelési](order-resources.md) erőforrások gyűjteményét adja vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus az Order erőforrások [gyűjteményét](order-resources.md) adja vissza a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

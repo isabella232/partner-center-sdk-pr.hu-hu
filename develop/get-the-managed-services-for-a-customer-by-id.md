@@ -1,35 +1,31 @@
 ---
 title: Egy ügyfél felügyelt szolgáltatásainak lekérése azonosító alapján
-description: Lekéri az ügyfél felügyelt szolgáltatásait. Más szóval az összes ügyfél-előfizetésre mutató hivatkozásokat kap, amelyekhez delegált rendszergazdai jogosultságokkal rendelkezik. Ezekkel a hivatkozásokkal támogatást és Fájlszolgáltatások-kéréseket biztosíthat a Microsofttal.
+description: Lekérte egy ügyfél felügyelt szolgáltatásait. Más szóval szerezze be az összes olyan ügyfél-előfizetés hivatkozásait, amelyekhez delegálta a rendszergazdai jogosultságokat. Ezekkel a hivatkozásokkal támogatási és fájlszolgáltatás-kérelmeket nyújthat a Microsoftnak.
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 4764fce6a80035ea4b9dcc6677a3da28fc863eb7
-ms.sourcegitcommit: 30d1b9d48453c7697a2f42ee09138e507dcf9f2d
+ms.openlocfilehash: 1cf7e7b62113bd96b00fdc2301e4e7ac4f5d4243
+ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "97768408"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111548447"
 ---
 # <a name="get-the-managed-services-for-a-customer-by-id"></a>Egy ügyfél felügyelt szolgáltatásainak lekérése azonosító alapján
 
-**A következőkre vonatkozik**
+**A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-- Partnerközpont
-- A Microsoft Cloud Germany Partnerközpontja
-- A Microsoft Cloud for US Government Partnerközpontja
-
-Lekéri az ügyfél felügyelt szolgáltatásait. Más szóval az összes ügyfél-előfizetésre mutató hivatkozásokat kap, amelyekhez delegált rendszergazdai jogosultságokkal rendelkezik. Ezekkel a hivatkozásokkal támogatást és Fájlszolgáltatások-kéréseket biztosíthat a Microsofttal.
+Lekérte egy ügyfél felügyelt szolgáltatásait. Más szóval szerezze be az összes olyan ügyfél-előfizetés hivatkozásait, amelyekhez delegálta a rendszergazdai jogosultságokat. Ezekkel a hivatkozásokkal támogatási és fájlszolgáltatás-kérelmeket nyújthat a Microsoftnak.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Az ügyfélhez tartozó összes felügyelt szolgáltatás listájának megjelenítéséhez használja a **IAggregatePartner. Customs** gyűjteményt, és hívja meg a [**ById ()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust. Ezután hívja meg a [**ManagedServices**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.managedservices) tulajdonságot, majd a [**Get ()**](/dotnet/api/microsoft.store.partnercenter.managedservices.imanagedservicecollection.get) vagy a [**GetAsync ()**](/dotnet/api/microsoft.store.partnercenter.managedservices.imanagedservicecollection.getasync) metódust.
+Az ügyfél összes felügyelt szolgáltatásának megjelenítéséhez használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a [**ById() metódust.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) Ezután hívja meg [**a ManagedServices tulajdonságot,**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.managedservices) majd a [**Get() vagy**](/dotnet/api/microsoft.store.partnercenter.managedservices.imanagedservicecollection.get) a [**GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.managedservices.imanagedservicecollection.getasync)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -38,27 +34,27 @@ Az ügyfélhez tartozó összes felügyelt szolgáltatás listájának megjelen�
 ResourceCollection<ManagedService> managedServices = partnerOperations.Customers.ById(selectedCustomerId).ManagedServices.Get();
 ```
 
-**Példa**: [konzol tesztelési alkalmazás](console-test-app.md). **Projekt**: PartnerCenterSDK. FeaturesSamples **osztály**: CustomerManagedServices.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerCenterSDK.FeaturesSamples **osztály:** CustomerManagedServices.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                            |
 |---------|--------------------------------------------------------------------------------------------------------|
-| **GET** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{Customer-Tenant-ID}/managedservices http/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/managedservices HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az ügyfél felügyelt szolgáltatásainak beszerzéséhez használja a következő lekérdezési paramétert.
+A következő lekérdezési paraméterrel lekérdezheti az ügyfél felügyelt szolgáltatásait.
 
 | Név                   | Típus     | Kötelező | Leírás                           |
 |------------------------|----------|----------|---------------------------------------|
-| **ügyfél – bérlő – azonosító** | **guid** | Y        | Az ügyfélhez tartozó GUID. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az ügyfélnek megfelelő GUID. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
@@ -76,11 +72,11 @@ MS-CorrelationId: 03d6064a-f048-4aee-8892-ed46dc5c8bee
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a módszer **felügyelt szolgáltatási** objektumok gyűjteményét adja vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus felügyeltszolgáltatás-objektumok gyűjteményét adja **vissza** a válasz törzsében.
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
