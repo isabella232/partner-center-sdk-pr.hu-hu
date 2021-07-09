@@ -4,12 +4,12 @@ description: A jogosultságokkal kapcsolatos erőforrásokat ismerteti.
 ms.date: 01/28/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: a5ddf5dcd1189f686c5d41c05d7c66abc46605cc
-ms.sourcegitcommit: d20e7d572fee09a83a4b23a92da7ff09cfebe75a
+ms.openlocfilehash: 929004fff804675218e267bb928b432f7b1209bf
+ms.sourcegitcommit: 84a6f701190f46d2adcf6edcaeaafa32d58fbaba
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111906357"
+ms.lasthandoff: 07/08/2021
+ms.locfileid: "113510108"
 ---
 # <a name="entitlement-resources"></a>Jogosultsági erőforrások
 
@@ -19,7 +19,7 @@ ms.locfileid: "111906357"
 
 Ez az erőforrás azokat a termékeket jelöli, amelyekhez az ügyfélnek jogában áll használni a katalógus elemeinek partnervásárlása miatt.
 
-| Tulajdonság | Típus | Leírás |
+| Tulajdonság | Típus | Description |
 |----------|------|-------------|
 | referenceOrder (hivatkozás rendelése) | [ReferenceOrder (Referenciarendelés)](#referenceorder) | A jogosultságot eredményező rendeléshivatkozás. |
 | productId | sztring | A termék azonosítója. |
@@ -35,7 +35,7 @@ Ez az erőforrás azokat a termékeket jelöli, amelyekhez az ügyfélnek jogáb
 
 Jogosultság rendelési hivatkozása.
 
-| Tulajdonság | Típus | Leírás |
+| Tulajdonság | Típus | Description |
 |----------|------|-------------|
 | id | sztring | A hivatkozott rendelés azonosítója. |
 | lineItemId (sortemazonosító) | sztring | A hivatkozott rendelési sorelem azonosítója. |
@@ -45,7 +45,7 @@ Jogosultság rendelési hivatkozása.
 
 Egy jogosultsági mennyiség részleteit jelöli.
 
-| Tulajdonság | Típus | Leírás |
+| Tulajdonság | Típus | Description |
 |----------|------|-------------|
 | quantity | int | Az elemek száma. |
 | status | sztring | A mennyiség állapota. |
@@ -66,7 +66,7 @@ Enum [a](/dotnet/api/system.enum) jogosultság típusát jelző értékekkel.
 
 A jogosultsághoz társított összetevő.
 
-| Tulajdonság | Típus | Leírás |
+| Tulajdonság | Típus | Description |
 |----------|------|-------------|
 | artifactType (összetevőtípus) | sztring | Az összetevő típusa. (Frissítve az [ArtifactType sztringre](#artifacttype) az SDK 1.8-as verziójában) |
 | dynamicAttributes (dinamikus attribútumok) | &lt;Szótárszavak, objektum&gt; | Összetevőtípus-specifikus értékeket tartalmazó dinamikus attribútumok. Ha például az artifactType = "reservedinstance" tulajdonság tartalmazza a "reservationType" = "virtualmachines" vagy a "reservationType" = "sqldatabases" paramétert, amely a fenntartott virtuális gép vagy az Azure SQL fenntartott példánya jelölését tartalmazza. (Az SDK 1.9-es verziójától kezdődően érhető el) |
@@ -86,7 +86,7 @@ Egy [Enum,](/dotnet/api/system.enum) amely a jogosultság-összetevő típusát 
 
 Az Azure-beli fenntartott példány jogosultságával társított összetevő. Az Artifact osztályból [öröklődik.](#artifact)
 
-| Tulajdonság   | Típus                           | Leírás                                        |
+| Tulajdonság   | Típus                           | Description                                        |
 |------------|--------------------------------|----------------------------------------------------|
 | hivatkozás       | [Link](./utility-resources.md#link) | A társított összetevők részleteinek lekért hivatkozása.   |
 | resourceID (erőforrás-azonosító) | sztring                         | Az Azure-beli foglalási rendelés vagy erőforrás azonosítója. |
@@ -95,16 +95,16 @@ Az Azure-beli fenntartott példány jogosultságával társított összetevő. A
 
 Az Azure-beli fenntartott példány összetevőhivatkozásának meghívásakor visszaadott entitást jelöli.
 
-|   Tulajdonság   |           Típus           |                          Leírás                          |
+|   Tulajdonság   |           Típus           |                          Description                          |
 |--------------|--------------------------|---------------------------------------------------------------|
 |     típus     |          sztring          |                     Az összetevő típusa.                     |
-| Foglalás | IEnumerable (Számbavételre használható)<Reservation> | Az Azure-erőforrás vagy foglalási rendelés azonosítóját jelzi. |
+| Foglalás | `IEnumerable<Reservation>` | Az Azure-erőforrás vagy foglalási rendelés azonosítóját jelzi. |
 
 ## <a name="reservation"></a>Foglalás
 
 Egy egyéni foglalást képvisel.
 
-| Tulajdonság          | Típus                           | Leírás                                                        |
+| Tulajdonság          | Típus                           | Description                                                        |
 |-------------------|--------------------------------|--------------------------------------------------------------------|
 | reservationId     | sztring                         | A foglalás azonosítója.                                         |
 | scopeType (hatókörtípus)         | sztring                         | A virtuálisgép-foglaláshoz társított hatókörtípus. |
@@ -122,7 +122,7 @@ Egy egyéni foglalást képvisel.
 
 Az Azure-beli fenntartott virtuálisgép-példány jogosultságával társított összetevő. Az Artifact osztályból [örököl.](#artifact)
 
-| Tulajdonság   | Típus                              | Leírás                                        |
+| Tulajdonság   | Típus                              | Description                                        |
 |------------|-----------------------------------|----------------------------------------------------|
 | hivatkozás       | [Link](utility-resources.md#link) | A társított összetevők részleteinek lekért hivatkozása.   |
 | resourceID (erőforrás-azonosító) | sztring                            | Az Azure-beli foglalási rendelés vagy erőforrás azonosítója. |
@@ -134,7 +134,7 @@ Az Azure-beli fenntartott virtuálisgép-példány jogosultságával társított
 
 Az Azure Reserved Virtual Machine Instance összetevő-hivatkozásának meghívásakor visszaadott entitást jelöli.
 
-| Tulajdonság                    | Típus                                                                 | Leírás           |
+| Tulajdonság                    | Típus                                                                 | Description           |
 |-----------------------------|----------------------------------------------------------------------|-----------------------|
 | típus                        | [ArtifactType (Összetevő típusa)](#artifacttype)                                        | Az összetevő típusa. |
 | virtualMachineReservations  | IEnumerable<[VirtualMachineReservation](#virtualmachinereservation)> | Az Azure-erőforrás vagy foglalási rendelés azonosítóját jelzi. |
@@ -146,12 +146,12 @@ Az Azure Reserved Virtual Machine Instance összetevő-hivatkozásának meghív�
 
 Egy egyéni virtuálisgép-foglalást képvisel.
 
-|     Tulajdonság      |              Típus              |                                                Leírás                                                 |
+|     Tulajdonság      |              Típus              |                                                Description                                                 |
 |-------------------|--------------------------------|------------------------------------------------------------------------------------------------------------|
 |   reservationId   |             sztring             |                                         A foglalás azonosítója.                                         |
 |     scopeType (hatókörtípus)     |             sztring             |                     A virtuálisgép-foglaláshoz társított hatókörtípus.                     |
 |    displayName    |             sztring             |                                    A foglalás megjelenített neve.                                    |
-|   appliedScopes (hatókörök alkalmazása)   |      IEnumerable (Számbavételre használható)<string>       | A foglaláshoz társított alkalmazott hatókörök listája. (Csak akkor érhető el, ha a scopeType nincs megosztva.) |
+|   appliedScopes (hatókörök alkalmazása)   |      `IEnumerable<string>`       | A foglaláshoz társított alkalmazott hatókörök listája. (Csak akkor érhető el, ha a scopeType nincs megosztva.) |
 |     quantity      |              int               |                             A foglalásban lévő virtuális gépek száma.                             |
 |  expiryDateTime (lejárat dátuma és ideje)   | sztring UTC dátum-idő formátumban |                                    A foglalás lejárati dátuma.                                     |
 | effectiveDateTime | sztring UTC dátum-idő formátumban |                                   A foglalás hatályba dátuma.                                   |
