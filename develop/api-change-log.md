@@ -1,43 +1,43 @@
 ---
 title: Partnerközpont – REST API-változásnapló
-description: Ez az oldal a partner Center REST API-k változásait sorolja fel
+description: Ez az oldal a REST API-k Partnerközpont sorolja fel
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 ms.topic: reference
 ms.date: 12/15/2020
-ms.openlocfilehash: b2c2cac36a8bd1bec7aa5bf6e5d1aa73b4779535
-ms.sourcegitcommit: 717e483a6eec23607b4e31ddfaa3e2691f3043e6
+ms.openlocfilehash: d4f7f034a36a26b6219086ca952b189f7a313ef7
+ms.sourcegitcommit: 51237e7e98d71a7e0590b4d6a4034b6409542126
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/20/2021
-ms.locfileid: "104711848"
+ms.lasthandoff: 07/09/2021
+ms.locfileid: "113571995"
 ---
-# <a name="december-2020-changes-to-partner-center-rest-apis"></a>December 2020 a partner Center REST API-k változásai
+# <a name="december-2020-changes-to-partner-center-rest-apis"></a>A REST API-k Partnerközpont 2020. decemberi változásai
 
-Tekintse át a partner Center REST API-k módosításait.
+Itt ellenőrizheti a REST API Partnerközpont módosításait.
 
-## <a name="enhancements-to-education-pricing-eligibility-apis"></a>Fejlesztés az oktatási árképzés támogathatósági API-jai számára
+## <a name="enhancements-to-education-pricing-eligibility-apis"></a>Az oktatási díjszabás jogosultsági API- k fejlesztései
 
 
 
 ### <a name="what-has-changed"></a>Mi változott?
 
-A partner Center API jelenleg az oktatási ügyfelek jogosultságának ellenőrzéséhez és a képesítések beszerzéséhez szükséges. A GET minősítési API-t nem változtatja meg. Azonban a PUT minősítési API-hoz hozzáadott egy visszatérési esetet.
+A Partnerközpont API jelenleg GET és PUT minősítésekkel rendelkezik az Education-ügyfelek jogosultságának ellenőrzésére. A GET Qualification API nem módosul. Hozzáadtunk azonban egy visszatérési esetet a PUT-minősítési API-hoz.
 
-- A GET-nem változik. [Aktuális API-cikk](./get-customer-qualification-synchronous.md)
-- A rendszer felveszi a visszaküldési esetet. [Aktuális API-cikk](./update-customer-qualification-synchronous.md)
+- GET – nem változik.
+- PUT – a visszatérési eset hozzá lesz adva.
 
-Ezek az API-k február 2021 végén megszűnnek, és az alább leírtak szerint új API-kat kell cserélni.
+Ezeket az API-kat 2021 februárjától kivezetjük, és az alábbiakban leírtak szerint új API-k váltják fel őket.
 
 ### <a name="scenarios-impacted"></a>Érintett forgatókönyvek:
 
-Ügyfél-jogosultság az oktatási díjszabáshoz a Select SKUs esetében
+Az ügyfelek oktatási jogosultsága a kiválasztott termékcsomagok díjszabására
 
-### <a name="detail-descriptions"></a>Részletes leírások
+### <a name="detail-descriptions"></a>Részletek leírása
 
-A rendszer két új GET és POST minősítési API-t fog bevezetni. Az új API-k **képesítéseket** és nem **minősítést** használnak. Az API-k a FY21 Q2-ben való teszteléshez lesznek elérhetők.
+Két új GET és POST minősítési API lesz bevezetve. Az új API-k a **Minősítéseket fogják használni,** nem **a Minősítést.** Az API-k a 2. negyedévi FY21 teszteléshez lesznek elérhetők.
 
-#### <a name="get-qualifications"></a>Végzettség beszerzése
+#### <a name="get-qualifications"></a>GET-minősítések
 
 ```http
 GET {customer_id}/qualifications
@@ -54,20 +54,20 @@ GET {customer_id}/qualifications
 }
 ```
 
-#### <a name="response-fields"></a>Válasz mezői: 
+#### <a name="response-fields"></a>Válaszmezők: 
 
-- VettingStatus-értékek: jóváhagyva, megtagadva, inreview stb.
+- VettingStatus-értékek: Approved (Jóváhagyva), Denied (Elutasítva), InReview (Áttekintés) stb.
 
-- VettingReason értékek:
+- A VettingReason értékei:
    - Nem oktatási ügyfél
    - Már nem oktatási ügyfél
    - Nem oktatási ügyfél – felülvizsgálat után
-   - Korlátozott oktatási ügyfél
-   - Nem akadémiai tartomány
-   - Nem jogosult könyvtár
-   - Nem jogosult Múzeum
+   - Oktatási ügyfélként korlátozott
+   - Nem tudományos tartomány
+   - Nem jogosult kódtár
+   - Nem jogosult a Program
  
-#### <a name="post-qualifications"></a>POST minősítések
+#### <a name="post-qualifications"></a>POST-minősítések
 
 ```http
 POST {customer_id}/qualifications

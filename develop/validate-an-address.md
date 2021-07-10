@@ -4,12 +4,12 @@ description: Cím ellenőrzése a címérvényesítési API-val.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 14d45977f3af6e8bba1b7cb7f969aa7c5bb671da
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: 2eeca91b0e5a507dac6df4ecf61a56aed2d2d921
+ms.sourcegitcommit: 51237e7e98d71a7e0590b4d6a4034b6409542126
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111529885"
+ms.lasthandoff: 07/09/2021
+ms.locfileid: "113572080"
 ---
 # <a name="validate-an-address"></a>Cím ellenőrzése
 
@@ -21,14 +21,14 @@ A címérvényesítési API csak az ügyfélprofilok frissítésének előzetes 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-Egy cím érvényesítéséhez először példányosítenie kell egy új **Cím** objektumot, és fel kell tölti azt az érvényesítenie kell a címmel. Ezután az **IAggregatePartner.Validations** tulajdonságból olvassa be az Ellenőrzési műveletek felületét, és hívja meg az **IsAddressValid** metódust a címobjektummal. 
+A cím érvényesítéséhez először példányosítenie kell egy új **Cím** objektumot, és ki kell feltöltenie a címet az ellenőrzéshez. Ezután az **IAggregatePartner.Validations** tulajdonságból olvassa be az Ellenőrzési műveletek felületét, és hívja meg az **IsAddressValid** metódust a címobjektummal. 
 
 ```csharp
-// IAggregatePartner partnerOperations;
+IAggregatePartner partnerOperations;
 
 // Create an address to validate.
 Address address = new Address()
@@ -41,86 +41,44 @@ Address address = new Address()
 };
 
 // Validate the address.
-bool result = partnerOperations.Validations.IsAddressValid(address);
+AddressValidationResponse result = partnerOperations.Validations.IsAddressValid(address);
 
-// If the address is valid, the result should equal true.
-Console.WriteLine("Result: " + result.ToString());
+// If the request completes successfully, you can inspect the response object.
 
-// The following is an example that causes address validation to fail.
-try
+// See the status of the validation.
+Console.WriteLine($"Status: {addressValidationResult.Status}");
+
+// See the validation message returned.
+Console.WriteLine($"Validation Message Returned: {addressValidationResult.ValidationMessage ?? "No message returned."}");
+
+// See the original address submitted for validation.
+Console.WriteLine($"Original Address:\n{this.DisplayAddress(addressValidationResult.OriginalAddress)}");
+
+// See the suggested addresses returned by the API, if any exist.
+Console.WriteLine($"Suggested Addresses Returned: {addressValidationResult.SuggestedAddresses?.Count ?? "None."}");
+
+if (addressValidationResult.SuggestedAddresses != null && addressValidationResult.SuggestedAddresses.Any())
 {
-    // Change to an invalid postal code for this address.
-    address.PostalCode = "98007";
-
-    // Validate the address.
-    result = partnerOperations.Validations.IsAddressValid(address);
-
-    Console.WriteLine("ERROR: The code should have thrown an exception - BadRequest(400).");
+    addressValidationResult.SuggestedAddresses.ForEach(a => Console.WriteLine(this.DisplayAddress(a)));
 }
-catch (PartnerException exception)
+
+// Helper method to pretty-print an Address object.
+private string DisplayAddress(Address address)
 {
-    if (exception.ErrorCategory == PartnerErrorCategory.BadInput)
+    StringBuilder sb = new StringBuilder();
+
+    foreach (var property in address.GetType().GetProperties())
     {
-        Console.WriteLine(exception.ErrorCategory.ToString());
-        Console.WriteLine("Exception:");
-        Console.WriteLine("Message: {0}", exception.Message);
+        sb.AppendLine($"{property.Name}: {property.GetValue(address) ?? "None to Display."}");
     }
-    else
-    {
-        throw;
-    }
+
+    return sb.ToString();
 }
-```
-
-## <a name="java"></a>Java
-
-Egy cím érvényesítéséhez először példányosítenie kell egy új **Cím** objektumot, és fel kell tölti azt az érvényesítenie kell a címmel. Ezután az **IAggregatePartner.getValidations** függvényből szerezze be az Ellenőrzési műveletek felületét, és hívja meg az **isAddressValid** metódust a címobjektummal. 
-
-[!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
-
-```java
-// IAggregatePartner partnerOperations;
-
-// Create an address to validate.
-Address address = new Address();
-
-address.setAddressLine1("One Microsoft Way");
-address.setCity("Redmond");
-address.setState("WA");
-address.setCountry("US");
-address.setPostalCode("98052");
-
-try
-{
-    // Validate the address
-    Boolean validationResult = partnerOperations.getValidations().isAddressValid(address);
-
-    System.out.println(validationResult ? "The address is valid." : "Invalid address");
-}
-catch (Exception exception)
-{
-    System.out.println("Address is invalid");
-
-    if (! StringHelper.isNullOrWhiteSpace(exception.getMessage()))
-    {
-        System.out.println(exception.getMessage());
-    }
-}
-```
-
-## <a name="powershell"></a>PowerShell
-
-[!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
-
-Egy cím érvényesítéséhez futtasa le a [**Test-PartnerAddress paramétert**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Test-PartnerAddress.md) a megadott címparaméterekkel.
-
-```powershell
-Test-PartnerAddress -AddressLine1 '700 Bellevue Way NE' -City 'Bellevue' -Country 'US' -PostalCode '98004' -State 'WA'
 ```
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                 |
 |----------|-----------------------------------------------------------------------------|
@@ -136,28 +94,65 @@ Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 | Név         | Típus   | Kötelező | Leírás                                                |
 |--------------|--------|----------|------------------------------------------------------------|
-| addressline1 | sztring | Y        | A cím első sorát.                             |
+| addressline1 | sztring | Y        | A cím első sorában.                             |
 | addressline2 | sztring | N        | A cím második sorában. Ez a tulajdonság nem kötelező. |
 | city         | sztring | Y        | A város.                                                  |
 | állapot        | sztring | Y        | Az állapot.                                                 |
 | irányítószám   | sztring | Y        | Az irányítószám.                                           |
 | ország      | sztring | Y        | A két karakterből álló ISO alpha-2 országkód.                |
 
+### <a name="response-details"></a>Válasz részletei
+
+A válasz a következő állapotüzenetek egyikét adja vissza:
+
+| Állapot     | Leírás |    A visszaadott javasolt címek száma |
+|-------|---------------|-------------------|
+|Ellenőrzött szállításra használható | A cím ellenőrizve van, és szállítható a címre. | Egyirányú |
+|Ellenőrzött | A cím ellenőrizve van. | Egyirányú |
+|Beavatkozás szükséges | A javasolt cím jelentős mértékben módosult, és felhasználói megerősítést kér. | Egyirányú |
+|Utca részleges | A címben megadott utca részleges, és további információra van szüksége. | Többszörös – legfeljebb három |
+|Részleges helyszín | Az adott helyszín (épületszám, csomagszám stb.) részleges, és további információra van szüksége. | Többszörös – legfeljebb három |
+|Többszörös | Több mező is részleges a címben (beleértve az utca részleges és a helyszíni részleges mezőket is). | Többszörös – legfeljebb három |
+|None | A cím helytelen. | None |
+|Nincs ellenőrizve. | A cím nem lett elküldve az érvényesítési folyamaton keresztül. | None |
+
 ### <a name="request-example"></a>Példa kérésre
 
 ```http
+# "VerifiedShippable" Request Example
+
 POST https://api.partnercenter.microsoft.com/v1/validations/address HTTP/1.1
+Accept: application/json
 Content-Type: application/json
 Authorization: Bearer <token>
-Accept: application/json
-MS-RequestId: 0b30452a-8be2-4b8b-b25b-2d4850f4345f
-MS-CorrelationId: 8a853a1a-b0e6-4cb0-ae87-d6dd32ac3a0c
-X-Locale: en-US
+MS-CorrelationId: 29624f3c-90cb-4d34-a7e9-bd2de6d35218
+MS-RequestId: eb55c2b8-6f4b-4b44-9557-f76df624b8c0
 Host: api.partnercenter.microsoft.com
-Content-Length: 129
+Content-Length: 137
+X-Locale: en-US
 
 {
-    "AddressLine1": "One Microsoft Way",
+    "AddressLine1": "1 Microsoft Way",
+    "City": "Redmond",
+    "State": "WA",
+    "PostalCode": "98052",
+    "Country": "US"
+}
+
+# "StreetPartial" Request Example
+
+POST https://api.partnercenter.microsoft.com/v1/validations/address HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer <token>
+MS-CorrelationId: 2c95c9bc-fdfb-4c6a-84f4-57c9b0826b43
+MS-RequestId: ee6cf74c-3ab5-48d6-9269-4a4b75bd59dc
+Host: api.partnercenter.microsoft.com
+Content-Length: 135
+X-Locale: en-US
+
+{
+    "AddressLine1": "Microsoft Way",
     "City": "Redmond",
     "State": "WA",
     "PostalCode": "98052",
@@ -167,42 +162,71 @@ Content-Length: 129
 
 ## <a name="rest-response"></a>REST-válasz
 
-Sikeres művelet esetén a metódus a 200-as állapotkódot adja vissza az alább látható Válasz – sikeres ellenőrzés példában látható módon.
-
-Ha a kérés meghiúsul, a metódus a 400-as állapotkódot adja vissza az alább látható Válasz – ellenőrzés sikertelen példában látható módon. A válasz törzse tartalmaz egy hasznos JSON-adatokat, amely további információkat tartalmaz a hibáról.
+Sikeres művelet esetén a metódus egy **AddressValidationResponse** objektumot ad vissza a válasz törzsében, **http 200-as** állapotkóddal. Erre mutat példát az alábbi ábra.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
-### <a name="response---validation-succeeded-example"></a>Válasz – sikeres érvényesítés – példa
+### <a name="response-example"></a>Példa válaszra
 
 ```http
+# "VerifiedShippable" Response Example
+
 HTTP/1.1 200 OK
-Content-Length: 0
-MS-CorrelationId: 8a853a1a-b0e6-4cb0-ae87-d6dd32ac3a0c
-MS-RequestId: 0b30452a-8be2-4b8b-b25b-2d4850f4345f
-MS-CV: IqhjoWVyq0Kl81dO.0
-MS-ServerId: 030011719
-Date: Mon, 13 Mar 2017 23:56:12 GMT
-```
-
-### <a name="response---validation-failed-example"></a>Válasz – sikertelen érvényesítés – példa
-
-```http
-HTTP/1.1 400 Bad Request
-Content-Length: 418
+Date: Mon, 17 May 2021 23:19:19 GMT
 Content-Type: application/json; charset=utf-8
-MS-CorrelationId: 8a853a1a-b0e6-4cb0-ae87-d6dd32ac3a0c
-MS-RequestId: 0b30452a-8be2-4b8b-b25b-2d4850f4345f
-MS-CV: pdlItMyvtkmGHDWt.0
-MS-ServerId: 101112012
-Date: Tue, 14 Mar 2017 01:57:55 GMT
-
+MS-CorrelationId: 29624f3c-90cb-4d34-a7e9-bd2de6d35218
+MS-RequestId: eb55c2b8-6f4b-4b44-9557-f76df624b8c0
+X-Locale: en-US
+ 
 {
-    "code": 2007,
-    "description": "{\"code\":\"60071\",\"reason\":\"ZipCityInvalid - Details: Field - &#39;City&#39; is corrected from OldValue: &#39;Redmond&#39; to NewValue: &#39;BELLEVUE&#39;.\",\"corrected_address\":{\"country\":\"US\",\"region\":\"WA\",\"city\":\"BELLEVUE\",\"address_line1\":\"One Microsoft Way\",\"postal_code\":\"98007\"},\"object_type\":\"AddressValidation\",\"resource_status\":\"Active\"}",
-    "data": [],
-    "source": "PartnerFD"
+    "originalAddress": {
+        "country": "US",
+        "city": "Redmond",
+        "state": "WA",
+        "addressLine1": "1 Microsoft Way",
+        "postalCode": "98052"
+    },
+    "suggestedAddresses": [
+        {
+            "country": "US",
+            "city": "Redmond",
+            "state": "WA",
+            "addressLine1": "1 Microsoft Way",
+            "postalCode": "98052-8300"
+        }
+    ],
+    "status": "VerifiedShippable"
+}
+
+# "StreetPartial" Response Example
+
+HTTP/1.1 200 OK
+Date: Mon, 17 May 2021 23:34:08 GMT
+Content-Type: application/json; charset=utf-8
+MS-CorrelationId: 2c95c9bc-fdfb-4c6a-84f4-57c9b0826b43
+MS-RequestId: ee6cf74c-3ab5-48d6-9269-4a4b75bd59dc
+X-Locale: en-US
+ 
+{
+    "originalAddress": {
+        "country": "US",
+        "city": "Redmond",
+        "state": "WA",
+        "addressLine1": "Microsoft Way",
+        "postalCode": "98052"
+    },
+    "suggestedAddresses": [
+        {
+            "country": "US",
+            "city": "Redmond",
+            "state": "WA",
+            "addressLine1": "1 Microsoft Way",
+            "postalCode": "98052-6399"
+        }
+    ],
+    "status": "StreetPartial",
+    "validationMessage": "Address field invalid for property: 'Region', 'PostalCode', 'City'"
 }
 ```

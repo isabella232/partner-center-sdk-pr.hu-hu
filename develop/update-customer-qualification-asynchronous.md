@@ -1,41 +1,42 @@
 ---
 title: Ügyfél végzettségének frissítése
-description: Frissíti az ügyfél képzettségét aszinkron módon, beleértve a profilhoz társított címeket is.
+description: Aszinkron módon frissíti az ügyfél minősítéseit, beleértve a profilhoz társított címet is.
 ms.date: 03/23/2021
 ms.service: partner-dashboard
 author: JoeyBytes
 ms.author: jobiesel
-ms.openlocfilehash: 7606eeaac4df158ec0fad6ffd4e565bb250f448e
-ms.sourcegitcommit: bbdb5f7c9ddd42c2fc4eaadbb67d61aeeae805ca
+ms.openlocfilehash: d7dd3593894ce91ddc7b96d604b80153d41d3a67
+ms.sourcegitcommit: 51237e7e98d71a7e0590b4d6a4034b6409542126
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 03/24/2021
-ms.locfileid: "105030606"
+ms.lasthandoff: 07/09/2021
+ms.locfileid: "113572097"
 ---
-# <a name="update-a-customers-qualifications-asynchronously"></a>Ügyfél-képesítések aszinkron frissítése
+# <a name="update-a-customers-qualifications-asynchronously"></a>Ügyfél minősítésének aszinkron frissítése
 
-Aszinkron módon frissíti az ügyfél képzettségét.
+Aszinkron módon frissíti az ügyfél minősítéseit.
 
-Egy partner aszinkron módon frissítheti az ügyfél képzettségét "Education" vagy "GovernmentCommunityCloud". Más értékek, "None" és "nonprofit" nem állíthatók be.
+A partnerek aszinkron módon frissítheti az ügyfelek minősítését " Education" vagy "GovernmentCocloud" minősítésre. Más értékek( "Nincs" és "Nonprofit" nem beállíthatók.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A [partner Center-hitelesítésben](partner-center-authentication.md)leírt hitelesítő adatok. Ez a forgatókönyv csak az App + felhasználói hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Ügyfél-azonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél AZONOSÍTÓját, megtekintheti a partner Center [irányítópultján](https://partner.microsoft.com/dashboard). Válassza a **CSP** lehetőséget a partner központ menüjében, majd az **ügyfelek**. Válassza ki az ügyfelet az ügyfél listából, majd válassza a **fiók** lehetőséget. Az ügyfél fiókja lapon keresse meg a **Microsoft ID** -t az **ügyfél fiók adatai** szakaszban. A Microsoft-azonosító megegyezik az ügyfél-AZONOSÍTÓval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Először hozzon létre egy objektumot, amely a minősítés típusát jelöli. Ezután hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval. Ezután használja a [**minősítés**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.qualification) tulajdonságot egy [**ICustomerQualification**](/dotnet/api/microsoft.store.partnercenter.qualification.icustomerqualification) felület lekéréséhez. Végül hívja meg `CreateQualifications()` a vagy a `CreateQualificationsAsync()` minősítési típus objektumot bemeneti paraméterként.
+Ahhoz, hogy létrehoz egy ügyfél "Education" minősítését, először hozzon létre egy objektumot, amely a minősítési típust képviseli. Ezután hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítóval. Ezután a [**Minősítés tulajdonság**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.qualification) használatával lekér egy [**ICustomerQualification**](/dotnet/api/microsoft.store.partnercenter.qualification.icustomerqualification) felületet. Végül hívja meg `CreateQualifications()` a vagy a parancsot a `CreateQualificationsAsync()` minősítési típus objektummal bemeneti paraméterként.
 
 ``` csharp
-var qualificationType = { Qualification = "education" };
+var qualificationToCreate = "education";    // can also be "StateOwnedEntity" or "GovernmentCommunityCloud". See GCC example below.
+var qualificationType = { Qualification = qualificationToCreate };
 var eduCustomerQualification = partnerOperations.Customers.ById(existingCustomer.Id).Qualification.CreateQualifications(qualificationType);
 ```
 
-**Példa**: [konzolos minta alkalmazás](https://github.com/microsoft/Partner-Center-DotNet-Samples). **Projekt**: SdkSamples **osztály**: CreateCustomerQualification. cs
+**Minta:** [Konzol mintaalkalmazás.](https://github.com/microsoft/Partner-Center-DotNet-Samples) **Project:** SdkSamples **osztály:** CreateCustomerQualification.cs
 
-Ha szeretné frissíteni az ügyfél minősítését, hogy **GovernmentCommunityCloud** egy meglévő ügyfélen a minősítés nélkül, akkor a partnernek is az ügyfél [**ValidationCode**](utility-resources.md#validationcode)kell tartoznia. Először hozzon létre egy objektumot, amely a minősítés típusát jelképezi. Ezután hívja meg a [**IAggregatePartner. customers. ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél-azonosítóval. Ezután használja a [**minősítés**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.qualification) tulajdonságot egy [**ICustomerQualification**](/dotnet/api/microsoft.store.partnercenter.qualification.icustomerqualification) felület lekéréséhez. Végül hívja meg `CreateQualifications()` `CreateQualificationsAsync()` a minősítési típus objektumot és az érvényesítési kódot bemeneti paraméterként.
+Ahhoz, hogy egy ügyfél minősítés nélkül is frissítve legyen a **GovernmentCocloud** minősítése egy meglévő ügyfélen, a partnernek tartalmaznia kell az ügyfél [**ValidationCode (Érvényesítési**](utility-resources.md#validationcode)kódja) kódját is. Először hozzon létre egy objektumot, amely a minősítési típust képviseli. Ezután hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítóval. Ezután a [**Minősítés tulajdonság**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.qualification) használatával lekér egy [**ICustomerQualification**](/dotnet/api/microsoft.store.partnercenter.qualification.icustomerqualification) felületet. Végül hívja meg a vagy a `CreateQualifications()` parancsot `CreateQualificationsAsync()` a minősítési típus objektummal és az érvényesítési kóddal bemeneti paraméterként.
 
 ``` csharp
 // GCC validation is type ValidationCode
@@ -43,15 +44,15 @@ var qualificationType = { Qualification = "GovernmentCommunityCloud" };
 var gccCustomerQualification = partnerOperations.Customers.ById(existingCustomer.Id).Qualification.CreateQualifications(qualificationType, gccValidation);
 ```
 
-**Példa**: [konzolos minta alkalmazás](https://github.com/microsoft/Partner-Center-DotNet-Samples). **Projekt**: SdkSamples **osztály**: CreateCustomerQualificationWithGCC. cs
+**Minta:** [Konzol mintaalkalmazás.](https://github.com/microsoft/Partner-Center-DotNet-Samples) **Project:** SdkSamples **osztály:** CreateCustomerQualificationWithGCC.cs
 
-## <a name="rest-request"></a>REST-kérelem
+## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérelem szintaxisa
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                             |
 |---------|---------------------------------------------------------------------------------------------------------|
-| **UTÁNI** | [*{baseURL}*](partner-center-rest-urls.md)/v1/Customers/{customer_id}/Qualifications? kód = {VALIDATIONCODE} http/1.1 |
+| **Post** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer_id}/qualifications?code={validationCode} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -59,20 +60,20 @@ A minősítés frissítéséhez használja a következő lekérdezési paraméte
 
 | Név                   | Típus | Kötelező | Leírás                                                                                                                                            |
 |------------------------|------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél – bérlő – azonosító** | GUID | Igen      | Az érték egy GUID formátumú **ügyfél-bérlői azonosító** , amely lehetővé teszi, hogy a viszonteladó a viszonteladóhoz tartozó adott ügyfél eredményeit szűrheti. |
-| **validationCode**     | int  | Nem       | Csak a kormányzati közösségi felhőhöz szükséges.                                                                                                            |
+| **ügyfél-bérlő-azonosító** | GUID | Yes      | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
+| **validationCode**     | int  | No       | Csak az ilyen Government Community Cloud.                                                                                                            |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
-További információ: a [partneri központ Rest-fejlécei](headers.md).
+További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Ez a tábla a kérelem törzsének minősítési objektumát ismerteti.
+Ez a táblázat a kérelem törzsében található minősítési objektumot ismerteti.
 
 Tulajdonság | Típus | Kötelező | Leírás
 -------- | ---- | -------- | -----------
-Minősítés | sztring | Igen | A [**CustomerQualification**](/dotnet/api/microsoft.store.partnercenter.models.customers.customerqualification) Enum karakterláncának értéke.
+Minősítés | sztring | Yes | A [**CustomerQualification enum sztringértéke.**](/dotnet/api/microsoft.store.partnercenter.models.customers.customerqualification)
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -91,11 +92,11 @@ MS-RequestId: 037db222-6d8e-4d7f-ba78-df3dca33fb68
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, ez a metódus egy minősítési objektumot ad vissza a válasz törzsében. Alább látható egy példa arra, hogy a **post** hívása egy ügyfélen (a **none** korábbi minősítésével) az **oktatási** minősítéssel.
+Ha sikeres, ez a metódus egy minősítési objektumot ad vissza a válasz törzsében. Az alábbiakban egy  példát mutatunk be egy olyan ügyfél POST-hívására (korábbi minősítéssel: **Nincs),** amely rendelkezik **Oktatási minősítéssel.**
 
-### <a name="response-success-and-error-codes"></a>Válasz sikeres és hibakódok
+### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz tartozik egy HTTP-állapotkód, amely a sikeres vagy sikertelen és a további hibakeresési adatokat jelzi. A kód, a hiba típusa és a további paraméterek olvasásához használjon hálózati nyomkövetési eszközt. A teljes listát lásd: [hibakódok](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
@@ -114,5 +115,5 @@ MS-RequestId: 037db222-6d8e-4d7f-ba78-df3dca33fb68
 
 ## <a name="related-articles"></a>Kapcsolódó cikkek
 
-- [Ügyfél képzettségének beszerzése](./get-customer-qualification-asynchronous.md)
+- [Ügyfél minősítésének lekértsége](./get-customer-qualification-asynchronous.md)
 - [Egy partner ellenőrzési kódjainak lekérése](get-a-partner-s-validation-codes.md)
