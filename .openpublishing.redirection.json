@@ -191,22 +191,12 @@
       "redirect_document_id": false
     },
     {
-      "source_path": "develop/get-a-customer-s-qualification.md",
-      "redirect_url": "get-customer-qualification-synchronous",
-      "redirect_document_id": true
-    },
-    {
-      "source_path": "develop/update-a-customer-s-qualification.md",
-      "redirect_url": "update-customer-qualification-synchronous",
-      "redirect_document_id": true
-    },
-    {
-      "source_path": "develop/get-a-customer-s-qualifications.md",
+      "source_path": "develop/get-customer-qualification-synchronous.md",
       "redirect_url": "get-customer-qualification-asynchronous",
       "redirect_document_id": true
     },
     {
-      "source_path": "develop/update-a-customer-s-qualifications.md",
+      "source_path": "develop/update-customer-qualification-synchronous.md",
       "redirect_url": "update-customer-qualification-asynchronous",
       "redirect_document_id": true
     }
