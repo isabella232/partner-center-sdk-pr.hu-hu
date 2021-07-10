@@ -247,8 +247,6 @@
           items:
             - name: Aszinkron API-k használata
               href: get-customer-qualification-asynchronous.md
-            - name: Egyidejű API-k használata
-              href: get-customer-qualification-synchronous.md
         - name: Egy ügyfél összes megrendelésének lekérése
           href: get-all-of-a-customer-s-orders.md
         - name: Egy ügyfél előfizetéseinek lekérése
@@ -295,8 +293,6 @@
           items:
             - name: Aszinkron API-k használata
               href: update-customer-qualification-asynchronous.md
-            - name: Egyidejű API-k használata
-              href: update-customer-qualification-synchronous.md
         - name: Egy előfizetés becenevének frissítése
           href: update-the-nickname-for-a-subscription.md
         - name: Egy ügyfél áthelyezésének visszavonása
