@@ -406,6 +406,8 @@
           href: update-a-cart.md
         - name: Kereskedelmi piactéri előfizetés automatikus megújításának frissítése
           href: update-autorenew-for-an-azure-marketplace-subscription.md
+    - name: Kifizetések kezelése
+      href: manage-payouts.md
     - name: Támogatás biztosítása
       href: provide-support.md
       items:
