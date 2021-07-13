@@ -1,15 +1,15 @@
 ---
 title: Cím ellenőrzése
 description: Cím ellenőrzése a címérvényesítési API-val.
-ms.date: 09/17/2019
+ms.date: 05/17/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 2eeca91b0e5a507dac6df4ecf61a56aed2d2d921
-ms.sourcegitcommit: 51237e7e98d71a7e0590b4d6a4034b6409542126
+ms.openlocfilehash: 30f5cd526ab038dce400e79822d89b8086ba3799
+ms.sourcegitcommit: 41bf9dca55f4c96d382b327a75b2d2418edfc9bc
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/09/2021
-ms.locfileid: "113572080"
+ms.lasthandoff: 07/13/2021
+ms.locfileid: "113655609"
 ---
 # <a name="validate-an-address"></a>Cím ellenőrzése
 
