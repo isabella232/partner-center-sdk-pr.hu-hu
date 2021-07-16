@@ -1,30 +1,28 @@
 ---
-title: Számlázatlan kereskedelmi használatú sorok elemeinek lekért száma
-description: Egy adott számlához tartozó, nem számlázott kereskedelmi használatú tétel részleteinek gyűjteményét a következő API Partnerközpont le.
+title: Számlával nem számlázott kereskedelmi használatú sorok elemeinek lekért száma
+description: A megadott számlához tartozó ki nem számlázott kereskedelmi használatú tétel részleteinek gyűjteményét a Partnerközpont le.
 ms.date: 01/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 1b7dba3333aaec8df73f0e8147b0bbbc78b9b184
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: f7c74bedfd6412fc5954ed2ddc1388936e418fa3
+ms.sourcegitcommit: 722992eea6f8ea366dc088e5dd1ee63c17d56f61
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111446146"
+ms.lasthandoff: 07/15/2021
+ms.locfileid: "114224768"
 ---
-# <a name="get-invoice-unbilled-commercial-consumption-line-items"></a>Számlázatlan kereskedelmi használatú sorok elemeinek lekért száma
+# <a name="get-invoice-unbilled-commercial-consumption-line-items"></a>Számlával nem számlázott kereskedelmi használatú sorok elemeinek lekért száma
 
 A ki nemszámlázatlan kereskedelmi használatú sortételek részleteinek gyűjteménye.
 
-A következő metódusok használatával programozott módon lekérte a ki nemszámlázatlan kereskedelmi használatú sorelemek (más néven nyitott használatisor-elemek) adatait.
+A következő metódusokkal programozott módon lekért adatok gyűjteménye a ki nemszámlázatlan kereskedelmi használatú sorelemekről (más néven a nyitott használatisor-elemekről).
 
 >[!NOTE]
->A napi névleges használat általában 24 órát vesz igénybe, Partnerközpont api-n keresztül jelennek meg.
+>A napi névleges használat általában 24 órát vesz igénybe a Partnerközpont vagy az API-n keresztüli elérése.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
-
-- Egy számlaazonosító. Ez azonosítja a számlát, amelynek lekéri a sorelemeket.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
@@ -34,16 +32,16 @@ A megadott számlához tartozó sorelemek lekért száma:
 
 2. A [**számlaobjektum lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal.
 
-A **számlaobjektum** a megadott számla összes adatát tartalmazza. A **Provider** azonosítja a ki nemszámlázatlan részletes adatok forrását (például **OneTime).** Az **InvoiceLineItemType** megadja a típust (például **UsageLineItem).**
+A **számlaobjektum** a megadott számla összes adatát tartalmazza. A **Provider** azonosítja a ki nemszámlázatlan részletes adatok forrását (például **OneTime).** Az **InvoiceLineItemType** határozza meg a típust (például **UsageLineItem).**
 
-Az alábbi példakód egy **foreach ciklust** használ az **InvoiceLineItems gyűjtemény feldolgozásához.** A rendszer külön sorelemek gyűjteményét olvassa be minden **InvoiceLineItemType típushoz.**
+Az alábbi példakód egy **foreach ciklust használ** az **InvoiceLineItems gyűjtemény feldolgozásához.** A rendszer minden **InvoiceLineItemType** típushoz külön sorelemek gyűjteményét olvassa be.
 
-Az InvoiceDetail példánynak megfelelő sorelemek **gyűjteményének lekért** száma:
+Egy InvoiceDetail példánynak megfelelő sorelemek **gyűjteményének legyűjtéséhez:**
 
 1. Adja át a példány **BillingProvider** és **InvoiceLineItemType** tulajdonságát a [**By metódusnak.**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.by)
 
 2. A [**társított sorelemek lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal.
-3. Hozzon létre egy enumerátort, amely az alábbi példában látható módon lépked a gyűjteményen.
+3. Hozzon létre egy enumerátort, amely az alábbi példában látható módon lépked át a gyűjteményen.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -109,14 +107,14 @@ Hasonló példát a következőben láthat:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
-A REST-kéréshez a következő szintaxisokat használhatja a saját esetétől függően. További információért tekintse meg az egyes szintaxisok leírását.
+A REST-kéréshez a következő szintaxisokat használhatja, az adott esettől függően. További információért tekintse meg az egyes szintaxisok leírását.
 
 | Metódus  | Kérés URI-ja                                                                                                                                                                                              | Szintaxishasználati eset leírása                                                                                                     |
 |---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode}&period={period} HTTP/1.1                       | Ezzel a szintaxissal az adott számla összes sorelemének teljes listáját használhatja.                                                    |
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode}&period={period}&size={size} HTTP/1.1           | Ezt a szintaxist nagy számlákhoz használja. Használja ezt a szintaxist a megadott mérettel és 0-alapú eltolással a sorelemek lapszámolt listájának visszaadására. |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode}&period={period} HTTP/1.1                       | Ezzel a szintaxissal az adott számla összes sortételének teljes listáját használhatja.                                                    |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode}&period={period}&size={size} HTTP/1.1           | Ezt a szintaxist nagy számlákhoz használhatja. Használja ezt a szintaxist egy megadott mérettel és 0-alapú eltolással a sorelemek lapszámolt listájának visszaadására. |
 | **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=usagelineitems&currencycode={currencycode}&period={period}&size={size}&seekOperation=Next | Ezzel a szintaxissal lekérte az egyeztetési sorelemek következő oldalát a `seekOperation = "Next"` használatával.                                  |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
@@ -128,7 +126,7 @@ A kérelem létrehozásakor használja a következő URI-t és lekérdezési par
 | Szolgáltató               | sztring | Igen      | A szolgáltató: "**OneTime**".                                                                                                                                                                                                               |
 | invoice-line-item-type | sztring | Igen      | A számla részleteinek típusa: "**UsageLineItems**", "**UsageLineItems**".                                                                                                                                                                    |
 | currencyCode           | sztring | Igen      | A ki nemszámlázatlan sorelemek pénznemkódja.                                                                                                                                                                                             |
-| period                 | sztring | Igen      | A nemszámlázatlan felderítés időtartama (például **aktuális,** **előző**). Tegyük fel, hogy januárban le kellkérdezni a számlázási ciklus ki nem számlázatlan használati adatait (2020.01.01. – 01.31.) 2020. januárban, válassza az **időszak "Aktuális" lehetőséget,** egyébként pedig az **"Előző" lehetőséget.** |
+| period                 | sztring | Igen      | A ki nemszámlázatlan felderítés időtartama (például **aktuális,** **előző).** Tegyük fel, hogy januárban le kellkérdezni a számlázási ciklus (01/01/2020 – 01/31/2020) ki nem számlázatlan használati adatait, válassza az időszak **"Aktuális" lehetőséget,** egyébként pedig az **"Előző" lehetőséget.** |
 | size                   | szám | Nem       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000.                                                                                                                                                                           |
 | seekOperation          | sztring | No       | Állítsa `seekOperation=Next` be az elemet az egyeztetési sorelemek következő oldalának le tételére.                                                                                                                                                                |
 
@@ -142,15 +140,15 @@ Nincsenek.
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz sorelem-részletek gyűjteményét tartalmazza.
+Ha ez sikeres, a válasz sorelem-részletek gyűjteményét tartalmazza.
 
-*A **ChargeType** sorelem esetében a **Purchase** (Vásárlás) értéke **New** (Új) értékre van leképezve, a **Refund** (Visszatérítés) értéke pedig Cancel (Lemondás) értékre **van leképezve.***
+*A **ChargeType** sorelem esetében a Purchase  **(Vásárlás)** értéke New (Új) lesz, a **Refund** (Visszatérítés) pedig Cancel (Lemondás) **értékre van leképezve.***
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
-## <a name="request-response-examples"></a>Példák kérés-válasz válaszra
+## <a name="request-response-examples"></a>Kérés-válasz példák
 
 ### <a name="request-response-example-1"></a>1. kérés-válasz példa
 
