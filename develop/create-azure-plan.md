@@ -1,21 +1,21 @@
 ---
 title: Azure-csomag létrehozása
 description: A fejlesztők programozott módon vásárolhatnak, hozhatnak létre és kezelhet Azure-csomagokat Partnerközpont API-k használatával.
-ms.date: 01/02/2020
+ms.date: 07/21/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: mowrim
 ms.author: mowrim
-ms.openlocfilehash: f329b6a3f9a61522a9fad1f0ead021563c393118
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: b77b067c7eb150ab1ad9904915e87c3fc55c104a
+ms.sourcegitcommit: 1fce45e6cafbc4c228042523ae28aac651a73757
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973407"
+ms.lasthandoff: 07/23/2021
+ms.locfileid: "114483058"
 ---
 # <a name="create-an-azure-plan"></a>Azure-csomag létrehozása
 
-Azure-csomagokat vásárolhat, hozhat létre és kezelhet a Partnerközpont API-okkal. A folyamat hasonló a Microsoft Azure (MS-AZR-0145P) előfizetés létrehozásához. Be kell [szereznie az Azure-csomag katalóguselemét,](#get-the-catalog-item-for-azure-plan)majd létre kell [hoznia és el kell küldenie egy megrendelést.](#create-and-submit-an-order)
+Azure-csomagokat vásárolhat, hozhat létre és kezelhet a Partnerközpont API-k használatával. A folyamat hasonló a Microsoft Azure ([MS-AZR-0145P](https://go.microsoft.com/fwlink/p/?linkid=2164140)) előfizetés létrehozásához. Be kell [szereznie az Azure-csomag katalóguselemét,](#get-the-catalog-item-for-azure-plan)majd létre kell [hoznia és el kell küldenie egy megrendelést.](#create-and-submit-an-order)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -33,17 +33,17 @@ Ahhoz, hogy Azure-csomagokat hoz létre egy ügyfél számára, le kellkérni a 
 
 Egy Azure-csomag katalóguselemének beszerzéséhez kövesse az alábbi lépéseket:
 
-1. Azonosítsa és *lekéri* az Azure-csomag termékazonosítóját. Kövesse a [Termékek listájának lekért lépéseit,](get-a-list-of-products.md) és adja meg a **targetView** értéket **MicrosoftAzure-ként.** (Ha már ismeri  az Azure-csomag termékazonosítóját, kövesse a Termék lekérte [a](get-a-product-by-id.md) termékazonosító használatával lépéseit.)
+1. Azonosítsa és lekéri *az* Azure-csomag termékazonosítóját. Kövesse a [Termékek listájának lekért lépéseit,](get-a-list-of-products.md) és adja meg a **targetView** értéket **MicrosoftAzure-ként.** (Ha már ismeri  az Azure-csomag termékazonosítóját, kövesse a Termék lekérte [a](get-a-product-by-id.md) termékazonosító használatával lépéseit.)
 
-2. Az **Azure-csomag termékváltozatának** lekérése. Kövesse a termék termékkel kapcsolatos termékkódok listájának [lekért lépéseit.](get-a-list-of-skus-for-a-product.md) Ha már ismeri az Azure-csomag termékváltozat-azonosítóját, kövesse a Termékváltozat lekérte ehelyett a termékváltozat [azonosítójának használatával lépéseit.](get-a-sku-by-id.md)
+2. Az **Azure-csomag termékváltozatának** lekérése. Kövesse a termék termékkel kapcsolatos termékkódok listájának [lekért lépéseit.](get-a-list-of-skus-for-a-product.md) Ha már ismeri az Azure-csomag termékváltozat-azonosítóját, kövesse a Termékváltozat lekérte a termékváltozat [azonosítójának használatával lépéseit.](get-a-sku-by-id.md)
 
 3. A rendelkezésre **állás lekérése** az Azure-csomag termékváltozatában. Kövesse a [Termékváltozatok rendelkezésre állási listájának lekért lépéseit.](get-a-list-of-availabilities-for-a-sku.md) Ha már ismeri a szükséges rendelkezésre állás azonosítóját, kövesse a Rendelkezésre állás lekérte a rendelkezésre állási azonosító használatával [lépéseit.](get-an-availability-by-id.md) *Ügyeljen arra, hogy jegyezze fel az Azure-csomag rendelkezésre állásának **CatalogItemId** tulajdonságát. Erre az értékre szüksége lesz a rendelés létrehozásához.*
 
 ## <a name="create-and-submit-an-order"></a>Rendelés létrehozása és elküldése
 
-Az Azure-csomagra vonatkozó megrendelés elküld küldve a következő lépésekkel:
+Az Azure-csomagra vonatkozó megrendelés elküld küldve az alábbi lépésekkel:
 
-1. [Hozzon létre egy](create-a-cart.md) kosárt, amely a megvásárolni kívánt katalóguselemek gyűjteményét tartalmazza. Amikor [kosarat](cart-resources.md#cart)hoz [](cart-resources.md#cartlineitem) létre, a rendszer automatikusan csoportosítja a kosársor elemeit az alapján, hogy mi vásárolható együtt ugyanabban a [sorrendben.](order-resources.md#order) (Kosarat [is frissíthet.)](update-a-cart.md)
+1. [Hozzon létre egy](create-a-cart.md) kosárt, amely a megvásárolni kívánt katalóguselemek gyűjteményét tartalmazza. Amikor [kosarat](cart-resources.md#cart)hoz [](cart-resources.md#cartlineitem) létre, a rendszer automatikusan csoportosítja a kosársor elemeit az alapján, hogy mi vásárolható meg együtt ugyanabban a [sorrendben.](order-resources.md#order) (Kosarat [is frissíthet.)](update-a-cart.md)
 
 2. [Tekintse meg a kosárban](checkout-a-cart.md)a rendelés [létrehozását.](order-resources.md#order)
 
@@ -61,13 +61,13 @@ A rendelés sikeres feldolgozása után létrejön egy  Partnerközpont Előfize
 * [Egy ügyfél előfizetéseinek lekérése](get-all-of-a-customer-s-subscriptions.md)
 * [Az előfizetések listájának lekérése megrendelés alapján](get-a-list-of-subscriptions-by-order.md)
 
-Amikor létrehoznak egy Azure-Partnerközpont, egy megfelelő Azure-használati előfizetés is létrejön az Azure-ban. További Azure-használati előfizetéseket is létrehozhat ugyanabban az Azure-csomagban a Azure Portal Azure API-k használatával. Az Azure-csomaghoz társított összes Azure-használati előfizetés azonosítóit a következő cikk lépéseit követve szerezheti be: Azure-jogosultságok listájának le Partnerközpont [előfizetéshez](get-a-list-of-azure-entitlements-for-subscription.md)
+Amikor létrehoz egy Azure-Partnerközpont, egy megfelelő Azure-használati előfizetés is létrejön az Azure-ban. További Azure-használati előfizetéseket is létrehozhat ugyanabban az Azure-csomagban a Azure Portal Azure API-k használatával. Az Azure-csomaghoz társított összes Azure-használati előfizetés azonosítóit a következő cikk lépéseit követve szerezheti be: Azure-jogosultságok listájának le Partnerközpont [előfizetéshez](get-a-list-of-azure-entitlements-for-subscription.md)
 
 ## <a name="lifecycle-management"></a>Életciklus-kezelés
 
 A meglévő Azure-csomagokat az Előfizetés felfüggesztése lépéseit követve [függesztheti fel.](suspend-a-subscription.md)
 
-*A meglévő Azure-csomagokat csak akkor függesztheti fel, ha már nem rendelkezik aktív használati eszközökkel, beleértve az Azure-használati előfizetéseket és az Azure Reservationst.*
+*Csak akkor függeszthet fel egy meglévő Azure-tervet, ha már nem rendelkezik hozzá aktív használati eszközökkel, beleértve az Azure-használati előfizetéseket és az Azure Reservationst.*
 
 Az Azure-használati előfizetések letiltására vonatkozó részletekért lásd: Azure API az előfizetés [életciklus-felügyeletében.](/rest/api/resources/subscriptions)
 
@@ -86,7 +86,7 @@ Nem hozhat létre Azure-csomagot Microsoft Azure- (MS-AZR-0145P) előfizetéssel
 
 ## <a name="azure-spending"></a>Azure-költség
 
-Az Azure-kiadásokat [a](azure-spending.md) használati adatok összegzésének és részletes használati rekordjainak lekérdezésével követheti nyomon a következő módszerekkel:
+Az [Azure-kiadások](azure-spending.md) nyomon követéséhez lekérdezheti a használati adatok összegzését és a részletes használati adatokat az alábbi módszerekkel:
 
 * [A partner használati összegzésének lekérése](get-a-partner-usage-summary.md)
 * [Egy partner összes ügyfélhasználati rekordjának lekérése](get-a-customer-s-usage-records.md)
