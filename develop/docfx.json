@@ -31,13 +31,6 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
-      "bilingual_type": "hover over",
-      "disable_contribution_on_translation_quality": [
-        "MT",
-        "MTE75",
-        "MTE95",
-        "Blank"
-      ],
       "uhfHeaderId": "MSDocsHeader-Partner-Center",
       "titleSuffix": "Partner Center app developer",
       "breadcrumb_path": "/partner-center/develop/breadcrumb/toc.json",
@@ -51,13 +44,24 @@
       "ms.topic": "article",
       "ms.service": "partner-dashboard",
       "ms.subservice": "partnercenter-sdk",
-      "searchScope": [ "Partner Center", "Partner Center developer resources" ],
+      "recommendations": true,
+      "searchScope": [
+        "Partner Center",
+        "Partner Center developer resources"
+      ],
       "_op_documentIdPathDepotMapping": {
         "./": {
-          "depot_name": "MSDN.partner-center-sdk", 
+          "depot_name": "MSDN.partner-center-sdk",
           "folder_relative_path_in_docset": "./"
         }
-      }
+      },
+      "disable_contribution_on_translation_quality": [
+        "MT",
+        "MTE75",
+        "MTE95",
+        "Blank"
+      ],
+      "bilingual_type": "hover over"
     },
     "fileMetadata": {},
     "template": [],
