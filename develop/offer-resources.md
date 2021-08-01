@@ -4,12 +4,12 @@ description: Egy, a viszonteladói katalógusban felsorolt terméket ismertet, a
 ms.date: 03/15/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 704e5580f2cdf84fc82b627e3b2ca165b81a3af5
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 9a7a0dd2dccc59536797c3ce533d9d8829a04f96
+ms.sourcegitcommit: 59950cf131440786779c8926be518c2dc4bc4030
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111548107"
+ms.lasthandoff: 07/31/2021
+ms.locfileid: "115009222"
 ---
 # <a name="offer-resources"></a>Erőforrások ajánlata
 
@@ -19,7 +19,7 @@ Egy, a viszonteladói katalógusban felsorolt terméket ismertet, amely az ügyf
 
 ## <a name="offer"></a>Ajánlat
 
-| Tulajdonság                    | Típus                      | Leírás                                                                                                                                                                |
+| Tulajdonság                    | Típus                      | Description                                                                                                                                                                |
 |-----------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | id                          | sztring                    | Az ajánlat azonosítója.                                                                                           |
 | name                        | sztring                    | Az ajánlat neve.                                                                                                 |
@@ -35,7 +35,7 @@ Egy, a viszonteladói katalógusban felsorolt terméket ismertet, amely az ügyf
 | korlát                       | int                       | Az ajánlathoz megvásárolható előfizetések száma a limitUnitOfMeasure alapján.                |
 | prerequisiteOffers          | sztring                    | Az előfeltételként szükséges ajánlatok.                                                                                        |
 | isAddOn (IsAddOn)                     | boolean                   | Egy érték, amely azt jelzi, hogy ez a példány bővítmény-e.                                                           |
-| hasAddOns (hasAddOns)                   | boolean                   | Egy érték, amely jelzi, hogy az ajánlat rendelkezik-e bővítményekkel.                                                           |
+| hasAddOns (HasAddOns)                   | boolean                   | Egy érték, amely jelzi, hogy az ajánlat rendelkezik-e bővítményekkel.                                                           |
 | isAvailableForPurchase      | boolean                   | Egy érték, amely jelzi, hogy ez a példány megvásárolható-e.                                             |
 | számlázás                     | sztring                    | Megadja a tételvásárlás számlázási típusát: "nincs", "használat" vagy "licenc".                           |
 | supportedBillingCycles      | sztringek tömbje          | Az ajánlat által támogatott számlázási ciklusokat jelzi. A támogatott értékek a [BillingCycleType](product-resources.md#billingcycletype) típusban található tagnevek   |
@@ -45,17 +45,18 @@ Egy, a viszonteladói katalógusban felsorolt terméket ismertet, amely az ügyf
 | resleleQualifications      | sztringek tömbje          | Az ügyfél által az adott ügyfél számára az ajánlat megvásárlásához szükséges minősítések.     |
 | resellerQualifications      | sztringek tömbje          | A partner által az ajánlat ügyfél számára való megvásárlásához szükséges minősítések.                       |
 | salesGroupId (értékesítési csoportazonosító)                | sztring                    | Egy sztring, amely az ajánlatokat külön rendelésekbe csoportosítja.                                                             |
-| isTrial (isTrial)                     | boolean                   | Egy érték, amely jelzi, hogy ez próbaverziós ajánlat-e.                                                               |
+| isTrial (isTrial)                     | boolean                   | Egy érték, amely azt jelzi, hogy ez próbaverziós ajánlat-e.                                                               |
 | product                     | [OfferProduct (Ajánlattermék)](#offerproduct)           | Lekérte az ajánlat termékét.                                                                           |
 | unitType (egységtípus)                    | sztring                    | Az egység típusa.                                                                                      |
 | Linkek                       | [OfferLinks (Ajánlatkapcsolatok)](#offerlinks)               | Az ajánlat "További információ" hivatkozása.                                                                    |
 | Attribútumok                  | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | Az ajánlatnak megfelelő metaadat-attribútumok.                         |
+| AttestationProperties (Igazolásitulajdonságok)       | [AttestationProperties (Igazolásitulajdonságok)](#attestationproperties) | Egy termékváltozat igazolási tulajdonságai.                   |
 
 ## <a name="offercategory"></a>OfferCategory (Ajánlatkategória)
 
 Egy ajánlat kategorizálását ismerteti. Ez magában foglalja az ajánlatkategória rangsorolását vagy prioritását az ugyanabban a termékvonalon található többi termékhez képest.
 
-| Tulajdonság   | Típus                                                           | Leírás                                                                                                                                                                |
+| Tulajdonság   | Típus                                                           | Description                                                                                                                                                                |
 |------------|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | id         | sztring                                                         | A kategóriaazonosító.                                                                                                                                                   |
 | name       | sztring                                                         | A kategória neve.                                                                                                                                                         |
@@ -69,7 +70,7 @@ Egy ajánlat kategorizálását ismerteti. Ez magában foglalja az ajánlatkateg
 
 Hivatkozásokat tartalmaz az ajánlattal kapcsolatos további információkért.
 
-| Tulajdonság  | Típus | Leírás                 |
+| Tulajdonság  | Típus | Description                 |
 |-----------|------|-----------------------------|
 | learnMore | Hivatkozás | A "További információ" hivatkozás.      |
 | Önálló      | Hivatkozás | Az ön-URI                |
@@ -80,8 +81,18 @@ Hivatkozásokat tartalmaz az ajánlattal kapcsolatos további információkért.
 
 Olyan termék vagy szolgáltatás, amely több ajánlattal is társítva lehet, különböző funkciókkal és különböző ügyfél-igényekkel.
 
-| Tulajdonság | Típus   | Leírás              |
+| Tulajdonság | Típus   | Description              |
 |----------|--------|--------------------------|
 | Id       | sztring | A kategóriaazonosító. |
 | Name     | sztring | A kategória neve.       |
 | Unit (Egység)     | sztring | A termékegység.        |
+
+## <a name="attestationproperties"></a>AttestationProperties (Igazolásitulajdonságok)
+
+Egy igazolástípust képvisel, és ha szükséges a vásárláshoz.
+
+| Tulajdonság              | Típus                                        | Description                                                                         |
+|-----------------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| attestationType (igazolástípus)              | sztring                                      | Az igazolás típusát jelzi. A Windows 365 esetén az érték Windows365. Windows 365-ös igazolási szöveg: "Megértettem, hogy a Windows 365 Business with Windows Hybrid Benefitet használó minden személynek az Windows 10/11 Pro érvényes példányával is telepítenie kell az elsődleges munkahelyi eszközére." |
+| enforceAttestation           | boolean                                      | Azt jelzi, hogy a vásárláshoz szükség van-e igazolásra.           |
+

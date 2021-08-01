@@ -1,31 +1,31 @@
 ---
 title: Ügyfélrendelés létrehozása
-description: Megtudhatja, hogyan hozhat létre rendelést Partnerközpont API-k használatával egy ügyfél számára. A cikk előfeltételeket, lépéseket és példákat tartalmaz.
+description: Megtudhatja, hogyan hozhat létre rendelést Partnerközpont API-k használatával az ügyfelek számára. A cikk előfeltételeket, lépéseket és példákat tartalmaz.
 ms.date: 07/12/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: c3a86a99f43bdeec5e4c560ab59e1924b76c0636
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: a2a980634e3887780c9d6dbd4fa3271956978884
+ms.sourcegitcommit: 59950cf131440786779c8926be518c2dc4bc4030
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973544"
+ms.lasthandoff: 07/31/2021
+ms.locfileid: "115009143"
 ---
 # <a name="create-an-order-for-a-customer-using-partner-center-apis"></a>Rendelés létrehozása egy ügyfél számára a Partnerközpont API-k használatával
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont a Microsoft Cloud for US Government
 
-Az **Azure-beli fenntartott VM-példányok termékeire vonatkozó rendelés** létrehozása csak a *következőkre* vonatkozik:
+Az **Azure-beli fenntartott VM-példány termékeire vonatkozó rendelés** létrehozása csak a *következőkre* vonatkozik:
 
 - Partnerközpont
 
-A jelenleg értékesíthető információkért lásd a partneri ajánlatokat a [Felhőszolgáltató programjában.](/partner-center/csp-offers)
+A jelenleg értékesíthető adatokkal kapcsolatos információkért lásd a partneri [ajánlatokat a Felhőszolgáltató programjában.](/partner-center/csp-offers)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy ajánlatazonosító.
 
@@ -35,9 +35,9 @@ Rendelés létrehozása egy ügyfél számára:
 
 1. Példányositsa az [**Order**](order-resources.md) objektumot, és állítsa a **ReferenceCustomerID** tulajdonságot az ügyfélazonosítóra az ügyfél rögzítéséhez.
 
-2. Hozzon létre egy [**listát az OrderLineItem**](order-resources.md#orderlineitem) objektumokból, és rendelje hozzá a listát a rendelés **LineItems tulajdonságához.** Minden rendeléssorelem egy adott ajánlat vásárlási adatait tartalmazza. Legalább egy megrendeléssor-elemnek kell lennie.
+2. Hozza létre az [**OrderLineItem**](order-resources.md#orderlineitem) objektumok listáját, és rendelje hozzá a listát a rendelés **LineItems (Soritemek) tulajdonságához.** Minden rendeléssorelem egy adott ajánlat vásárlási adatait tartalmazza. Legalább egy megrendeléssor-elemnek kell lennie.
 
-3. Szerezzen be egy interfészt a műveletek megrendelésére. Először hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután olvassa be az interfészt az [**Orders tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders)
+3. Szerezzen be egy interfészt a rendelési műveletekhez. Először hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Ezután olvassa be az interfészt az [**Orders (Megrendelések) tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders)
 
 4. Hívja meg [**a Create**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.create) vagy [**CreateAsync**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.createasync) metódust, és adja át az [**Order objektumot.**](order-resources.md)
 
@@ -69,11 +69,11 @@ var order = new Order()
 var createdOrder = partnerOperations.Customers.ById(customerId).Orders.Create(order);
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** CreateOrder.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **osztály:** CreateOrder.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                            |
 |----------|----------------------------------------------------------------------------------------|
@@ -81,11 +81,11 @@ var createdOrder = partnerOperations.Customers.ById(customerId).Orders.Create(or
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-Az ügyfél azonosításához használja a következő path paramétert.
+Az ügyfél azonosításához használja a következő elérésiút-paramétert.
 
 | Név        | Típus   | Kötelező | Leírás                                                |
 |-------------|--------|----------|------------------------------------------------------------|
-| ügyfél-azonosító | sztring | Igen      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet. |
+| ügyfél-azonosító | sztring | Yes      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -101,13 +101,13 @@ Ez a táblázat a kérelem törzsében található [Order (Rendelés)](order-res
 |----------------------|-----------------------------|---------------------------------|-------------------------------------------------------------------------------|
 | id                   | sztring                      | No                              | A rendelés sikeres létrehozása után megadott rendelésazonosító.   |
 | referenceCustomerId  | sztring                      | No                              | Az ügyfél azonosítója. |
-| billingCycle (számlázási ciklus)         | sztring                      | No                              | Azt jelzi, hogy milyen gyakorisággal számlázták a partnert a rendelésért. A támogatott értékek a [BillingCycleType](product-resources.md#billingcycletype)típusban található tagnevek. Az alapértelmezett érték a "Havi" vagy a "OneTime" a rendelés létrehozásakor. Ez a mező a rendelés sikeres létrehozásakor lesz alkalmazva. |
-| lineItems (sorsorok)            | [OrderLineItem-erőforrások tömbje](order-resources.md#orderlineitem) | Igen      | Az ügyfél által megvásárolt ajánlatok elemi listája, beleértve a mennyiséget is.        |
+| billingCycle         | sztring                      | No                              | Azt jelzi, hogy milyen gyakorisággal számlázták a partnert a rendelésért. A támogatott értékek a [BillingCycleType](product-resources.md#billingcycletype)típusban található tagnevek. Az alapértelmezett érték a "Havi" vagy a "OneTime" a rendelés létrehozásakor. Ez a mező a rendelés sikeres létrehozásakor lesz alkalmazva. |
+| lineItems (sorsorok)            | [OrderLineItem erőforrások tömbje](order-resources.md#orderlineitem) | Yes      | Az ügyfél által megvásárolt ajánlatok elemi listája a mennyiséggel együtt.        |
 | currencyCode         | sztring                      | No                              | Csak olvasható. A rendelés leadáskor használt pénznem. A rendelés sikeres létrehozása után alkalmazva.           |
-| creationDate (Létrehozás dátuma)         | dátum/idő                    | Nem                              | Csak olvasható. A rendelés létrehozási dátuma, dátum-idő formátumban. A rendelés sikeres létrehozása után alkalmazva.                                   |
+| creationDate (Létrehozás dátuma)         | dátum/idő                    | No                              | Csak olvasható. A rendelés létrehozási dátuma, dátum-idő formátumban. A rendelés sikeres létrehozása után alkalmazva.                                   |
 | status               | sztring                      | No                              | Csak olvasható. A rendelés állapota.  A támogatott értékek az [OrderStatus](order-resources.md#orderstatus)oszlopban található tagnevek.        |
-| Linkek                | [OrderLinks (Megrendelési hivatkozás)](utility-resources.md#resourcelinks)              | Nem                              | Az Order (Rendelés) erőforrás-hivatkozások. |
-| Attribútumok           | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | Nem                              | Az Order attribútumnak megfelelő metaadat-attribútumok. |
+| Linkek                | [OrderLinks](utility-resources.md#resourcelinks)              | No                              | Az Order (Rendelés) erőforrás-hivatkozások. |
+| Attribútumok           | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | No                              | Az Order attribútumnak megfelelő metaadat-attribútumok. |
 
 #### <a name="orderlineitem"></a>OrderLineItem (Megrendelési vonal)
 
@@ -118,17 +118,18 @@ Ez a táblázat a kérelem törzsében található [OrderLineItem](order-resourc
 
 | Név                 | Típus   | Kötelező | Leírás                                                                                                                                                                                                                                |
 |----------------------|--------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| lineItemNumber (sor száma)       | int    | Igen      | A gyűjtemény minden soreleme egyedi sorszámot kap, amely 0-tól count-1-ig számol.                                                                                                                                                 |
-| offerId (ajánlatazonosító)              | sztring | Igen      | Az ajánlat azonosítója.                                                                                                                                                                                                                      |
+| lineItemNumber (sor száma)       | int    | Yes      | A gyűjtemény minden soreleme egyedi sorszámot kap, amely 0-tól count-1-ig számol.                                                                                                                                                 |
+| offerId (ajánlatazonosító)              | sztring | Yes      | Az ajánlat azonosítója.                                                                                                                                                                                                                      |
 | subscriptionId       | sztring | No       | Az előfizetés azonosítója.                                                                                                                                                                                                               |
 | parentSubscriptionId (parentSubscriptionId) | sztring | No       | Választható. A szülő-előfizetés azonosítója egy bővítményajánlatban. Csak a PATCH-re vonatkozik.                                                                                                                                                     |
 | friendlyName (rövid név)         | sztring | No       | Választható. A partner által meghatározott előfizetés rövid neve a egyértelműséghez.                                                                                                                                              |
-| quantity             | int    | Igen      | A licencalapú előfizetések licenceinek száma.                                                                                                                                                                                   |
+| quantity             | int    | Yes      | A licencalapú előfizetések licenceinek száma.                                                                                                                                                                                   |
 | partnerIdOnRecord    | sztring | No       | Ha egy közvetett szolgáltató egy közvetett viszonteladó nevében ad ki rendelést, akkor ezt a mezőt csak a közvetett viszonteladó MPN-azonosítójával **töltse** fel (soha ne a közvetett szolgáltató azonosítójával). Ez biztosítja az ösztönzők megfelelő elszámolását. |
-| provisioningContext  | Szótár<sztring, sztring>                | Nem       |  A katalógus egyes elemeinek kiépítéséhez szükséges információk. A termékváltozat provisioningVariables tulajdonsága jelzi, hogy mely tulajdonságok szükségesek a katalógus adott elemeihez.                  |
-| Linkek                | [OrderLineItemLinks](order-resources.md#orderlineitemlinks) | Nem       |  Csak olvasható. Az Order sorelemnek megfelelő erőforrás-hivatkozások.  |
-| Attribútumok           | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | Nem       | Az OrderLineItem elemnek megfelelő metaadat-attribútumok. |
-| renewsTo             | Objektumok tömbje                          | Nem    |A [RenewsTo erőforrások tömbje.](order-resources.md#renewsto)                                                                            |
+| provisioningContext  | Szótár<sztring, sztring>                | No       |  A katalógus egyes elemeinek kiépítéséhez szükséges információk. A termékváltozat provisioningVariables tulajdonsága jelzi, hogy mely tulajdonságok szükségesek a katalógus adott elemeihez.                  |
+| Linkek                | [OrderLineItemLinks](order-resources.md#orderlineitemlinks) | No       |  Csak olvasható. Az Order sorelemnek megfelelő erőforrás-hivatkozások.  |
+| Attribútumok           | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes) | No       | Az OrderLineItem elemnek megfelelő metaadat-attribútumok. |
+| renewsTo             | Objektumok tömbje                          | No    |A [RenewsTo erőforrások tömbje.](order-resources.md#renewsto)                                                                            |
+| AttestationAccepted             | logikai                 | No   |  Az ajánlatra vagy termékváltozatra vonatkozó feltételeket jelzi. Csak olyan ajánlatok vagy termékváltozatok esetén szükséges, ahol a SkuAttestationProperties vagy az OfferAttestationProperties enforceAttestation true (Igaz) érték.          |
 
 ##### <a name="renewsto"></a>RenewsTo
 

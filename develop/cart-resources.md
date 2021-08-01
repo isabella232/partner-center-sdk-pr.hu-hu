@@ -4,12 +4,12 @@ description: A partnerek akkor rendelnek a kosárba, ha egy ügyfél egy ajánla
 ms.date: 08/26/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 08085dde1b43f20b6f6bf707120dd87c48816aba
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: ebe6e628d5bb3b66186d5c4f428f69e46415892b
+ms.sourcegitcommit: 59950cf131440786779c8926be518c2dc4bc4030
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111974148"
+ms.lasthandoff: 07/31/2021
+ms.locfileid: "115009144"
 ---
 # <a name="cart-resources"></a>Kocsierőforrások
 
@@ -21,12 +21,12 @@ A partner akkor ad le rendelést, ha egy ügyfél egy ajánlatlistából szeretn
 
 Egy kosarat ír le.
 
-| Tulajdonság              | Típus             | Leírás                                                                                            |
+| Tulajdonság              | Típus             | Description                                                                                            |
 |-----------------------|------------------|--------------------------------------------------------------------------------------------------------|
 | id                    | sztring           | A kosár sikeres létrehozása után megadott bevásárlókocsi-azonosító.                               |
 | creationTimeStamp     | DateTime         | A kosár létrehozási dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva.      |
 | lastModifiedTimeStamp | DateTime         | A kosár legutóbbi frissítésének dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva. |
-| expirationTimeStamp (lejárat ideje)   | DateTime         | A kosár lejáratának dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva.          |
+| expirationTimeStamp (lejárat/időstamp)   | DateTime         | A kosár lejáratának dátuma, dátum és idő formátumban. A kosár sikeres létrehozása után alkalmazva.          |
 | lastModifiedUser      | sztring           | Az a felhasználó, aki utoljára frissítette a kosárat. A kosár sikeres létrehozása után alkalmazva.                          |
 | lineItems (sorsorok)             | Objektumok tömbje | [CartLineItem-erőforrások tömbje.](#cartlineitem)                                                   |
 | status                | sztring           | A kosár állapota. Lehetséges értékek: "Aktív" (frissíthető/elküldhető) és "Megrendelve" (már elküldve). |
@@ -35,7 +35,7 @@ Egy kosarat ír le.
 
 Egy kosárban található elemet képvisel.
 
-| Tulajdonság             | Típus                             | Leírás                                                                                                                                           |
+| Tulajdonság             | Típus                             | Description                                                                                                                                           |
 |----------------------|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | id                   | sztring                           | A kosársorelem egyedi azonosítója. A kosár sikeres létrehozása után alkalmazva.                                                                   |
 | catalogItemId (katalógusazonosító)        | sztring                           | A katalóguselem azonosítója.                                                                                                                          |
@@ -46,10 +46,11 @@ Egy kosárban található elemet képvisel.
 | termDuration (kifejezés-lekértség)         | sztring                           | A kifejezés időtartamának ISO 8601-es ábrázolása. A jelenleg támogatott értékek: P1M (1 hónap), P1Y (1 év) és P3Y (3 év).                                |
 | Résztvevők         | Objektumsring-párok listája      | PartnerAzonosító gyűjtemény a vásárláskor rekordban (MPN-azonosító).                                                                                          |
 | provisioningContext  | Dictionary<string, string>       | A megvásárolt elem kiépítésekor használt további környezet. Egy adott elemhez szükséges értékek meghatározásához tekintse meg a termékváltozat provisioningVariables tulajdonságát. |
-| orderGroup           | sztring                           | Egy csoport, amely jelzi, hogy mely elemek lesznek együtt elküldve ugyanabban a sorrendben.                                                                          |
-| addonItems (bővítmények)           | **CartLineItem-objektumok** listája | Kosársorelemek gyűjteménye bővítményekhez. Ezeket az elemeket az alap előfizetéshez vásároljuk meg, amely a kosársori tétel vásárlását jelenti. |
+| orderGroup           | sztring                           | Egy csoport, amely jelzi, hogy mely elemek együtt, ugyanabban a sorrendben elküldve.                                                                          |
+| addonItems (bővítmények)           | **CartLineItem-objektumok** listája | Kosaras sorelemek gyűjteménye bővítményekhez. Ezeket az elemeket az alap előfizetéshez vásároljuk meg, amely a kosársori tétel vásárlásának eredménye. |
 | error                | Objektum                           | A kosár létrehozása után lesz alkalmazva hiba esetén.                                                                                                    |
 | renewsTo             | Objektumok tömbje                 | A [RenewsTo erőforrások tömbje.](#renewsto)                                                                            |
+| AttestationAccepted (AttestationAccepted)             | logikai                 | Az ajánlati vagy termékváltozat-feltételekre vonatkozó szerződést jelzi. Csak olyan ajánlatokhoz vagy termékváltozatokhoz szükséges, ahol a SkuAttestationProperties vagy az OfferAttestationProperties enforceAttestation true (Igaz) érték.                                                                            |
 
 ## <a name="renewsto"></a>RenewsTo
 
@@ -57,35 +58,56 @@ Egy kosársorelemben található elemet képvisel.
 
 | Tulajdonság              | Típus             | Kötelező        | Leírás |
 |-----------------------|------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------|
-| termDuration (kifejezés-lekértség)          | sztring           | No              | A megújítási időszak időtartamának ISO 8601-es ábrázolása. A jelenleg támogatott értékek a **P1M (1** hónap) és a **P1Y (1** év). |
+| termDuration (kifejezés-lekértség)          | sztring           | No              | A megújítási időtartam ISO 8601-es ábrázolása. A jelenleg támogatott értékek a **P1M (1** hónap) és a **P1Y (1** év). |
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 ## <a name="carterror"></a>CartError
 
-A kosár létrehozása után észlelt hibát jelöli.
+Egy kosár létrehozása után jelentkező hibát jelez.
 
-| Tulajdonság         | Típus                                   | Leírás                                                                                   |
+| Tulajdonság         | Típus                                   | Description                                                                                   |
 |------------------|----------------------------------------|-----------------------------------------------------------------------------------------------|
-| errorCode        | [Partnerközpont hibakódok](error-codes.md) | A kosárhiba típusa.                                                                       |
+| errorCode        | [CareErrorCode](#carterrorcode) | A kosárhiba típusa.                                                                       |
 | errorDescription (hibaleíró) | sztring                                 | A hiba leírása, beleértve a támogatott értékekkel, alapértelmezett értékekkel vagy korlátokkal kapcsolatos megjegyzéseket. |
+
+
+## <a name="carterrorcode"></a>CartErrorCode
+
+A kosárhibák típusai.
+
+| Name                             | ErrorCode   | Description
+|----------------------------------|-------------|-----------------------------------------------------------------------------------------------|
+| CurrencyIsNotSupported           | 10000   | A pénznem nem támogatott az adott piacon  |
+| CatalogItemIdIsNotValid (CatalogItemIdIsNotValid)          | 10001   | A katalóguselem azonosítója érvénytelen  |
+| QuotaNotAvailable (Kvóta nem érhető el)                | 10002   | Nem áll rendelkezésre elég kvóta  |
+| InventoryNotAvailable (Leltár nem érhető el)            | 10003   | Az Inventory nem érhető el a kiválasztott ajánlathoz  |
+| ParticipantsIsNotSupportedForPartner  | 10004   | A résztvevők beállítása nem támogatott a Partnerhez  |
+| UnableToProcessCartLineItem      | 10006   | A kocsisorelem feldolgozása nem sikerült.  |
+| SubscriptionIsNotValid (SubscriptionIsNotValid)           | 10007   | Az előfizetés érvénytelen.  |
+| SubscriptionIsNotEnabledForRI    | 10008   | Az előfizetés nem engedélyezett a RI-vásárláshoz.  |
+| SandboxLimitExceeded             | 10009   | Túllépte a védőfal korlátját.  |
+| InvalidInput (Érvénytelen átviteli sebesség)                     | 10010   | Az általános bemenet érvénytelen.  |
+| SubscriptionNotRegistered        | 10011   | Az előfizetés érvénytelen.  |
+| AttestationNotAccepted           | 10012   | Az igazolás nem lett elfogadva.  |
+| Ismeretlen                          | 0   | Alapértelmezett érték   |
 
 ## <a name="cartcheckoutresult"></a>CartCheckoutResult
 
-A kosárból való kijelentkezés eredményét jelöli.
+A kosárból való ki- és kijelentkezés eredményét jelöli.
 
-| Tulajdonság    | Típus                                              | Leírás                     |
+| Tulajdonság    | Típus                                              | Description                     |
 |-------------|---------------------------------------------------|---------------------------------|
 | rendelések      | Az Order [objektumok](order-resources.md#order) listája.         | A rendelések gyűjteménye.       |
-| orderErrors (orderErrors) | Az [OrderError objektumok](#ordererror) listája. | A rendelési hibák gyűjteménye. |
+| orderErrors | Az [OrderError objektumok](#ordererror) listája. | A rendelési hibák gyűjteménye. |
 
-## <a name="ordererror"></a>OrderError (Rendelési rendelés)
+## <a name="ordererror"></a>OrderError
 
 Olyan hibát jelez, amely a kosárból való ki- és kijelentkezés során fordul elő egy rendelés létrehozásakor.
 
-| Tulajdonság     | Típus   | Leírás                                     |
+| Tulajdonság     | Típus   | Description                                     |
 |--------------|--------|-------------------------------------------------|
 | orderGroupId (rendeléscsoport-azonosító) | sztring | A rendelési csoport azonosítója a hibával együtt. |
 | code         | int    | A hibakód.                                 |
