@@ -1,15 +1,15 @@
 ---
 title: Partnerközpont – hitelesítés
-description: Partnerközpont Azure AD-t használ a hitelesítéshez, a Partnerközpont API-khoz pedig megfelelően kell konfigurálnia a hitelesítési beállításokat.
+description: Partnerközpont Azure AD-t használ a hitelesítéshez, az Partnerközpont API-khoz pedig megfelelően kell konfigurálnia a hitelesítési beállításokat.
 ms.date: 11/13/2019
 ms.service: partner-dashboard
-ms.subservice: partnercenter-csp
-ms.openlocfilehash: e54feba7ea727bb7f7eff8de76dcdf28c8a453ee
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.subservice: partnercenter-sdk
+ms.openlocfilehash: 75d60ca983cd5b8fe53134ec7481319b153e128a
+ms.sourcegitcommit: 07b9a11f5c615ed1e716081392032cea2124bd98
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111548073"
+ms.lasthandoff: 08/04/2021
+ms.locfileid: "115104193"
 ---
 # <a name="partner-center-authentication"></a>Partnerközpont – hitelesítés
 
@@ -19,21 +19,21 @@ A Partnerközpont az Azure Active Directoryt használja a hitelesítéshez. Amik
 
 - Többtényezős hitelesítés használata a Partnerközpont API alkalmazás- és felhasználóhitelesítéssel való elérésekor. További információ erről a változásról: [Biztonságos alkalmazásmodell engedélyezése.](enable-secure-app-model.md)
 
-- A Partnerközpont API nem támogatja az alkalmazások hitelesítését. Bizonyos esetekben alkalmazás- és felhasználóhitelesítést kell használnia. Az egyes *cikk Előfeltételek* fejléce alatt találja a dokumentációt, [](scenarios.md)amely azt jelzi, hogy a rendszer csak alkalmazás-, alkalmazás- és felhasználóhitelesítést, vagy mindkettőt támogatja.
+- A Partnerközpont API nem támogatja az alkalmazások hitelesítését. Bizonyos esetekben alkalmazás- és felhasználóhitelesítést kell használnia. Az egyes *cikk Előfeltételek* fejléce alatt találja a dokumentációt, [](scenarios.md)amely azt jelzi, hogy csak az alkalmazás hitelesítése, az alkalmazás és a felhasználó hitelesítése támogatott-e, vagy mindkettő támogatott.
 
 ## <a name="initial-setup"></a>Kezdeti beállítás
 
-1. Először győződjön meg arról, hogy elsődleges Partnerközpont fiókkal és egy integrációs Partnerközpont fiókkal. További információ: [Set up Partnerközpont accounts for API access](set-up-api-access-in-partner-center.md)(Api Partnerközpont fiókok beállítása. Jegyezze fel az Azure AAD-alkalmazás regisztrációs azonosítóját és a titkos adatokat (csak az alkalmazásazonosításhoz szükséges titkos ügyféltitk szükséges) az elsődleges fiókhoz és az integrációs védőfali fiókhoz is.
+1. Először is győződjön meg arról, hogy elsődleges Partnerközpont fiókkal és integrációs Partnerközpont fiókkal. További információ: [Set up Partnerközpont accounts for API access (Api Partnerközpont fiókok beállítása.](set-up-api-access-in-partner-center.md) Jegyezze fel az Azure AAD-alkalmazás regisztrációs azonosítóját és titkos kulcsát (csak az alkalmazás azonosításához szükséges titkos ügyfélkét) az elsődleges fiókhoz és az integrációs védőfalhoz is.
 
-2. Jelentkezzen be az Azure AD-be a Azure Portal. A **más alkalmazások** engedélyei között állítsa be a **Windows Azure Active Directory** engedélyeinek delegált engedélyek beállítását, és válassza a **Hozzáférés** a címtárhoz bejelentkezett felhasználóként és a Bejelentkezés és felhasználói profil olvasása **lehetőséget.** 
+2. Jelentkezzen be az Azure AD-be a Azure Portal. A **más alkalmazásokra** vonatkozó engedélyekben  állítsa a Windows Azure Active Directory engedélyét Delegált engedélyekre, és jelölje be a **Hozzáférés** a címtárhoz bejelentkezett felhasználóként és a Bejelentkezés és felhasználói profil olvasása **lehetőséget.**
 
-3. A Azure Portal adja **hozzá az alkalmazást.** Keressen rá a "Microsoft Partnerközpont" kifejezésre, amely a Microsoft Partnerközpont alkalmazás. Állítsa a **Delegált engedélyeket** **Access (Hozzáférés) Partnerközpont API-hoz.** Ha microsoftos felhőszolgáltatáshoz Partnerközpont Microsoft Cloud Germany vagy Partnerközpont for Microsoft Cloud for US Government, ez a lépés kötelező. Ha globális példányt Partnerközpont használ, ez a lépés nem kötelező. A CSP-partnerek a Partnerközpont portál Alkalmazáskezelés funkcióját használva megkerülhetik ezt a lépést Partnerközpont globális példányra.
+3. A Azure Portal adja **hozzá az alkalmazást.** Keressen rá a "Microsoft Partnerközpont" kifejezésre, amely a Microsoft Partnerközpont alkalmazás. Állítsa a **Delegált engedélyeket** **hozzáférési Partnerközpont API-hoz.** Ha a Microsoft Cloud Germany Partnerközpont vagy Partnerközpont-Microsoft Cloud for US Government használ, ez a lépés kötelező. Ha globális példányt Partnerközpont használ, ez a lépés nem kötelező. A CSP-partnerek a Partnerközpont portál Alkalmazáskezelés funkcióját használva megkerülhetik ezt a lépést Partnerközpont globális példányon.
 
 ## <a name="app-only-authentication"></a>Csak alkalmazáshitelesítés
 
-Ha csak alkalmazásos hitelesítést szeretne használni az Partnerközpont REST API, a .NET API, a Java API vagy a PowerShell modul eléréséhez, akkor ezt az alábbi utasítások segítségével tegye meg.
+Ha csak alkalmazásos hitelesítést szeretne használni a Partnerközpont REST API, a .NET API, a Java API vagy a PowerShell modul eléréséhez, akkor ezt az alábbi utasítások segítségével tegye meg.
 
-## <a name="net-app-only-authentication"></a>.NET (csak alkalmazáshitelesítés)
+## <a name="net-app-only-authentication"></a>.NET (csak alkalmazáson belüli hitelesítés)
 
 ```csharp
 public static IAggregatePartner GetPartnerCenterTokenUsingAppCredentials()
@@ -49,7 +49,7 @@ public static IAggregatePartner GetPartnerCenterTokenUsingAppCredentials()
 }
 ```
 
-## <a name="java-app-only-authentication"></a>Java (csak alkalmazáshitelesítés)
+## <a name="java-app-only-authentication"></a>Java (csak alkalmazáson belüli hitelesítés)
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
@@ -66,7 +66,7 @@ public IAggregatePartner getAppPartnerOperations()
 }
 ```
 
-## <a name="rest-app-only-authentication"></a>REST (csak alkalmazáshitelesítés)
+## <a name="rest-app-only-authentication"></a>REST (csak alkalmazáson belüli hitelesítés)
 
 ### <a name="rest-request"></a>REST-kérés
 
@@ -95,26 +95,26 @@ Content-Length: 1406
 {"token_type":"Bearer","expires_in":"3600","ext_expires_in":"3600","expires_on":"1546469802","not_before":"1546465902","resource":"https://graph.windows.net","access_token":"value-has-been-removed"}
 ```
 
-## <a name="app--user-authentication"></a>Alkalmazás- és felhasználóhitelesítés
+## <a name="app--user-authentication"></a>Alkalmazás és felhasználó hitelesítése
 
-Korábban a [](https://tools.ietf.org/html/rfc6749#section-4.3) rendszer az erőforrás-tulajdonosi jelszó-hitelesítő adatokat megadó jogkivonat kérésére használta a Partnerközpont REST API, .NET API, Java API vagy PowerShell modullal való használatra. Ezzel a módszerrel hozzáférési jogkivonatot kértek a Azure Active Directory ügyfél-azonosító és felhasználói hitelesítő adatok használatával. Ez a megközelítés azonban nem fog működni, Partnerközpont többtényezős hitelesítést igényel, ha alkalmazás- és felhasználóhitelesítést használ. Ennek a követelménynek a teljesítéséhez a Microsoft biztonságos, skálázható keretrendszert vezetett be a Felhőszolgáltató-partnerek és a vezérlőpult-szállítók (CPV) többtényezős hitelesítéssel való hitelesítéséhez. Ez a keretrendszer az úgynevezett biztonságos alkalmazásmodell, és egy hozzájárulási folyamatból és egy hozzáférési jogkivonatra vonatkozó kérelemből áll, amely egy frissítési jogkivonatot használ.
+Korábban az [](https://tools.ietf.org/html/rfc6749#section-4.3) erőforrás-tulajdonosi hitelesítő adatok megadását használták arra, hogy hozzáférési jogkivonatot kérjenek a Partnerközpont REST API, .NET API, Java API vagy PowerShell modullal való használathoz. Ezzel a módszerrel hozzáférési jogkivonatot kért Azure Active Directory ügyfél-azonosító és felhasználói hitelesítő adatok használatával. Ez a megközelítés azonban nem fog működni, Partnerközpont többtényezős hitelesítést igényel az alkalmazás és a felhasználó hitelesítése során. Ennek a követelménynek a teljesítéséhez a Microsoft biztonságos, skálázható keretrendszert vezetett be a Felhőszolgáltató-partnerek és a vezérlőpult-szállítók (CPV) többtényezős hitelesítéssel való hitelesítéséhez. Ez a keretrendszer az úgynevezett biztonságos alkalmazásmodell, és egy hozzájárulási folyamatból és egy hozzáférési jogkivonat frissítési jogkivonattal való hozzáférési jogkivonatra vonatkozó kérésből áll.
 
-### <a name="partner-consent"></a>Partneri hozzájárulás
+### <a name="partner-consent"></a>Partneri jóváhagyás
 
-A partner hozzájárulási folyamata egy interaktív folyamat, amelyben a partner többtényezős hitelesítéssel hitelesít, hozzájárul az alkalmazáshoz, és egy frissítési jogkivonatot tárol egy biztonságos adattárban, például a Azure Key Vault. Javasoljuk, hogy ehhez a folyamathoz egy dedikált fiókot kell használni az integrációhoz.
+A partner hozzájárulási folyamata egy interaktív folyamat, amelyben a partner többtényezős hitelesítéssel hitelesít, elfogadja az alkalmazást, és egy frissítési jogkivonatot tárol egy biztonságos adattárban, például a Azure Key Vault. Javasoljuk, hogy ehhez a folyamathoz egy dedikált fiókot kell használni az integrációhoz.
 
 > [!IMPORTANT]
-> Engedélyezni kell a megfelelő többtényezős hitelesítési megoldást a partneri hozzájárulási folyamatban használt szolgáltatásfiókhoz. Ha nem, akkor az eredményül kapott frissítési jogkivonat nem fog megfelelni a biztonsági követelményeknek.
+> Engedélyezni kell a megfelelő többtényezős hitelesítési megoldást a partner-hozzájárulási folyamatban használt szolgáltatásfiókhoz. Ha nem, akkor az eredményül kapott frissítési jogkivonat nem fog megfelelni a biztonsági követelményeknek.
 
 ### <a name="samples-for-app--user-authentication"></a>Minták alkalmazás- és felhasználóhitelesítéshez
 
-A partneri hozzájárulási folyamat többféleképpen is elvégezhető. Az alábbi mintákat azért fejlesztettük ki, hogy segítsük a partnereket az egyes szükséges műveletek elvégzésében. Amikor a megfelelő megoldást implementálja a környezetében, fontos, hogy olyan megoldást fejlessze ki, amely megfelel a kódolási szabványoknak és a biztonsági szabályzatoknak.
+A partneri hozzájárulási folyamat többféleképpen is elvégezhető. A következő mintákat fejlesztettük ki, hogy segítsen a partnereknek megérteni az egyes szükséges műveletek elvégzésének mikéntját. Amikor a megfelelő megoldást implementálja a környezetében, fontos, hogy olyan megoldást fejlessze ki, amely megfelel a kódolási szabványoknak és a biztonsági szabályzatoknak.
 
-## <a name="net-appuser-authentication"></a>.NET (alkalmazás+felhasználóhitelesítés)
+## <a name="net-appuser-authentication"></a>.NET (alkalmazás+felhasználói hitelesítés)
 
-A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-DotNet-Samples/tree/master/secure-app-model/keyvault) mintaprojekt bemutatja, hogyan használhatja a ASP.NET használatával fejlesztett webhelyet a hozzájárulás rögzítéséhez, frissítési jogkivonat kéréséhez és biztonságos Azure Key Vault. A mintához szükséges előfeltételek létrehozásához hajtsa végre az alábbi lépéseket.
+A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-DotNet-Samples/tree/master/secure-app-model/keyvault) mintaprojekt bemutatja, hogyan használhatja a ASP.NET használatával fejlesztett webhelyet a hozzájárulás rögzítésére, frissítési jogkivonat kérésére és biztonságos tárolására a Azure Key Vault. A mintához szükséges előfeltételek létrehozásához hajtsa végre az alábbi lépéseket.
 
-1. Hozzon létre egy Azure Key Vault a Azure Portal vagy az alábbi PowerShell-parancsokkal. A parancs végrehajtása előtt mindenképpen módosítsa ennek megfelelően a paraméterértékeket. A tároló nevének egyedinek kell lennie.
+1. Hozza létre a Azure Key Vault egy példányát a Azure Portal vagy az alábbi PowerShell-parancsokkal. A parancs végrehajtása előtt ennek megfelelően módosítsa a paraméterértékeket. A tároló nevének egyedinek kell lennie.
 
     ```azurepowershell-interactive
     Login-AzureRmAccount
@@ -125,7 +125,7 @@ A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-DotNet
     New-AzureRmKeyVault -Name 'Contoso-Vault' -ResourceGroupName 'ContosoResourceGroup' -Location 'East US'
     ```
 
-    További információ az Azure Key Vault létrehozásáról: Rövid [útmutató:](/azure/key-vault/quick-create-portal) Titkos adat beállítása és lekérése az Azure Key Vault-ból a Azure Portal vagy rövid útmutató: Titkos adat beállítása és lekérése a Azure Key Vault-ről a [PowerShell](/azure/key-vault/quick-create-powershell)használatával. Ezután állítson be és lekér egy titkos adatokat.
+    További információ a Azure Key Vault létrehozásáról: Rövid [útmutató:](/azure/key-vault/quick-create-portal) Titkos adat beállítása és lekérése az Azure Key Vault-ból a Azure Portal vagy rövid útmutató: Titkos adat beállítása és lekérése a Azure Key Vault-ból [a PowerShell](/azure/key-vault/quick-create-powershell)használatával. Ezután állítson be és lekér egy titkos adatokat.
 
 2. Hozzon létre egy Azure AD-alkalmazást és egy kulcsot a Azure Portal vagy az alábbi parancsokkal.
 
@@ -143,7 +143,7 @@ A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-DotNet
 
     Jegyezze fel az alkalmazásazonosítót és a titkos értékeket, mert az alábbi lépésekben használni fogja őket.
 
-3. Adja meg az újonnan létrehozott Azure AD-alkalmazásnak a titkos kulcsok olvasási engedélyét a Azure Portal vagy az alábbi parancsokkal.
+3. Adja meg az újonnan létrehozott Azure AD-alkalmazásnak a titkos kulcsok olvasására vonatkozó engedélyeket a Azure Portal vagy az alábbi parancsokkal.
 
     ```azurepowershell-interactive
     $app = Get-AzureADApplication -Filter {AppId -eq 'ENTER-APP-ID-HERE'}
@@ -153,10 +153,10 @@ A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-DotNet
 
 4. Hozzon létre egy Azure AD-alkalmazást, amely a Partnerközpont. A lépés végrehajtásához hajtsa végre a következő műveleteket.
 
-    - Tallózással [keresse](https://partner.microsoft.com/pcv/apiintegration/appmanagement) meg az irányítópult alkalmazáskezelési Partnerközpont funkcióját
-    - Új *Azure AD-alkalmazás létrehozásához válassza* az Új webalkalmazás hozzáadása lehetőséget.
+    - Keresse meg [az](https://partner.microsoft.com/pcv/apiintegration/appmanagement) irányítópult Alkalmazáskezelés Partnerközpont funkcióját
+    - Új Azure *AD-alkalmazás létrehozásához válassza* az Új webalkalmazás hozzáadása lehetőséget.
 
-    Mindenképpen dokumentálja az *alkalmazásazonosító,* a  *Fiókazonosító** és a Kulcs értékét, mert az alábbi lépésekben használni fogja őket.
+    Mindenképpen dokumentálja az *alkalmazásazonosítót,* a  *fiókazonosítót** és a kulcsértékeket, mert az alábbi lépésekben használni fogja őket.
 
 5. Klónozza [a Partner-Center-DotNet-Samples](https://github.com/Microsoft/Partner-Center-DotNet-Samples) adattárat az Visual Studio paranccsal.
 
@@ -164,9 +164,9 @@ A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-DotNet
     git clone https://github.com/Microsoft/Partner-Center-DotNet-Samples.git
     ```
 
-6. Nyissa meg a könyvtárban található *PartnerConsent* `Partner-Center-DotNet-Samples\secure-app-model\keyvault` projektet.
+6. Nyissa meg a címtárban található *PartnerConsent* `Partner-Center-DotNet-Samples\secure-app-model\keyvault` projektet.
 
-7. Töltse ki az alkalmazásban található [ alkalmazásbeállításokatweb.config](https://github.com/Microsoft/Partner-Center-DotNet-Samples/blob/master/secure-app-model/keyvault/PartnerConsent/Web.config)
+7. Töltse ki az alkalmazásbeállításokat a [web.config](https://github.com/Microsoft/Partner-Center-DotNet-Samples/blob/master/secure-app-model/keyvault/PartnerConsent/Web.config)
 
     ```xml
     <!-- AppID that represents CSP application -->
@@ -195,15 +195,15 @@ A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-DotNet
     ```
 
     > [!IMPORTANT]
-    > A bizalmas adatokat, például az alkalmazás titkos adatait nem szabad konfigurációs fájlokban tárolni. Ez azért történt, mert ez egy mintaalkalmazás. Éles alkalmazása esetén határozottan javasoljuk, hogy tanúsítványalapú hitelesítést használjon. További információ: [Tanúsítvány hitelesítő adatai alkalmazáshitelesítéshez.]( /azure/active-directory/develop/active-directory-certificate-credentials)
+    > A bizalmas adatokat, például az alkalmazás titkos adatait nem szabad konfigurációs fájlokban tárolni. Ez azért történt, mert ez egy mintaalkalmazás. Éles alkalmazása esetén határozottan javasoljuk, hogy tanúsítványalapú hitelesítést használjon. További információ: [Tanúsítványhitelesítványok alkalmazáshitelesítéshez.]( /azure/active-directory/develop/active-directory-certificate-credentials)
 
 8. A mintaprojekt futtatásakor a rendszer kérni fogja a hitelesítést. A sikeres hitelesítést követően a rendszer hozzáférési jogkivonatot kér az Azure AD-től. Az Azure AD által visszaadott információ tartalmaz egy frissítési jogkivonatot, amely a szolgáltatás konfigurált példányában Azure Key Vault.
 
-## <a name="java-appuser-authentication"></a>Java (alkalmazás-+felhasználóhitelesítés)
+## <a name="java-appuser-authentication"></a>Java (alkalmazás+felhasználó hitelesítése)
 
-A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-Java-Samples/tree/master/secure-app-model/keyvault) mintaprojekt bemutatja, hogyan használhatja a JSP használatával fejlesztett webhelyet a hozzájárulás rögzítéséhez, frissítési jogkivonat kéréséhez és biztonságos tárolóhoz a Azure Key Vault. A mintához szükséges előfeltételek létrehozásához hajtsa végre az alábbi lépéseket.
+A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-Java-Samples/tree/master/secure-app-model/keyvault) mintaprojekt bemutatja, hogyan használható egy JSP-vel fejlesztett webhely a hozzájárulás rögzítéséhez, a frissítési jogkivonat kéréséhez és a biztonságos Azure Key Vault. A mintához szükséges előfeltételek létrehozásához hajtsa végre a következőket.
 
-1. Hozzon létre egy Azure Key Vault a Azure Portal vagy az alábbi PowerShell-parancsokkal. A parancs végrehajtása előtt mindenképpen módosítsa ennek megfelelően a paraméterértékeket. A tároló nevének egyedinek kell lennie.
+1. Hozza létre a Azure Key Vault egy példányát a Azure Portal vagy az alábbi PowerShell-parancsokkal. A parancs végrehajtása előtt ennek megfelelően módosítsa a paraméterértékeket. A tároló nevének egyedinek kell lennie.
 
     ```azurepowershell-interactive
     Login-AzureRmAccount
@@ -214,7 +214,7 @@ A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-Java-S
     New-AzureRmKeyVault -Name 'Contoso-Vault' -ResourceGroupName 'ContosoResourceGroup' -Location 'East US'
     ```
 
-    További információ az Azure Key Vault létrehozásáról: Rövid [útmutató:](/azure/key-vault/quick-create-portal) Titkos adat beállítása és lekérése az Azure Key Vault-ból a Azure Portal vagy rövid útmutató: Titkos adat beállítása és lekérése a Azure Key Vault-ről a [PowerShell](/azure/key-vault/quick-create-powershell)használatával.
+    További információ a Azure Key Vault létrehozásáról: Rövid [útmutató:](/azure/key-vault/quick-create-portal) Titkos adat beállítása és lekérése az Azure Key Vault-ból a Azure Portal vagy rövid útmutató: Titkos adat beállítása és lekérése a Azure Key Vault-ból [a PowerShell](/azure/key-vault/quick-create-powershell)használatával.
 
 2. Hozzon létre egy Azure AD-alkalmazást és egy kulcsot a Azure Portal vagy az alábbi parancsokkal.
 
@@ -232,7 +232,7 @@ A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-Java-S
 
     Mindenképpen dokumentálja az alkalmazásazonosítót és a titkos értékeket, mert az alábbi lépésekben használni fogja őket.
 
-3. Adja meg az újonnan létrehozott Azure AD-alkalmazásnak a titkos kulcsok olvasási engedélyét a Azure Portal vagy az alábbi parancsokkal.
+3. Adja meg az újonnan létrehozott Azure AD-alkalmazásnak a titkos kulcsok olvasására vonatkozó engedélyeket a Azure Portal vagy az alábbi parancsokkal.
 
     ```azurepowershell-interactive
     $app = Get-AzureADApplication -Filter {AppId -eq 'ENTER-APP-ID-HERE'}
@@ -240,12 +240,12 @@ A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-Java-S
     Set-AzureRmKeyVaultAccessPolicy -VaultName ContosoVault -ObjectId $app.ObjectId -PermissionsToSecrets get
     ```
 
-4. Hozzon létre egy Azure AD-alkalmazást, amely a Partnerközpont. A lépés végrehajtásához hajtsa végre a következőket.
+4. Hozzon létre egy Azure AD-alkalmazást, amely a Partnerközpont. A lépés végrehajtásához hajtsa végre a következőt.
 
-    - Tallózással [keresse](https://partner.microsoft.com/pcv/apiintegration/appmanagement) meg az irányítópult alkalmazáskezelési Partnerközpont funkcióját
-    - Új *Azure AD-alkalmazás létrehozásához válassza* az Új webalkalmazás hozzáadása lehetőséget.
+    - Keresse meg [az](https://partner.microsoft.com/pcv/apiintegration/appmanagement) irányítópult Alkalmazáskezelés Partnerközpont funkcióját
+    - Új Azure *AD-alkalmazás létrehozásához válassza* az Új webalkalmazás hozzáadása lehetőséget.
 
-    Mindenképpen dokumentálja az *alkalmazásazonosító,* a  *Fiókazonosító** és a Kulcs értékét, mert az alábbi lépésekben használni fogja őket.
+    Mindenképpen dokumentálja az *alkalmazásazonosítót,* a  *fiókazonosítót** és a kulcsértékeket, mert az alábbi lépésekben használni fogja őket.
 
 5. Klónozza [a Partner-Center-Java-Samples](https://github.com/Microsoft/Partner-Center-Java-Samples) adattárat a következő paranccsal
 
@@ -253,9 +253,9 @@ A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-Java-S
     git clone https://github.com/Microsoft/Partner-Center-Java-Samples.git
     ```
 
-6. Nyissa meg a könyvtárban található *PartnerConsent* `Partner-Center-Java-Samples\secure-app-model\keyvault` projektet.
+6. Nyissa meg a címtárban található *PartnerConsent* `Partner-Center-Java-Samples\secure-app-model\keyvault` projektet.
 
-7. Töltse ki az alkalmazásbeállításokat, amelyek a [web.xml](https://github.com/Microsoft/Partner-Center-Java-Samples/blob/master/secure-app-model/keyvault/partnerconsent/src/main/webapp/WEB-INF/web.xml) találhatók
+7. Töltse ki az alkalmazásbeállításokat, amelyek a [web.xml](https://github.com/Microsoft/Partner-Center-Java-Samples/blob/master/secure-app-model/keyvault/partnerconsent/src/main/webapp/WEB-INF/web.xml) fájlban találhatók
 
     ```xml
     <filter>
@@ -289,17 +289,17 @@ A [partneri hozzájárulási](https://github.com/Microsoft/Partner-Center-Java-S
     ```
 
     > [!IMPORTANT]
-    > A bizalmas adatokat, például az alkalmazás titkos adatait nem szabad konfigurációs fájlokban tárolni. Ez azért történt, mert ez egy mintaalkalmazás. Éles alkalmazása használata során erősen ajánlott tanúsítványalapú hitelesítést használni. További információ: [tanúsítványhitelesítés Key Vault.](https://github.com/Azure-Samples/key-vault-java-certificate-authentication)
+    > A bizalmas adatokat, például az alkalmazás titkos adatait nem szabad konfigurációs fájlokban tárolni. Ez azért történt, mert ez egy mintaalkalmazás. Éles alkalmazása használata során határozottan javasoljuk, hogy tanúsítványalapú hitelesítést használjon. További információ: [tanúsítványhitelesítés Key Vault.](https://github.com/Azure-Samples/key-vault-java-certificate-authentication)
 
 8. A mintaprojekt futtatásakor a rendszer kérni fogja a hitelesítést. A sikeres hitelesítést követően a rendszer hozzáférési jogkivonatot kér az Azure AD-től. Az Azure AD által visszaadott információ tartalmaz egy frissítési jogkivonatot, amely a szolgáltatás konfigurált példányában Azure Key Vault.
 
 ## <a name="cloud-solution-provider-authentication"></a>Felhőszolgáltató hitelesítés
 
-Felhőszolgáltató a partnerek a partneri hozzájárulási folyamat során kapott frissítési [jogkivonatot is](#partner-consent) használhatjak.
+Felhőszolgáltató a partnerek a partner-hozzájárulási folyamat során kapott frissítési [jogkivonatot is használhatjak.](#partner-consent)
 
 ### <a name="samples-for-cloud-solution-provider-authentication"></a>Minták Felhőszolgáltató hitelesítéshez
 
-Az alábbi mintákat azért fejlesztettük ki, hogy segítsük a partnereket az egyes szükséges műveletek elvégzésében. Amikor a megfelelő megoldást implementálja a környezetében, fontos, hogy olyan megoldást fejlessze ki, amely megfelel a kódolási szabványoknak és a biztonsági szabályzatoknak.
+A következő mintákat fejlesztettük ki, hogy segítsen a partnereknek megérteni az egyes szükséges műveletek elvégzésének mikéntját. Amikor a megfelelő megoldást implementálja a környezetében, fontos, hogy olyan megoldást fejlessze ki, amely megfelel a kódolási szabványoknak és a biztonsági szabályzatoknak.
 
 ## <a name="net-csp-authentication"></a>.NET (CSP-hitelesítés)
 
@@ -313,7 +313,7 @@ Az alábbi mintákat azért fejlesztettük ki, hogy segítsük a partnereket az 
 
 3. Nyissa meg `CSPApplication` a könyvtárban található `Partner-Center-DotNet-Samples\secure-app-model\keyvault` projektet.
 
-4. Frissítse a fájlban található [ alkalmazásbeállításokatApp.config](https://github.com/Microsoft/Partner-Center-DotNet-Samples/blob/master/secure-app-model/keyvault/CSPApplication/App.config) fájlt.
+4. Frissítse az alkalmazásbeállításokat a [App.config](https://github.com/Microsoft/Partner-Center-DotNet-Samples/blob/master/secure-app-model/keyvault/CSPApplication/App.config) fájlban.
 
     ```xml
     <!-- AppID that represents CSP application -->
@@ -345,7 +345,7 @@ Az alábbi mintákat azért fejlesztettük ki, hogy segítsük a partnereket az 
     string CustomerId = "<Customer tenant id>";
     ```
 
-6. A mintaprojekt futtatásakor az le tudja szerezni a partneri hozzájárulási folyamat során kapott frissítési jogkivonatot. Ezután egy hozzáférési jogkivonatot kér a Partnerközpont SDK partner nevében történő kommunikációhoz. Végül egy hozzáférési jogkivonatot kér, amely a microsoftos Graph a megadott ügyfél nevében.
+6. A mintaprojekt futtatásakor az le tudja szerezni a partneri hozzájárulási folyamat során kapott frissítési jogkivonatot. Ezután lekért egy hozzáférési jogkivonatot, amely Partnerközpont SDK partner nevében használja az adatbázist. Végül egy hozzáférési jogkivonatot kér a Microsoft Graph a megadott ügyfél nevében.
 
 ## <a name="java-csp-authentication"></a>Java (CSP-hitelesítés)
 
@@ -371,13 +371,13 @@ Az alábbi mintákat azért fejlesztettük ki, hogy segítsük a partnereket az 
     partnercenter.clientSecret=
     ```
 
-5. A mintaprojekt futtatásakor az le tudja szerezni a partneri hozzájárulási folyamat során kapott frissítési jogkivonatot. Ezután egy hozzáférési jogkivonatot kér a Partnerközpont SDK partner nevében történő kommunikációhoz.
+5. A mintaprojekt futtatásakor az le tudja szerezni a partneri hozzájárulási folyamat során kapott frissítési jogkivonatot. Ezután lekért egy hozzáférési jogkivonatot, amely Partnerközpont SDK partner nevében használja az adatbázist.
 
-6. Nem kötelező – a *RunAzureTask* és *a RunGraphTask* függvényhívások a Azure Resource Manager és a Microsoft Graph ügyfél nevében történő interakcióját szeretné látni.
+6. Nem kötelező – a *RunAzureTask* és *a RunGraphTask* függvényhívások értesítésének visszaírása, ha meg szeretné tudni, hogyan kommunikálhat az Azure Resource Manager és a Microsoft Graph az ügyfél nevében.
 
 ## <a name="control-panel-provider-authentication"></a>Vezérlőpult szolgáltató hitelesítése
 
-A vezérlőpult szállítóinak minden támogatott partnerrel el kell végezniük a [partneri hozzájárulási](#partner-consent) folyamatot. Ha ez befejeződött, a rendszer az ezzel a folyamattal megszerzett frissítési jogkivonattal fér hozzá a Partnerközpont REST API .NET API-hoz.
+A vezérlőpult szállítóinak minden támogatott partnerrel el kell végezniük a [partneri hozzájárulási](#partner-consent) folyamatot. Ha ez befejeződött, a rendszer a folyamat során megszerzett frissítési jogkivonattal fér hozzá a Partnerközpont REST API .NET API-hoz.
 
 ### <a name="samples-for-cloud-panel-provider-authentication"></a>Felhőpanel-szolgáltatói hitelesítés mintái
 
@@ -385,10 +385,10 @@ A következő mintákat azért fejlesztettük ki, hogy segítsük a vezérlőpul
 
 ## <a name="net-cpv-authentication"></a>.NET (CPV-hitelesítés)
 
-1. Dolgozzon ki és telepítsen egy folyamatot, amely Felhőszolgáltató a megfelelő hozzájárulás érdekében. További információért tekintse meg a [partneri jóváhagyással kapcsolatos példát.](#partner-consent)
+1. Fejlessze ki és telepítsen egy folyamatot, Felhőszolgáltató a megfelelő hozzájárulással. További információért tekintse meg a [partneri jóváhagyással kapcsolatos példát.](#partner-consent)
 
     > [!IMPORTANT]
-    > A Felhőszolgáltató hitelesítő adatait nem szabad tárolni. A partneri hozzájárulási folyamat során kapott frissítési jogkivonatot tárolni kell, és arra kell használni, hogy hozzáférési jogkivonatokat kérjen bármely Microsoft API-val való interakcióhoz.
+    > A Felhőszolgáltató hitelesítő adatait nem szabad tárolni. A partner-hozzájárulási folyamat során kapott frissítési jogkivonatot tárolni kell, és arra kell használni, hogy hozzáférési jogkivonatokat kérjen bármely Microsoft API-val való interakcióhoz.
 
 2. Klónozza [a Partner-Center-DotNet-Samples](https://github.com/Microsoft/Partner-Center-DotNet-Samples) adattárat az Visual Studio paranccsal
 
@@ -398,7 +398,7 @@ A következő mintákat azért fejlesztettük ki, hogy segítsük a vezérlőpul
 
 3. Nyissa meg `CPVApplication` a könyvtárban található `Partner-Center-DotNet-Samples\secure-app-model\keyvault` projektet.
 
-4. Frissítse a fájlban található [ alkalmazásbeállításokatApp.config](https://github.com/Microsoft/Partner-Center-DotNet-Samples/blob/master/secure-app-model/keyvault/CPVApplication/App.config) fájlt.
+4. Frissítse az alkalmazásbeállításokat a [App.config](https://github.com/Microsoft/Partner-Center-DotNet-Samples/blob/master/secure-app-model/keyvault/CPVApplication/App.config) fájlban.
 
     ```xml
     <!-- AppID that represents Control panel vendor application -->
@@ -431,7 +431,7 @@ A következő mintákat azért fejlesztettük ki, hogy segítsük a vezérlőpul
     string CustomerId = "<Customer tenant id>";
     ```
 
-6. A mintaprojekt futtatásakor a program le tudja szerezni a megadott partner frissítési jogkivonatát. Ezután hozzáférési jogkivonatot kér a Partnerközpont és az Azure AD-Graph eléréséhez a partner nevében. A következő feladat az engedélyengedélyek törlése és létrehozása az ügyfélbérlőben. Mivel a vezérlőpult szállítója és az ügyfél között nincs kapcsolat, ezeket az engedélyeket a Partnerközpont API-val kell hozzáadni. Az alábbi példa ezt mutatja be.
+6. A mintaprojekt futtatásakor a program le tudja szerezni a megadott partner frissítési jogkivonatát. Ezután egy hozzáférési jogkivonatot kér a Partnerközpont és az Azure AD-Graph eléréséhez a partner nevében. A következő feladat, amit végrehajt, az engedélyengedélyek törlése és létrehozása az ügyfélbérlőben. Mivel a vezérlőpult szállítója és az ügyfél között nincs kapcsolat, ezeket az engedélyeket a Partnerközpont API-val kell hozzáadni. Az alábbi példa bemutatja, hogyan valósíthatja meg ezt.
 
     ```csharp
     JObject contents = new JObject
@@ -465,14 +465,14 @@ A következő mintákat azért fejlesztettük ki, hogy segítsük a vezérlőpul
         contents.ToString());
     ```
 
-Az engedélyek létrejötte után a minta az Azure AD-Graph az ügyfél nevében hajt végre műveleteket.
+Az engedélyek létrejötte után a minta műveleteket hajt végre az Azure AD Graph az ügyfél nevében.
 
 ## <a name="java-cpv-authentication"></a>Java (CPV-hitelesítés)
 
-1. Dolgozzon ki és telepítsen egy folyamatot, amely Felhőszolgáltató a megfelelő hozzájárulás érdekében. További információért és egy példáért tekintse meg a [partneri jóváhagyást.](#partner-consent)
+1. Fejlessze ki és telepítsen egy folyamatot, Felhőszolgáltató a megfelelő hozzájárulással. További információért és egy példáért tekintse meg a [partneri jóváhagyást.](#partner-consent)
 
     > [!IMPORTANT]
-    > A Felhőszolgáltató hitelesítő adatait nem szabad tárolni. A partneri hozzájárulási folyamat során kapott frissítési jogkivonatot tárolni kell, és arra kell használni, hogy hozzáférési jogkivonatokat kérjen bármely Microsoft API-val való interakcióhoz.
+    > A Felhőszolgáltató hitelesítő adatait nem szabad tárolni. A partner-hozzájárulási folyamat során kapott frissítési jogkivonatot tárolni kell, és arra kell használni, hogy hozzáférési jogkivonatokat kérjen bármely Microsoft API-val való interakcióhoz.
 
 2. Klónozza [a Partner-Center-Java-Samples](https://github.com/Microsoft/Partner-Center-Java-Samples) adattárat a következő paranccsal
 
@@ -497,14 +497,14 @@ Az engedélyek létrejötte után a minta az Azure AD-Graph az ügyfél nevében
 
     A értékének `partnercenter.displayName` a Marketplace-alkalmazás megjelenített nevének kell lennie.
 
-5. Állítsa be a Megfelelő értékeket a [Program.java](https://github.com/Microsoft/Partner-Center-Java-Samples/blob/master/secure-app-model/keyvault/cpvsample/src/main/java/com/microsoft/store/samples/secureappmodel/cpvsample/Program.java) fájlban található **partnerId** és **customerId** változókhoz.
+5. Állítsa be a [Program.java](https://github.com/Microsoft/Partner-Center-Java-Samples/blob/master/secure-app-model/keyvault/cpvsample/src/main/java/com/microsoft/store/samples/secureappmodel/cpvsample/Program.java) fájlban található **partnerId** és **customerId** változók megfelelő értékeit.
 
     ```java
     partnerId = "SPECIFY-THE-PARTNER-TENANT-ID-HERE";
     customerId = "SPECIFY-THE-CUSTOMER-TENANT-ID-HERE";
     ```
 
-6. A mintaprojekt futtatásakor a program le tudja szerezni a megadott partner frissítési jogkivonatát. Ezután egy hozzáférési jogkivonatot kér a Partnerközpont eléréséhez a partner nevében. A következő feladat az engedélyengedélyek törlése és létrehozása az ügyfélbérlőben. Mivel a vezérlőpult szállítója és az ügyfél között nincs kapcsolat, ezeket az engedélyeket a Partnerközpont API-val kell hozzáadni. Az alábbi példa bemutatja, hogyan adhatja meg az engedélyeket.
+6. A mintaprojekt futtatásakor a program le tudja szerezni a megadott partner frissítési jogkivonatát. Ezután egy hozzáférési jogkivonatot kér a Partnerközpont eléréséhez a partner nevében. A következő feladat, amit végrehajt, az engedélyengedélyek törlése és létrehozása az ügyfélbérlőben. Mivel a vezérlőpult szállítója és az ügyfél között nincs kapcsolat, ezeket az engedélyeket a Partnerközpont API-val kell hozzáadni. Az alábbi példa az engedélyek megadását mutatja be.
 
     ```java
     ApplicationGrant azureAppGrant = new ApplicationGrant();
@@ -542,4 +542,4 @@ Az engedélyek létrejötte után a minta az Azure AD-Graph az ügyfél nevében
         consent);
     ```
 
-A *RunAzureTask* és *a RunGraphTask* függvényhívások a Azure Resource Manager és a Microsoft Graph ügyfél nevében történő interakcióját szeretné látni.
+A *RunAzureTask* és *a RunGraphTask* függvényhívások értesítésének visszaírása, ha látni szeretné, hogyan kommunikálhat az Azure Resource Manager és a Microsoft Graph az ügyfél nevében.
