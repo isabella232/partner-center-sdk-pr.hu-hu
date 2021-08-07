@@ -1,13 +1,13 @@
 ---
-title: A PowerShell SDK támogatása többek között
+title: 'A PowerShell SDK-támogatás a következőket tartalmazza:'
 ms.date: 04/23/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 05339a0c974885eb954472a90e094436a7889217
-ms.sourcegitcommit: 45094b6fb1437bca51f97e193ac2957747dbea27
+ms.openlocfilehash: ebc57e4b9f8dc222aa92a29edf01ee04693a8006077316297ceef8cb0874abaa
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "97767672"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989097"
 ---
-A partner [Center PowerShell-modult](https://github.com/microsoft/partner-center-powershell/) általában a partnerek használják a partneri központ erőforrásainak kezelésére. Ez egy nyílt forráskódú projekt, amelyet a partner közössége tart fenn. Mivel ezt a modult a partner közössége tartja karban, a Microsoft hivatalosan nem támogatja. Ha problémát tapasztal, [segítséget kérhet a Közösségtől](https://stackoverflow.com/questions/tagged/partner+center) , vagy [megnyithat egy problémát a githubon](https://github.com/microsoft/partner-center-powershell/issues) .
+Az [Partnerközpont PowerShell-modult](https://github.com/microsoft/partner-center-powershell/) gyakran használják a partnerek a saját erőforrásaik Partnerközpont kezelésére. Ez egy nyílt forráskódú projekt, amelyet a partnerközösség tart fenn. Mivel ezt a modult a partnerközösség tartja fenn, a Microsoft hivatalosan nem támogatja. Ha problémát [tapasztal,](https://stackoverflow.com/questions/tagged/partner+center) segítséget [](https://github.com/microsoft/partner-center-powershell/issues) kaphat a közösségtől, vagy a GitHub nyithat problémát.

@@ -1,25 +1,25 @@
 ---
 title: Termékfrissítési entitás létrehozása egy ügyfél számára
-description: A ProductUpgradeRequest erőforrással termékfrissítési entitást hozhat létre az ügyfelek adott termékcsaládra való frissítésére.
+description: A ProductUpgradeRequest erőforrás használatával termékfrissítési entitást hozhat létre az ügyfelek egy adott termékcsaládra való frissítésére.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 4e346b7f5294a8847047c85115d8c80f34eaca84
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 7515bbce2914142e052349a1bbb4de20416d0931ac886fe9264cc4d3b8c1f734
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973409"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991463"
 ---
 # <a name="create-a-product-upgrade-entity-for-a-customer"></a>Termékfrissítési entitás létrehozása egy ügyfél számára
 
-A **ProductUpgradeRequest** erőforrás használatával létrehozhat egy termékfrissítési entitást, amely frissíti az ügyfelet egy adott termékcsaládra (például Azure-csomagra).
+A **ProductUpgradeRequest** erőforrás használatával létrehozhat egy termékfrissítési entitást az ügyfelek egy adott termékcsaládra (például Azure-csomagra) való frissítésére.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést. Kövesse a [biztonságos alkalmazásmodellt,](enable-secure-app-model.md) ha App+User hitelesítést használ Partnerközpont API-okkal.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést. Kövesse a [biztonságos alkalmazásmodellt,](enable-secure-app-model.md) ha App+User hitelesítést használ Partnerközpont API-okkal.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Az a termékcsalád, amelyre frissíteni szeretné az ügyfelet.
 
@@ -27,13 +27,13 @@ A **ProductUpgradeRequest** erőforrás használatával létrehozhat egy termék
 
 Ügyfél frissítése Azure-csomagra:
 
-1. Hozzon létre **egy ProductUpgradesRequest** objektumot, és adja meg az ügyfél azonosítóját és az "Azure" értéket a termék családként.
+1. Hozzon létre **egy ProductUpgradesRequest** objektumot, és adja meg az ügyfél-azonosítót és az "Azure" értéket a termékcsaládként.
 
 2. Használja az **IAggregatePartner.ProductUpgrades gyűjteményt.**
 
-3. Hívja meg a **Create** metódust, és adja át a **ProductUpgradesRequest** objektumot, amely egy helyfejléc **sztringet ad** vissza.
+3. Hívja meg **a Create** metódust, és adja át a **ProductUpgradesRequest objektumot,** amely egy helyfejléc-sztringet **ad** vissza.
 
-4. Bontsa **ki a frissítési azonosítót** a hely fejlécsringből, amely a frissítési [állapot lekérdezéséhez használható.](get-product-upgrade-status.md)
+4. **Bontsa ki a frissítési azonosítót** a helyfejléc sztringje alapján, amely a frissítési állapot [lekérdezéséhez használható.](get-product-upgrade-status.md)
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -93,11 +93,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a válasz sikeres, a válasz tartalmaz egy **Hely** fejlécet, amely rendelkezik egy URI-azonosítóval, amely a termékfrissítés állapotának lekérésére használható. Mentse ezt az URI-t a többi kapcsolódó REST API-val való használathoz.
+Ha a válasz sikeres, a válasz tartalmaz egy **Hely** fejlécet, amely a termékfrissítés állapotának lekéréséhez használható URI-t tartalmaz. Mentse ezt az URI-t a többi kapcsolódó REST API-val való használathoz.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,33 +1,33 @@
 ---
 title: Előfizetés regisztrációs állapotának lekérése
-description: Le kell kapnia egy előfizetés állapotát, amely regisztrálva van a Azure Reserved VM Instances.
+description: Lekérte egy előfizetés állapotát, amely regisztrálva van a Azure Reserved VM Instances.
 ms.date: 03/19/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9e39f94c0eac402a0be3afde84279aa637868f96
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: 0e0a65abba94f1f05a98282fa67ff1d185ba4e082488d2d7887b4e9346c38967
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111445952"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989661"
 ---
 # <a name="get-subscription-registration-status"></a>Előfizetés regisztrációs állapotának lekérése
 
 Hogyan lehet lekérte az előfizetés regisztrációs állapotát egy olyan ügyfél-előfizetéshez, amely számára engedélyezett a Azure Reserved VM Instances.
 
-Ha azure-beli fenntartott virtuálisgép-példányt a Partnerközpont API-val vásárolni, legalább egy meglévő CSP Azure-előfizetéssel kell lennie. Az [Előfizetés regisztrálása](register-a-subscription.md) módszerrel regisztrálhatja meglévő CSP Azure-előfizetését, így megvásárolhatja Azure Reserved VM Instances. Ezzel a módszerrel lekérhető a regisztráció állapota.
+Ha azure-beli fenntartott virtuálisgép-példányt az Partnerközpont API-val vásárolni, legalább egy meglévő CSP Azure-előfizetéssel kell lennie. Az [Előfizetés regisztrálása](register-a-subscription.md) módszerrel regisztrálhatja meglévő CSP Azure-előfizetését, így megvásárolhatja a Azure Reserved VM Instances. Ezzel a módszerrel lekérhető a regisztráció állapota.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
 ## <a name="c"></a>C\#
 
-Az előfizetés regisztrációs állapotának leához először használja az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az előfizetési műveletek interfészét a [**Subscription.ById()**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) metódus az előfizetés azonosítójával való hívásával az előfizetés azonosításához. Ezután a RegistrationStatus tulajdonság használatával szerezze be az aktuális előfizetés regisztrációs állapotműveletei interfészét, és hívja meg a **Get** vagy **GetAsync** metódust a **SubscriptionRegistrationStatus** objektum lekéréséhez.
+Az előfizetés regisztrációs állapotának lehöz először használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az előfizetési műveletek interfészét a [**Subscription.ById()**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) metódus az előfizetés azonosítójával való hívásával az előfizetés azonosításához. Ezután a RegistrationStatus tulajdonság használatával szerezzen be egy felületet az aktuális előfizetés regisztrációs állapotműveleteihez, és hívja meg a **Get** vagy **GetAsync** metódust a **SubscriptionRegistrationStatus** objektum lekéréséhez.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -40,7 +40,7 @@ var subscriptionRegistrationDetails = partnerOperations.Customers.ById(selectedC
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus    | Kérés URI-ja                                                                                                                        |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------|
@@ -52,8 +52,8 @@ Az ügyfél és az előfizetés azonosításához használja az alábbi elérés
 
 | Név                    | Típus       | Kötelező | Leírás                                                   |
 |-------------------------|------------|----------|---------------------------------------------------------------|
-| ügyfélazonosító             | sztring     | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.         |
-| subscription-id         | sztring     | Igen      | Egy GUID formátumú sztring, amely azonosítja az előfizetést.     |
+| ügyfél-azonosító             | sztring     | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.         |
+| subscription-id         | sztring     | Yes      | Egy GUID formátumú sztring, amely azonosítja az előfizetést.     |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -79,11 +79,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz törzse tartalmaz egy [SubscriptionRegistrationStatus erőforrást.](subscription-resources.md#subscriptionregistrationstatus)
+Ha ez sikeres, a válasz törzse tartalmaz egy [SubscriptionRegistrationStatus erőforrást.](subscription-resources.md#subscriptionregistrationstatus)
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

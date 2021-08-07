@@ -4,33 +4,33 @@ description: Az Partnerközpont .NET SDK legújabb verziójának kibocsátási m
 ms.date: 07/07/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: c1532d48c00550f5eb437ed0164d6a1f7bb340dd
-ms.sourcegitcommit: 53c94db33b09c30e762b842c4275b2b531dba932
+ms.openlocfilehash: 6fc6182638cb2cc5457bdfada37b928c88e1ca786e401f7eb8d5309a0abd9310
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/09/2021
-ms.locfileid: "113522634"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991222"
 ---
 # <a name="net-sdk-release-notes"></a>A .NET SDK kibocsátási megjegyzései
 
-Az alábbi kibocsátási megjegyzések a Microsoft Partnerközpont .NET SDK új [verzióihoz érhetők el.](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter) A [.NET SDK-mintákat a GitHub.](https://github.com/Microsoft/Partner-Center-DotNet-Samples) A [.NET API Partnerközpont .NET API-referencia a](/dotnet/api/?view=partnercenter-dotnet-latest&preserve-view=true) .NET API-böngészőben található.
+Az alábbi kibocsátási megjegyzések a Microsoft Partnerközpont .NET SDK új [verzióihoz érhetők el.](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter) A [.NET SDK-mintákat a](https://github.com/Microsoft/Partner-Center-DotNet-Samples) GitHub. A [.NET API Partnerközpont .NET API-referenciát a](/dotnet/api/?view=partnercenter-dotnet-latest&preserve-view=true) .NET API-böngészőben találja.
 
 ## <a name="version-201"></a>2.0.1-es verzió
 
-[A Microsoft Partnerközpont .NET SDK](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter/2.0.1) v2.0.1 mostantól általánosan elérhető. Frissített [GitHub minták is](https://github.com/Microsoft/Partner-Center-DotNet-Samples) elérhetők. Ebben a verzióban a következő módosítások szerepelnek:
+[A Microsoft Partnerközpont .NET SDK](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter/2.0.1) 2.0.1-es verziója mostantól általánosan elérhető. A [GitHub minták is](https://github.com/Microsoft/Partner-Center-DotNet-Samples) elérhetők. Ebben a verzióban a következő módosítások szerepelnek:
 
 > [!NOTE]
-> Az új kereskedelmi élmények ("NCE") részeként bevezetett módosítások némelyike, amelyek jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesz partnerek meghívása alapján érhetők el. Azok a partnerek, akik nem részei az Új kereskedelmi privát előzetes verziónak, nem láthatják a hatásokat, és visszamenőlegesen kompatibilisnek kell lenniük.
+> Az új kereskedelmi élmények ("NCE") részeként bevezetett módosítások némelyike, amelyek jelenleg csak az M365/D365 új kereskedelmi élmény technikai előzetes kiadásának partnereinek szóló meghívón alapulnak. Azok a partnerek, akik nem részei az Új kereskedelmi privát előzetes verziónak, nem láthatják a hatásokat, és visszamenőlegesen kompatibilisnek kell lenniük.
 
 ### <a name="common"></a>Közös
-* A hitelesítési kódtárra való hivatkozás módosítása – A hivatkozás Azure Active Directory Authentication Library[(ADAL)](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet)és a Microsoft Authentication Library ([MSAL](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet)) között
+* A hitelesítési kódtárra való hivatkozás módosítása – A hivatkozás Azure Active Directory Authentication Library[(ADAL)](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet)és a Microsoft Authentication Library ([MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet)között
 
-  A következő módosításokat kell eszközlni annak biztosításához, hogy az MSAL megfelelően fut az alkalmazáson vagy a .NET-mintán:
+  A következő módosításokat kell eszközlni annak érdekében, hogy az MSAL megfelelően fut az alkalmazáson vagy a .NET-mintán:
 
   * Hozzáadás `https://login.microsoftonline.com/common/oauth2/nativeclient` RedirectUrl-ként mobil- és asztali alkalmazásokhoz
   * Adja **hozzá a Tartományt** az alkalmazáskonfigurációs fájl UserAuthentication szakaszához. 
 
-    A tartomány az a Azure Active Directory vagy bérlőazonosító, ahol az Azure AD-alkalmazást létrehozták
+    A tartomány az Azure Active Directory tartomány vagy bérlő azonosítója, ahol az Azure AD-alkalmazást létrehozták
 
 * [Hibakódok](error-codes.md) – Új hibakód hozzáadva 
   * 408: Kérés időtúllépése
@@ -44,14 +44,14 @@ Az alábbi kibocsátási megjegyzések a Microsoft Partnerközpont .NET SDK új 
 
   Új attribútumok: 
   * productQualifiers
-  * subscriptionStartDate
+  * subscriptionStartDate (Előfizetés kezdődátum)
   * subscriptionEndDate
   * referenceId (referenciaazonosító)
   * creditReasonCode (csak az NCE-re vonatkozik)
   * promotionId (előléptetésazonosító) 
 
 
-* [Napi minősítésű használat Sorelemek](get-invoice-billed-consumption-lineitems.md) – új attribútumok hozzáadva a következő API-hoz: 
+* [Napi névleges használat Sorelemek](get-invoice-billed-consumption-lineitems.md) – új attribútumok hozzáadva a következő API-hoz: 
   * `GET /invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=usagelineitems`
   
   Új attribútumok: 
@@ -70,7 +70,7 @@ Az alábbi kibocsátási megjegyzések a Microsoft Partnerközpont .NET SDK új 
 
 ### <a name="manage-customer-accounts"></a>Ügyfélfiókok kezelése
 
-* [Cím ellenőrzése](validate-an-address.md) – A válasz logikairól új API-modellre módosul:
+* [Cím ellenőrzése](validate-an-address.md) – A válasz logikairól új API-modellre változik:
   * `POST /validations/address`
   
   Új válaszmodell: 
@@ -81,22 +81,22 @@ Az alábbi kibocsátási megjegyzések a Microsoft Partnerközpont .NET SDK új 
 
 ## <a name="version-1170"></a>1.17.0-s verzió
 
-[A Microsoft Partnerközpont .NET SDK](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter/1.17.0) 1.17.0-s verziója általánosan elérhető. Frissített [GitHub minták is](https://github.com/Microsoft/Partner-Center-DotNet-Samples) elérhetők. Ebben a verzióban a következő módosítások szerepelnek:
+[A Microsoft Partnerközpont .NET SDK](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter/1.17.0) 1.17.0-s verziója mostantól általánosan elérhető. A [GitHub minták is](https://github.com/Microsoft/Partner-Center-DotNet-Samples) elérhetők. Ebben a verzióban a következő módosítások szerepelnek:
 
 * Napló frissítve – Új művelettípusok hozzáadva annak tudatában, hogy az ügyfél mikor hagyta jóvá és szüntette meg a DAP-t
   * [DapAdminRelationshipApproved](auditing-resources.md)
-  * [DapAdminRelationshipTerminated](auditing-resources.md)
+  * [DapAdminRelationshipTerminated (DapAdminRelationshipTerminated)](auditing-resources.md)
 
 * Napló frissítve – Új erőforrás- és művelettípusok hozzáadva az ügyfél címtárszerepkör-forgatókönyvének támogatásához
-  * Erőforrástípus:[CustomerDirectoryRole](auditing-resources.md)
-  * Az["AddUserMember"](auditing-resources.md)és a "[RemoveUserMember" művelettípusok](auditing-resources.md)
+  * Erőforrástípus: "[CustomerDirectoryRole](auditing-resources.md)"
+  * Művelettípusok: "[AddUserMember](auditing-resources.md)" és "[RemoveUserMember](auditing-resources.md)"
 
-* SDK-frissítések az ügyfelek fiókjához – A következő API-k támogatása
+* Sdk-frissítések az ügyfélfiókhoz – A következő API-k támogatása
   * GET /customers/{customer-tenant-id}/directSignedMicrosoftCustomerAgreementStatus
   * GET /customers/{customer-tenant-id}/qualifications 
   * POST /customers/{customer_id}/qualifications?code={validationCode}
 
-* **Az új kereskedelem részeként bevezetett módosításokat, amelyek jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesző partnerek meghívása alapján érhetők el.** Azok a partnerek, akik nem részei az Új kereskedelmi privát előzetes verziónak, nem láthatják a hatásokat, és visszamenőlegesen kompatibilisnek kell lenniük.
+* **Az új kereskedelem részeként bevezetett változások, amelyek jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesz partnerek meghívása alapján érhetők el.** Azok a partnerek, akik nem részei az Új kereskedelmi privát előzetes verziónak, nem láthatják a hatásokat, és visszamenőlegesen kompatibilisnek kell lenniük.
   * Katalógusváltozások:
     * GET /products/{termékazonosító}/skus/{sku-id}
   * Vásárlás és kezelés:
@@ -110,7 +110,7 @@ Az alábbi kibocsátási megjegyzések a Microsoft Partnerközpont .NET SDK új 
 
 ## <a name="version-1163"></a>1.16.3-as verzió
 
-[A Microsoft Partnerközpont .NET SDK](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter/1.16.3) 1.16.3-as verziója általánosan elérhető. Frissített [GitHub minták is](https://github.com/Microsoft/Partner-Center-DotNet-Samples) elérhetők. Ebben a verzióban a következő módosítások szerepelnek:
+[A Microsoft Partnerközpont .NET SDK](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter/1.16.3) 1.16.3-as verziója mostantól általánosan elérhető. A [GitHub minták is](https://github.com/Microsoft/Partner-Center-DotNet-Samples) elérhetők. Ebben a verzióban a következő módosítások szerepelnek:
 
 * SelfServePolicies – új funkciók hozzáadva
   * [GetSelfServePolicies](get-a-self-serve-policy-by-id.md)
@@ -127,14 +127,14 @@ Az alábbi kibocsátási megjegyzések a Microsoft Partnerközpont .NET SDK új 
 
 ## <a name="version-1162"></a>1.16.2-es verzió
 
-[A Microsoft Partnerközpont .NET SDK](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter/1.16.2) v1.16.2 mostantól általánosan elérhető. Frissített [GitHub minták is](https://github.com/Microsoft/Partner-Center-DotNet-Samples) elérhetők. Ebben a verzióban a következő módosítások szerepelnek:
+[A Microsoft Partnerközpont .NET SDK](https://www.nuget.org/packages/Microsoft.Store.PartnerCenter/1.16.2) 1.16.2-es verziója mostantól általánosan elérhető. A [GitHub minták is](https://github.com/Microsoft/Partner-Center-DotNet-Samples) elérhetők. Ebben a verzióban a következő módosítások szerepelnek:
 
 * Frissítse a naplórekord támogatott művelettípusát. Az újonnan hozzáadottak a következőek:
   * CreateSelfServePolicy
   * UpdateSelfServePolicy
   * DeleteSelfServePolicy
   * RemovePartnerRelationship (Partnerreláció eltávolítása)
-  * DeleteTipCustomer (TipCustomer törlése)
+  * DeleteTipCustomer
   * CreateRelatedReferral (RelatedReferral létrehozása)
   * UpdateRelatedReferral
 

@@ -1,32 +1,32 @@
 ---
 title: Számla nyugtakivonatának lekérése
-description: Lekér egy számlakivonatot a számlaazonosító és a nyugtaazonosító használatával.
+description: A számlaazonosító és a nyugtaazonosító használatával lekéri a számla visszaigazolási kivonatát.
 ms.date: 02/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: dcac4c8f0b881409dcad3560eefb82d4bb5e877a
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: ed47eadb377a94363b46cbc5508e5377cee005007698df9077d085705c7b9d08
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111446129"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990732"
 ---
 # <a name="get-invoice-receipt-statement"></a>Számla nyugtakivonatának lekérése
 
-Lekér egy számlakivonatot a számlaazonosító és a nyugtaazonosító használatával.
+A számlaazonosító és a nyugtaazonosító használatával lekéri a számla visszaigazolási kivonatát.
 
 > [!IMPORTANT]
-> Ez a funkció csak a Tajvani adóbevallások esetében érvényes.
+> Ez a funkció csak Tajvan adójótátlásai esetében alkalmazható.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 - Egy érvényes számlaazonosító és egy megfelelő nyugtaazonosító.
 
 ## <a name="c"></a>C\#
 
-A számla visszaigazolási kimutatásának azonosító alapján való lehívásához az Partnerközpont SDK v1.12.0-val kezdve használja az **IPartner.Invoices** gyűjteményt, és hívja meg a **ById()** metódust a számlaazonosítóval, majd hívja meg a **ById()** metódust, majd hívja meg a **Documents()** és a **Statement() metódusokat** a számlakivonat eléréséhez.  Végül hívja meg a **Get() vagy** **a GetAsync() metódust.**
+Ha azonosító alapján, az Partnerközpont SDK 1.12.0-s és az 1.12.0-stól kezdődően a számlakivonatot  azonosító alapján le kell kapnia, használja az **IPartner.Invoices** gyűjteményt, és hívja meg a **ById()** metódust a számlaazonosító használatával, majd hívja meg a **Documents()** és a **Statement() metódusokat** a számlakivonat eléréséhez.  Végül hívja meg a **Get() vagy** **a GetAsync() metódust.**
 
 ``` csharp
 // IPartner scopedPartnerOperations;
@@ -35,11 +35,11 @@ A számla visszaigazolási kimutatásának azonosító alapján való lehívás�
 var invoiceStatement = scopedPartnerOperations.Invoices.ById(selectedInvoiceId).Receipts.ById(selectedReceipt).Documents.Statement.Get();
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSample **osztály:** GetInvoiceReceiptStatement.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** GetInvoiceReceiptStatement.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                            |
 |---------|------------------------------------------------------------------------------------------------------------------------|
@@ -47,12 +47,12 @@ var invoiceStatement = scopedPartnerOperations.Invoices.ById(selectedInvoiceId).
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az alábbi lekérdezési paraméterrel lekérdezheti a számlakivonatot.
+Az alábbi lekérdezési paraméterrel lekérdezheti a számla visszaigazolási kivonatát.
 
 | Név       | Típus   | Kötelező | Leírás                                                                                    |
 |------------|--------|-----------------------------------------------------------------------------------------------------------|
-| számlaazonosító | sztring | Igen      | Az érték egy számlaazonosító, amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla eredményeit. |
-| nyugta-azonosító | sztring | Igen      | Az érték egy nyugtaazonosító, amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla nyugtáit. |
+| számlaazonosító | sztring | Yes      | Az érték egy számlaazonosító, amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla eredményeit. |
+| nyugta-azonosító | sztring | Yes      | Az érték egy nyugtaazonosító, amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla nyugtáit. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -78,7 +78,7 @@ Ha a művelet sikeres, ez a metódus egy PDF-streamet ad vissza a válasz törzs
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

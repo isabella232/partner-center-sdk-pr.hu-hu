@@ -4,12 +4,12 @@ description: A SubscriptionMonthlyUsageRecord erőforrás-gyűjtemény használa
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 976abd86f34c1c27184f277ffc89fbc65f16bb37
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 67b3ab744a47a4698ca478118ebf3523d7cee35807042f932f5a279c4c7d8ea8
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874686"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992789"
 ---
 # <a name="get-subscription-usage-records-for-a-customer"></a>Ügyfél előfizetés-használati rekordjainak lekért száma
 
@@ -19,9 +19,9 @@ A **SubscriptionMonthlyUsageRecord** erőforrás-gyűjtemény használatával le
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
@@ -46,7 +46,7 @@ Példaként tekintse meg a következőket:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                      |
 |---------|------------------------------------------------------------------------------------------------------------------|
@@ -84,7 +84,7 @@ Ha sikeres, ez a metódus egy **SubscriptionMonthlyUsageRecord** erőforrást ad
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, a hibatípust és a további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be ezt a kódot, a hiba típusát és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example-for-microsoft-azure-ms-azr-0145p-subscriptions"></a>Válasz példa Microsoft Azure (MS-AZR-0145P) előfizetésre
 
@@ -132,13 +132,13 @@ Date: Tue, 17 Sep 2019 20:31:45 GMT
 }
 ```
 
-## <a name="rest-response-example-for-azure-plan"></a>PÉLDA REST-válaszra az Azure-csomaghoz
+## <a name="rest-response-example-for-azure-plan"></a>AZURE-csomag REST-válasza
 
 Ebben a példában az ügyfél megvásárolt egy Azure-csomag.
 
-*Az Azure-csomagokat használó ügyfelek esetében az API-válasz a következő változásokat tartalmazza:*
+*Az Azure-csomaggal használó ügyfelek esetében az API-válasz a következő változásokat tartalmazza:*
 
-- **A currencyLocale** helyett **a currencyCode található**
+- **A currencyLocale** helyére a **currencyCode van lecserélve**
 - **A usdTotalCost** egy új mező
 
 ```http

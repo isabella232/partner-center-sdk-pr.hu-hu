@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: 2cb2822935113fe1c5337b4ffc899fccff333d2f
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: cbe4bb3552969bd940f9da60334fede4e0b9dd7dd75fe1fe32113210dddd2822
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760181"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992551"
 ---
 # <a name="get-an-order-by-id"></a>Megrendelés lekérése azonosító alapján
 
@@ -31,7 +31,7 @@ Lekért [egy rendelési](order-resources.md) erőforrást, amely megfelel az üg
 
 Az ügyfél megrendelésének lekért azonosítója:
 
-1. Használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a **ById() metódust.**
+1. Használja az **IAggregatePartner.Customers gyűjteményt,** és hívja meg a **ById() metódust.**
 
 2. Hívja meg [**ismét az Orders**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) tulajdonságot, majd a [**ByID()**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.byid) metódust.
 3. Hívja meg a [**Get()**](/dotnet/api/microsoft.store.partnercenter.orders.iorder.get) vagy [**a GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.orders.iorder.getasync)
@@ -80,7 +80,7 @@ Get-PartnerCustomerOrder -CustomerId $selectedCustomerId -OrderId $selectedOrder
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                  |
 |---------|--------------------------------------------------------------------------------------------------------------|
@@ -88,12 +88,12 @@ Get-PartnerCustomerOrder -CustomerId $selectedCustomerId -OrderId $selectedOrder
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-Ez a táblázat a rendelés azonosító alapján való lekérdezéséhez szükséges lekérdezési paramétereket sorolja fel.
+Ez a táblázat a rendelés azonosító alapján való lekérdezhető lekérdezési paramétereit sorolja fel.
 
 | Név                   | Típus     | Kötelező | Leírás                                            |
 |------------------------|----------|----------|--------------------------------------------------------|
-| ügyfél-bérlő-azonosító     | sztring   | Igen      | Az ügyfélnek megfelelő GUID formátumú sztring. |
-| id-for-order           | sztring   | Igen      | A rendelésazonosítónak megfelelő sztring.                |
+| ügyfél-bérlő-azonosító     | sztring   | Yes      | Az ügyfélnek megfelelő GUID formátumú sztring. |
+| id-for-order           | sztring   | Yes      | A rendelésazonosítónak megfelelő sztring.                |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

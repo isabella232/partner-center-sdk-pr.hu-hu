@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 aauthor: khakiali
 ms.author: alikhaki
-ms.openlocfilehash: 1b1a8cbacb667e579bcd218a29c3f553afce26c2
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: eb1f9ec5a7e96984f9c458419268fb305cf13ffd44d92fd01823ad94c2fb1798
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111549263"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990800"
 ---
 # <a name="get-confirmation-of-customer-acceptance-of-microsoft-cloud-agreement"></a>A Microsoft Cloud szerződés ügyfél általi elfogadási megerősítésének lekérése
 
@@ -27,9 +27,9 @@ A **Szerződés** erőforrást jelenleg csak a Microsoft Partnerközpont támoga
 
 - Ha az Partnerközpont Java SDK-t használja, 1.8-as vagy újabb verzió szükséges.
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](./partner-center-authentication.md) Ez a forgatókönyv csak az alkalmazás- és felhasználóhitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](./partner-center-authentication.md) Ez a forgatókönyv csak az alkalmazás- és felhasználóhitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="net-version-14-or-newer"></a>.NET (1.4-es vagy újabb verzió)
 
@@ -37,7 +37,7 @@ A korábban megadott ügyfél-elfogadás megerősítésének(i) lekérése:
 
 - Használja az **IAggregatePartner.Customers gyűjteményt,** és hívja meg a **ById** metódust a megadott ügyfélazonosítóval.
 
-- A **ByAgreementType** metódus hívásával lekérheti a **Agreements** Microsoft Cloud szerződés, és szűrheti az eredményeket.
+- A **ByAgreementType** metódus hívásával lekérheti a **Agreements** Microsoft Cloud szerződés és szűrheti az eredményeket.
 
 - Hívja meg **a Get** vagy **a GetAsync metódust.**
 
@@ -50,13 +50,13 @@ string agreementType = "MicrosoftCloudAgreement";
 var cloudAgreements = partnerOperations.Customers.ById(selectedCustomerId).Agreements.ByAgreementType(agreementType).Get();
 ```
 
-A teljes minta megtalálható a [GetCustomerAgreements osztályban](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetCustomerAgreements.cs) a konzol tesztalkalmazás [projektjében.](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples)
+A teljes minta a [GetCustomerAgreements](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetCustomerAgreements.cs) osztályban található a konzol tesztalkalmazás [projektjében.](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples)
 
 ## <a name="net-version-19---113"></a>.NET (1.9-es és 1.13-as verzió)
 
 A korábban megadott ügyfél-elfogadás megerősítésének lekérése:
 
-Használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a **ById** metódust a megadott ügyfélazonosítóval. Ezután szerezze be **a Agreements** tulajdonságot, majd hívja meg a **Get** vagy **GetAsync metódusokat.**
+Használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a **ById** metódust a megadott ügyfél azonosítóval. Ezután szerezze be a **Agreements** tulajdonságot, majd hívja meg a **Get** vagy **GetAsync metódusokat.**
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -80,7 +80,7 @@ Használja az **IAggregatePartner.getCustomers** függvényt, és hívja meg a *
 ResourceCollection<Agreement> agreements = partnerOperations.getCustomers().byId(selectedCustomerId).getAgreements().get();
 ```
 
-A teljes minta megtalálható a [GetCustomerAgreements osztályban](https://github.com/microsoft/Partner-Center-Java-Samples/blob/master/sdk/src/main/java/com/microsoft/store/partnercenter/samples/agreements/GetCustomerAgreements.java) a konzol tesztalkalmazás [projektjében.](https://github.com/Microsoft/Partner-Center-Java-Samples)
+A teljes minta a [GetCustomerAgreements](https://github.com/microsoft/Partner-Center-Java-Samples/blob/master/sdk/src/main/java/com/microsoft/store/partnercenter/samples/agreements/GetCustomerAgreements.java) osztályban található a konzol tesztalkalmazás [projektjében.](https://github.com/Microsoft/Partner-Center-Java-Samples)
 
 ## <a name="powershell"></a>PowerShell
 
@@ -100,7 +100,7 @@ A korábban megadott ügyfél-elfogadás megerősítésének lekérését az al�
 
 Hozzon létre egy új **Szerződés** erőforrást a megfelelő tanúsítványinformációk alapján.
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus | Kérés URI-ja                                                                                      |
 |--------|--------------------------------------------------------------------------------------------------|
@@ -112,7 +112,7 @@ A következő lekérdezési paraméterrel adhatja meg a megerősíteni kívánt 
 
 | Név             | Típus | Kötelező | Leírás                                                                               |
 |------------------|------|----------|-------------------------------------------------------------------------------------------|
-| CustomerTenantId | GUID | Y        | Az érték egy **CustomerTenantId** formátumú GUID, amely lehetővé teszi egy ügyfél megadását. |
+| CustomerTenantId | GUID | Y        | Az érték egy **CUSTOMERTenantId** formátumú GUID, amely lehetővé teszi egy ügyfél megadását. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -138,7 +138,7 @@ Ha a művelet sikeres, ez a metódus **szerződéserőforrások** gyűjteményé
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,21 +1,21 @@
 ---
 title: Tesztelés és hibakeresés az integrációs tesztkészletben
-description: Megtudhatja, hogyan használhatja Partnerközpont integrációs tesztfiókját (és a kapcsolódó jogkivonatokat) a kód tesztelésére és hibakeresésére, hogy véletlenül ne számítsa fel új díjakkal.
+description: Megtudhatja, hogyan használhatja a Partnerközpont-integrációs tesztfiókot (és a kapcsolódó jogkivonatokat) a kód tesztelésére és hibakeresésére, hogy véletlenül ne számítsa fel új díjakat.
 ms.date: 09/11/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 7a9d7755cd9f493f44f9a7bbf613e0f80cf7b4ac
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: 1a446f1d9a9d7370be2715305ccbaa71b09cfd45957cf8663afb42a23706a7be
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111530106"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989270"
 ---
 # <a name="test-and-debug-with-your-partner-center-integration-sandbox-to-avoid-paying-unexpected-charges"></a>Tesztelje és hibakeresést végezni a Partnerközpont integrációs tesztkészletben a váratlan költségek elkerülése érdekében
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-A kód tesztelése érdekében használja az integrációs tesztfiókot az Partnerközpont-ban (és a megfelelő jogkivonatokat), hogy véletlenül ne legyen olyan új díj felszám véve, amelyért a vállalata fizet. További információ erről az éles környezetben való tesztelési (TiP) környezetről: API-hozzáférés beállítása a [Partnerközpont.](set-up-api-access-in-partner-center.md)
+A kód tesztelése érdekében használja az integrációs tesztfiókot az Partnerközpont-ban (és a megfelelő jogkivonatokat), hogy véletlenül ne legyen olyan új díj felszámodása, amelyért a vállalat fizet. További információ erről az éles környezetben való tesztelési (TiP) környezetről: API-hozzáférés beállítása a [Partnerközpont.](set-up-api-access-in-partner-center.md)
 
 ## <a name="integration-sandbox-constraints"></a>Integrációs védőfal megkötései
 
@@ -36,11 +36,11 @@ A sandbox környezetekben különböző számla- és egyeztetési fájlok érhet
 
 ### <a name="azure-plan"></a>Azure-csomag
 
-Alapértelmezés szerint a partnerek nem helyezhetnek üzembe Azure-csomagokat a tesztkörnyezeti fiókjukkal. Azoknak a partnereknek, akiknek a tesztkörnyezeti fiókjukkal kell ezt elvégezniük, hozzáférést kell kérniük. A hozzáférés útjára való jelentkezéshez lépjen kapcsolatba Microsoft-fiók felettesével vagy üzleti kapcsolattartóval. Azok a partnerek, akik korábban hozzáférést kértek Microsoft Azure-előfizetések (MS-AZR-0145P) építéséhez a saját sandbox-fiókjukban, nem kell ismét hozzáférést alkalmazniuk. Automatikusan hozzáférést kapnak az Azure-csomagok építéshez.
+Alapértelmezés szerint a partnerek nem helyezhetnek üzembe Azure-csomagokat a tesztkörnyezeti fiókjukkal. Azoknak a partnereknek, akiknek a tesztkörnyezeti fiókjukkal kell ezt elvégezniük, hozzáférést kell kérniük. A hozzáférés útjára való jelentkezéshez lépjen kapcsolatba Microsoft-fiók felettesével vagy üzleti kapcsolattartóval. Azok a partnerek, akik korábban hozzáférést kértek az Microsoft Azure-előfizetések (MS-AZR-0145P) építéséhez a saját sandbox-fiókjukban, nem kell ismét hozzáférést alkalmazniuk. Automatikusan hozzáférést kapnak az Azure-csomagok építéshez.
 
 Azon partnerekre, akiknek a sandbox-fiókjai jóvá vannak hagyva az Azure-csomagok kiépítése érdekében, a következő korlátok érvényesek:
 
-- Minden egyes sandbox partnerfiók legfeljebb 10 Azure-csomagtal rendelkezik az összes ügyfélbérlőben (függetlenül attól, hogy a csomagok hogyan vannak elosztva az ügyfelek között).
+- Minden egyes sandbox partnerfiók legfeljebb 10 Azure-csomagtal rendelkezik az összes ügyfélbérlőben (függetlenül attól, hogyan oszlik meg a csomagok az ügyfelek között).
 
 - A közvetlen számlázási partnerek ügyfélbérlőnként legfeljebb egy Azure-tervet hozhatnak létre.
 
@@ -50,22 +50,22 @@ Azon partnerekre, akiknek a sandbox-fiókjai jóvá vannak hagyva az Azure-csoma
 
 - A sandbox-fiókban lévő összes CSP Azure-előfizetés adatközpontonként négy virtuálisgép-magra van korlátozva. Ezért nem létesíthet négynél több virtuálisgép-magot igénylő virtuálisgép-SKUS-okat. Bizonyos speciális virtuálisgép-SKUS-k, például a GPU-magok szintén ki vannak zárva.
 
-- Minden egyes sandbox partnerfiók számlázási ciklusonként 2000 DOLLÁR (USD) költségkeretet kap az összes Azure-csomagra. Ha egy partner eléri a költekkorlátot, az összes Azure-csomag átmenetileg le lesz tiltva a következő számlázási ciklusig.
+- Minden egyes sandbox partnerfiók számlázási ciklusonként 2000 DOLLÁR (USD) költségkeretet kap az összes Azure-csomagra. Ha egy partner eléri a költekedő korlátot, az összes Azure-csomag átmenetileg le lesz tiltva a következő számlázási ciklusig.
 
 ### <a name="cloud-solution-provider-csp-azure-subscription-offers"></a>Felhőszolgáltató (CSP) Azure-előfizetési ajánlatok
 
 A CSP Azure-előfizetési ajánlatok alapértelmezés szerint nem érhetők el a sandbox-fiókokhoz. Ezek közé tartozik az MS-AZR-0146P, az MS-AZR-DE-0146P és az MS-AZR-USGOV-0146P a Microsoft nyilvános felhőben, német felhőben és kormányzati felhőben elérhető CSP Azure-előfizetések esetében. Azok a partnerek, akiknek hozzáférésre van szükségük ezekhez az ajánlatokhoz a saját sandbox-fiókjukkal, hozzáférést kell alkalmazniuk. A hozzáférésre való jelentkezéshez beszéljen Microsoft-fiók felettesével vagy üzleti kapcsolattartóval.
 
-Azon partnerekre, akiknek a sandbox-fiókjait jóváhagyták a CSP Azure-előfizetési ajánlatokhoz, a következő korlátozások érvényesek:
+Azok a partnerek, akiknek a sandbox-fiókjait jóváhagyták a CSP Azure-előfizetési ajánlatokhoz, a következő korlátozások érvényesek:
 
 - Legfeljebb 375 aktív előfizetéssel rendelkezik (ügyfélenként 75 ügyfél x 5 előfizetés). Ezekből azonban csak 10 lehet CSP Azure-előfizetés.
 
-- Ha egy CSP Azure-előfizetés eléri a 200 dollárnyi Azure-használatot, az erőforrásai ideiglenesen le vannak tiltva a következő számlázási ciklusig. Továbbra is aktív előfizetésnek számít, és beleszámol a 10 aktív Azure-előfizetés korlátba.
+- Ha egy CSP Azure-előfizetés eléri a 200 dollárnyi Azure-használatot, az erőforrásai ideiglenesen le vannak tiltva a következő számlázási ciklusig. Továbbra is aktív előfizetésnek számít, és beleszámolt a 10 aktív Azure-előfizetés korlátba.
 
 - A sandbox-fiókban lévő összes CSP Azure-előfizetés adatközpontonként négy virtuálisgép-magra van korlátozva. Ezért nem létesíthet négynél több virtuálisgép-magot igénylő virtuálisgép-SKUS-okat. Bizonyos speciális virtuálisgép-SKUS-k, például a GPU-magok szintén ki vannak zárva.
 
 > [!Important]
-> A 2018. augusztus 1. előtt a sandbox-fiókokkal létesített összes meglévő CSP Azure-előfizetés már nem támogatott, és a Microsoft 2018. október 16. és 2018. október 31. között megszüntetjük. Az előfizetések megszüntetése után azok nem engedélyezhetők újra, és a társított adatok többé nem lesznek elérhetők. Azok a partnerek, akik értékes adatokat tárolnak ezekben az előfizetésekben, 2018. október 16. előtt kell biztonsági adatokat tárolniuk.
+> A 2018. augusztus 1. előtt a sandbox-fiókokkal létesített összes meglévő CSP Azure-előfizetés már nem támogatott, és a Microsoft 2018. október 16. és 2018. október 31. között megszünteti őket. Az előfizetések megszüntetése után azok nem engedélyezhetők újra, és a társított adatok már nem érhetők el. Azok a partnerek, akik értékes adatokat tárolnak ezekben az előfizetésekben, 2018. október 16. előtt kell biztonsági adatokat tárolniuk.
 
 ### <a name="azure-reserved-vm-instance"></a>Azure-beli fenntartott virtuálisgép-példány
 
@@ -81,7 +81,7 @@ Ha [azure-beli fenntartott virtuálisgép-példányt](purchase-azure-reservation
 
 ### <a name="subscriptions-for-commercial-marketplace-products"></a>Előfizetések kereskedelmi piactéri termékekhez
 
-Éles környezetben, miután létrehozott egy előfizetést a kereskedelmi [piactéri SaaS-termékekre,](create-subscription-azure-marketplace-products.md)le kellkérni egy személyre szabott aktiválási hivatkozást a Partnerközpont-ból, majd a telepítési folyamat befejezéséhez látogasson el a közzétevő webhelyére. Az előfizetés számlázása csak a beállítás befejezése után kezdődik meg.
+Éles környezetben, miután létrehozott egy előfizetést a kereskedelmi piactéri SaaS-termékekre, le kellkérése egy személyre szabott aktiválási hivatkozást a Partnerközpont-ból, majd a telepítési folyamat befejezéséhez látogasson el [a](create-subscription-azure-marketplace-products.md)közzétevő webhelyére. Az előfizetés számlázása csak a beállítás befejezése után kezdődik meg.
 
 A CSP-védőkörnyezetben nincs integráció a isv-ekkel. Ha egy aktiválási hivatkozást próbál lekérni a Partnerközpont, a rendszer egy üres hivatkozást ad vissza. Ezzel a hely nélküli hivatkozással nem fejezhető be a telepítési folyamat a közzétevő webhelyén. A kereskedelmi piactéri SaaS-termékekre való előfizetések számlázásának teszteléséhez használja az integrációs tesztfiókot: Tesztkészlet-előfizetés aktiválása kereskedelmi [piactéri termékekhez.](activate-sandbox-subscription-azure-marketplace-products.md) Az előfizetés számlázása a sikeres aktiválás után kezdődik.
 

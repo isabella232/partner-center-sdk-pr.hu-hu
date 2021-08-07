@@ -4,12 +4,12 @@ description: Megtudhatja, hogyan adhat hozzá ellenőrzött tartományt a jóvá
 ms.date: 05/21/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: a8157bff5ac37100713a057ac68ac94c89ba28b8
-ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
+ms.openlocfilehash: fc24335aff6fe83b58ad2cb178d03db00614dd8ae24ee83d20b607b56a4bc51d
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/11/2021
-ms.locfileid: "112025683"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989134"
 ---
 # <a name="add-a-verified-domain-to-the-list-of-approved-domains-for-an-existing-customer"></a>Ellenőrzött tartomány hozzáadása egy meglévő ügyfél jóváhagyott tartományának listájához 
 
@@ -47,7 +47,7 @@ A következő lekérdezési paraméterrel adhatja meg azt az ügyfelet, akihez e
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CustomerTenantId | guid | Y        | Az érték egy **CustomerTenantId** formátumú GUID, amely lehetővé teszi egy ügyfél megadását. |
+| CustomerTenantId | guid | Y        | Az érték egy **CUSTOMERTenantId** formátumú GUID, amely lehetővé teszi egy ügyfél megadását. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -59,8 +59,8 @@ Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 | Név                                                  | Típus   | Kötelező                                      | Leírás                                                |
 |-------------------------------------------------------|--------|-----------------------------------------------|--------------------------------------------------------|
-| VerifiedDomainName (Ellenőrzött tartománynév)                                    | sztring | Igen                                           | Az ellenőrzött tartománynév. |
-| [Tartomány](#domain)                                     | object | Igen                                           | A tartomány adatait tartalmazza. |
+| VerifiedDomainName (Ellenőrzött tartománynév)                                    | sztring | Yes                                           | Az ellenőrzött tartománynév. |
+| [Tartomány](#domain)                                     | object | Yes                                           | A tartomány adatait tartalmazza. |
 | [DomainFederationSettings](#domain-federation-settings) | object | Igen (If AuthenticationType = `Federated` )     | A tartomány-összevonási beállításokat akkor kell használni, ha a tartomány `Federated` tartomány, nem `Managed` pedig tartomány. |
 
 ### <a name="domain"></a>Tartomány
@@ -69,14 +69,14 @@ Ez a táblázat a  kérelem törzsében található kötelező és választható
 
 | Név               | Típus                                     | Kötelező | Leírás                                                                                                                                                                                                     |
 |--------------------|------------------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| AuthenticationType (Hitelesítés típusa)                                    | sztring           | Igen      | Meghatározza, hogy a tartomány `Managed` tartomány vagy `Federated` tartomány. Támogatott értékek: `Managed` , `Federated` .|
-| Képesség                                            | sztring           | Igen      | Megadja a tartományi képességet. Például: `Email`.                  |
-| IsDefault (Hamis)                                             | nullázható logikai érték | Nem       | Azt jelzi, hogy a tartomány-e a bérlő alapértelmezett tartománya. Támogatott értékek: `True` , `False` , `Null` .        |
-| IsInitial (IsInitial)                                             | nullázható logikai érték | Nem       | Azt jelzi, hogy a tartomány kezdeti tartomány-e. Támogatott értékek: `True` , `False` , `Null` .                       |
-| Name                                                  | sztring           | Igen      | A tartománynév.                                                          |
+| AuthenticationType (Hitelesítés típusa)                                    | sztring           | Yes      | Meghatározza, hogy a tartomány `Managed` tartomány vagy `Federated` tartomány. Támogatott értékek: `Managed` , `Federated` .|
+| Képesség                                            | sztring           | Yes      | Megadja a tartományi képességet. Például: `Email`.                  |
+| IsDefault (Hamis)                                             | nullázható logikai érték | No       | Azt jelzi, hogy a tartomány-e a bérlő alapértelmezett tartománya. Támogatott értékek: `True` , `False` , `Null` .        |
+| IsInitial (IsInitial)                                             | nullázható logikai érték | No       | Azt jelzi, hogy a tartomány kezdeti tartomány-e. Támogatott értékek: `True` , `False` , `Null` .                       |
+| Name                                                  | sztring           | Yes      | A tartománynév.                                                          |
 | RootDomain (Gyökértartomány)                                            | sztring           | No       | A gyökértartomány neve.                                              |
-| Állapot                                                | sztring           | Igen      | A tartomány állapota. Például: `Verified`. Támogatott értékek:  `Unverified` , `Verified` , `PendingDeletion` .                               |
-| VerificationMethod (Ellenőrzésmetódusz)                                    | sztring           | Igen      | A tartomány-ellenőrzési módszer típusa. Támogatott értékek: `None` , `DnsRecord` , `Email` .                                    |
+| Állapot                                                | sztring           | Yes      | A tartomány állapota. Például: `Verified`. Támogatott értékek:  `Unverified` , `Verified` , `PendingDeletion` .                               |
+| VerificationMethod                                    | sztring           | Yes      | A tartomány-ellenőrzési módszer típusa. Támogatott értékek: `None` , `DnsRecord` , `Email` .                                    |
 
 ### <a name="domain-federation-settings"></a>Tartomány-összevonási beállítások
 
@@ -85,19 +85,19 @@ Ez a táblázat a kérés törzsében található kötelező és választható *
 | Név   | Típus   | Kötelező | Leírás                                                  |
 |--------|--------|----------|--------------------------------------------------------------|
 | ActiveLogOnUri                         | sztring           | No      | A gazdag ügyfelek által használt bejelentkezési URI. Ez a tulajdonság a partner STS hitelesítési URL-címe. |
-| DefaultInteractiveAuthenticationMethod | sztring           | No      | Azt az alapértelmezett hitelesítési módszert jelöli, amely akkor használható, ha egy alkalmazás interaktív bejelentkezést igényel a felhasználótól. |
-| FederationBrandName (Összevonási név)                    | sztring           | No      | Az összevonási márkanév.        |
-| IssuerUri (Kiállítói azonosító)                              | sztring           | Igen     | A tanúsítványok kiállítójának neve.                        |
-| LogOffUri                              | sztring           | Igen     | Az kijelentkezés URI-ját. Ez a tulajdonság az összevont tartomány kijelentkező URI-ját írja le.        |
+| DefaultInteractiveAuthenticationMethod | sztring           | No      | Azt az alapértelmezett hitelesítési módszert jelöli, amely akkor használatos, ha egy alkalmazás interaktív bejelentkezést igényel a felhasználótól. |
+| FederationBrandName (Összevonási név)                    | sztring           | No      | Az összevonási márka neve.        |
+| IssuerUri (Kiállítói azonosító)                              | sztring           | Yes     | A tanúsítványok kiállítójának neve.                        |
+| LogOffUri                              | sztring           | Yes     | Az kijelentkezés URI-ját. Ez a tulajdonság az összevont tartomány kijelentkező URI-ját írja le.        |
 | MetadataExchangeUri                    | sztring           | No      | Az URL-cím, amely megadja a gazdag ügyfélalkalmazások hitelesítéséhez használt metaadatcsere-végpontot. |
-| NextSigningCertificate (NextSigningCertificate)                 | sztring           | No      | Az ADFS V2 STS által a jogcímek aláírása érdekében a jövőre használt tanúsítvány. Ez a tulajdonság a tanúsítvány base64 kódolású ábrázolása. |
+| NextSigningCertificate (NextSigningCertificate)                 | sztring           | No      | Az ADFS V2 STS által a jogcímek aláírása érdekében a jövőben használt tanúsítvány. Ez a tulajdonság a tanúsítvány base64 kódolású ábrázolása. |
 | OpenIdConnectDiscoveryEndpoint         | sztring           | No      | Az OpenID Csatlakozás az összevont IDP STS felderítési végpontját. |
-| PassiveLogOnUri                        | sztring           | Igen     | A régebbi passzív ügyfelek által használt bejelentkezési URI. Ez a tulajdonság az a cím, amely összevont bejelentkezési kérelmeket küld. |
-| PreferredAuthenticationProtocol        | sztring           | Igen     | A hitelesítési jogkivonat formátuma. Például: `WsFed`. Támogatott értékek: `WsFed` , `Samlp` |
-| PromptLoginBehavior                    | sztring           | Igen     | A bejelentkezési viselkedés típusa.  Például: `TranslateToFreshPasswordAuth`. Támogatott értékek: `TranslateToFreshPasswordAuth` , `NativeSupport` , `Disabled` |
-| SigningCertificate (Aláíró tanúsítvány)                     | sztring           | Igen     | Az ADFS V2 STS által a jogcímek aláíráshoz jelenleg használt tanúsítvány. Ez a tulajdonság a tanúsítvány base64 kódolású ábrázolása. |
+| PassiveLogOnUri                        | sztring           | Yes     | A régebbi passzív ügyfelek által használt bejelentkezési URI. Ez a tulajdonság az a cím, amely összevont bejelentkezési kérelmeket küld. |
+| PreferredAuthenticationProtocol        | sztring           | Yes     | A hitelesítési jogkivonat formátuma. Például: `WsFed`. Támogatott értékek: `WsFed` , `Samlp` |
+| PromptLoginBehavior                    | sztring           | Yes     | A bejelentkezési viselkedés típusa.  Például: `TranslateToFreshPasswordAuth`. Támogatott értékek: `TranslateToFreshPasswordAuth` , `NativeSupport` , `Disabled` |
+| SigningCertificate (Aláíró tanúsítvány)                     | sztring           | Yes     | Az ADFS V2 STS által a jogcímek aláíráshoz jelenleg használt tanúsítvány. Ez a tulajdonság a tanúsítvány base64 kódolású ábrázolása. |
 | SigningCertificateUpdateStatus         | sztring           | No      | Az aláíró tanúsítvány frissítési állapotát jelzi. |
-| SigningCertificateUpdateStatus         | nullázható logikai érték | Nem      | Jelzi, hogy az IDP STS támogatja-e az MFA-t. Támogatott értékek: `True` , `False` , `Null` .|
+| SigningCertificateUpdateStatus         | nullázható logikai érték | No      | Jelzi, hogy az IDP STS támogatja-e az MFA-t. Támogatott értékek: `True` , `False` , `Null` .|
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -147,7 +147,7 @@ Ha ez az API sikeres, visszaad egy [tartományi](#domain) erőforrást az új el
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

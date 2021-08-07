@@ -4,12 +4,12 @@ description: Frissíti a felhasználó támogatási profilját.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 143328c5501f525d52911eead805d420f79b78ff
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: f312f7da76d47282c5caa27b3158249b3d3e8a35e739d60fd74525705c0e7cf3
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111530344"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990392"
 ---
 # <a name="update-support-profile"></a>Támogatási profil frissítése
 
@@ -19,11 +19,11 @@ Frissíti a felhasználó támogatási profilját.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
-A támogatási profil frissítéséhez először szerezze be [a támogatási profilt,](get-support-profile.md) és tegye meg a kívánt módosításokat. Ezután használja az [**IPartnerOperations.Profiles gyűjteményt.**](/dotnet/api/microsoft.store.partnercenter.ipartner.profiles) Hívja meg [**a SupportProfile**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile) tulajdonságot, majd az [**Update() vagy**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.update) [**az UpdateAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.updateasync)
+A támogatási profil frissítéséhez először szerezze be a [támogatási profilt,](get-support-profile.md) és tegye meg a kívánt módosításokat. Ezután használja az [**IPartnerOperations.Profiles gyűjteményt.**](/dotnet/api/microsoft.store.partnercenter.ipartner.profiles) Hívja meg [**a SupportProfile**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile) tulajdonságot, majd az [**Update() vagy**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.update) [**az UpdateAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.profiles.isupportprofile.updateasync)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -43,7 +43,7 @@ SupportProfile updatedSupportProfile = partnerOperations.Profiles.SupportProfile
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                     |
 |---------|---------------------------------------------------------------------------------|
@@ -82,11 +82,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza a **frissített SupportProfile** objektumtulajdonságokat.
+Ha sikeres, ez a metódus a frissített **SupportProfile** objektumtulajdonságokat adja vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

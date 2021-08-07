@@ -6,34 +6,34 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 02a6fccc2cf7f3f4dc929b96ec0f17e0f4a31b06
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: bce47adb87111edb998b8dff029f39547f21d8e0a0464a96de7f0c9aa5d4a69d
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874499"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991157"
 ---
 # <a name="get-a-list-of-available-licenses"></a>A rendelkezésre álló licencek listájának lekérése
 
 Ez a cikk azt ismerteti, hogyan lehet lekérhetők a megadott ügyfél felhasználói számára elérhető licencek.
 
-Az alábbi példák az **1.** csoportban elérhető licenceket adja vissza, az alapértelmezett licenccsoportot, amely a Azure Active Directory (Azure AD) által kezelt licenceket jelöli. Egy adott licenccsoporthoz elérhető licencek lekért listáját lásd: Az elérhető licencek listájának lekérhetők [licenccsoport szerint.](get-a-list-of-available-licenses-by-license-group.md)
+Az alábbi példák a **group1 (1.** csoport) által elérhető licenceket adja vissza, az Azure AD (Azure AD) által felügyelt Azure Active Directory képviselik. Egy adott licenccsoporthoz elérhető licencekért lásd: Az elérhető licencek listájának lekérhetők [licenccsoport szerint.](get-a-list-of-available-licenses-by-license-group.md)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
 Az ügyfél felhasználói számára az alapértelmezett licenccsoportból elérhető licencek listájának lekérése:
 
-1. Az [**ügyfél azonosításához használja az IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával.
+1. Az ügyfél azonosításához használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával.
 
 2. A [**SubscribedSkus**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscribedskus) tulajdonság értékének lekérésével lekérhet egy felületet az ügyfél által előfizetett termékváltozat-gyűjtési műveletekhez.
 
-3. A [**licencek listájának**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.get) lekéréshez hívja meg a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.getasync) metódust.
+3. A [**licencek listájának**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.get) lekéréshez hívja meg a Get vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.getasync) metódust.
 
 ``` csharp
 // string selectedCustomerId;
@@ -58,11 +58,11 @@ Példaként tekintse meg a következőket:
 
 #### <a name="uri-parameter"></a>URI-paraméter
 
-Az ügyfél azonosításához használja a következő path paramétert.
+Az ügyfél azonosításához használja a következő elérésiút-paramétert.
 
 | Név        | Típus   | Kötelező | Leírás                                           |
 |-------------|--------|----------|-------------------------------------------------------|
-| ügyfél-azonosító | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
+| ügyfél-azonosító | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -90,7 +90,7 @@ Ha a művelet sikeres, a válasz törzse a [SubscribedSku](license-resources.md#
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a REST Partnerközpont [hibakódokat.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

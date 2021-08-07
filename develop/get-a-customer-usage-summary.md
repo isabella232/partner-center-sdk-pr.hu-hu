@@ -4,12 +4,12 @@ description: A CustomerUsageSummary erőforrással lekértheti egy adott Azure-s
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 88c69637c94b9263ede6924cf2dd09513aa00f70
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 668176c772ac89cf87189aa00514119340b28963e3abb6ada1717e52536f436b
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874618"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992619"
 ---
 # <a name="get-a-usage-summary-for-all-of-a-customers-subscriptions"></a>Egy ügyfél összes előfizetésének használati összegzése
 
@@ -46,7 +46,7 @@ Példaként tekintse meg a következőket:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                         |
 |---------|-----------------------------------------------------------------------------------------------------|
@@ -84,7 +84,7 @@ Ha sikeres, ez a metódus egy **CustomerUsageSummary** erőforrást ad vissza a 
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be ezt a kódot, a hiba típusát és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, a hibatípust és a további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example-for-microsoft-azure-ms-azr-0145p-subscription"></a>Példa válasz Microsoft Azure (MS-AZR-0145P) előfizetésre
 

@@ -1,28 +1,28 @@
 ---
 title: Sandbox-előfizetés aktiválása kereskedelmi piactéri termékekhez
-description: Megtudhatja, hogyan használhatja a C/# és a Partnerközpont REST API-kat a kereskedelmi piactéri termékekre vonatkozó sandbox-előfizetések aktiválásához.
+description: Megtudhatja, hogyan használhatja a C/# és a Partnerközpont REST API-kat a kereskedelmi piactéri termékekhez való sandbox-előfizetés aktiválásához.
 ms.date: 09/10/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: b32c3e87462f58218771fc5da7da56ed177489cb
-ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
+ms.openlocfilehash: 1ea581695e4328f02d08486c91b7b90a78e75a50985279d78cc54ef8b35fa715
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/11/2021
-ms.locfileid: "112025700"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990494"
 ---
 # <a name="activate-a-sandbox-subscription-for-commercial-marketplace-saas-products-to-enable-billing"></a>Sandbox-előfizetés aktiválása kereskedelmi piactéri SaaS-termékekhez a számlázás engedélyezéséhez
 
 Előfizetés aktiválása kereskedelmi piactéri szolgáltatott szoftver (SaaS) termékekhez integrációs sandbox-fiókokból a számlázás engedélyezéséhez.
 
 > [!NOTE]
-> A kereskedelmi piactéri SaaS-termékek előfizetését csak integrációs sandbox-fiókokból lehet aktiválni. Ha éles üzemre vonatkozó előfizetéssel rendelkezik, a telepítési folyamat befejezéséhez meg kell látogatnia a közzétevő webhelyét. Az előfizetés számlázása csak a beállítás befejezése után kezdődik meg.
+> Előfizetést csak a kereskedelmi piactéri SaaS-termékekhez lehet aktiválni az integrációs sandbox-fiókokból. Ha éles üzemre vonatkozó előfizetéssel rendelkezik, a telepítési folyamat befejezéséhez meg kell jelennie a közzétevő webhelyén. Az előfizetés számlázása csak a telepítés befejezése után kezdődik meg.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Integrációs sandbox partnerfiók egy olyan ügyféllel, aki aktív előfizetéssel rendelkezik a kereskedelmi piactéri SaaS-termékekhez.
+- Integrációs védőfali partnerfiók egy olyan ügyféllel, aki aktív előfizetéssel rendelkezik a kereskedelmi piactéri SaaS-termékekhez.
 
 - A .NET SDK Partnerközpont t használó partnereknek az SDK 1.14.0-s vagy újabb verzióját kell használniuk a funkció eléréséhez.
 
@@ -36,7 +36,7 @@ A kereskedelmi piactéri SaaS-termékek előfizetésének aktiválásához köve
    var subscriptionOperations = partnerOperations.Customers.ById(customerId).Subscriptions.ById(subscriptionId);
    ```
 
-2. Aktiválja az előfizetést az **Aktiválás művelettel.**
+2. Aktiválja az előfizetést az Aktiválás **művelettel.**
 
    ```csharp
    var subscriptionActivationResult = subscriptionOperations.Activate();
@@ -54,8 +54,8 @@ A kereskedelmi piactéri SaaS-termékek előfizetésének aktiválásához köve
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél-bérlő-azonosító** | **guid** | Y | Az érték egy GUID-formátumú ügyfél bérlőazonosítója **(ügyfél-bérlő-azonosító),** amely lehetővé teszi az ügyfél megadását. |
-| **subscription-id** | **guid** | Y | Az érték egy GUID-formátumú előfizetés-azonosító **(előfizetés-azonosító),** amely lehetővé teszi egy előfizetés megadását. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y | Az érték egy GUID-formátumú ügyfél bérlőazonosítója (**ügyfél-bérlő-azonosító),** amely lehetővé teszi az ügyfél megadását. |
+| **subscription-id** | **guid** | Y | Az érték egy GUID formátumú előfizetés-azonosító (**subscription-id**), amely lehetővé teszi egy előfizetés megadását. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -78,11 +78,11 @@ MS-RequestId: 655890ba-4d2b-4d09-a95f-4ea1348686a5
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ez a metódus visszaadja **az előfizetés-azonosító és az** állapot **tulajdonságait.**
+Ez a metódus visszaadja **az előfizetés-azonosító és** az **állapot tulajdonságait.**
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

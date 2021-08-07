@@ -4,12 +4,12 @@ description: Azure-díjkártyák lekért valós idejű árai egy Azure-ajánlath
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 4f66ab19ef3723fbaa27acff941cf48683a7c25c
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 8b69e9e3d8e6e4c4e447b308c890c4c054e6a1e5221bb523a5caca041d1ea115
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111548787"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989099"
 ---
 # <a name="get-prices-for-microsoft-azure"></a>Díjak lekérése a Microsoft Azure-tól
 
@@ -19,7 +19,7 @@ Azure-díjkártyák [lekért](azure-rate-card-resources.md) valós idejű árai 
 
 A használat nyomon követéséhez és a havi számla és az egyes ügyfelek számlái előrejelzéséhez kombinálhatja ezt az Azure Rate Card-lekérdezést az Microsoft Azure árainak lekéréséhez az ügyfél Azure-beli kihasználtsági rekordjainak lekérésére vonatkozó [kéréssel.](get-a-customer-s-utilization-record-for-azure.md)
 
-Az árak piac és pénznem szerint különböznek, és ez az API figyelembe veszi a helyet. Alapértelmezés szerint az API a partnerprofil beállításait használja a Partnerközpont böngészőnyelven, és ezek a beállítások testre szabhatók. A helytudatosság különösen fontos, ha az értékesítéseket több piacon kezeli egyetlen központi irodából. További információ: [URI-paraméterek.](#uri-parameters)
+Az árak piac és pénznem szerint különböznek, és ez az API figyelembe veszi a helyet. Alapértelmezés szerint az API a saját partnerprofil-beállításait Partnerközpont böngészőnyelven használja, és ezek a beállítások testre szabhatók. A helytudatosságát különösen akkor fontos, ha az értékesítéseket több piacon kezeli egyetlen központi irodából. További információ: [URI-paraméterek.](#uri-parameters)
 
 ## <a name="c"></a>C\#
 
@@ -31,13 +31,13 @@ Az Azure Rate Card beszerzéséhez hívja meg az [**IAzureRateCard.Get**](/dotne
 var azureRateCard = partner.RateCards.Azure.Get();
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** Partnerközpont SDK **Osztály:** GetAzureRateCard.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** GetAzureRateCard.cs
 
 ## <a name="java"></a>Java
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-Az Azure Rate Card beszerzéséhez hívja meg az **IAzureRateCard.get** függvényt az Azure-árakat tartalmazó díjszabási kártya részleteinek visszaadás érdekében.
+Az Azure Rate Card beszerzéséhez hívja meg az **IAzureRateCard.get** függvényt az Azure-árakat tartalmazó díjszabási kártya részleteinek visszaküldésére.
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -49,7 +49,7 @@ AzureRateCard azureRateCard = partner.getRateCards().getAzure().get();
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-Az Azure-kártya beszerzéséhez futtasa le a [**Get-PartnerAzureRateCard**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerAzureRateCard.md) parancsot az Azure-árakat tartalmazó díjszabási kártya részleteinek visszaadás érdekében.
+Az Azure-kártya beszerzéséhez futtasa le a [**Get-PartnerAzureRateCard**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerAzureRateCard.md) parancsot az Azure-árakat tartalmazó díjszabási kártya részleteinek visszaküldésére.
 
 ```powershell
 Get-PartnerAzureRateCard
@@ -61,7 +61,7 @@ Get-PartnerAzureRateCard
 
 | Metódus  | Kérés URI-ja                                                        |
 |---------|--------------------------------------------------------------------|
-| **Kap** | *{baseURL}*/v1/ratecards/azure?currency={currency}&region={region} |
+| **Kap** | *{baseURL}*/v1/ratecards/azure?currency={currency}&régió={régió} |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
@@ -70,11 +70,11 @@ Get-PartnerAzureRateCard
 | currency | sztring | No       | Nem kötelező hárombetűs ISO-kód az erőforrás-díjszabást megszabadtó pénznemhez `EUR` (például). A mező alapértelmezett értéke: `USD`. |
 | régió   | sztring | No       | Választható kétbetűs ISO-ország-/régiókód, amely az ajánlat vásárlásának piacát jelzi `FR` (például). A mező alapértelmezett értéke: `US`.        |
 
-A kérelembe be is [](headers.md#rest-request-headers) foglalhatja az opcionális X-Locale fejlécet. Ha nem tartalmazza az X-Locale fejlécet, a rendszer az alapértelmezett értéket ("en-US") használja.
+A kérelembe be is [](headers.md#rest-request-headers) foglalhatja a választható X-Locale fejlécet. Ha nem foglalja bele az X-Locale fejlécet, a rendszer az alapértelmezett értéket ("en-US") használja.
 
 - Ha a kérelemben pénznem- és régióparamétereket ad meg, az X-Locale értéke határozza meg a válasz nyelvét.
 
-- Ha nem ad meg régió- és pénznemparamétereket a kérésben, az X-Locale értéke határozza meg a válasz régióját, pénznemét és nyelvét.
+- Ha nem ad meg régió- és pénznemparamétereket a kérésben, a rendszer az X-Locale értékkel határozza meg a válasz régióját, pénznemét és nyelvét.
 
 ### <a name="request-header"></a>Kérelem fejléce
 
@@ -103,7 +103,7 @@ Ha a kérés sikeres, egy [Azure Rate Card-erőforrást ad](azure-rate-card-reso
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

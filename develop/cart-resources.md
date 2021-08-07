@@ -4,12 +4,12 @@ description: A partnerek akkor rendelnek a kosárba, ha egy ügyfél egy ajánla
 ms.date: 08/26/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: ebe6e628d5bb3b66186d5c4f428f69e46415892b
-ms.sourcegitcommit: 59950cf131440786779c8926be518c2dc4bc4030
+ms.openlocfilehash: c9372bb982528127f8870094e26465d004b1f05c75140f0ac729375f5d5f3302
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/31/2021
-ms.locfileid: "115009144"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992177"
 ---
 # <a name="cart-resources"></a>Kocsierőforrások
 
@@ -105,7 +105,7 @@ A kosárból való ki- és kijelentkezés eredményét jelöli.
 
 ## <a name="ordererror"></a>OrderError
 
-Olyan hibát jelez, amely a kosárból való ki- és kijelentkezés során fordul elő egy rendelés létrehozásakor.
+Olyan hibát jelez, amely a kosárból való ki- és kijelentkezés során fordul elő a rendelés létrehozásakor.
 
 | Tulajdonság     | Típus   | Description                                     |
 |--------------|--------|-------------------------------------------------|

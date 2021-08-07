@@ -1,19 +1,19 @@
 ---
 title: Adott felhasználóhoz rendelt licencek lekérése licenccsoport szerint
-description: A felhasználóhoz rendelt licencek listájának lekért listája a megadott licenccsoportokhoz.
+description: A felhasználó által hozzárendelt licencek listájának lekért listája a megadott licenccsoportokhoz.
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 54acf6f315e3062d03903a98d0c6c1946065f95e
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: b1ed884fd1d7f02773d612aaca0e00651a6dde55ec897ee2d05585af874ddd05
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111446003"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990460"
 ---
 # <a name="get-licenses-assigned-to-a-user-by-license-group"></a>Adott felhasználóhoz rendelt licencek lekérése licenccsoport szerint
 
-A felhasználóhoz rendelt licencek listájának lekért listája a megadott licenccsoportokhoz.
+A felhasználó által hozzárendelt licencek listájának lekért listája a megadott licenccsoportokhoz.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -27,7 +27,7 @@ A felhasználóhoz rendelt licencek listájának lekért listája a megadott lic
 
 ## <a name="c"></a>C\#
 
-Annak ellenőrzéséhez, hogy mely licencek vannak hozzárendelve egy felhasználóhoz a megadott licenccsoportokból, először példányosodja a [**LicenseGroupId**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licensegroupid)típusú [List/dotnet/api/system.collections.generic.list-1) típust, majd adja hozzá a licenccsoportokat a listához. Ezután használja az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Ezután hívja meg a [**Users.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) a felhasználói azonosítóval a felhasználó azonosításához. Ezután szerezze be az ügyfélfelhasználói licencműveletekkel kapcsolatos felületet a [**Licencek tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.licenses) Végül továbbküldi a licenccsoportok listáját a [**Get**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.get) vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.getasync) metódusnak a felhasználóhoz rendelt licencek gyűjteményének lekéréséhez.
+Annak ellenőrzéséhez, hogy mely licencek vannak hozzárendelve egy felhasználóhoz a megadott licenccsoportokból, először egy [**LicenseGroupId**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licensegroupid)típusú [List/dotnet/api/system.collections.generic.list-1) példányosításával kezdje, majd adja hozzá a licenccsoportokat a listához. Ezután használja az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Ezután hívja meg a [**Users.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) a felhasználói azonosítóval a felhasználó azonosításához. Ezután szerezze be az ügyfélfelhasználói licencműveletekkel kapcsolatos felületet a [**Licencek tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.licenses) Végül továbbküldi a licenccsoportok listáját a [**Get**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.get) vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.getasync) metódusnak a felhasználóhoz rendelt licencek gyűjteményének lekéréséhez.
 
 ``` csharp
 // string selectedCustomerUserId;
@@ -49,7 +49,7 @@ var customerUserBothAadAndSfbAssignedLicenses = partnerOperations.Customers.ById
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                                                            |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -63,9 +63,9 @@ Az alábbi elérési út és lekérdezési paraméterek segítségével azonosí
 
 | Név            | Típus   | Kötelező | Leírás                                                                                                                                                                                                                                                           |
 |-----------------|--------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ügyfélazonosító     | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.                                                                                                                                                                                                                 |
-| felhasználói azonosító         | sztring | Igen      | A felhasználót azonosító GUID formátumú sztring.                                                                                                                                                                                                                     |
-| licenseGroupIds (licenccsoport-azonosítók) | sztring | No       | A hozzárendelt licencek licenccsoportját jelző felsorolásérték. Érvényes értékek: Group1, Group2 Group1 – Ez a csoport az összes olyan terméket tartalmaz, amelynek licence a Azure Active Directory (AAD) alatt kezelhető. 2. csoport – Ez a csoport csak Minecraft terméklicenceket. |
+| ügyfélazonosító     | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.                                                                                                                                                                                                                 |
+| felhasználói azonosító         | sztring | Yes      | A felhasználót azonosító GUID formátumú sztring.                                                                                                                                                                                                                     |
+| licenseGroupIds (licenccsoport-azonosítók) | sztring | No       | A hozzárendelt licencek licenccsoportját jelző felsorolásérték. Érvényes értékek: Group1, Group2 Group1 – Ez a csoport minden olyan terméket tartalmaz, amelynek licence a Azure Active Directory (AAD) alatt kezelhető. 2. csoport – Ez a csoport csak Minecraft terméklicenceket. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

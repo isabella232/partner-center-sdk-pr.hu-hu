@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 074d7ba65c7aab91687a67f50e871cee913fc2bb
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 7ad763dd6d586a58b73d0a3abb2b2fc399a0f35e7b842f5d1dd2e4c5006c3b30
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111873836"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989746"
 ---
 # <a name="get-a-self-serve-policy-by-id"></a>Önkiszolgáló szabályzat lekért azonosítója
 
@@ -19,7 +19,7 @@ Lekérte a megadott önkiszolgáló szabályzatot az azonosítójával.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 - Egy önkiszolgáló szabályzatazonosító.
 
 ## <a name="examples"></a>Példák
@@ -27,7 +27,7 @@ Lekérte a megadott önkiszolgáló szabályzatot az azonosítójával.
 
 ## <a name="span-idrest_requestspan-idrest_requestspan-idrest_requestrest-request"></a><span id="REST_Request"/><span id="rest_request"/><span id="REST_REQUEST"/>REST-kérés
 
-**Kérés szintaxisa**
+**Kérésszintaxis**
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
@@ -39,7 +39,7 @@ A megadott termék lekért értékével az alábbi elérésiút-paramétereket h
 
 | Név                       | Típus         | Kötelező | Leírás                                                     |
 |----------------------------|--------------|----------|-----------------------------------------------------------------|
-| **SelfServePolicy-id**     | **sztring**   | Igen      | Az önkiszolgáló szabályzatot azonosító sztring.                 |
+| **SelfServePolicy-id**     | **sztring**   | Yes      | Az önkiszolgáló szabályzatot azonosító sztring.                 |
 
 **Kérelemfejlécek**
 
@@ -65,11 +65,11 @@ Ha ez sikeres, a válasz törzse tartalmaz egy [SelfServePolicy erőforrást.](s
 
 **Sikeres válasz és hibakódok**
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a [hibakódok Partnerközpont tekintse meg.](error-codes.md)
 
 Ez a metódus a következő hibakódokat adja vissza:
 
-| HTTP-állapotkód     | Hibakód   | Leírás                                                                |
+| HTTP-állapotkód     | Hibakód   | Description                                                                |
 |----------------------|--------------|----------------------------------------------------------------------------|
 | 404                  | 600039       | Az önkiszolgáló szabályzat nem található.                                                     |
 

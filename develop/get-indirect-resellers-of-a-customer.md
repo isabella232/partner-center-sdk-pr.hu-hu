@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 8697c40c22d5c19979c066b8d3a1de733e211f71
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: 7a4f4ef8f9a49cd43f565454d1d44c46eefa67fa9cf566f132482f840db183ec
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111446241"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990477"
 ---
 # <a name="get-indirect-resellers-of-a-customer"></a>Egy ügyfél közvetett viszonteladóinak lekérése
 
@@ -34,11 +34,11 @@ Azon közvetett viszonteladók listájának lekéréséhez, akikkel a megadott �
  var indirectResellers = partnerOperations.Customers[customerId].Relationships.Get();
 ```
 
-**Minta:** [Konzoltesztelő](console-test-app.md)**alkalmazás Project:** Partnerközpont SDK Samples **Class:** GetIndirectResellersOfCustomer.cs
+**Minta:** [Konzol tesztalkalmazás](console-test-app.md)**Project:** Partnerközpont SDK Samples **Class:** GetIndirectResellersOfCustomer.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                   |
 |---------|-----------------------------------------------------------------------------------------------|
@@ -50,7 +50,7 @@ Az ügyfél azonosításához használja a következő elérésiút-paramétert.
 
 | Név        | Típus   | Kötelező | Leírás                                           |
 |-------------|--------|----------|-------------------------------------------------------|
-| ügyfélazonosító | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
+| ügyfélazonosító | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

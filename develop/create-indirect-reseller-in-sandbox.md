@@ -1,22 +1,22 @@
 ---
-title: Közvetett viszonteladó létrehozása a sandboxban
+title: Indirect Reseller létrehozása tesztkörnyezetben
 description: Információkat nyújt a tesztbox közvetett szolgáltatói számára a végpontok közötti tesztelés API-k használatával való engedélyezéséről.
 ms.date: 5/24/2021
 ms.author: vijvala
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 93e26792b66e447a0047bd550f4302c7fca4e87b
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 970b7ba49f6bb4b842f0f7d96e689856b0362c03949e14c9cf5a0e205573277b
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973434"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991446"
 ---
-# <a name="create-indirect-reseller-in-sandbox"></a>Közvetett viszonteladó létrehozása a sandboxban
+# <a name="create-indirect-reseller-in-sandbox"></a>Indirect Reseller létrehozása tesztkörnyezetben
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Németországhoz
 
-Ez a dokumentum bemutatja, hogyan hozhat létre tesztkészlet közvetett szolgáltatókat, és hogyan engedélyezheti a végpontok közötti tesztelést API-k használatával.
+Ez a dokumentum bemutatja, hogyan hozhat létre közvetett tesztkészlet-szolgáltatókat, és hogyan engedélyezheti a végpontok közötti tesztelést API-k használatával.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -34,28 +34,28 @@ Ez a dokumentum bemutatja, hogyan hozhat létre tesztkészlet közvetett szolgá
 | Ügyfelek meghívása | Az ügyfélkapcsolati kérés nem támogatott a sandboxban |
 | A sandbox indirect provider (Sandbox Indirect Provider) kiválaszthatja a Sandbox IR (MPN ID) (Sandbox IR ( MPN-azonosító) lehetőséget a POR-ként a tranzakció elhelyezésekor | Támogatott |
 | Éles környezetben nem támogatott | A sandbox indirect provider (Közvetett sandbox-szolgáltató) közvetett viszonteladót hozhat létre |
-| A sandbox MPN-azonosítót kell megadni, a termék MPN-azonosítója nem fog működni | Éles környezetben nem támogatott |
+| A sandbox MPN-azonosítót meg kell adni, a termék MPN-azonosítója nem fog működni | Éles környezetben nem támogatott |
 | Éles környezetben nem támogatott | A közvetett sandbox-szolgáltató törölheti a közvetett viszonteladót |
 
 ## <a name="sandbox-indirect-provider--create-sandbox-indirect-reseller"></a>Közvetett sandbox szolgáltató – Közvetett viszonteladó létrehozása a sandboxban
 
-Ez a funkció csak a Sandboxban érhető el, és lehetővé teszi közvetett viszonteladók létrehozására a Sandbox Indirect Providers (Közvetett viszonteladók) lehetőséget.
+Ez a funkció csak a Sandboxban érhető el, és lehetővé teszi, hogy közvetett viszonteladókat hozzon létre a Sandbox indirect Providers (Közvetett viszonteladók) számára.
 
-1. A közvetett viszonteladók által engedélyezett öt közvetett viszonteladóra vonatkozó korlát a közvetett sandbox-szolgáltatónként
-2. A közvetett sandbox-szolgáltatók közvetett viszonteladóval hozhatnak létre `associatedPartnerId` ügyfeleket
+1. A közvetett viszonteladók által engedélyezett öt közvetett viszonteladóra vonatkozó korlát a közvetett sandbox szolgáltatónként
+2. A közvetett sandbox-szolgáltatók közvetett viszonteladókkal `associatedPartnerId` hozhatnak létre ügyfeleket
 3. Adja meg [egy adott régió MPN-azonosítóját](/partner-center/mpn-create-a-partner-center-account) egy közvetett viszonteladó létrehozása során. Több közvetett viszonteladó is létre lehet hozva ugyanazokkal a sandbox MPN-azonosítóval.
 4. Közvetett sandbox-szolgáltatónként csak 75 ügyfél engedélyezett
 
 ## <a name="sandbox-indirect-resellers--view-customers"></a>Sandbox Indirect Resellers ( Közvetett viszonteladók – Ügyfelek megtekintése)
 
-1. A sandbox Indirect Resellers (A közvetett sandbox-viszonteladók) megtekinthetik a sandbox-ügyfelek listáját közvetett sandbox-szolgáltatók szerint.
+1. A Sandbox Indirect Resellers (A közvetett sandbox-viszonteladók) megtekinthetik a sandbox-ügyfelek listáját közvetett sandbox-szolgáltatók szerint.
 2. A közvetett sandbox-viszonteladók delegált rendszergazdai engedélyekkel kezelhetik az ügyfélfiókot.
 
-## <a name="create-sandbox-indirect-reseller-through-api"></a>Közvetett viszonteladó létrehozása a Sandboxban API-n keresztül
+## <a name="create-sandbox-indirect-reseller-through-api"></a>Sandbox Indirect Reseller létrehozása API-n keresztül
 
 ### <a name="rest-request"></a>REST-kérés
 
-#### <a name="request-syntax"></a>Kérés szintaxisa
+#### <a name="request-syntax"></a>Kérésszintaxis
 
 | **Metódus** | **Kérés URI-ja**                                                        |
 |------------|------------------------------------------------------------------------|
@@ -71,7 +71,7 @@ Ez a funkció csak a Sandboxban érhető el, és lehetővé teszi közvetett vis
 
 Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
-| Tulajdonság             | Típus           | Leírás                                      |
+| Tulajdonság             | Típus           | Description                                      |
 |----------------------|----------------|--------------------------------------------------|
 | mpnId                | sztring         | Az integrációs integrációs csomag MPN-azonosítója egy adott régióban         |
 | Bérlő               | &lt;Szótárszavak, sztringek&gt; | A létrehozni szükséges fiókot definiáló alapvető információk gyűjteménye |
@@ -80,7 +80,7 @@ Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 Ez a táblázat a bérlői attribútumban szükséges **tulajdonságokat ismerteti.**
 
-| Tulajdonság           | Típus           | Leírás                         |
+| Tulajdonság           | Típus           | Description                         |
 |--------------------|----------------|-------------------------------------|
 | domainPrefix (tartomány előtagja)       | Sztring; Egyedi | A bérlőfiók tartománya       |
 | name               | sztring         | A bérlő rövid neve         |
@@ -92,9 +92,9 @@ Ez a táblázat a bérlői attribútumban szükséges **tulajdonságokat ismerte
 | ország            | sztring         | A fiók országa              |
 | Kultúra            | sztring         | A fiók nyelvi beállítása     |
 
-Ez a táblázat a **legalBusinessProfile attribútumban szükséges tulajdonságokat** ismerteti.
+Ez a táblázat a **legalBusinessProfile** attribútumban szükséges tulajdonságokat ismerteti.
 
-| Tulajdonság       | Típus                             | Leírás                          |
+| Tulajdonság       | Típus                             | Description                          |
 |----------------|----------------------------------|--------------------------------------|
 | companyName (vállalat neve)    | sztring                           | Jogi személy vállalatneve        |
 | address        | &lt;Szótárszavak, sztringek&gt; | A jogi személy helyének címe |
@@ -141,7 +141,7 @@ Ez a táblázat a **legalBusinessProfile attribútumban szükséges tulajdonság
 
 ### <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus visszaadja a sandbox ir-erőforrást a válasz törzsében.
+Ha ez a módszer sikeres, a válasz törzsében adja vissza a sandbox ir-erőforrást.
 
 ```http
 {

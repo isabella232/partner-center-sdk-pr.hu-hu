@@ -4,12 +4,12 @@ description: Megtudhatja, hogyan használhatja Partnerközpont API-kat az integr
 ms.date: 04/28/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 4c4b658f406e420d8d3cd425688364fe3d440d3d
-ms.sourcegitcommit: a3a78ec0f5078645b5a4f3b534165eef30f2c822
+ms.openlocfilehash: 9c4843dc4626c2bb2cd1b2784f3df1c323e2eceea2edbb6330a9bd9dbcea4dc1
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/30/2021
-ms.locfileid: "113104971"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992211"
 ---
 # <a name="cancel-an-order-from-the-integration-sandbox-using-partner-center-apis"></a>Rendelés visszavonása az integrációs védőfalról az Partnerközpont API-k használatával
 
@@ -25,13 +25,13 @@ Az irányítópulton keresztül is visszavonhatja az éles szoftverrendeléseket
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 - Integrációs sandbox partnerfiók egy olyan ügyféllel, aki aktív fenntartott példányokkal/szoftverekkel/külső SaaS-előfizetési rendelésekkel rendelkezik.
 
 ## <a name="c"></a>C\#
 
-Ha le kell mondania egy rendelést az integrációs védőfalról, adja át a fiók hitelesítő adatait a metódusnak a partnerműveleteket lekért [**`CreatePartnerOperations`**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) [**`IPartner`**](/dotnet/api/microsoft.store.partnercenter.ipartner) felület lekért felülethez.
+Ha le kell mondania egy rendelést az integrációs védőfalról, adja át a fiók hitelesítő adatait a metódusnak a partnerműveleteket lekért [**`CreatePartnerOperations`**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) [**`IPartner`**](/dotnet/api/microsoft.store.partnercenter.ipartner) felület lekért felületére.
 
 Egy adott [](order-resources.md#order)rendelés kiválasztásához használja a partnerműveleteket és a hívási metódust az ügyfél azonosítóval az ügyfél azonosítójának megadásával, majd a rendelés azonosítóját a rendelés megadásához, végül pedig a lekérési [**`Customers.ById()`**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) **`Orders.ById()`** **`Get`** **`GetAsync`** metódust.
 
@@ -53,7 +53,7 @@ order = tipAccountPartnerOperations.Customers.ById(customerTenantId).Orders.ById
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus     | Kérés URI-ja                                                                            |
 |------------|----------------------------------------------------------------------------------------|
@@ -65,7 +65,7 @@ Az alábbi lekérdezési paraméterrel törölhet egy ügyfelet.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlőazonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
 | **order-id (rendelésazonosító)** | **sztring** | Y        | Az érték egy sztring, amely a megszakítani szükséges rendelési értékeket jegyzett meg. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
@@ -97,11 +97,11 @@ MS-CorrelationId: 1438ea3d-b515-45c7-9ec1-27ee0cc8e6bd
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus a megszakított rendelést adja vissza.
+Ha sikeres, ez a metódus a megszakított rendelést adja vissza.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 1258727ecbe7c5cc332624577fa8a355e28e3717
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 6ec3a642006a100ef85c0af9eeddd9daf00cc1cd981eabd5dddb77e60e15111f
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874210"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989440"
 ---
 # <a name="get-a-list-of-products-by-country"></a>Termékek listájának lekérése (ország alapján)
 
@@ -29,7 +29,7 @@ Az alábbi módszerekkel egy adott országban elérhető termékek gyűjtemény�
 
 A termékek listájának lekért listája:
 
-1. Az **IAggregatePartner.Products gyűjtemény** használatával válassza ki az országot a **ByCountry() metódussal.**
+1. Az **IAggregatePartner.Products** gyűjtemény használatával válassza ki az országot a **ByCountry() metódussal.**
 
 2. Válassza ki a katalógusnézetet a **ByTargetView() metódussal.**
 
@@ -108,8 +108,8 @@ Az alábbi elérési út és lekérdezési paraméterek használatával lekérde
 
 | Név                   | Típus     | Kötelező | Leírás                                                             |
 |------------------------|----------|----------|-------------------------------------------------------------------------|
-| ország                | sztring   | Igen      | Az ország/régió azonosítója.                                                  |
-| targetView             | sztring   | Igen      | A katalógus célnézetét azonosítja. A támogatott értékek a következőek: <br/><br/>**Azure**, amely az összes Azure-elemet tartalmazza<br/><br/>**AzureReservations**, amely az összes Azure-foglalási elemet tartalmazza<br/><br/>**AzureReservationsVM,** amely az összes virtuálisgép-foglalási elemet tartalmazza<br/><br/>**AzureReservationsSQL,** amely az összes SQL tartalmazza<br/><br/>**AzureReservationsCosmosDb**, amely az összes Cosmos-adatbázis foglalási elemét tartalmazza<br/><br/>**MicrosoftAzure**, amely Microsoft Azure **(MS-AZR-0145P)** és Azure-csomagokhoz tartalmaz elemeket<br/><br/>**OnlineServices**, amely az összes online szolgáltatási elemet tartalmazza (a kereskedelmi piactéren elérhető termékeket is beleértve)<br/><br/>**Szoftver,** amely az összes szoftverelemet tartalmazza<br/><br/>**SoftwareSUSELinux**, amely az összes szoftveres SUSE Linux-elemet tartalmazza<br/><br/>**SzoftverPerpetual**, amely az összes folyamatos szoftverelemet tartalmazza<br/><br/>**SoftwareSubscriptions**, amely az összes szoftver-előfizetési elemet tartalmazza    |
+| ország                | sztring   | Yes      | Az ország/régió azonosítója.                                                  |
+| targetView             | sztring   | Yes      | A katalógus célnézetét azonosítja. A támogatott értékek a következőek: <br/><br/>**Azure**, amely az összes Azure-elemet tartalmazza<br/><br/>**AzureReservations**, amely az összes Azure-foglalási elemet tartalmazza<br/><br/>**AzureReservationsVM,** amely az összes virtuálisgép-foglalási elemet tartalmazza<br/><br/>**AzureReservationsSQL,** amely az összes SQL tartalmazza<br/><br/>**AzureReservationsCosmosDb**, amely az összes Cosmos-adatbázis foglalási elemét tartalmazza<br/><br/>**MicrosoftAzure**, amely Microsoft Azure (**MS-AZR-0145P**) és Azure-csomagokhoz<br/><br/>**OnlineServices**, amely az összes online szolgáltatási elemet tartalmazza (a kereskedelmi piactéren elérhető termékeket is beleértve)<br/><br/>**Szoftver,** amely az összes szoftverelemet tartalmazza<br/><br/>**SoftwareSUSELinux**, amely az összes szoftveres SUSE Linux-elemet tartalmazza<br/><br/>**SzoftverPerpetual**, amely az összes folyamatos szoftverelemet tartalmazza<br/><br/>**SoftwareSubscriptions**, amely az összes szoftver-előfizetési elemet tartalmazza    |
 | targetSegment          | sztring   | No       | Azonosítja a célszegmenst. A különböző célközönségek nézete. A támogatott értékek a következőek: <br/><br/>**Kereskedelmi**<br/>**Oktatás**<br/>**Kormány**<br/>**Nonprofit**  |
 | reservationScope | sztring   | No | Az Azure Reservationshez használható termékek listájának lekérdezésekor adja meg a következőt: , hogy lekérdezi az Azure-csomagokra vonatkozó `reservationScope=AzurePlan` termékek listáját. Zárja ki ezt a paramétert, hogy lekérte a termékek listáját az Azure Reservationshez, amelyek Microsoft Azure (**MS-AZR-0145P**) előfizetésre vonatkoznak.  |
 
@@ -125,7 +125,7 @@ Nincsenek.
 
 #### <a name="products-by-country"></a>Termékek ország szerint
 
-Ebben a példában országonként lekért termékek listáját Microsoft Azure (MS-AZR-0145P) előfizetések és Azure-csomagok esetében.
+Ebben a példában országonkénti termékek listáját Microsoft Azure (MS-AZR-0145P) előfizetések és Azure-csomagok esetében.
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/products?country=US&targetView=MicrosoftAzure HTTP/1.1
@@ -149,7 +149,7 @@ MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 
 #### <a name="azure-vm-reservations-for-microsoft-azure-ms-azr-0145p-subscriptions"></a>Azure-beli virtuális gépek foglalása Microsoft Azure (MS-AZR-0145P) előfizetéshez
 
-Az alábbi példa alapján országonként lekért termékek listája az azure-beli virtuális gépek foglalásához, amelyek Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkoznak.
+Ebben a példában országonként lekért termékek listája található az Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkozó Azure-beli virtuálisgép-foglalások esetében.
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/products?country=US&targetView=AzureReservationsVM HTTP/1.1
@@ -161,7 +161,7 @@ MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse termékerőforrások [**gyűjteményét**](product-resources.md#product) tartalmazza.
+Ha a művelet sikeres, a válasz törzse termékerőforrások [**gyűjteményét**](product-resources.md#product) tartalmazza.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
@@ -169,10 +169,10 @@ Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sik
 
 Ez a metódus a következő hibakódokat adja vissza:
 
-| HTTP-állapotkód     | Hibakód   | Leírás                                                                                               |
+| HTTP-állapotkód     | Hibakód   | Description                                                                                               |
 |----------------------|--------------|-----------------------------------------------------------------------------------------------------------|
 | 403                  | 400030       | A kért targetSegment szolgáltatáshoz való hozzáférés nem engedélyezett.                                                     |
-| 403                  | 400036       | A kért targetView-hoz való hozzáférés nem engedélyezett.                                                        |
+| 403                  | 400036       | A kért targetView nézethez való hozzáférés nem engedélyezett.                                                        |
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -4,12 +4,12 @@ description: A fejlesztők a kereskedelmi piactéri termékek előfizetését ho
 ms.date: 08/16/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: ae2e4b0a1ffa2e63e68864887093673e32079d9f
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 7e7a4b96f509ae99cd4933963c04b0f660d7d76410ee86c31256c62b290f122f
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973366"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991378"
 ---
 # <a name="create-a-subscription-for-commercial-marketplace-products"></a>Előfizetés létrehozása kereskedelmi piactéri termékekhez
 
@@ -42,10 +42,10 @@ Azure-foglalás vásárlása előtt kövesse az alábbi lépéseket:
     > [!NOTE]
     > A kereskedelmi piactéri termékeket az "Azure" **ProductType** tulajdonsága és az **"SaaS"** **SubType** **tulajdonságuk alapján azonosíthatja.**
 
-2. Ha a termékváltozatok **InventoryCheck előfeltételként** vannak megcímkézve, ellenőrizze a termékváltozat [leltárát.](check-inventory.md)
+2. Ha a termékváltozatok **InventoryCheck előfeltételként** vannak megcímkézve, ellenőrizze a leltárban [a termékváltozatot.](check-inventory.md)
 
     > [!NOTE]
-    > Jelenleg nincsenek olyan kereskedelmi piactéri termékek, amelyek támogatják a leltárellenőrzést, vagy az **InventoryCheck előfeltételként vannak megjelölve.**
+    > Jelenleg nincsenek olyan kereskedelmi piactéri termékek, amelyek támogatják a leltárellenőrzést, vagy az **InventoryCheck** előfeltételként vannak megjelölve.
 
 3. A termékváltozat rendelkezésre állásának lekérése. A rendelés leadáskor szüksége lesz a rendelkezésre állás **CatalogItemId-jára,** amelyet a következő API-kon keresztül lehet lekérni:
 
@@ -56,7 +56,7 @@ Azure-foglalás vásárlása előtt kövesse az alábbi lépéseket:
 
 Az Azure-beli foglalási rendelés elküldhez kövesse az alábbi lépéseket:
 
-1. [Hozzon létre egy](create-a-cart.md) kosárt, amely a megvásárolni kívánt katalóguselemek gyűjteményét tartalmazza. Amikor [kosarat](cart-resources.md#cart)hoz [](cart-resources.md#cartlineitem) létre, a rendszer automatikusan csoportosítja a kosársor elemeit az alapján, hogy mi vásárolható együtt ugyanabban a [sorrendben.](order-resources.md#order) (Kosarat [is frissíthet.)](update-a-cart.md)
+1. [Hozzon létre egy](create-a-cart.md) kosárt, amely a megvásárolni kívánt katalóguselemek gyűjteményét tartalmazza. Amikor [kosarat](cart-resources.md#cart)hoz [](cart-resources.md#cartlineitem) létre, a rendszer automatikusan csoportosítja a kosársor elemeit az alapján, hogy mi vásárolható meg együtt ugyanabban a [sorrendben.](order-resources.md#order) (Kosarat [is frissíthet.)](update-a-cart.md)
 2. [Tekintse meg a kosárban](checkout-a-cart.md)a rendelés [létrehozását.](order-resources.md#order)
 
 ### <a name="get-order-details"></a>Megrendelés részleteinek lekérte
@@ -72,7 +72,7 @@ A partnernek vagy az ügyfélnek aktiválnia kell az előfizetéseket Azure Mark
 
 ## <a name="lifecycle-management"></a>Életciklus-kezelés
 
-A kereskedelmi piactéri termékekre való előfizetések életciklusát a következő módszerekkel kezelheti:
+A kereskedelmi piactéren elérhető termékekre való előfizetések életciklusát a következő módszerekkel kezelheti:
 
 * [Kereskedelmi piactéri előfizetés lemondása](cancel-an-azure-marketplace-subscription.md)
 * [A kereskedelmi piactér-előfizetés automatikus újraállításának engedélyezése vagy letiltása](update-autorenew-for-an-azure-marketplace-subscription.md)

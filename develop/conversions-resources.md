@@ -4,12 +4,12 @@ description: Megtudhatja, hogyan Partnerközpont API-konverziós erőforrások h
 ms.date: 05/23/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 1863c365627807d8de2534a2d3116807a5de70e1
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 9e7f8985fa15f4959f3cb5a729e492bbb9f3f624a5812f5b87fc119f841dc87e
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973893"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991871"
 ---
 # <a name="conversion-resources-to-convert-trial-subscriptions-to-paid"></a>Erőforrások átváltása a próba-előfizetések fizetősre konvertálásához
 
@@ -21,7 +21,7 @@ A konverziós erőforrások támogatják a próba-előfizetések fizetős előfi
 
 A próbaverziós előfizetés fizetős előfizetésre való konvertálásához használt adatokat tartalmazza.
 
-| Tulajdonság | Típus | Leírás |
+| Tulajdonság | Típus | Description |
 | -------- | ---- | ----------- |
 | offerId (ajánlatazonosító) | sztring | Az eredeti próbaajánlat ajánlatazonosítója. |
 | targetOfferId | sztring | A célajánlat ajánlatazonosítója. |
@@ -33,7 +33,7 @@ A próbaverziós előfizetés fizetős előfizetésre való konvertálásához h
 
 Az átalakítás során bekövetkezett hibát jelöli.
 
-| Tulajdonság | Típus | Leírás |
+| Tulajdonság | Típus | Description |
 | -------- | ---- | ----------- |
 | code | sztring | A problémához társított hibakód. Lehetséges értékek: **Egyéb** (általános hiba), **ConversionsNotFound** (nem található átalakítás a próba-előfizetéshez, amelybe konvertálni kell).
 | leírás | sztring | A problémát leíró rövid szöveg. |
@@ -42,9 +42,9 @@ Az átalakítás során bekövetkezett hibát jelöli.
 
 Az előfizetés átalakításának eredményét jelöli.
 
-| Tulajdonság       | Típus                                | Leírás                                                            |
+| Tulajdonság       | Típus                                | Description                                                            |
 |----------------|-------------------------------------|------------------------------------------------------------------------|
 | subscriptionId | sztring                              | Az előfizetés azonosítója.                                           |
-| offerId (ajánlatazonosító)        | sztring                              | Az eredeti ajánlat azonosítója.                                         |
+| offerId (ajánlatazonosító)        | sztring                              | Az eredeti ajánlatazonosító.                                         |
 | targetOfferId  | sztring                              | A célajánlat ajánlatazonosítója.                             |
 | error          | [ConversionError (Konverziós tényező)](#conversionerror) | Az átalakítás megkísérlése során észlelt hiba, ha van ilyen. |

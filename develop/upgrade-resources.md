@@ -4,12 +4,12 @@ description: A felhasználó forrás-előfizetésről cél-előfizetésre való 
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 4c57994d1b1e7659df5e6448578422f6d9c21fee
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: 1ea7499a21312378f4fad3d47eaa9e10993ee3ce7ddb1498f161fac16e09b8a5
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111529817"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992472"
 ---
 # <a name="upgrade-resources"></a>Erőforrások frissítése
 
@@ -21,12 +21,12 @@ A felhasználó forrás-előfizetésről cél-előfizetésre való frissítésé
 
 Az egyes frissítési erőforrások viselkedését ismerteti.
 
-| Tulajdonság      | Típus                   | Leírás                                                                                  |
+| Tulajdonság      | Típus                   | Description                                                                                  |
 |---------------|------------------------|----------------------------------------------------------------------------------------------|
 | TargetOffer   | Ajánlat                  | A cél-előfizetés ajánlata.                                                        |
-| UpgradeType (Frissítés típusa)   | sztring                 | A frissítés típusa: "nincs", "csak \_ frissítés", vagy "frissítés \_ \_ \_ licencátvitelsel".         |
+| UpgradeType (Frissítés típusa)   | sztring                 | A frissítés típusa: "nincs", "csak \_ frissítés" vagy "frissítés \_ \_ \_ licencátvitelsel".         |
 | IsEligible (IsEligible)    | boolean                | Megállapítja, hogy a frissítés elvégezhető-e.                                                  |
-| Mennyiség      | egész szám                | A megvásárolandó új ajánlat mennyisége. Az alapértelmezett érték a forrás-előfizetés mennyisége. |
+| Mennyiség      | egész szám                | A megvásárolandó új ajánlat mennyisége. Alapértelmezés szerint a forrás-előfizetés mennyisége. |
 | UpgradeErrors (Frissítési segédek) | UpgradeErrors tömb | Ok, amiért a frissítés nem hajtható végre, ha van ilyen.                                      |
 | Attribútumok    | ResourceAttributes (Erőforrás-attribútumok)     | A frissítésnek megfelelő metaadat-attribútumok.                                        |
 
@@ -34,9 +34,9 @@ Az egyes frissítési erőforrások viselkedését ismerteti.
 
 Leírja, hogy miért nem hajtható végre frissítés.
 
-| Tulajdonság          | Típus               | Leírás                                                                                                                                                                                                                                                                                                                                                                                     |
+| Tulajdonság          | Típus               | Description                                                                                                                                                                                                                                                                                                                                                                                     |
 |-------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Code              | sztring             | A hibához kapcsolódó hibakód: "other", "delegated \_ admin \_ \_ permissions disabled", \_ "subscription status \_ not \_ active", "conflicting \_ service \_ types", "concurrency \_ conflicts", "user \_ context add \_ \_ \_ ons present", "subscription add ons present", "subscription does not have any upgrade \_ \_ \_ \_ \_ \_ \_ paths", "subscription \_ target offer not \_ \_ \_ found", or "subscription \_ not \_ provisioned". |
+| Code              | sztring             | A problémához kapcsolódó hibakód: "other", "delegated \_ admin \_ \_ permissions disabled", \_ "subscription status \_ not \_ active", "conflicting \_ service \_ types", "concurrency \_ conflicts", "user \_ context add \_ \_ \_ ons present", "subscription add ons present", "subscription does not have any upgrade \_ \_ \_ \_ \_ \_ \_ paths", "subscription \_ target offer not \_ \_ \_ found", or "subscription \_ not \_ provisioned". |
 | Description       | sztring             | A hibát leíró rövid szöveg.                                                                                                                                                                                                                                                                                                                                                             |
 | AdditionalDetails (További részletek) | sztring             | A hibával kapcsolatos további részletek.                                                                                                                                                                                                                                                                                                                                                         |
 | Attribútumok        | ResourceAttributes (Erőforrás-attribútumok) | A hibának megfelelő metaadat-attribútumok.                                                                                                                                                                                                                                                                                                                                             |
@@ -45,11 +45,11 @@ Leírja, hogy miért nem hajtható végre frissítés.
 
 Az előfizetés-frissítési folyamat eredményét ismerteti.
 
-| Tulajdonság             | Típus                        | Leírás                                                                          |
+| Tulajdonság             | Típus                        | Description                                                                          |
 |----------------------|-----------------------------|--------------------------------------------------------------------------------------|
 | SourceSubscriptionId (Forrás-előíróazonosító) | sztring                      | A forrás-előfizetés azonosítója.                                           |
-| TargetSubscriptionID (Cél-előíróazonosító) | sztring                      | A cél-előfizetés azonosítója.                                           |
-| UpgradeType (Frissítés típusa)          | sztring                      | A frissítés típusa: "nincs", "csak \_ frissítés", vagy "frissítés \_ \_ \_ licencátvitelsel". |
+| TargetSubscriptionID (TargetSubscriptionID) | sztring                      | A cél-előfizetés azonosítója.                                           |
+| UpgradeType (Frissítés típusa)          | sztring                      | A frissítés típusa: "nincs", "csak \_ frissítés" vagy "frissítés \_ \_ \_ licencátvitelsel". |
 | UpgradeErrors (Frissítési segédek)        | UpgradeErrors tömb      | A frissítés végrehajtása során észlelt hibák, ha vannak.           |
 | LicenseErrors (Licenccel rendelkezők)        | UserLicenseErrrors tömb | Felhasználói licencek áttelepítése során észlelt hibák, ha vannak.          |
 | Attribútumok           | ResourceAttributes (Erőforrás-attribútumok)          | A licencnek megfelelő metaadat-attribútumok.                                |
@@ -58,7 +58,7 @@ Az előfizetés-frissítési folyamat eredményét ismerteti.
 
 A sikertelen felhasználói licencátvitelből eredő hibákat ismerteti.
 
-| Tulajdonság     | Típus                   | Leírás                                                               |
+| Tulajdonság     | Típus                   | Description                                                               |
 |--------------|------------------------|---------------------------------------------------------------------------|
 | UserObjectId (Felhasználóiobjektum-azonosító) | sztring                 | A felhasználói objektum egyedi azonosítása.                                 |
 | Name         | sztring                 | A felhasználó neve.                                                     |

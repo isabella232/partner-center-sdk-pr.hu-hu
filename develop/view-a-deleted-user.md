@@ -4,12 +4,12 @@ description: Lekérte az ügyfél törölt CustomerUser erőforrásainak listáj
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: f4fec958a9a6bb580d35de1cf3007e1db3b2b650
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: 2f7e94d5e360075378e1895e586690597baaf66237f0b93bb526baee0c5d84ae
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111445306"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989814"
 ---
 # <a name="view-deleted-users-for-a-customer"></a>Egy ügyfél törölt felhasználóinak megtekintése
 
@@ -47,11 +47,11 @@ var customerUsers = partnerOperations.Customers.ById(selectedCustomerId).Users.Q
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                       |
 |---------|-------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/users?size={méret}&filter={filter} HTTP/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/users?size={size}&filter={filter} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -59,9 +59,9 @@ A kérelem létrehozásakor használja a következő elérési utat és lekérde
 
 | Név        | Típus   | Kötelező | Leírás                                                                                                                                                                        |
 |-------------|--------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ügyfél-azonosító | guid   | Igen      | Az érték egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.                                                                                                            |
-| size        | int    | Nem       | Az egyszerre megjelenítendő eredmények száma. Ezt a paramétert nem kötelező megadni.                                                                                                     |
-| filter (szűrő)      | filter (szűrő) | Igen      | A felhasználó keresését szűrő lekérdezés. A törölt felhasználók lekéréséhez bele kell foglalnia és kódolnia kell a következő sztringet: {"Field":"UserState","Value":"Inactive","Operator":"equals"}. |
+| ügyfél-azonosító | guid   | Yes      | Az érték egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.                                                                                                            |
+| size        | int    | No       | Az egyszerre megjelenítendő eredmények száma. Ezt a paramétert nem kötelező megadni.                                                                                                     |
+| filter (szűrő)      | filter (szűrő) | Yes      | A felhasználókeresést szűrő lekérdezés. A törölt felhasználók lekéréséhez bele kell foglalnia és kódolnia kell a következő sztringet: {"Field":"UserState","Value":"Inactive","Operator":"equals"}. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

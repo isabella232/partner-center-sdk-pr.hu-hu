@@ -4,12 +4,12 @@ description: Frissíti egy ügyfél előfizetését egy megadott cél-előfizet�
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 01455315825cad026830268b6bbd55509e964bb5
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: 2989f1db4259ce43583baf8acf20b2b5204ab72e3725cdd7fa9f75db1db12510
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111530232"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990171"
 ---
 # <a name="transition-a-subscription"></a>Előfizetés átváltása
 
@@ -19,15 +19,15 @@ Frissíti egy ügyfél előfizetését egy megadott cél-előfizetésre.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
-- Két előfizetés- és egy a kezdeti előfizetéshez, egy pedig a cél-előfizetéshez.
+- Két előfizetés-, egy a kezdeti előfizetéshez és egy a cél-előfizetéshez.
 
 ## <a name="c"></a>C\#
 
-Az ügyfél előfizetésének frissítéséhez először szerezze be az [ügyfél előfizetését.](get-a-subscription-by-id.md) Ezután szerezze be az előfizetés frissítésének listáját az **Upgrades tulajdonság,** majd a **Get()** vagy **a GetAsync() metódusok hívásával.** Válasszon ki egy célfrissítést a frissítések listájából, majd hívja meg a kezdeti előfizetés **Upgrades** (Frissítések) tulajdonságát, majd a **Create() metódust.**
+Az ügyfél előfizetésének frissítéséhez először szerezze be az ügyfél [előfizetését.](get-a-subscription-by-id.md) Ezután szerezze be az előfizetés frissítésének listáját az **Upgrades (Frissítések) tulajdonság,** majd a **Get()** vagy **a GetAsync() metódusok hívásával.** Válasszon ki egy célfrissítést a frissítések listájából, majd hívja meg a kezdeti előfizetés **Upgrades** (Frissítések) tulajdonságát, majd a **Create() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -38,11 +38,11 @@ Az ügyfél előfizetésének frissítéséhez először szerezze be az [ügyfé
 UpgradeResult upgradeResult = partnerOperations.Customers.ById(selectedCustomerId).Subscriptions.ById(subscriptionIdForUpgrade).Upgrades.Create(targetOffer);
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSamples **osztály:** UpgradeSubscription.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSamples **osztály:** UpgradeSubscription.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                                                                         |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------|
@@ -142,11 +142,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez a módszer sikeres, a válasz törzsében egy **Frissítés** eredményerőforrást ad vissza.
+Ha ez a módszer sikeres, a válasz **törzsében** egy Upgrade eredményerőforrást ad vissza.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

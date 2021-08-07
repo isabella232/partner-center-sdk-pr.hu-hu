@@ -4,22 +4,22 @@ description: Frissíti egy szervezet számlázási profilját.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 0ef736a722cde16f95ed6dfdbdab278c98fcf738
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: 5dc2de04b3b58842162351f1525ef0e6889cf1c0cbd4fd05e84bac86edb07e1e
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111530055"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989984"
 ---
 # <a name="update-an-organization-profile"></a>Szervezeti profil frissítése
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Frissíti a partner számlázási profilját.
+Frissíti egy partner számlázási profilját.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
@@ -100,11 +100,11 @@ Expect: 100-continue
 
 ## <a name="rest-response"></a>REST-válasz
 
-Sikeres művelet esetén ez a metódus egy **OrganizationProfile** objektumot ad vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus egy **OrganizationProfile** objektumot ad vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

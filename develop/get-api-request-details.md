@@ -6,12 +6,12 @@ ms.subservice: partnercenter-sdk
 ms.date: 05/29/2020
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: 9a367f912669114969f8792a5afcc7020af1112e
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: 395b21dde2790739d35e6047fbeaa7477cad50f4d1af9b12ad0b632742d71583
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760504"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990817"
 ---
 # <a name="get-app-and-user-api-requests"></a>Alkalmazás- és felhasználói API-kérések lekérése
 
@@ -24,11 +24,11 @@ Ez a cikk bemutatja, hogyan kérheti le a bérlőn belüli összes partnerfelhas
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                        |
 |---------|--------------------------------------------------------------------|
@@ -57,7 +57,7 @@ Ha a művelet sikeres, ez a metódus az [API-kérelem](mfa-resources.md#api-requ
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

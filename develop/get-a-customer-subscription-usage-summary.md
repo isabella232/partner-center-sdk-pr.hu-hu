@@ -1,33 +1,33 @@
 ---
 title: Az ügyfél előfizetésének használati összegzése
-description: A SubscriptionUsageSummary erőforrással lekértheti egy adott Azure-szolgáltatás vagy -erőforrás előfizetés-használati összegzését az aktuális számlázási időszakban.
+description: A SubscriptionUsageSummary erőforrás használatával lekértheti egy adott Azure-szolgáltatás vagy -erőforrás előfizetés-használati összegzését az aktuális számlázási időszakban.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 362e72e1b54a62a114564d4dc48a082bcdeea012
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: df7757807256fee8326969011f4d038c981c07362ee354ef929e592a7931a728
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874669"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992772"
 ---
 # <a name="get-usage-summary-for-customers-subscription"></a>Az ügyfél előfizetésének használati összegzése
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-A **SubscriptionUsageSummary** erőforrással lekért egy előfizetés használati összefoglalását egy ügyfélhez. Ez az erőforrás egy adott Azure-szolgáltatás vagy -erőforrás előfizetés-használati összegzését jelöli az aktuális számlázási időszakban.
+A **SubscriptionUsageSummary** erőforrás használatával lekért egy előfizetés használati összegzését egy ügyfélhez. Ez az erőforrás egy adott Azure-szolgáltatás vagy -erőforrás előfizetés-használati összegzését jelöli az aktuális számlázási időszakban.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
-- Előfizetés-azonosító
+- Egy előfizetés-azonosító
 
 ## <a name="c"></a>C\#
 
-Az ügyfél előfizetésének előfizetés-használati összegzése:
+Az előfizetés használatának összegzése egy ügyfél előfizetéséhez:
 
 1. Az **IAggregatePartner.Customers gyűjtemény** használatával hívja meg a **ById() metódust.**
 
@@ -49,7 +49,7 @@ Példaként tekintse meg a következőket:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                                        |
 |---------|------------------------------------------------------------------------------------------------------------------------------------|
@@ -62,7 +62,7 @@ Ez a táblázat felsorolja az ügyfél minősített használati információinak
 | Név                   | Típus     | Kötelező | Leírás                               |
 |------------------------|----------|----------|-------------------------------------------|
 | **ügyfél-bérlő-azonosító** | **guid** | Y        | Az ügyfélnek megfelelő GUID.     |
-| **subscription-id**    | **guid** | Y        | Egy előfizetés azonosítójának megfelelő GUID. Azure-csomag esetén ez az azure-Partnerközpont előfizetési [](subscription-resources.md#subscription)erőforrás azonosítója. *Az Azure-csomag előfizetési erőforrásaihoz adja meg a **csomagazonosítót** **előfizetés-azonosítóként** ebben az útvonalban.* |
+| **subscription-id**    | **guid** | Y        | Egy előfizetés azonosítójának megfelelő GUID. Azure-csomag esetén ez a megfelelő előfizetési Partnerközpont [azonosítója,](subscription-resources.md#subscription)amely az Azure-csomagnak megfelel. *Az Azure-csomag előfizetési  erőforrásaihoz ebben az útvonalban adja meg a **csomagazonosítót előfizetés-azonosítóként.*** |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -88,13 +88,13 @@ Ha sikeres, ez a metódus egy **SubscriptionUsageSummary** erőforrást ad vissz
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be ezt a kódot, a hiba típusát és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be ezt a kódot, a hiba típusát és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
-### <a name="response-example-for-microsoft-azure-ms-azr-0145p-subscriptions"></a>Példa válasz Microsoft Azure (MS-AZR-0145P) előfizetésre
+### <a name="response-example-for-microsoft-azure-ms-azr-0145p-subscriptions"></a>Válasz példa Microsoft Azure (MS-AZR-0145P) előfizetésre
 
-Ebben a példában az ügyfél megvásárolt egy **145P Azure PayG-ajánlatot.**
+Ebben a példában az ügyfél megvásárolt egy **145P-s Azure PayG-ajánlatot.**
 
-*A Microsoft Azure (MS-AZR-0145P) előfizetéssel nem változik az API-válasz.*
+*A Microsoft Azure (MS-AZR-0145P) előfizetéssel nem lesz változás az API-válaszban.*
 
 ```http
 HTTP/1.1 200 OK
@@ -127,14 +127,14 @@ Date: Tue, 17 Sep 2019 20:31:45 GMT
 }
 ```
 
-## <a name="rest-response-example-for-azure-plan"></a>PÉLDA REST-válaszra az Azure-csomaghoz
+## <a name="rest-response-example-for-azure-plan"></a>AZURE-csomag REST-válasza
 
 Ebben a példában az ügyfél megvásárolt egy Azure-csomag.
 
-*Az Azure-csomaggal használó ügyfelek esetében a következő API-válaszváltozások hatnak:*
+*Az Azure-csomagokat használó ügyfelek esetében a következő API-válaszváltozások vannak:*
 
-- **A currencyLocale** helyett **a currencyCode található**
-- **Az usdTotalCost** egy új mező
+- **A currencyLocale** helyére a **currencyCode van lecserélve**
+- **A usdTotalCost** egy új mező
 
 ```http
 HTTP/1.1 200 OK

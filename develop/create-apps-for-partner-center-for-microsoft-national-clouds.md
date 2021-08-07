@@ -7,12 +7,12 @@ MS-HAID:
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 93d46a17bc26e9586e5e773bdf934653a571367f
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: bd9df37b83ced71c88da93ccaf52e7f3a970318a552c246997eb1334def9ff81
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973451"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991514"
 ---
 # <a name="register-app-details-for-partner-center-for-microsoft-national-cloud-through-the-azure-portal"></a>Alkalmazásadatok regisztrálása Partnerközpont Microsoft National Cloudhoz az Azure Portal
 
@@ -32,7 +32,7 @@ Webalkalmazások esetén az alábbi eljárásokkal regisztrálhatja az alkalmaz�
 
 ### <a name="create-or-update-web-app"></a>Webalkalmazás létrehozása vagy frissítése
 
-1. Nyissa meg a [Azure Portal – Alkalmazásregisztrációk](https://go.microsoft.com/fwlink/?linkid=2083908) oldalt az alkalmazás regisztráláshoz. Jelentkezzen be egy munkahelyi vagy iskolai fiókkal vagy a személyes Microsoft-fiókjával az Azure Portalra.
+1. Lépjen a Azure Portal [– Alkalmazásregisztrációk](https://go.microsoft.com/fwlink/?linkid=2083908) lapra az alkalmazás regisztráláshoz. Jelentkezzen be egy munkahelyi vagy iskolai fiókkal vagy a személyes Microsoft-fiókjával az Azure Portalra.
 
 2. Válassza **az Új regisztráció lehetőséget.** További információ: [Rövid útmutató: Alkalmazás regisztrálása a Microsoft Identitásplatform.](/azure/active-directory/develop/quickstart-register-app)
 
@@ -86,7 +86,7 @@ A natív alkalmazásokat nem kell regisztrálni a Partnerközpont. Ezeket az alk
 
 ### <a name="create-native-app"></a>Natív alkalmazás létrehozása
 
-1. Nyissa meg a [Azure Portal – Alkalmazásregisztrációk](https://go.microsoft.com/fwlink/?linkid=2083908) oldalt az alkalmazás regisztráláshoz. Jelentkezzen be egy munkahelyi vagy iskolai fiókkal vagy a személyes Microsoft-fiókjával az Azure Portalra.
+1. Lépjen a Azure Portal [– Alkalmazásregisztrációk](https://go.microsoft.com/fwlink/?linkid=2083908) lapra az alkalmazás regisztráláshoz. Jelentkezzen be egy munkahelyi vagy iskolai fiókkal vagy a személyes Microsoft-fiókjával az Azure Portalra.
 
 2. Válassza **az Új regisztráció lehetőséget.** További információ: [Rövid útmutató: Alkalmazás regisztrálása a Microsoft Identitásplatform.](/azure/active-directory/develop/quickstart-register-app)
 

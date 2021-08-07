@@ -4,12 +4,12 @@ description: Megtudhatja, hogyan ellenőrizheti egy ügyfél megrendelését egy
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9ee06797602b22a1f8257c94880a2d81e2280f2e
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 3b36a6930b6a643c23d60150a1f772534b17ce758425a1d3129ca2f9d829b4ba
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111974046"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991973"
 ---
 # <a name="checkout-an-order-for-a-customer-in-a-cart"></a>Megrendelés megrendelésének kirendelése egy kosárban
 
@@ -27,7 +27,7 @@ Hogyan lehet kiveszni egy megrendelést egy ügyféltől egy kosárban.
 
 ## <a name="c"></a>C\#
 
-Egy ügyfél megrendelésének kirendelése érdekében a kosárra és az ügyfél azonosítójának használatával szerezze be a kosárra vonatkozó hivatkozást. Végül hívja meg a **Create** vagy **a CreateAsync** függvényt a rendelés befejezéséhez.
+Egy ügyfél megrendelésének kirendelése érdekében a kosárra és az ügyfél azonosítójának használatával szerezze be a kosárra vonatkozó hivatkozást. Végül hívja meg a **Create** vagy **a CreateAsync függvényt** a rendelés befejezéséhez.
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -78,8 +78,8 @@ Az alábbi elérésiút-paraméterekkel azonosíthatja az ügyfelet, és megadha
 
 | Név            | Típus     | Kötelező | Leírás                                                            |
 |-----------------|----------|----------|------------------------------------------------------------------------|
-| **ügyfél-azonosító** | sztring   | Igen      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.             |
-| **kocsiazonosító**     | sztring   | Igen      | Egy GUID formátumú kocsiazonosító, amely azonosítja a kosárat.                     |
+| **ügyfél-azonosító** | sztring   | Yes      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.             |
+| **kocsiazonosító**     | sztring   | Yes      | Egy GUID formátumú kocsiazonosító, amely azonosítja a kosárat.                     |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

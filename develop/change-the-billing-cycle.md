@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: sourishdeb
 ms.author: sodeb
-ms.openlocfilehash: 435309229e2cb038c936028943f4c2cf27b032a7
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: c45d599ace7895c03bc163cddde7cbb057ff60a06c58af39a2baacb3d557e72e
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111974114"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992160"
 ---
 # <a name="change-a-customer-subscription-billing-cycle"></a>Ügyfél-előfizetés számlázási ciklusának módosítása
 
@@ -19,9 +19,9 @@ ms.locfileid: "111974114"
 
 Frissíti a [rendelést](order-resources.md) haviról éves vagy évesről havi számlázásra.
 
-Az Partnerközpont irányítópulton ezt a műveletet úgy hajthatja végre, hogy megnyitja az ügyfél előfizetési adatait tartalmazó oldalt. Itt egy lehetőséget fog látni, amely meghatározza az előfizetés aktuális számlázási ciklusát, és lehetővé teszi a módosítását és elküldét.
+A Partnerközpont ezt a műveletet az ügyfél előfizetési adatait tartalmazó oldalra navigálva hajthatja végre. Itt fog látni egy lehetőséget, amely meghatározza az előfizetés aktuális számlázási ciklusát, és lehetővé teszi a váltást és a küldést.
 
-**A cikk nem terjed** ki a cikkre:
+**Ez a cikk nem** terjed ki a cikkre:
 
 - Próbaverziók számlázási ciklusának módosítása
 - Az Azure-előfizetések nem éves (havi, hat éves) időszakra vonatkozó számlázási ciklusainak & módosítása
@@ -30,9 +30,9 @@ Az Partnerközpont irányítópulton ezt a műveletet úgy hajthatja végre, hog
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy rendelésazonosító.
 
@@ -67,7 +67,7 @@ var createdOrder = partnerOperations.Customers.ById(customerId).Orders.ById(orde
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus    | Kérés URI-ja                                                                                             |
 |-----------|---------------------------------------------------------------------------------------------------------|
@@ -88,7 +88,7 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Az alábbi táblázatok a kérés törzsében lévő tulajdonságokat ismertetik.
+Az alábbi táblázatok a kérelem törzsében lévő tulajdonságokat ismertetik.
 
 ### <a name="order"></a>Sorrend
 
@@ -98,17 +98,17 @@ Az alábbi táblázatok a kérés törzsében lévő tulajdonságokat ismertetik
 |ReferenceCustomerId (ReferenciacustomerId) | sztring           |    Y     | Az ügyfél azonosítója                                                    |
 | BillingCycle       | sztring           |    Y     | Azt jelzi, hogy milyen gyakorisággal számlázták a partnert a rendelésért. A támogatott értékek a [BillingCycleType](product-resources.md#billingcycletype)típusban található tagnevek. |
 | Sorsorok          | objektumok tömbje |    Y     | [OrderLineItem-erőforrások tömbje](#orderlineitem)                      |
-| CreationDate (Létrehozás dátuma)       | dátum/idő         |    N     | A rendelés létrehozási dátuma, dátum és idő formátumban                        |
+| CreationDate (Létrehozás dátuma)       | dátum/idő         |    N     | A rendelés létrehozási dátuma dátum és idő formátumban                        |
 | Attribútumok         | Objektum           |    N     | Tartalmazza az "ObjectType": "OrderLineItem" adatokat                                     |
 
 ### <a name="orderlineitem"></a>OrderLineItem (Megrendelési vonal)
 
 | Tulajdonság             | Típus   | Kötelező | Leírás                                                                        |
 |----------------------|--------|----------|------------------------------------------------------------------------------------|
-| LineItemNumber (Sortem száma)       | szám |    Y     | A sorelem száma, 0-val kezdve                                              |
+| LineItemNumber (Sortem száma)       | szám |    Y     | A sortétel száma, 0-val kezdve                                              |
 | OfferId (Ajánlatazonosító)              | sztring |    Y     | Az ajánlat azonosítója                                                                |
 | SubscriptionId       | sztring |    Y     | Az előfizetés azonosítója                                                         |
-| FriendlyName (Rövid név)         | sztring |    N     | A partner által meghatározott előfizetés rövid neve, amely segít egyértelműsni |
+| FriendlyName (Rövid név)         | sztring |    N     | A partner által meghatározott előfizetés rövid neve, amely segít egyértelműsen |
 | Mennyiség             | szám |    Y     | Licencek vagy példányok száma                                                |
 | PartnerIdOnRecord    | sztring |    N     | A rekordpartner MPN-azonosítója                                                |
 | Attribútumok           | Objektum |    N     | Tartalmazza az "ObjectType": "OrderLineItem" adatokat                                             |
@@ -158,7 +158,7 @@ Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza a frissí
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

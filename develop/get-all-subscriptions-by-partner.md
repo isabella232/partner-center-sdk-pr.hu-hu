@@ -1,17 +1,17 @@
 ---
 title: Egy ügyfél előfizetéseinek lekérése a partner MPN-azonosítója alapján
-description: Egy adott partner által megadott előfizetések listájának lekérte egy adott ügyfélnek.
+description: Egy adott partner által egy adott ügyfél számára biztosított előfizetések listájának lekért listája.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: 857caa667245503f111b27379a5c8f93aa1fb0b0
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: ebc3dc1bf557f502468f43076663b7ca1b55e7d1d8fc9ae12a8e0b2a27a21b02
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760657"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990868"
 ---
 # <a name="get-a-customers-subscriptions-by-partner-mpn-id"></a>Egy ügyfél előfizetéseinek lekérése a partner MPN-azonosítója alapján
 
@@ -21,15 +21,15 @@ Egy adott ügyfél (MPN) partner által biztosított előfizetések listájának
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy partner MPN-azonosítója.
 
 ## <a name="c"></a>C\#
 
-Ha egy adott partner által megadott előfizetések listáját le kell kapnia egy adott ügyfélnek, először használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az ügyfél-előfizetések gyűjtési műveleteinek interfészét az [**Előfizetések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságból, és hívja meg a [**ByPartner**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.bypartner) metódust az MPN-azonosítóval a partner azonosításához és a partner-előfizetési műveletek interfészének lekéréséhez. Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) vagy [**GetAsync metódust**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.getasync) a gyűjtemény lehíváshoz.
+Ha egy adott partner által megadott előfizetések listáját le kell kapnia egy adott ügyfélnek, először használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az ügyfél-előfizetések gyűjtési műveleteinek felületét az Előfizetések tulajdonságból, és hívja meg a [**ByPartner**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.bypartner) metódust az MPN-azonosítóval a partner azonosításához és a partner-előfizetési műveletek interfészének lekéréséhez. [](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) vagy [**GetAsync metódust**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.getasync) a gyűjtemény lehíváshoz.
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -45,7 +45,7 @@ var customerSubscriptionsByMpnId = partnerOperations.Customers.ById(customerId).
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-Ha egy adott partner által megadott előfizetések listáját le kell kapnia egy adott ügyfélnek, először használja az **IAggregatePartner.getCustomers.byId** függvényt az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az ügyfél-előfizetések gyűjtési műveleteinek interfészét a **getSubscriptions** függvényből, és hívja meg a **byPartner** függvényt az MPN-azonosítóval a partner azonosításához és a partner-előfizetési műveletek interfészének lekéréséhez. Végül hívja meg a **get** függvényt a gyűjtemény lehívása érdekében.
+Ha egy adott partner által megadott előfizetések listáját le kell kapnia egy adott ügyfélnek, először használja az **IAggregatePartner.getCustomers.byId** függvényt az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az ügyfél-előfizetések gyűjtési műveleteinek felületét a **getSubscriptions** függvényből, és hívja meg a **byPartner** függvényt az MPN-azonosítóval a partner azonosításához és a partner-előfizetési műveletek interfészének lekéréséhez. Végül hívja meg a **get** függvényt a gyűjtemény lehíváshoz.
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -59,7 +59,7 @@ ResourceCollection<Subscription> customerSubscriptionsByMpnId = partnerOperation
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-Ha le kell kapnia egy adott partner által egy adott ügyfélnek biztosított előfizetések listáját, hajtsa végre a [**Get-PartnerCustomerSubscription parancsot.**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomerSubscription.md) Adja meg az ügyfél-azonosítót, amely a **CustomerId** paraméterrel azonosítja az ügyfelet, majd töltse fel az **MpnId** paramétert az MPN-azonosítóval a partner azonosításához.
+Ha le kell kapnia egy adott partner által egy adott ügyfél számára biztosított előfizetések listáját, hajtsa végre a [**Get-PartnerCustomerSubscription**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerCustomerSubscription.md) parancsot. Adja meg az ügyfél azonosítóját, hogy az ügyfél a **CustomerId** paraméterrel azonosítható legyen, majd töltse fel az **MpnId** paramétert az MPN-azonosítóval a partner azonosításához.
 
 ```powershell
 # $customerId
@@ -82,8 +82,8 @@ Az ügyfél és a partner azonosításához használja az alábbi elérési utat
 
 | Név        | Típus   | Kötelező | Leírás                                                 |
 |-------------|--------|----------|-------------------------------------------------------------|
-| ügyfél-azonosító | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.       |
-| mpn-id      | int    | Igen      | A Microsoft Partner Network azonosítóját. |
+| ügyfél-azonosító | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.       |
+| mpn-id      | int    | Yes      | Egy Microsoft Partner Network azonosító, amely azonosítja a partnert. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -112,7 +112,7 @@ Ha a művelet sikeres, a válasz törzse tartalmazza az előfizetési [erőforr�
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

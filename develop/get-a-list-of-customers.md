@@ -1,30 +1,30 @@
 ---
 title: Az ügyfelek listájának lekérése
-description: A partner összes ügyfelet képviselő erőforrások gyűjteményének lekért gyűjtése.
+description: Egy partner összes ügyfelet képviselő erőforrás-gyűjtemény lekért gyűjteménye.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 840c9d1a61451763d37a19639f99b12f1deb7521
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 7a834521405110ea50e9eed6590ed514fb90927b9c5a27251c7cf992e0c2a9d4
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874346"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990341"
 ---
 # <a name="get-a-list-of-customers"></a>Az ügyfelek listájának lekérése
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Ez a cikk bemutatja, hogyan gyűjti össze a partner összes ügyfelet képviselő erőforrásokat.
+Ez a cikk bemutatja, hogyan gyűjti be a partner összes ügyfelet képviselő erőforrások gyűjteményét.
 
 > [!TIP]
 > Ezt a műveletet az irányítópulton Partnerközpont is végrehajthatja. A főoldal **Ügyfélkezelés területén** válassza az **Ügyfelek megtekintése lehetőséget.** Vagy az oldalsávon válassza az Ügyfelek **lehetőséget.**
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
 ## <a name="c"></a>C\#
 
@@ -57,7 +57,7 @@ Példaként tekintse meg a következőket:
 
 Az összes ügyfél listájának lekért listája:
 
-1. Az [**IAggregatePartner.getCustomers**] függvény használatával lekért hivatkozás az ügyfélműveletekkel kapcsolatban.
+1. Az [**IAggregatePartner.getCustomers**] függvény használatával lekért egy hivatkozást az ügyfélműveletekkel kapcsolatban.
 
 2. Az ügyféllista lekérése a **query() függvény** használatával.
 
@@ -95,7 +95,7 @@ Get-PartnerCustomer
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
@@ -133,7 +133,7 @@ Ha a művelet sikeres, ez a metódus ügyfélerőforrások [gyűjteményét](cus
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

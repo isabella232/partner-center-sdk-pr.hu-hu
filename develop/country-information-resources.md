@@ -4,12 +4,12 @@ description: Ismerje meg a Partnerközpont API-k használatát az országokkal k
 ms.date: 05/23/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: caf56282d21df35ae9e179a98a37317f864117a3
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 35b570b27466699d8d85819f7603794888f8dd943038ee28a0a734b7ef9aa0d1
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973825"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991820"
 ---
 # <a name="country-information-resources-available-from-partner-center-apis"></a>A különböző API-kból Partnerközpont országokkal kapcsolatos információforrások
 
@@ -19,7 +19,7 @@ Az alábbi források egy ország/régió leíró metaadatai.
 
 ## <a name="countryinformation"></a>CountryInformation (Országinformáció)
 
-| Tulajdonság                      | Típus               | Leírás                                                                                        |
+| Tulajdonság                      | Típus               | Description                                                                                        |
 |-------------------------------|--------------------|----------------------------------------------------------------------------------------------------|
 | ExtensionData (Bővítményadatok)                 | sztring             | A bővítmény adatai.                                                                                |
 | Iso2Code                      | sztring             | Iso-2 kód.                                                                                     |
@@ -35,7 +35,7 @@ Az alábbi források egy ország/régió leíró metaadatai.
 | IsVatIdSupported              | boolean            | Azt jelzi, hogy szükség van-e áfaazonosítóra.                                                     |
 | TaxIdFormat                   | sztring             | Az adóazonosító formátuma.                                                                                 |
 | TaxIdSample (TaxIdSample)                   | sztring             | Az adóazonosító-minta.                                                                                 |
-| VatIdRegex                    | sztring             | Az adóazonosító reguláris kifejezés.                                                                     |
+| ÁfaazonosítóRegex                    | sztring             | Az adóazonosító reguláris kifejezés.                                                                     |
 | PhoneNumberRegex              | sztring             | A telefonszám reguláris kifejezése.                                                               |
 | IsRegistrationNumberSupported | boolean            | Azt jelzi, hogy a regisztrációs szám támogatott-e.                                       |
 | IsTaxIdSupported              | boolean            | Azt jelzi, hogy az adóazonosító támogatott-e. Ez eltér az IsVatIdSupported-től. |
@@ -48,7 +48,7 @@ Az alábbi források egy ország/régió leíró metaadatai.
 
 Egy ország/régió címformázási szabályait ismerteti.
 
-| Tulajdonság                | Típus               | Leírás                                                                                        |
+| Tulajdonság                | Típus               | Description                                                                                        |
 |-------------------------|--------------------|----------------------------------------------------------------------------------------------------|
 | Iso2Code                | sztring             | Iso-2 kód.                                                                                     |
 | DefaultCulture (Alapértelmezett culture)          | sztring             | Az alapértelmezett kulturális környezet.                                                                               |
@@ -61,9 +61,9 @@ Egy ország/régió címformázási szabályait ismerteti.
 | IsCityRequired          | boolean            | Azt jelzi, hogy szükség van-e városra.                                                       |
 | IsVatIdSupported        | boolean            | Azt jelzi, hogy szükség van-e áfaazonosítóra.                                                     |
 | TaxIdFormat (TaxIdFormat)             | sztring             | Az adóazonosító formátuma.                                                                                 |
-| TaxIdSample (TaxIdSample)             | sztring             | Az adóazonosító-minta.                                                                                 |
+| TaxIdSample             | sztring             | Az adóazonosító-minta.                                                                                 |
 | ÁfaazonosítóRegex              | sztring             | Az adóazonosító reguláris kifejezés.                                                                     |
-| PhoneNumberRegex        | sztring             | A reguláris kifejezés telefonszáma.                                                               |
+| PhoneNumberRegex        | sztring             | A telefonszám reguláris kifejezése.                                                               |
 | IsTaxIdSupported        | boolean            | Azt jelzi, hogy az adóazonosító támogatott-e. Ez a tulajdonság eltér az IsVatIdSupported tulajdonságtól. |
 | IsTaxIdOptional         | boolean            | Azt jelzi, hogy az adóazonosító nem kötelező-e.                                                     |
 | CountryCallingCodesList | sztringek tömbje   | Az ország/régió által támogatott hívókódok.                                                 |

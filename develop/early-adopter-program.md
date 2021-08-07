@@ -4,12 +4,12 @@ description: A partnerek együttműködhetnek a Microsofttal a partneri funkció
 ms.date: 06/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 8bb46a84aaab41b8e65376ce580a40ce4bc1d188
-ms.sourcegitcommit: d20e7d572fee09a83a4b23a92da7ff09cfebe75a
+ms.openlocfilehash: 4d921e2f5be604dff1354c162acb90f6c8636c671d7c267d38157b8a8e42c5a1
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111906377"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989457"
 ---
 # <a name="join-the-partner-center-api-and-sdk-early-adopter-program"></a>Csatlakozzon a Partnerközpont API és az SDK korai felhasználói programjához
 
@@ -25,7 +25,7 @@ A következő funkciók érhetők el az Partnerközpont API-hoz és az SDK korai
 
 - **Havi webináriumok:** Havi webináriumot folytatunk a korai támogatók számára, hogy megválaszolják a kérdéseket, visszajelzéseket gyűjtsenek, ütemterveket és ütemterveket osszanak meg, és támogatást nyújtson az új funkciókhoz.
 
-- **Támogatás a szakértőktől:** a résztvevők visszajelzést adhatnak, és kommunikálhatnak a magánhálózati csoportban lévő Yammer szakértőkkel.
+- **Támogatás a szakértőktől:** a résztvevők visszajelzést adhatnak, és kommunikálhatnak a Yammer szakértőivel.
 
 ## <a name="join-the-program"></a>Csatlakozás a programhoz
 
@@ -34,12 +34,12 @@ A programhoz való csatlakozáshoz **meglévő CSP-partnernek** vagy jóváhagyo
 1. **Csatlakozzon a Yammer csoporthoz** [Partnerközpont Korai befogadó programhoz.](https://www.yammer.com/cloudpartnercommunity/#/threads/inGroup?type=in_group&feedId=5944712&view=all) Az alkalmazás áttekintése némi időt vehet el tőlünk. E-mailben értesítjük, ha jóváhagyták a csoporthoz való csatlakozást.
 
    > [!NOTE]
-   > Előfordulhat, hogy csatlakoznia kell a Microsoft Cloud Yammer Community hálózatához, mielőtt csatlakozna a Partnerközpont Korai betöltőprogramja programhoz Yammer csoporthoz.
+   > Előfordulhat, hogy csatlakoznia kell a Microsoft Cloud Yammer Community hálózatához, mielőtt csatlakozna a Partnerközpont Korai betöltőprogramhoz Yammer csoporthoz.
 
 2. **E-mail [pctap@microsoft.com](mailto:pctap@microsoft.com) küldése a címre** a Microsoft ID-val vagy a TiP (Tesztelés éles környezetben) tesztfiókkal és az elsődleges tartománnyal.
 
    > [!TIP]
-   > Microsoft-azonosítóját a Fiók  menü Szervezeti profil lapján Gépház **találja.**
+   > Microsoft-azonosítóját a Fiók  menü Szervezeti profil oldalán Gépház **találja.**
 
 3. **Aktívan részt vehet** a programban azáltal, hogy korán teszteli az új funkciókat, kapcsolatba hoz a Microsofttal, és visszajelzést ad. Legyen aktív másokkal a korai befogadó közösségben.
 

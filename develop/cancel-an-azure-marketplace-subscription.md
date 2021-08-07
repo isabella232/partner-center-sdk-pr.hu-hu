@@ -1,31 +1,31 @@
 ---
 title: Kereskedelmi piactéri előfizetés lemondása
-description: Megtudhatja, hogyan használhatja Partnerközpont API-kat kereskedelmi piactéri előfizetés erőforrásának lemondásához, amely megfelel egy ügyfélnek és egy előfizetés-azonosítónak.
+description: Megtudhatja, hogyan használhatja Partnerközpont API-kat egy olyan kereskedelmi piactéri előfizetési erőforrás lemondásához, amely megfelel egy ügyfélnek és egy előfizetés-azonosítónak.
 ms.date: 08/16/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 95fa265a3c103d1ec55066f12a3ede7fdb2d0170
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: e73810bb62ecc8487ff0d57c051a1201fc558d13b01529bb8ff5a3f2ac223f2b
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111974284"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992262"
 ---
-# <a name="cancel-a-commercial-marketplace-subscription-using-partner-center-apis"></a>Kereskedelmi piactér-előfizetés lemondása Partnerközpont API-k használatával
+# <a name="cancel-a-commercial-marketplace-subscription-using-partner-center-apis"></a>Kereskedelmi piactéri előfizetés lemondása Partnerközpont API-k használatával
 
 Ez a cikk azt ismerteti, hogyan használhatja a [](subscription-resources.md) Partnerközpont API-t egy kereskedelmi piactéri előfizetés erőforrásának lemondására, amely megfelel az ügyfél és az előfizetés azonosítójának.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
-## <a name="partner-center-dashboard-method"></a>Partnerközpont irányítópult metódusa
+## <a name="partner-center-dashboard-method"></a>Partnerközpont irányítópult-metódus
 
-Kereskedelmi piactér-előfizetés lemondása az Partnerközpont irányítópulton:
+Kereskedelmi piactéri előfizetés lemondása az Partnerközpont irányítópulton:
 
 1. [Válasszon ki egy ügyfelet.](get-a-customer-by-name.md)
 
@@ -35,13 +35,13 @@ Kereskedelmi piactér-előfizetés lemondása az Partnerközpont irányítópult
 
 ## <a name="c"></a>C\#
 
-Ügyfél előfizetésének lemondása:
+Az ügyfél előfizetésének lemondása:
 
 1. [Szerezze be az előfizetést azonosító alapján.](get-a-subscription-by-id.md)
 
-2. Módosítsa az előfizetés [**Status (Állapot) tulajdonságát.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.status) Az **állapotkódokkal kapcsolatos információkért** [lásd: SubscriptionStatus enumerálás.](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscriptionstatus)
+2. Módosítsa az előfizetés [**Status (Állapot) tulajdonságát.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.status) Az állapotkódokkal **kapcsolatos információkért** lásd: [SubscriptionStatus enumerálás.](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscriptionstatus)
 
-3. A módosítás után használja a gyűjteményt, **`IAggregatePartner.Customers`** és hívja meg a **ById() metódust.**
+3. A módosítás után használja a gyűjteményt, és **`IAggregatePartner.Customers`** hívja meg a **ById() metódust.**
 
 4. Hívja meg [**a Subscriptions**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot, majd a [**ById() metódust.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid)
 
@@ -58,11 +58,11 @@ var updatedSubscription = partnerOperations.Customers.ById(selectedCustomerId).S
 
 ### <a name="sample-console-test-app"></a>Mintakonzol-tesztalkalmazás
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSample **osztály:** UpdateSubscription.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** UpdateSubscription.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus    | Kérés URI-ja                                                                                                                |
 |-----------|----------------------------------------------------------------------------------------------------------------------------|
@@ -131,11 +131,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez a módszer sikeres, a törölt [előfizetés](subscription-resources.md) erőforrás-tulajdonságait adja vissza a válasz törzsében.
+Ha ez a módszer sikeres, a törölt előfizetés [erőforrás-tulajdonságait](subscription-resources.md) adja vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -429,13 +429,13 @@
       href: sandbox-scenario.md
     - name: A tesztkörnyezet tesztelése és hibakeresése
       href: test-and-debug.md
-    - name: Közvetett CSP-szolgáltatói képességek a sandboxban
+    - name: CSP Indirect Providerek funkciói tesztkörnyezetekben
       href: indirect-provider-sandbox-capabilities.md
     - name: Rendelés visszavonása az integrációs tesztkörnyezetből
       href: cancel-an-order-from-the-integration-sandbox.md
     - name: Tesztkörnyezet-előfizetés aktiválása
       href: activate-sandbox-subscription-azure-marketplace-products.md
-    - name: Közvetett viszonteladó létrehozása a sandboxban
+    - name: Indirect Reseller létrehozása tesztkörnyezetben
       href: create-indirect-reseller-in-sandbox.md
     - name: Közvetett viszonteladó törlése a sandboxban
       href: delete-indirect-reseller-in-sandbox.md

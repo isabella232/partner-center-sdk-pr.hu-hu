@@ -1,17 +1,17 @@
 ---
 title: A megadott köteg és ügyfél eszközlistájának lekérése
-description: Eszközök és eszközadatok gyűjteményének lekérése az ügyfél számára a megadott eszközkötetben.
+description: Eszköz- és eszközadatok gyűjteményének lekérése a megadott eszközkötetben az ügyfél számára.
 ms.date: 07/25/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 28af1f568f755ba4c50cfac21529d6c677656c8e
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 77dcab4b26a74cec886e6b654c3abdcb97007ed8e14966873ce43fdcbc1d2809
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874261"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989406"
 ---
 # <a name="get-a-list-of-devices-for-the-specified-batch-and-customer"></a>A megadott köteg és ügyfél eszközlistájának lekérése
 
@@ -21,9 +21,9 @@ Ez a cikk azt ismerteti, hogyan lehet lekérni egy adott eszközkötetben talál
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy eszközkötet-azonosító.
 
@@ -56,7 +56,7 @@ Példaként tekintse meg a következőket:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                            |
 |---------|------------------------------------------------------------------------------------------------------------------------|
@@ -68,8 +68,8 @@ A kérelem létrehozásakor használja az alábbi elérésiút-paramétereket.
 
 | Név           | Típus   | Kötelező | Leírás                                           |
 |----------------|--------|----------|-------------------------------------------------------|
-| ügyfél-azonosító    | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet. |
-| devicebatch-id | sztring | Igen      | Az eszközkötetet azonosító sztringazonosító. |
+| ügyfél-azonosító    | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
+| devicebatch-id | sztring | Yes      | Az eszközkötetet azonosító sztringazonosító. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -93,11 +93,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz törzse az eszközerőforrások [lapszámált gyűjteményét](device-deployment-resources.md#device) tartalmazza. A gyűjtemény 100 eszközt tartalmaz egy oldalon. A 100 eszköz következő oldalának lekéréséhez a válasz törzsében szereplő continuationToken-nek szerepelnie kell a következő kérelemben MS-ContinuationToken fejlécként.
+Ha a művelet sikeres, a válasz törzse az eszközerőforrások [lapszámált gyűjteményét](device-deployment-resources.md#device) tartalmazza. A gyűjtemény 100 eszközt tartalmaz egy oldalon. A 100 eszköz következő oldalának lekéréséhez a válasz törzsében található continuationToken-nek a következő kérelemben kell szerepelnie az MS-ContinuationToken fejléceként.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a REST Partnerközpont [hibakódokat.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a REST Partnerközpont [hibakódokat.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

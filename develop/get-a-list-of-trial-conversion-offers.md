@@ -4,12 +4,12 @@ description: Próbaverziós konverziós ajánlatok listájának lekérése.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 981910560faf7b7957b28e643c09a003826b9cff
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 23c676ae8120a5b156b8af6b18154fcbc921e52e126f0f611988a1d75d880f4d
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111873921"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991300"
 ---
 # <a name="get-a-list-of-trial-conversion-offers"></a>A próbaverzió átalakításával kapcsolatos ajánlatok listájának lekérése
 
@@ -17,9 +17,9 @@ Próbaverziós konverziós ajánlatok listájának lekérése.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy aktív próba-előfizetés előfizetés-azonosítója.
 
@@ -39,20 +39,20 @@ var conversions =
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                                 |
 |---------|-----------------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/subscriptions/{előfizetés-azonosító}/conversions HTTP/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/subscriptions/{előfizetés-azonosító}/konverziós HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az ügyfél és a próbaverziós előfizetés azonosításához használja az alábbi elérésiút-paramétereket.
+Az alábbi elérésiút-paraméterekkel azonosíthatja az ügyfelet és a próbaverziós előfizetést.
 
 | Név            | Típus   | Kötelező | Leírás                                                     |
 |-----------------|--------|----------|-----------------------------------------------------------------|
-| ügyfél-azonosító     | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.           |
-| subscription-id (előfizetés-azonosító) | sztring | Igen      | A próba-előfizetést azonosító GUID formátumú sztring. |
+| ügyfélazonosító     | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.           |
+| subscription-id | sztring | Yes      | A próba-előfizetést azonosító GUID formátumú sztring. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -80,7 +80,7 @@ Ha a művelet sikeres, a válasz törzse konverziós erőforrások [gyűjtemény
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 ### <a name="response-example"></a>Példa válaszra
 

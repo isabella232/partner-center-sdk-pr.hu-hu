@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: d23c162b5eddd0fbe91b11faafa5c4debfb7a4a8
-ms.sourcegitcommit: 59950cf131440786779c8926be518c2dc4bc4030
+ms.openlocfilehash: 1f5c0ae7693a8ac2a2919c385dc1b8837a9171ed8cc422bba79bb892f9fe837a
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/31/2021
-ms.locfileid: "115009188"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991837"
 ---
 # <a name="create-a-cart-with-a-customer-order"></a>Kosár létrehozása ügyfélrendeléssel
 

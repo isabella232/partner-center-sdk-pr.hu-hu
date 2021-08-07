@@ -1,31 +1,31 @@
 ---
 title: Adott felhasználóhoz rendelt licencek lekérése
-description: Megtudhatja, hogyan használhatja Partnerközpont API-kat egy ügyfélfiókon belüli felhasználóhoz rendelt licencek listájának lekért listára.
+description: Megtudhatja, hogyan használhatja Partnerközpont API-kat egy ügyfélfiókon belüli felhasználóhoz rendelt licencek listájának lekért listájához.
 ms.date: 05/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: a51fc4493e2476107206b03be66004d030e2aa47
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 0743c8eb4059a05e4a98ddb95d95659c22ad00976e5a2f867b93d5e0296371bb
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111974063"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992058"
 ---
-# <a name="get-licenses-assigned-to-a-user-within-a-customer-account"></a>Ügyfélfiókon belüli felhasználóhoz rendelt licencek lekérte
+# <a name="get-licenses-assigned-to-a-user-within-a-customer-account"></a>Felhasználóhoz rendelt licencek lekérte az ügyfélfiókon belül
 
-Az ügyfélfiókon belüli felhasználókhoz rendelt licencek listájának lekért listája. Az itt látható példák a group1 (1. csoport) által hozzárendelt licenceket– az alapértelmezett licenccsoportot – jelennek meg, amelyek a Azure Active Directory. A megadott licenccsoportokból hozzárendelt licencek lekért licenceket lásd: Felhasználóhoz rendelt licencek lekért [licenccsoport szerint.](get-licenses-assigned-to-a-user-by-license-group.md)
+Ügyfélfiókon belüli felhasználóhoz rendelt licencek listájának lekért listája. Az itt látható példák a group1 (1. csoport) által hozzárendelt licenceket, a csoport által felügyelt licenceket képviselő alapértelmezett licenccsoportból Azure Active Directory. A megadott licenccsoportokból hozzárendelt licencek lekért licenceket lásd: Felhasználóhoz rendelt licencek lekért [licencek licenccsoport szerint.](get-licenses-assigned-to-a-user-by-license-group.md)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy felhasználói azonosító.
 
 ## <a name="c"></a>C\#
 
-Annak ellenőrzéshez, hogy mely licencek vannak hozzárendelve egy felhasználóhoz az alapértelmezett group1 licenccsoportból, először használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután hívja meg [**a Users.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) a felhasználói azonosítóval a felhasználó azonosításához. Ezután a Licencek tulajdonságból szerezze be az ügyfélfelhasználói [**licencműveletekkel kapcsolatos**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.licenses) felületet. Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.getasync) metódust a felhasználóhoz rendelt licencek gyűjteményének lekéréséhez.
+Annak ellenőrzéshez, hogy mely licencek vannak hozzárendelve egy felhasználóhoz az alapértelmezett group1 licenccsoportból, először használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután hívja meg [**a Users.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) a felhasználói azonosítóval a felhasználó azonosításához. Ezután szerezze be az ügyfélfelhasználói licencműveletekkel kapcsolatos felületet a [**Licencek tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.licenses) Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.get) vagy a [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruserlicensecollection.getasync) metódust a felhasználóhoz rendelt licencek gyűjteményének lekéréséhez.
 
 ``` csharp
 // string selectedCustomerUserId;
@@ -39,7 +39,7 @@ var customerUserAssignedLicenses = partnerOperations.Customers.ById(selectedCust
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                              |
 |---------|----------------------------------------------------------------------------------------------------------|
@@ -51,8 +51,8 @@ Az ügyfél és a felhasználó azonosításához használja az alábbi elérés
 
 | Név        | Típus   | Kötelező | Leírás                                           |
 |-------------|--------|----------|-------------------------------------------------------|
-| ügyfél-azonosító | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
-| felhasználói azonosító     | sztring | Igen      | A felhasználót azonosító GUID formátumú sztring.     |
+| ügyfélazonosító | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
+| felhasználói azonosító     | sztring | Yes      | A felhasználót azonosító GUID formátumú sztring.     |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -80,7 +80,7 @@ Ha a művelet sikeres, a válasz törzse tartalmazza a [licencerőforrások](lic
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 ### <a name="response-example"></a>Példa válaszra
 

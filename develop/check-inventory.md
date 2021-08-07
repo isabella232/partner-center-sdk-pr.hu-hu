@@ -4,12 +4,12 @@ description: Megtudhatja, hogyan használhatja Partnerközpont API-kat a kataló
 ms.date: 05/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: b982dbd7e5e10d454ef87a1e750546ea50eb8438
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: de931c7dd89f94b6be8fdaf0ad79c8faee268267c35a2c0f8e38d36b97842f3f
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111974080"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992109"
 ---
 # <a name="check-the-inventory-of-catalog-items-using-partner-center-apis"></a>Katalóguselemek leltárának ellenőrzése a Partnerközpont API-k használatával
 
@@ -17,15 +17,15 @@ Katalóguselemek adott készletének leltározása.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy vagy több termékkulcs. A termékváltozat-okat is meg lehet adni.
+- Egy vagy több termékkulcs. Igény szerint termékváltozat-is meg lehet adni a termékváltozat-értékeket.
 
-- Minden további környezet, amely a megadott termék/termékváltozat-azonosító(k) által hivatkozott termékváltozat(ek) leltárának ellenőrzéséhez szükséges. Ezek a követelmények terméktípusonként/termékváltozatonként változhatnak, és a [termékváltozat](product-resources.md#sku) **InventoryVariables** tulajdonsága alapján határozhatók meg.
+- Bármely további környezet, amely a megadott termék/termékváltozat-azonosítók által hivatkozott termékváltozat(ak) leltárának ellenőrzéséhez szükséges. Ezek a követelmények terméktípus/termékváltozat szerint változhatnak, és a [termékváltozat](product-resources.md#sku) **InventoryVariables** tulajdonsága alapján határozhatók meg.
 
 ## <a name="c"></a>C\#
 
-A leltár ellenőrzéshez készítsen [egy InventoryCheckRequest](product-resources.md#inventorycheckrequest) objektumot egy [InventoryItem](product-resources.md#inventoryitem) objektummal az egyes ellenőrizni kívánt elemekhez. Ezután használjon **egy IAggregatePartner.Extensions** hozzáférési kiszolgálót, és hatókörként adja meg a **Product** (Termék) lehetőséget, majd válassza ki az országot a **ByCountry() metódussal.** Végül hívja meg a **CheckInventory()** metódust az **InventoryCheckRequest objektummal.**
+A leltár ellenőrzéshez állítson össze [egy InventoryCheckRequest](product-resources.md#inventorycheckrequest) objektumot egy [InventoryItem](product-resources.md#inventoryitem) objektummal minden egyes ellenőrizni kívánt elemhez. Ezután használjon **egy IAggregatePartner.Extensions** hozzáférési elérést, hatókörként a **Termék** mezőre, majd válassza ki az országot a **ByCountry() metódussal.** Végül hívja meg a **CheckInventory() metódust** az **InventoryCheckRequest objektummal.**
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -64,7 +64,7 @@ A leltár ellenőrzéséhez használja a következő lekérdezési paramétert.
 
 | Név                   | Típus     | Kötelező | Leírás                                                     |
 |------------------------|----------|----------|-----------------------------------------------------------------|
-| országkód           | sztring   | Igen      | Egy ország-/régióazonosító.                                            |
+| országkód           | sztring   | Yes      | Egy ország-/régióazonosító.                                            |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -72,7 +72,7 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A leltárkérés részletei, amely egy vagy több [InventoryItem](product-resources.md#inventoryitem) erőforrást tartalmazó [InventoryCheckRequest](product-resources.md#inventorycheckrequest) erőforrásból áll.
+A leltárkérés részletei, amely egy egy vagy több [InventoryItem](product-resources.md#inventoryitem) erőforrást tartalmazó [InventoryCheckRequest](product-resources.md#inventorycheckrequest) erőforrásból áll.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -91,14 +91,14 @@ Content-Type: application/json
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse tartalmazza a korlátozás részleteivel feltölthető [InventoryItem-objektumok](product-resources.md#inventoryitem) gyűjteményét, ha van ilyen.
+Ha ez sikeres, a válasz törzse tartalmazza a korlátozás részleteivel kitöltve az [InventoryItem](product-resources.md#inventoryitem) objektumok gyűjteményét, ha van ilyen.
 
 >[!NOTE]
 >Ha egy bemeneti InventoryItem olyan elemet képvisel, amely nem található a katalógusban, akkor az nem fog szerepelni a kimeneti gyűjteményben.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a [hibakódok Partnerközpont tekintse meg.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

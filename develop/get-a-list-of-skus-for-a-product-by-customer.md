@@ -7,18 +7,18 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: b76526d97ba9027897fc88954ba45186d58aefb8
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: a7ee543281fd65785561641ca448f78e374aad7683aa1b95c65845dabfc44f07
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874159"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989865"
 ---
 # <a name="get-a-list-of-skus-for-a-product-by-customer"></a>Termék termék termékterméklistáinak lekért listája (ügyfél szerint)
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Lekérte egy adott terméktermék-gyűjteményét, amely elérhető egy meglévő ügyfél számára.
+Lekért egy adott terméktermék-gyűjteményét, amely elérhető egy meglévő ügyfél számára.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -30,7 +30,7 @@ Lekérte egy adott terméktermék-gyűjteményét, amely elérhető egy meglév�
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus | Kérés URI-ja                                                                                                        |
 |--------|--------------------------------------------------------------------------------------------------------------------|
@@ -40,8 +40,8 @@ Lekérte egy adott terméktermék-gyűjteményét, amely elérhető egy meglév�
 
 | Név               | Típus | Kötelező | Leírás                                                                                 |
 |--------------------|------|----------|---------------------------------------------------------------------------------------------|
-| ügyfél-bérlő-azonosító | GUID | Igen | Az érték egy GUID-formátumú **ügyfél-bérlő-azonosító,** amely egy olyan azonosító, amellyel megadhatja az ügyfelet. |
-| termékazonosító | sztring | Igen | A terméket azonosító sztring. |
+| ügyfél-bérlő-azonosító | GUID | Yes | Az érték egy GUID-formátumú **ügyfél-bérlő-azonosító,** amely egy olyan azonosító, amellyel megadhatja az ügyfelet. |
+| termékazonosító | sztring | Yes | A terméket azonosító sztring. |
 
 ### <a name="request-header"></a>Kérelem fejléce
 
@@ -69,7 +69,7 @@ Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sik
 
 Ez a metódus a következő hibakódokat adja vissza:
 
-| HTTP-állapotkód | Hibakód | Leírás |
+| HTTP-állapotkód | Hibakód | Description |
 |------------------|------------|-------------|
 | 404 | 400013 | A szülőtermék nem található. |
 

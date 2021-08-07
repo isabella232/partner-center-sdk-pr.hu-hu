@@ -4,26 +4,26 @@ description: Önkiszolgáló lehetőség a szoftver-előfizetések és a folyama
 ms.date: 12/19/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 877702ac930919ff72c6cc45a3c0e8ecc7e1b5f4
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: f7dfa5122c585a8519312e8492922f718a51972f177a12d7431015e1cdcb5d06
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111974233"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992194"
 ---
 # <a name="cancel-software-purchases"></a>Szoftvervásárlások lemondása
 
-A Partnerközpont API-k használatával megszüntetheti a szoftver-előfizetéseket és a folyamatos szoftvervásárlásokat (felhasználhatja azokat a vásárlásokat a vásárlás dátumtól számított lemondási időszakban). Ilyen lemondáshoz nem kell támogatási jegyet létrehoznia, és ehelyett a következő önkiszolgáló módszereket használhatja.
+Az Partnerközpont API-k használatával megszüntetheti a szoftver-előfizetéseket és a folyamatos szoftvervásárlásokat (felhasználhatja azokat a vásárlásokat a vásárlás dátumtól számított lemondási időszakban). Ilyen lemondáshoz nem kell támogatási jegyet létrehoznia, és ehelyett a következő önkiszolgáló módszereket használhatja.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
 Szoftverrendelés lemondása:
 
-1. Adja át a fiók hitelesítő adatait a [**CreatePartnerOperations**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) metódusnak egy [**IPartner-felület**](/dotnet/api/microsoft.store.partnercenter.ipartner) lekért létrehozásához a partnerműveleteket lekért fiókhoz.
+1. Adja át a fiók hitelesítő adatait a [**CreatePartnerOperations**](/dotnet/api/microsoft.store.partnercenter.partnerservice.instance) metódusnak, hogy lekért egy [**IPartner-felületet**](/dotnet/api/microsoft.store.partnercenter.ipartner) a partnerműveletekkel kapcsolatban.
 
 2. Válassza ki azt a [megrendelést,](order-resources.md#order) amelyről le szeretné mondani a rendelést. Hívja meg [**a Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítóját, majd az **Orders.ById()** metódust a rendelésazonosítóval.
 
@@ -54,7 +54,7 @@ order = accountPartnerOperations.Customers.ById(customerTenantId).Orders.ById(or
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus     | Kérés URI-ja                                                                            |
 |------------|----------------------------------------------------------------------------------------|
@@ -116,11 +116,11 @@ A rendelés állapota vagy  megszakítva állapotúként lesz megjelölve, ha a 
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
-A következő példaválaszban láthatja, hogy az ajánlatazonosítóval együtt a sorelem mennyisége **`DG7GMGF0FKZV:0003:DG7GMGF0DWMS`** nullára (0) vált. Ez a módosítás azt jelenti, hogy a megszakításra megjelölt sorelem sikeresen törölve lett. A példasorrend más sorelemeket is tartalmaz, amelyeket nem töröltek, ami azt jelenti, hogy a teljes rendelés állapota befejezettként lesz megjelölve, nem **megszakítva.**
+A következő példaválaszban láthatja, hogy az ajánlatazonosítóval együtt a sortétel mennyisége **`DG7GMGF0FKZV:0003:DG7GMGF0DWMS`** nullára (0) vált. Ez a módosítás azt jelenti, hogy a megszakításra megjelölt sorelem sikeresen törölve lett. A példasorrend más sorelemeket is tartalmaz, amelyeket nem töröltek, ami azt jelenti, hogy a teljes rendelés állapota befejezettként lesz megjelölve, nem **megszakítva.**
 
 ```http
 HTTP/1.1 200 OK

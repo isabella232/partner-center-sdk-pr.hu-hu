@@ -1,32 +1,32 @@
 ---
 title: Ügyféllicencek üzembehelyezési adatainak lekérése
-description: Licencek üzembe helyezési elemzésének le szolgáltatása egy adott ügyfél számára.
+description: Licencek üzembe helyezési elemzésének lekérte egy adott ügyfélhez.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 91fe9da185aa59025d4dc8263257b207edb4a5be
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: 83a27b49054f0cb33531dfd8a028ab2d3d4d7bee23be4e99c45a0b383880c5d4
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111446462"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992517"
 ---
 # <a name="get-customer-licenses-deployment-information"></a>Ügyféllicencek üzembehelyezési adatainak lekérése
 
-Licencek üzembe helyezési elemzésének le szolgáltatása egy adott ügyfél számára.
+Licencek üzembe helyezési elemzésének lekérte egy adott ügyfélhez.
 
 > [!NOTE]
-> Ezt a forgatókönyvet a Licencek le get deployment information (Licencek üzembe helyezési [információinak le szolgáltatása) szuperküldi le.](get-licenses-deployment-information.md)
+> Ezt a forgatókönyvet a [Get licenses deployment information (Licencek üzembe helyezési információinak lekérte) alapján lehet lefektetni.](get-licenses-deployment-information.md)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
+A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-Egy adott ügyfél üzembe helyezésével kapcsolatos összesített adatok lekéréséhez először hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az ügyfélszintű elemzési gyűjtemény műveleteinek felületét az [**Analytics tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.analytics) Ezután a [**Licenses**](/dotnet/api/microsoft.store.partnercenter.analytics.icustomeranalyticscollection.licenses) (Licencek) tulajdonságból olvassa be az ügyfélszintű licencelemzési gyűjtemény felületét. Végül hívja meg a [**Deployment.Get metódust**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) a licencek üzembe helyezésével kapcsolatos összesített adatok lehívására. Ha a metódus sikeres, a [**CustomerLicensesDeploymentInsights**](/dotnet/api/microsoft.store.partnercenter.models.analytics.customerlicensesdeploymentinsights) objektumok gyűjteményét fogja kapni.
+Egy adott ügyfél üzembe helyezésével kapcsolatos összesített adatok lekéréséhez először hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután az Analytics tulajdonságból szerezze be az ügyfélszintű elemzési gyűjtési műveletek [**felületét.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.analytics) Ezután a [**Licenses**](/dotnet/api/microsoft.store.partnercenter.analytics.icustomeranalyticscollection.licenses) (Licencek) tulajdonságból olvassa be az ügyfélszintű licencelemzési gyűjtemény felületét. Végül hívja meg a [**Deployment.Get metódust**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientireentitycollectionretrievaloperations-2.get) a licencek üzembe helyezésével kapcsolatos összesített adatok lehívására. Ha a metódus sikeres, a [**CustomerLicensesDeploymentInsights**](/dotnet/api/microsoft.store.partnercenter.models.analytics.customerlicensesdeploymentinsights) objektumok gyűjteményét fogja kapni.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -37,7 +37,7 @@ var customerLicensesDeploymentAnalytics = partnerOperations.Customers.ById(custo
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                   |
 |---------|---------------------------------------------------------------------------------------------------------------|
@@ -45,11 +45,11 @@ var customerLicensesDeploymentAnalytics = partnerOperations.Customers.ById(custo
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az ügyfél azonosításához használja a következő elérésiút-paramétert.
+Az ügyfél azonosításához használja a következő path paramétert.
 
 | Név        | Típus | Kötelező | Leírás                                                |
 |-------------|------|----------|------------------------------------------------------------|
-| ügyfélazonosító | guid | Igen      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet. |
+| ügyfél-azonosító | guid | Yes      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -77,7 +77,7 @@ Ha a válasz törzse sikeres, a [CustomerLicensesDeploymentInsights](analytics-r
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

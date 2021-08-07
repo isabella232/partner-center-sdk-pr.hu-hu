@@ -4,12 +4,12 @@ description: Új önkiszolgáló szabályzat létrehozása.
 ms.date: 04/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 14f46e22fbd294c765b745204cf62474250cbfbd
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 0ef67efc08d188a5e3566295d0d2cd3add154dc0957d87bb6e85e5f74dfa5297
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973688"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991599"
 ---
 # <a name="create-a-selfservepolicy"></a>SelfServePolicy létrehozása
 
@@ -17,7 +17,7 @@ Ez a cikk bemutatja, hogyan hozhat létre új önkiszolgáló szabályzatot.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az Application+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv az Application+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
@@ -67,7 +67,7 @@ Példaként tekintse meg a következőket:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                       |
 |----------|-------------------------------------------------------------------|
@@ -82,18 +82,18 @@ Példaként tekintse meg a következőket:
 
 Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
-| Név                              | Típus   | Leírás                                 |
+| Név                              | Típus   | Description                                 |
 |------------------------------------------------------------------|--------|---------------------------------------------|
-| [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy)| object | Az önkiszolgáló szabályzat adatai. |
+| [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy)| object | Az önkiszolgáló szabályzatinformációk. |
 
 #### <a name="selfservepolicy"></a>SelfServePolicy
 
-Ez a táblázat az új önkiszolgáló szabályzat létrehozásához szükséges [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) erőforrás minimálisan szükséges mezőit ismerteti.
+Ez a táblázat az új önkiszolgáló szabályzat létrehozásához szükséges minimálisan szükséges mezőket ismerteti a [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) erőforrásból.
 
-| Tulajdonság              | Típus             | Leírás                                                                                            |
+| Tulajdonság              | Típus             | Description                                                                                            |
 |-----------------------|------------------|--------------------------------------------------------------------------------------------------------|
 | SelfServeEntity       | SelfServeEntity  | Az önkiszolgáló entitás, amely hozzáférést kap.                                                     |
-| Grantor               | Grantor          | A hozzáférést megadó megadó.                                                                    |
+| Grantor               | Grantor          | A hozzáférést engedélyező megadó.                                                                    |
 | Engedélyek           | Engedélytömb| [Engedélyerőforrások tömbje.](self-serve-policy-resources.md#permission)                                                                     |
 
 
@@ -134,11 +134,11 @@ Ha ez az API sikeres, egy [SelfServePolicy](self-serve-policy-resources.md#selfs
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 Ez a metódus a következő hibakódokat adja vissza:
 
-| HTTP-állapotkód     | Hibakód   | Leírás                                                                |
+| HTTP-állapotkód     | Hibakód   | Description                                                                |
 |----------------------|--------------|----------------------------------------------------------------------------|
 | 409                  | 600041       | Az önkiszolgáló szabályzat már létezik.                                                     |
 

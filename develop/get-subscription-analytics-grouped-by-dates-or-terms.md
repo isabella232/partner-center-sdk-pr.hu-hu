@@ -4,12 +4,12 @@ description: Előfizetés-elemzési információk lekért dátumok vagy kifejez�
 ms.date: 06/27/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 8192a9863d53ec8697a7341cd38c69200614bd4a
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 66336d3e5573598eb4810853ad2704bc8d2c76680292a4f5b4a3da9bb50936b8
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111548719"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989678"
 ---
 # <a name="get-subscription-analytics-grouped-by-dates-or-terms"></a>Előfizetés-elemzések lekért dátumai vagy feltételei szerint csoportosítva
 
@@ -23,7 +23,7 @@ Hogyan lehet lekért előfizetési elemzési adatokat az ügyfelekről dátumok 
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus | Kérés URI-ja |
 |--------|-------------|
@@ -35,7 +35,7 @@ Használja a következő kötelező elérésiút-paramétereket a szervezet azon
 
 | Név | Típus | Kötelező | Leírás |
 |------|------|----------|-------------|
-| groupby_queries | sztringpárok és dateTime | Igen | Az eredmény szűréséhez megadott kifejezések és dátumok. |
+| groupby_queries | sztringpárok és dateTime | Yes | Az eredmény szűréséhez megadott kifejezések és dátumok. |
 
 ### <a name="groupby-syntax"></a>GroupBy-szintaxis
 
@@ -49,7 +49,7 @@ Egy nem kódolatlan példa a következő:
 
 Az alábbi táblázat a csoportosítási csoportok támogatott mezőinek listáját tartalmazza.
 
-| Mező | Típus | Leírás |
+| Mező | Típus | Description |
 |-------|------|-------------|
 | customerTenantId (customerTenantId) | sztring | Egy GUID-formátumú sztring, amely azonosítja az ügyfélbérlőt. |
 | customerName (ügyfél neve) | sztring | Az ügyfél neve. |
@@ -66,8 +66,8 @@ Az alábbi táblázat a csoportosítási csoportok támogatott mezőinek listáj
 | creationDate (Létrehozás dátuma) | sztring UTC dátum-idő formátumban | Az előfizetés létrehozási dátuma. |
 | effectiveStartDate | sztring UTC dátum-idő formátumban | Az előfizetés kezdési dátuma. |
 | commitmentEndDate | sztring UTC dátum-idő formátumban | Az előfizetés végének dátuma. |
-| currentStateEndDate | sztring UTC dátum-idő formátumban | Az a dátum, amikor az előfizetés aktuális állapota megváltozik. |
-| trialToPaidConversionDate (trialToPaidConversionDate) | sztring UTC dátum-idő formátumban | Az a dátum, amikor az előfizetés próbaverzióról fizetősre vált. Az alapértelmezett érték a null. |
+| currentStateEndDate | sztring UTC dátum-idő formátumban | Az előfizetés aktuális állapotának változásának dátuma. |
+| trialToPaidConversionDate | sztring UTC dátum-idő formátumban | Az a dátum, amikor az előfizetés próbaverzióról fizetősre vált. Az alapértelmezett érték a null. |
 | trialStartDate | sztring UTC dátum-idő formátumban | Az előfizetés próbaidőszakának elindulásának dátuma. Az alapértelmezett érték a null. |
 | lastUsageDate (lastUsageDate) | sztring UTC dátum-idő formátumban | Az előfizetés utolsó használt dátuma. Az alapértelmezett érték a null. |
 | megszüntetésDate | sztring UTC dátum-idő formátumban | Az előfizetés megszüntetésének dátuma. Az alapértelmezett érték a null. |
@@ -77,7 +77,7 @@ Az alábbi táblázat a csoportosítási csoportok támogatott mezőinek listáj
 
 A következő táblázat a nem kötelező szűrőmezőket és azok leírását tartalmazza:
 
-| Mező | Típus |  Leírás |
+| Mező | Típus |  Description |
 |-------|------|--------------|
 | top | int | A kérelemben visszaadni kívánt adatsorok száma. Ha az érték nincs megadva, a maximális érték és az alapértelmezett érték 10000. Ha a lekérdezés több sort tartalmaz, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldal lekérésére használható. |
 | Ugrál | int | A lekérdezésben kihagyni kívánt sorok száma. Ezzel a paraméterrel nagy adatkészletek között lapokat laposszunk. Például a top=10000 és a skip=0 lekéri az első 10000 adatsort, a top=10000 és a skip=10000 pedig a következő 10000 adatsort. |
@@ -107,7 +107,7 @@ Content-Length: 0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz [](partner-center-analytics-resources.md#subscription-resource) törzse a megadott feltételek és dátumok szerint csoportosított előfizetési erőforrások gyűjteményét tartalmazza.
+Ha a művelet sikeres, a [](partner-center-analytics-resources.md#subscription-resource) válasz törzse a megadott feltételek és dátumok szerint csoportosított előfizetési erőforrások gyűjteményét tartalmazza.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 

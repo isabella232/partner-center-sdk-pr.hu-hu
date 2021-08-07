@@ -4,12 +4,12 @@ description: A CustomerMonthlyUsageRecord erőforrás-gyűjtemény használatáv
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 6b3fb0e1989336810f2afcc2a5bfc3a1d2849b7f
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 2ac71bdcbbeb36462f543a024727980922baf7dff5e37a3e7997ced881a51f94
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874890"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992908"
 ---
 # <a name="get-usage-records-for-all-customers"></a>Az összes ügyfél használati rekordjainak lekért száma
 
@@ -27,7 +27,7 @@ A partnerek a **CustomerMonthlyUsageRecord erőforrás-gyűjtemény** használat
 
 Az adott Azure-szolgáltatást vagy -erőforrást az aktuális számlázási időszakban megvásároló összes ügyfél összes használati rekordját le kell kapnia:
 
-1. Az **IAggregatePartner.Customers gyűjtemény** használatával hívja meg a **ById() metódust.**
+1. Az **IAggregatePartner.Customers gyűjtemény** használatával hívja meg a **ById()** metódust.
 
 2. Hívja **meg a UsageRecords** tulajdonságot, majd hívja meg a **Get() vagy** a **GetAsync() metódust.**
 
@@ -44,7 +44,7 @@ Példaként tekintse meg a következő mintát:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|

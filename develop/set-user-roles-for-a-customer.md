@@ -1,29 +1,29 @@
 ---
 title: Felhasználói szerepkörök beállítása egy ügyfélnél
-description: Az ügyfélfiókon belül címtárszerepkomó-készlet található. Ezekhez a szerepkörökhöz felhasználói fiókokat rendelhet.
+description: Az ügyfélfiókon belül címtárszerepkör-készlet található. Ezekhez a szerepkörökhöz felhasználói fiókokat rendelhet.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: a035d711ffa91200fa7b479ed5ec53929aa4feaf
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: 945b5180ce2fe9067a940942a6e3c61dc243978fcb9d02eb218dce69ec487402
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111446700"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989032"
 ---
 # <a name="set-user-roles-for-a-customer"></a>Felhasználói szerepkörök beállítása egy ügyfélnél
 
-Az ügyfélfiókon belül címtárszerepkomó-készlet található. Ezekhez a szerepkörökhöz felhasználói fiókokat rendelhet.
+Az ügyfélfiókon belül címtárszerepkör-készlet található. Ezekhez a szerepkörökhöz felhasználói fiókokat rendelhet.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Ha címtárszerepkört szeretne hozzárendelni egy ügyfélfelhasználóhoz, hozzon létre egy új [**UserMember**](/dotnet/api/microsoft.store.partnercenter.models.roles.usermember) adatokat a megfelelő felhasználói adatokkal. Ezután hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) a megadott ügyfél-azonosítóval az ügyfél azonosításához. A szerepkör megadásához használja a [**DirectoryRoles.ById**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.idirectoryrolecollection.byid) metódust a címtár-szerepkör azonosítójával. Ezután hozzáféréssel a **UserMembers** gyűjteményhez, és a [**Létrehozás**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.iusermembercollection.create) metódussal adja hozzá az új felhasználói tagot az adott szerepkörhöz rendelt felhasználói tagok gyűjteményéhez.
+Ha címtárszerepkört szeretne hozzárendelni egy ügyfélfelhasználóhoz, hozzon létre egy új [**UserMember**](/dotnet/api/microsoft.store.partnercenter.models.roles.usermember) adatokat a megfelelő felhasználói adatokkal. Ezután hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a megadott ügyfél-azonosítóval az ügyfél azonosításához. A szerepkör megadásához használja a [**DirectoryRoles.ById**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.idirectoryrolecollection.byid) metódust a címtár-szerepkör azonosítójával. Ezután hozzáférés a **UserMembers** gyűjteményhez, és a [**Create**](/dotnet/api/microsoft.store.partnercenter.customerdirectoryroles.iusermembercollection.create) metódussal adja hozzá az új felhasználói tagot a szerepkörhöz rendelt felhasználói tagok gyűjteményéhez.
 
 ``` csharp
 // UserMember createdUser;
@@ -55,11 +55,11 @@ var userMemberAdded = partnerOperations.Customers.ById(selectedCustomer.Id).Dire
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az alábbi URI-paraméterekkel azonosíthatja a megfelelő ügyfelet és szerepkört. Annak a felhasználónak az azonosításához, akihez hozzá kell rendelni a szerepkört, a kérelem törzsében meg kell határoznia az azonosító adatokat.
+Az alábbi URI-paraméterekkel azonosíthatja a megfelelő ügyfelet és szerepkört. Annak a felhasználónak az azonosításához, akihez a szerepkört hozzárendeli, a kérelem törzsében meg kell határoznia az azonosító adatokat.
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlő-azonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
+| **ügyfél-bérlő-azonosító** | **guid** | Y        | Az érték egy GUID formátumú **ügyfél-bérlőazonosító,** amely lehetővé teszi a viszonteladó számára, hogy szűrje a viszonteladóhoz tartozó adott ügyfél eredményeit. |
 | **szerepkör-azonosító**            | **guid** | Y        | Az érték egy GUID formátumú **szerepkör-azonosító,** amely azonosítja a felhasználóhoz hozzárendelni kívánt szerepkört.                                                              |
 
 ### <a name="request-headers"></a>Kérésfejlécek
@@ -72,10 +72,10 @@ Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 | Név                  | Típus       | Kötelező | Leírás                            |
 |-----------------------|------------|----------|----------------------------------------|
-| **Id**                | **sztring** | Y        | A szerepkörhöz hozzáadnia kell a felhasználó azonosítóját. |
+| **Id**                | **sztring** | Y        | A szerepkörhöz hozzáadnia kell a felhasználó azonosítója. |
 | **Megjelenítendő név**       | **sztring** | Y        | A felhasználó rövid megjelenített neve. |
-| **UserPrincipalName (Felhasználónév)** | **sztring** | Y        | Az egyszerű felhasználó neve.        |
-| **Attribútumok**        | **Objektum** | Y        | Az "ObjectType":"UserMember" adatokat tartalmazza     |
+| **UserPrincipalName (Felhasználónév)** | **sztring** | Y        | A rendszerbiztonsági tag neve.        |
+| **Attribútumok**        | **Objektum** | Y        | Tartalmazza az "ObjectType":"UserMember" adatokat     |
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -107,7 +107,7 @@ Ez a metódus visszaadja a szerepkör-azonosítóval csatolt felhasználói fió
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

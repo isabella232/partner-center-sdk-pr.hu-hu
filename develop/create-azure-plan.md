@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: mowrim
 ms.author: mowrim
-ms.openlocfilehash: b77b067c7eb150ab1ad9904915e87c3fc55c104a
-ms.sourcegitcommit: 1fce45e6cafbc4c228042523ae28aac651a73757
+ms.openlocfilehash: 5083f7aa8ea274b5210d88085d26376dadbc0c4d1a0dd6e1babe59c94d7a6f9c
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/23/2021
-ms.locfileid: "114483058"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991480"
 ---
 # <a name="create-an-azure-plan"></a>Azure-csomag létrehozása
 
@@ -19,7 +19,7 @@ Azure-csomagokat vásárolhat, hozhat létre és kezelhet a Partnerközpont API-
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-* [Partnerközpont hitelesítő adatok](partner-center-authentication.md) megadása. Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+* [Partnerközpont hitelesítő adatok](partner-center-authentication.md) megadása. Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 * Az ügyfél azonosítója. Ha nem rendelkezik ügyfélazonosítóval, kövesse az Ügyfelek listájának [lekért lépéseit.](get-a-list-of-customers.md) Másik lehetőségként jelentkezzen be a Partnerközpont, válassza ki az ügyfelet az ügyfelek listájából, válassza a **Fiók** lehetőséget, majd mentse **a Microsoft-azonosítóját.**
 * [Annak megerősítése, hogy az](/partner-center/confirm-customer-agreement)ügyfél elfogadta a Microsoft Ügyfélszerződés.
 
@@ -35,7 +35,7 @@ Egy Azure-csomag katalóguselemének beszerzéséhez kövesse az alábbi lépés
 
 1. Azonosítsa és lekéri *az* Azure-csomag termékazonosítóját. Kövesse a [Termékek listájának lekért lépéseit,](get-a-list-of-products.md) és adja meg a **targetView** értéket **MicrosoftAzure-ként.** (Ha már ismeri  az Azure-csomag termékazonosítóját, kövesse a Termék lekérte [a](get-a-product-by-id.md) termékazonosító használatával lépéseit.)
 
-2. Az **Azure-csomag termékváltozatának** lekérése. Kövesse a termék termékkel kapcsolatos termékkódok listájának [lekért lépéseit.](get-a-list-of-skus-for-a-product.md) Ha már ismeri az Azure-csomag termékváltozat-azonosítóját, kövesse a Termékváltozat lekérte a termékváltozat [azonosítójának használatával lépéseit.](get-a-sku-by-id.md)
+2. Az **Azure-csomag termékváltozatának** lekérése. Kövesse a termék termékkel kapcsolatos termékkódok listájának [lekért lépéseit.](get-a-list-of-skus-for-a-product.md) Ha már ismeri az Azure-csomag termékváltozat-azonosítóját, kövesse a Termékváltozat lekérte ehelyett a termékváltozat [azonosítójának használatával lépéseit.](get-a-sku-by-id.md)
 
 3. A rendelkezésre **állás lekérése** az Azure-csomag termékváltozatában. Kövesse a [Termékváltozatok rendelkezésre állási listájának lekért lépéseit.](get-a-list-of-availabilities-for-a-sku.md) Ha már ismeri a szükséges rendelkezésre állás azonosítóját, kövesse a Rendelkezésre állás lekérte a rendelkezésre állási azonosító használatával [lépéseit.](get-an-availability-by-id.md) *Ügyeljen arra, hogy jegyezze fel az Azure-csomag rendelkezésre állásának **CatalogItemId** tulajdonságát. Erre az értékre szüksége lesz a rendelés létrehozásához.*
 
@@ -67,14 +67,14 @@ Amikor létrehoz egy Azure-Partnerközpont, egy megfelelő Azure-használati el�
 
 A meglévő Azure-csomagokat az Előfizetés felfüggesztése lépéseit követve [függesztheti fel.](suspend-a-subscription.md)
 
-*Csak akkor függeszthet fel egy meglévő Azure-tervet, ha már nem rendelkezik hozzá aktív használati eszközökkel, beleértve az Azure-használati előfizetéseket és az Azure Reservationst.*
+*A meglévő Azure-csomagokat csak akkor függesztheti fel, ha már nem rendelkezik aktív használati eszközökkel, beleértve az Azure-használati előfizetéseket és az Azure Reservationst.*
 
 Az Azure-használati előfizetések letiltására vonatkozó részletekért lásd: Azure API az előfizetés [életciklus-felügyeletében.](/rest/api/resources/subscriptions)
 
 A meglévő Azure-foglalások eltávolításához le kell [mondania a foglalásokat.](/partner-center/azure-reservations-manage#cancel-or-exchange-a-reservation)
 Az Azure-csomag felfüggesztése után újraaktiválhatja azt.
 
-Az Azure-csomag újraaktiválásának részleteiért lásd: [Felfüggesztett előfizetés újraaktiválása](reactivate-a-suspended-a-subscription.md)
+Az Azure-csomag újraaktiválásának részleteiért lásd: Felfüggesztett előfizetés [újraaktiválása](reactivate-a-suspended-a-subscription.md)
 
 ## <a name="transition-existing-csp-offers-to-azure-plan"></a>Meglévő CSP-ajánlatok átváltása Azure-csomagra 
 
@@ -86,7 +86,7 @@ Nem hozhat létre Azure-csomagot Microsoft Azure- (MS-AZR-0145P) előfizetéssel
 
 ## <a name="azure-spending"></a>Azure-költség
 
-Az [Azure-kiadások](azure-spending.md) nyomon követéséhez lekérdezheti a használati adatok összegzését és a részletes használati adatokat az alábbi módszerekkel:
+Az Azure-kiadásokat [a](azure-spending.md) használati adatok összegzésének és részletes használati rekordjainak lekérdezésével követheti nyomon a következő módszerekkel:
 
 * [A partner használati összegzésének lekérése](get-a-partner-usage-summary.md)
 * [Egy partner összes ügyfélhasználati rekordjának lekérése](get-a-customer-s-usage-records.md)

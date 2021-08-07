@@ -1,23 +1,23 @@
 ---
 title: Számlázás kezelése
-description: Ez a szakasz azt ismerteti Felhőszolgáltató hogyan használhatják a Partnerközpont-t a számlák programozott módon történő megtekintésére és kezelésére, valamint az ügyfelek előrehaladásának az Azure-költségkerethez való vetésében.
+description: Ez a szakasz azt ismerteti, Felhőszolgáltató hogyan használhatják a Partnerközpont-t a számlák programozott módon való megtekintésére és kezelésére, valamint az ügyfelek előrehaladásának az Azure-költségkerethez való vetésében.
 ms.date: 08/16/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: sourishdeb
 ms.author: sodeb
-ms.openlocfilehash: eaf6a426d0702130f31f08a4a30ccdfa00810270
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: b1609f9a53c1ec40483ebb13411e8acf6593e02628be65dd760984579f88b848
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111548362"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989593"
 ---
 # <a name="manage-billing"></a>Számlázás kezelése
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Ez a szakasz azt ismerteti, hogy Felhőszolgáltató hogyan használhatnak Partnerközpont-partnerek a számlák programozott módon történő megtekintésére és kezelésére, valamint az ügyfelek előrehaladásának az Azure-költségkerethez való vetésére.
+Ez a szakasz azt ismerteti, hogyan Felhőszolgáltató a Partnerközpont a számlák programozott módon történő megtekintéséhez és kezeléséhez, valamint az ügyfelek előrehaladásának az Azure-költségvetéshez való vetéséhez.
 
 **Számlázási ciklus:**
 - [A számlázási ciklus módosítása](change-the-billing-cycle.md)

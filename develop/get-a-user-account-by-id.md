@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: 3a7cac98a8081a8557dcadfb0724f5497be7d14c
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: 6f42c50ed28099d03c2af2142e3b98d717a6cfa46e5ab751a62c9c2b818806a8
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760266"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990987"
 ---
 # <a name="get-a-user-account-by-id"></a>Felhasználói fiók lekérése azonosító alapján
 
@@ -23,7 +23,7 @@ Egy adott felhasználói fiók lekérte az ügyfélhez.
 
 ## <a name="c"></a>C\#
 
-Az ügyfél felhasználói fiókjának lekérése érdekében hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután hívja meg a [**Users.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) az adott felhasználó lekérésére. Végül hívja meg a [**Users.Get vagy**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.get) [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.getasync) metódust a felhasználói fiók lekérésére.
+Az ügyfél felhasználói fiókjának lekérése érdekében hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Ezután hívja meg a [**Users.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) az adott felhasználó lekérésére. Végül hívja meg a [**Users.Get vagy**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.get) [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.getasync) metódust a felhasználói fiók lekérésére.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -38,7 +38,7 @@ var customerUsers = partnerOperations.Customers.ById(selectedCustomerId).Users.B
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                            |
 |---------|--------------------------------------------------------------------------------------------------------|
@@ -75,7 +75,7 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez a módszer sikeres, az ügyfél felhasználói fiókját adja vissza.
+Ha a művelet sikeres, ez a módszer az ügyfél felhasználói fiókját adja vissza.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 

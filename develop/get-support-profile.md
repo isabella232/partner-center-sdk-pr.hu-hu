@@ -4,12 +4,12 @@ description: Lekért egy objektumot, amely a felhasználó támogatási profilj�
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: b112ccbbff731795c21f95845a08be9e9dfb6775
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 6f6771dfed989536369a83cffc341c7ed6a099307d42ed0a03aea9d237e3bba6
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111548634"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989015"
 ---
 # <a name="get-support-profile"></a>Támogatási profil lekérése
 
@@ -19,7 +19,7 @@ Lekért egy objektumot, amely a felhasználó támogatási profilját képviseli
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
@@ -35,7 +35,7 @@ SupportProfile supportProfile = partnerOperations.Profiles.SupportProfile.Get();
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                              |
 |---------|--------------------------------------------------------------------------|
@@ -61,11 +61,11 @@ MS-CorrelationId: 20604323-50bf-4738-9968-c5486ab32be0
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus egy **SupportProfile** objektumot ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy **SupportProfile** objektumot ad vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

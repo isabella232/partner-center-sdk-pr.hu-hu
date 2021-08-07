@@ -4,12 +4,12 @@ description: Telepítési információk lekérte Office Dynamics-licencekhez.
 ms.date: 10/25/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9eb0dc655affb2216b11635e58e00ed6464d6792
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: c47ab4f839c102c7a7bcab0169bf13955ab49beb97c48800e882598714347e67
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111445663"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990715"
 ---
 # <a name="get-licenses-deployment-information"></a>Licencek üzembehelyezési adatainak lekérése
 
@@ -17,11 +17,11 @@ Telepítési információk lekérte Office Dynamics-licencekhez.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
+A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                     |
 |---------|-------------------------------------------------------------------------------------------------|
@@ -35,11 +35,11 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 | Paraméter         | Típus     | Leírás | Kötelező |
 |-------------------|----------|-------------|----------|
-| top               | sztring   | A kérésben visszaadni kívánt adatsorok száma. Ha nincs megadva, a maximális érték és az alapértelmezett érték 10000. Ha a lekérdezés több sort tartalmaz, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldal lekérésére használható. | Nem |
-| Ugrál              | int      | A lekérdezésben kihagyni kívánt sorok száma. Ezzel a paraméterrel nagy adatkészletek között lapokat laposszunk. Például a top=10000 és a skip=0 lekéri az első 10000 adatsort, a top=10000 és a skip=10000 a következő 10000 adatsort és így tovább. | Nem |
-| filter (szűrő)            | sztring   | A *kérés* szűrőparamétere egy vagy több olyan utasításokat tartalmaz, amelyek szűrik a válasz sorait. Minden utasítás tartalmaz egy mezőt és egy értéket, amely az vagy operátorhoz van társítva, és az utasítások a vagy a használatával `eq` `ne` `and` `or` kombinálhatók. Íme néhány példa *szűrőparaméterre:*<br/><br/> *filter=serviceCode eq 'O365'*<br/> *filter=serviceCode eq 'O365'* or (*channel eq 'Reseller'*)<br/><br/> A következő mezőket adhatja meg:<br/><br/>**serviceCode**<br/>**serviceName (szolgáltatásnév)**<br/>**Csatorna**<br/>**customerTenantId (customerTenantId)**<br/>**customerName (ügyfél neve)**<br/>**Termelés**<br/>**Productname**  | Nem |
-| groupby (csoportosítás)           | sztring   | Olyan utasítás, amely csak a megadott mezőkre alkalmazza az adatösszesítőt. A következő mezőket adhatja meg:<br/><br/>**serviceCode**<br/>**serviceName (szolgáltatásnév)**<br/>**Csatorna**<br/>**customerTenantId (customerTenantId)**<br/>**customerName (ügyfél neve)**<br/>**Termelés**<br/>**Productname**<br/><br/> A visszaadott adatsorok tartalmazzák a *groupby* paraméterben megadott mezőket és a következőket:<br/><br/>**licensesDeployed**<br/>**licensesSold**  | Nem |
-| processedDateTime | DateTime | Megadhatja a használati adatok feldolgozásának dátumát. Alapértelmezés szerint az adatok feldolgozásának legutóbbi dátuma | Nem |
+| top               | sztring   | A kérésben visszaadni kívánt adatsorok száma. Ha nincs megadva, a maximális érték és az alapértelmezett érték 10000. Ha a lekérdezés több sort tartalmaz, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldal lekérésére használható. | No |
+| Ugrál              | int      | A lekérdezésben kihagyni kívánt sorok száma. Ezzel a paraméterrel nagy adatkészletek között lapokat laposszunk. Például a top=10000 és a skip=0 lekéri az első 10000 adatsort, top=10000 és skip=10000 a következő 10000 adatsort és így tovább. | No |
+| filter (szűrő)            | sztring   | A *kérés* szűrőparamétere egy vagy több olyan utasításokat tartalmaz, amelyek szűrik a válasz sorait. Minden utasítás tartalmaz egy mezőt és egy értéket, amely az vagy operátorhoz van társítva, és az utasítások a vagy a használatával `eq` `ne` `and` `or` kombinálhatók. Íme néhány példa a *szűrőparaméterekre:*<br/><br/> *filter=serviceCode eq 'O365'*<br/> *filter=serviceCode eq 'O365'* or (*channel eq 'Reseller'*)<br/><br/> A következő mezőket adhatja meg:<br/><br/>**serviceCode**<br/>**serviceName (szolgáltatásnév)**<br/>**Csatorna**<br/>**customerTenantId (customerTenantId)**<br/>**customerName (ügyfél neve)**<br/>**Termelés**<br/>**Productname**  | No |
+| groupby           | sztring   | Olyan utasítás, amely csak a megadott mezőkre alkalmazza az adatösszesítőt. A következő mezőket adhatja meg:<br/><br/>**serviceCode**<br/>**serviceName (szolgáltatásnév)**<br/>**Csatorna**<br/>**customerTenantId (customerTenantId)**<br/>**customerName (ügyfél neve)**<br/>**Termelés**<br/>**Productname**<br/><br/> A visszaadott adatsorok tartalmazzák a *groupby* paraméterben megadott mezőket és a következőket:<br/><br/>**licensesDeployed**<br/>**licensesSold**  | No |
+| processedDateTime | DateTime | Megadhatja a használati adatok feldolgozásának dátumát. Alapértelmezés szerint az adatok feldolgozásának legutóbbi dátuma | No |
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -57,7 +57,7 @@ Host: api.partnercenter.microsoft.com
 
 Sikeres művelet esetén a válasz törzse a következő mezőket tartalmazza, amelyek az üzembe helyezett licencekkel kapcsolatos adatokat tartalmazzák.
 
-| Mező             | Típus     | Leírás                           |
+| Mező             | Típus     | Description                           |
 |-------------------|----------|---------------------------------------|
 | serviceCode       | sztring   | Szolgáltatáskód                          |
 | serviceName (szolgáltatásnév)       | sztring   | Szolgáltatásnév                          |
@@ -72,7 +72,7 @@ Sikeres művelet esetén a válasz törzse a következő mezőket tartalmazza, a
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

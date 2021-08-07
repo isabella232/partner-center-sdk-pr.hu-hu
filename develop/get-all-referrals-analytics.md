@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: Kim-Davis
 ms.author: kimnich
-ms.openlocfilehash: 7deda4098ceb9eb4e1ee75056c53c754618bf3e2
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: 8fded9cc9d540fa1f7f3fcb38620c26b85c1c6032ef0176e9bd043943a425f65
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760606"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992721"
 ---
 # <a name="get-all-referrals-analytics-information"></a>Az összes javaslat elemzési adatainak lekérése
 
@@ -33,11 +33,11 @@ Az ügyfelekre vonatkozó összes hivatkozáselemzési információ lekérte.
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
-| Paraméter | Típus | Leírás |
+| Paraméter | Típus | Description |
 |-----------|------|-------------|
 | filter (szűrő) | sztring | A szűrési feltételnek megfelelő adatokat ad vissza.</br> **Példa**</br>  `.../referrals?filter=field eq 'value'` |
 | groupby | sztring | A feltételeket és a dátumokat is támogatja. Rövid áramköri logika a gyűjtők számának korlátozására.</br> **Példa**</br>  `.../referrals?groupby=termField1,dateField1,termField2` |
-| aggregationLevel | sztring | Az *aggregációszint* paraméterhez csoportosítás *szükséges.* Az *aggregationLevel* paraméter a csoportosításban található összes *dátummezőre vonatkozik.*</br> **Példa**</br> `.../referrals?groupby=termField1,dateField1,termField2&aggregationLevel=day` |
+| aggregationLevel | sztring | Az *aggregációszint* paraméterhez egy *csoportosítási paraméterre van szükség.* Az *aggregationLevel* paraméter a csoportosításban található összes *dátummezőre vonatkozik.*</br> **Példa**</br> `.../referrals?groupby=termField1,dateField1,termField2&aggregationLevel=day` |
 | top | sztring | Az oldalkorlát 10000. 10000-esnél kisebb értéket vesz fel.</br> **Példa**</br> `.../referrals?top=100`</br> |
 | Ugrál | sztring | A kihagyni kívánt sorok száma.</br> **Példa**</br>  `.../referrals?top=100&skip=100` |
 

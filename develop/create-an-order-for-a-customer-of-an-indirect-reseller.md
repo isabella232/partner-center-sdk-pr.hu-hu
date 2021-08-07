@@ -4,12 +4,12 @@ description: Megtudhatja, hogyan hozhat létre rendelést egy közvetett viszont
 ms.date: 07/22/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 6253ba2289ea1f58e7d8eaa960d7d0daaa887f0d
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: ba46b151e423df27f1378ac8441a23702e47746911b4e05e370bbf0aa7b53233
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973543"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991548"
 ---
 # <a name="create-an-order-for-a-customer-of-an-indirect-reseller"></a>Megrendelés létrehozása közvetett viszonteladó ügyfelének
 
@@ -17,9 +17,9 @@ Rendelés létrehozása egy közvetett viszonteladó ügyfele számára.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - A megvásárolni kívánt tétel ajánlatazonosítója.
 
@@ -27,15 +27,15 @@ Rendelés létrehozása egy közvetett viszonteladó ügyfele számára.
 
 ## <a name="c"></a>C\#
 
-Rendelés létrehozása egy közvetett viszonteladó ügyfele számára:
+Megrendelés létrehozása egy közvetett viszonteladó ügyfele számára:
 
-1. Szerezze be a közvetett viszonteladók gyűjteményét, amelyek kapcsolatban vannak a bejelentkezett partnerrel.
+1. Szerezze be a bejelentkezett partnerrel kapcsolatban áll közvetett viszonteladók gyűjteményét.
 
-2. Lekért egy helyi változót ahhoz a gyűjteményhez, amely megfelel a közvetett viszonteladó azonosítójának. Ez a lépés segít elérni a viszonteladó [**MpnId**](/dotnet/api/microsoft.store.partnercenter.models.relationships.partnerrelationship.mpnid) tulajdonságát a rendelés létrehozásakor.
+2. Lekért egy helyi változót a gyűjteménynek arra az elemére, amely megegyezik a közvetett viszonteladó azonosítójával. Ez a lépés segít elérni a viszonteladó [**MpnId**](/dotnet/api/microsoft.store.partnercenter.models.relationships.partnerrelationship.mpnid) tulajdonságát a rendelés létrehozásakor.
 
 3. Példányositsa az [**Order**](/dotnet/api/microsoft.store.partnercenter.models.orders.order) objektumot, és állítsa a [**ReferenceCustomerID**](/dotnet/api/microsoft.store.partnercenter.models.orders.order.referencecustomerid) tulajdonságot az ügyfélazonosítóra az ügyfél rögzítéséhez.
 
-4. Hozzon létre egy [**listát az OrderLineItem**](/dotnet/api/microsoft.store.partnercenter.models.orders.orderlineitem) objektumokból, és rendelje hozzá a listát a rendelés [**LineItems tulajdonságához.**](/dotnet/api/microsoft.store.partnercenter.models.orders.order.lineitems) Minden rendeléssorelem egy adott ajánlat vásárlási adatait tartalmazza. Minden sorelemben töltse fel a [**PartnerIdOnRecord**](/dotnet/api/microsoft.store.partnercenter.models.orders.orderlineitem.partneridonrecord) tulajdonságot a közvetett viszonteladó MPN-azonosítójával. Legalább egy megrendeléssor-elemnek kell lennie.
+4. Hozza létre az [**OrderLineItem**](/dotnet/api/microsoft.store.partnercenter.models.orders.orderlineitem) objektumok listáját, és rendelje hozzá a listát a rendelés [**LineItems (Soritemek) tulajdonságához.**](/dotnet/api/microsoft.store.partnercenter.models.orders.order.lineitems) Minden rendeléssorelem egy adott ajánlat vásárlási adatait tartalmazza. A [**PartnerIdOnRecord**](/dotnet/api/microsoft.store.partnercenter.models.orders.orderlineitem.partneridonrecord) tulajdonságot minden sorelemben töltse fel a közvetett viszonteladó MPN-azonosítójával. Legalább egy megrendeléssor-elemnek kell lennie.
 
 5. Szerezzen be egy interfészt a műveletek megrendelésére az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódus ügyfél-azonosítóval való hívásával az ügyfél azonosításához, majd a felület az Orders tulajdonságból [**való lekérésével.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders)
 
@@ -81,7 +81,7 @@ var createdOrder = partnerOperations.Customers.ById(customerId).Orders.Create(or
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                            |
 |----------|----------------------------------------------------------------------------------------|
@@ -89,11 +89,11 @@ var createdOrder = partnerOperations.Customers.ById(customerId).Orders.Create(or
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-Az ügyfél azonosításához használja a következő path paramétert.
+Az ügyfél azonosításához használja a következő elérésiút-paramétert.
 
 | Név        | Típus   | Kötelező | Leírás                                           |
 |-------------|--------|----------|-------------------------------------------------------|
-| ügyfél-azonosító | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
+| ügyfélazonosító | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -108,11 +108,11 @@ Ez a táblázat a kérelem törzsében található **Order (Rendelés)** tulajdo
 | Név | Típus | Kötelező | Leírás |
 | ---- | ---- | -------- | ----------- |
 | id | sztring | No | A rendelés sikeres létrehozása után megadott rendelésazonosító. |
-| referenceCustomerId | sztring | Igen | Az ügyfél azonosítója. |
-| billingCycle | sztring | No | A partner számlázásának gyakorisága a rendeléshez. Az alapértelmezett érték a Havi, és a rendelés &quot; sikeres létrehozásakor lesz &quot; alkalmazva. A támogatott értékek a [**BillingCycleType**](/dotnet/api/microsoft.store.partnercenter.models.offers.billingcycletype)típusban található tagnevek. Megjegyzés: Az éves számlázási funkció még nem általánosan elérhető. Az éves számlázás támogatása hamarosan 2017-hez közeledik. |
-| lineItems (sorsorok) | objektumok tömbje | Igen | [**OrderLineItem**](#orderlineitem) erőforrások tömbje. |
-| creationDate (Létrehozás dátuma) | sztring | No | A rendelés létrehozási dátuma, dátum-idő formátumban. A rendelés sikeres létrehozásakor alkalmazva. |
-| Attribútumok | object | Nem | Tartalmazza az "ObjectType": "Order" típust. |
+| referenceCustomerId | sztring | Yes | Az ügyfél azonosítója. |
+| billingCycle | sztring | No | A rendelés számlázásának gyakorisága a partner számára. Az alapértelmezett érték a Havi, és a rendelés &quot; sikeres létrehozása után lesz &quot; alkalmazva. A támogatott értékek a [**BillingCycleType**](/dotnet/api/microsoft.store.partnercenter.models.offers.billingcycletype)típusban található tagnevek. Megjegyzés: Az éves számlázási funkció még nem általánosan elérhető. Az éves számlázás támogatása hamarosan meg fog rövidni. |
+| lineItems (sorsorok) | objektumok tömbje | Yes | [**OrderLineItem-erőforrások tömbje.**](#orderlineitem) |
+| creationDate (Létrehozás dátuma) | sztring | No | A rendelés létrehozási dátuma, dátum-idő formátumban. A rendelés sikeres létrehozása után alkalmazva. |
+| Attribútumok | object | No | Tartalmazza az "ObjectType": "Order" típust. |
 
 #### <a name="orderlineitem"></a>OrderLineItem (Megrendelési vonal)
 
@@ -120,14 +120,14 @@ Ez a táblázat a kérelem törzsében található **OrderLineItem** tulajdonsá
 
 | Név | Típus | Kötelező | Leírás |
 | ---- | ---- | -------- | ----------- |
-| lineItemNumber (sortem száma) | int | Igen | A gyűjtemény minden soreleme egyedi sorszámot kap, amely 0-tól count-1-ig számol. |
-| offerId (ajánlatazonosító) | sztring | Igen | Az ajánlat azonosítója. |
+| lineItemNumber (sor száma) | int | Yes | A gyűjtemény minden soreleme egyedi sorszámot kap, amely 0-tól count-1-ig számol. |
+| offerId (ajánlatazonosító) | sztring | Yes | Az ajánlat azonosítója. |
 | subscriptionId | sztring | No | Az előfizetés azonosítója. |
 | parentSubscriptionId (parentSubscriptionId) | sztring | No | Választható. A szülő-előfizetés azonosítója egy bővítményajánlatban. Csak a PATCH-re vonatkozik. |
-| friendlyName (rövid név) | sztring | No | Választható. A partner által meghatározott előfizetés rövid neve a egyértelműséghez. |
-| quantity | int | Igen | A licencalapú előfizetések licenceinek száma. |
+| friendlyName (rövid név) | sztring | No | Választható. A partner által meghatározott előfizetés rövid neve, amely segít egyértelműsedni. |
+| quantity | int | Yes | A licencalapú előfizetések licenceinek száma. |
 | partnerIdOnRecord | sztring | No | Ha egy közvetett szolgáltató egy közvetett viszonteladó nevében ad ki rendelést, akkor ezt a mezőt csak a közvetett viszonteladó MPN-azonosítójával **töltse** fel (soha ne a közvetett szolgáltató azonosítójával). Ez biztosítja az ösztönzők megfelelő elszámolását. **Ha nem adja meg a viszonteladó MPN-azonosítóját, a rendelés nem fog meghiúsulni. A viszonteladót azonban nem rögzíti a rendszer, ezért előfordulhat, hogy az ösztönzők számításai nem tartalmazzák az értékesítést.** |
-| Attribútumok | object | Nem | Az "ObjectType":"OrderLineItem" adatokat tartalmazza. |
+| Attribútumok | object | No | Az "ObjectType":"OrderLineItem" adatokat tartalmazza. |
 
 ### <a name="request-example"></a>Példa kérésre
 

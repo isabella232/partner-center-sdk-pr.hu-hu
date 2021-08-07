@@ -4,12 +4,12 @@ description: Megtudhatja, hogyan hozhat létre Partnerközpont új konfiguráci�
 ms.date: 05/23/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 530ff72862204bda093385252450f4eb81b63160
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: b3637b6d482934d894a5807734b541cc73dea3f265b5460ba807c7fad6834a82
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973672"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991616"
 ---
 # <a name="create-a-new-configuration-policy-for-the-specified-customer"></a>Új konfigurációs szabályzat létrehozása a megadott ügyfélnél
 
@@ -19,7 +19,7 @@ ms.locfileid: "111973672"
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 - Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
@@ -27,11 +27,11 @@ ms.locfileid: "111973672"
 
 Új konfigurációs szabályzat létrehozása a megadott ügyfél számára:
 
-1. Példányositsa az új [**ConfigurationPolicy**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.configurationpolicy) objektumot az alábbi kódrészletben látható módon. Ezután hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával, hogy lekérje a műveletek interfészét a megadott ügyfélen.
+1. Példányositsa az új [**ConfigurationPolicy**](/dotnet/api/microsoft.store.partnercenter.models.devicesdeployment.configurationpolicy) objektumot az alábbi kódrészletben látható módon. Ezután hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával, hogy lekérje a megadott ügyfél műveleteinek interfészét.
 
-2. A [**ConfigurationPolicies tulajdonság lekérésével**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.configurationpolicies) lekéri a konfigurációs szabályzatgyűjtemény műveleteinek felületét.
+2. A [**ConfigurationPolicies tulajdonság lekérése**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.configurationpolicies) a konfigurációs házirend-gyűjtési műveletek felületének lekéréséhez.
 
-3. A konfigurációs [**szabályzat létrehozásához**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.create) hívja meg a [**Create vagy a CreateAsync**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.createasync) metódust.
+3. A konfigurációs [**szabályzat létrehozásához**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.create) hívja meg a Create vagy [**a CreateAsync**](/dotnet/api/microsoft.store.partnercenter.genericoperations.ientitycreateoperations-2.createasync) metódust.
 
 ### <a name="c-example"></a>C \# példa
 
@@ -56,7 +56,7 @@ var createdConfigurationPolicy =
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                              |
 |----------|------------------------------------------------------------------------------------------|
@@ -68,7 +68,7 @@ A kérelem létrehozásakor használja a következő elérésiút-paramétereket
 
 | Név        | Típus   | Kötelező | Leírás                                           |
 |-------------|--------|----------|-------------------------------------------------------|
-| ügyfélazonosító | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet. |
+| ügyfélazonosító | sztring | Yes      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -80,10 +80,10 @@ A kérelem törzsének tartalmaznia kell egy objektumot, amely tartalmazza a kon
 
 | Név           | Típus             | Kötelező | Leírás                      |
 |----------------|------------------|----------|----------------------------------|
-| name           | sztring           | Igen      | A szabályzat rövid neve. |
-| category       | sztring           | Igen      | A szabályzat kategóriája.             |
+| name           | sztring           | Yes      | A szabályzat rövid neve. |
+| category       | sztring           | Yes      | A szabályzat kategóriája.             |
 | leírás    | sztring           | No       | A szabályzat leírása.          |
-| policySettings | sztringek tömbje | Igen      | A szabályzat beállításai.             |
+| policySettings | sztringek tömbje | Yes      | A szabályzat beállításai.             |
 
 ### <a name="request-example"></a>Példa kérésre
 

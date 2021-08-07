@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khakiali
 ms.author: alikhaki
-ms.openlocfilehash: 5c20b317edf16b159050884070683880cf7e45bb
-ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
+ms.openlocfilehash: 384fa227a103ed10dc2fd055afa7688d3b2a418504360eb4a5025615cf2a4f67
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/11/2021
-ms.locfileid: "112025718"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989355"
 ---
 # <a name="get-agreement-metadata-for-the-microsoft-customer-agreement"></a>A Microsoft Ügyfélszerződés szerződési metaadatainak lekérése
 
@@ -23,18 +23,18 @@ A microsoftos Microsoft Ügyfélszerződés metaadatait jelenleg csak a Microsof
 
 A szerződés metaadatait a következő Microsoft Ügyfélszerződés kell lekérnie:
 
-- [Annak megerősítése, hogy az ügyfél elfogadta a Microsoft Ügyfélszerződés](./confirm-customer-consent-customer-agreement.md)
+- [Erősítse meg, hogy az ügyfél elfogadta-e a Microsoft Ügyfélszerződés](./confirm-customer-consent-customer-agreement.md)
 - [Letöltési hivatkozás lekérése a Microsoft Ügyfélszerződés sablonhoz](./download-customer-agreement-template.md)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 - Ha az Partnerközpont .NET SDK-t használja, 1.14-es vagy újabb verzió szükséges.
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](./partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](./partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítést támogatja.
 
 ## <a name="net-version-114-or-newer"></a>.NET (1.14-es vagy újabb verzió)
 
-A szerződés metaadatainak lekérése a Microsoft Ügyfélszerződés:
+A szerződés metaadatainak lekérése Microsoft Ügyfélszerződés:
 
 1. Először is olvassa be az **IAggregatePartner.AgreementDetails gyűjteményt.**
 
@@ -50,27 +50,27 @@ string agreementType = "MicrosoftCustomerAgreement";
 var microsoftCustomerAgreementDetails = partnerOperations.AgreementDetails.ByAgreementType(agreementType).Get().Items.Single();
 ```
 
-A teljes minta megtalálható a [GetAgreementDetails](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetAgreementDetails.cs) osztályban a konzol [tesztalkalmazás](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples) projektjében.
+A teljes minta megtalálható a [GetAgreementDetails](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetAgreementDetails.cs) osztályban a konzol tesztalkalmazás [projektjében.](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples)
 
 ## <a name="rest-request"></a>REST-kérés
 
-A szerződés metaadatainak lekérése a Microsoft Ügyfélszerződés:
+A szerződés metaadatainak lekérése Microsoft Ügyfélszerződés:
 
 1. Hozzon létre egy REST-kérést az [AgreementMetaData gyűjtemény lekéréséhez.](./agreement-metadata-resources.md)
 
 2. Az **agreementType lekérdezési** paraméterrel az eredményt csak a lekérdezési Microsoft Ügyfélszerződés.
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus | Kérés URI-ja                                                         |
 |--------|---------------------------------------------------------------------|
-| GET    | [*\{ baseURL \}*](partner-center-rest-urls.md)/v1/agreements?agreementType={agreement-type} HTTP/1.1 |
+| GET    | [*\{ baseURL \}*](partner-center-rest-urls.md)/v1/agreements?agreementType={szerződéstípus} HTTP/1.1 |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
 | Név                   | Típus     | Kötelező | Leírás                                                             |
 |------------------------|----------|----------|-------------------------------------------------------------------------|
-| szerződéstípus | sztring | No | Ezzel a paraméterrel adott szerződéstípusra lehet hatókört használni a lekérdezési válaszra. A támogatott értékek a következőek: <br/><br/>**MicrosoftCloudAgreement,** amely csak *MicrosoftCloudAgreement* típusú szerződési metaadatokat tartalmaz<br/><br/>**MicrosoftCustomerAgreement,** amely csak *MicrosoftCustomerAgreement* típusú szerződési metaadatokat tartalmaz.<br/><br/>**\**_ az összes szerződési metaadatot visszaadja. (Ne használja a _* \* _ hacsak a kód nem rendelkezik a szükséges futásidejű logikával az ismeretlen szerződéstípusok kezeléshez, mert a Microsoft bármikor bevezethet szerződésmetaadatokat új *szerződéstípusokkal.) <br/> <br/> _* Megjegyzés:** Ha az URI paraméter nincs megadva, a lekérdezés alapértelmezés szerint **a MicrosoftCloudAgreement** értéket használja a visszamenőleges kompatibilitás érdekében.  |
+| szerződéstípus | sztring | No | Ezzel a paraméterrel adott szerződéstípusra lehet hatókört használni a lekérdezési válaszra. A támogatott értékek a következőek: <br/><br/>**MicrosoftCloudAgreement,** amely csak a *MicrosoftCloudAgreement* típusú szerződési metaadatokat tartalmazza<br/><br/>**MicrosoftCustomerAgreement,** amely csak *MicrosoftCustomerAgreement* típusú szerződési metaadatokat tartalmaz.<br/><br/>**\**_ az összes szerződési metaadatot visszaadja. (Ne használja a _* \* _ hacsak a kód nem rendelkezik a szükséges futásidejű logikával az ismeretlen szerződéstípusok kezeléshez, mert a Microsoft bármikor bevezethet szerződésmetaadatokat új *szerződéstípusokkal.) <br/> <br/> _* Megjegyzés:** Ha az URI paraméter nincs megadva, a lekérdezés alapértelmezés szerint **a MicrosoftCloudAgreement** értéket használja a visszamenőleges kompatibilitás érdekében.  |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -92,11 +92,11 @@ MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus [ **agreementMetaData-erőforrások**](./agreement-metadata-resources.md) gyűjteményét adja vissza a válasz törzsében.
+Sikeres művelet esetén ez a metódus [ **agreementMetaData-erőforrások**](./agreement-metadata-resources.md) gyűjteményét adja vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat.
 
 Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 

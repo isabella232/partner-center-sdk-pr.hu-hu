@@ -4,12 +4,12 @@ description: Megtudhatja, hogyan rendelhet licenceket egy ügyfélfelhasználóh
 ms.date: 10/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 88ce0f185b0b043c4a7862b7f9808fb8805d40b9
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 8263f7f274e453603305324cc7ac6e8b25820561ade3136b873c65ffa21e94fc
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111974369"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115989066"
 ---
 # <a name="assign-licenses-to-a-user-via-partner-center-apis"></a>Licencek hozzárendelése egy felhasználóhoz Partnerközpont API-kon keresztül
 
@@ -25,9 +25,9 @@ Licencek hozzárendelése egy ügyfélfelhasználóhoz.
 
 - A termék termékváltozat-azonosítója, amely azonosítja a terméket a licenchez.
 
-## <a name="assigning-licenses-through-code"></a>Licencek kóddal való hozzárendelése
+## <a name="assigning-licenses-through-code"></a>Licencek hozzárendelése kóddal
 
-Amikor licenceket rendel egy felhasználóhoz, választania kell az ügyfél előfizetéses termékkód-gyűjteményéből. Ezt követően, miután azonosította a hozzárendelni kívánt termékeket, be kell szereznie az egyes termékek termékváltozat-azonosítóját a hozzárendelések kiosztásához. Minden [**SubscribedSku példány**](/dotnet/api/microsoft.store.partnercenter.models.licenses.subscribedsku) tartalmaz egy [**ProductSku**](/dotnet/api/microsoft.store.partnercenter.models.licenses.subscribedsku.productsku) tulajdonságot, amelyből hivatkozhat a [**ProductSku**](/dotnet/api/microsoft.store.partnercenter.models.licenses.productsku) objektumra, és le tudja szerezni az [**azonosítót.**](/dotnet/api/microsoft.store.partnercenter.models.licenses.productsku.id)
+Amikor licenceket rendel egy felhasználóhoz, ki kell választania az ügyfél előfizetéses termékkód-gyűjteményéből. Ezt követően, miután azonosította a hozzárendelni kívánt termékeket, be kell szereznie az egyes termékek termékváltozat-azonosítóját a hozzárendelések kiosztásához. Minden [**SubscribedSku példány**](/dotnet/api/microsoft.store.partnercenter.models.licenses.subscribedsku) tartalmaz egy [**ProductSku**](/dotnet/api/microsoft.store.partnercenter.models.licenses.subscribedsku.productsku) tulajdonságot, amelyből hivatkozhat a [**ProductSku**](/dotnet/api/microsoft.store.partnercenter.models.licenses.productsku) objektumra, és le tudja szerezni az [**azonosítót.**](/dotnet/api/microsoft.store.partnercenter.models.licenses.productsku.id)
 
 A licenc-hozzárendelési kérelemnek egyetlen licenccsoport licencét kell tartalmaznia. Például nem rendelhet licenceket a [**Group1**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licensegroupid) és **a Group2** csoporthoz ugyanabban a kérésben. Ha egy kérésben egynél több csoport licencét kísérelik meg hozzárendelni, az egy megfelelő hibával meghiúsul. A licenccsoport szerint elérhető licencekről az Elérhető licencek listájának lekért listája [licenccsoport szerint.](get-a-list-of-available-licenses-by-license-group.md)
 
@@ -77,7 +77,7 @@ A licencek kódon keresztüli hozzárendelésének lépései a következőek:
 
 ## <a name="c"></a>C\#
 
-Ha egy licencet szeretne hozzárendelni egy ügyfélfelhasználóhoz, először példányosítenie kell egy [**LicenseAssignment**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment) objektumot, és ki kell feltöltenie az [**Skuid**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment.skuid) és [**excludedPlans**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment.excludedplans) tulajdonságokat. Ezzel az objektummal adhatja meg a hozzárendelni kívánt termékváltozatot és a kizárni kívánt szolgáltatásterveket. Ezután példányositsa a **LicenseAssignment** típusú új listát, és adja hozzá a licencobjektumot a listához. Ezután hozzon létre [**egy LicenseUpdate példányt,**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate) és rendelje hozzá a licenc-hozzárendelések listáját a [**LicensesToAssign tulajdonsághoz.**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate.licensestoassign)
+Ha egy licencet szeretne hozzárendelni egy ügyfélfelhasználóhoz, először példányosítenie kell egy [**LicenseAssignment**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment) objektumot, és fel kell töltve az [**Skuid**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment.skuid) és [**az ExcludedPlans**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseassignment.excludedplans) tulajdonságot. Ezzel az objektummal adhatja meg a hozzárendelni kívánt termékváltozatot és a kizárni kívánt szolgáltatásterveket. Ezután példányositsa a **LicenseAssignment** típusú új listát, és adja hozzá a licencobjektumot a listához. Ezután hozzon létre [**egy LicenseUpdate példányt,**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate) és rendelje hozzá a licenc-hozzárendelések listáját a [**LicensesToAssign tulajdonsághoz.**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licenseupdate.licensestoassign)
 
 Ezután használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához, a [**Users.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust pedig a felhasználói azonosítóval a felhasználó azonosításához. Ezután szerezze be az ügyfélfelhasználói licencfrissítési műveletek felületét a [**LicenseUpdates tulajdonságból.**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomeruser.licenseupdates)
 
@@ -122,8 +122,8 @@ Az ügyfél és a felhasználó azonosításához használja az alábbi elérés
 
 | Név        | Típus   | Kötelező | Leírás                                       |
 |-------------|--------|----------|---------------------------------------------------|
-| ügyfél-azonosító | sztring | Igen      | Egy GUID formátumú azonosító, amely azonosítja az ügyfelet. |
-| felhasználói azonosító     | sztring | Igen      | A felhasználót azonosító GUID formátumú azonosító.     |
+| ügyfél-azonosító | sztring | Yes      | Egy GUID formátumú azonosító, amely azonosítja az ügyfelet. |
+| felhasználói azonosító     | sztring | Yes      | A felhasználót azonosító GUID formátumú azonosító.     |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

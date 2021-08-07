@@ -4,12 +4,12 @@ description: Licenchasználati információk lekérte a számítási feladatok s
 ms.date: 10/25/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: ea3658089ce7eb5c1ad7cc65c3db34f9b6353cdd
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: a93c59c8c2a4c82ad7f3e81e814386e1ac0c046c3b0bada80eaaac40d9179d93
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111445977"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115990426"
 ---
 # <a name="get-licenses-usage-information"></a>Licencek használati adatainak lekérése
 
@@ -35,11 +35,11 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 | Paraméter         | Típus     | Leírás | Kötelező |
 |-------------------|----------|-------------|----------|
-| top               | sztring   | A kérelemben visszaadni kívánt adatsorok száma. Ha nincs megadva, a maximális érték és az alapértelmezett érték 10000. Ha a lekérdezés több sort tartalmaz, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldal lekérésére használható. | Nem |
-| Ugrál              | int      | A lekérdezésben kihagyni kívánt sorok száma. Ezzel a paraméterrel nagy adatkészletek között lapokat laposszunk. Például a top=10000 és a skip=0 lekéri az első 10000 adatsort, a top=10000 és a skip=10000 a következő 10000 adatsort és így tovább. | Nem |
-| filter (szűrő)            | sztring   | A *kérés* szűrőparamétere egy vagy több olyan utasításokat tartalmaz, amelyek szűrik a válasz sorait. Minden utasítás tartalmaz egy mezőt és egy értéket, amely az vagy operátorhoz van társítva, és az utasítások kombinálhatók **`eq`** **`ne`** a vagy a **`and`** **`or`** használatával. Íme néhány példa *szűrőparaméterre:*<br/><br/>*filter=workloadCode eq 'SFB'*<br/><br/>*filter=workloadCode eq 'SFB'* or (*channel eq 'Reseller'*)<br/><br/>A következő mezőket adhatja meg:<br/><br/>**workloadCode**<br/>**workloadName (számítási feladat neve)**<br/>**serviceCode**<br/>**serviceName (szolgáltatásnév)**<br/>**Csatorna**<br/>**customerTenantId (customerTenantId)**<br/>**customerName (ügyfél neve)**<br/>**Termelés**<br/>**Productname** | Nem |
-| groupby           | sztring   | Olyan utasítás, amely csak a megadott mezőkre alkalmazza az adatösszesítőt. A következő mezőket adhatja meg:<br/><br/>**workloadCode**<br/>**workloadName (számítási feladat neve)**<br/>**serviceCode**<br/>**serviceName (szolgáltatásnév)**<br/>**channelcustomerTenantId**<br/>**customerName (ügyfél neve)**<br/>**Termelés**<br/>**Productname**<br/><br/>A visszaadott adatsorok tartalmazzák a *groupby* paraméterben megadott mezőket és a következőket:<br/><br/>**licensesActive**<br/>**licensesQualified** | Nem |
-| processedDateTime | DateTime | Megadhatja a használati adatok feldolgozásának dátumát. Alapértelmezés szerint az adatok feldolgozásának legkésőbbi dátuma | Nem |
+| top               | sztring   | A kérelemben visszaadni kívánt adatsorok száma. Ha nincs megadva, a maximális érték és az alapértelmezett érték 10000. Ha a lekérdezés több sort tartalmaz, a válasz törzse tartalmaz egy következő hivatkozást, amely a következő adatoldal lekérésére használható. | No |
+| Ugrál              | int      | A lekérdezésben kihagyni kívánt sorok száma. Ezzel a paraméterrel nagy adatkészletek között lapokat laposszunk. Például a top=10000 és a skip=0 lekéri az első 10000 adatsort, a top=10000 és a skip=10000 a következő 10000 adatsort és így tovább. | No |
+| filter (szűrő)            | sztring   | A *kérés* szűrőparamétere egy vagy több olyan utasításokat tartalmaz, amelyek szűrik a válasz sorait. Minden utasítás tartalmaz egy mezőt és egy értéket, amely az vagy operátorhoz van társítva, és az utasítások kombinálhatók **`eq`** **`ne`** a vagy a **`and`** **`or`** használatával. Íme néhány példa *szűrőparaméterre:*<br/><br/>*filter=workloadCode eq 'SFB'*<br/><br/>*filter=workloadCode eq 'SFB'* or (*channel eq 'Reseller'*)<br/><br/>A következő mezőket adhatja meg:<br/><br/>**workloadCode**<br/>**workloadName (számítási feladat neve)**<br/>**serviceCode**<br/>**serviceName (szolgáltatásnév)**<br/>**Csatorna**<br/>**customerTenantId (customerTenantId)**<br/>**customerName (ügyfél neve)**<br/>**Termelés**<br/>**Productname** | No |
+| groupby           | sztring   | Olyan utasítás, amely csak a megadott mezőkre alkalmazza az adatösszesítőt. A következő mezőket adhatja meg:<br/><br/>**workloadCode**<br/>**workloadName (számítási feladat neve)**<br/>**serviceCode**<br/>**serviceName (szolgáltatásnév)**<br/>**channelcustomerTenantId**<br/>**customerName (ügyfél neve)**<br/>**Termelés**<br/>**Productname**<br/><br/>A visszaadott adatsorok tartalmazzák a *groupby* paraméterben megadott mezőket és a következőket:<br/><br/>**licensesActive**<br/>**licensesQualified** | No |
+| processedDateTime | DateTime | Megadhatja a használati adatok feldolgozásának dátumát. Alapértelmezés szerint az adatok feldolgozásának legkésőbbi dátuma | No |
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -57,7 +57,7 @@ Host: api.partnercenter.microsoft.com
 
 Sikeres művelet esetén a válasz törzse a következő mezőket tartalmazza, amelyek a licenchasználattal kapcsolatos adatokat tartalmazzák.
 
-| Mező             | Típus     | Leírás                                   |
+| Mező             | Típus     | Description                                   |
 |-------------------|----------|-----------------------------------------------|
 | workloadCode      | sztring   | Számítási feladat kódja                                 |
 | workloadName (számítási feladat neve)      | sztring   | Számítási feladat neve                                 |
@@ -74,7 +74,7 @@ Sikeres művelet esetén a válasz törzse a következő mezőket tartalmazza, a
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

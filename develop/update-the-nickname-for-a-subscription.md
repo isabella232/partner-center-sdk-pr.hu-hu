@@ -4,26 +4,26 @@ description: Frissíti az ügyfél előfizetésének rövid nevét vagy becenev�
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 195a85fcf29b3e4c9fe0e578d4d8cb80ca068c40
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: e3456ff7463fcb1a96315dc1acd9d119102515fb88eaaf8f58f5fecae4f24bac
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111530004"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992500"
 ---
 # <a name="update-the-nickname-for-a-subscription"></a>Egy előfizetés becenevének frissítése
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Frissíti az ügyfél előfizetésének rövid nevét vagy [becenevét.](subscription-resources.md) Ez a név a Partnerközpont segít megkülönböztetni az ügyfél fiókjában az előfizetéseket.
+Frissíti az ügyfél előfizetésének rövid nevét vagy [becenevét.](subscription-resources.md) Ez a név Partnerközpont az ügyfél fiókjában az előfizetések megkülönböztetésére.
 
-Az Partnerközpont irányítópulton ez a művelet úgy hajtható végre, hogy először [kiválaszt egy ügyfelet.](get-a-customer-by-name.md) Ezután válassza ki az átnevezni kívánt előfizetést. A befejezéshez módosítsa a nevet az Előfizetés becenév **mezőjében,** majd válassza a Küldés **lehetőséget.**
+A Partnerközpont irányítópulton ezt a műveletet úgy hajthatja végre, hogy először [kiválaszt egy ügyfelet.](get-a-customer-by-name.md) Ezután válassza ki az átnevezni kívánt előfizetést. A befejezéshez módosítsa a nevet az Előfizetés becenév **mezőjében,** majd válassza a Küldés **lehetőséget.**
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
@@ -43,11 +43,11 @@ Subscription selectedSubscription = customerSubscriptions.Items.FirstOrDefault(s
 var updatedSubscription = partnerOperations.Customers.ById(selectedCustomerId).Subscriptions.ById(selectedSubscription.Id).Patch(selectedSubscription);
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSamples **osztály:** UpdateSubscription.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSamples **osztály:** UpdateSubscription.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus    | Kérés URI-ja                                                                                                                |
 |-----------|----------------------------------------------------------------------------------------------------------------------------|
@@ -59,7 +59,7 @@ Ez a táblázat felsorolja az előfizetés becenevének frissítéséhez szüks�
 
 | Név                    | Típus     | Kötelező | Leírás                          |
 |-------------------------|----------|----------|--------------------------------------|
-| **ügyfél-bérlő-azonosító**  | **guid** | Y        | Az **ügyfél-bérlő azonosítója** (GUID). |
+| **ügyfél-bérlő-azonosító**  | **guid** | Y        | A **customer-tenant-id** (GUID). |
 | **id-for-subscription** | **guid** | Y        | Az előfizetés azonosítója (GUID).        |
 
 ### <a name="request-headers"></a>Kérésfejlécek
@@ -68,7 +68,7 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem **törzsében** teljes előfizetési erőforrásra van szükség. Győződjön meg **arról, hogy** a FriendlyName tulajdonság frissítve lett.
+A kérelem **törzsében** teljes előfizetési erőforrásra van szükség. Győződjön meg arról, hogy a **FriendlyName** tulajdonság frissítve lett.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -111,7 +111,7 @@ Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza az előfi
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

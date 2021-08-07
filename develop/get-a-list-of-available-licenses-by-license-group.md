@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: de59dfccf723c8f2411d9dadc51beb88688d5b02
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: fb2beecef8ad4821ad251ee6d532b6b280bd49e110f7e6dde3f39dfe2693d8f5
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874516"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115991174"
 ---
 # <a name="get-a-list-of-available-licenses-by-license-group"></a>A rendelkezésre álló licencek listájának lekérése licenccsoport alapján
 
@@ -19,15 +19,15 @@ A megadott ügyfél felhasználói számára elérhető licenccsoportok licencli
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy vagy több licenccsoport-azonosítót felsoroló lista.
 
 ## <a name="c"></a>C\#
 
-A megadott licenccsoportokhoz elérhető licencek listájának lekért listájának lekért első része egy [**LicenseGroupId**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licensegroupid)típusú lista példányosítása, majd [a](/dotnet/api/system.collections.generic.list-1) licenccsoportok hozzáadása a listához. Ezután használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután lekéri a [**SubscribedSkus**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscribedskus) tulajdonság értékét az ügyfél által előfizetett termékváltozat-gyűjtési műveletek felületének lekéréséhez. Végül továbbküldi a licenccsoportok listáját a [**Get**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.get) vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.getasync) metódusnak az előfizetett termékcsoportok listájának lekérése érdekében az elérhető licencegységek részleteivel.
+A megadott licenccsoportokhoz elérhető licencek listájának lekért listáját először példányosodja egy [**LicenseGroupId**](/dotnet/api/microsoft.store.partnercenter.models.licenses.licensegroupid)típusú listával, majd adja hozzá [a](/dotnet/api/system.collections.generic.list-1) licenccsoportokat a listához. Ezután használja az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Ezután lekéri a [**SubscribedSkus**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscribedskus) tulajdonság értékét az ügyfél által előfizetett termékváltozat-gyűjtési műveletek felületének lekéréséhez. Végül továbbküldi a licenccsoportok listáját a [**Get**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.get) vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscribedskus.icustomersubscribedskucollection.getasync) metódusnak az előfizetett termékcsoportok listájának lekérése érdekében az elérhető licencegységek részleteivel.
 
 ``` csharp
 // string selectedCustomerId;
@@ -48,7 +48,7 @@ var customerUserBothAadAndSfbSubscribedSkus = partnerOperations.Customers.ById(s
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                                                  |
 |---------|----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -62,8 +62,8 @@ Az ügyfél és a licenccsoportok azonosításához használja az alábbi elér�
 
 | Név            | Típus   | Kötelező | Leírás                                                                                                                                                                                                                                                           |
 |-----------------|--------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ügyfél-azonosító     | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.                                                                                                                                                                                                                 |
-| licenseGroupIds (licenccsoport-azonosítók) | sztring | No       | A hozzárendelt licencek licenccsoportját jelző felsorolásérték. Érvényes értékek: Group1, Group2 Group1 – Ez a csoport az összes olyan terméket tartalmaz, amelynek licence a Azure Active Directory (AAD) kezelhető. Group2 (2. csoport) – Ez a csoport csak Minecraft terméklicenceket. |
+| ügyfélazonosító     | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.                                                                                                                                                                                                                 |
+| licenseGroupIds (licenccsoport-azonosítók) | sztring | No       | A hozzárendelt licencek licenccsoportját jelző felsorolásérték. Érvényes értékek: Group1, Group2 Group1 – Ez a csoport minden olyan terméket tartalmaz, amelynek licence a Azure Active Directory (AAD) alatt kezelhető. 2. csoport – Ez a csoport csak Minecraft terméklicenceket. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -91,7 +91,7 @@ Ha a művelet sikeres, a válasz törzse a [SubscribedSku](license-resources.md#
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 ### <a name="response-example"></a>Példa válaszra
 
@@ -227,7 +227,7 @@ Date: Sat, 10 Jun 2017 00:19:44 GMT
 }
 ```
 
-### <a name="response-example-no-matching-skus-found"></a>Válasz példa (nem található egyező SKUs)
+### <a name="response-example-no-matching-skus-found"></a>Válasz példa (nem található egyező SKUS)
 
 Ha a megadott licenccsoportokhoz nem találhatók megfelelő előfizetett termékcsoportok, a válasz egy üres gyűjteményt tartalmaz egy totalCount elemmel, amelynek értéke 0.
 
