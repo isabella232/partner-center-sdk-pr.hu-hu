@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: 6f4fd821879545db4e781fe3202c8ee11f167615
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 4b417c310230e1ca6caa490166aa5dad48f858a71455496359e3b562ad2629a4
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874244"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996070"
 ---
 # <a name="get-a-list-of-offers-for-a-market"></a>Egy piac ajánlati listájának lekérése
 
@@ -21,11 +21,11 @@ Lekért egy gyűjteményt, amely egy adott piac összes ajánlatát tartalmazza.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
-Egy adott piacon található ajánlatok listájának lehívásához használja **az IAggregatePartner.Offers** gyűjteményt, válassza ki a piacot ország szerint, és hívja meg a **Get()** vagy a **Get Async() metódust.**
+Egy adott piacon található ajánlatok listájának lehívásához használja az **IAggregatePartner.Offers** gyűjteményt, válassza ki a piacot ország szerint, és hívja meg a **Get()** vagy a **Get Async() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -77,7 +77,7 @@ Ha a művelet sikeres, ez a metódus ajánlat-erőforrások **gyűjteményét** 
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

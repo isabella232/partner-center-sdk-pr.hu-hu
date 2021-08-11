@@ -4,12 +4,12 @@ description: A partneri sandbox képes támogatni a partner és az ügyfél köz
 ms.date: 05/01/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: aa6c4fb9ef71bacfad7e0f1510fec15f6af60a05
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 14133627a607c6e4151a90c37565e5f62823345e007eb55d87100de25d1f161a
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111547393"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996852"
 ---
 # <a name="sandbox-capabilities-for-reseller-relationship"></a>A viszonteladói kapcsolatokhoz szükséges sandbox-képességek
 
@@ -28,7 +28,7 @@ Ez a cikk ismerteti, hogy mit támogat a sandbox a partner és az ügyfél köz�
 1.  A Sandbox Direct Bill-partnerek és a közvetett szolgáltatók kapcsolatokat hozhatnak létre a sandbox ügyféllel. 
 2.  A Sandbox Direct Bill-partnerek és a közvetett szolgáltatók nem hívnak meg sandbox-ügyfeleket.
 
-3. A Sandbox Direct Bill Partner és a Indirect Providers el tudják távolítani a viszonteladói kapcsolatot Partnerközpont felhasználói felületről és API-ból.
+3. A Sandbox Direct Bill Partner és a Indirect Providers képesek eltávolítani a viszonteladói kapcsolatot Partnerközpont felhasználói felületről és API-ból.
 
 4. A Viszonteladói kapcsolat eltávolítása védőfal hívja meg az Ügyfél törlése API-t. Ezzel eltávolítja a kapcsolatot, és törli az ügyfélbérlőt. {baseURL}/v1/Customers/{customer-Tenant-id}
 

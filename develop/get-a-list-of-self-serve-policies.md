@@ -1,25 +1,25 @@
 ---
-title: Önkiszolgáló szabályzatok listájának lekért listája
+title: Az önkiszolgáló szabályzatok listájának lekért listája
 description: Az ügyfél önkiszolgáló szabályzatát képviselő erőforrások gyűjteményének lekért gyűjtése.
 ms.date: 07/06/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: b18fde8a11d3ed3dd31e50fdba746dd6b0bf3f97
-ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
+ms.openlocfilehash: ce217e34090d589c07a49cd51abef3f5cfc010631088890324a63bdef1480f65
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/11/2021
-ms.locfileid: "112025733"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115995526"
 ---
-# <a name="get-a-list-of-self-serve-policies"></a>Önkiszolgáló szabályzatok listájának lekért listája
+# <a name="get-a-list-of-self-serve-policies"></a>Az önkiszolgáló szabályzatok listájának lekért listája
 
-Lekért erőforrások gyűjteményét, amelyek egy entitás önkiszolgáló szabályzatát képviselik.
+Lekérte az entitás önkiszolgáló szabályzatának megfelelő erőforrások gyűjteményét.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv az Application+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az Application+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
@@ -45,7 +45,7 @@ Példaként tekintse meg a következőket:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
@@ -79,11 +79,11 @@ MS-CorrelationId: b12260fb-82de-4701-a25f-dcd367690645
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez a módszer sikeres, a válasz törzsében [a SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) erőforrások gyűjteményét adja vissza.
+Ha ez a metódus sikeres, a válasz törzsében [visszaadja a SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) erőforrások gyűjteményét.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

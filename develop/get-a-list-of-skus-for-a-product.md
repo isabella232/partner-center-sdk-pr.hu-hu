@@ -1,41 +1,41 @@
 ---
 title: Egy termék termékváltozatait tartalmazó lista lekérése (ország alapján)
-description: Termék termék termékgyűjteményét országonként is lekérte és szűrheti a Partnerközpont API-k használatával.
+description: A termék terméktermék-gyűjteményét országonként is lekérte és szűrheti a Partnerközpont API-k használatával.
 ms.date: 11/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 27a2391a22a9439461fb53764b87c1cafa68b875
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 1f15ecaa7d84f4c68c6221e459d9977a79cffd9fa19d32ccbd7e6bec6444a93c
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111873887"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115995441"
 ---
 # <a name="get-a-list-of-skus-for-a-product-by-country"></a>Egy termék termékváltozatait tartalmazó lista lekérése (ország alapján)
 
-Egy adott termékhez egy adott országban elérhető terméktermékgyűjteményt az API-k használatával Partnerközpont le.
+Egy adott termékhez egy adott országban elérhető termékkódok gyűjteményét az API-k segítségével Partnerközpont le.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 - Egy termékazonosító.
 
 ## <a name="c"></a>C\#
 
-Egy termék termék termékterméklistáinak lekért listája:
+A termék termék-listájának lekért listája:
 
-1. Szerezze be egy adott termék műveleteinek interfészét a Termék lekért azonosítója [alapján lépéseit követve.](get-a-product-by-id.md)
+1. Egy adott termék műveleteihez a termék azonosító alapján való lekért lépéseit követve szerezze be [a felületet.](get-a-product-by-id.md)
 
-2. A felületről válassza ki a Skus tulajdonságot a **SKUS-hoz** elérhető műveletekkel való interfész beszerzéséhez.
+2. A felületről válassza ki a **Skus (Skus)** tulajdonságot a SKUS-hoz elérhető műveletekkel való interfész beszerzéséhez.
 
 3. Hívja meg **a Get() vagy** **a GetAsync()** metódust a termékhez elérhető termékkódok gyűjteményének lekéréséhez.
 
-4. (Nem kötelező) Válassza ki a foglalási hatókört a **ByReservationScope() metódussal.**
+4. (Nem kötelező) Válassza ki a foglalás hatókörét a **ByReservationScope() metódussal.**
 
-5. (Nem kötelező) A **ByTargetSegment()** metódussal szűrheti a SKUs-okat célszegmens szerint a **Get()** vagy **a GetAsync() hívása előtt.**
+5. (Nem kötelező) A **ByTargetSegment()** metódussal célszegmens szerint szűrheti a SKUs-okat a **Get()** vagy **a GetAsync() hívása előtt.**
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -63,11 +63,11 @@ var skus = partnerOperations.Products.ByCountry(countryCode).ById(productIdForAz
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-Egy termék termék termékterméklistáinak lekért listája:
+A termék termék-listájának lekért listája:
 
-1. Szerezze be egy adott termék műveleteinek interfészét a Termék lekért azonosítója [alapján lépéseit követve.](get-a-product-by-id.md)
+1. Egy adott termék műveleteihez a termék azonosító alapján való lekért lépéseit követve szerezze be [a felületet.](get-a-product-by-id.md)
 
-2. A felületen válassza ki a **getSkus** függvényt, hogy be tudja szerezni a rendelkezésre álló műveleteket a SKUs-hez.
+2. A felületen válassza ki a **getSkus** függvényt a SKUs elérhető műveleteihez szükséges interfész beszerzéséhez.
 
 3. Hívja meg a **get()** függvényt a termékhez elérhető termékkódok gyűjteményének lekéréséhez.
 
@@ -91,7 +91,7 @@ var segmentSkus = partnerOperations.getProducts().byCountry(countryCode).byId(pr
 
 [!INCLUDE [Partner Center PowerShell module support details](../includes/powershell-module-support.md)]
 
-Egy termék termék termékterméklistáinak lekért listája:
+A termék termék-listájának lekért listája:
 
 1. Hajtsa végre [**a Get-PartnerProductSku**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerProductSku.md) parancsot.
 
@@ -114,7 +114,7 @@ Get-PartnerProductSku -ProductId $productId -Segment $targetSegment
 
 | Metódus  | Kérés URI-ja                                                                                                                              |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/termékkód?country={országkód}&targetSegment={target-segment} HTTP/1.1  |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/skus?country={országkód}&targetSegment={target-segment} HTTP/1.1  |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
@@ -122,10 +122,10 @@ Az alábbi elérési út és lekérdezési paraméterek használatával lekérde
 
 | Név                   | Típus     | Kötelező | Leírás                                                     |
 |------------------------|----------|----------|-----------------------------------------------------------------|
-| termékazonosító             | sztring   | Igen      | A terméket azonosító sztring.                           |
-| országkód           | sztring   | Igen      | Egy ország-/régióazonosító.                                            |
+| termékazonosító             | sztring   | Yes      | A terméket azonosító sztring.                           |
+| országkód           | sztring   | Yes      | Egy ország-/régióazonosító.                                            |
 | célszegmens         | sztring   | No       | A szűréshez használt célszegmenst azonosító sztring. |
-| reservationScope | sztring   | No | Egy Azure-foglalási termék terméktermék terméktermék-listájának lekérdezésekor adja meg a értéket az AzurePlanra vonatkozó termékkel kapcsolatos `reservationScope=AzurePlan` termékkódok listájának lekérdezőjéhez. Zárja ki ezt a paramétert, hogy lekérte a Microsoft Azure (MS-AZR-0145P) előfizetések terméktermék-listáját.  |
+| reservationScope | sztring   | No | Az Azure Reservation-termékek terméktermék-listájának lekérdezésekor adja meg a értéket az AzurePlanra vonatkozó termékkel kapcsolatos `reservationScope=AzurePlan` termékkódok listájának lekérdezőjéhez. Zárja ki ezt a paramétert, hogy lekérte az Azure Reservation-termékek termékterméklistát, amely Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkozik.  |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -147,7 +147,7 @@ MS-RequestId: 18b41adf-29b5-48eb-b14f-c9683a4e5b7d
 MS-CorrelationId: e75c1060-852e-4b49-92b0-cd15167a0d51
 ```
 
-Lekért egy Azure-foglalási termék terméktermék terméktermékének listáját. Csak az Azure-csomagokra vonatkozó SKUS-okat foglalja bele, Microsoft Azure (MS-AZR-0145P) előfizetések esetében nem:
+Egy Azure-foglalási termék terméktermék terméktermékének listájának lekért listája. Csak az Azure-csomagokra érvényes, és nem Microsoft Azure (MS-AZR-0145P) előfizetésre:
 
 ```http
 GET http://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ5S/skus?country=US&reservationScope=AzurePlan HTTP/1.1
@@ -157,7 +157,7 @@ MS-RequestId: 18b41adf-29b5-48eb-b14f-c9683a4e5b7d
 MS-CorrelationId: e75c1060-852e-4b49-92b0-cd15167a0d51
 ```
 
-Lekért egy Azure-foglalási termék terméktermék terméktermékének listáját. Csak a Microsoft Azure (MS-AZR-0145P) előfizetésre érvényes SKUS-okat foglalja bele, az Azure-csomagokba nem:
+Egy Azure-foglalási termék terméktermék terméktermékének listájának lekért listája. Csak a Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkozó SKUs-okat foglalja bele, az Azure-csomagok nem:
 
 ```http
 GET http://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ5S/skus?country=US HTTP/1.1
@@ -169,17 +169,17 @@ MS-CorrelationId: e75c1060-852e-4b49-92b0-cd15167a0d51
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz törzse [SKU-erőforrások gyűjteményét](product-resources.md#sku) tartalmazza.
+Ha ez sikeres, a válasz törzse termékváltozat-erőforrások [gyűjteményét](product-resources.md#sku) tartalmazza.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a [hibakódok Partnerközpont tekintse meg.](error-codes.md)
 
 Ez a metódus a következő hibakódokat adja vissza:
 
-| HTTP-állapotkód     | Hibakód   | Leírás                                                                                               |
+| HTTP-állapotkód     | Hibakód   | Description                                                                                               |
 |----------------------|--------------|-----------------------------------------------------------------------------------------------------------|
-| 403                  | 400030       | A kért targetSegment szolgáltatáshoz való hozzáférés nem engedélyezett.                                                     |
+| 403                  | 400030       | A kért targetSegment elérése nem engedélyezett.                                                     |
 | 404                  | 400013       | A szülőtermék nem található.                                                                         |
 
 ### <a name="response-example"></a>Példa válaszra

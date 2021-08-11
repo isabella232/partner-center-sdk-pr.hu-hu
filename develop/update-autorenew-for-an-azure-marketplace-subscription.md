@@ -1,27 +1,27 @@
 ---
 title: Kereskedelmi piactéri előfizetés automatikus megújításának frissítése
-description: Frissítse egy előfizetési erőforrás autorenew tulajdonságát, amely megfelel az ügyfél és az előfizetés azonosítójának.
+description: Frissítse egy előfizetési erőforrás automatikus új tulajdonságát, amely megfelel az ügyfél és az előfizetés azonosítójának.
 ms.date: 08/16/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: cc0b4c4bff5e8762ffcc2552b2e9e36bcf93686c
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: b83c225a8b6fa11bdd5db5bcca9dd277fcfc4ed56769f1a7a272a388a1c93ab5
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111446666"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996597"
 ---
 # <a name="update-autorenew-for-a-commercial-marketplace-subscription"></a>Kereskedelmi piactéri előfizetés automatikus megújításának frissítése
 
 Frissítse egy kereskedelmi piactéri előfizetési erőforrás autorenew [tulajdonságát,](subscription-resources.md) amely megfelel az ügyfél és az előfizetés azonosítójának.
 
-A Partnerközpont a műveletet úgy hajtjuk végre, hogy először [kiválasztunk egy ügyfelet.](get-a-customer-by-name.md) Ezután válassza ki a frissíteni kívánt előfizetést. Végül válthat az Automatikus **megújítás lehetőséggel,** majd válassza a **Küldés lehetőséget.**
+A Partnerközpont irányítópulton ezt a műveletet úgy hajtjuk végre, hogy először [kiválasztunk egy ügyfelet.](get-a-customer-by-name.md) Ezután válassza ki a frissíteni kívánt előfizetést. Végül válthat az Automatikus **megújítás lehetőséggel,** majd válassza a **Küldés lehetőséget.**
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
@@ -39,7 +39,7 @@ selectedSubscription.AutoRenewEnabled = false;
 var updatedSubscription = partnerOperations.Customers.ById(selectedCustomerId).Subscriptions.ById(selectedSubscription.Id).Patch(selectedSubscription);
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** UpdateSubscription.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSample **osztály:** UpdateSubscription.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
@@ -64,7 +64,7 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem törzsében egy teljes **kereskedelmi** piactéri előfizetési erőforrásra van szükség. Győződjön meg arról, hogy az **AutoRenewEnabled tulajdonság** frissült.
+A kérelem törzsében **szükség** van egy teljes kereskedelmi piactéri előfizetési erőforrásra. Győződjön meg arról, hogy az **AutoRenewEnabled tulajdonság** frissítve lett.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -116,7 +116,7 @@ Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza az előfi
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

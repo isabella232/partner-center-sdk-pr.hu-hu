@@ -7,12 +7,12 @@ ms.subservice: partnercenter-sdk
 ms.assetid: ''
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 719becd3fac5605c4ad48ab86d483ba7903d65d8
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 9bbfc7bf239535ac44879827118eba274bf3cb784e5b8de34f879fe3445a414d
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111549144"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994472"
 ---
 # <a name="get-invoice-estimate-links"></a>Számlabecslés hivatkozásainak lekérése
 
@@ -28,7 +28,7 @@ A nem kiszámlázatlan egyeztetési sorelemek lekérdezési részleteinek lekér
 
 ## <a name="c"></a>C\#
 
-Az alábbi példakód bemutatja, hogyan lehet lekérdezni a nem kiszámlázatlan sorelemek lekérdezésére mutató becslési hivatkozásokat egy adott pénznemre. A válasz tartalmazza az egyes időtartamok (például az aktuális és az előző hónap) becslési hivatkozását.
+Az alábbi példakód bemutatja, hogyan lehet lekérdezni a becslési hivatkozásokat egy adott pénznem nemszámlázatlan sorelemek lekérdezéséhez. A válasz tartalmazza az egyes időszakra (például az aktuális és az előző hónapra) vonatkozó becslési hivatkozásokat.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -49,7 +49,7 @@ Hasonló példát a következőben láthat:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                 |
 |---------|-------------------------------------------------------------------------------------------------------------|
@@ -61,7 +61,7 @@ A kérelem létrehozásakor használja a következő URI-t és lekérdezési par
 
 | Név                   | Típus   | Kötelező | Leírás                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
-| currencyCode           | sztring | Igen      | A ki nemszámlázatlan sorelemek pénznemkódja.                    |
+| currencyCode           | sztring | Yes      | A ki nemszámlázatlan sorelemek pénznemkódja.                    |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

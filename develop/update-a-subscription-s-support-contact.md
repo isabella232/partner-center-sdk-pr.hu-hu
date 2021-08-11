@@ -1,35 +1,35 @@
 ---
 title: Egy előfizetés támogatási kapcsolattartójának frissítése
-description: Hogyan frissítheti egy előfizetés támogatási kapcsolattartóját a partner egyik hozzáadott értékkel bővült viszonteladóira.
+description: Hogyan frissítheti az előfizetés támogatási kapcsolattartóját a partner egyik hozzáadott értékkel felértékkelt viszonteladóra.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 8c89f91fc9e89384a7be1237c08d7a9a1cfe3164
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: 94190a3cde5a1757253158f4bdbb1894b03c4f9b8cb57dbbc1ef7c7e39dceee4
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111530361"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996614"
 ---
 # <a name="update-a-subscriptions-support-contact"></a>Egy előfizetés támogatási kapcsolattartójának frissítése
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Hogyan frissítheti egy előfizetés támogatási kapcsolattartóját a partner egyik hozzáadott értékkel bővült viszonteladóira.
+Hogyan frissítheti az előfizetés támogatási kapcsolattartóját a partner egyik hozzáadott értékkel felértékkelt viszonteladóra.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
-- Az új támogatási kapcsolattartóval kapcsolatos információk: bérlőazonosító, Microsoft Partner Network azonosító és név. A támogatási kapcsolattartónak a partner értékével hozzáadott viszonteladók egyikének kell lennie.
+- Az új támogatási kapcsolattartóval kapcsolatos információk: bérlőazonosító, Microsoft Partner Network azonosítója és neve. A támogatási kapcsolattartónak a partner értékével hozzáadott viszonteladók egyikének kell lennie.
 
 ## <a name="c"></a>C\#
 
-Az előfizetés támogatási kapcsolattartóját úgy frissítheti, hogy először példányosul, majd feltölti a [**SupportContact**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.supportcontact) objektumot az új értékekkel. Ezután használja az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az előfizetési műveletek interfészét a [**Subscriptions.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódus az előfizetés azonosítójával való hívásával. Ezután a [**SupportContact**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.supportcontact) tulajdonság használatával szerezzen be egy felületet, amely támogatja a kapcsolattartási műveleteket. Végül hívja meg az [**Update**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionsupportcontact.update) vagy [**az UpdateAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionsupportcontact.updateasync) metódust a kitöltve a SupportContact objektummal a támogatási kapcsolattartó frissítéséhez.
+Az előfizetés támogatási kapcsolattartóinak frissítéséhez először példányosodjon és töltse fel a [**SupportContact**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.supportcontact) objektumot az új értékekkel. Ezután használja az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával az ügyfél azonosításához. Ezután szerezze be az előfizetési műveletek interfészét a [**Subscriptions.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódus az előfizetés azonosítójával való hívásával. Ezután a [**SupportContact**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.supportcontact) tulajdonság használatával szerezzen be egy felületet, amely támogatja a kapcsolatfelvételi műveleteket. Végül hívja meg az [**Update**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionsupportcontact.update) vagy [**az UpdateAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptionsupportcontact.updateasync) metódust a feltöltett SupportContact objektummal a támogatási kapcsolattartó frissítéséhez.
 
 ``` csharp
 // IAggregatePartner partnerOperations.
@@ -48,7 +48,7 @@ var supportContact = new SupportContact()
 var updatedSupportContact = partnerOperations.Customers.ById(customerId).Subscriptions.ById(subscriptionID).SupportContact.Update(supportContact);
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** Partnerközpont SDK **Osztály:** UpdateSubscriptionSupportContact.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **osztály:** UpdateSubscriptionSupportContact.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
@@ -64,8 +64,8 @@ Az ügyfél és az előfizetés azonosításához használja az alábbi elérés
 
 | Név            | Típus   | Kötelező | Leírás                                                     |
 |-----------------|--------|----------|-----------------------------------------------------------------|
-| ügyfél-azonosító     | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.           |
-| subscription-id (előfizetés-azonosító) | sztring | Igen      | A próba-előfizetést azonosító GUID formátumú sztring. |
+| ügyfél-azonosító     | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.           |
+| subscription-id | sztring | Yes      | A próba-előfizetést azonosító GUID formátumú sztring. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -73,7 +73,7 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérés törzsében meg kell lennie egy [feltöltve a SupportContact](subscription-resources.md#supportcontact) erőforrásnak. A támogatási kapcsolattartónak egy meglévő viszonteladónak kell lennie, aki kapcsolatban áll a partnerrel.
+A kérés törzsébe fel kell foglalnia egy feltöltett [SupportContact](subscription-resources.md#supportcontact) erőforrást. A támogatási kapcsolattartónak egy meglévő viszonteladónak kell lennie, aki kapcsolatban áll a partnerrel.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -112,7 +112,7 @@ Ha a művelet sikeres, a válasz törzse tartalmazza a [SupportContact erőforr�
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 ### <a name="response-example"></a>Példa válaszra
 

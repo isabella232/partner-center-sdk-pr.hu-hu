@@ -4,12 +4,12 @@ description: Önkiszolgáló szabályzat frissítése.
 ms.date: 04/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: d94382e73fd2a79751fe5f8f8414df2befde584f
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: 8e1330de6655e7a4dbe2d7432ece208b4600f3659266e20199e729400a917771
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111445255"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996631"
 ---
 # <a name="update-a-selfservepolicy"></a>SelfServePolicy frissítése
 
@@ -55,7 +55,7 @@ partnerOperations.SelfServePolicies.ById(policy.id).Put(policy);
 
 Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
-| Név                              | Típus   | Leírás                                 |
+| Név                              | Típus   | Description                                 |
 |------------------------------------------------------------------|--------|---------------------------------------------|
 | [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy)| object | Az önkiszolgáló szabályzat adatai. |
 
@@ -63,7 +63,7 @@ Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 
 Ez a táblázat az új önkiszolgáló szabályzat létrehozásához szükséges [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) erőforrás minimálisan szükséges mezőit ismerteti.
 
-| Tulajdonság              | Típus             | Leírás                                                                                            |
+| Tulajdonság              | Típus             | Description                                                                                            |
 |-----------------------|------------------|--------------------------------------------------------------------------------------------------------|
 | id                    | sztring           | Önkiszolgáló szabályzatazonosító, amely az önkiszolgáló szabályzat sikeres létrehozása után lesz megadva.     |
 | SelfServeEntity       | SelfServeEntity  | Az önkiszolgáló entitás, amely hozzáférést kap.                                                     |
@@ -106,7 +106,7 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Sikeres művelet esetén ez az API egy [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) erőforrást ad vissza a frissített önkiszolgáló szabályzathoz.
+Ha ez az API sikeres, egy [SelfServePolicy](self-serve-policy-resources.md#selfservepolicy) erőforrást ad vissza a frissített önkiszolgáló szabályzathoz.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
@@ -114,7 +114,7 @@ Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sik
 
 Ez a metódus a következő hibakódokat adja vissza:
 
-| HTTP-állapotkód     | Hibakód   | Leírás                                                                |
+| HTTP-állapotkód     | Hibakód   | Description                                                                |
 |----------------------|--------------|----------------------------------------------------------------------------|
 | 404                  | 600039       | Az önkiszolgáló szabályzat nem található                                            |
 | 404                  | 600040       | Az önkiszolgáló szabályzatazonosító helytelen                                  |

@@ -1,26 +1,26 @@
 ---
-title: Számlázott kereskedelmi használatú sorok elemeinek lekért száma
+title: Számlázott kereskedelmi használatú sorok számlázott elemeinek lekért száma
 description: A kereskedelmi használatú számlasorelem (lezárt napi minősített használati sor tétel) gyűjteményét egy adott számlához a következő API Partnerközpont le.
 ms.date: 01/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 285b6fbda774c9396dee8947550ed774d52bf901
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: 915a6b40a835b0b8d8ded6d49244aede8bbf079334890ccc8b3ef50782dec2dd
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111446224"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994523"
 ---
-# <a name="get-invoice-billed-commercial-consumption-line-items"></a>Számlázott kereskedelmi használatú sorok elemeinek lekért száma
+# <a name="get-invoice-billed-commercial-consumption-line-items"></a>Számlázott kereskedelmi használatú sorok számlázott elemeinek lekért száma
 
-A következő módszerekkel lekértheti a kereskedelmi felhasználású számlasorelemek (más néven a lezárt napi minősített használati sorelemek) részleteit egy adott számlához.
+A következő módszerekkel lekértheti a kereskedelmi felhasználású számlasorok részleteinek gyűjteményét (más néven a lezárt napi minősítésű használatisor-tételeket) egy adott számlához.
 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 - Egy számlaazonosító. Ez azonosítja a számlát, amelynek lekéri a sorelemeket.
 
@@ -108,7 +108,7 @@ Hasonló példát a következőben láthat:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 Az első szintaxissal az adott számla összes sorelemének teljes listáját használhatja. Nagy számlák esetén használja a második szintaxist a megadott mérettel és a 0-alapú eltolással a sorelemek lapszámolt listájának visszaadására. A harmadik szintaxissal lekérte a sorelemek következő oldalát a `seekOperation = "Next"` használatával.
 
@@ -124,12 +124,12 @@ A kérelem létrehozásakor használja a következő URI-t és lekérdezési par
 
 | Név                   | Típus   | Kötelező | Leírás                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
-| számlaazonosító             | sztring | Igen      | A számlát azonosító sztring.                             |
-| Szolgáltató               | sztring | Igen      | A szolgáltató: "OneTime".                                  |
-| invoice-line-item-type | sztring | Igen      | A számla részleteinek típusa: "UsageLineItems". |
-| currencyCode           | sztring | Igen      | A számlázott sorelemek pénznemkódja.                    |
-| period                 | sztring | Igen      | A számlázható recon időszaka. például: current, previous.        |
-| size                   | szám | Nem       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000       |
+| számlaazonosító             | sztring | Yes      | A számlát azonosító sztring.                             |
+| Szolgáltató               | sztring | Yes      | A szolgáltató: "OneTime".                                  |
+| invoice-line-item-type | sztring | Yes      | A számla részleteinek típusa: "UsageLineItems". |
+| currencyCode           | sztring | Yes      | A számlázott sorelemek pénznemkódja.                    |
+| period                 | sztring | Yes      | A számlázható recon időszaka. például: current, previous.        |
+| size                   | szám | No       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000       |
 | seekOperation          | sztring | No       | Állítsa be a seekOperation=Next elemet a felderítési sorelemek következő oldalának le tételhez. |
 
 ### <a name="request-headers"></a>Kérésfejlécek

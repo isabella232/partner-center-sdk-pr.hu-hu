@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: fccb9e3d4a837f3e8043f8c7ae1e3911d819afd7
-ms.sourcegitcommit: d20e7d572fee09a83a4b23a92da7ff09cfebe75a
+ms.openlocfilehash: 7757cd6a92c168e4209d2d3ac49746e4a0907021d260a7b49603a3706e8cfa5c
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111906517"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994812"
 ---
 # <a name="get-a-download-link-for-the-microsoft-customer-agreement-template"></a>A sablon letöltési hivatkozásának Microsoft Ügyfélszerződés letöltése
 
@@ -27,7 +27,7 @@ Ez a cikk bemutatja, hogyan töltheti le a Microsoft Ügyfélszerződés sablont
 
 - Ha az Partnerközpont .NET SDK-t használja, 1.14-es vagy újabb verzió szükséges.
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](./partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](./partner-center-authentication.md) Ez a forgatókönyv csak az alkalmazás- és felhasználóhitelesítést támogatja.
 
 - Az ügyfél országa, amelyre a Microsoft Ügyfélszerződés sablon vonatkozik.
 
@@ -56,13 +56,13 @@ A sablon letöltésére mutató hivatkozás Microsoft Ügyfélszerződés:
 
 2. Használja az IAggregatePartner.AgreementTemplates gyűjteményt.
 
-3. Hívja meg **a ById** metódust, és **adja** meg a sablonazonosítót Microsoft Ügyfélszerződés.
+3. Hívja meg **a ById** metódust, és adja meg a **sablonazonosítót** Microsoft Ügyfélszerződés.
 
 4. A **Document (Dokumentum) tulajdonság beolvasása.**
 
-5. Hívja meg **a ByCountry** metódust, és adja meg annak az ügyfélnek az országát, amelyre a szerződéssablon vonatkozik. Ha a metódus  nincs megadva, a lekérdezés alapértelmezés szerint az USA-t használja. A támogatott országkódok listájáért tekintse meg a támogatott országok és [nyelvek listáját.](#list-of-supported-countries-and-languages) Ez a metódus megkülönbözteti **a kis- és nagybetűket.**
+5. Hívja meg **a ByCountry** metódust, és adja meg annak az ügyfélnek az országát, amelyre a szerződéssablon vonatkozik. Ha a metódus nincs megadva, a lekérdezés alapértelmezés szerint *az* USA-t használja. A támogatott országkódok listájáért tekintse meg a támogatott országok [és nyelvek listáját.](#list-of-supported-countries-and-languages) Ez a metódus megkülönbözteti **a kis- és nagybetűket.**
 
-6. Hívja meg **a ByLanguage** metódust, és adja meg, hogy a szerződéssablon milyen nyelven legyen honosított. A lekérdezés alapértelmezés szerint *en-US,* ha a metódus nincs megadva, vagy a megadott országkód nem támogatott a megadott országhoz. A támogatott nyelvkódok listájáért tekintse meg a támogatott országok és [nyelvek listáját.](#list-of-supported-countries-and-languages)
+6. Hívja meg **a ByLanguage** metódust, és adja meg, hogy a szerződéssablon milyen nyelven legyen honosított. A lekérdezés alapértelmezés szerint *en-US,* ha a metódus nincs megadva, vagy a megadott országkód nem támogatott a megadott országhoz. A támogatott nyelvkódok listájáért tekintse meg [a támogatott országok és nyelvek listáját.](#list-of-supported-countries-and-languages)
 
 7. Hívja meg **a Get** vagy **GetAsync metódust.**
 
@@ -104,9 +104,9 @@ A kérelemhez a következő URI-paramétereket használhatja:
 
 | Név                   | Típus   | Kötelező | Leírás                                 |
 |------------------------|--------|----------|---------------------------------------------|
-| agreement-template-id  | sztring | Igen      | A szerződéstípus egyedi azonosítója. A sablon sablonazonosítóját úgy szerezheti be Microsoft Ügyfélszerződés hogy lekérte a szerződés metaadatait a Microsoft Ügyfélszerződés. További információkért lásd: [Szerződés metaadatainak le](./get-customer-agreement-metadata.md)Microsoft Ügyfélszerződés. Ez a paraméter megkülönbözteti **a kis- és nagybetűket.**|
-| ország                | sztring | No       | Azt az országot jelzi, amelyre a szerződéssablon vonatkozik. A lekérdezés alapértelmezett értéke *US,* ha a paraméter nincs megadva. A támogatott országkódok listájáért tekintse meg a támogatott országok és [nyelvek listáját.](#list-of-supported-countries-and-languages)|
-| language               | sztring | No       | A szerződéssablon honosított nyelvét jelzi. A lekérdezés alapértelmezett értéke *en-US,* ha a paraméter nincs megadva, vagy a megadott országkód nem támogatott a megadott országhoz. A támogatott országkódok listájáért tekintse meg [a támogatott országok és nyelvek listáját.](#list-of-supported-countries-and-languages)|
+| agreement-template-id  | sztring | Yes      | A szerződéstípus egyedi azonosítója. A sablon sablonazonosítóját úgy szerezheti be Microsoft Ügyfélszerződés hogy lekérte a szerződés metaadatait a Microsoft Ügyfélszerződés. További információkért lásd: [Szerződés metaadatainak le](./get-customer-agreement-metadata.md)Microsoft Ügyfélszerződés. Ez a paraméter megkülönbözteti **a kis- és nagybetűket.**|
+| ország                | sztring | No       | Azt az országot jelzi, amelyre a szerződéssablon vonatkozik. A lekérdezés alapértelmezett értéke *US,* ha a paraméter nincs megadva. A támogatott országkódok listájáért tekintse meg a támogatott országok [és nyelvek listáját.](#list-of-supported-countries-and-languages)|
+| language               | sztring | No       | A szerződéssablon honosított nyelvét jelzi. A lekérdezés alapértelmezés szerint *en-US,* ha a paraméter nincs megadva, vagy a megadott országkód nem támogatott a megadott országhoz. A támogatott országkódok listájáért tekintse meg [a támogatott országok és nyelvek listáját.](#list-of-supported-countries-and-languages)|
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -168,7 +168,7 @@ MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
 | Amerikai Szamoa | AS | en-US |
 | Andorra | AD | en-US |
 | Angola | AO | en-US, pt-PT |
-| Anguilla | AI | en-US |
+| Anguilla | Mesterséges intelligencia | en-US |
 | Antarktisz | Aq | en-US |
 | Antigua és Barbuda | AG | en-US |
 | Argentína | AR | en-US, es-ES |
@@ -371,7 +371,7 @@ MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
 | Dél-Szudán | SS | en-US |
 | Spanyolország | ES | en-US, es-ES, en-US, en-US |
 | Srí Lanka | LK | en-US |
-| St Majda, Ascension, Tristan da Canha | SH | en-US |
+| St Mosta, Ascension, Tristan da Canha | SH | en-US |
 | Suriname | SR | en-US |
 | Svalbard | Sj | en-US |
 | Svédország | SE | en-US, sv-Standard kiadás |

@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: jasongroce
 ms.author: sabaja
-ms.openlocfilehash: 014a1e6a14b538b7557d58710b9132dd9e37de21
-ms.sourcegitcommit: 7e2d2805c4cdd61785b1cdcca99cad10d5683153
+ms.openlocfilehash: b9bdc6da64a79f4f35466fb62662b086a8e1ab3cadc99c7ca685303752f9d166
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/10/2021
-ms.locfileid: "113592436"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996328"
 ---
 # <a name="manage-payouts-using-the-payout-service-api"></a>Kifizetések kezelése a Payout Service API-val
 
@@ -97,7 +97,7 @@ Az előfizetés erőforrásainak eléréséhez hozzá kell rendelnie egy szerepk
 
    :::image type="content" source="./images/manage-payouts/add-role-assignment.png" alt-text="Képernyőkép a tesztalkalmazás szerepkör-hozzárendelésének hozzáadására vonatkozó felhasználói felületről.":::
 
-5. Kattintson a **Mentés** gombra. Ezután láthatja az alkalmazást az erre a hatókörre vonatkozó szerepkörrel bíró felhasználók listájában.
+5. Válassza a **Mentés** lehetőséget. Ezután láthatja az alkalmazást az erre a hatókörre vonatkozó szerepkörrel bíró felhasználók listájában.
 
    Elkezdheti használni a szolgáltatásnévvel a szkripteket vagy alkalmazásokat. A szolgáltatásnév engedélyeinek kezeléséhez tekintse meg a felhasználói jóváhagyás állapotát, az engedélyek áttekintését, a bejelentkezési adatokat és egyéb információkat, valamint a vállalati alkalmazásokat a [Azure Portal.](https://portal.azure.com)
 

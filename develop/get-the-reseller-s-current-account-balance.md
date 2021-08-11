@@ -1,25 +1,25 @@
 ---
 title: A partner aktuális számlaegyenlegének lekérése
-description: Lekéri a partner aktuális számlaegyenlegét. Egy ismétlődő és egyszeri díjakra vonatkozó számla egyenlegének és teljes díjának összegzése.
+description: Lekéri a partner aktuális számlaegyenlegét. Egy számla egyenlegének és teljes díjának összegzése az ismétlődő és egyszeri díjakról.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: a04ab63482ec9d06e2fe47d2b6ce1bc6a5fd5f27
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 796523691481152613ba13f5025bdc8cdedacfc839815239b43fcfcb57fdbb3a
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111548498"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996495"
 ---
 # <a name="get-the-partners-current-account-balance"></a>A partner aktuális számlaegyenlegének lekérése
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Lekéri a partner aktuális számlaegyenlegét. Egy ismétlődő és egyszeri díjakra vonatkozó számla egyenlegének és teljes díjának összegzése.
+Lekéri a partner aktuális számlaegyenlegét. Egy számla egyenlegének és teljes díjának összegzése az ismétlődő és egyszeri díjakról.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
@@ -33,11 +33,11 @@ var invoiceSummary = scopedPartnerOperations.Invoices.Summary.Get();
 Console.Out.WriteLine("Current Account Balance:  {0:C}", invoiceSummary.BalanceAmount);
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** GetInvoiceSummary.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSample **osztály:** GetInvoiceSummary.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                              |
 |---------|--------------------------------------------------------------------------|
@@ -68,7 +68,7 @@ Ha sikeres, ez a metódus egy [InvoiceSummary](invoice-resources.md#invoicesumma
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

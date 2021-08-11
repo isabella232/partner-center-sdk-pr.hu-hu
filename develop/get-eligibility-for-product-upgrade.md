@@ -6,30 +6,30 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 34a20611c7d92042b5432c5ffb3ba4702d77e0c2
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: a72a9f2f3909ac4b3b74754b58a8d8d4745fbb2cadd101ad18cf487b1b02267a
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111446258"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996020"
 ---
 # <a name="check-a-customers-eligibility-for-upgrading-to-an-azure-plan"></a>Az ügyfél Azure-csomagra való frissítésre való jogosultságának ellenőrzése
 
-A [**ProductUpgradeRequest**](product-upgrade-resources.md#productupgraderequest) erőforrás használatával ellenőrizheti, hogy az ügyfél jogosult-e Azure-csomagra frissíteni egy Microsoft Azure-előfizetésből (MS-AZR-0145P) Ez a módszer egy [**ProductUpgradesEligibility**](product-upgrade-resources.md#productupgradeseligibility) erőforrást ad vissza az ügyfél termékfrissítési jogosultságával.
+A [**ProductUpgradeRequest**](product-upgrade-resources.md#productupgraderequest) erőforrás használatával ellenőrizheti, hogy az ügyfél jogosult-e Azure-csomagra frissíteni egy Microsoft Azure-előfizetésből (MS-AZR-0145P) Ez a módszer egy [**ProductUpgradesEligibility**](product-upgrade-resources.md#productupgradeseligibility) erőforrást ad vissza, amely megfelel az ügyfél termékfrissítési jogosultságának.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést. Kövesse a [biztonságos alkalmazásmodellt,](enable-secure-app-model.md) ha App+User hitelesítést használ Partnerközpont API-okkal.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést. Kövesse a [biztonságos alkalmazásmodellt,](enable-secure-app-model.md) ha App+User hitelesítést használ Partnerközpont API-okkal.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - A termékcsalád.
 
 ## <a name="c"></a>C\#
 
-Annak ellenőrzése, hogy az ügyfél jogosult-e Azure-csomagra való frissítésre:
+Annak ellenőrzése, hogy egy ügyfél jogosult-e Azure-csomagra való frissítésre:
 
-1. Hozzon létre **egy ProductUpgradesRequest** objektumot, és adja meg az ügyfél azonosítóját és az "Azure" értéket a termékcsaládként.
+1. Hozzon létre **egy ProductUpgradesRequest** objektumot, és adja meg az ügyfél-azonosítót és az "Azure" értéket a termékcsaládként.
 
 2. Használja az **IAggregatePartner.ProductUpgrades gyűjteményt.**
 3. Hívja meg a **CheckEligibility** metódust, és adja át a **ProductUpgradesRequest** objektumot, amely egy **ProductUpgradesEligibility objektumot ad** vissza.
@@ -58,7 +58,7 @@ if (productUpgradeEligibility.IsEligibile)
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus   | Kérés URI-ja                                                                                   |
 |----------|-----------------------------------------------------------------------------------------------|
@@ -99,7 +99,7 @@ Ha sikeres, ez a metódus egy [**ProductUpgradesEligibility erőforrást**](prod
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

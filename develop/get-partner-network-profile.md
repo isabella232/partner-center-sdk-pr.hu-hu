@@ -4,12 +4,12 @@ description: Lekért egy objektumot, amely a partner MPN-profilját képviseli.
 ms.date: 09/17/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 38c12a9a9755b9838b7742d9f38c5cbd52b81210
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 6a4972010605f1815382fc92df76842ae5f97ca35cacfcc8428e7b9849c6b0b6
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111548855"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115995832"
 ---
 # <a name="get-microsoft-partner-network-profile"></a>A Microsoft Partner Network-profil lekérése
 
@@ -57,7 +57,7 @@ Get-PartnerMpnProfile
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                          |
 |---------|----------------------------------------------------------------------|

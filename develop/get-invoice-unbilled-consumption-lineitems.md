@@ -4,12 +4,12 @@ description: A megadott számlához tartozó ki nem számlázott kereskedelmi ha
 ms.date: 01/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: f7c74bedfd6412fc5954ed2ddc1388936e418fa3
-ms.sourcegitcommit: 722992eea6f8ea366dc088e5dd1ee63c17d56f61
+ms.openlocfilehash: 32944f7e1d30cec2e898d68619b882f3fe5c17124ae90e69b01761dbac459189
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/15/2021
-ms.locfileid: "114224768"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994744"
 ---
 # <a name="get-invoice-unbilled-commercial-consumption-line-items"></a>Számlával nem számlázott kereskedelmi használatú sorok elemeinek lekért száma
 
@@ -123,11 +123,11 @@ A kérelem létrehozásakor használja a következő URI-t és lekérdezési par
 
 | Név                   | Típus   | Kötelező | Leírás                                                                                                                                                                                                                                |
 |------------------------|--------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Szolgáltató               | sztring | Igen      | A szolgáltató: "**OneTime**".                                                                                                                                                                                                               |
-| invoice-line-item-type | sztring | Igen      | A számla részleteinek típusa: "**UsageLineItems**", "**UsageLineItems**".                                                                                                                                                                    |
-| currencyCode           | sztring | Igen      | A ki nemszámlázatlan sorelemek pénznemkódja.                                                                                                                                                                                             |
-| period                 | sztring | Igen      | A ki nemszámlázatlan felderítés időtartama (például **aktuális,** **előző).** Tegyük fel, hogy januárban le kellkérdezni a számlázási ciklus (01/01/2020 – 01/31/2020) ki nem számlázatlan használati adatait, válassza az időszak **"Aktuális" lehetőséget,** egyébként pedig az **"Előző" lehetőséget.** |
-| size                   | szám | Nem       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000.                                                                                                                                                                           |
+| Szolgáltató               | sztring | Yes      | A szolgáltató: "**OneTime**".                                                                                                                                                                                                               |
+| invoice-line-item-type | sztring | Yes      | A számla részleteinek típusa: "**UsageLineItems**", "**UsageLineItems**".                                                                                                                                                                    |
+| currencyCode           | sztring | Yes      | A ki nemszámlázatlan sorelemek pénznemkódja.                                                                                                                                                                                             |
+| period                 | sztring | Yes      | A ki nemszámlázatlan felderítés időtartama (például **aktuális,** **előző).** Tegyük fel, hogy januárban le kellkérdezni a számlázási ciklus (01/01/2020 – 01/31/2020) ki nem számlázatlan használati adatait, válassza az időszak **"Aktuális" lehetőséget,** egyébként pedig az **"Előző" lehetőséget.** |
+| size                   | szám | No       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000.                                                                                                                                                                           |
 | seekOperation          | sztring | No       | Állítsa `seekOperation=Next` be az elemet az egyeztetési sorelemek következő oldalának le tételére.                                                                                                                                                                |
 
 ### <a name="request-headers"></a>Kérésfejlécek

@@ -1,16 +1,16 @@
 ---
 title: Közvetett viszonteladó törlése a sandboxban
-description: Információkat nyújt a tesztbox közvetett viszonteladóinak törlésével és a teljes tesztelés API-okkal való engedélyezésével kapcsolatban.
+description: Információkat nyújt a tesztfal közvetett viszonteladóinak törléséről és a teljes tesztelés API-k használatával való engedélyezéséről.
 ms.date: 5/24/2021
 ms.author: vijvala
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: ba1fd002ac62aba4e414d263b33ecc8153054602
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 708fedd4e34b2242aae6e6e0ac673ce77524d448dcee4a05877d37b5266e44c8
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973009"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994931"
 ---
 # <a name="delete-indirect-reseller-in-sandbox"></a>Közvetett viszonteladó törlése a sandboxban
 
@@ -23,16 +23,16 @@ Ez a dokumentum bemutatja, hogyan törölhet közvetett tesztkészlet-szolgálta
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
-## <a name="sandbox-indirect-provider--delete-sandbox-indirect-reseller"></a>Sandbox Indirect Provider – Delete Sandbox Indirect Reseller 
+## <a name="sandbox-indirect-provider--delete-sandbox-indirect-reseller"></a>Közvetett sandbox-szolgáltató – Közvetett viszonteladó törlése a sandboxban 
 
-Ez a funkció csak a Sandboxban érhető el, és lehetővé teszi a Sandbox indirect Resellers (Közvetett viszonteladók) létrehozására a Sandbox Indirect Providers (Közvetett viszonteladók) szolgáltatást.
+Ez a funkció csak a Sandboxban érhető el, és lehetővé teszi, hogy közvetett viszonteladókat hozzon létre a Sandbox indirect Providers (Közvetett viszonteladók) számára.
 
 1. A sandbox indirect reseller törlésének előfeltételei
-    1. Az előfizetések felfüggesztése a Sandbox Indirect Reseller minden egyes ügyfele esetében
+    1. Az előfizetések felfüggesztése a sandbox indirect reseller összes ügyfele esetében
     2. Közvetett viszonteladó összes ügyfele törlése
-2. A közvetett sandbox-viszonteladók engedélyezett maximális száma közvetett sandbox-szolgáltatónként. A közvetett sandbox (közvetett) viszonteladó törlése után a kvóta alaphelyzetbe áll.
+2. A közvetett sandbox -viszonteladók engedélyezett maximális száma közvetett szolgáltatónként. A közvetett sandbox viszonteladó törlése után a kvóta alaphelyzetbe áll.
 
 ## <a name="delete-sandbox-indirect-reseller-through-api"></a>Delete Sandbox Indirect Reseller through API
 
@@ -46,7 +46,7 @@ Ez a funkció csak a Sandboxban érhető el, és lehetővé teszi a Sandbox indi
 
 #### <a name="request-headers"></a>Kérésfejlécek
 
-- Ez az API idempotent (nem fog más eredményt eredményezni, ha többször is meghívja)
+- Ez az API idempotent (nem ad vissza más eredményt, ha többször is meghívja)
 - Szükség van egy kérésazonosítóra és egy korrelációs azonosítóra
 - További információ: [REST Partnerközpont fejlécek](headers.md)
 
@@ -73,13 +73,13 @@ Date: Wed, 16 Feb 2021 00:43:02 GMT
 
 #### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint egyéb hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint egyéb hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a [hibakódok Partnerközpont tekintse meg.](error-codes.md)
 
 Ez a metódus a következő sikeres állapotot és hibakódokat adja vissza:
 
-| HTTP-állapotkód                     | Hibakód     | Leírás                                      |
+| HTTP-állapotkód                     | Hibakód     | Description                                      |
 |--------------------------------------|----------------|--------------------------------------------------|
 | 401                                  | 6002           | Jogosulatlan jogkivonat vagy nem tippszolgáltatói fiók |
-| 403                                  | 6003           | A Delete Sandbox IR nem engedélyezett                 |
+| 403                                  | 6003           | A sandbox ir törlése nem engedélyezett                 |
 | 403                                  | 6004           | A sandbox IR-művelet létrehozása nem engedélyezett          |
 | 409                                  | 1003           | Ütközés a bérlő létrehozása során                   |

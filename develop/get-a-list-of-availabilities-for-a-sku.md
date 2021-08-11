@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: b29c005e74ad8a4da547a888b78e4599e74ebd02
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 89ffa4156490bd321055f12a1c8c385800b65d8d9e5a460df0cc41edda5c1a27
+ms.sourcegitcommit: f5e2d3e2ad5447b99d339662e00b2ac3a03d7d04
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874533"
+ms.lasthandoff: 08/10/2021
+ms.locfileid: "116998499"
 ---
 # <a name="get-a-list-of-availabilities-for-a-sku-by-country"></a>Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ország alapján)
 
@@ -19,7 +19,7 @@ Ez a cikk azt ismerteti, hogyan lehet rendelkezésre állási gyűjteményt lek�
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 - Egy termékazonosító.
 
@@ -33,7 +33,7 @@ Egy termékváltozat [rendelkezésre állási](product-resources.md#availability
 
 1. Az adott termékváltozat műveleteihez szükséges felület lekért felületének lekért lépéseit az [SKU](get-a-sku-by-id.md) azonosító alapján való lekért lépéseit követve.
 
-2. A termékváltozat felületén válassza az **Availabilities (Rendelkezésre** állások) tulajdonságot, hogy lekérte a rendelkezésre állási műveletekhez szükséges interfészt.
+2. A termékváltozat felületén válassza az **Availabilities (Rendelkezésre** állás) tulajdonságot, hogy lekérte a rendelkezésre állási műveletekhez szükséges interfészt.
 
 3. (Nem kötelező) A **ByTargetSegment()** metódussal szűrheti a rendelkezésre állásokat célszegmens szerint.
 
@@ -64,7 +64,7 @@ var availabilities = partnerOperations.Products.ByCountry(countryCode).ById(prod
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                                              |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------|
@@ -76,11 +76,11 @@ Az alábbi elérési út és lekérdezési paraméterek használatával lekérde
 
 | Név                   | Típus     | Kötelező | Leírás                                                     |
 |------------------------|----------|----------|-----------------------------------------------------------------|
-| termékazonosító             | sztring   | Igen      | A terméket azonosító sztring.                           |
-| sku-id                 | sztring   | Igen      | A termékváltozatot azonosító sztring.                               |
-| országkód           | sztring   | Igen      | Egy ország-/régióazonosító.                                            |
+| termékazonosító             | sztring   | Yes      | A terméket azonosító sztring.                           |
+| sku-id                 | sztring   | Yes      | A termékváltozatot azonosító sztring.                               |
+| országkód           | sztring   | Yes      | Egy ország-/régióazonosító.                                            |
 | célszegmens         | sztring   | No       | A szűréshez használt célszegmenst azonosító sztring. |
-| reservationScope | sztring   | No | Az Azure-foglalási termékváltozatok rendelkezésre állási listájának lekérdezésekor adja meg a értéket az AzurePlanra vonatkozó rendelkezésre `reservationScope=AzurePlan` állások listájának lekérdezőjéhez. Zárja ki ezt a paramétert a Microsoft Azure (MS-AZR-0145P) előfizetések esetében elérhető rendelkezésre állások listájának lekértéhez.  |
+| reservationScope | sztring   | No | Az Azure-foglalási termékváltozatok rendelkezésre állási listájának lekérdezésekor adja meg a értéket az AzurePlanra vonatkozó rendelkezésre `reservationScope=AzurePlan` állások listájának lekérdezőjéhez. Zárja ki ezt a paramétert a Microsoft Azure (MS-AZR-0145P) előfizetések esetében alkalmazható rendelkezésre állások listájának lekértéhez.  |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -106,7 +106,7 @@ MS-CorrelationId: 83b644b5-e54a-4bdc-b354-f96c525b3c58
 
 #### <a name="availabilities-for-vm-reservations-azure-plan"></a>Virtuálisgép-foglalások rendelkezésre állása (Azure-csomag)
 
-Kövesse ezt a példát az Azure-beli virtuális gépek foglalási termékkódok országonkénti rendelkezésre állási listájának lekért listájához. Ez a példa az Azure-csomagokra vonatkozó SKUS-okat példázhatja:
+Kövesse ezt a példát az Azure-beli virtuális gépek foglalási termékkódjaihoz országonkénti rendelkezésre állások listájának lekért listájához. Ez a példa az Azure-csomagokra vonatkozó SKUS-okat példázhatja:
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ3Q/skus/0001/availabilities?country=US&targetView=AzureReservationsVM&reservationScope=AzurePlan HTTP/1.1
@@ -121,7 +121,7 @@ MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 Ebben a példában az egyes országok szerinti elérhetőségek listáját azon Azure-beli virtuális gépek foglalásainál adhatja meg, amelyek Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkoznak.
 
 ```http
-GET https://api.partnercenter.microsoft.com/v1/productsDZH318Z0BQ3Q/skus/0001/availabilities?country=US&targetView=AzureAzureReservationsVM HTTP/1.1
+GET https://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ3Q/skus/0001/availabilities?country=US&targetView=AzureAzureReservationsVM HTTP/1.1
 Authorization: Bearer
 Accept: application/json
 MS-RequestId: 031160b2-b0b0-4d40-b2b1-aaa9bb84211d
@@ -138,7 +138,7 @@ Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sik
 
 Ez a metódus a következő hibakódokat adja vissza:
 
-| HTTP-állapotkód     | Hibakód   | Leírás                                                                                               |
+| HTTP-állapotkód     | Hibakód   | Description                                                                                               |
 |----------------------|--------------|-----------------------------------------------------------------------------------------------------------|
 | 403                  | 400030       | A kért **targetSegment szolgáltatáshoz való hozzáférés** nem engedélyezett.                                                     |
 

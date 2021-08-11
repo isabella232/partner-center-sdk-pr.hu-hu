@@ -4,12 +4,12 @@ description: Eszköz kötegelt feltöltési állapotának lekért állapota egy 
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: fd8726af41fe4399797f39a0790cf962fde64acc
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 6c84e3e9f8717a0ecfb75c19291ca397c48e2435864d2c22d3dac893a1007f7f
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111548481"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996104"
 ---
 # <a name="get-the-status-of-a-device-batch-upload"></a>Eszköz kötegelt feltöltési állapotának lekérése
 
@@ -19,7 +19,7 @@ Eszköz kötegelt feltöltési állapotának lekért állapota egy adott ügyfé
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 - Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
@@ -27,7 +27,7 @@ Eszköz kötegelt feltöltési állapotának lekért állapota egy adott ügyfé
 
 ## <a name="c"></a>C\#
 
-Az eszköz kötegelt feltöltési állapotának lekéréséhez először hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával, hogy lekérje a megadott ügyfél műveleteinek interfészét. Ezután hívja meg a [**BatchUploadStatus.ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.ibatchjobstatuscollection.byid) metódust a kötegkövetési azonosítóval a kötegelt feltöltési állapotműveletek interfészének lehívása érdekében. Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.ibatchjobstatus.get) vagy [**GetAsync metódust**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.ibatchjobstatus.getasync) az állapot lekéréshez.
+Az eszköz kötegelt feltöltési állapotának lekéréséhez először hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával, hogy lekérje a megadott ügyfél műveleteinek interfészét. Ezután hívja meg a [**BatchUploadStatus.ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.ibatchjobstatuscollection.byid) metódust a kötegkövetési azonosítóval a kötegelt feltöltési állapotműveleteket lekért felület lehívása érdekében. Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.ibatchjobstatus.get) vagy [**GetAsync metódust**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.ibatchjobstatus.getasync) az állapot lekéréshez.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -42,11 +42,11 @@ var status =
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                       |
 |---------|-------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfél-azonosító}/batchJobStatus/{batchtracking-id} HTTP/1.1 |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{ügyfélazonosító}/batchJobStatus/{batchtracking-id} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -54,8 +54,8 @@ A kérelem létrehozásakor használja a következő elérésiút-paramétereket
 
 | Név             | Típus   | Kötelező | Leírás                                                                                                                                                                    |
 |------------------|--------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ügyfélazonosító      | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet.                                                                                                                          |
-| batchtracking-id | sztring | Igen      | Egy GUID formátumú azonosító, amely az eszközkötet feltöltési állapotának lekérésére használatos. Ezt az azonosítót az eszközkötet sikeres beküldtekor a Hely fejlécben kell visszaadni. |
+| ügyfélazonosító      | sztring | Yes      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet.                                                                                                                          |
+| batchtracking-id | sztring | Yes      | Egy GUID formátumú azonosító, amely az eszközkötet feltöltési állapotának lekérésére használatos. Ezt az azonosítót az eszközkötet sikeres beküldtekor a Hely fejlécben kell visszaadni. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

@@ -4,12 +4,12 @@ description: Állítson be fiókokat a fejlesztéshez a Partnerközpont SDK és 
 ms.date: 05/29/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: db7d9bba34abadc907910c68c4a5583ed1f530f4
-ms.sourcegitcommit: de1e68545d37d7fa1862788f7fa8c84a9c4f2795
+ms.openlocfilehash: 2032984c26896b3927b916bb3c8542fb1d76fafbef88ed4b24795987616bbddf
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/16/2021
-ms.locfileid: "114282094"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994761"
 ---
 # <a name="set-up-api-access-in-partner-center"></a>API hozzáférésének beállítása a Partnerközpontban
 

@@ -6,16 +6,16 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: aarzh-AaronZhang
 ms.author: v-aarzh
-ms.openlocfilehash: 36a81c7b235c68e49bb425b5bd0d4615882f88ef
-ms.sourcegitcommit: 07b9a11f5c615ed1e716081392032cea2124bd98
+ms.openlocfilehash: 9974237f7d4234b782a5b17a65fd52b9024315f848b721c73f4e1d59b69b2930
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/04/2021
-ms.locfileid: "115104210"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994795"
 ---
 # <a name="enabling-the-secure-application-model-framework"></a>A biztonságos alkalmazásmodellek keretrendszerének engedélyezése
 
-A Microsoft egy biztonságos, skálázható keretrendszert vezet be a felhőszolgáltató (CSP) partnerek és a vezérlőpult-szállítók (CPV) hitelesítéséhez a Microsoft Azure Active Directory Multi-Factor Authentication (MFA) architektúrával.
+A Microsoft egy biztonságos, skálázható keretrendszert vezet be a felhőszolgáltató (CSP) partnerek és a vezérlőpult-szállítók (CPV) hitelesítéséhez a Microsoft Azure Active Directory Multi-Factor Authentication (MFA) architektúrán keresztül.
 
 Az új modell használatával megemelheti a biztonsági szinteket az Partnerközpont API-integrációs hívásokhoz. Ez segít az összes félnek (beleértve a Microsoftot, a CSP-partnereket és a CPV-ket) az infrastruktúra és az ügyféladatok biztonsági kockázatokkal szembeni védelmében.
 
@@ -68,7 +68,7 @@ Ha REST-hívásokat biztonságos alkalmazásmodell a mintakóddal, kövesse az a
 5. [Partner Center API-hívás kezdeményezése](#make-partner-center-api-calls)
 
 > [!TIP]
-> A PowerShell-Partnerközpont használatával lekért egy engedélyezési kódot és egy frissítési jogkivonatot. Ezt a lehetőséget a 2. és a 3. lépés után választhatja. További információkért tekintse meg a [PowerShell szakaszt és példákat.](#powershell)
+> Az Partnerközpont PowerShell-modullal lekért egy engedélyezési kódot és egy frissítési jogkivonatot. Ezt a lehetőséget a 2. és a 3. lépés után választhatja. További információkért tekintse meg a [PowerShell szakaszt és példákat.](#powershell)
 
 ### <a name="create-a-web-app"></a>Webalkalmazás létrehozása
 
@@ -82,7 +82,7 @@ REST-hívások előtt létre kell hoznia és regisztrálnia Partnerközpont weba
 
    1. **Microsoft Partnerközpont** (egyes bérlők **sampleBECApp** alkalmazásként mutatják be)
 
-   2. **Azure Management API-k** (ha az Azure API-k meghívását tervezi)
+   2. **Azure Management API-k** (ha az Azure API-k hívását tervezi)
 
    3. **Microsoft Azure Active Directory**
 
@@ -98,7 +98,7 @@ REST-hívások előtt létre kell hoznia és regisztrálnia Partnerközpont weba
 
 ### <a name="get-authorization-code"></a>Hozzáférési kód lekérése
 
-Az Azure AD bejelentkezési hívásból való elfogadáshoz be kell szereznie egy engedélyezési kódot a webalkalmazáshoz:
+Be kell szereznie egy engedélyezési kódot, hogy a webalkalmazás elfogadjon az Azure AD bejelentkezési hívásból:
 
 1. Jelentkezzen be az Azure AD-be a következő URL-címen: [https://login.microsoftonline.com/common/oauth2/authorize?client_id=Application-Id&response_mode=form_post&response_type=code%20id_token&scope=openid%20profile&nonce=1](https://login.microsoftonline.com/common/oauth2/authorize?client_id=Application-Id&response_mode=form_post&response_type=code%20id_token&scope=openid%20profile&nonce=1) . Jelentkezzen be azzal a felhasználói fiókkal, amelyről API Partnerközpont hívásokat fog kezdeményezni (például rendszergazdai ügynök vagy értékesítési ügynök fiókja).
 
@@ -171,7 +171,7 @@ Válasz törzse:
 {"token_type":"Bearer","scope":"user_impersonation","expires_in":"3599","ext_expires_in":"3599","expires_on":"1547579127","not_before":"1547575227","resource":"https://api.partnercenter.microsoft.com","access_token":"Access
 ```
 
-### <a name="get-access-token"></a>Hozzáférési jogkivonat beszerzése
+### <a name="get-access-token"></a>Hozzáférési jogkivonat lekért
 
 Mielőtt hívásokat kezdeményezhet a Partnerközpont API-khoz, be kell szereznie egy hozzáférési jogkivonatot. A hozzáférési jogkivonat beszerzéséhez frissítési jogkivonatot kell használnia, mivel a hozzáférési jogkivonatok élettartama általában nagyon korlátozott (például egy óránál rövidebb).
 
@@ -246,7 +246,7 @@ További információ erről a folyamatról: [Biztonságos alkalmazásmodell](/p
     ```
 
     > [!NOTE]
-    > A **ServicePrincipal** paramétert a **New-PartnerAccessToken** paranccsal együtt használjuk, mert a rendszer egy **Web/API típusú** Azure AD-alkalmazást használ. Az ilyen típusú alkalmazás megköveteli, hogy a hozzáférési jogkivonat kérése tartalmazni fog egy ügyfél-azonosítót és egy titkos secret-et. A **Get-Credential** parancs meghívatáskor a rendszer felkéri, hogy adjon meg egy felhasználónevet és egy jelszót. Felhasználónévként adja meg az alkalmazásazonosítót. Jelszóként adja meg az alkalmazás titkos jelszavát. A **New-PartnerAccessToken** parancs meghívatáskor a rendszer újra kérni fogja a hitelesítő adatok megadását. Adja meg a használt szolgáltatásfiók hitelesítő adatait. Ennek a szolgáltatásfióknak megfelelő engedélyekkel rendelkező partnerfióknak kell lennie.
+    > A **ServicePrincipal** paramétert a **New-PartnerAccessToken** paranccsal együtt használjuk, mert a rendszer egy **Web/API** típusú Azure AD-alkalmazást használ. Az ilyen típusú alkalmazás megköveteli, hogy a hozzáférési jogkivonat kérése tartalmazni fog egy ügyfél-azonosítót és egy titkos secret-et. A **Get-Credential** parancs meghívatáskor a rendszer felkéri, hogy adjon meg egy felhasználónevet és egy jelszót. Felhasználónévként adja meg az alkalmazásazonosítót. Jelszóként adja meg az alkalmazás titkos jelszavát. A **New-PartnerAccessToken** parancs meghívatáskor a rendszer újra kérni fogja a hitelesítő adatok megadását. Adja meg a használt szolgáltatásfiók hitelesítő adatait. Ennek a szolgáltatásfióknak megfelelő engedélyekkel rendelkező partnerfióknak kell lennie.
 
 3. Másolja ki a frissítési jogkivonat értékét.
 

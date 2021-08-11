@@ -1,15 +1,15 @@
 ---
 title: MFA nélküli portálkérelmek lekérése
-description: A többtényezős hitelesítés (MFA) nélküli felhasználói kérelmek listájának lekérése a partneri REST API.
+description: Kérje le a többtényezős hitelesítés (MFA) nélküli felhasználói kérelmek listáját a Partner REST API.
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 ms.date: 05/29/2020
-ms.openlocfilehash: 41627751d3402d7712d96c15c4281a25ed9a44a7
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: d7d901bc78f889593612f64d28e465737f764ba711e49419444de6971c56d404
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111445578"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115995781"
 ---
 # <a name="get-portal-requests-without-mfa"></a>MFA nélküli portálkérelmek lekérése
 
@@ -17,7 +17,7 @@ Ez a cikk bemutatja, hogyan kérheti le a legutóbbi kérések listáját azokr�
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="rest-request"></a>REST-kérés
 
@@ -50,11 +50,11 @@ Connection: keep-alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza a [Portal-kérések](mfa-resources.md#portal-request-without-mfa) erőforrásainak gyűjteményét.
+Ha a művelet sikeres, ez a metódus a válasz törzsében visszaadja a [Portál kérési](mfa-resources.md#portal-request-without-mfa) erőforrásainak gyűjteményét.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

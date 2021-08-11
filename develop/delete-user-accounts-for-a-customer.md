@@ -4,12 +4,12 @@ description: Egy ügyfél meglévő felhasználói fiókjának törlése.
 ms.date: 06/20/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: c45646da43b8926f911942374de5da07f318c526
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: 64e9175a2a4545022175b326a2d765ecd6a1106242b8926fe19e32c7e2ab6ec2
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973060"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994880"
 ---
 # <a name="delete-a-user-account-for-a-customer"></a>Felhasználói fiók törlése egy ügyfélnél
 
@@ -17,9 +17,9 @@ Ez a cikk egy ügyfél meglévő felhasználói fiókjának törlését ismertet
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy felhasználói azonosító. Ha nem tudja a felhasználói azonosítót, tekintse meg az ügyfél összes felhasználói fiókjának [listáját.](get-a-list-of-all-user-accounts-for-a-customer.md)
 
@@ -27,7 +27,7 @@ Ez a cikk egy ügyfél meglévő felhasználói fiókjának törlését ismertet
 
 Felhasználói fiók törlésekor a felhasználói állapot  30 napig inaktívra lesz állítva. 30 nap után a rendszer kiüríti a felhasználói fiókot és a hozzá tartozó adatokat, és nem állítható vissza.
 
-Az ügyfelek [törölt felhasználói](restore-a-user-for-a-customer.md) fiókjai visszaállíthatóak, ha az inaktív fiók a 30 napos időkereten belül van. Ha azonban visszaállít egy törölt és inaktívként megjelölt fiókot, a rendszer nem ad vissza fiókot a felhasználógyűjtemény tagjaként (például amikor lekért egy listát az ügyfél összes felhasználói [fiókjáról).](get-a-list-of-all-user-accounts-for-a-customer.md)
+Visszaállíthatja [egy ügyfél törölt](restore-a-user-for-a-customer.md) felhasználói fiókját, ha az inaktív fiók a 30 napos időkereten belül van. Ha azonban olyan fiókot állítja vissza, amely törölve lett, és inaktívként lett megjelölve, a rendszer nem ad vissza fiókot a felhasználógyűjtemény tagjaként (például amikor megjelenik egy ügyfél összes felhasználói fiókjának [listája).](get-a-list-of-all-user-accounts-for-a-customer.md)
 
 ## <a name="c"></a>C\#
 
@@ -51,7 +51,7 @@ partnerOperations.Customers.ById(selectedCustomerId).Users.ById(customerUserIdTo
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus     | Kérés URI-ja                                                                                            |
 |------------|--------------------------------------------------------------------------------------------------------|
@@ -93,7 +93,7 @@ Sikeres művelet esetén ez a metódus **egy 204 Nincs** tartalom állapotkódot
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

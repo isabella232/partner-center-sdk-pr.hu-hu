@@ -4,12 +4,12 @@ description: A megadott ügyfélhez megadott konfigurációs szabályzat lekér�
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: f9a8cb435c63d8d02c3b4633abc8723353116f37
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 27e01b7c7ec0920d1e6123379fb318827f5389a9c6b297d630ac60dce6933faf
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111547495"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996886"
 ---
 # <a name="retrieve-a-customers-configuration-policy"></a>Egy ügyfél konfigurációs szabályzatának lekérése
 
@@ -19,7 +19,7 @@ A megadott ügyfélhez megadott konfigurációs szabályzat lekérése.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 - Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
@@ -42,7 +42,7 @@ ConfigurationPolicy retrievedConfigurationPolicy =
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                          |
 |---------|------------------------------------------------------------------------------------------------------|
@@ -54,8 +54,8 @@ A kérelem létrehozásakor használja a következő elérési utat és lekérde
 
 | Név        | Típus   | Kötelező | Leírás                                           |
 |-------------|--------|----------|-------------------------------------------------------|
-| ügyfélazonosító | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet. |
-| policy-id   | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja a szabályzatot.   |
+| ügyfélazonosító | sztring | Yes      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet. |
+| policy-id   | sztring | Yes      | Egy GUID-formátumú sztring, amely azonosítja a szabályzatot.   |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -80,7 +80,7 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz tartalmazza a kért [ConfigurationPolicy erőforrást.](device-deployment-resources.md#configurationpolicy)
+Ha ez sikeres, a válasz tartalmazza a kért [ConfigurationPolicy erőforrást.](device-deployment-resources.md#configurationpolicy)
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 

@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: f0324916eb2efd9244530a53b1d7bb4abc0c8e6e
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 97a0ee60b2cb57d3413d341ceea10e267fc1660c83fccbbc20353c3ad6bfc8c2
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111549127"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994489"
 ---
 # <a name="get-invoice-statement"></a>Számlakivonat lekérése
 
@@ -19,13 +19,13 @@ ms.locfileid: "111549127"
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 - Egy érvényes számlaazonosító.
 
 ## <a name="c"></a>C\#
 
-A számlakivonat azonosító alapján való lehívásához használja **az IPartner.Invoices** gyűjteményt, és hívja meg a **ById()** metódust a számlaazonosítóval, majd hívja meg a **Documents()** és a **Statement() metódusokat** a számlakivonat eléréséhez. Végül hívja meg a **Get() vagy** **a GetAsync() metódust.**
+A számlakivonat azonosító alapján való lehívásához használja az **IPartner.Invoices** gyűjteményt, és hívja meg a **ById()** metódust a számlaazonosítóval, majd hívja meg a **Documents()** és a **Statement() metódusokat** a számlakivonat eléréséhez. Végül hívja meg a **Get() vagy** **a GetAsync() metódust.**
 
 ``` csharp
 // IPartner scopedPartnerOperations;
@@ -34,11 +34,11 @@ A számlakivonat azonosító alapján való lehívásához használja **az IPart
 var invoiceStatement = scopedPartnerOperations.Invoices.ById(selectedInvoiceId).Documents.Statement.Get();
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** GetInvoiceStatement.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSample **osztály:** GetInvoiceStatement.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                       |
 |---------|---------------------------------------------------------------------------------------------------|
@@ -50,7 +50,7 @@ Az alábbi lekérdezési paraméterrel lekérdezheti a számlakivonatot.
 
 | Név       | Típus       | Kötelező | Leírás                                                                                        |
 |------------|------------|----------|----------------------------------------------------------------------------------------------------|
-| számlaazonosító | sztring     | Igen      | Az érték egy számlaazonosító, amely lehetővé teszi a viszonteladó számára az eredmények szűrését egy adott számlára. |
+| számlaazonosító | sztring     | Yes      | Az érték egy számlaazonosító, amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla eredményeit. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -72,11 +72,11 @@ MS-CorrelationId: 57eb2ca7-755f-450f-9187-eae1e75a0114
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus egy [InvoiceStatement erőforrást](invoice-resources.md#invoicestatement) ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy [InvoiceStatement erőforrást](invoice-resources.md#invoicestatement) ad vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -1,19 +1,19 @@
 ---
-title: Számla lekérte azonosító alapján
+title: Számla lekért azonosítója alapján
 description: Lekér egy adott számlát a számlaazonosítóval.
 ms.date: 06/10/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: c888786a6b6ca941629bb7aac95227021c37a7fc
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 79327879614de521224606b69a5b6d1e8e4192f0df085f5fce61230c91e774e5
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111549161"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994506"
 ---
-# <a name="get-invoice-by-id"></a>Számla lekérte azonosító alapján
+# <a name="get-invoice-by-id"></a>Számla lekért azonosítója alapján
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
@@ -44,7 +44,7 @@ var invoice = scopedPartnerOperations.Invoices.ById(selectedInvoiceId).Get();
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
@@ -56,7 +56,7 @@ A számla lekérdezhető a következő lekérdezési paraméterrel.
 
 | Név           | Típus       | Kötelező | Leírás                                                                                        |
 |----------------|------------|----------|----------------------------------------------------------------------------------------------------|
-| **számlaazonosító** | **sztring** | Igen      | Az érték egy **számlaazonosító,** amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla eredményeit. |
+| **számlaazonosító** | **sztring** | Yes      | Az érték egy **számlaazonosító,** amely lehetővé teszi, hogy a viszonteladó szűrje egy adott számla eredményeit. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

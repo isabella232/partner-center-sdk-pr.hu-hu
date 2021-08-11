@@ -6,24 +6,24 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: c52a556887dba065c4ccd1a82d6223624d0ad1f2
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 1c11779ee2ac80539a36db92f1ec811b054c858bf72d5ffbcce4d0bd86eed93e
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874227"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994608"
 ---
 # <a name="get-a-list-of-orders-by-customer-and-billing-cycle-type"></a>A megrendelések listájának lekérése ügyfél és a számlázási ciklus típusa alapján
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Lekért rendelési erőforrások egy adott ügyfél- és számlázási ciklustípusnak megfelelő gyűjteményét. A rendelés beküldési ideje és az ügyfél rendelésgyűjteményében való megjelenése között akár 15 perces késés is lehet.
+Lekért rendelési erőforrások egy adott ügyfél- és számlázási ciklustípusnak megfelelő gyűjteményét. A rendelés beküldési ideje és az ügyfél rendelésgyűjteményében való megjelenése között legfeljebb 15 perces késés áll elő.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
@@ -31,7 +31,7 @@ Lekért rendelési erőforrások egy adott ügyfél- és számlázási ciklustí
 
 1. Használja az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, és hívja meg a [**ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a kiválasztott ügyfél-azonosítóval.
 
-2. Hívja meg [**az Orders tulajdonságot**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) és a **ByBillingCycleType() metódust** a megadott [**BillingCycleType típussal.**](product-resources.md#billingcycletype)
+2. Hívja meg [**az Orders tulajdonságot**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) és a **ByBillingCycleType()** metódust a megadott [**BillingCycleType típussal.**](product-resources.md#billingcycletype)
 3. Hívja meg a [**Get() vagy**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.get) [**a GetAsync() metódust.**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.getasync)
 
 ``` csharp
@@ -44,7 +44,7 @@ var orders = partnerOperations.Customers.ById(selectedCustomerId).Orders.ByBilli
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                                    |
 |---------|--------------------------------------------------------------------------------------------------------------------------------|
@@ -56,7 +56,7 @@ Ez a táblázat a megrendelések gyűjteményének az ügyfélazonosító és a 
 
 | Név                   | Típus     | Kötelező | Leírás                                               |
 |------------------------|----------|----------|-----------------------------------------------------------|
-| ügyfél-bérlő-azonosító     | sztring   | Igen      | Az ügyfélnek megfelelő GUID formátumú sztring.    |
+| ügyfél-bérlő-azonosító     | sztring   | Yes      | Az ügyfélnek megfelelő GUID formátumú sztring.    |
 | számlázási ciklus típusa     | sztring   | No       | A számlázási ciklus típusának megfelelő sztring.         |
 
 ### <a name="request-headers"></a>Kérésfejlécek
@@ -80,11 +80,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus az Order erőforrások [gyűjteményét](order-resources.md) adja vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus az [Order](order-resources.md) erőforrások gyűjteményét adja vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

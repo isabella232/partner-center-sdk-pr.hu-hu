@@ -1,27 +1,27 @@
 ---
 title: Eszköz törlése a megadott ügyfélnél
-description: Megadott ügyfélhez tartozó eszköz törlése.
+description: Egy adott ügyfélhez tartozó eszköz törlése.
 ms.date: 06/20/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: a1e05ceb8615d6f84c1df101c542342f9a6eb04b
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: f44c94ff35ecdb709b44ba6eebc17ae37e513313d464a28378ce22ceb0097ee3
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973077"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115995067"
 ---
 # <a name="delete-a-device-for-the-specified-customer"></a>Eszköz törlése a megadott ügyfélnél
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Németországhoz
 
-Ez a cikk egy adott ügyfélhez tartozó eszköz törlését ismerteti.
+Ez a cikk bemutatja, hogyan törölhet egy adott ügyfélhez tartozó eszközt.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Az eszköz kötegazonosítója.
 
@@ -29,13 +29,13 @@ Ez a cikk egy adott ügyfélhez tartozó eszköz törlését ismerteti.
 
 ## <a name="c"></a>C\#
 
-Eszköz törlése a megadott ügyfél számára:
+A megadott ügyfél eszközének törlése:
 
-1. Hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítóval az ügyfélen folytatott műveletek interfészének lekérése érdekében.
+1. Hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítóval az ügyfél műveleteinek interfészének lekérése érdekében.
 
-2. Hívja meg [**a DeviceBatches.ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevicesbatchcollection.byid) metódust az eszköz kötegazonosítójának használatával, hogy lekért egy interfészt a megadott köteg műveleteihez.
+2. Hívja meg [**a DeviceBatches.ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevicesbatchcollection.byid) metódust az eszköz kötegazonosítójának használatával, hogy lekérte a megadott köteg műveleteinek interfészét.
 
-3. Hívja meg [**a Devices.ById metódust,**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevicecollection.byid) hogy lekért egy interfészt a művelethez a megadott eszközön.
+3. Hívja meg [**a Devices.ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevicecollection.byid) metódust, hogy lekérte egy interfészt a megadott eszközön való működéshez.
 
 4. Az eszköz [**kötegből**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevice.delete) való törléséhez hívja meg a Delete vagy [**a DeleteAsync**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.idevice.deleteasync) metódust.
 
@@ -60,13 +60,13 @@ partnerOperations.Customers.ById(selectedCustomerId).DeviceBatches.ById(selected
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-A kérelem létrehozásakor használja az alábbi elérésiút-paramétereket.
+A kérelem létrehozásakor használja a következő elérésiút-paramétereket.
 
 | Név           | Típus   | Kötelező | Leírás                                                        |
 |----------------|--------|----------|--------------------------------------------------------------------|
-| ügyfél-azonosító    | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet.              |
-| devicebatch-id | sztring | Igen      | Az eszközt tartalmazó köteg eszközkötet-azonosítója. |
-| eszközazonosító      | sztring | Igen      | Az eszköz azonosítója.                                             |
+| ügyfél-azonosító    | sztring | Yes      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet.              |
+| devicebatch-id | sztring | Yes      | Az eszközt tartalmazó köteg eszközkötet-azonosítója. |
+| eszközazonosító      | sztring | Yes      | Az eszköz azonosítója.                                             |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -91,11 +91,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a válasz sikeres, a **204 Nincs** tartalom állapotkódot adja vissza.
+Ha a válasz sikeres, a **204 No Content (Nincs tartalom)** állapotkódot adja vissza.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

@@ -4,12 +4,12 @@ description: Adott ügyfél és szabályzatazonosító konfigurációs szabályz
 ms.date: 06/11/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 2d6a7d392bd6af6850eb7716528e6745943bb7bb
-ms.sourcegitcommit: ad8082bee01fb1f57da423b417ca1ca9c0df8e45
+ms.openlocfilehash: ac9f369ee7b2ba6c6b643bf6ec8d49e99755935181c7db58b616bef427a5a314
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111973026"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115995118"
 ---
 # <a name="delete-a-configuration-policy-for-the-specified-customer"></a>Konfigurációs szabályzat törlése a megadott ügyfélnél
 
@@ -31,7 +31,7 @@ Adott ügyfél konfigurációs szabályzatának törlése:
 
 1. Hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) az ügyfél azonosítójával, hogy lekérje a műveletek interfészét a megadott ügyfélen.
 
-2. Hívja meg [**a ConfigurationPolicies.ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicycollection.byid) metódust a szabályzat azonosítójával, hogy lekérje a megadott szabályzat konfigurációs házirend-műveleteinek felületét.
+2. Hívja meg [**a ConfigurationPolicies.ById**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicycollection.byid) metódust a szabályzat azonosítójával, hogy lekérje a megadott szabályzat konfigurációs szabályzati műveleteinek felületét.
 
 3. A konfigurációs [**szabályzat törléséhez**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicy.delete) hívja meg a [**Delete vagy a DeleteAsync**](/dotnet/api/microsoft.store.partnercenter.devicesdeployment.iconfigurationpolicy.deleteasync) metódust.
 
@@ -47,7 +47,7 @@ partnerOperations.Customers.ById(selectedCustomerId).ConfigurationPolicies.ById(
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus     | Kérés URI-ja                                                                                          |
 |------------|------------------------------------------------------------------------------------------------------|
@@ -59,8 +59,8 @@ A kérelem létrehozásakor használja a következő elérésiút-paramétereket
 
 | Név        | Típus   | Kötelező | Leírás                                                   |
 |-------------|--------|----------|---------------------------------------------------------------|
-| ügyfél-azonosító | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet.         |
-| policy-id   | sztring | Igen      | Egy GUID-formátumú sztring, amely azonosítja a törölni kívánt szabályzatot. |
+| ügyfél-azonosító | sztring | Yes      | Egy GUID-formátumú sztring, amely azonosítja az ügyfelet.         |
+| policy-id   | sztring | Yes      | Egy GUID-formátumú sztring, amely azonosítja a törölni kívánt szabályzatot. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

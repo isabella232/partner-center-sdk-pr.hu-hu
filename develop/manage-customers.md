@@ -1,21 +1,21 @@
 ---
 title: Ügyfelek kezelése
-description: Ez a szakasz azt ismerteti, hogy Felhőszolgáltató partnerek hogyan használhatjak a Partnerközpont ügyfélfiókok programozott kezelésére.
+description: Ez a szakasz azt ismerteti, hogy Felhőszolgáltató partnerek hogyan használhatják Partnerközpont ügyfélfiókok programozott kezelését.
 ms.date: 02/13/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9f9b8629406a8d66c8ea820205abf73a2fb0cc02
-ms.sourcegitcommit: 51237e7e98d71a7e0590b4d6a4034b6409542126
+ms.openlocfilehash: 4c20e1eb37b1722daa98f2b26b21cc660c4ac3b2c7be964afa7b8565966ff825
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/09/2021
-ms.locfileid: "113571978"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996087"
 ---
 # <a name="manage-customers"></a>Ügyfelek kezelése
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Ez a szakasz azt ismerteti, hogy Felhőszolgáltató partnerek hogyan Partnerközpont ügyfélfiókok programozott kezelésére.
+Ez a szakasz azt ismerteti, hogy Felhőszolgáltató partnerek hogyan Partnerközpont ügyfélfiókok programozott kezeléséhez.
 
 ## <a name="create-a-customer"></a>Ügyfél létrehozása
 
@@ -41,7 +41,7 @@ Ez a szakasz azt ismerteti, hogy Felhőszolgáltató partnerek hogyan Partnerkö
 - [Egy ügyfél számlázási profiljának lekérése](get-all-of-a-customer-s-billing-profiles.md)
 - [Egy ügyfél számlázási profiljának frissítése](update-a-customer-s-billing-profile.md)
 - [Egy ügyfél vállalati profiljának lekérése](get-a-customer-s-company-profile.md)
-- [Az ügyfél használati költségkeretének frissítése](update-a-customer-s-usage-spending-budget.md)
+- [Egy ügyfél használati költségkeretének frissítése](update-a-customer-s-usage-spending-budget.md)
 - [Ellenőrzött tartomány hozzáadása egy ügyfélhez](add-a-verified-domain-for-a-customer.md)
 - [Microsoft Cloud szerződés szerződési metaadatainak lekérése](get-agreement-metadata.md)
 - [A Microsoft Cloud-szerződés ügyfél általi elfogadásának megerősítése](get-confirmation-of-customer-consent.md)
@@ -64,7 +64,7 @@ Ez a szakasz azt ismerteti, hogy Felhőszolgáltató partnerek hogyan Partnerkö
 - [Felhasználói szerepkörök beállítása egy ügyfélnél](set-user-roles-for-a-customer.md)
 - [A rendelkezésre álló licencek listájának lekérése](get-a-list-of-available-licenses.md)
 - [Licencek hozzárendelése egy felhasználóhoz](assign-licenses-to-a-user.md)
-- [Annak ellenőrzése, hogy mely licencek vannak hozzárendelve egy felhasználóhoz](check-which-licenses-are-assigned-to-a-user.md)
+- [Ellenőrizze, hogy mely licencek vannak hozzárendelve egy felhasználóhoz](check-which-licenses-are-assigned-to-a-user.md)
 
 ## <a name="manage-a-customers-self-serve-policies"></a>Ügyfél önkiszolgáló szabályzatának kezelése
 

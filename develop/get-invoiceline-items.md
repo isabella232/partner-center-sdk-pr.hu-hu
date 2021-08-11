@@ -4,12 +4,12 @@ description: A megadott számlához tartozó számlasorelem (lezárt számlázá
 ms.date: 01/27/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 944dddef64ec980d92c292a7f5b9f5eb4e7cecb6
-ms.sourcegitcommit: 15c6cfe72284cf5d4ea3535120e83e473c33f5ec
+ms.openlocfilehash: 10e43127e5f44f76ed9be8b9aa638e982259602ad57709ecee55cb62d8d7d59e
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/22/2021
-ms.locfileid: "112443172"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115996034"
 ---
 # <a name="get-invoice-line-items"></a>Számla sorelemeinek lekérése
 
@@ -17,15 +17,15 @@ ms.locfileid: "112443172"
 
 A következő módszerekkel lekértheti egy adott számla számlasor-elemeinek (más néven lezárt számlázási sorelemeknek) a gyűjtemény adatait.
 
-*A hibajavítások kivételével ez az API már nem frissül.* Frissítse az alkalmazásokat úgy, hogy a **Piactér** helyett az egyszer használható **API-t hívják meg.** Az **onetime** API további funkciókat biztosít, és továbbra is frissülni fog.
+*A hibajavítások kivételével ez az API már nem frissül.* Frissítse az alkalmazásokat úgy, hogy a **Piactér** helyett az egyszer használható **API-t hívják meg.** Az **onetime** API további funkciókat biztosít, és folyamatosan frissül.
 
-A piactér helyett **az egyidős használatával** lekérdezheti az összes kereskedelmi használatú **sorelemet.** Vagy kövesse a estimate links hívásban található hivatkozásokat.
+A piactér helyett **az egyidős használatával** lekérdezheti az összes kereskedelmi használatú **sorelemet.** Vagy kövesse a becslési hivatkozások hívásában található hivatkozásokat.
 
-Ez az API  az **Azure** és az **Office** for Microsoft Azure (MS-AZR-0145P) előfizetések és Office-ajánlatok szolgáltatótípusát is támogatja, ami visszamenőlegesen kompatibilissé teszi az API-funkciót.
+Ez az API  az **Azure** és az **Office** for Microsoft Azure (MS-AZR-0145P) előfizetések és Office-ajánlatok szolgáltatói típusait is támogatja, ami visszamenőlegesen kompatibilissé teszi az API-funkciót.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 - Egy számlaazonosító. Ez azonosítja a számlát, amelynek lekéri a sorelemeket.
 
@@ -102,7 +102,7 @@ Hasonló példát a következőben láthat:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 A kérést a forgatókönyvben használt számlázási szolgáltatónak megfelelő szintaxissal készítse el.
 
@@ -136,9 +136,9 @@ Az alábbi szintaxisok akkor érvényesek, ha a számlázási szolgáltató **On
 
 Ha a következő szintaxisokat használja, mindenképpen a megfelelő szintaxist használja a saját esetének megfelelően.
 
-*A hibajavítások kivételével ez az API már nem frissül.* Frissítse az alkalmazásokat úgy, hogy a **Piactér** helyett az egyszer használható **API-t hívják meg.** Az **onetime** API további funkciókat biztosít, és továbbra is frissülni fog.
+*A hibajavítások kivételével ez az API már nem frissül.* Frissítse az alkalmazásokat úgy, hogy a **Piactér** helyett az egyszer használható **API-t hívják meg.** Az **onetime** API további funkciókat biztosít, és folyamatosan frissül.
 
-A piactér helyett **az egyidős használatával** lekérdezheti az összes kereskedelmi használatú **sorelemet.** Vagy kövesse a estimate links hívásban található hivatkozásokat.
+A piactér helyett **az egyidős használatával** lekérdezheti az összes kereskedelmi használatú **sorelemet.** Vagy kövesse a becslési hivatkozások hívásában található hivatkozásokat.
 
 | Metódus | Kérés URI-ja | Szintaxishasználati eset leírása |
 | ------ | ----------- | -------------------------------- |
@@ -152,13 +152,13 @@ A kérelem létrehozásakor használja a következő URI-t és lekérdezési par
 
 | Név                   | Típus   | Kötelező | Leírás                                                       |
 |------------------------|--------|----------|-------------------------------------------------------------------|
-| számlaazonosító             | sztring | Igen      | A számlát azonosító sztring.                             |
-| számlázási szolgáltató       | sztring | Igen      | A számlázási szolgáltató: "Office", "Azure", "OneTime". A régi modellben az Azure-tranzakciókhoz külön adatmodellek Office & rendelkezésre. A modern azonban egyetlen adatmodellel rendelkezik az összes tranzakcióra a "OneTime" érték alapján szűrve.            |
-| invoice-line-item-type | sztring | Igen      | A számla részleteinek típusa: "BillingLineItems", "UsageLineItems". |
-| size                   | szám | Nem       | A visszaadott elemek maximális száma. Alapértelmezett maximális méret = 2000    |
-| offset                 | szám | Nem       | Az első visszaadni kívánt sorelem nullaalapú indexe.            |
+| számlaazonosító             | sztring | Yes      | A számlát azonosító sztring.                             |
+| számlázási szolgáltató       | sztring | Yes      | A számlázási szolgáltató: "Office", "Azure", "OneTime". A régi modellben az Azure-tranzakciókhoz külön adatmodellek Office & rendelkezésre. A modern azonban egyetlen adatmodellel rendelkezik az összes tranzakcióra a "OneTime" érték alapján szűrve.            |
+| invoice-line-item-type | sztring | Yes      | A számla részleteinek típusa: "BillingLineItems", "UsageLineItems". |
+| size                   | szám | No       | A visszaadott elemek maximális száma. Alapértelmezett maximális méret = 2000    |
+| offset                 | szám | No       | Az első visszaadni kívánt sorelem nullaalapú indexe.            |
 | seekOperation          | sztring | No       | Ha **a számlázási szolgáltató** értéke **OneTime**, állítsa a **seekOperation** értékeként a **Tovább** elemet a számlasorelemek következő oldalának lekért értékhez. |
-| hasPartnerEarnedCredit | logikai | Nem | Az érték, amely jelzi, hogy a partneri jóváírással kapott sorelemeket kell-e visszaadni. Megjegyzés: ez a paraméter csak akkor lesz alkalmazva, ha a számlázási szolgáltató típusa OneTime, az InvoiceLineItemType pedig UsageLineItems. |
+| hasPartnerEarnedCredit | logikai | No | Az érték, amely jelzi, hogy a rendszer visszaadja-e a partneri jóváírással kapott sorelemeket. Megjegyzés: ez a paraméter csak akkor lesz alkalmazva, ha a számlázási szolgáltató típusa OneTime, az InvoiceLineItemType pedig UsageLineItems. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -170,21 +170,21 @@ Nincsenek.
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz sorelem-részletek gyűjteményét tartalmazza.
+Ha a művelet sikeres, a válasz sorelem-részletek gyűjteményét tartalmazza.
 
-*A **ChargeType** sorelem esetében a **Purchase** érték az Új értékre van **leképezve.** A **Refund (Visszatérítés)** érték a Cancel (Lemondás) **értékre van leképezve.***
+*A **ChargeType** sorelem esetében a **Purchase** értéke New (Új) értékre **van leképezve.** A Refund **(Visszatérítés)** érték a Cancel (Lemondás) **értékre van leképezve.***
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="rest-request-response-examples"></a>REST-kérés-válasz példák
 
-### <a name="request-response-example-1"></a>1. kérelem-válasz példa
+### <a name="request-response-example-1"></a>1. kérés-válasz példa
 
 Ebben a példában a részletek a következők:
 
-- **BillingProvider**: **Office**
+- **BillingProvider:** **Office**
 - **InvoiceLineItemType:** **BillingLineItems**
 
 #### <a name="request-example-1"></a>1. kérési példa
@@ -565,7 +565,7 @@ A következő példában a részletek a következők:
 - **BillingProvider:** **OneTime**
 - **InvoiceLineItemType:** **BillingLineItems**
 
-#### <a name="request-example-4"></a>4. kérési példa
+#### <a name="request-example-4"></a>4. példa kérése
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/invoices/G000024135/lineitems/OneTime/BillingLineItems?size=2&offset=0 HTTP/1.1
@@ -780,9 +780,9 @@ Date: Thu, 07 Sep 2017 23:31:09 GMT
 }
 ```
 
-### <a name="request-response-example-5"></a>5. kérelem-válasz példa
+### <a name="request-response-example-5"></a>5. kérés-válasz példa
 
-A következő példában egy folytatási token használatával lapozunk. A részletek a következők:
+A következő példában folytatási token használatával lapozunk. A részletek a következők:
 
 - **BillingProvider:** **OneTime**
 - **InvoiceLineItemType:** **BillingLineItems**
