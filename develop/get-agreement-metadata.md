@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: 2588327e72a13de75eb9e02675edbd535491adc4
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: 55a09752844f74caaf878f1e2dcfe3d8a70a283c5e0e9daefba89c558405690a
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760793"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994115"
 ---
 # <a name="get-agreement-metadata-for-microsoft-cloud-agreement"></a>Microsoft Cloud szerződés szerződési metaadatainak lekérése
 
@@ -27,7 +27,7 @@ Az **AgreementMetaData** erőforrást jelenleg csak a Microsoft nyilvános Partn
 
 - Ha az Partnerközpont Java SDK-t használja, 1.8-as vagy újabb verzió szükséges.
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](./partner-center-authentication.md) Ez a forgatókönyv támogatja az alkalmazás- és felhasználóhitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](./partner-center-authentication.md) Ez a forgatókönyv támogatja az alkalmazás- és felhasználóhitelesítést.
 
 ## <a name="net-version-114-or-newer"></a>.NET (1.14-es vagy újabb verzió)
 
@@ -47,7 +47,7 @@ string agreementType = "MicrosoftCloudAgreement";
 var microsoftCloudAgreementDetails = partnerOperations.AgreementDetails.ByAgreementType(agreementType).Get().Items.Single();
 ```
 
-A teljes minta megtalálható a [GetAgreementDetails](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetAgreementDetails.cs) osztályban a konzol [tesztalkalmazás](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples) projektjében.
+A teljes minta megtalálható a [GetAgreementDetails](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetAgreementDetails.cs) osztályban a konzol tesztalkalmazás [projektjében.](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples)
 
 ## <a name="net-version-19---113"></a>.NET (1.9-es és 1.13-as verzió)
 
@@ -69,7 +69,7 @@ AgreementMetaData microsoftCloudAgreement = agreements.Items.FirstOrDefault (agr
 
 A szerződés metaadatainak lekérése a Microsoft Cloud szerződés:
 
-Először hívja meg az **IAggregatePartner.getAgreementDetails** függvényt, majd a **get függvényt.** Ezután keresse meg az elemet a gyűjteményben, amely megfelel a Microsoft Cloud szerződés:
+Először hívja meg az **IAggregatePartner.getAgreementDetails** függvényt, majd hívja meg a **get** függvényt. Ezután keresse meg az elemet a gyűjteményben, amely megfelel a Microsoft Cloud szerződés:
 
 ```java
 // IAggregatePartner partnerOperations;
@@ -87,7 +87,7 @@ for (AgreementMetaData metadata : agreements)
 }
 ```
 
-A teljes minta megtalálható a [GetAgreementDetails](https://github.com/microsoft/Partner-Center-Java-Samples/blob/master/sdk/src/main/java/com/microsoft/store/partnercenter/samples/agreements/GetAgreementDetails.java) osztályban a konzol [tesztalkalmazás](https://github.com/Microsoft/Partner-Center-Java-Samples) projektjében.
+A teljes minta megtalálható a [GetAgreementDetails](https://github.com/microsoft/Partner-Center-Java-Samples/blob/master/sdk/src/main/java/com/microsoft/store/partnercenter/samples/agreements/GetAgreementDetails.java) osztályban a konzol tesztalkalmazás [projektjében.](https://github.com/Microsoft/Partner-Center-Java-Samples)
 
 ## <a name="powershell"></a>PowerShell
 
@@ -105,7 +105,7 @@ Get-PartnerAgreementDetail | Where-Object {$_.AgreementType -eq 'MicrosoftCloudA
 
 A szerződés metaadatainak lekéréséhez Microsoft Cloud szerződés hozzon létre egy REST-kérést az **AgreementMetaData gyűjtemény lekéréséhez.** Ezután keresse meg a gyűjteményben azt az elemet, amely megfelel a Microsoft Cloud szerződés.
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus | Kérés URI-ja                                                         |
 |--------|---------------------------------------------------------------------|
@@ -131,11 +131,11 @@ MS-CorrelationId: ab993325-1605-4cf4-bac4-fb584142a31b
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus **agreementMetaData-erőforrások** gyűjteményét adja vissza a válasz törzsében.
+Sikeres művelet esetén ez a metódus **agreementMetaData-erőforrások** gyűjteményét adja vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

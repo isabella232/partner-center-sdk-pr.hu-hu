@@ -4,12 +4,12 @@ description: Frissítse egy meglévő felhasználói fiók adatait az ügyfél s
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 6ebfdbb5df1d56416835af771fd6b70190776012
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: e652e8dcbf9075fe22507230029c9703f88abef179337b8958d219c996c6e6cd
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111445272"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115998008"
 ---
 # <a name="update-user-accounts-for-a-customer"></a>Felhasználói fiókok frissítése egy ügyfélnél
 
@@ -23,7 +23,7 @@ Frissítse egy meglévő felhasználói fiók adatait az ügyfél számára.
 
 ## <a name="c"></a>C\#
 
-Egy adott ügyfélfelhasználó részleteinek frissítéséhez először le kellkérni a megadott ügyfél-azonosítót és a frissíthető felhasználót. Ezután hozza létre a felhasználó frissített verzióját egy új **CustomerUser objektumban.** Ezután használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a **ById() metódust.** Ezután hívja **meg a Users tulajdonságot,** a **ById()** metódust, majd a **Patch() metódust.**
+Egy adott ügyfélfelhasználó részleteinek frissítéséhez először le kellkérni a megadott ügyfél-azonosítót és a frissíthető felhasználót. Ezután hozza létre a felhasználó frissített verzióját egy új **CustomerUser objektumban.** Ezután használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a **ById() metódust.** Ezután hívja **meg a Users** tulajdonságot, a **ById()** metódust, majd a **Patch() metódust.**
 
 ``` csharp
 // string selectedCustomerId;
@@ -50,7 +50,7 @@ User updatedCustomerUserInfo = partnerOperations.Customers.ById(selectedCustomer
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus    | Kérés URI-ja                                                                                  |
 |-----------|----------------------------------------------------------------------------------------------|

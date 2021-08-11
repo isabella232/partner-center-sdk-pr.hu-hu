@@ -6,32 +6,32 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: f3d5fcc610eae8c1bff056c1e4a9e7a74093c87d
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 5b937d165a76a0dfbf4bfc44a5e155607b74ea9fab6a5db5c71df44e22f19d27
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874567"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994217"
 ---
 # <a name="get-a-list-of-all-user-accounts-for-a-customer"></a>Egy ügyfél összes felhasználói fiókját tartalmazó lista lekérése
 
-Ez a cikk azt ismerteti, hogyan lehet lekért lista az ügyfelek egyikének felhasználói fiókjairól.
+Ez a cikk azt ismerteti, hogyan lehet lekért lista az összes olyan felhasználói fiókról, amely egy ügyfélhez tartozik.
 
 Ha azonosító alapján keres egy felhasználói fiókot, tekintse meg a felhasználói fiók azonosító alapján [való lekért azonosítóját.](get-a-user-account-by-id.md)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
 Egy adott ügyfél összes felhasználói fiókja gyűjteményének lekérése:
 
-1. Az ügyfél azonosításához hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a megadott ügyfél-azonosítóval.
+1. Az ügyfél azonosításához hívja meg az [**IAggregatePartner.Customers.ById metódust**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) a megadott ügyfél-azonosítóval.
 
-2. A [**gyűjtemény lekéréséhez hívja**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.get) meg a Users.Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.getasync) metódust.
+2. A [**gyűjtemény lekéréséhez**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.get) hívja meg a Users.Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.getasync) metódust.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -49,7 +49,7 @@ Példaként tekintse meg a következőket:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                  |
 |---------|----------------------------------------------------------------------------------------------|
@@ -85,11 +85,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez a módszer sikeres, a rendszer felhasználói fiókok gyűjteményét adja vissza az ügyfél számára.
+Ha ez a módszer sikeres, az ügyfél felhasználói fiókjaiból ad vissza gyűjteményt.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

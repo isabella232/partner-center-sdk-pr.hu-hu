@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 45eca3564c3b9078e04d1f8155d08849a589d52f
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: bcfba544bd1647ba0f3eb360d5ace14c7223b38837cb858198cf95c4e82dd594
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111446598"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115997073"
 ---
 # <a name="remove-a-reseller-relationship-with-a-customer"></a>Ügyféllel létesítendő viszonteladói kapcsolat eltávolítása
 
@@ -19,23 +19,23 @@ Távolítsa el a viszonteladói kapcsolatot egy olyan ügyféllel, akinél már 
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - A viszonteladói kapcsolat eltávolítása előtt minden Azure Reserved VM Instance-rendelést meg kell szakítani. Hívja Azure-támogatás az azure-beli fenntartott virtuálisgép-példányok nyitott rendeléseit.
 
 ## <a name="c"></a>C\#
 
-Az ügyfél viszonteladói kapcsolatának eltávolításához először győződjön meg arról, hogy az adott ügyfél Azure Reserved VM Instances összes aktív kapcsolata törölve lett. Ezután győződjön meg arról, hogy az ügyfél összes aktív előfizetése fel van függesztve. Ezt annak az ügyfélnek az azonosítójával kell meghatározni, aki számára törölni szeretné a viszonteladói kapcsolatot. A következő példakódban a rendszer felkéri a felhasználót, hogy adja meg az ügyfél azonosítóját.
+Az ügyfél viszonteladói kapcsolatának eltávolításához először győződjön meg arról, hogy az adott ügyfélhez Azure Reserved VM Instances összes aktív kapcsolat törlődik. Ezután győződjön meg arról, hogy az ügyfél összes aktív előfizetése fel van függesztve. Ez annak az ügyfélnek az azonosítóját határozza meg, aki számára törölni szeretné a viszonteladói kapcsolatot. Az alábbi példakódban a rendszer felkéri a felhasználót, hogy adja meg az ügyfél azonosítóját.
 
-Annak megállapításához, hogy az ügyfél bármely Azure Reserved VM Instances-ját meg kell-e szakítani, a jogosultságok gyűjtésének lekéréséhez hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójának használatával, és a [**Jogosultságok**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot a jogosultsággyűjtési műveletek felületének lekéréséhez. A [**jogosultsággyűjtemény lekéréséhez**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.get) hívja meg a Get vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.getasync) metódust. Szűrje a gyűjteményt az esetleges jogosultságok esetében az [**EntitlementType.VirtualMachineReservedInstance értékre,**](entitlement-resources.md#entitlementtype) és ha vannak, a folytatás előtt hívja meg az ügyfélszolgálatot. [](entitlement-resources.md#entitlementtype)
+Annak megállapításához, hogy az ügyfél bármely Azure Reserved VM Instances-ját meg kell-e szakítani, a jogosultságok gyűjtésének lekéréséhez hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójának használatával az ügyfél azonosítójának megadásával, valamint a [**Jogosultságok**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot a jogosultsággyűjtési műveletek felületének lekéréséhez. A [**jogosultsággyűjtemény lekéréséhez**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.get) hívja meg a Get vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.getasync) metódust. Szűrje a gyűjteményt minden jogosultságra az [**EntitlementType.VirtualMachineReservedInstance**](entitlement-resources.md#entitlementtype) [**entitlementType**](entitlement-resources.md#entitlementtype) értékével, és ha van ilyen, a folytatás előtt hívja meg az ügyfélszolgálatot.
 
-Ezután az ügyfél-előfizetések gyűjteményének lekéréséhez hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójának használatával az ügyfél megadásához, valamint az [**Előfizetések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot az előfizetés-gyűjtési műveletek interfészének lekéréséhez. Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.get) vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.getasync) metódust az ügyfél előfizetési gyűjteményének lekéréséhez. Az előfizetés-gyűjtemény bejárásával győződjön meg arról, hogy egyik előfizetés sem rendelkezik [**SubscriptionStatus.Active**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.status) [**SubscriptionStatus.Status tulajdonságértékkel.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscriptionstatus) Ha egy előfizetés még aktív, az előfizetés felfüggesztése részt [a](suspend-a-subscription.md) felfüggesztésével kapcsolatos információkért tekintse meg.
+Ezután az ügyfél előfizetési gyűjteményének lekéréséhez hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójának használatával az ügyfél megadásához, valamint az [**Előfizetések**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot az előfizetés-gyűjtési műveletek interfészének lekéréséhez. Végül hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.get) vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.getasync) metódust az ügyfél előfizetés-gyűjteményének lekéréséhez. Az előfizetés-gyűjtemény bejárásával győződjön meg arról, hogy egyik előfizetés sem rendelkezik [**SubscriptionStatus.Active**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.status) [**SubscriptionStatus.Status tulajdonságértékkel.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscriptionstatus) Ha egy előfizetés még aktív, a felfüggesztésével kapcsolatos információkért [lásd:](suspend-a-subscription.md) Előfizetés felfüggesztése.
 
-Miután meggyőződött arról, Azure Reserved VM Instances ügyfél összes aktív előfizetése törölve lett, és az összes aktív előfizetés fel van függesztve, eltávolíthatja az ügyfél viszonteladói kapcsolatát. Először hozzon létre egy új [Customer/dotnet/api/microsoft.store.partnercenter.models.customers.customer) objektumot a [Customer.RelationshipToPartner/dotnet/api/microsoft.store.partnercenter.models.customers.customer.relationshiptopartner) tulajdonság [**CustomerPartnerRelationship.None beállításával.**](/dotnet/api/microsoft.store.partnercenter.models.customers.customerpartnerrelationship) Ezután hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójának használatával az ügyfél megadásához, majd hívja meg a **Patch** metódust az új ügyfélobjektum átadásával.
+Miután meggyőződött arról, hogy Azure Reserved VM Instances ügyfél összes aktív előfizetése törölve lett, és az összes aktív előfizetés fel van függesztve, eltávolíthatja az ügyfél viszonteladói kapcsolatát. Először hozzon létre egy új [Customer/dotnet/api/microsoft.store.partnercenter.models.customers.customer) objektumot a [Customer.RelationshipToPartner/dotnet/api/microsoft.store.partnercenter.models.customers.customer.relationshiptopartner) tulajdonság [**customerPartnerRelationship.None beállításával.**](/dotnet/api/microsoft.store.partnercenter.models.customers.customerpartnerrelationship) Ezután az ügyfél azonosítójának használatával hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust, és hívja meg a **Patch** metódust az új ügyfélobjektum átadásával.
 
-A kapcsolat ismételt létrehozására ismételje meg a ([viszonteladói kapcsolat/partnerközpont/develop/request-reseller-relationship) folyamatot.
+A kapcsolat ismételt létrehozása érdekében ismételje meg [viszonteladói kapcsolat kérése/partnerközpont/develop/request-reseller-relationship).
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -81,7 +81,7 @@ if (customer.RelationshipToPartner == CustomerPartnerRelationship.None)
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus     | Kérés URI-ja                                                                                                                           |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -101,7 +101,7 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A **kérelem** törzsében szükség van egy ügyfélerőforrásra. Ellenőrizze, hogy **a RelationshipToPartner** tulajdonság nincs-e beállítva.
+A **kérelem** törzsében szükség van egy Ügyfélerőforrásra. Győződjön meg arról, hogy a **RelationshipToPartner** tulajdonság nincsre van beállítva.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -128,7 +128,7 @@ Ha ez a módszer sikeres, eltávolítja a megadott ügyfél viszonteladói kapcs
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

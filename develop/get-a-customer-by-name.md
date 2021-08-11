@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: dineshvu
 ms.author: dineshvu
-ms.openlocfilehash: 663b8509d8704f9c443796d9fbcf72fb9c5b7fb2
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 4e77edd3e7d94711ad18796c0afb4db30c50abf0bc9636335b413a5d41dff9c8
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874958"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993095"
 ---
 # <a name="get-a-list-of-customers-filtered-by-a-search-field"></a>Az ügyfelek listájának lekérése keresési mező alapján szűrve
 
@@ -21,7 +21,7 @@ Lekért egy [szűrőnek](customer-resources.md#customer) megfelelő ügyfélerő
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 - Felhasználó által felépített szűrő.
 
@@ -29,7 +29,7 @@ Lekért egy [szűrőnek](customer-resources.md#customer) megfelelő ügyfélerő
 
 A szűrőnek megfelelő ügyfelek gyűjteményének lekért létrehozásához először hozzon létre egy [**SimpleFieldFilter**](/dotnet/api/microsoft.store.partnercenter.models.query.simplefieldfilter) objektumot. A [**CustomerSearchField**](/dotnet/api/microsoft.store.partnercenter.models.customers.customersearchfield)mezőt tartalmazó sztringet kell átadnia, és a szűrőművelet típusát [**FieldFilterOperation.StartsWith**](/dotnet/api/microsoft.store.partnercenter.models.query.fieldfilteroperation)értékkel kell jeleznie. Ez az egyetlen mezőszűrő művelet, amelyet az ügyfelek végpontja támogat. A szűréshez meg kell adnia a sztringet is.
 
-Ezután példányosított egy [**iQuery-objektumot**](/dotnet/api/microsoft.store.partnercenter.models.query.iquery) a lekérdezésnek való átadáshoz a [**BuildSimpleQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildsimplequery) metódus hívásával és a szűrő átadásával. A BuildSimplyQuery csak egy a [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) osztály által támogatott lekérdezéstípusok közül.
+Ezután példányosított [**egy iQuery-objektumot**](/dotnet/api/microsoft.store.partnercenter.models.query.iquery) a lekérdezésnek való átadáshoz a [**BuildSimpleQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildsimplequery) metódus hívásával és a szűrő átadásával. A BuildSimplyQuery csak egy a [**QueryFactory**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory) osztály által támogatott lekérdezéstípusok közül.
 
 Végül a szűrő végrehajtásához és az eredmény lekért eredményéhez először használja az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) metódust, hogy lekért egy felületet a partner ügyfélműveleteihez. Ezután hívja meg a [**Query**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.query) vagy [**a QueryAsync metódust.**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.queryasync)
 
@@ -52,11 +52,11 @@ var myQuery = QueryFactory.Instance.BuildSimpleQuery(fieldFilter);
 var customers = partnerOperations.Customers.Query(myQuery);
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** FilterCustomers.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK Samples **Class**: FilterCustomers.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                   |
 |---------|-----------------------------------------------------------------------------------------------|
@@ -68,8 +68,8 @@ Használja az alábbi lekérdezési paramétereket.
 
 | Név   | Típus   | Kötelező | Leírás                                                                    |
 |--------|--------|----------|--------------------------------------------------------------------------------|
-| size   | int    | Nem       | Az egyszerre megjelenítendő eredmények száma. Ezt a paramétert nem kötelező megadni. |
-| filter (szűrő) | filter (szűrő) | Igen      | Az ügyfelekre alkalmazandó szűrő. Ennek kódolt sztringnek kell lennie.              |
+| size   | int    | No       | Az egyszerre megjelenítendő eredmények száma. Ezt a paramétert nem kötelező megadni. |
+| filter (szűrő) | filter (szűrő) | Yes      | Az ügyfelekre alkalmazandó szűrő. Ennek kódolt sztringnek kell lennie.              |
 
 ### <a name="filter-syntax"></a>Szűrőszintaxis
 

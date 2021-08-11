@@ -4,12 +4,12 @@ description: Jogosultságok gyűjteményének begyűjtése.
 ms.date: 01/28/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 7bb8d3aefb11fae0af4bce790b41598d935de57c
-ms.sourcegitcommit: d20e7d572fee09a83a4b23a92da7ff09cfebe75a
+ms.openlocfilehash: 9248f2ef97afe7a2cefff5759028da12dc9c3936f2e14cee18063c0428699c81
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111906422"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993673"
 ---
 # <a name="get-a-collection-of-entitlements"></a>Jogosultságok gyűjteményének lekérése
 
@@ -17,9 +17,9 @@ Jogosultságok gyűjteményének begyűjtése.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
@@ -40,7 +40,7 @@ A lekért jogosultságok lejárati dátumának feltöltéséhez hívja meg ugyan
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus | Kérés URI-ja |
 |--------|-------------|
@@ -52,9 +52,9 @@ A kérelem létrehozásakor használja a következő elérési utat és lekérde
 
 | Név | Típus | Kötelező | Leírás |
 |------|------|----------|-------------|
-| customerId | sztring | Igen | Egy GUID formátumú customerId, amely azonosítja az ügyfelet. |
+| customerId | sztring | Yes | Egy GUID formátumú customerId, amely azonosítja az ügyfelet. |
 | entitlementType (jogosultságtípus) | sztring | No | A lekérni kívánt jogosultságok típusának megadására használható (**szoftver** vagy **reservedInstance** ). Ha nincs beállítva, a program minden típust lekér |
-| showExpiry | boolean | Nem | Nem kötelező jelző, amely jelzi, hogy szükség van-e a jogosultságok lejárati dátumokra. |
+| showExpiry | boolean | No | Nem kötelező jelző, amely jelzi, hogy szükség van-e a jogosultságok lejárati dátumokra. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -82,7 +82,7 @@ Ha ez sikeres, a válasz törzse jogosultság-erőforrások [gyűjteményét](en
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
@@ -405,4 +405,4 @@ Date: Mon, 19 Mar 2018 07:45:14 GMT
 
 ### <a name="api-consumers"></a>API-felhasználók
 
-Azok a partnerek, akik az API-val kérik le a virtuális gép fenntartott példányai jogosultságát – Frissítse a kérés URI-ját **a /customers/{customerId}/jogosultságok esetében a /customers/{customerId}/entitlements?entitlementType=virtualmachinereservedinstance** címről a visszamenőleges kompatibilitás fenntartása érdekében. A virtuális gép vagy az Azure SQL szerződéssel való használathoz frissítse a kérés URI-ját **a következőre: /customers/{customerId}/entitlements?entitlementType=reservedinstance**.
+Azok a partnerek, akik az API-val kérik le a virtuális gép fenntartott példányai jogosultságát – Frissítse a kérés URI-ját **a /customers/{customerId}/jogosultságok címről a /customers/{customerId}/entitlements?entitlementType=virtualmachinereservedinstance** névre a visszamenőleges kompatibilitás fenntartása érdekében. Ha virtuális gépet vagy Azure SQL bővített szerződéssel használ fel, frissítse a kérés URI-ját **a következőre: /customers/{customerId}/entitlements?entitlementType=reservedinstance**.

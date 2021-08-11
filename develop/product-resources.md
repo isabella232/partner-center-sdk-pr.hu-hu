@@ -1,19 +1,19 @@
 ---
 title: Termékek erőforrásai
-description: A cserélhető termékeket vagy szolgáltatásokat képviselő erőforrások. A termék típusának és alakjának (SKU) leírására, valamint a termék leltárban való elérhetőségének ellenőrzésére vonatkozó forrásokat tartalmaz.
+description: A cserélhető termékeket vagy szolgáltatásokat képviselő erőforrások. Tartalmazza a terméktípus és -alakzat (SKU) leírására, valamint a termék leltárban való elérhetőségének ellenőrzésére vonatkozó forrásokat.
 ms.date: 04/01/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 2e68df1f6955fb7feb9770377621c2d649b74e4a
-ms.sourcegitcommit: 59950cf131440786779c8926be518c2dc4bc4030
+ms.openlocfilehash: b0269b55810a57dc3a4897027a9817baaebc8ed5f4e98dc66e2eadfa210f362f
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 07/31/2021
-ms.locfileid: "115009120"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115997447"
 ---
 # <a name="products-resources"></a>Termékek erőforrásai
 
-A cserélhető termékeket vagy szolgáltatásokat képviselő erőforrások. A termék típusának és alakjának (SKU) leírására, valamint a termék leltárban való elérhetőségének ellenőrzésére vonatkozó forrásokat tartalmaz.
+A cserélhető termékeket vagy szolgáltatásokat képviselő erőforrások. Tartalmazza a terméktípus és -alakzat (SKU) leírására, valamint a termék leltárban való elérhetőségének ellenőrzésére vonatkozó forrásokat.
 
 ## <a name="product"></a>Termék
 
@@ -25,7 +25,7 @@ Egy véglegesen használható jó vagy szolgáltatás. A termék önmagában nem
 | cím              | sztring                        | A termék címe.                                                       |
 | leírás        | sztring                        | A termék leírása.                                                 |
 | productType        | [Itemtype](#itemtype)         | A termék típuskategorizálását leíró objektum.     |
-| isMicrosoftProduct | logikai                          | Jelzi, hogy ez egy Microsoft-termék-e.                          |
+| isMicrosoftProduct | logikai                          | Azt jelzi, hogy ez egy Microsoft-termék-e.                          |
 | publisherName      | sztring                        | A termék közzétevője neve, ha elérhető.                          |
 | Linkek              | [ProductLinks (Termékkapcsolatok)](#productlinks) | A termékben található erőforrás-hivatkozások.                         |
 
@@ -37,7 +37,7 @@ Egy termék típusát jelöli.
 |-----------------|-------------------------------|--------------------------------------------------------------------------------------|
 | id              | sztring                        | A típusazonosító.                                                                 |
 | displayName     | sztring                        | A típus megjelenítendő neve.                                                      |
-| Altípus         | [Itemtype](#itemtype)         | Választható. Az elemtípus altípusának kategorizálását leíró objektum.     |
+| Altípus         | [Itemtype](#itemtype)         | Választható. Az elemtípus altípus-kategorizálását leíró objektum.     |
 
 ## <a name="productlinks"></a>ProductLinks (Termékkapcsolatok)
 
@@ -50,48 +50,48 @@ Egy termékre mutató hivatkozások [listáját tartalmazza.](#product)
 
 ## <a name="sku"></a>SKU
 
-Egy termék alatt található, cserélhető készletnyilvántartó egységet (SKU- t) képvisel. Ezek a termék különböző alakjai.
+Egy termék alatt található, cserélhető termékre (SKU) vonatkozó készletet képvisel. Ezek a termék különböző alakjai.
 
 | Tulajdonság               | Típus             | Description                                                                           |
 |------------------------|------------------|---------------------------------------------------------------------------------------|
 | id                     | sztring           | A termékváltozat azonosítója. Ez az azonosító csak a szülőtermék környezetében egyedi. |
 | cím                  | sztring           | A termékváltozat címe.                                                                 |
 | leírás            | sztring           | A termékváltozat leírása.                                                           |
-| productId              | sztring           | A termékváltozatot tartalmazó szülő [termék](#product) azonosítója.                      |
-| minimumQuantity        | int              | A vásárláshoz engedélyezett minimális mennyiség.                                            |
-| maximumQuantity        | int              | A vásárláshoz engedélyezett maximális mennyiség.                                            |
-| isTrial                | logikai             | Azt jelzi, hogy ez a termékváltozat próbaverziós elem-e.                                           |
+| productId              | sztring           | A termékváltozatot tartalmazó szülő [Termék](#product) azonosítója.                      |
+| minimumQuantity (minimálisquantitás)        | int              | A vásárláshoz engedélyezett minimális mennyiség.                                            |
+| maximumQuantity (Maximálisquantitás)        | int              | A vásárláshoz engedélyezett maximális mennyiség.                                            |
+| isTrial (isTrial)                | logikai             | Azt jelzi, hogy ez a termékváltozat próbaverziós elem-e.                                           |
 | supportedBillingCycles | sztringek tömbje | Az ehhez a termékváltozathoz támogatott számlázási ciklusok listája. A támogatott értékek a [BillingCycleType](#billingcycletype)típusban található tagnevek. |
-| purchasePrerequisites  | sztringek tömbje | Az elem megvásárlása előtt szükséges előfeltételek és műveletek listája. A támogatott értékek a következőek:<br/>  "InventoryCheck" – Azt jelzi, hogy az elem leltárát ki kell értékelni az elem megvásárlása előtt.<br/> "AzureSubscriptionRegistration" – Azt jelzi, hogy Azure-előfizetésre van szükség, és a vásárlás előtt regisztrálni kell.  |
-| inventoryVariables     | sztringek tömbje | Az elem leltárellenőrzésének végrehajtásához szükséges változók listája. A támogatott értékek a következőek:<br/> "CustomerId" ( Ügyfélazonosító) – Annak az ügyfélnek az azonosítója, akinél a vásárlást szeretné.<br/> "AzureSubscriptionId" – Az Azure-foglalás vásárlásához használt Azure-előfizetés azonosítója.</br> "ArmRegionName" – Az a régió, amelyben ellenőrizni kell a leltárt. Ennek az értéknek egyeznie kell a termékváltozat DynamicAttributes tulajdonságában megadott "ArmRegionName" értékkel. |
-| provisioningVariables  | sztringek tömbje | Azon változók listája, amelyek az elem megvásárlásakor [](cart-resources.md#cartlineitem) a kosársorok kiépítési környezetében meg vannak adni. A támogatott értékek a következőek:<br/> Hatókör – Az Azure-foglalás vásárlásának hatóköre: "Egy", "Megosztott".<br/> "SubscriptionId" – Az Azure-foglalás vásárlásához használt Azure-előfizetés azonosítója.<br/> "Időtartam" – Az Azure-foglalás időtartama: "1Év", "3Év".  |
-| dynamicAttributes (dinamikus attribútumok)      | kulcs/érték párok  | Az erre az elemre vonatkozó dinamikus tulajdonságok szótára. A szótárban a tulajdonságok dinamikusak, és értesítés nélkül változhatnak. Ne hozzon létre erős függőségeket a tulajdonság értékében meglévő adott kulcsokhoz.    |
+| purchasePrerequisites  | sztringek tömbje | Az elem megvásárlása előtt szükséges előfeltételek és műveletek listája. A támogatott értékek a következőek:<br/>  "InventoryCheck" – Azt jelzi, hogy az elem leltárát ki kell értékelni az elem megvásárlása előtt.<br/> "AzureSubscriptionRegistration" – Azt jelzi, hogy azure-előfizetésre van szükség, és regisztrálni kell az elem megvásárlásának megkísérlése előtt.  |
+| inventoryVariables (leltárválozók)     | sztringek tömbje | Az elem leltárellenőrzésének végrehajtásához szükséges változók listája. A támogatott értékek a következőek:<br/> "CustomerId" ( Ügyfélazonosító) – Annak az ügyfélnek az azonosítója, akitől a vásárlást adná.<br/> "AzureSubscriptionId" – Az Azure-foglalás vásárlásához használt Azure-előfizetés azonosítója.</br> "ArmRegionName" – Az a régió, amelyben ellenőrizni kell a leltárt. Ennek az értéknek egyeznie kell a termékváltozat DynamicAttributes tulajdonságában megadott "ArmRegionName" értékkel. |
+| provisioningVariables  | sztringek tömbje | Azon változók listája, amelyek az elem megvásárlásakor [](cart-resources.md#cartlineitem) a kosársorelem kiépítési környezetében lesznek megszépítve. A támogatott értékek a következőek:<br/> Hatókör – Az Azure-foglalások vásárlásának hatóköre: "Egyetlen", "Megosztott".<br/> "SubscriptionId" – Az Azure-foglalás vásárlásához használt Azure-előfizetés azonosítója.<br/> "Időtartam" – Az Azure-foglalás időtartama: "1Year", "3Year".  |
+| dynamicAttributes (dinamikus attribútumok)      | kulcs/érték párok  | Az erre az elemre vonatkozó dinamikus tulajdonságok szótára. A szótár tulajdonságai dinamikusak, és értesítés nélkül változhatnak. Ne hozzon létre erős függőségeket a tulajdonság értékében meglévő adott kulcsokhoz.    |
 | Linkek                  | [ResourceLinks (Erőforrás-hivatkozás)](utility-resources.md#resourcelinks) | A termékváltozatban található erőforrás-hivatkozások.                   |
-| AttestationProperties (Igazolástulajdonságok)                  | [AttestationProperties (Igazolástulajdonságok)](#attestationproperties) | Egy termékváltozat igazolási tulajdonságai.                   |
+| AttestationProperties (Igazolásitulajdonságok)                  | [AttestationProperties (Igazolásitulajdonságok)](#attestationproperties) | Egy termékváltozat igazolási tulajdonságai.                   |
 
 ## <a name="availability"></a>Rendelkezésre állás
 
-Olyan konfigurációt képvisel, amelyben egy termékváltozat megvásárolható (például ország, pénznem és iparági szegmens).
+Egy olyan konfigurációt képvisel, amelyben egy termékváltozat megvásárolható (például ország, pénznem és iparági szegmens).
 
 | Tulajdonság        | Típus                        | Description                                                                         |
 |-----------------|-----------------------------------------------------|-------------------------------------------------------------------------------------|
-| id              | sztring                        | A rendelkezésre állás azonosítója. Ez az azonosító csak a szülőtermék és a termékváltozat kontextusában [egyedi.](#sku) [](#product) **Megjegyzés** Ez az azonosító idővel változhat. Erre az értékre a leolvasás után csak rövid időn belül szabad támaszkodnia.  |
+| id              | sztring                        | A rendelkezésre állás azonosítója. Ez az azonosító csak a szülőtermék és a termékváltozat kontextusában [egyedi.](#sku) [](#product) **Megjegyzés** Ez az azonosító idővel változhat. Ezt az értéket a leolvasás után csak rövid időn belül szabad figyelembenia.  |
 | productId       | sztring                        | A rendelkezésre állást [tartalmazó](#product) termék azonosítója.           |
-| skuId (termékváltozat-azonosító)           | sztring                        | A rendelkezésre állást tartalmazó [termékváltozat](#sku) azonosítója.                   |
-| catalogItemId (katalógusazonosító)   | sztring                        | Az elem egyedi azonosítója a katalógusban. Ezt az azonosítót kell feltölteni az [OrderLineItem.OfferId](order-resources.md#orderlineitem) vagy [a CartLineItem.CatalogItemId](cart-resources.md#cartlineitem) tulajdonságokba a szülő [termékváltozat megvásárlásakor.](#sku) **Megjegyzés** Ez az azonosító idővel változhat. Erre az értékre a lekért adatok beolvasása után rövid időn belül támaszkodhat. Csak a vásárláskor szabad hozzáférni és használni.  |
-| defaultCurrency (alapértelmezettcurrency) | sztring                        | A rendelkezésre álláshoz támogatott alapértelmezett pénznem.                               |
-| segment         | sztring                        | A rendelkezésre állás iparági szegmense. Támogatott értékek: Kereskedelmi, Oktatási, Kormányzati, Non Profit. |
-| ország         | sztring                                              | Az ország vagy régió (ISO országkód formátumban), ahol ez a rendelkezésre állás érvényes. |
+| skuId (termékváltozatazonosító)           | sztring                        | A rendelkezésre állást tartalmazó [termékváltozat](#sku) azonosítója.                   |
+| catalogItemId (katalógusazonosító)   | sztring                        | Az elem egyedi azonosítója a katalógusban. Ezt az azonosítót kell feltölteni az [OrderLineItem.OfferId](order-resources.md#orderlineitem) vagy [a CartLineItem.CatalogItemId](cart-resources.md#cartlineitem) tulajdonságba a szülő [termékváltozat megvásárlásakor.](#sku) **Megjegyzés** Ez az azonosító idővel változhat. Erre az értékre a leolvasás után rövid időn belül kell támaszkodnia. Csak a vásárláskor szabad hozzáférni és használni.  |
+| defaultCurrency (defaultCurrency) | sztring                        | A rendelkezésre álláshoz támogatott alapértelmezett pénznem.                               |
+| segment         | sztring                        | A rendelkezésre állás iparági szegmense. A támogatott értékek aek: Kereskedelmi, Oktatási, Kormányzati, Nem Pénzügyi. |
+| ország         | sztring                                              | Az ország vagy régió (ISO-országkód formátumban), ahol ez a rendelkezésre állás érvényes. |
 | isPurchasable   | logikai                                                | Azt jelzi, hogy ez a rendelkezésre állás cserélhető-e. |
 | isRenewable     | logikai                                                | Jelzi, hogy ez a rendelkezésre állás megújítható-e. |
-| product      | [Product](#product)               | Az a termék, amely ennek a rendelkezésre állásnak felel meg. |
+| product      | [Product](#product)               | Az a termék, amelyhez ez a rendelkezésre állás tartozik. |
 | Sku          | [Sku](#sku)            | Az a termékváltozat, amely ennek a rendelkezésre állásnak felel meg. |
 | Feltételek           | [Kifejezés-erőforrások tömbje](#term)  | Az erre a rendelkezésre állásra vonatkozó feltételek gyűjteménye. |
 | Linkek           | [ResourceLinks (Erőforrás-hivatkozás)](utility-resources.md#resourcelinks) | A rendelkezésre állásban található erőforrás-hivatkozások. |
 
 ## <a name="term"></a>Időszak
 
-Azt az kifejezést jelöli, amelyre a rendelkezésre állás megvásárolható.
+Egy olyan időszak, amelyre a rendelkezésre állás megvásárolható.
 
 | Tulajdonság              | Típus                                        | Description                                                                         |
 |-----------------------|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
@@ -105,7 +105,7 @@ A leltár bizonyos katalóguselemekre vonatkozó ellenőrzési kérését jelöl
 | Tulajdonság         | Típus                                                | Description                                                                                 |
 |------------------|-----------------------------------------------------|---------------------------------------------------------------------------------------------|
 | targetItems (célértékek)      | [InventoryItem tömbje](#inventoryitem)            | A leltárellenőrzés által kiértékelt katalóguselemek listája.                           |
-| inventoryContext | kulcs/érték párok                                     | A leltárellenőrzés(nek) elvégzéséhez szükséges környezeti értékek szótára. A [termékek minden](#sku) termékváltozata határozza meg, hogy mely értékekre van szükség (ha van ilyen) a művelet végrehajtásához.  |
+| inventoryContext | kulcs/érték párok                                     | A leltár-ellenőrzés elvégzéséhez szükséges környezeti értékek szótára. A [termékek minden termékváltozata](#sku) határozza meg, hogy a művelet végrehajtásához mely értékekre van szükség (ha van ilyen).  |
 | Linkek            | [ResourceLinks (Erőforrás-hivatkozás)](utility-resources.md#resourcelinks) | A leltárellenőrzési kérelemben található erőforrás-hivatkozások.                            |
 
 ## <a name="inventoryitem"></a>InventoryItem (Leltár)

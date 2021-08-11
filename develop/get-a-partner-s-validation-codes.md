@@ -1,35 +1,35 @@
 ---
-title: Partner ellenőrzőkódok Government Community Cloud le
-description: Hogyan lehet lekérte a partnerek Government Community Cloud ellenőrző kódjait.
+title: Partner ellenőrzési kódjai Government Community Cloud le
+description: Hogyan lehet lekérte a partner Government Community Cloud ellenőrző kódjait.
 ms.date: 11/08/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khakiali
 ms.author: alikhaki
-ms.openlocfilehash: 04bccf587628337004a5825b534048945f791839
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 1514e9a684b003f5650e9256743ea7e669de04629fd0c3db1c7dfa677e96a752
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111873870"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993605"
 ---
 # <a name="get-a-partners-validation-codes"></a>Egy partner ellenőrzési kódjainak lekérése
 
 Ez a cikk bemutatja, hogyan gyűjti be egy partner Government Community Cloud érvényesítési kódjait. Az ügyfél kormányzati közösségi felhőben való létrehozásához érvényesítési kód szükséges.
 
-Ha érdekli, hogy szervezete vagy ügyfele szervezete jogosult-e Office 365 Kormányzati verzió GCC CSP használatára, tekintse meg az Office 365 Kormányzati verzió GCC CSP-partnerre és ügyfélre vonatkozó [jogosultsági feltételeket.](/partner-center/csp-gcc-validate)
+Ha érdekli, hogy szervezete vagy az ügyfél szervezete jóvá legyen hagyva a [](/partner-center/csp-gcc-validate)csp Office 365 Kormányzati verzió GCC használatára, tekintse meg a csp Office 365 Kormányzati verzió GCC partner- és ügyfél-jogosultsági feltételeket.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Megerősítést nyert az ellenőrzés az űrlap kitöltése [után itt.](https://products.office.com/government/eligibility-validation?ReqType=CSPPartner)
+- Megerősített ellenőrzés az űrlap kitöltése [után itt:](https://products.office.com/government/eligibility-validation?ReqType=CSPPartner).
 
 - Egy minősítéssel nem rendelkező ügyfél.
 
 ## <a name="c"></a>C\#
 
-Egy partner érvényesítési kódjai listájának lehívásához hívja meg a **GetValidationCodes kódot.**
+A partner összes érvényesítési kódját a **GetValidationCodes** hívásával lehet lehívni.
 
 ``` csharp
 // create the partner operations
@@ -66,11 +66,11 @@ MS-RequestId: 7266f5f6-30ca-4672-9eb6-6c9d6dd0e9d3
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus a válasz törzsében található [**ValidationCode**](utility-resources.md#validationcode) erőforrások listáját adja vissza.
+Ha a művelet sikeres, ez a metódus a [**válasz törzsében**](utility-resources.md#validationcode) található ValidationCode erőforrások listáját adja vissza.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

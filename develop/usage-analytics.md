@@ -4,12 +4,12 @@ description: Az adattitkos Partnerközpont SDK API-k használatával programozot
 ms.date: 07/27/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 503d00d9d4acf307cfa9fad86a322be2e8549b73
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: 0474fd54bd97393ffd9521ee00f96a06a994f54dda428cd4780a64fe1ef19f52
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111530293"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115998025"
 ---
 # <a name="analytics"></a>Elemzés
 

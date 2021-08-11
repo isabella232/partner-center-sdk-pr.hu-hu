@@ -6,22 +6,22 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: cychua
 ms.author: cychua
-ms.openlocfilehash: b3a64cc6aa4b19199490dafcf15eedde12b1330a
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 6f2e1d50fa0f2ace2e94f4dbb5681e2164241ee57a85249136a55fce20893fbb
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111547801"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115997583"
 ---
 # <a name="partner-center-supported-languages-and-locales"></a>Partnerközpont – támogatott nyelvek és területi beállítások
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Egyes Partnerközpont API-khoz olyan érték szükséges, amely területi értéket, országot vagy régiót jelez. Az X-Locale [REST-Partnerközpont](headers.md) például gyakran "language-country" formátumú értéket igényel ("az en-US "english - Egyesült Államok").
+Egyes Partnerközpont API-khoz szükség van egy értékre, amely egy területi értéket, országot vagy régiót jelez. Az X-Locale REST Partnerközpont fejléchez például gyakran "language-country" ("en-US" vagy "english - Egyesült Államok") formátumú értékre van szükség. [](headers.md)
 
-A Partnerközpont felügyelt API-kban a [CountryValidationRules/dotnet/api/microsoft.store.partnercenter.models.countryvalidationrules.countryvalidationrules) osztály és az [OfferCategory.Locale/dotnet/api/microsoft.store.partnercenter.models.offers.offercategory.locale), [ServiceRequest.CountryCode/dottnet/api/microsoft.store.partnercenter.models.servicerequests.servicerequest.countrycode) vagy [CustomerBillingProfile.Culture/dotnet/api/microsoft.store.partnercenter.models.customers.customerbillingprofile.culture) tulajdonságokhoz olyan sztringértékekra van szükség, amelyek egy nyelvet vagy országot/régiót jeleznek (ISO2 nyelvi kód vagy ISO3 ország/régió kód formájában), egy területi adatokat, vagy kulturális környezet (egy nyelvazonosító és egy ország-/régiókód kombinálva).
+A Partnerközpont felügyelt API-kban a [CountryValidationRules/dotnet/api/microsoft.store.partnercenter.models.countryvalidationrules.countryvalidationrules) osztály és a [OfferCategory.Locale/dotnet/api/microsoft.store.partnercenter.models.offers.offercategory.locale), [ServiceRequest.CountryCode/dottquest.countrycode/dottnet/api/microsoft.store.partnercenter.models.servicerequests.servicerequest.countrycode) vagy [CustomerBillingProfile.Culture/dotnet/api/microsoft.store.partnercenter.models.customers.customerbillingprofile.culture) tulajdonságokhoz olyan sztringértékekre van szükség, amelyek egy nyelvet vagy országot/régiót (ISO2 nyelvi kód vagy ISO3 ország/régió kód formájában) jeleznek, vagy kulturális környezet (egy nyelvi azonosító és egy ország-/régiókód kombinálva).
 
-Az alábbi táblázat a kulturális és nemzetközi szabványügyi szervezet (ISO) azon országkódját sorolja fel, amelyek támogatottak a Partnerközpont API-kban.
+Az alábbi táblázat az API-k által támogatott kulturális és nemzetközi szabványügyi szervezet (ISO) országkódokat Partnerközpont sorolja fel.
 
 | Ország/régió                           | ISO Alpha 2 országkód | ISO Alpha 3 országkód | Támogatott kulturális környezet(ek)                  |
 |------------------------------------------|--------------------------|--------------------------|---------------------------------------|
@@ -32,7 +32,7 @@ Az alábbi táblázat a kulturális és nemzetközi szabványügyi szervezet (IS
 | Amerikai Szamoa                           | AS                       | ASM                      | en-US                                 |
 | Andorra                                  | AD                       | ÉS                      | ca-ES / en-US                         |
 | Angola                                   | AO                       | Ezelőtt                      | pt-PT / en-US                         |
-| Anguilla                                 | AI                       | Aia                      | en-US                                 |
+| Anguilla                                 | Mesterséges intelligencia                       | Aia                      | en-US                                 |
 | Antarktisz                               | Aq                       | Ata                      | en-US                                 |
 | Antigua és Barbuda                      | AG                       | Atg                      | en-US                                 |
 | Argentína                                | AR                       | Arg                      | es-AR / en-US                         |
@@ -42,7 +42,7 @@ Az alábbi táblázat a kulturális és nemzetközi szabványügyi szervezet (IS
 | Ausztria                                  | AT                       | Aut                      | de-AT / en-US                         |
 | Azerbajdzsán                               | AZ                       | AZE                      | az-Latn-AZ / en-US                    |
 | Bahama-szigetek                                  | BS                       | BHS                      | en-GB / en-US                         |
-| Bahrein                                  | BH                       | BHR (BHR)                      | ar-BH / en-US                         |
+| Bahrein                                  | BH                       | BHR                      | ar-BH / en-US                         |
 | Banglades                               | BD                       | BGD                      | bn-BD / en-US                         |
 | Barbados                                 | BB                       | Brb                      | en-GB / en-US                         |
 | Belarusz                                  | BY                       | BLR                      | be-BY / en-US                         |
@@ -117,7 +117,7 @@ Az alábbi táblázat a kulturális és nemzetközi szabványügyi szervezet (IS
 | Guadeloupe                               | GP                       | Glp                      | fr-FR / en-US                         |
 | Guam                                     | GU                       | Gumi                      | en-US                                 |
 | Guatemala                                | GT                       | GTM                      | es-GT / en-US                         |
-| Guernsey                                 | Gg                       | ARRA                      | en-US                                 |
+| Guernsey                                 | Gg                       | <                      | en-US                                 |
 | Guinea                                   | GN                       | Gin                      | fr-FR / en-US                         |
 | Bissau-Guinea                            | Gw                       | Gnb                      | pt-PT / en-US                         |
 | Guyana                                   | GY                       | Srác                      | en-US                                 |
@@ -205,7 +205,7 @@ Az alábbi táblázat a kulturális és nemzetközi szabványügyi szervezet (IS
 | Lengyelország                                   | PL                       | Pol                      | pl-PL / en-US                         |
 | Portugália                                 | PT                       | Prt                      | pt-PT / en-US                         |
 | Puerto Rico                              | PR                       | Pri                      | es-PR / en-US                         |
-| Katar                                    | QA                       | QAT (Minőségbiztosítási szolgáltatás)                      | ar-QA / en-US                         |
+| Katar                                    | QA                       | Minőségbiztosítási                      | ar-QA / en-US                         |
 | Réunion                                  | RE                       | ReU                      | fr-FR / en-US                         |
 | Románia                                  | RO                       | Rou                      | ro-RO / en-US                         |
 | Oroszország                                   | RU                       | RUS                      | ru-RU / en-US                         |
@@ -215,7 +215,7 @@ Az alábbi táblázat a kulturális és nemzetközi szabványügyi szervezet (IS
 | Saint Lucia                              | Lc                       | Lca                      | en-US                                 |
 | Saint Martin                             | Mf                       | Maf                      | fr-FR / en-US                         |
 | Saint-Pierre és Miquelon                | PM                       | Spm                      | fr-FR / en-US                         |
-| Saint Vincent és Grenadine-szigetek         | VC                       | VCT (Virtuális virtuális gép)                      | en-US                                 |
+| Saint Vincent és Grenadine-szigetek         | VC                       | VCT                      | en-US                                 |
 | Saint-Barthélemy                         | BL                       | Blm                      | fr-FR / en-US                         |
 | Szamoa                                    | WS                       | WSM                      | en-US                                 |
 | San Marino                               | Sm                       | Smr                      | it-IT / en-US                         |
@@ -235,9 +235,9 @@ Az alábbi táblázat a kulturális és nemzetközi szabványügyi szervezet (IS
 | Dél-afrikai Köztársaság                             | ZA                       | ZAF                      | en-ZA / en-US                         |
 | Dél-Georgia és Déli-Sandwich-szigetek | Gs                       | Sgs                      | en-US                                 |
 | Dél-Szudán                              | SS                       | SSD                      | en-US                                 |
-| Spanyolország                                    | ES                       | Esp                      | es-ES / ca-ES / eu-ES / amit-ES / en-US |
+| Spanyolország                                    | ES                       | Esp                      | es-ES / ca-ES / eu-ES / ft-ES / en-US |
 | Srí Lanka                                | LK                       | LKA                      | si-LK / en-US                         |
-| St Majda, Ascension, Tristan da Canha   | SH                       | Shn                      | en-US                                 |
+| St Foga, Ascension, Tristan da Amilyenha   | SH                       | Shn                      | en-US                                 |
 | Suriname                                 | SR                       | Sur                      | nl-NL                                 |
 | Svalbard                                 | Sj                       | SJM                      | nb-NO / en-US                         |
 | Svédország                                   | SE                       | Swe                      | sv-Standard kiadás / en-US                         |
@@ -250,7 +250,7 @@ Az alábbi táblázat a kulturális és nemzetközi szabványügyi szervezet (IS
 | Togo                                     | TG                       | TGO                      | fr-FR / en-US                         |
 | Tokelau                                  | Tk                       | TKL                      | en-US                                 |
 | Tonga                                    | TO                       | Tonna                      | en-US                                 |
-| Trinidad és Tobago                      | TT                       | TTO (TTO)                      | en-TT / en-US                         |
+| Trinidad és Tobago                      | TT                       | TTO                      | en-TT / en-US                         |
 | Tunézia                                  | TN                       | Tun                      | ar-TN / en-US                         |
 | Törökország                                   | TR                       | Tur                      | tr-TR / en-US                         |
 | Türkmenisztán                             | TM                       | TKM                      | tk-TM / en-US                         |
@@ -258,14 +258,14 @@ Az alábbi táblázat a kulturális és nemzetközi szabványügyi szervezet (IS
 | Tuvalu                                   | TV                       | TUV                      | en-US                                 |
 | Uganda                                   | UG                       | UGA                      | en-GB / en-US                         |
 | Ukrajna                                  | UA                       | Ukr                      | uk-UA / en-US                         |
-| Egyesült Arab Emírségek                     | AE                       | ARE (VANNAK)                      | ar-AE / en-US                         |
+| Egyesült Arab Emírségek                     | AE                       | ARE                      | ar-AE / en-US                         |
 | Egyesült Királyság                           | GB                       | Gbr                      | en-GB / en-US                         |
 | Az Usa-beli, outlying-szigetek                    | UM                       | Umi                      | en-US                                 |
 | Amerikai Virgin-szigetek                      | VI                       | Vir                      | en-US                                 |
 | Egyesült Államok                            | USA                       | USA                      | en-US / es-US                         |
 | Uruguay                                  | UY                       | Ury                      | es-UY / en-US                         |
 | Üzbegisztán                               | UZ                       | UZB                      | uz-Latn-UZ / en-US                    |
-| Vanuatu                                  | Je                       | VUT                      | en-US                                 |
+| Vanuatu                                  | Je                       | VUT (VUT)                      | en-US                                 |
 | Vatikán                             | VA                       | Áfa                      | it-IT / en-US                         |
 | Venezuela                                | VE                       | Ven                      | es-VE / en-US                         |
 | Vietnam                                  | VN                       | VNM                      | vi-VN / en-US                         |

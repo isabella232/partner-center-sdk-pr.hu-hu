@@ -6,16 +6,16 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: vijvala
 ms.author: vijvala
-ms.openlocfilehash: f18518e88b9bb08d4fd248922f4ce2fefdde004f
-ms.sourcegitcommit: c7dd3f92cade7f127f88cf6d4d6df5e9a05eca41
+ms.openlocfilehash: 4eead16c5bb2b01f0fba85e30ea35fbcdae9d5a6682872eecfeeb9e47f43d324
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/11/2021
-ms.locfileid: "112025649"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993758"
 ---
 # <a name="api-throttling-guidance-for-partners-calling-partner-center-apis"></a>API-szabályozási útmutató a Partnerközpont API-kat hívó partnerek számára 
 
-A Microsoft API-szabályozást használ, hogy egy időtartományon belül egyenletesebb teljesítményt biztosít a Partnerközpont API-kat hívó partnerek számára. A szabályozás korlátozza a szolgáltatásokra vonatkozó kérések számát egy adott időtartományban, hogy megakadályozza az erőforrások túlzott felhasználását. Bár Partnerközpont nagy mennyiségű kérést kezelnek, ha néhány partner túl sok kérést intéz, a szabályozás segít fenntartani az optimális teljesítményt és megbízhatóságot minden partner számára.  
+A Microsoft API-szabályozást használ, hogy egy időtartományon belül egyenletesebb teljesítményt biztosít a Partnerközpont API-kat hívó partnerek számára. A szabályozás korlátozza a szolgáltatásokra vonatkozó kérések számát egy adott időtartományban, hogy megakadályozza az erőforrások túlzott felhasználását. Bár Partnerközpont nagy mennyiségű kérést kell kezelnie, ha néhány partner túl sok kérést intéz, a szabályozás segít fenntartani az optimális teljesítményt és megbízhatóságot minden partner számára.  
 
 A szabályozási korlátok a forgatókönyvtől függően eltérőek lehetnek. Ha például nagy mennyiségű írást hajt végre, a szabályozás lehetősége magasabb, mint ha csak olvasási műveleteket hajt végre.
 
@@ -27,9 +27,9 @@ A szabályozási küszöbérték túllépése esetén a Partnerközpont korláto
 
 Az ügyfelek szabályozásának leggyakoribb okai a következők: 
 
-- Az API-k nagy száma partnerbérlő-azonosítónként: egyes Partnerközpont API-k esetében a szabályozást a partnerbérlő azonosítója határozza meg, és ha túl sok hívás hívja meg ezeket az **API-kat** ugyanazon partnerbérlő-azonosítón, az túllépi a szabályozási küszöbértéket.  
+- Egy API-ra vonatkozó nagy számú kérelem partnerbérlő-azonosítónként: egyes Partnerközpont API-k esetében a szabályozást a partnerbérlő azonosítója határozza meg, és ha túl sok hívás vezet ezekhez az API-khoz ugyanazon partnerbérlő-azonosítón, az túllépi a szabályozási küszöbértéket.  
 
-- **Egy API-ra** vonatkozó nagy számú kérelem partnerbérlőazonosítónként és ügyfélbérlő-azonosítónként: más API-k esetén a szabályozást a partnerbérlő/ügyfél bérlőazonosítójának kombinációja határozza meg; ilyen esetekben a túl sok hívás ugyanazon ügyfél bérlőazonosítójára való hívás szabályozást eredményez – míg más ügyfelekkel való hívás sikeres lehet.
+- **Egy API-ra** vonatkozó nagy számú kérelem partnerbérlőazonosítónként és ügyfélbérlő-azonosítónként: más API-k esetén a szabályozást a partnerbérlő azonosítója/az ügyfél bérlőazonosítójának kombinációja határozza meg; ilyen esetekben a túl sok hívás ugyanazon ügyfél bérlőazonosítójára való hívás szabályozást eredményez – míg más ügyfelekkel való hívás sikeres lehet.
 
 ## <a name="best-practices-to-avoid-throttling"></a>Ajánlott eljárások a szabályozás elkerüléséhez 
  
@@ -37,13 +37,13 @@ Az olyan programozási eljárások, mint például az erőforrások folyamatos l
 
 ## <a name="best-practices-to-handle-throttling"></a>Ajánlott eljárások a szabályozás kezeléshez
 
-A szabályozás kezelésével kapcsolatban az alábbi ajánlott eljárások ímek: 
+A szabályozás kezelésével kapcsolatban ajánlott eljárások a következők: 
 
 - Csökkentse a párhuzamosság mértékét. 
 - Csökkentse a hívások gyakoriságát. 
-- Kerülje az azonnali újrakéréseket, mert minden kérés a használati korlátokhoz van felhalmozott. 
+- Kerülje el az azonnali újrakéréseket, mert minden kérés a használati korlátokba kerül. 
 
-Hibakezelés implementálásakor használja a 429-es HTTP-hibakódot a szabályozásészleléshez. A sikertelen válasz tartalmazza a Retry-After válaszfejlécét. A kérelmek visszahelyezése a Retry-after késleltetéssel a leggyorsabb módszer a szabályozás utáni helyreállításra. 
+Hibakezelés implementálásakor használja a 429-es HTTP-hibakódot a szabályozásészleléshez. A sikertelen válasz tartalmazza a Retry-After válaszfejlécét. A kérelmeknek az Újrapróbálkozás utáni késleltetéssel való lekérése a leggyorsabb módszer a szabályozás utáni helyreállításra. 
 
 Az Újrapróbálkozás késleltetésének használata érdekében tegye a következőket: 
 
@@ -58,7 +58,7 @@ Az Újrapróbálkozás késleltetésének használata érdekében tegye a követ
 
 ## <a name="apis-currently-impacted-by-throttling"></a>Jelenleg szabályozás által érintett API-k
 
-Végül minden egyes api Partnerközpont, amely a "api.partnercenter.microsoft.com/" végpontot hívja meg, le lesz szabályozással. Jelenleg a szabályozási korlátok csak az alább felsorolt API-kon vannak kényszerítve. Partnerközpont minden API-ra gyűjti a telemetriát, és dinamikusan módosítja a szabályozási korlátokat. Az alábbi táblázat azokat az API-kat sorolja fel, amelyeken a szabályozás jelenleg érvényben van.  
+Végül minden egyes api Partnerközpont, amely a "api.partnercenter.microsoft.com/" végpontot hívja meg, le lesz szabályozással. Jelenleg a szabályozási korlátok csak az alább felsorolt API-kon vannak kikényszeredve. Partnerközpont minden API-ra gyűjti a telemetriát, és dinamikusan módosítja a szabályozási korlátokat. Az alábbi táblázat azokat az API-kat sorolja fel, amelyeken a szabályozás jelenleg érvényben van.  
 
 
 |**Művelet**| **Partnerközpont dokumentációja**|
@@ -114,7 +114,7 @@ Az operationtype/resources listája az alábbi API-dokumentumokban található.
 
 - [Erőforrások naplózása](auditing-resources.md)  
 
-- [Felhasználó által végzett Partnerközpont rekord lekérte](get-a-record-of-partner-center-activity-by-user.md)  
+- [Felhasználó által Partnerközpont rekord lekért rekordja](get-a-record-of-partner-center-activity-by-user.md)  
 
 
 

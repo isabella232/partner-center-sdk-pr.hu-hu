@@ -1,17 +1,17 @@
 ---
 title: Számla összegzéseinek lekérése
-description: A számlaösszegző erőforrást minden pénznemtípushoz használhatja az ismétlődő és egyszeri díjak egyenlegének és teljes díjának a megjelenítése érdekében.
+description: A számlaösszegző erőforrást minden pénznemtípushoz használhatja az ismétlődő és egyszeri díjak egyenlegének és teljes díjának megjelenítése érdekében.
 ms.date: 09/24/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: fb6ff839c56c7b0b77a9904abf05d95ca0500b00
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 8bc01ba57571dec2b9e8fb84452e0dd2485efc06483ba2cf6964a42543334fc5
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111549110"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993248"
 ---
 # <a name="get-invoice-summaries"></a>Számla összegzéseinek lekérése
 
@@ -21,7 +21,7 @@ Az **InvoiceSummaries** segítségével lekérhet egy számlaösszegzést, amely
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 - Egy érvényes számlaazonosító.
 
@@ -52,7 +52,7 @@ További információért tekintse meg az alábbi példakódot:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                   |
 |---------|-------------------------------------------------------------------------------|
@@ -83,11 +83,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus egy [**InvoiceSummaries erőforrást**](invoice-resources.md#invoicesummaries) ad vissza a válasz törzsében.
+Ha sikeres, ez a metódus egy [**InvoiceSummaries erőforrást**](invoice-resources.md#invoicesummaries) ad vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

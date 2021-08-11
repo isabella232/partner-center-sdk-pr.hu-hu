@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: parthpandyaMSFT
 ms.author: parthp
-ms.openlocfilehash: cb9f5815e0019c5e9b648dfd865e9752f0afdf05
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: 9be3bf1a5072140cc5f8c1e5b2f9ddaa939d1e682942addcc8d36cec3bf9d494
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111530327"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115997940"
 ---
 # <a name="update-the-partner-legal-business-profile"></a>A partner hivatalos vállalkozási profiljának frissítése
 
@@ -21,13 +21,13 @@ A partner jogi profiljának frissítése.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
 A partner jogi üzleti profiljának frissítéséhez először példányosítenie kell egy **LegalBusinessProfile** objektumot, és fel kell töltve a meglévő profillal. További információ: [Partner jogi profiljának lekérte.](get-legal-business-profile.md) Ezután frissítse a módosítani szükséges tulajdonságokat. Az alábbi példakód a cím és az elsődleges kapcsolattartási telefonszámok megváltoztatását mutatja be.
 
-Ezután szerezze be a partnerprofil műveleti gyűjteményének interfészét az **IAggregatePartner.Profiles tulajdonságból.** Ezután lekéri a **LegalBusinessProfile** tulajdonság értékét, hogy lekérje a jogi üzletiprofil-műveletek felületét. Végül hívja meg az [**Update**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.update) vagy [**az UpdateAsync**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.updateasync) metódust a módosított objektummal a profil frissítéséhez.
+Ezután szerezze be a partnerprofil műveleti gyűjteményének felületét az **IAggregatePartner.Profiles tulajdonságból.** Ezután lekéri a **LegalBusinessProfile** tulajdonság értékét, hogy lekérje a jogi üzletiprofil-műveletek felületét. Végül hívja meg az [**Update**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.update) vagy [**az UpdateAsync**](/dotnet/api/microsoft.store.partnercenter.profiles.ilegalbusinessprofile.updateasync) metódust a módosított objektummal a profil frissítéséhez.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -44,7 +44,7 @@ var updatedLegalBusinessProfile = partnerOperations.Profiles.LegalBusinessProfil
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                    |
 |---------|--------------------------------------------------------------------------------|
@@ -126,7 +126,7 @@ Ha a művelet sikeres, a válasz törzse tartalmazza a **frissített LegalBusine
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a [hibakódok Partnerközpont tekintse meg.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

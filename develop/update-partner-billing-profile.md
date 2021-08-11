@@ -1,17 +1,17 @@
 ---
 title: A partner számlázási profiljának frissítése
-description: Frissíti a partner számlázási profilját.
+description: Frissíti egy partner számlázási profilját.
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: parthpandyaMSFT
 ms.author: parthp
-ms.openlocfilehash: 2b09a0045df15d774c892a59fba8502d4d4f7024
-ms.sourcegitcommit: 4275f9f67f9479ce27af6a9fda96fe86d0bc0b44
+ms.openlocfilehash: 8a3ec80dccb0d205e8afe9811764b8afec5c10bc3a5aeb165b01d1ad998c98af
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/05/2021
-ms.locfileid: "111529766"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115997923"
 ---
 # <a name="update-the-partner-billing-profile"></a>A partner számlázási profiljának frissítése
 
@@ -21,11 +21,11 @@ Frissíti egy partner számlázási profilját
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
-A partner számlázási profiljának frissítéséhez olvassa be a meglévő profilt. A profil frissítése után használja az **IAggregatePartner.Profiles** gyűjteményt, és hívja meg **a BillingProfile** tulajdonságot. Végül hívja meg az **Update() metódust.**
+A partner számlázási profiljának frissítéséhez olvassa be a meglévő profilt. A profil frissítése után használja az **IAggregatePartner.Profiles** gyűjteményt, és hívja meg **a BillingProfile tulajdonságot.** Végül hívja meg az **Update() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -38,11 +38,11 @@ existingBillingProfile.PurchaseOrderNumber = new Random().Next(9000, 10000).ToSt
 BillingProfile updatedPartnerBillingProfile = partnerOperations.Profiles.BillingProfile.Update(existingBillingProfile);
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** Partnerközpont SDK **Osztály:** UpdateBillingProfile.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** UpdateBillingProfile.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                              |
 |---------|--------------------------------------------------------------------------|
@@ -108,7 +108,7 @@ Ha sikeres, ez a metódus egy **BillingProfile** objektumot ad vissza a válasz 
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

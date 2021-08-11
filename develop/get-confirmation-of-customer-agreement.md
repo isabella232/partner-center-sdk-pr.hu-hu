@@ -1,17 +1,17 @@
 ---
 title: A Microsoft Ügyfélszerződés ügyfél általi elfogadási megerősítésének lekérése
-description: Ez a cikk azt ismerteti, hogyan lehet megerősítést kapni az ügyfelek általi Microsoft Ügyfélszerződés.
+description: Ez a cikk azt ismerteti, hogyan lehet megerősítést kapni az ügyfél általi Microsoft Ügyfélszerződés.
 ms.date: 09/19/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 3668a5e510effb533cade311f52513b9a81d40af
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: f5e71f2660c6db638193deec02e9ba4f25a35be6aabdc1c4219f63b1f3295908
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760538"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993503"
 ---
 # <a name="get-confirmation-of-customer-acceptance-of-microsoft-customer-agreement"></a>A Microsoft Ügyfélszerződés ügyfél általi elfogadási megerősítésének lekérése
 
@@ -27,9 +27,9 @@ Ez a cikk bemutatja, hogyan kérhető(k) le a jóváhagyás(ak) arról, hogy az 
 
 - Ha az Partnerközpont .NET SDK-t használja, 1.14-es vagy újabb verzió szükséges.
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](./partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](./partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítést támogatja.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 ## <a name="net"></a>.NET
 
@@ -37,7 +37,7 @@ A korábban megadott ügyfél-elfogadás megerősítésének(i) lekérése:
 
 - Használja az **IAggregatePartner.Customers gyűjteményt,** és hívja meg a **ById** metódust a megadott ügyfélazonosítóval.
 
-- A **ByAgreementType** metódus hívásával lekérheti a **Agreements** Microsoft Ügyfélszerződés és szűrheti az eredményeket.
+- A **ByAgreementType** metódus hívásával Microsoft Ügyfélszerződés be az **Agreements** tulajdonságot, és szűrje az eredményeket.
 
 - Hívja meg **a Get** vagy **a GetAsync metódust.**
 
@@ -50,7 +50,7 @@ string agreementType = "MicrosoftCustomerAgreement";
 var customerAgreements = partnerOperations.Customers.ById(selectedCustomerId).Agreements.ByAgreementType(agreementType).Get();
 ```
 
-A teljes minta megtalálható a [GetCustomerAgreements osztályban](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetCustomerAgreements.cs) a konzol tesztalkalmazás [projektjében.](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples)
+A teljes minta a [GetCustomerAgreements](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples/blob/master/Source/Partner%20Center%20SDK%20Samples/Agreements/GetCustomerAgreements.cs) osztályban található a konzol tesztalkalmazás [projektjében.](https://github.com/PartnerCenterSamples/Partner-Center-SDK-Samples)
 
 ## <a name="rest-request"></a>REST-kérés
 
@@ -60,7 +60,7 @@ A korábban megadott ügyfél-elfogadás megerősítésének lekérése:
 
 2. Az **agreementType lekérdezési** paraméterrel az eredményeket csak a lekérdezési Microsoft Ügyfélszerződés.
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 Használja a következő kérésszintaxist:
 
@@ -74,7 +74,7 @@ A kérelemhez a következő URI-paramétereket használhatja:
 
 | Név             | Típus | Kötelező | Leírás                                                                               |
 |------------------|------|----------|-------------------------------------------------------------------------------------------|
-| ügyfél-bérlő-azonosító | GUID | Igen | Az érték egy **CustomerTenantId** formátumú GUID, amely lehetővé teszi egy ügyfél megadását. |
+| ügyfél-bérlő-azonosító | GUID | Yes | Az érték egy **CUSTOMERTenantId** formátumú GUID, amely lehetővé teszi egy ügyfél megadását. |
 | szerződéstípus | sztring | No | Ez a paraméter az összes szerződési metaadatot visszaadja. Ezzel a paraméterrel adott szerződéstípusra lehet hatókört használni a lekérdezési válaszra. A támogatott értékek a következőek: <br/><br/> **MicrosoftCloudAgreement,** amely csak *MicrosoftCloudAgreement* típusú szerződési metaadatokat tartalmaz.<br/><br/> **MicrosoftCustomerAgreement,** amely csak *MicrosoftCustomerAgreement* típusú szerződési metaadatokat tartalmaz.<br/><br/> **\**_ az összes szerződési metaadatot visszaadja. (Ne használja a _* \* _ hacsak a kód nem rendelkezik a váratlan szerződéstípusok *kezeléshez szükséges logikával.) <br/> <br/> _* Megjegyzés:** Ha az URI paraméter nincs megadva, a lekérdezés alapértelmezés szerint **a MicrosoftCloudAgreement** értéket használja a visszamenőleges kompatibilitás érdekében. A Microsoft bármikor bevezetheti a szerződés metaadatait az új szerződéstípusokkal.  |
 
 ### <a name="request-headers"></a>Kérésfejlécek
@@ -101,7 +101,7 @@ Ha a művelet sikeres, ez a metódus **szerződéserőforrások** gyűjteményé
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat.
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat.
 
 Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 

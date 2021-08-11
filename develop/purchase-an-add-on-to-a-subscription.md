@@ -4,12 +4,12 @@ description: Bővítmény vásárlása meglévő előfizetéshez.
 ms.date: 11/29/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: d8b700a2ad41a37ca0ad745f3e7767449974b18a
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: 5227b917faf663c129b1abed1d10318620667e9b47524eb8c91867fb6b453ee8
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111547682"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115997362"
 ---
 # <a name="purchase-an-add-on-to-a-subscription"></a>Bővítmény vásárlása egy előfizetéshez
 
@@ -19,7 +19,7 @@ Bővítmény vásárlása meglévő előfizetéshez.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 - Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
@@ -71,7 +71,7 @@ A lépések a következők:
 
 ## <a name="c"></a>C\#
 
-Bővítmény vásárlásához először szerezzen be egy felületet az előfizetési műveletekhez. Ehhez hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához, és a [**Subscriptions.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust a bővítményajánlattal kapcsolatos előfizetés azonosításához. Ezen a [**felületen**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription) lekérhetőek az előfizetés részletei a [**Get hívása segítségével.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.get) Az előfizetés részletei tartalmazzák az előfizetési rendelés rendelésazonosítóját, amely a bővítménysel frissíthető rendelés.
+Bővítmény vásárlásához először szerezzen be egy felületet az előfizetési műveletekhez. Ehhez hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával az ügyfél azonosításához, és a [**Subscriptions.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódust a bővítményajánlattal kapcsolatos előfizetés azonosításához. Ezzel a [**felülettel**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription) lekéri az előfizetés adatait a [**Get hívása használatával.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.get) Az előfizetés adatai tartalmazzák az előfizetési rendelés rendelésazonosítóját, amely a bővítménysel frissíthető rendelés.
 
 Ezután példányosítsa az új [**Order**](/dotnet/api/microsoft.store.partnercenter.models.orders.order) objektumot, és töltse fel egyetlen [**LineItem**](/dotnet/api/microsoft.store.partnercenter.models.orders.orderlineitem) példáncával, amely tartalmazza a bővítmény azonosításához szükséges információkat, ahogyan az alábbi kódrészletben látható. Ezzel az új objektummal frissítheti az előfizetési rendelést a bővítmény használatával. Végül hívja meg a [**Patch**](/dotnet/api/microsoft.store.partnercenter.orders.iorder.patch) metódust az előfizetési rendelés frissítéséhez, miután először azonosította az ügyfelet az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) azonosítóval, a rendelést pedig [**az Orders.ById azonosítóval.**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.byid)
 
@@ -134,7 +134,7 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-Az alábbi táblázatok a kérelem törzsében lévő tulajdonságokat ismertetik.
+Az alábbi táblázatok a kérés törzsében található tulajdonságokat ismertetik.
 
 ## <a name="order"></a>Sorrend
 
@@ -150,7 +150,7 @@ Az alábbi táblázatok a kérelem törzsében lévő tulajdonságokat ismerteti
 
 | Név                 | Típus   | Kötelező | Leírás                                                  |
 |----------------------|--------|----------|--------------------------------------------------------------|
-| LineItemNumber (Sor száma)       | szám | Y        | A sorelem száma, 0-val kezdve.                       |
+| LineItemNumber (Sor száma)       | szám | Y        | A sortétel száma, 0-val kezdve.                       |
 | OfferId (Ajánlatazonosító)              | sztring | Y        | A bővítmény ajánlatazonosítója.                                  |
 | SubscriptionId       | sztring | N        | A megvásárolt bővítmény-előfizetés azonosítója.                 |
 | ParentSubscriptionId (Szülő-előíróazonosító) | sztring | Y        | Annak a szülő előfizetésnek az azonosítója, amely a bővítményajánlattal rendelkezik. |
@@ -202,7 +202,7 @@ Ha a művelet sikeres, ez a metódus a válasz törzsében adja vissza a frissí
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

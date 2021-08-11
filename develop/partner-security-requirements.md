@@ -1,23 +1,23 @@
 ---
-title: Partnerbiztonsági követelmények
-description: A többtényezős hitelesítés partnerbérlőhöz való kényszerítésében segítő REST API-k.
+title: Partnerekre vonatkozó biztonsági követelmények
+description: A partnerbérlő többtényezős hitelesítését kikényszeríteni segítő REST API-k.
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 ms.date: 05/29/2020
-ms.openlocfilehash: cbdf081f7d9424280e778364b130c7ac1c26f0e3
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: bce9a69efd380db3ea9ec96dc712c5ac85ed4f88ff80e0b7af45b333e2ebc2b2
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111445323"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115997532"
 ---
 # <a name="partner-security-requirements-status"></a>Partnerbiztonsági követelmények állapota
 
 Ez a cikk a többtényezős hitelesítéshez (MFA) kapcsolódó REST API-kat ismerteti a Partnerközpont. Ezek az API-k segítenek kikényszeríteni az MFA-t a partnerbérlőben minden egyes felhasználói fiókhoz. 
 
-## <a name="partner-security-requirements-overview"></a>Partnerbiztonsági követelmények áttekintése
+## <a name="partner-security-requirements-overview"></a>Partnerekre vonatkozó biztonsági követelmények áttekintése
 
-- [Áttekintés/partnerközpont/partnerbiztonsági követelmények)
+- [Áttekintés/partnerközpont/partner-biztonsági-követelmények)
 
 ## <a name="understand-mfa-adoption-status"></a>Az MFA bevezetésének állapota
 

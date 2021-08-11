@@ -4,12 +4,12 @@ description: Hogyan lehet lekérte az előfizetés támogatási kapcsolattartój
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: b6c98e5ed96f2ca4787e93504c9e094bd46ae783
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: 448a60db236ddfbb090cd376bb0dc98e93d4c87342febbcc1958ccd6033fa900
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760759"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994166"
 ---
 # <a name="get-a-subscriptions-support-contact"></a>Egy előfizetés támogatási kapcsolattartójának lekérése
 
@@ -42,7 +42,7 @@ var supportContact = partnerOperations.Customers.ById(customerId).Subscriptions.
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus  | Kérés URI-ja                                                                                                                    |
 |---------|--------------------------------------------------------------------------------------------------------------------------------|
@@ -54,8 +54,8 @@ Az ügyfél és az előfizetés azonosításához használja az alábbi elérés
 
 | Név            | Típus   | Kötelező | Leírás                                                     |
 |-----------------|--------|----------|-----------------------------------------------------------------|
-| ügyfél-azonosító     | sztring | Igen      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.           |
-| subscription-id | sztring | Igen      | A próba-előfizetést azonosító GUID formátumú sztring. |
+| ügyfél-azonosító     | sztring | Yes      | Egy GUID formátumú sztring, amely azonosítja az ügyfelet.           |
+| subscription-id | sztring | Yes      | A próba-előfizetést azonosító GUID formátumú sztring. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 

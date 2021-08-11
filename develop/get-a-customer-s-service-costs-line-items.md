@@ -4,12 +4,12 @@ description: Lekérte az ügyfél szolgáltatási költségsorának elemeit a me
 ms.date: 07/12/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 1bc2914d7c8d41c6d806131444fdc241aa1feb90
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: 66ede79958e7e218ba59492ea9019d209a5d00dfae331622eceba78963048491
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111874941"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115992959"
 ---
 # <a name="get-a-customers-service-costs-line-items"></a>Egy ügyfél szolgáltatásdíjai sorelemeinek lekérése
 
@@ -17,15 +17,15 @@ Lekérte az ügyfél szolgáltatási költségsorának elemeit a megadott száml
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **ki a CSP** elemet Partnerközpont menüből, majd válassza az **Ügyfelek lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - A számlázási időszak jelzője ( **`mostrecent`** ).
 
 ## <a name="c"></a>C\#
 
-A megadott ügyfél szolgáltatási költségeinek összegzése:
+A szolgáltatási költségek összegzésének lekérése a megadott ügyfélhez:
 
 1. Az ügyfél azonosításához hívja meg az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust az ügyfél azonosítójával.
 
@@ -44,7 +44,7 @@ var serviceCostsSummary = partnerOperations.Customers.ById(selectedCustomerId).S
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                             |
 |---------|-------------------------------------------------------------------------------------------------------------------------|
@@ -56,8 +56,8 @@ Az ügyfél és a számlázási időszak azonosításához használja az alábbi
 
 | Név           | Típus   | Kötelező | Leírás                                                                                                                      |
 |----------------|--------|----------|----------------------------------------------------------------------------------------------------------------------------------|
-| ügyfél-azonosító    | guid   | Igen      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.                                                                       |
-| számlázási időszak | sztring | Igen      | A számlázási időszakot jelölő jelző. Az egyetlen támogatott érték a MostRecent. A sztringben nem számít a kis- és a nagy- és a kis- és a nagy- és a nagy-nagyszomba |
+| ügyfél-azonosító    | guid   | Yes      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.                                                                       |
+| számlázási időszak | sztring | Yes      | A számlázási időszakot jelölő jelző. Az egyetlen támogatott érték a MostRecent. A sztring esete nem számít. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -84,11 +84,11 @@ Host: api.partnercenter.microsoft.com
 Ha ez sikeres, a válasz törzse tartalmaz egy [ServiceCostLineItem](service-costs-resources.md) erőforrást, amely információkat nyújt a szolgáltatás költségeiről.
 
 > [!IMPORTANT]
-> A következő  tulajdonságok csak azokra a szolgáltatási *költségsorelemekre* vonatkoznak, ahol a termék egy alkalommal vásárolható meg: **productId**, **productName,** **skuId**, **skuName**, **availabilityId**, **publisherId**, **publisherName**, **termAndBillingCycle**, **discountDetails**. Ezek a *tulajdonságok nem vonatkoznak azokra* a szolgáltatássorelemekre, ahol a termék ismétlődő *vásárlás.* Ezek a tulajdonságok például *nem vonatkoznak az* előfizetés-alapú Office 365 azure-ban.
+> A következő  tulajdonságok csak azokra a szolgáltatási *költségsorelemekre* vonatkoznak, ahol a termék egy alkalommal vásárol: **productId**, **productName,** **skuId**, **skuName**, **availabilityId**, **publisherId**, **publisherName**, **termAndBillingCycle**, **discountDetails**. Ezek a *tulajdonságok nem vonatkoznak azokra* a szolgáltatássorelemekre, ahol a termék ismétlődő *vásárlás.* Ezek a tulajdonságok például *nem vonatkoznak* az előfizetés-alapú Office 365 azure-ban.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

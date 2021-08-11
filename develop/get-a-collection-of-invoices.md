@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: sourishdeb
 ms.author: sodeb
-ms.openlocfilehash: 7698d85df3341ae4cbff0377bd0a1bb47cd36740
-ms.sourcegitcommit: d20e7d572fee09a83a4b23a92da7ff09cfebe75a
+ms.openlocfilehash: 7a423b5061ecfcf6faf191c75a7e665642620cc2add171b27864e11516bec16d
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/10/2021
-ms.locfileid: "111906435"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993163"
 ---
 # <a name="get-a-collection-of-invoices"></a>Számlák gyűjteményének lekérése
 
@@ -21,15 +21,15 @@ A partner számlái gyűjteményének lekérése.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 ## <a name="c"></a>C\#
 
 Az összes elérhető számla gyűjteményének lekéréséhez használja az [**Invoices**](/dotnet/api/microsoft.store.partnercenter.ipartner.invoices) tulajdonságot a számlázási műveletek interfészének lekéréséhez, majd hívja meg a [**Get**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.get) vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.getasync) metódust a gyűjtemény lekéréséhez.
 
-A számlák lapozott gyűjteményének lehívásához először hívja meg a [**BuildIndexedQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildindexedquery) metódust, és adja át neki az oldalméretet egy [**IQuery-objektum létrehozásához.**](/dotnet/api/microsoft.store.partnercenter.models.query.iquery) Ezután az [**Invoices**](/dotnet/api/microsoft.store.partnercenter.ipartner.invoices) tulajdonság használatával kérje le a számlaműveletek interfészét, majd adja át az IQuery objektumot a [**Query**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.query) vagy [**a QueryAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.queryasync) metódusnak a kérés elküldését és az első oldal lekérését.
+A számlák lapozott gyűjteményének lehívásához először hívja meg a [**BuildIndexedQuery**](/dotnet/api/microsoft.store.partnercenter.models.query.queryfactory.buildindexedquery) metódust, és adja át az oldalméretet egy [**IQuery-objektum létrehozásához.**](/dotnet/api/microsoft.store.partnercenter.models.query.iquery) Ezután az [**Invoices**](/dotnet/api/microsoft.store.partnercenter.ipartner.invoices) tulajdonság használatával kérje le a számlaműveletek interfészét, majd adja át az IQuery objektumot a [**Query**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.query) vagy [**QueryAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.queryasync) metódusnak a kérés elküldését és az első oldal lekérését.
 
-Ezután az [**Enumerator (Enumerátorok)**](/dotnet/api/microsoft.store.partnercenter.ipartner.enumerators) tulajdonság használatával hozzon létre egy felületet a támogatott erőforrás-gyűjtemény-enumerátorok gyűjteményéhez, majd hívja meg az [**Invoices.Create**](/dotnet/api/microsoft.store.partnercenter.factory.iresourcecollectionenumeratorfactory-1.create) hívását egy enumerátor létrehozásához a számlák gyűjteményének bejárása számára. Végül az enumerátor használatával lekérheti a számlák minden oldalát, és használhatja őket az alábbi példakódban látható módon. A Next [**metódus**](/dotnet/api/microsoft.store.partnercenter.enumerators.iresourcecollectionenumerator-1.next) minden hívása a számlák következő oldalára vonatkozó kérést küld az oldal mérete alapján.
+Ezután az [**Enumerator (Enumerátorok)**](/dotnet/api/microsoft.store.partnercenter.ipartner.enumerators) tulajdonság használatával szerezze be a támogatott erőforrás-gyűjtemények enumerátor-gyűjteményének felületét, majd hívja meg az [**Invoices.Create**](/dotnet/api/microsoft.store.partnercenter.factory.iresourcecollectionenumeratorfactory-1.create) hívást egy enumerátor létrehozásához a számlák gyűjteményének bejárása számára. Végül az enumerátor használatával lekérheti és használhatja a számlák minden oldalát az alábbi példakódban látható módon. A Next metódus [**minden**](/dotnet/api/microsoft.store.partnercenter.enumerators.iresourcecollectionenumerator-1.next) hívása a számlák következő oldalára vonatkozó kérést küld az oldal mérete alapján.
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -70,14 +70,14 @@ while (invoicesEnumerator.HasValue)
 }
 ```
 
-Egy kissé eltérő példáért lásd: **Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** GetPagedInvoices.cs
+Egy kissé más példát itt láthat: **Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** GetPagedInvoices.cs
 
 > [!NOTE] 
-> Ugyanazt az API-t használjuk minden modern kereskedelmi vásárláshoz, valamint 145p és Office licenchez. A méret és az eltolás csak az örökölt számlák esetén lesz figyelembe véve. Minden modern kereskedelmi vásárlás esetén a rendszer figyelmen kívül & eltolást.
+> Ugyanazt az API-t használjuk minden modern kereskedelmi vásárláshoz, valamint 145p és Office licenchez. A méret és az eltolás csak az örökölt számlák esetén lesz figyelembe véve. Minden modern kereskedelmi vásárlás esetén a rendszer figyelmen kívül hagyja & eltolást.
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                  |
 |---------|----------------------------------------------------------------------------------------------|
@@ -89,8 +89,8 @@ A kérelem létrehozásakor használja a következő lekérdezési paramétereke
 
 | Név   | Típus | Kötelező | Leírás                                                                            |
 |--------|------|----------|----------------------------------------------------------------------------------------|
-| size   | int  | Nem       | A válaszban visszaadni szükséges számlaerőforrások száma. Ezt a paramétert nem kötelező megadni. |
-| offset | int  | Nem       | Az első vissza nem tér számlának nulla alapú indexe.                                   |
+| size   | int  | No       | A válaszban visszaadni szükséges számlaerőforrások száma. Ezt a paramétert nem kötelező megadni. |
+| offset | int  | No       | Az első vissza visszaszámlázott számla nullaalapú indexe.                                   |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -119,7 +119,7 @@ Ha a művelet sikeres, a válasz törzse tartalmazza a [számlaerőforrások gy�
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

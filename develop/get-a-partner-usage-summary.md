@@ -6,30 +6,30 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: f003980f1b521ad0ac26dbfd0d4821b9096fdd27
-ms.sourcegitcommit: b1d6fd0ca93d8a3e30e970844d3164454415f553
+ms.openlocfilehash: e82c2220768b211b37fad4bbc675e347a25a59217aa881f4e4db2e4d586eb354
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111873904"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993622"
 ---
 # <a name="get-a-usage-summary-for-a-partner"></a>Egy partner használati összegzésének lekért táblázata
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-A **PartnerUsageSummary** erőforrással lekért partneri használati összegzést kaphat az összes olyan ügyfélről, aki adott Azure-szolgáltatást vagy -erőforrást vásárolt az aktuális számlázási időszakban.
+A **PartnerUsageSummary** erőforrás használatával lekértheti az összes olyan ügyfél partnerhasználati összegzését, aki adott Azure-szolgáltatást vagy -erőforrást vásárolt az aktuális számlázási időszakban.
 
 *Az API által visszaadott összeg nem adja vissza az Azure-csomaghoz használó ügyfelek fogyasztását.* A jövőben elalasztást tervezünk.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv csak az App+User hitelesítő adatokkal történő hitelesítést támogatja.
 
 ## <a name="c"></a>C\#
 
 Az adott Azure-szolgáltatást vagy -erőforrást az aktuális számlázási időszakban megvásárolt összes ügyfél használati összegzésének lekérte:
 
-1. Használja az **IAggregatePartnert.**
+1. Használja az **IAggregatePartner partnert.**
 
 2. Hívja meg **a UsageSummary** tulajdonságot, majd a **Get() vagy** **a GetAsync() metódust:**
 
@@ -47,7 +47,7 @@ Példaként tekintse meg a következőket:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                         |
 |---------|---------------------------------------------------------------------|
@@ -77,7 +77,7 @@ Ha sikeres, ez a metódus egy **PartnerUsageSummary** erőforrást ad vissza a v
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be ezt a kódot, a hiba típusát és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be ezt a kódot, a hiba típusát és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

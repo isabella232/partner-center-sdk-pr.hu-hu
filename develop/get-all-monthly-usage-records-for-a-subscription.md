@@ -6,37 +6,37 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: khpavan
 ms.author: sakhanda
-ms.openlocfilehash: ee4bd413eec7d5a2dddbe3803df8839589ab7504
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: 62cbca9fada5e6935aea647e76097eb73bb3f8f3a5f355f4b43a64e21831070b
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760283"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993996"
 ---
 # <a name="get-all-monthly-usage-records-for-a-subscription"></a>Egy előfizetés összes havi használati rekordjának lekérése
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Az [**AzureResourceMonthlyUsageRecord**](/dotnet/api/microsoft.store.partnercenter.models.usage.azureresourcemonthlyusagerecord) erőforrás-gyűjtemény használatával lekért lista az ügyfél előfizetésén belüli szolgáltatásokról és a társított minősített használati adatokról.
+Az [**AzureResourceMonthlyUsageRecord**](/dotnet/api/microsoft.store.partnercenter.models.usage.azureresourcemonthlyusagerecord) erőforrás-gyűjtemény használatával lekérte az ügyfél előfizetésén belüli szolgáltatások listáját és a hozzájuk társított minősített használati adatokat.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
-*Ez az API csak Microsoft Azure (MS-AZR-0145P) előfizetéseket támogat. Azure-csomag használata esetén lásd: Használati adatok [lekérte az előfizetéshez mérő alapján.](get-a-customer-subscription-meter-usage-records.md)*
+*Ez az API csak Microsoft Azure (MS-AZR-0145P) előfizetéseket támogat. Azure-csomag használata esetén lásd: Használati adatok lekérte az előfizetéshez [mérő alapján.](get-a-customer-subscription-meter-usage-records.md)*
 
 ## <a name="c"></a>C\#
 
-Az előfizetés erőforrás-használati információinak lekért adatai:
+Az előfizetés erőforrás-használati információinak lekért információk:
 
-1. Az **IAggregatePartner.Customers gyűjtemény** használatával hívja meg a **ById()** metódust.
+1. Az **IAggregatePartner.Customers gyűjtemény** használatával hívja meg a **ById() metódust.**
 
-2. Hívja meg **a Subscriptions (Előfizetések)** tulajdonságot, **a UsageRecords**(Használati adatok) tulajdonságot, majd a **Resources (Erőforrások)** tulajdonságot.
-3. Hívja meg **a Get() vagy** **a GetAsync() metódust.**
+2. Hívja meg **a Subscriptions (Előfizetések)** és **a UsageRecords**(Használati adatok) tulajdonságot, majd a **Resources (Erőforrások)** tulajdonságot.
+3. Hívja meg a **Get() vagy** **a GetAsync() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -54,7 +54,7 @@ Példaként tekintse meg a következőket:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                                                                       |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -62,7 +62,7 @@ Példaként tekintse meg a következőket:
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
-Ez a táblázat a minősített használati adatok lekérdező lekérdezési paramétereit sorolja fel.
+Ez a táblázat felsorolja a minősített használati adatok lekérdezhető lekérdezési paramétereit.
 
 | Név                    | Típus     | Kötelező | Leírás                               |
 |-------------------------|----------|----------|-------------------------------------------|
@@ -93,7 +93,7 @@ Ha a művelet sikeres, ez a metódus az **AzureResourceMonthlyUsageRecord** erő
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

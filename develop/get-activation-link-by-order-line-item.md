@@ -1,17 +1,17 @@
 ---
 title: Aktiválási hivatkozás lekérése megrendelési sorelem alapján
-description: Lekért egy előfizetés-aktiválási hivatkozást rendeléssorelem alapján.
+description: Lekért egy előfizetés-aktiválási hivatkozást a megrendelés soreleme alapján.
 ms.date: 08/16/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: aa02a5a5b4a281b96e32ee6d239cc440cf8af4ec
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: 61cb6659961cfeb22d3b0fe7ad5dd8533d5f72dda76fe96e64b4c64f39ece397
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760776"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115994149"
 ---
 # <a name="get-activation-link-by-order-line-item"></a>Aktiválási hivatkozás lekérése megrendelési sorelem alapján
 
@@ -19,7 +19,7 @@ ms.locfileid: "111760776"
 
 Lekért egy kereskedelmi piactéri előfizetés aktiválási hivatkozását a rendelési sor tételszáma alapján.
 
-Az Partnerközpont-irányítópulton ezt a műveletet úgy használhatja, hogy  kiválaszt egy adott előfizetést **az** Előfizetés alatt a főoldalon, vagy az  Előfizetések lapon az aktiválni kívánt előfizetés melletti Ugrás az **Publisher** webhelyre hivatkozást.
+Az Partnerközpont-irányítópulton ezt a műveletet úgy használhatja, hogy  kiválaszt egy adott előfizetést **az** Előfizetés alatt a főoldalon, vagy az  Előfizetések oldalon az aktiválni kívánt előfizetés melletti Ugrás az **Publisher** webhelyre hivatkozást.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
@@ -29,7 +29,7 @@ Az Partnerközpont-irányítópulton ezt a műveletet úgy használhatja, hogy  
 
 ## <a name="c"></a>C\#
 
-Egy sorelem aktiválási hivatkozásának lehívásához használja az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, és hívja meg a [**ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a kiválasztott ügyfél-azonosítóval. Ezután hívja meg [**az Orders tulajdonságot**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) és a [**ById() metódust**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.byid) a megadott [**OrderId értékével.**](/dotnet/api/microsoft.store.partnercenter.models.orders.order.id) Ezután hívja meg a [**LineItems metódust**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.get) **a ById() metódussal** és a sortételszám azonosítóját.  Végül hívja meg az **ActivationLinks() metódust.**
+Egy sorelem aktiválási hivatkozásának lehívásához használja az [**IAggregatePartner.Customers**](/dotnet/api/microsoft.store.partnercenter.ipartner.customers) gyűjteményt, és hívja meg a [**ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódust a kiválasztott ügyfél-azonosítóval. Ezután hívja meg [**az Orders tulajdonságot**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.orders) és a [**ById() metódust**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.byid) a megadott [**OrderId értékével.**](/dotnet/api/microsoft.store.partnercenter.models.orders.order.id) Ezután hívja meg a [**LineItems metódust**](/dotnet/api/microsoft.store.partnercenter.orders.iordercollection.get) **a ById() metódussal** a sorelem számazonosítóval.  Végül hívja meg az **ActivationLinks() metódust.**
 
 ```csharp
 // IAggregatePartner partnerOperations;

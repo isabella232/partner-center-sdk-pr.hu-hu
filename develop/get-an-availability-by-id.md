@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: c31bc12d8d484cc8042f36aa865145600d9e6738
-ms.sourcegitcommit: d4b0c80d81f1d5bdf3c4c03344ad639646ae6ab9
+ms.openlocfilehash: fccd566e83dab8994280fdee072c0d6f27b690d5292ed3973427088f46b30d6b
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/09/2021
-ms.locfileid: "111760198"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993554"
 ---
 # <a name="get-the-availability-by-id"></a>A rendelkezésre állás lekért azonosítója
 
@@ -19,7 +19,7 @@ Lekérte a megadott termék és termékváltozat rendelkezésre állását egy r
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 - Egy termékazonosító.
 
@@ -29,7 +29,7 @@ Lekérte a megadott termék és termékváltozat rendelkezésre állását egy r
 
 ## <a name="c"></a>C\#
 
-Egy adott rendelkezésre [](product-resources.md#availability)állás részleteinek lekért [](get-a-sku-by-id.md) lépéseit a Termékváltozat lekért azonosítója alapján lépéseit követve szerezze be az adott [termékváltozat](product-resources.md#sku) műveleteihez szükséges felületet. Az eredményül kapott felületen válassza az **Availabilities (Rendelkezésre** állások) tulajdonságot a rendelkezésre álláshoz elérhető műveletekkel való interfész beszerzéséhez. Ezt követően adja át a rendelkezésre állási azonosítót a **ById()** metódusnak az adott rendelkezésre álláshoz szükséges műveletek lekérése érdekében, majd hívja meg a **Get()** vagy **a GetAsync()** metódust a rendelkezésre állási adatok lekérése érdekében.
+Egy adott rendelkezésre [](product-resources.md#availability)állás részleteinek lekért [](get-a-sku-by-id.md) lépéseit a Termékváltozat lekért azonosítója alapján lépéseit követve szerezze be az adott [termékváltozat](product-resources.md#sku) műveleteihez szükséges felületet. Az eredményül kapott felületen válassza az **Availabilities (Rendelkezésre** állások) tulajdonságot a rendelkezésre álláshoz elérhető műveletekkel való interfész beszerzéséhez. Ezután adja át a rendelkezésre állási azonosítót a **ById()** metódusnak az adott rendelkezésre álláshoz szükséges műveletek lekérése érdekében, majd hívja meg a **Get()** vagy **a GetAsync()** metódust a rendelkezésre állási adatok lekérése érdekében.
 
 ```csharp
 IAggregatePartner partnerOperations;
@@ -83,10 +83,10 @@ Az alábbi elérési út és lekérdezési paraméterek használatával lekérde
 
 | Név                   | Típus     | Kötelező | Leírás                                                     |
 |------------------------|----------|----------|-----------------------------------------------------------------|
-| termékazonosító             | sztring   | Igen      | Egy GUID formátumú sztring, amely azonosítja a terméket.            |
-| sku-id                 | sztring   | Igen      | Egy GUID formátumú sztring, amely azonosítja a termékváltozatot.                |
-| rendelkezésre állási azonosító        | sztring   | Igen      | Egy GUID formátumú sztring, amely a rendelkezésre állást azonosítja.       |
-| országkód           | sztring   | Igen      | Egy ország-/régióazonosító.                                            |
+| termékazonosító             | sztring   | Yes      | Egy GUID formátumú sztring, amely azonosítja a terméket.            |
+| sku-id                 | sztring   | Yes      | Egy GUID formátumú sztring, amely azonosítja a termékváltozatot.                |
+| rendelkezésre állási azonosító        | sztring   | Yes      | Egy GUID formátumú sztring, amely a rendelkezésre állást azonosítja.       |
+| országkód           | sztring   | Yes      | Egy ország-/régióazonosító.                                            |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -119,7 +119,7 @@ Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sik
 
 Ez a metódus a következő hibakódokat adja vissza:
 
-| HTTP-állapotkód     | Hibakód   | Leírás                                                                                               |
+| HTTP-állapotkód     | Hibakód   | Description                                                                                               |
 |----------------------|--------------|-----------------------------------------------------------------------------------------------------------|
 | 404                  | 400013       | A termék nem található.                                                                                    |
 | 404                  | 400018       | A termékváltozat nem található.                                                                                        |

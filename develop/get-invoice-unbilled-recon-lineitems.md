@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: sourishdeb
 ms.author: sodeb
-ms.openlocfilehash: 5ab7dde0d78e8ff15bb1a960b16c8c925b0478ce
-ms.sourcegitcommit: c5acfb373aa012eb3b6c17182f7ca56883502c6b
+ms.openlocfilehash: 3e461367eb41c180dd1004ab2548ca24c4b891976ef53d852bb7933ff23fae65
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/19/2021
-ms.locfileid: "112391291"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993877"
 ---
 # <a name="get-invoices-unbilled-reconciliation-line-items"></a>A számla számlázatlan egyeztetési sorelemek lekért száma
 
@@ -21,7 +21,7 @@ A következő módszerekkel lekérte a ki nem számlázott számlasorelemek (má
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
 
 - Egy számlaazonosító. Ez azonosítja a számlát, amelynek lekéri a sorelemeket.
 
@@ -113,7 +113,7 @@ Hasonló példát a következőben láthat:
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 A REST-kéréshez a következő szintaxisokat használhatja a saját esetétől függően. További információért tekintse meg az egyes szintaxisok leírását.
 
@@ -129,13 +129,13 @@ A kérelem létrehozásakor használja a következő URI-t és lekérdezési par
 
 | Név                   | Típus   | Kötelező | Leírás                                                                     |
 |------------------------|--------|----------|---------------------------------------------------------------------------------|
-| számlaazonosító             | sztring | Igen      | A számlát azonosító sztring. A ki nemszámlázatlan becslések lekért értékével. |
-| Szolgáltató               | sztring | Igen      | A szolgáltató: "OneTime".                                                |
-| invoice-line-item-type | sztring | Igen      | A számla részleteinek típusa: "BillingLineItems".               |
-| hasPartnerEarnedCredit | logikai   | Nem       | Az érték, amely jelzi, hogy a rendszer visszaadja-e a partneri jóváírással kapott sorelemeket. Megjegyzés: ez a paraméter csak akkor lesz alkalmazva, ha a szolgáltató típusa OneTime, az InvoiceLineItemType pedig UsageLineItems.
-| currencyCode           | sztring | Igen      | A ki nemszámlázatlan sorelemek pénznemkódja.                                  |
-| period                 | sztring | Igen      | A nemszámlázatlan felderítés időtartama. például: current, previous.                      |
-| size                   | szám | Nem       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000                     |
+| számlaazonosító             | sztring | Yes      | A számlát azonosító sztring. A ki nemszámlázatlan becslések lekért értékével. |
+| Szolgáltató               | sztring | Yes      | A szolgáltató: "OneTime".                                                |
+| invoice-line-item-type | sztring | Yes      | A számla részleteinek típusa: "BillingLineItems".               |
+| hasPartnerEarnedCredit | logikai   | No       | Az érték, amely jelzi, hogy a rendszer visszaadja-e a partneri jóváírással kapott sorelemeket. Megjegyzés: ez a paraméter csak akkor lesz alkalmazva, ha a szolgáltató típusa OneTime, az InvoiceLineItemType pedig UsageLineItems.
+| currencyCode           | sztring | Yes      | A ki nemszámlázatlan sorelemek pénznemkódja.                                  |
+| period                 | sztring | Yes      | A nemszámlázatlan felderítés időtartama. például: current, previous.                      |
+| size                   | szám | No       | A visszaadott elemek maximális száma. Az alapértelmezett méret 2000                     |
 | seekOperation          | sztring | No       | Állítsa be a seekOperation=Next elemet a felderítési sorelemek következő oldalának le tételhez.                |
 
 ### <a name="request-headers"></a>Kérésfejlécek

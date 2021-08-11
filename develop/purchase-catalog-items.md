@@ -4,23 +4,23 @@ description: Katalóguselemek vásárlása a Partnerközpont API-val.
 ms.date: 07/12/2018
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: d3e0deedff194b1c836d9266c2201a2b3a52cc1b
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: 34560ceff2721a805d50cd4bf0702f6e7cf6f473db3f38ee52ea439b7355b786
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111445357"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115997338"
 ---
 # <a name="purchase-catalog-items"></a>Katalóguselemek vásárlása
 
-A következő forgatókönyv azt az általános folyamatot mutatja be, amikor a katalógusból vásárolnak elemeket a Partnerközpont API-val.
+A következő forgatókönyv azt az általános folyamatot mutatja be, amikor a termékkatalógusból vásárolnak elemeket a Partnerközpont API-val.
 
 ## <a name="discovery"></a>Felderítés
 
 Válassza a termékek és a termékkódok (SKUs) lehetőséget, és ellenőrizze azok rendelkezésre állását az alábbi Partnerközpont API-modellekkel:
 
-- [Termék](product-resources.md#product) – Egy csoportosítási szerkezet a cserélhető termékekhez vagy szolgáltatásokhoz. A termék önmagában nem cserélhető elem.
-- [Termékváltozat](product-resources.md#sku) – Egy terméken átvehető termékváltozat. Ezek a termék különböző alakjai.
+- [Termék](product-resources.md#product) – A cserélhető termékek vagy szolgáltatások csoportosítási konstrukciója. A termék önmagában nem cserélhető elem.
+- [Termékváltozat](product-resources.md#sku) – Egy terméken elérhető SKU. Ezek a termék különböző alakjai.
 - [Rendelkezésre állás](product-resources.md#availability) – Olyan konfiguráció, amelyben egy termékváltozat megvásárolható (például ország, pénznem és iparági szegmens).
 
 Ha egy elemet meg kell vásárolnia a katalógusból, kövesse az alábbi lépéseket:
@@ -29,8 +29,8 @@ Ha egy elemet meg kell vásárolnia a katalógusból, kövesse az alábbi lépé
 
    - [Termékek listájának lekért listája](get-a-list-of-products.md)
    - [Termék lekérte a termékazonosítót](get-a-product-by-id.md)
-   - [Termék termékkel kapcsolatos termékkódok listájának lekért listája](get-a-list-of-skus-for-a-product.md)
-   - [Termékváltozat lekérte a termékváltozat azonosítójával](get-a-sku-by-id.md)
+   - [Termék termék termékterméklistáinak lekért listája](get-a-list-of-skus-for-a-product.md)
+   - [Termékváltozat lekérte a termékváltozat azonosítóját használva](get-a-sku-by-id.md)
 
 2. Ellenőrizze a leltárban, hogy van-e termékváltozat. Erre a lépésre csak az **InventoryCheck** értékkel felcímkézett termékkódok esetén van szükség a [purchasePrerequisites tulajdonságban.](product-resources.md#sku)
 
@@ -54,7 +54,7 @@ A katalóguselem-rendelés elküldhez tegye a következőket:
 
    - [A kosár kiveszi a kosárból](checkout-a-cart.md)
 
-## <a name="get-order-details"></a>Megrendelés részleteinek lekérte
+## <a name="get-order-details"></a>Rendelés részleteinek lekérte
 
 Lekérheti egy adott rendelés részleteit a rendelés azonosítójával, vagy lekérheti egy ügyfél megrendelési listáját. A rendelés elküldés és az ügyfél rendelési listájában való megjelenése között akár 15 perces késés is lehet.
 
@@ -70,7 +70,7 @@ A katalóguselemek életciklusának a Partnerközpont-ban való kezelésének r�
 
 ## <a name="invoice-and-reconciliation"></a>Számla és egyeztetés
 
-A következő forgatókönyvek azt mutatják be, hogyan [](invoice-resources.md)lehet programozott módon megtekinteni az ügyfél számláit, és hogyan lehet lekérte a fiókegyenlegeket és összegzéseket, amelyek a katalóguselemekre vonatkozó egyszeres díjakat tartalmaznak.
+A következő forgatókönyvek azt mutatják be, hogyan [](invoice-resources.md)lehet programozott módon megtekinteni az ügyfél számláit, és lekérte a fiókegyenlegeket és összegzéseket, amelyek a katalóguselemekre vonatkozó egyszeres díjakat tartalmaznak.
 
 ### <a name="balance-and-payment"></a>Egyenleg és kifizetés
 

@@ -4,12 +4,12 @@ description: A partnerek a partnerük nevében bejelentheti a szolgáltatáskima
 ms.date: 12/15/2017
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 02a02e6a873ad8785150368f3d4b89af2b588529
-ms.sourcegitcommit: b307fd75e305e0a88cfd1182cc01d2c9a108ce45
+ms.openlocfilehash: f919b3c34ff179a7a6cd0541f34c53737ec4148e44791419d2252fae64b0658d
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/06/2021
-ms.locfileid: "111547359"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115993231"
 ---
 # <a name="service-request-resources"></a>Szolgáltatáskérési erőforrások
 
@@ -21,13 +21,13 @@ A partnerek a partnerük nevében bejelentheti a szolgáltatáskimaradásokkal k
 
 A partner által nyújtott szolgáltatáskérést ismerteti, beleértve a kérés előrehaladását.
 
-| Tulajdonság         | Típus                                                          | Leírás                                                                          |
+| Tulajdonság         | Típus                                                          | Description                                                                          |
 |------------------|---------------------------------------------------------------|--------------------------------------------------------------------------------------|
 | Cím            | sztring                                                        | A szolgáltatáskérés címe.                                                           |
 | Description      | sztring                                                        | A leírás.                                                                     |
 | Súlyosság         | sztring                                                        | A súlyosság: "unknown", "critical", "moderate" vagy "minimal".                       |
 | TámogatásitopicId (TámogatásitopicId)   | sztring                                                        | A támogatási témakör azonosítója.                                                         |
-| TámogatásitopicName | sztring                                                        | A támogatási témakör neve.                                                       |
+| TámogatásitopicName (Támogatási név) | sztring                                                        | A támogatási témakör neve.                                                       |
 | Id               | sztring                                                        | A szolgáltatáskérés azonosítója.                                                       |
 | Állapot           | sztring                                                        | A szolgáltatáskérés állapota: "nincs", "nyitott", "lezárt" vagy "figyelmet \_ igényel". |
 | Szervezet     | [ServiceRequestOrganization](#servicerequestorganization)     | Az a szervezet, amelyhez a szolgáltatáskérés létre lesz hozva.                               |
@@ -48,7 +48,7 @@ A partner által nyújtott szolgáltatáskérést ismerteti, beleértve a kéré
 
 Egy olyan kapcsolattartót ír le, amely szolgáltatáskérést hoz létre vagy módosít.
 
-| Tulajdonság     | Típus                                                      | Leírás                                            |
+| Tulajdonság     | Típus                                                      | Description                                            |
 |--------------|-----------------------------------------------------------|--------------------------------------------------------|
 | Szervezet | [ServiceRequestOrganization](#servicerequestorganization) | Az a szervezet, amelyhez a szolgáltatáskérés létre lesz hozva. |
 | ContactId (Kapcsolatazonosító)    | sztring                                                    | A kapcsolattartó egyedi azonosítója.                               |
@@ -61,7 +61,7 @@ Egy olyan kapcsolattartót ír le, amely szolgáltatáskérést hoz létre vagy 
 
 Egy szolgáltatáskéréshez csatolt megjegyzést ír le.
 
-| Tulajdonság      | Típus   | Leírás                                  |
+| Tulajdonság      | Típus   | Description                                  |
 |---------------|--------|----------------------------------------------|
 | CreatedByName (Létrehozási név) | sztring | A megjegyzés létrehozója neve.         |
 | CreatedDate   | dátum   | A megjegyzés létrehozási dátuma és időpontja. |
@@ -69,9 +69,9 @@ Egy szolgáltatáskéréshez csatolt megjegyzést ír le.
 
 ## <a name="servicerequestorganization"></a>ServiceRequestOrganization
 
-Azt a szervezetet írja le, amelyhez a szolgáltatáskérés létre van hozva.
+Ismerteti a szervezetet, amelyhez a szolgáltatáskérés létre lesz hozva.
 
-| Tulajdonság    | Típus   | Leírás                           |
+| Tulajdonság    | Típus   | Description                           |
 |-------------|--------|---------------------------------------|
 | Id          | sztring | A szervezet egyedi azonosítója.    |
 | Name        | sztring | A szervezet neve.         |
@@ -86,5 +86,5 @@ Egy támogatási témakört ismertet. A szolgáltatáskérések egy támogatási
 | Név        | sztring             | A támogatási témakör neve.                                |
 | Description | sztring             | A támogatási témakör leírása.                         |
 | Id          | sztring             | A támogatási témakör egyedi azonosítója.                           |
-| Attribútumok  | ResourceAttributes (Erőforrás-attribútumok) | A szolgáltatáskéréshez tartozó metaadat-attribútumok. |
+| Attribútumok  | ResourceAttributes (Erőforrás-attribútumok) | A szolgáltatáskérésnek megfelelő metaadat-attribútumok. |
 

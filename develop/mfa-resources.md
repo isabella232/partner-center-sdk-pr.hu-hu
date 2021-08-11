@@ -4,12 +4,12 @@ description: Ismerje meg a többtényezős hitelesítés (MFA) bevezetésének r
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 ms.date: 05/29/2020
-ms.openlocfilehash: b41a0e46fa6e0643e82a5a2dbfb7141f54a0f824
-ms.sourcegitcommit: 0b2a62af1765a447addd9c4340c28bc42fdc2747
+ms.openlocfilehash: 6377dbde574edd1b8d8058f7b8e88ae6497d615b9237bbda91e9c4617486b569
+ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 06/04/2021
-ms.locfileid: "111445544"
+ms.lasthandoff: 08/06/2021
+ms.locfileid: "115997889"
 ---
 # <a name="partner-security-requirements-resources"></a>Partnerekre vonatkozó biztonsági követelmények erőforrásai
 
@@ -17,21 +17,21 @@ Ez a cikk segít megérteni a többtényezős hitelesítés (MFA) bevezetéséne
 
 ## <a name="portal-request-without-mfa"></a>Portálkérés MFA nélkül
 
-Olyan felhasználót jelez, aki MFA-Partnerközpont nélkül fér hozzá a portálhoz.
+Olyan felhasználót jelez, aki MFA Partnerközpont nélkül fér hozzá a portálhoz.
 
 | Tulajdonság                            | Típus            | Leírás                           |
 |-------------------------------------|-----------------|---------------------------------------|
 | ObjectId                            | sztring          | Felhasználói objektum azonosítója                        |
 | TenantId                            | sztring          | CSP-bérlő azonosítója                         |
 | Upn                                 | sztring          | Egyszerű felhasználónév                   |
-| LastNonMfaCompliantLoginDateTime    | dátum/idő        | Legutóbbi felhasználói bejelentkezés MFA nélkül |
+| LastNonMfaCompliantLoginDateTime    | dátum/idő        | A legutóbbi időpont, amikor a felhasználó MFA nélkül jelentkezik be |
 
 
 ## <a name="api-request-summarized-by-application"></a>Alkalmazás szerint összegezve az API-kérés
 
-Az APP + Felhasználói hitelesítő adatok által kért API-kérés összegzése, a kérelem dátuma és az alkalmazás azonosítója alapján összesítve.
+Az APP + User hitelesítő adatok által kért API-kérés összegzése, a kérés dátuma és az alkalmazás azonosítója alapján összesítve.
 
-| Tulajdonság                            | Típus            | Leírás               |
+| Tulajdonság                            | Típus            | Description               |
 |-------------------------------------|-----------------|---------------------------|
 | LoginDate (Bejelentkezésidátum)                           | dátum/idő        | API-kérelem dátuma          |
 | MfaCompliantRequestCount            | hosszú            | Kérelmek száma MFA-val    |
@@ -42,9 +42,9 @@ Az APP + Felhasználói hitelesítő adatok által kért API-kérés összegzés
 
 ## <a name="api-request-details"></a>API-kérelem részletei
 
-AZ ALKALMAZÁS + felhasználó hitelesítő adatai által kért API-kérés. 
+AZ ALKALMAZÁS + Felhasználói hitelesítő adatok által kért API-kérés. 
 
-| Tulajdonság                            | Típus            | Leírás                              |
+| Tulajdonság                            | Típus            | Description                              |
 |-------------------------------------|-----------------|------------------------------------------|
 | Kérelemazonosító                           | sztring          | MS-RequestId                             |
 | CorrelationId                       | sztring          | MS-CorrelationId                         |
