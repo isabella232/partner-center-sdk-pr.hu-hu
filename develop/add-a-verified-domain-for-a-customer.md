@@ -1,15 +1,15 @@
 ---
 title: Ellenőrzött tartomány hozzáadása egy ügyfélhez
-description: Megtudhatja, hogyan adhat hozzá ellenőrzött tartományt a jóváhagyott tartományok listájához egy ügyfél Partnerközpont. Ezt a Partnerközpont API-k és REST API-k használatával tegye.
+description: Megtudhatja, hogyan adhat hozzá ellenőrzött tartományt a jóváhagyott tartományok listájához egy ügyfél számára a Partnerközpont. Ezt az api Partnerközpont REST API-k használatával tegye meg.
 ms.date: 05/21/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 570008c955ce3242b02c1df4c87df52aea3627abb6c86a069cc7c4c0d1d6f799
-ms.sourcegitcommit: ac8f5f8bedaddba5110dd4e562fbd9a2b24837df
+ms.openlocfilehash: b634e7e3276fdabeac8175e09a6ae8d12732f409
+ms.sourcegitcommit: b0534995c36d644cc5f7bdf31b2afd5355cf7149
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/08/2021
-ms.locfileid: "116885577"
+ms.lasthandoff: 08/16/2021
+ms.locfileid: "122208092"
 ---
 # <a name="add-a-verified-domain-to-the-list-of-approved-domains-for-an-existing-customer"></a>Ellenőrzött tartomány hozzáadása egy meglévő ügyfél jóváhagyott tartományának listájához 
 
@@ -21,17 +21,17 @@ Ellenőrzött tartomány hozzáadása egy meglévő ügyfél jóváhagyott tarto
 
 - Tartományregisztráló partnernek kell lennie.
 
-- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="adding-a-verified-domain"></a>Ellenőrzött tartomány hozzáadása
 
-Ha Ön egy tartományregisztráló partner, az API-val közzétethet egy új tartományerőforrást egy meglévő ügyfél `verifieddomain` tartománylistán. [](#domain) Ehhez azonosítsa az ügyfelet a CustomerTenantId azonosítóját használva. Adjon meg egy értéket a VerifiedDomainName tulajdonsághoz. A [kérelemben adja](#domain) át a szükséges Név, Képesség, Hitelesítési típus, Állapot és VerificationMethod tulajdonságokkal rendelkező tartományerőforrást. Annak megadásához, [](#domain) hogy az új tartomány összevont tartomány, állítsa [](#domain) a Tartomány erőforrás AuthenticationType tulajdonságát a következőre: , és adjon meg egy `Federated` [DomainFederationSettings](#domain-federation-settings) erőforrást a kérelemben. Ha a metódus sikeres, [a](#domain) válasz tartalmazni fog egy tartományi erőforrást az új ellenőrzött tartományhoz.
+Ha Ön olyan partner, aki tartományregisztráló, az API-val új tartományerőforrást is közzétethet `verifieddomain` egy meglévő ügyfél tartománylistán. [](#domain) Ehhez azonosítsa az ügyfelet a CustomerTenantId azonosítóval. Adjon meg egy értéket a VerifiedDomainName tulajdonsághoz. A [kérelemben adja](#domain) át a tartományerőforrást a szükséges Név, Képesség, Hitelesítési típus, Állapot és VerificationMethod tulajdonsággal. Annak megadásához, [](#domain) hogy az új tartomány összevont tartomány, állítsa [](#domain) a Tartomány erőforrás AuthenticationType tulajdonságát a következőre: , és adjon meg egy `Federated` [DomainFederationSettings](#domain-federation-settings) erőforrást a kérelemben. Ha a metódus sikeres, a válasz tartalmazni fog egy [tartományi](#domain) erőforrást az új ellenőrzött tartományhoz.
 
 ### <a name="custom-verified-domains"></a>Egyéni ellenőrzött tartományok
 
-Egyéni ellenőrzött tartomány, a **onmicrosoft.com-on** nem regisztrált tartomány hozzáadásakor a [CustomerUser.immutableId](user-resources.md#customeruser) tulajdonságot egyedi azonosítóértékre kell állítania ahhoz az ügyfélhez, akihez hozzáadja a tartományt. Erre az egyedi azonosítóra az ellenőrzési folyamat során van szükség a tartomány ellenőrzésekor. További információ az ügyfél felhasználói fiókjairól: [Felhasználói fiókok létrehozása egy ügyfél számára.](create-user-accounts-for-a-customer.md)
+Egyéni ellenőrzött tartomány, a **onmicrosoft.com-on** nem regisztrált tartomány hozzáadásakor a [CustomerUser.immutableId](user-resources.md#customeruser) tulajdonságot egyedi azonosítóértékre kell állítania ahhoz az ügyfélhez, akihez hozzáadja a tartományt. Erre az egyedi azonosítóra az ellenőrzési folyamat során van szükség a tartomány ellenőrzésekor. További információ az ügyfél felhasználói fiókjairól: [Felhasználói fiókok létrehozása ügyfél számára.](create-user-accounts-for-a-customer.md)
 
 ## <a name="rest-request"></a>REST-kérés
 
@@ -47,7 +47,7 @@ A következő lekérdezési paraméterrel adhatja meg azt az ügyfelet, akihez e
 
 | Név                   | Típus     | Kötelező | Leírás                                                                                                                                            |
 |------------------------|----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CustomerTenantId | guid | Y        | Az érték egy **CUSTOMERTenantId** formátumú GUID, amely lehetővé teszi egy ügyfél megadását. |
+| CustomerTenantId | guid | Y        | Az érték egy **CustomerTenantId** formátumú GUID, amely lehetővé teszi egy ügyfél megadását. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -61,7 +61,7 @@ Ez a táblázat a kérelem törzsében szükséges tulajdonságokat ismerteti.
 |-------------------------------------------------------|--------|-----------------------------------------------|--------------------------------------------------------|
 | VerifiedDomainName (Ellenőrzött tartománynév)                                    | sztring | Yes                                           | Az ellenőrzött tartománynév. |
 | [Tartomány](#domain)                                     | object | Yes                                           | A tartomány adatait tartalmazza. |
-| [DomainFederationSettings](#domain-federation-settings) | object | Igen (Ha AuthenticationType = `Federated` )     | A tartomány-összevonási beállításokat akkor kell használni, ha a tartomány `Federated` tartomány, nem `Managed` pedig tartomány. |
+| [DomainFederationSettings](#domain-federation-settings) | object | Igen (If AuthenticationType = `Federated` )     | A tartomány-összevonási beállításokat akkor kell használni, ha a tartomány `Federated` tartomány, nem `Managed` pedig tartomány. |
 
 ### <a name="domain"></a>Tartomány
 
@@ -71,7 +71,7 @@ Ez a táblázat a  kérelem törzsében található kötelező és választható
 |--------------------|------------------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | AuthenticationType (Hitelesítés típusa)                                    | sztring           | Yes      | Meghatározza, hogy a tartomány `Managed` tartomány vagy `Federated` tartomány. Támogatott értékek: `Managed` , `Federated` .|
 | Képesség                                            | sztring           | Yes      | Megadja a tartományi képességet. Például: `Email`.                  |
-| IsDefault (Hamis)                                             | nullázható logikai érték | No       | Azt jelzi, hogy a tartomány a bérlő alapértelmezett tartománya-e. Támogatott értékek: `True` , `False` , `Null` .        |
+| IsDefault (Hamis)                                             | nullázható logikai érték | No       | Azt jelzi, hogy a tartomány-e a bérlő alapértelmezett tartománya. Támogatott értékek: `True` , `False` , `Null` .        |
 | IsInitial (IsInitial)                                             | nullázható logikai érték | No       | Azt jelzi, hogy a tartomány kezdeti tartomány-e. Támogatott értékek: `True` , `False` , `Null` .                       |
 | Name                                                  | sztring           | Yes      | A tartománynév.                                                          |
 | RootDomain (Gyökértartomány)                                            | sztring           | No       | A gyökértartomány neve.                                              |

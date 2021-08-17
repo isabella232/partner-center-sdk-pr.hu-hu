@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 2bc7ec0609fa03f91427df2944c39e4c0401d11b27370d812d96e4fd0eb1ee6a
-ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+ms.openlocfilehash: 8e5fe9bae436d8b7f237b9039c66b369f0e32109
+ms.sourcegitcommit: b0534995c36d644cc5f7bdf31b2afd5355cf7149
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/06/2021
-ms.locfileid: "115993656"
+ms.lasthandoff: 08/16/2021
+ms.locfileid: "122208075"
 ---
 # <a name="get-a-list-of-availabilities-for-a-sku-by-country"></a>Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ország alapján)
 
@@ -19,7 +19,7 @@ Ez a cikk azt ismerteti, hogyan lehet rendelkezésre állási gyűjteményt lek�
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
 - Egy termékazonosító.
 
@@ -31,9 +31,9 @@ Ez a cikk azt ismerteti, hogyan lehet rendelkezésre állási gyűjteményt lek�
 
 Egy termékváltozat [rendelkezésre állási](product-resources.md#availability) listájának [lekért listája:](product-resources.md#sku)
 
-1. Az adott termékváltozat műveleteinek interfészét [a Termékváltozat](get-a-sku-by-id.md) lekért azonosítója alapján lépéseit követve szerezze be.
+1. Az adott termékváltozat műveleteihez szükséges interfész lekért felületének lekért lépéseit az [SKU](get-a-sku-by-id.md) azonosító alapján való lekért lépéseit követve.
 
-2. A termékváltozat felületén válassza az **Availabilities (Rendelkezésre** állás) tulajdonságot, hogy lekérte a rendelkezésre állási műveletekhez szükséges interfészt.
+2. A termékváltozat felületén válassza az **Availabilities (Rendelkezésre** állások) tulajdonságot, hogy lekérte a rendelkezésre állási műveletekhez szükséges interfészt.
 
 3. (Nem kötelező) A **ByTargetSegment()** metódussal szűrheti a rendelkezésre állásokat célszegmens szerint.
 
@@ -80,7 +80,7 @@ Az alábbi elérési út és lekérdezési paraméterek használatával lekérde
 | sku-id                 | sztring   | Yes      | A termékváltozatot azonosító sztring.                               |
 | országkód           | sztring   | Yes      | Egy ország-/régióazonosító.                                            |
 | célszegmens         | sztring   | No       | A szűréshez használt célszegmenst azonosító sztring. |
-| reservationScope | sztring   | No | Az Azure-foglalási termékváltozatok rendelkezésre állási listájának lekérdezésekor adja meg a értéket az AzurePlanra vonatkozó rendelkezésre állások `reservationScope=AzurePlan` listájának lekérdezőjéhez. Zárja ki ezt a paramétert a Microsoft Azure (MS-AZR-0145P) előfizetések esetében alkalmazható rendelkezésre állások listájának lekértéhez.  |
+| reservationScope | sztring   | No | Az Azure-foglalási termékváltozatok rendelkezésre állási listájának lekérdezésekor adja meg a értéket az AzurePlanra vonatkozó rendelkezésre `reservationScope=AzurePlan` állások listájának lekértéhez. Zárja ki ezt a paramétert a Microsoft Azure (MS-AZR-0145P) előfizetések esetében alkalmazható rendelkezésre állások listájának lekértéhez.  |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -106,7 +106,7 @@ MS-CorrelationId: 83b644b5-e54a-4bdc-b354-f96c525b3c58
 
 #### <a name="availabilities-for-vm-reservations-azure-plan"></a>Virtuálisgép-foglalások rendelkezésre állása (Azure-csomag)
 
-Kövesse ezt a példát az Azure-beli virtuális gépek foglalási termékkódjaihoz országonkénti rendelkezésre állások listájának lekért listájához. Ez a példa az Azure-csomagokra vonatkozó SKUS-okat példázhatja:
+Kövesse ezt a példát az Azure-beli virtuális gépek foglalási termékkódok országonkénti rendelkezésre állási listájának lekért listájához. Ez a példa az Azure-csomagokra vonatkozó SKUS-okat példázhatja:
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ3Q/skus/0001/availabilities?country=US&targetView=AzureReservationsVM&reservationScope=AzurePlan HTTP/1.1
@@ -118,10 +118,10 @@ MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 
 #### <a name="availabilities-for-vm-reservations-for-microsoft-azure-ms-azr-0145p-subscriptions"></a>Virtuálisgép-foglalások rendelkezésre állása Microsoft Azure (MS-AZR-0145P) előfizetések esetében
 
-Ebben a példában az egyes országok szerinti elérhetőségek listáját azon Azure-beli virtuális gépek foglalásainál adhatja meg, amelyek Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkoznak.
+Kövesse ezt a példát az egyes országok szerinti elérhetőségek lekért listájáért azon Azure-beli virtuális gépek foglalásai esetében, amelyek Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkoznak.
 
 ```http
-GET https://api.partnercenter.microsoft.com/v1/productsDZH318Z0BQ3Q/skus/0001/availabilities?country=US&targetView=AzureAzureReservationsVM HTTP/1.1
+GET https://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ3Q/skus/0001/availabilities?country=US&targetView=AzureAzureReservationsVM HTTP/1.1
 Authorization: Bearer
 Accept: application/json
 MS-RequestId: 031160b2-b0b0-4d40-b2b1-aaa9bb84211d
