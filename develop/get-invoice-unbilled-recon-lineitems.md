@@ -1,27 +1,27 @@
 ---
-title: A számla számlázatlan egyeztetési sorelemek lekért száma
+title: A számla ki nem számlázott egyeztetési sorának lekért elemei
 description: A ki nemszámlázatlan egyeztetési sorelem részleteinek gyűjteményét a megadott időszakra vonatkozóan a Partnerközpont le.
 ms.date: 01/27/2020
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: sourishdeb
 ms.author: sodeb
-ms.openlocfilehash: 3e461367eb41c180dd1004ab2548ca24c4b891976ef53d852bb7933ff23fae65
-ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+ms.openlocfilehash: 846d2fb0009dd39ed232569a9c8f41104afece1b
+ms.sourcegitcommit: 00d5b934048fcec95efc70f5063e86426636d244
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/06/2021
-ms.locfileid: "115993877"
+ms.lasthandoff: 08/16/2021
+ms.locfileid: "122228444"
 ---
-# <a name="get-invoices-unbilled-reconciliation-line-items"></a>A számla számlázatlan egyeztetési sorelemek lekért száma
+# <a name="get-invoices-unbilled-reconciliation-line-items"></a>A számla ki nem számlázott egyeztetési sorának lekért elemei
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-A következő módszerekkel lekérte a ki nem számlázott számlasorelemek (más néven nyitott számlázásisor-tételek) részleteit.
+A következő módszerekkel lekért adatok gyűjteményét kaphatja meg a számlázatlan számlasorelemekről (más néven nyitott számlázásisor-elemekről).
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
 - Egy számlaazonosító. Ez azonosítja a számlát, amelynek lekéri a sorelemeket.
 
@@ -31,7 +31,7 @@ A megadott számlához tartozó sorelemek lekérése a számlaobjektum lekérés
 
 1. Hívja meg [**a ById**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoicecollection.byid) metódust a megadott számlához tartozó számlázási műveletek interfészének lehívása érdekében.
 
-2. A [**számlaobjektum lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**a GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal.
+2. A [**számlaobjektum lekérése**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.get) a Get vagy [**GetAsync**](/dotnet/api/microsoft.store.partnercenter.invoices.iinvoice.getasync) metódussal.
 
 A számlaobjektum a megadott számla összes adatát tartalmazza:
 
@@ -47,7 +47,7 @@ Az InvoiceDetail példánynak megfelelő sorelemek **gyűjteményének lekért**
 
 3. Hozzon létre egy enumerátort a gyűjtemény áthaladására. Példaként tekintse meg az alábbi mintakódot.
 
-A következő mintakód egy **foreach ciklust használ** az **InvoiceLineItems gyűjtemény feldolgozásához.** A rendszer külön sorelemek gyűjteményét olvassa be minden **InvoiceLineItemType típushoz.**
+A következő mintakód egy **foreach ciklust** használ az **InvoiceLineItems gyűjtemény feldolgozásához.** A rendszer külön sorelemek gyűjteményét olvassa be minden **InvoiceLineItemType típushoz.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -108,7 +108,7 @@ while (fetchNext)
 Hasonló példát a következőben láthat:
 
 - Minta: [Konzoltesztalkalmazás](console-test-app.md)
-- Project: **Partnerközpont SDK minták**
+- Project: Partnerközpont SDK **minták**
 - Osztály: **GetUnBilledReconLineItemsPaging.cs**
 
 ## <a name="rest-request"></a>REST-kérés
@@ -119,9 +119,9 @@ A REST-kéréshez a következő szintaxisokat használhatja a saját esetétől 
 
  | Metódus  | Kérés URI-ja            | Szintaxishasználati eset leírása                                                                                |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=billinglineitems&currencycode={currencycode}&period={period} HTTP/1.1                              | Ezzel a szintaxissal az adott számla összes sorelemének teljes listáját használhatja. |
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=billinglineitems&currencycode={currencycode}&period={period}&size={size} HTTP/1.1  | Nagy számlák esetén használja ezt a szintaxist a megadott mérettel és 0 alapú eltolással a sorelemek lapszámolt listájának visszaadására. |
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/{invoice-id}/lineitems?provider=onetime&invoicelineitemtype=billinglineitems&currencycode={currencycode}&period={period}&size={size}&seekOperation=Next                               | Ezzel a szintaxissal lekérte az egyeztetési sorelemek következő oldalát a `seekOperation = "Next"` használatával. |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=billinglineitems&currencycode={currencycode}&period={period} HTTP/1.1                              | Ezzel a szintaxissal az adott számla összes sorelemének teljes listáját használhatja. |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=billinglineitems&currencycode={currencycode}&period={period}&size={size} HTTP/1.1  | Nagy számlák esetén használja ezt a szintaxist a megadott mérettel és 0 alapú eltolással a sorelemek lapszámolt listájának visszaadására. |
+| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/invoices/unbilled/lineitems?provider=onetime&invoicelineitemtype=billinglineitems&currencycode={currencycode}&period={period}&size={size}&seekOperation=Next                               | Ezzel a szintaxissal lekérte az egyeztetési sorelemek következő oldalát a `seekOperation = "Next"` használatával. |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
@@ -129,7 +129,6 @@ A kérelem létrehozásakor használja a következő URI-t és lekérdezési par
 
 | Név                   | Típus   | Kötelező | Leírás                                                                     |
 |------------------------|--------|----------|---------------------------------------------------------------------------------|
-| számlaazonosító             | sztring | Yes      | A számlát azonosító sztring. A ki nemszámlázatlan becslések lekért értékével. |
 | Szolgáltató               | sztring | Yes      | A szolgáltató: "OneTime".                                                |
 | invoice-line-item-type | sztring | Yes      | A számla részleteinek típusa: "BillingLineItems".               |
 | hasPartnerEarnedCredit | logikai   | No       | Az érték, amely jelzi, hogy a rendszer visszaadja-e a partneri jóváírással kapott sorelemeket. Megjegyzés: ez a paraméter csak akkor lesz alkalmazva, ha a szolgáltató típusa OneTime, az InvoiceLineItemType pedig UsageLineItems.
