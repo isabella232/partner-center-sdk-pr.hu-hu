@@ -199,6 +199,21 @@
       "source_path": "develop/update-customer-qualification-synchronous.md",
       "redirect_url": "update-customer-qualification-asynchronous",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "develop/transition-a-new-commerce-subscription.md",
+      "redirect_url": "transition-a-subscription",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "develop/transition-resources.md",
+      "redirect_url": "transfer-entity-resources",
+      "redirect_document_id": true
+    },
+    {
+      "source_path": "develop/purchase-new-commerce-license-based.md",
+      "redirect_url": "create-subscription-azure-marketplace-products",
+      "redirect_document_id": true
     }
   ]
 }
