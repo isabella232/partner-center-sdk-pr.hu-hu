@@ -2,17 +2,17 @@
 title: Termékek listájának lekérése (ügyfél alapján)
 description: Az ügyfélazonosítók segítségével termékek gyűjteményét kaphatja meg ügyfél szerint.
 ms.assetid: ''
-ms.date: 11/01/2019
+ms.date: 02/16/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 2f896c16f8f13df795cee14742b00e7d10dbb1812308b20a4d4bc4a8c614471c
-ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+ms.openlocfilehash: 1f3f38271b97ceba143c819ec03758ad1b9c0d3b
+ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/06/2021
-ms.locfileid: "115991140"
+ms.lasthandoff: 09/03/2021
+ms.locfileid: "123455761"
 ---
 # <a name="get-a-list-of-products-by-customer"></a>Termékek listájának lekérése (ügyfél alapján)
 
@@ -22,7 +22,7 @@ Az alábbi módszerekkel lekért termékek gyűjteményét egy meglévő ügyfé
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
 - Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
@@ -39,7 +39,7 @@ Az alábbi módszerekkel lekért termékek gyűjteményét egy meglévő ügyfé
 | Név               | Típus | Kötelező | Leírás                                                                                 |
 |--------------------|------|----------|---------------------------------------------------------------------------------------------|
 | **ügyfél-bérlő-azonosító** | GUID | Yes | Az érték egy GUID-formátumú **ügyfél-bérlő-azonosító,** amely egy olyan azonosító, amellyel megadhatja az ügyfelet. |
-| **targetView** | sztring | Yes | A katalógus célnézetét azonosítja. A támogatott értékek a következőek: <br/><br/>**Azure**, amely az összes Azure-elemet tartalmazza<br/><br/>**AzureReservations**, amely az összes Azure-foglalási elemet tartalmazza<br/><br/>**AzureReservationsVM,** amely az összes virtuálisgép-foglalási elemet tartalmazza<br/><br/>**AzureReservationsSQL,** amely az összes SQL elemet tartalmazza<br/><br/>**AzureReservationsCosmosDb**, amely az összes Cosmos-adatbázis foglalási elemét tartalmazza<br/><br/>**MicrosoftAzure**, amely Microsoft Azure **(MS-AZR-0145P)** és Azure-csomagokhoz tartalmaz elemeket<br/><br/>**OnlineServices**, amely az összes online szolgáltatási elemet tartalmazza, beleértve a kereskedelmi piactéren elérhető termékeket is<br/><br/>**Szoftver,** amely az összes szoftverelemet tartalmazza<br/><br/>**SoftwareSUSELinux**, amely az összes szoftveres SUSE Linux-elemet tartalmazza<br/><br/>**SzoftverPerpetual**, amely az összes folyamatos szoftverelemet tartalmazza<br/><br/>**SoftwareSubscriptions**, amely az összes szoftver-előfizetési elemet tartalmazza  |
+| **targetView** | sztring | Yes | A katalógus célnézetét azonosítja. A támogatott értékek a következőek: <br/><br/>**Azure**, amely az összes Azure-elemet tartalmazza<br/><br/>**AzureReservations**, amely az összes Azure-foglalási elemet tartalmazza<br/><br/>**AzureReservationsVM,** amely az összes virtuálisgép-foglalási elemet tartalmazza<br/><br/>**AzureReservationsSQL,** amely az összes SQL elemet tartalmazza<br/><br/>**AzureReservationsCosmosDb**, amely az összes Cosmos-adatbázis foglalási elemét tartalmazza<br/><br/>**MicrosoftAzure**, amely Microsoft Azure (**MS-AZR-0145P**) és Azure-csomagokhoz<br/><br/>**OnlineServices**, amely az összes online szolgáltatáselemet tartalmazza. Ez a targetView a kereskedelmi piacteret, a hagyományos licencalapú szolgáltatásokat és az új kereskedelmi licencalapú szolgáltatásokat tartalmazza<br/><br/>**Szoftver,** amely az összes szoftverelemet tartalmazza<br/><br/>**SoftwareSUSELinux**, amely az összes szoftveres SUSE Linux-elemet tartalmazza<br/><br/>**SzoftverPerpetual**, amely az összes állandó szoftverelemet tartalmazza<br/><br/>**SoftwareSubscriptions**, amely az összes szoftver-előfizetési elemet tartalmazza  |
 
 ### <a name="request-header"></a>Kérelem fejléce
 
@@ -51,7 +51,7 @@ Nincsenek.
 
 ### <a name="request-example"></a>Példa kérésre
 
-Egy adott ügyfél számára elérhető Azure-beli használatalapú termékek listájának lekérése. A nyilvános felhőben Microsoft Azure (MS-AZR-0145P) és Azure-csomagokhoz is visszaadunk termékeket:
+Egy adott ügyfél számára elérhető Azure-beli használatalapú termékek listájának lekérése. A nyilvános felhőben Microsoft Azure (MS-AZR-0145P) és Az Azure-csomagokhoz is visszaadunk termékeket:
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/customers/65543400-f8b0-4783-8530-6d35ab8c6801/products?targetView=MicrosoftAzure HTTP/1.1
@@ -60,12 +60,26 @@ Accept: application/json
 MS-RequestId: 83643f5e-5dfd-4375-88ed-054412460dc8
 MS-CorrelationId: b1939cb2-e83d-4fb0-989f-514fb741b734
 ```
+#### <a name="new-commerce-license-based-services"></a>Új kereskedelmi licencalapú szolgáltatások
+
+> [!Note] 
+> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesző partnerek számára érhetők el
+
+Ebben a példában országonként lekért termékek listája érhető el az új kereskedelmi licencalapú szolgáltatásokhoz az új kereskedelmi élmény technikai előzetes kiadásának részeként. Az új kereskedelmi licencalapú szolgáltatások az **OnlineServicesNCE** azonosító és displayNames értéke alapján lesznek azonosítva. Lásd az alábbi példaválaszt.
+
+```http
+GET https://api.partnercenter.microsoft.com/v1/customers/65543400-f8b0-4783-8530-6d35ab8c6801/products?targetView=OnlineServices HTTP/1.1
+Authorization: Bearer
+Accept: application/json
+MS-RequestId: 031160b2-b0b0-4d40-b2b1-aaa9bb84211d
+MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
+```
 
 ## <a name="rest-response"></a>REST-válasz
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő [hibakódok Partnerközpont meg:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
@@ -73,7 +87,7 @@ Ez a metódus a következő hibakódokat adja vissza:
 |------------------|--------------|---------------------------------|
 | 403 | 400036 | A kért targetView nézethez való hozzáférés nem engedélyezett. |
 
-### <a name="response-example"></a>Példa válaszra
+### <a name="response-example-for-microsoft-azure-and-azure-plan"></a>Válasz példa a Microsoft Azure Azure-csomagra
 
 ```http
 HTTP/1.1 200 OK
@@ -179,5 +193,50 @@ MS-RequestId: ae7288e2-2673-4ad4-8c12-7aad818d5949
     "attributes": {
         "objectType": "Collection"
     }
+}
+```
+### <a name="response-example-for-new-commerce-license-based-services"></a>Válasz példa az új kereskedelmi licencalapú szolgáltatásokra
+
+> [!Note] 
+> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesző partnerek számára érhetők el
+
+```http
+{
+  "totalCount": 19,
+  "items": [{
+      "id": "CFQ7TTC0LH18",
+      "title": "Microsoft 365 Business Basic",
+      "description": "Best for businesses that need professional email, cloud file storage, and online meetings & chat. Desktop versions of Office apps like Excel, Word, and PowerPoint not included. For businesses with up to 300 employees.",
+      "productType": {
+        "id": "OnlineServicesNCE",
+        "displayName": "OnlineServicesNCE"
+      },
+      "isMicrosoftProduct": true,
+      "publisherName": "Microsoft Corporation",
+      "links": {
+        "skus": {
+          "uri": "/products/CFQ7TTC0LH18/skus?country=US",
+          "method": "GET",
+          "headers": []
+        },
+        "self": {
+          "uri": "/products/CFQ7TTC0LH18?country=US",
+          "method": "GET",
+          "headers": []
+        }
+      }
+    },
+    ...
+  ],
+  "links": {
+    "self": {
+      "uri": "/products?country=US&targetView=OnlineServices",
+      "method": "GET",
+      "headers": []
+    }
+  },
+  "attributes": {
+    "objectType": "Collection"
+  }
 }
 ```

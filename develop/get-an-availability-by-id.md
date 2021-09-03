@@ -1,17 +1,17 @@
 ---
 title: A rendelkezésre állás lekért azonosítója
 description: Lekérte a megadott termék és termékváltozat rendelkezésre állását egy rendelkezésre állási azonosítóval.
-ms.date: 09/17/2019
+ms.date: 02/16/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: fccd566e83dab8994280fdee072c0d6f27b690d5292ed3973427088f46b30d6b
-ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+ms.openlocfilehash: 5bbbfdfeb81a915e5399bf2a89f99a70b509476d
+ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/06/2021
-ms.locfileid: "115993554"
+ms.lasthandoff: 09/03/2021
+ms.locfileid: "123456154"
 ---
 # <a name="get-the-availability-by-id"></a>A rendelkezésre állás lekért azonosítója
 
@@ -19,7 +19,7 @@ Lekérte a megadott termék és termékváltozat rendelkezésre állását egy r
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 - Egy termékazonosító.
 
@@ -29,7 +29,7 @@ Lekérte a megadott termék és termékváltozat rendelkezésre állását egy r
 
 ## <a name="c"></a>C\#
 
-Egy adott rendelkezésre [](product-resources.md#availability)állás részleteinek lekért [](get-a-sku-by-id.md) lépéseit a Termékváltozat lekért azonosítója alapján lépéseit követve szerezze be az adott [termékváltozat](product-resources.md#sku) műveleteihez szükséges felületet. Az eredményül kapott felületen válassza az **Availabilities (Rendelkezésre** állások) tulajdonságot a rendelkezésre álláshoz elérhető műveletekkel való interfész beszerzéséhez. Ezután adja át a rendelkezésre állási azonosítót a **ById()** metódusnak az adott rendelkezésre álláshoz szükséges műveletek lekérése érdekében, majd hívja meg a **Get()** vagy **a GetAsync()** metódust a rendelkezésre állási adatok lekérése érdekében.
+Egy adott rendelkezésre [](product-resources.md#availability)állás részleteinek lekért végrehajtásához először kövesse [a Termékváltozat](get-a-sku-by-id.md) lekérte azonosító alapján lépéseit egy adott termékváltozat műveleteinek interfészének [lekért](product-resources.md#sku) végrehajtásához. Az eredményül kapott felületen válassza ki az **Availabilities (Rendelkezésre** állások) tulajdonságot a rendelkezésre állási lehetőségekhez elérhető műveletekkel való interfész beszerzéséhez. Ezután adja át a rendelkezésre állási azonosítót a **ById()** metódusnak az adott rendelkezésre álláshoz szükséges műveletek lekérése érdekében, majd hívja meg a **Get()** vagy **a GetAsync()** metódust a rendelkezésre állási adatok lekérése érdekében.
 
 ```csharp
 IAggregatePartner partnerOperations;
@@ -46,7 +46,7 @@ var availability = partnerOperations.Products.ByCountry(countryCode).ById(produc
 
 [!INCLUDE [Partner Center Java SDK support details](../includes/java-sdk-support.md)]
 
-Egy adott rendelkezésre [](product-resources.md#availability)állás részleteinek lekért [](get-a-sku-by-id.md) lépéseit a Termékváltozat lekért azonosítója alapján lépéseit követve szerezze be az adott [termékváltozat](product-resources.md#sku) műveleteihez szükséges felületet. Az eredményül kapott felületen válassza a **getAvailabilities** függvényt a rendelkezésre álláshoz elérhető műveletekkel való felület beszerzéséhez. Ezután adja át a rendelkezésre állási azonosítót a **byId()** függvénynek az adott rendelkezésre álláshoz szükséges műveletek lekérése érdekében, majd hívja meg a get() függvényt a rendelkezésre állási adatok **lekérése** érdekében.
+Egy adott rendelkezésre [](product-resources.md#availability)állás részleteinek lekért végrehajtásához először kövesse [a Termékváltozat](get-a-sku-by-id.md) lekérte azonosító alapján lépéseit egy adott termékváltozat műveleteinek interfészének [lekért](product-resources.md#sku) végrehajtásához. Az eredményül kapott felületen válassza a **getAvailabilities** függvényt a rendelkezésre álláshoz elérhető műveletekkel való felület beszerzéséhez. Ezután adja át a rendelkezésre állási azonosítót a **byId()** függvénynek az adott rendelkezésre álláshoz szükséges műveletek lekérése érdekében, majd hívja meg a get() függvényt a rendelkezésre állási adatok **lekérése** érdekében.
 
 ```java
 IAggregatePartner partnerOperations;
@@ -71,21 +71,21 @@ Get-PartnerProductAvailability -Product $productId -SkuId $skuId -AvailabilityId
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/termékváltozatok/{sku-id}/availabilities/{availability-id}?country={országkód} HTTP/1.1         |
+| **KAP** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/termékváltozatok/{termékváltozat}/availabilities/{rendelkezésre állási-azonosító}?country={országkód} HTTP/1.1         |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az alábbi elérési út és lekérdezési paraméterek használatával lekérdezheti az adott rendelkezésre állást egy rendelkezésre állási azonosító használatával.
+Az alábbi elérési út és lekérdezési paraméterek használatával lekérdezheti az adott rendelkezésre állást egy rendelkezésre állási azonosítóval.
 
 | Név                   | Típus     | Kötelező | Leírás                                                     |
 |------------------------|----------|----------|-----------------------------------------------------------------|
 | termékazonosító             | sztring   | Yes      | Egy GUID formátumú sztring, amely azonosítja a terméket.            |
 | sku-id                 | sztring   | Yes      | Egy GUID formátumú sztring, amely azonosítja a termékváltozatot.                |
-| rendelkezésre állási azonosító        | sztring   | Yes      | Egy GUID formátumú sztring, amely a rendelkezésre állást azonosítja.       |
+| availability-id (rendelkezésre állási azonosító)        | sztring   | Yes      | Egy GUID formátumú sztring, amely azonosítja a rendelkezésre állást.       |
 | országkód           | sztring   | Yes      | Egy ország-/régióazonosító.                                            |
 
 ### <a name="request-headers"></a>Kérésfejlécek
@@ -115,7 +115,7 @@ Ha ez sikeres, a válasz törzse tartalmaz egy [rendelkezésre állási erőforr
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő [hibakódok Partnerközpont meg:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
@@ -125,7 +125,7 @@ Ez a metódus a következő hibakódokat adja vissza:
 | 404                  | 400018       | A termékváltozat nem található.                                                                                        |
 | 404                  | 400019       | A rendelkezésre állás nem található.                                                                                   |
 
-### <a name="response-example"></a>Példa válaszra
+### <a name="response-example-for-azure-vm-reservations-azure-plan"></a>Válasz példa Azure-beli virtuális gépek foglalása (Azure-csomag) esetén
 
 ```http
 HTTP/1.1 200 OK
@@ -161,6 +161,82 @@ Content-Length: 440
     "links": {
         "self": {
             "uri": "/products/DZH318Z0BQ3Q/skus/0001/availabilities/DZH318XZXPHL?country=US",
+            "method": "GET",
+            "headers": []
+        }
+    }
+}
+```
+
+### <a name="response-example-for-new-commerce-license-based-services"></a>Válasz példa az új kereskedelmi licencalapú szolgáltatásokra
+
+> [!Note] 
+> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesz partnerek számára érhetők el
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Server: Microsoft-IIS/10.0
+MS-CorrelationId: 83b644b5-e54a-4bdc-b354-f96c525b3c58,83b644b5-e54a-4bdc-b354-f96c525b3c58
+MS-RequestId: 70324727-62d8-4195-8f99-70ea25058d02,70324727-62d8-4195-8f99-70ea25058d02
+X-Locale: en-US,en-US
+X-SourceFiles: =?UTF-8?B?QzpcVXNlcnNcbWFtZW5kZVxkZXZcZHBzLXJwZVxSUEUuUGFydG5lci5TZXJ2aWNlLkNhdGFsb2dcV2ViQXBpc1xDYXRhbG9nU2VydmljZS5WMi5XZWJcdjFccHJvZHVjdHNcRFpIMzE4WjBCUTNRXHNrdXNcMDAwMVxhdmFpbGFiaWxpdGllcw==?=
+X-Powered-By: ASP.NET
+Date: Wed, 14 Mar 2018 22:19:37 GMT
+Content-Length: 808
+
+{
+    "id": "CFQ7TTC0K971",
+    "productId": "CFQ7TTC0LH18",
+    "skuId": "0001",
+    "catalogItemId": "CFQ7TTC0LH18:0001:CFQ7TTC0K971",
+    "defaultCurrency": {
+        "code": "USD",
+        "symbol": "$"
+    },
+    "segment": "commercial",
+    "country": "US",
+    "isPurchasable": true,
+    "isRenewable": true, 
+    "renewalInstructions": [
+        {
+            "applicableTermIds": [
+                "5aeco6mffyxo"
+            ],
+            "renewalOptions": [
+                {
+                    "renewToId": "CFQ7TTC0LH18:0001",
+                    "isAutoRenewable": true
+                }
+            ]
+        },
+     …
+    ],
+    "terms": [
+        {
+            "id": "5aeco6mffyxo",
+            "duration": "P1Y",
+            "description": "One-Year commitment for monthly/yearly billing",
+            "billingCycle": "Annual",
+            "cancellationPolicies": [
+                {
+                    "refundOptions": [
+                        {
+                            "sequenceId": 0,
+                            "type": "Full",
+                            "expiresAfter": "P1D"
+                        }
+                    ]
+                }
+            ]
+        },
+       …
+    ],
+    "product": { ... },
+    "sku": { ... },
+    "links": {
+        "self": {
+            "uri": "/products/CFQ7TTC0LH18/skus/0001/availabilities/CFQ7TTC0K971?country=US",
             "method": "GET",
             "headers": []
         }

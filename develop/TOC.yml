@@ -324,6 +324,8 @@
           href: create-azure-plan.md
         - name: Azure-foglalások megvásárlása
           href: purchase-azure-reservations.md
+        - name: Új kereskedelmi licencalapú szolgáltatások vásárlása
+          href: purchase-new-commerce-license-based.md
         - name: Előfizetés vásárlása kereskedelmi piactéri termékekhez
           href: create-subscription-azure-marketplace-products.md
         - name: Kereskedelmi piactéri előfizetés lemondása
@@ -388,6 +390,8 @@
           href: get-subscription-provisioning-status.md
         - name: Előfizetés regisztrációs állapotának lekérése
           href: get-subscription-registration-status.md
+        - name: Áttűnés lekért
+          href: get-transitions.md
         - name: Egyszeri vásárlás
           href: make-a-one-time-purchase.md
         - name: Bővítmény vásárlása egy előfizetéshez
@@ -402,6 +406,8 @@
           href: suspend-a-subscription.md
         - name: Előfizetés átváltása
           href: transition-a-subscription.md
+        - name: Új kereskedelmi előfizetés váltása
+          href: transition-a-new-commerce-subscription.md
         - name: Kosár frissítése
           href: update-a-cart.md
         - name: Kereskedelmi piactéri előfizetés automatikus megújításának frissítése
@@ -539,6 +545,8 @@
           href: subscription-resources.md
         - name: Előfizetés használata
           href: subscription-usage-resources.md
+        - name: Átmenet
+          href: transition-resources.md
         - name: Frissítés
           href: upgrade-resources.md
         - name: Felhasználó

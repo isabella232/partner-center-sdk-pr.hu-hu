@@ -1,17 +1,17 @@
 ---
 title: Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ország alapján)
 description: A megadott termékhez és termékváltozathoz való rendelkezésre állások gyűjteményének lekérte az ügyfél országa szerint.
-ms.date: 11/01/2019
+ms.date: 02/16/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 8e5fe9bae436d8b7f237b9039c66b369f0e32109
-ms.sourcegitcommit: b0534995c36d644cc5f7bdf31b2afd5355cf7149
+ms.openlocfilehash: 763a116cf120aaeeea7fddc1be7b2931f4a513e6
+ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/16/2021
-ms.locfileid: "122208075"
+ms.lasthandoff: 09/03/2021
+ms.locfileid: "123456001"
 ---
 # <a name="get-a-list-of-availabilities-for-a-sku-by-country"></a>Egy termékváltozat elérhetőségét tartalmazó lista lekérése (ország alapján)
 
@@ -19,7 +19,7 @@ Ez a cikk azt ismerteti, hogyan lehet rendelkezésre állási gyűjteményt lek�
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 - Egy termékazonosító.
 
@@ -29,15 +29,15 @@ Ez a cikk azt ismerteti, hogyan lehet rendelkezésre állási gyűjteményt lek�
 
 ## <a name="c"></a>C\#
 
-Egy termékváltozat [rendelkezésre állási](product-resources.md#availability) listájának [lekért listája:](product-resources.md#sku)
+Egy termékváltozat [rendelkezésre állási](product-resources.md#availability) [listájának lekért listája:](product-resources.md#sku)
 
-1. Az adott termékváltozat műveleteihez szükséges interfész lekért felületének lekért lépéseit az [SKU](get-a-sku-by-id.md) azonosító alapján való lekért lépéseit követve.
+1. Az adott termékváltozat műveleteihez szükséges felület lekért felületének lekért lépéseit az [SKU](get-a-sku-by-id.md) azonosító alapján lekért lépéseit követve.
 
-2. A termékváltozat felületén válassza az **Availabilities (Rendelkezésre** állások) tulajdonságot, hogy lekérte a rendelkezésre állási műveletekhez szükséges interfészt.
+2. A termékváltozat-felületen válassza a **Rendelkezésre állások** tulajdonságot a rendelkezésre állási műveletekhez szükséges felület lekértjedéshez.
 
-3. (Nem kötelező) A **ByTargetSegment()** metódussal szűrheti a rendelkezésre állásokat célszegmens szerint.
+3. (Nem kötelező) A **ByTargetSegment()** metódussal célszegmens szerint szűrheti a rendelkezésre állásokat.
 
-4. A termékváltozat rendelkezésre állási gyűjteményének lekéréséhez hívja meg a **Get()** vagy a **GetAsync()** metódust.
+4. Hívja meg a **Get()** vagy **a GetAsync()** metódust a termékváltozat rendelkezésre állási gyűjteményének lekéréséhez.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -68,7 +68,7 @@ var availabilities = partnerOperations.Products.ByCountry(countryCode).ById(prod
 
 | Metódus  | Kérés URI-ja                                                                                                                              |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/termékváltozatok/{sku-id}/availabilities?country={országkód}&targetSegment={target-segment} HTTP/1.1     |
+| **KAP** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/termékváltozatok/{sku-id}/availabilities?country={országkód}&targetSegment={target-segment} HTTP/1.1     |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
@@ -80,7 +80,7 @@ Az alábbi elérési út és lekérdezési paraméterek használatával lekérde
 | sku-id                 | sztring   | Yes      | A termékváltozatot azonosító sztring.                               |
 | országkód           | sztring   | Yes      | Egy ország-/régióazonosító.                                            |
 | célszegmens         | sztring   | No       | A szűréshez használt célszegmenst azonosító sztring. |
-| reservationScope | sztring   | No | Az Azure-foglalási termékváltozatok rendelkezésre állási listájának lekérdezésekor adja meg a értéket az AzurePlanra vonatkozó rendelkezésre `reservationScope=AzurePlan` állások listájának lekértéhez. Zárja ki ezt a paramétert a Microsoft Azure (MS-AZR-0145P) előfizetések esetében alkalmazható rendelkezésre állások listájának lekértéhez.  |
+| reservationScope | sztring   | No | Az Azure-foglalási termékváltozatok rendelkezésre állási listájának lekérdezésekor adja meg a értéket az AzurePlanra vonatkozó rendelkezésre állások `reservationScope=AzurePlan` listájának lekérdezőjéhez. Zárja ki ezt a paramétert a Microsoft Azure (MS-AZR-0145P) előfizetések esetében elérhető rendelkezésre állások listájának lekértéhez.  |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -94,7 +94,7 @@ Nincsenek.
 
 #### <a name="availabilities-for-sku-by-country"></a>Termékváltozatok rendelkezésre állása országonként
 
-Kövesse ezt a példát egy adott termékváltozat rendelkezésre állási listájának országonkénti lekért listájához:
+Kövesse az alábbi példát egy adott termékváltozat rendelkezésre állási listájának lekért országonként:
 
 ```http
 GET http:// api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ3Q/skus/0001/availabilities?country=US HTTP/1.1
@@ -106,7 +106,7 @@ MS-CorrelationId: 83b644b5-e54a-4bdc-b354-f96c525b3c58
 
 #### <a name="availabilities-for-vm-reservations-azure-plan"></a>Virtuálisgép-foglalások rendelkezésre állása (Azure-csomag)
 
-Kövesse ezt a példát az Azure-beli virtuális gépek foglalási termékkódok országonkénti rendelkezésre állási listájának lekért listájához. Ez a példa az Azure-csomagokra vonatkozó SKUS-okat példázhatja:
+Kövesse ezt a példát az Azure-beli virtuális gépek foglalási termékkódjaihoz országok szerinti elérhetőségek listájának lekért listájához. Ez a példa az Azure-csomagokra vonatkozó SKUs-okat példázhatja:
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ3Q/skus/0001/availabilities?country=US&targetView=AzureReservationsVM&reservationScope=AzurePlan HTTP/1.1
@@ -118,7 +118,7 @@ MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 
 #### <a name="availabilities-for-vm-reservations-for-microsoft-azure-ms-azr-0145p-subscriptions"></a>Virtuálisgép-foglalások rendelkezésre állása Microsoft Azure (MS-AZR-0145P) előfizetések esetében
 
-Kövesse ezt a példát az egyes országok szerinti elérhetőségek lekért listájáért azon Azure-beli virtuális gépek foglalásai esetében, amelyek Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkoznak.
+Ebben a példában lekért lista az egyes országok szerinti elérhetőségről az Azure-beli virtuális gépek foglalásai esetében, amelyek az Microsoft Azure -előfizetések (MS-AZR-0145P) esetében alkalmazhatók.
 
 ```http
 GET https://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ3Q/skus/0001/availabilities?country=US&targetView=AzureAzureReservationsVM HTTP/1.1
@@ -134,7 +134,7 @@ Ha ez sikeres, a válasz törzse rendelkezésre állási [**erőforrások gyűjt
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [hibakódok.](error-codes.md)
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
@@ -142,7 +142,7 @@ Ez a metódus a következő hibakódokat adja vissza:
 |----------------------|--------------|-----------------------------------------------------------------------------------------------------------|
 | 403                  | 400030       | A kért **targetSegment szolgáltatáshoz való hozzáférés** nem engedélyezett.                                                     |
 
-### <a name="response-example"></a>Példa válaszra
+### <a name="response-example-for-azure-vm-reservations-azure-plan"></a>Válasz példa Azure-beli virtuális gépek foglalása (Azure-csomag) esetén
 
 ```http
 HTTP/1.1 200 OK
@@ -196,6 +196,93 @@ Content-Length: 808
     },
     "attributes": {
         "objectType": "Collection"
+    }
+}
+```
+
+### <a name="response-example-for-new-commerce-license-based-services"></a>Válasz példa az új kereskedelmi licencalapú szolgáltatásokra
+
+> [!Note] 
+> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesz partnerek számára érhetők el
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Server: Microsoft-IIS/10.0
+MS-CorrelationId: 83b644b5-e54a-4bdc-b354-f96c525b3c58,83b644b5-e54a-4bdc-b354-f96c525b3c58
+MS-RequestId: 70324727-62d8-4195-8f99-70ea25058d02,70324727-62d8-4195-8f99-70ea25058d02
+X-Locale: en-US,en-US
+X-SourceFiles: =?UTF-8?B?QzpcVXNlcnNcbWFtZW5kZVxkZXZcZHBzLXJwZVxSUEUuUGFydG5lci5TZXJ2aWNlLkNhdGFsb2dcV2ViQXBpc1xDYXRhbG9nU2VydmljZS5WMi5XZWJcdjFccHJvZHVjdHNcRFpIMzE4WjBCUTNRXHNrdXNcMDAwMVxhdmFpbGFiaWxpdGllcw==?=
+X-Powered-By: ASP.NET
+Date: Wed, 14 Mar 2018 22:19:37 GMT
+Content-Length: 808
+
+{
+    "id": "CFQ7TTC0K971",
+    "productId": "CFQ7TTC0LH18",
+    "skuId": "0001",
+    "catalogItemId": "CFQ7TTC0LH18:0001:CFQ7TTC0K971",
+    "defaultCurrency": {
+        "code": "USD",
+        "symbol": "$"
+    },
+    "segment": "commercial",
+    "country": "US",
+    "isPurchasable": true,
+    "isRenewable": true, 
+    "renewalInstructions": [
+        {
+            "applicableTermIds": [
+                "5aeco6mffyxo"
+            ],
+            "renewalOptions": [
+                {
+                    "renewToId": "CFQ7TTC0LH18:0001",
+                    "isAutoRenewable": true
+                }
+            ]
+        },
+     …
+    ],
+    "terms": [
+        {
+            "id": "5aeco6mffyxo",
+            "duration": "P1Y",
+            "description": "One-Year commitment for monthly/yearly billing",
+            "billingCycle": "Annual",
+            "cancellationPolicies": [
+                {
+                    "refundOptions": [
+                        {
+                            "sequenceId": 0,
+                            "type": "Full",
+                            "expiresAfter": "P1D"
+                        }
+                    ]
+                }
+            ]
+        },
+       …
+    ],
+    "links": {
+        "self": {
+            "uri": "/products/CFQ7TTC0LH18/skus/0001/availabilities/CFQ7TTC0K971?country=US",
+            "method": "GET",
+            "headers": []
+        }
+    },
+        "links": {
+            "availabilities": {
+                "uri": "/products/CFQ7TTC0LH18/skus/0001/availabilities?country=US",
+                "method": "GET",
+                "headers": []
+            },
+            "self": {
+                "uri": "/products/CFQ7TTC0LH18/skus/0001?country=US",
+                "method": "GET",
+                "headers": []
+            }
+        }
     }
 }
 ```

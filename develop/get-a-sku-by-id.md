@@ -1,17 +1,17 @@
 ---
 title: Egy termékváltozat lekérése azonosító alapján
-description: Lekért egy termékváltozatot a megadott termékváltozat-azonosítóval.
-ms.date: 01/08/2019
+description: A megadott termékváltozat-azonosítóval szerezze be a megadott termékváltozatot.
+ms.date: 02/16/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 3be496b694d9e0e34619807e85ed8fe63879f3561a404ebc7361dcedc4479612
-ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+ms.openlocfilehash: bc7036467142d666aed6e9f41b86b1c2d2f0c8ec
+ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/06/2021
-ms.locfileid: "115994183"
+ms.lasthandoff: 09/03/2021
+ms.locfileid: "123456120"
 ---
 # <a name="get-a-sku-by-id"></a>Egy termékváltozat lekérése azonosító alapján
 
@@ -19,7 +19,7 @@ Lekért egy termékváltozatot a megadott termékváltozat-azonosítóval.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 - Egy termékazonosító.
 
@@ -27,7 +27,7 @@ Lekért egy termékváltozatot a megadott termékváltozat-azonosítóval.
 
 ## <a name="c"></a>C\#
 
-Egy adott termékváltozat részleteinek lekért információkért először kövesse [a](get-a-product-by-id.md) Termék lekérte azonosító alapján lépéseit egy adott termék műveleteihez szükséges interfész lekértért lépéseit követve. Az eredményül kapott felületen válassza a **Skus (Skus)** tulajdonságot a SKUS-hoz elérhető műveletekkel való interfész beszerzéséhez. Adja át a termékváltozat azonosítóját a **ById()** metódusnak, és hívja meg a **Get()** vagy **a GetAsync()** metódust a termékváltozat részleteinek lekéréshez.
+Egy adott termékváltozat részleteinek lekért információkért először kövesse [a](get-a-product-by-id.md) Termék lekérte azonosító alapján lépéseit egy adott termék műveleteihez szükséges interfész lekértért lépéseit követve. Az eredményül kapott felületen válassza a **Skus (Skus)** tulajdonságot a rendelkezésre álló SKUs-műveletekkel való interfész beszerzéséhez. Adja át a termékváltozat azonosítóját a **ById()** metódusnak, és hívja meg a **Get()** vagy **a GetAsync()** metódust a termékváltozat részleteinek lekéréshez.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -45,7 +45,7 @@ var sku = partnerOperations.Products.ByCountry(countryCode).ById(productId).Skus
 
 | Metódus  | Kérés URI-ja                                                                                                         |
 |---------|---------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/termékváltozatok/{termékváltozat}?country={országkód} HTTP/1.1   |
+| **KAP** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/termékváltozatok/{termékváltozat}?country={országkód} HTTP/1.1   |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -81,11 +81,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse tartalmaz [egy SKU-erőforrást.](product-resources.md#sku)
+Ha a művelet sikeres, a válasz törzse tartalmaz [egy SKU-erőforrást.](product-resources.md#sku)
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a [hibakódok Partnerközpont tekintse meg.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő [hibakódok Partnerközpont meg:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
@@ -94,7 +94,7 @@ Ez a metódus a következő hibakódokat adja vissza:
 | 404                  | 400013       | A termék nem található.                                                                                    |
 | 404                  | 400018       | A termékváltozat nem található.                                                                                        |
 
-### <a name="response-example"></a>Példa válaszra
+### <a name="response-example-for-azure-vm-reservations-azure-plan"></a>Válasz példa Azure-beli virtuális gépek foglalása (Azure-csomag) esetén
 
 ```http
 HTTP/1.1 200 OK
@@ -150,6 +150,72 @@ Content-Length: 1108
         },
         "self": {
             "uri": "/products/DZH318Z0BQ3V/skus/00G1?country=us",
+            "method": "GET",
+            "headers": []
+        }
+    }
+}
+```
+
+### <a name="response-example-for-new-commerce-license-based-services"></a>Válasz példa az új kereskedelmi licencalapú szolgáltatásokra
+
+> [!Note] 
+> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesz partnerek számára érhetők el
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Server: Microsoft-IIS/10.0
+MS-CorrelationId: e75c1060-852e-4b49-92b0-cd15167a0d51,e75c1060-852e-4b49-92b0-cd15167a0d51
+MS-RequestId: 18b41adf-29b5-48eb-b14f-c9683a4e5b7d,18b41adf-29b5-48eb-b14f-c9683a4e5b7d
+X-Locale: en-US,en-US
+X-SourceFiles: =?UTF-8?B?QzpcVXNlcnNcbWFtZW5kZVxkZXZcZHBzLXJwZVxSUEUuUGFydG5lci5TZXJ2aWNlLkNhdGFsb2dcV2ViQXBpc1xDYXRhbG9nU2VydmljZS5WMi5XZWJcdjFccHJvZHVjdHNcRFpIMzE4WjBCUTVTXHNrdXM=?=
+X-Powered-By: ASP.NET
+Date: Thu, 15 Mar 2018 21:06:03 GMT
+Content-Length: 50917
+
+{
+    "id": "0001",
+    "productId": "CFQ7TTC0LH18",
+    "title": "Microsoft 365 Business Basic",
+    "description": "Best for businesses that need professional email, cloud file storage, and online meetings & chat. Desktop versions of Office apps like Excel, Word, and PowerPoint not included. For businesses with up to 300 employees.",
+    "minimumQuantity": 1,
+    "maximumQuantity": 300,
+    "isTrial": false,
+    "supportedBillingCycles": [
+        "annual",
+        "monthly"
+    ],
+    "purchasePrerequisites": [
+        "MicrosoftCloudAgreement"
+    ],
+    "inventoryVariables": [],
+    "provisioningVariables": [],
+    "actions": [
+        "Refund"
+    ],
+    "dynamicAttributes": {
+        "isMicrosoftProduct": true,
+        "hasConstraints": true,
+        "isAddon": false,
+        "prerequisiteSkus": [],
+        "isSoftwareAssuranceApplicable": false,
+        "upgradeTargetOffers": [
+            "CFQ7TTC0LDPB:0001",
+            "CFQ7TTC0LF8Q:0001"
+…
+        ],
+        "provisioningId": "3b555118-da6a-4418-894f-7df1e2096870",
+        "internal": false
+    },
+    "links": {
+        "availabilities": {
+            "uri": "/products/CFQ7TTC0LH18/skus/0001/availabilities?country=US",
+            "method": "GET",
+            "headers": []
+        },
+        "self": {
+            "uri": "/products/CFQ7TTC0LH18/skus/0001?country=US",
             "method": "GET",
             "headers": []
         }

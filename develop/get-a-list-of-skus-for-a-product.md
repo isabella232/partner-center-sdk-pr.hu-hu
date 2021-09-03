@@ -1,25 +1,25 @@
 ---
 title: Egy termék termékváltozatait tartalmazó lista lekérése (ország alapján)
-description: A termék terméktermék-gyűjteményét országonként is lekérte és szűrheti a Partnerközpont API-k használatával.
-ms.date: 11/01/2019
+description: A termék terméktermék-gyűjteményét országonként is lekérte és szűrheti az Partnerközpont API-k használatával.
+ms.date: 02/16/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 1f15ecaa7d84f4c68c6221e459d9977a79cffd9fa19d32ccbd7e6bec6444a93c
-ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+ms.openlocfilehash: d86254c2fefb8d1c60a8ba4ccb66a1cc5f88d4cb
+ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/06/2021
-ms.locfileid: "115995441"
+ms.lasthandoff: 09/03/2021
+ms.locfileid: "123456171"
 ---
 # <a name="get-a-list-of-skus-for-a-product-by-country"></a>Egy termék termékváltozatait tartalmazó lista lekérése (ország alapján)
 
-Egy adott termékhez egy adott országban elérhető termékkódok gyűjteményét az API-k segítségével Partnerközpont le.
+Egy adott termékhez egy adott országban elérhető terméktermékgyűjteményt az api-k használatával Partnerközpont le.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 - Egy termékazonosító.
 
@@ -27,7 +27,7 @@ Egy adott termékhez egy adott országban elérhető termékkódok gyűjtemény�
 
 A termék termék-listájának lekért listája:
 
-1. Egy adott termék műveleteihez a termék azonosító alapján való lekért lépéseit követve szerezze be [a felületet.](get-a-product-by-id.md)
+1. Egy adott termék műveleteinek interfészét a termék azonosító alapján [való lekért lépéseit követve szerezze be.](get-a-product-by-id.md)
 
 2. A felületről válassza ki a **Skus (Skus)** tulajdonságot a SKUS-hoz elérhető műveletekkel való interfész beszerzéséhez.
 
@@ -65,9 +65,9 @@ var skus = partnerOperations.Products.ByCountry(countryCode).ById(productIdForAz
 
 A termék termék-listájának lekért listája:
 
-1. Egy adott termék műveleteihez a termék azonosító alapján való lekért lépéseit követve szerezze be [a felületet.](get-a-product-by-id.md)
+1. Egy adott termék műveleteinek interfészét a termék azonosító alapján [való lekért lépéseit követve szerezze be.](get-a-product-by-id.md)
 
-2. A felületen válassza ki a **getSkus** függvényt a SKUs elérhető műveleteihez szükséges interfész beszerzéséhez.
+2. A felületen válassza ki a **getSkus** függvényt a SKUS-hoz elérhető műveletekkel való interfész beszerzéséhez.
 
 3. Hívja meg a **get()** függvényt a termékhez elérhető termékkódok gyűjteményének lekéréséhez.
 
@@ -114,7 +114,7 @@ Get-PartnerProductSku -ProductId $productId -Segment $targetSegment
 
 | Metódus  | Kérés URI-ja                                                                                                                              |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/skus?country={országkód}&targetSegment={target-segment} HTTP/1.1  |
+| **KAP** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}/skus?country={országkód}&targetSegment={target-segment} HTTP/1.1  |
 
 #### <a name="uri-parameters"></a>URI-paraméterek
 
@@ -125,7 +125,7 @@ Az alábbi elérési út és lekérdezési paraméterek használatával lekérde
 | termékazonosító             | sztring   | Yes      | A terméket azonosító sztring.                           |
 | országkód           | sztring   | Yes      | Egy ország-/régióazonosító.                                            |
 | célszegmens         | sztring   | No       | A szűréshez használt célszegmenst azonosító sztring. |
-| reservationScope | sztring   | No | Az Azure Reservation-termékek terméktermék-listájának lekérdezésekor adja meg a értéket az AzurePlanra vonatkozó termékkel kapcsolatos `reservationScope=AzurePlan` termékkódok listájának lekérdezőjéhez. Zárja ki ezt a paramétert, hogy lekérte az Azure Reservation-termékek termékterméklistát, amely Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkozik.  |
+| reservationScope | sztring   | No | Az Azure Reservation-termékek terméktermék-listájának lekérdezésekor adja meg a következőt: az `reservationScope=AzurePlan` AzurePlanra vonatkozó SKUS-k listájának lekérdezhető. Zárja ki ezt a paramétert, hogy lekérte az Azure Reservation-termékek azon termékterméklistát, amelyek Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkoznak.  |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -147,7 +147,7 @@ MS-RequestId: 18b41adf-29b5-48eb-b14f-c9683a4e5b7d
 MS-CorrelationId: e75c1060-852e-4b49-92b0-cd15167a0d51
 ```
 
-Egy Azure-foglalási termék terméktermék terméktermékének listájának lekért listája. Csak az Azure-csomagokra érvényes, és nem Microsoft Azure (MS-AZR-0145P) előfizetésre:
+Egy Azure Reservation-termék terméktermék terméktermékének listájának lekért listája. Csak az Azure-csomagokra vonatkozó SKUs-Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkozik:
 
 ```http
 GET http://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ5S/skus?country=US&reservationScope=AzurePlan HTTP/1.1
@@ -157,7 +157,7 @@ MS-RequestId: 18b41adf-29b5-48eb-b14f-c9683a4e5b7d
 MS-CorrelationId: e75c1060-852e-4b49-92b0-cd15167a0d51
 ```
 
-Egy Azure-foglalási termék terméktermék terméktermékének listájának lekért listája. Csak a Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkozó SKUs-okat foglalja bele, az Azure-csomagok nem:
+Egy Azure Reservation-termék terméktermék terméktermékének listájának lekért listája. Csak a Microsoft Azure (MS-AZR-0145P) előfizetésre vonatkozó SKUs-okat foglalja bele, az Azure-csomagok nem:
 
 ```http
 GET http://api.partnercenter.microsoft.com/v1/products/DZH318Z0BQ5S/skus?country=US HTTP/1.1
@@ -173,16 +173,16 @@ Ha ez sikeres, a válasz törzse termékváltozat-erőforrások [gyűjteményét
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a [hibakódok Partnerközpont tekintse meg.](error-codes.md)
+Minden válaszhoz egy HTTP-állapotkód is jár, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő [hibakódok Partnerközpont meg:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
 | HTTP-állapotkód     | Hibakód   | Description                                                                                               |
 |----------------------|--------------|-----------------------------------------------------------------------------------------------------------|
-| 403                  | 400030       | A kért targetSegment elérése nem engedélyezett.                                                     |
+| 403                  | 400030       | A kért targetSegment szolgáltatáshoz való hozzáférés nem engedélyezett.                                                     |
 | 404                  | 400013       | A szülőtermék nem található.                                                                         |
 
-### <a name="response-example"></a>Példa válaszra
+### <a name="response-example-for-azure-vm-reservations-azure-plan"></a>Válasz példa Azure-beli virtuális gépek foglalása (Azure-csomag) esetén
 
 ```http
 HTTP/1.1 200 OK
@@ -299,3 +299,86 @@ Content-Length: 50917
     }
 }
 ```
+
+### <a name="response-example-for-new-commerce-license-based-services"></a>Válasz példa az új kereskedelmi licencalapú szolgáltatásokra
+
+> [!Note] 
+> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesz partnerek számára érhetők el
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Server: Microsoft-IIS/10.0
+MS-CorrelationId: e75c1060-852e-4b49-92b0-cd15167a0d51,e75c1060-852e-4b49-92b0-cd15167a0d51
+MS-RequestId: 18b41adf-29b5-48eb-b14f-c9683a4e5b7d,18b41adf-29b5-48eb-b14f-c9683a4e5b7d
+X-Locale: en-US,en-US
+X-SourceFiles: =?UTF-8?B?QzpcVXNlcnNcbWFtZW5kZVxkZXZcZHBzLXJwZVxSUEUuUGFydG5lci5TZXJ2aWNlLkNhdGFsb2dcV2ViQXBpc1xDYXRhbG9nU2VydmljZS5WMi5XZWJcdjFccHJvZHVjdHNcRFpIMzE4WjBCUTVTXHNrdXM=?=
+X-Powered-By: ASP.NET
+Date: Thu, 15 Mar 2018 21:06:03 GMT
+Content-Length: 50917
+
+{
+    "totalCount": 40,
+    "items": [
+        {
+{
+    "id": "0001",
+    "productId": "CFQ7TTC0LH18",
+    "title": "Microsoft 365 Business Basic",
+    "description": "Best for businesses that need professional email, cloud file storage, and online meetings & chat. Desktop versions of Office apps like Excel, Word, and PowerPoint not included. For businesses with up to 300 employees.",
+    "minimumQuantity": 1,
+    "maximumQuantity": 300,
+    "isTrial": false,
+    "supportedBillingCycles": [
+        "annual",
+        "monthly"
+    ],
+    "purchasePrerequisites": [
+        "MicrosoftCloudAgreement"
+    ],
+    "inventoryVariables": [],
+    "provisioningVariables": [],
+    "actions": [
+        "Refund"
+    ],
+    "dynamicAttributes": {
+        "isMicrosoftProduct": true,
+        "hasConstraints": true,
+        "isAddon": false,
+        "prerequisiteSkus": [],
+        "isSoftwareAssuranceApplicable": false,
+        "upgradeTargetOffers": [
+            "CFQ7TTC0LDPB:0001",
+            "CFQ7TTC0LF8Q:0001"
+…
+        ],
+        "provisioningId": "3b555118-da6a-4418-894f-7df1e2096870",
+        "internal": false
+    },
+    "links": {
+        "availabilities": {
+            "uri": "/products/CFQ7TTC0LH18/skus/0001/availabilities?country=US",
+            "method": "GET",
+            "headers": []
+        },
+        "self": {
+            "uri": "/products/CFQ7TTC0LH18/skus/0001?country=US",
+            "method": "GET",
+            "headers": []
+        }
+    }
+}        [...]
+    ],
+    "links": {
+        "self": {
+            "uri": "/products/DZH318Z0BQ5S/skus?country=US",
+            "method": "GET",
+            "headers": []
+        }
+    },
+    "attributes": {
+        "objectType": "Collection"
+    }
+}
+```
+

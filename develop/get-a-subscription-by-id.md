@@ -1,17 +1,17 @@
 ---
 title: Egy előfizetés lekérése azonosító alapján
 description: Lekért egy előfizetési erőforrást, amely megfelel az ügyfél-azonosítónak és az előfizetés-azonosítónak.
-ms.date: 12/15/2017
+ms.date: 02/23/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: amitravat
 ms.author: amrava
-ms.openlocfilehash: 0dc65c629984c299bfde0b801b0415ffb1ba661462e2473ad051f169d6357d3a
-ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+ms.openlocfilehash: 26825084d89648affe904b9415d3143b3e65ebae
+ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/06/2021
-ms.locfileid: "115991055"
+ms.lasthandoff: 09/03/2021
+ms.locfileid: "123455984"
 ---
 # <a name="get-a-subscription-by-id"></a>Egy előfizetés lekérése azonosító alapján
 
@@ -21,15 +21,15 @@ Lekért [egy előfizetési](subscription-resources.md) erőforrást, amely megfe
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, a következő irányítópulton Partnerközpont [ki:](https://partner.microsoft.com/dashboard). Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
 ## <a name="c"></a>C\#
 
-Az előfizetés azonosító alapján való beszerzéséhez először szerezze be az előfizetési műveletek felületét az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódus hívásával az ügyfél azonosítójával az ügyfél azonosításához, és a [**Subscriptions.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódussal az előfizetés azonosításához. Ezzel a [**felülettel**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription) lekéri az előfizetés adatait a [**Get hívása használatával.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.get)
+Az előfizetés azonosító alapján való beszerzéséhez először szerezze be az előfizetési műveletek interfészét az [**IAggregatePartner.Customers.ById**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódus hívásával az ügyfél azonosítójával, az ügyfél azonosításához pedig a [**Subscriptions.ById**](/dotnet/api/microsoft.store.partnercenter.customerusers.icustomerusercollection.byid) metódussal az előfizetés azonosításához. Ezzel a [**felülettel lekérhető**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription) az előfizetés részleteinek lekérése a [**Get hívása használatával.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscription.get)
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -39,7 +39,7 @@ Az előfizetés azonosító alapján való beszerzéséhez először szerezze be
 var subscriptionDetails = partnerOperations.Customers.ById(selectedCustomerId).Subscriptions.ById(subscriptionID).Get();
 ```
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: Partnerközpont SDK **Osztály:** GetSubscription.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** Partnerközpont SDK Samples **Osztály:** GetSubscription.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
@@ -47,7 +47,7 @@ var subscriptionDetails = partnerOperations.Customers.ById(selectedCustomerId).S
 
 | Metódus  | Kérés URI-ja                                                                                                                |
 |---------|----------------------------------------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription} HTTP/1.1 |
+| **KAP** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -80,13 +80,13 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha sikeres, ez a metódus egy Előfizetés [erőforrást](subscription-resources.md) ad vissza a válasz törzsében.
+Ha a művelet sikeres, ez a metódus egy [Előfizetés](subscription-resources.md) erőforrást ad vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: Partnerközpont [REST-hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd a Partnerközpont [REST-hibakódok között.](error-codes.md)
 
-### <a name="response-example-for-a-standard-subscription"></a>Példa egy standard előfizetésre
+### <a name="response-example-for-a-microsoft-azure-subscription"></a>Példa válasz egy Microsoft Azure előfizetésre
 
 ```http
 HTTP/1.1 200 OK
@@ -182,6 +182,83 @@ Date: Fri, 27 Jan 2017 00:12:53 GMT
     "orderId": "CF3B0E37-BE0B-4CDD-B584-D1A97D98A922",
     "attributes": {
         "etag": "eyJpZCI6Ijk2OGJhMWNmLWMxNDYtNGFkZi1hMzAwLTMwOGRjZjcxOGVlZSIsInZlcnNpb24iOjF9",
+        "objectType": "Subscription"
+    }
+}
+```
+### <a name="response-example-for-a-new-commerce-subscription"></a>Válasz példa egy új kereskedelmi előfizetésre
+
+> [!Note] 
+> Az új kereskedelmi módosítások jelenleg csak az M365/D365 új kereskedelmi felhasználói élmény technikai előzetesének részét képezi partnerek számára érhetők el.
+
+```http
+HTTP/1.1 200 OK
+Content-Length: 1132
+Content-Type: application/json; charset=utf-8
+MS-CorrelationId: 4ercec93-852d-4167-9d96-c57809bea7ed
+MS-RequestId: 54sfd0fb-d1e6-4a8f-aa1a-124b7c820d80
+MS-CV: cmde2DtbuUWi8JLq.0
+MS-ServerId: 201022015
+Date: Fri, 19 Feb 2021 00:14:53 GMT
+
+{
+    "id": "a4c1340d-6911-4758-bba3-0c4c6007d161",
+    "offerId": "CFQ7TTC0LH18:0001:CFQ7TTC0K971",
+    "offerName": "Microsoft 365 Business Basic",
+    "friendlyName": "Microsoft 365 Business Basic",
+    "productType": {
+        "id": "OnlineServicesNCE",
+        "displayName": "OnlineServicesNCE"
+    },
+    "quantity": 1, 
+    "unitType": "Licenses",
+    "hasPurchasableAddons": false,
+    "creationDate": "2021-01-14T16:57:15.0966728Z",
+    "effectiveStartDate": "2021-01-14T16:57:14.498252Z",
+    "commitmentEndDate": "2022-01-13T00:00:00Z",
+    "status": "expired", 
+    "autoRenewEnabled": false, 
+    "isTrial": false,
+    "billingType": "license",
+    "billingCycle": "monthly",
+    "termDuration": "P1Y",
+    "renewalTermDuration": "",
+    "refundOptions": [
+        {
+            "type": "Full",
+            "expiresAt": "2021-01-15T00:00:00Z"
+        }
+    ],
+    "isMicrosoftProduct": true,
+    "partnerId": "",
+    "attentionNeeded": false,
+    "actionTaken": false,
+    "contractType": "subscription",
+    "links": {
+        "product": {
+            "uri": "/products/CFQ7TTC0LH18?country=US",
+            "method": "GET",
+            "headers": []
+        },
+        "sku": {
+            "uri": "/products/CFQ7TTC0LH18/skus/0001?country=US",
+            "method": "GET",
+            "headers": []
+        },
+        "availability": {
+            "uri": "/products/CFQ7TTC0LH18/skus/0001/availabilities/CFQ7TTC0K971?country=US",
+            "method": "GET",
+            "headers": []
+        },
+        "self": {
+            "uri": "/customers/d8202a51-69f9-4228-b900-d0e081af17d7/subscriptions/a4c1340d-6911-4758-bba3-0c4c6007d161",
+            "method": "GET",
+            "headers": []
+        }
+    },
+    "publisherName": "Microsoft Corporation",
+    "orderId": "34b37d7340cc",
+    "attributes": {
         "objectType": "Subscription"
     }
 }

@@ -1,17 +1,17 @@
 ---
 title: Egy termék lekérése azonosító alapján
 description: Lekérte a megadott termékerőforrást egy termékazonosítóval.
-ms.date: 09/17/2019
+ms.date: 02/16/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: 0e8abc8cf33d12140a084e83580f20bb0b9d295eda7ab8cc7279c89043c81992
-ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+ms.openlocfilehash: 95821b0f3678d38c75e2f684f7ad629b82f9b43b
+ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/06/2021
-ms.locfileid: "115994540"
+ms.lasthandoff: 09/03/2021
+ms.locfileid: "123456103"
 ---
 # <a name="get-a-product-by-id"></a>Egy termék lekérése azonosító alapján
 
@@ -19,13 +19,13 @@ Lekérte a megadott termékerőforrást egy termékazonosítóval.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 - Egy termékazonosító.
 
 ## <a name="c"></a>C\#
 
-Egy adott termék azonosító alapján való megkereséhez használja az **IAggregatePartner.Products** gyűjteményt, válassza ki az országot a **ByCountry()** metódussal, majd hívja meg a **ById()** metódust. Végül hívja meg a **Get() vagy** **a GetAsync()** metódust a termék visszaküldésére.
+Egy adott termék azonosító alapján való megkereséhez használja az **IAggregatePartner.Products** gyűjteményt, válassza ki az országot a **ByCountry()** metódussal, majd hívja meg a **ById() metódust.** Végül hívja meg a **Get() vagy** **a GetAsync()** metódust a termék visszaküldésére.
 
 ```csharp
 // IAggregatePartner partnerOperations;
@@ -49,7 +49,7 @@ Product productDetail = partnerOperations.getProducts().byCountry("US").byId("DZ
 
 [!INCLUDE [Partner Center PowerShell module support details](<../includes/powershell-module-support.md>)]
 
-Ha azonosító alapján keres egy adott terméket, hajtsa végre a [**Get-PartnerProduct**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerProduct.md) parancsot, és adja meg a **ProductId paramétert.** A **CountryCode** paraméter az options (Országkód) paraméter, ha nincs megadva, akkor a viszonteladóhoz társított ország lesz használva.
+Ha azonosító alapján keres egy adott terméket, hajtsa végre a [**Get-PartnerProduct**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/Get-PartnerProduct.md) parancsot, és adja meg a **ProductId paramétert.** A **CountryCode** paraméter a beállítások, ha nincs megadva, akkor a viszonteladóhoz társított ország lesz használva.
 
 ```powershell
 Get-PartnerProduct -ProductId 'DZH318Z0BQ3Q'
@@ -57,15 +57,15 @@ Get-PartnerProduct -ProductId 'DZH318Z0BQ3Q'
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus  | Kérés URI-ja                                                                                   |
 |---------|-----------------------------------------------------------------------------------------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}?country={country} HTTP/1.1  |
+| **KAP** | [*{baseURL}*](partner-center-rest-urls.md)/v1/products/{termékazonosító}?country={country} HTTP/1.1  |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
-Az alábbi elérésiút-paraméterek használatával szerezze be a megadott terméket.
+A megadott termék lekért értékével az alábbi elérésiút-paramétereket használhatja.
 
 | Név                   | Típus     | Kötelező | Leírás                                                     |
 |------------------------|----------|----------|-----------------------------------------------------------------|
@@ -92,11 +92,11 @@ MS-CorrelationId: 7c1f6619-c176-4040-a88f-2c71f3ba4533
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, a válasz törzse tartalmaz egy [Product erőforrást.](product-resources.md#product)
+Ha ez sikeres, a válasz törzse tartalmaz egy [Product (Termék) erőforrást.](product-resources.md#product)
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő Partnerközpont [tartalmazza:](error-codes.md).
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát a következő [hibakódok Partnerközpont meg:](error-codes.md).
 
 Ez a metódus a következő hibakódokat adja vissza:
 
@@ -104,7 +104,7 @@ Ez a metódus a következő hibakódokat adja vissza:
 |----------------------|--------------|----------------------------------------------------------------------------|
 | 404                  | 400013       | A termék nem található.                                                     |
 
-### <a name="response-example"></a>Példa válaszra
+### <a name="response-example-for-azure-vm-reservation-azure-plan"></a>Példa azure-beli virtuálisgép-foglalásra (Azure-csomag)
 
 ```http
 HTTP/1.1 200 OK
@@ -136,6 +136,36 @@ Date: Tue, 23 Jan 2018 23:13:01 GMT
         },
         "self": {
             "uri": "/products/DZH318Z0BQ3Q?country=US",
+            "method": "GET",
+            "headers": []
+        }
+    }
+}
+```
+### <a name="response-example-for-new-commerce-license-based-product"></a>Válasz példa új kereskedelmi licencalapú termékre
+
+> [!Note] 
+> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesz partnerek számára érhetők el
+
+```http
+{
+    "id": "CFQ7TTC0LH18",
+    "title": "Microsoft 365 Business Basic",
+    "description": "Best for businesses that need professional email, cloud file storage, and online meetings & chat. Desktop versions of Office apps like Excel, Word, and PowerPoint not included. For businesses with up to 300 employees.",
+    "productType": {
+        "id": "OnlineServicesNCE",
+        "displayName": "OnlineServicesNCE"
+    },
+    "isMicrosoftProduct": true,
+    "publisherName": "Microsoft Corporation",
+    "links": {
+        "skus": {
+            "uri": "/products/CFQ7TTC0LH18/skus?country=US",
+            "method": "GET",
+            "headers": []
+        },
+        "self": {
+        "uri": "/products/CFQ7TTC0LH18?country=US",
             "method": "GET",
             "headers": []
         }
