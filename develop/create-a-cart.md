@@ -1,27 +1,27 @@
 ---
 title: Kosár létrehozása
-description: Megtudhatja, hogyan használhatja Partnerközpont API-kat arra, hogy rendelést adjon hozzá egy ügyfélhez egy kosárban. A témakör információkat tartalmaz a kosár létrehozásáról és az előfeltételekről.
-ms.date: 09/17/2019
+description: Megtudhatja, hogyan használhatja Partnerközpont API-kat egy ügyfél megrendelésének kosárba való felvételhez. A témakör információkat tartalmaz a kosár létrehozásáról és az előfeltételekről.
+ms.date: 09/06/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: rbars
 ms.author: rbars
-ms.openlocfilehash: abe7a0842b0ecf52b217b277cf61603d5c86a368
-ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
+ms.openlocfilehash: 2827a2de7dc1c136fe4ea8735e12dc4b88e5e9bf
+ms.sourcegitcommit: 5f27733d7c984c29f71c8b9c8ba5f89753eeabc4
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/03/2021
-ms.locfileid: "123456086"
+ms.lasthandoff: 09/07/2021
+ms.locfileid: "123557269"
 ---
 # <a name="create-a-cart-with-a-customer-order"></a>Kosár létrehozása ügyfélrendeléssel
 
 **A következőkre vonatkozik:** Partnerközpont | Partnerközpont 21Vianet | Partnerközpont Microsoft Cloud Germany | Partnerközpont a Microsoft Cloud for US Government
 
-Egy ügyfél megrendelését kosárban is hozzáadhatja. Az aktuálisan értékesíthető ajánlatokkal kapcsolatos további információkért tekintse meg a partneri [ajánlatokat a Felhőszolgáltató programjában.](/partner-center/csp-offers)
+Egy ügyfél megrendelését kosárban is hozzáadhatja. További információ az értékesíthető lehetőségekről: Partner ajánlatok a [Felhőszolgáltató programjában.](/partner-center/csp-offers)
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a különálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
 - Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, a következő irányítópulton Partnerközpont [ki:](https://partner.microsoft.com/dashboard). Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
@@ -31,11 +31,119 @@ Rendelés létrehozása egy ügyfél számára:
 
 1. Cart-objektum példányosodása.
 
-2. Hozza létre a **CartLineItem** objektumok listáját, és rendelje hozzá a listát a kosár LineItems (Soritemek) tulajdonságához. Minden kosársorelem egy termék vásárlási adatait tartalmazza. Legalább egy kosársori elemet kell berakni.
+2. Hozza létre a **CartLineItem** objektumok listáját, és rendelje hozzá a listát a kosár LineItems (Soritemek) tulajdonságához. Minden kosársorelem egy termék vásárlási információit tartalmazza. Legalább egy kosársori elemet kell berakni.
 
 3. A kosárműveleteket úgy szerezheti be, ha az ügyfél azonosítójával hívja meg az **IAggregatePartner.Customers.ById** metódust az ügyfél azonosításához, majd lehívja a felületet a **Cart** tulajdonságból.
 
 4. A **kosár létrehozásához** hívja meg a **Create vagy a CreateAsync** metódust.
+
+5. Az igazolás befejezéséhez és további viszonteladókhoz való igényléshez tekintse meg az alábbi kérés- és válaszmintákat:
+
+### <a name="request-sample"></a>Mintakérés
+
+```csharp
+
+{
+    "PartnerOnRecordAttestationAccepted":true,     "lineItems": [
+        {
+            "id": 0,
+            "catalogItemId": "CFQ7TTC0LH0Z:0001:CFQ7TTC0K18P",
+            "quantity": 1,
+            "billingCycle": "monthly",
+            "termDuration": "P1M",
+            "renewsTo": null,
+            "provisioningContext": {},
+            "coterminousSubscriptionId": null
+        },
+        {
+            "id": 1,
+            "catalogItemId": "CFQ7TTC0LFLS:0002:CFQ7TTC0KDLJ",
+            "quantity": 2,
+            "billingCycle": "monthly",
+            "termDuration": "P1Y",
+            "participants": [
+                {
+                    "key": "transaction_reseller",
+                    "value": "5357564"
+                },
+                 {
+                    "key": "additional_transaction_reseller",                     
+                    "value": "517285"
+                },
+                 {
+                    "key": "additional_transaction_reseller", 
+                    "value": "5357563"
+                }
+            ]
+        }
+    ]
+}
+
+
+```
+
+### <a name="response-sample"></a>Válaszminta
+
+```csharp
+
+{
+    "id": "3e22b548-647d-4223-9675-1fcb6cb57665",
+    "creationTimestamp": "2021-08-18T17:29:52.3517492Z",
+    "lastModifiedTimestamp": "2021-08-18T17:29:52.3517553Z",
+    "expirationTimestamp": "2021-08-25T17:30:11.2406416Z",
+    "lastModifiedUser": "da62a0dc-35e9-4601-b48e-a047bd3ec7c1",
+    "status": "Active",
+    "lineItems": [
+        {
+            "id": 0,
+            "catalogItemId": "CFQ7TTC0LH0Z:0001:CFQ7TTC0K18P",
+            "quantity": 1,
+            "currencyCode": "USD",
+            "billingCycle": "monthly",
+            "termDuration": "P1M",
+            "provisioningContext": {},
+            "orderGroup": "0"
+        },
+        {
+            "id": 1,
+            "catalogItemId": "CFQ7TTC0LFLS:0002:CFQ7TTC0KDLJ",
+            "quantity": 2,
+            "currencyCode": "USD",
+            "billingCycle": "monthly",
+            "termDuration": "P1Y",
+            "participants": [
+                {
+                    "key": "transaction_reseller",
+                    "value": "5357564"
+                },
+                {
+                    "key": "additional_transaction_reseller", 
+                    "value": "517285"
+                },
+                {
+                    "key": "additional_transaction_reseller", 
+                    "value": "5357563"
+                }
+            ],
+            "provisioningContext": {},
+            "orderGroup": "0"
+        }
+    ],
+    "links": {
+        "self": {
+            "uri": "/customers/f81d98dd-c2f4-499e-a194-5619e260344e/carts/3e22b548-647d-4223-9675-1fcb6cb57665",
+            "method": "GET",
+            "headers": []
+        }
+    },
+    "attributes": {
+        "objectType": "Cart"
+    }
+}
+
+
+```
+
 
 ### <a name="c-example"></a>C \# példa
 
@@ -129,9 +237,9 @@ Rendelés létrehozása egy ügyfél számára:
 
 1. Cart-objektum példányosodása.
 
-2. Létrehozhatja a **CartLineItem** objektumok listáját, és hozzárendelheti a listát a kosár sorelemekhez. Minden kosársorelem egy termék vásárlási adatait tartalmazza. Legalább egy kosársori elemet kell berakni.
+2. Létrehozhatja a **CartLineItem** objektumok listáját, és hozzárendelheti a listát a kosár sorelemekhez. Minden kosársorelem egy termék vásárlási információit tartalmazza. Legalább egy kosársori elemet kell berakni.
 
-3. A kosárműveleteket úgy szerezheti be, hogy az ügyfél azonosítójával hívja meg az **IAggregatePartner.getCustomers().byId** függvényt az ügyfél azonosításához, majd lehívja a felületet a **getCart függvényből.**
+3. A kosárműveleteket úgy szerezheti be, ha az ügyfél azonosítójával hívja meg az **IAggregatePartner.getCustomers().byId** függvényt az ügyfél azonosításához, majd lehívja a felületet a **getCart függvényből.**
 
 4. A **kosár létrehozásához** hívja meg a create függvényt.
 
@@ -175,7 +283,7 @@ Rendelés létrehozása egy ügyfél számára:
 
 1. Cart-objektum példányosodása.
 
-2. Létrehozhatja a **CartLineItem** objektumok listáját, és hozzárendelheti a listát a kosár sorelemekhez. Minden kosársorelem egy termék vásárlási adatait tartalmazza. Legalább egy kosársori elemet kell berakni.
+2. Létrehozhatja a **CartLineItem** objektumok listáját, és hozzárendelheti a listát a kosár sorelemekhez. Minden kosársorelem egy termék vásárlási információit tartalmazza. Legalább egy kosársori elemet kell berakni.
 
 3. Hajtsa végre a [**New-PartnerCustomerCart parancsot**](https://github.com/Microsoft/Partner-Center-PowerShell/blob/master/docs/help/New-PartnerCustomerCart.md) a kosár létrehozásához.
 
@@ -226,11 +334,12 @@ Ez a táblázat a kocsi [tulajdonságait ismerteti](cart-resources.md) a kérés
 | id                    | sztring           | No              | A kosár sikeres létrehozása után megadott bevásárlókocsi-azonosító.                                  |
 | creationTimeStamp     | DateTime         | No              | A kosár létrehozási dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva.         |
 | lastModifiedTimeStamp | DateTime         | No              | A kosár legutóbbi frissítésének dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva.    |
-| expirationTimeStamp (lejárat/időstamp)   | DateTime         | No              | A kosár lejáratának dátuma, dátum-idő formátumban.  A kosár sikeres létrehozása után alkalmazva.            |
+| expirationTimeStamp (lejárat/időstamp)   | DateTime         | No              | A kosár lejáratának dátuma, dátum és idő formátumban.  A kosár sikeres létrehozása után alkalmazva.            |
 | lastModifiedUser      | sztring           | No              | Az a felhasználó, aki utoljára frissítette a kosárat. A kosár sikeres létrehozása után alkalmazva.                             |
 | lineItems (sorsorok)             | Objektumok tömbje | Yes             | [CartLineItem-erőforrások tömbje.](cart-resources.md#cartlineitem)                                     |
+| PartnerOnRecordAttestationAccepted | Logikai | Yes | Megerősíti az igazolás befejezését |
 
-Ez a táblázat a [CartLineItem](cart-resources.md#cartlineitem) tulajdonságait ismerteti a kérés törzsében.
+Ez a táblázat ismerteti a [CartLineItem](cart-resources.md#cartlineitem) tulajdonságait a kérelem törzsében.
 
 |      Tulajdonság       |            Típus             | Kötelező |                                                                                         Leírás                                                                                         |
 |---------------------|-----------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -246,6 +355,8 @@ Ez a táblázat a [CartLineItem](cart-resources.md#cartlineitem) tulajdonságait
 |        error        |           Objektum            |    No    |                                                                     A kosár létrehozása után alkalmazza, ha hiba történik.                                                                      |
 |     renewsTo        | Objektumok tömbje            |    No    |                                                    A [RenewsTo erőforrások tömbje.](cart-resources.md#renewsto)                                                                            |
 |     AttestationAccepted        | Logikai            |    No    |                                                   Az ajánlatra vagy termékváltozatra vonatkozó feltételeket jelzi. Csak olyan ajánlatok vagy termékváltozatok esetén szükséges, ahol a SkuAttestationProperties vagy az OfferAttestationProperties enforceAttestation true (Igaz) érték.                                                                             |
+|  transaction_reseller | Sztring | No | Ha egy közvetett szolgáltató egy közvetett viszonteladó nevében ad ki rendelést, akkor ezt a mezőt csak a közvetett viszonteladó MPN-azonosítójával **töltse** fel (soha ne a közvetett szolgáltató azonosítójával). Ez biztosítja az ösztönzők megfelelő elszámolását. |
+| additional_transaction_reseller | Sztring | No | Ha egy közvetett szolgáltató egy közvetett viszonteladó nevében ad ki rendelést, akkor ezt a mezőt csak a további közvetett viszonteladó MPN-azonosítójával **töltse** ki (soha ne a közvetett szolgáltató azonosítójával). Az ösztönzők nem alkalmazhatók ezekre a további viszonteladókra. Csak legfeljebb 5 közvetett viszonteladót lehet megadni. Ez csak az EU-/EFTA-országokon belül tranzakciós partnerekre vonatkozik. |
 
 Ez a táblázat a [kérés törzsében található RenewsTo](cart-resources.md#renewsto) tulajdonságokat ismerteti.
 

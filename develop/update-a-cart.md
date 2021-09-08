@@ -1,15 +1,15 @@
 ---
 title: Kosár frissítése
 description: Hogyan frissítheti egy ügyfél megrendelését egy kosárban.
-ms.date: 10/11/2019
+ms.date: 09/06/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 79dcd58e5a967aad9160777805102683087becc74c655b2de990cd1bfd4ef3c8
-ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+ms.openlocfilehash: 48fec2d9fb72d1a58fe79969e48ccd39a32c5ccc
+ms.sourcegitcommit: 5f27733d7c984c29f71c8b9c8ba5f89753eeabc4
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/06/2021
-ms.locfileid: "115990154"
+ms.lasthandoff: 09/07/2021
+ms.locfileid: "123557286"
 ---
 # <a name="update-a-cart"></a>Kosár frissítése
 
@@ -17,7 +17,7 @@ Hogyan frissítheti egy ügyfél megrendelését egy kosárban.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazás- és app+felhasználói hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
 - Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
@@ -25,7 +25,7 @@ Hogyan frissítheti egy ügyfél megrendelését egy kosárban.
 
 ## <a name="c"></a>C\#
 
-Egy ügyfél megrendelésének frissítéséhez a **Get()** metódussal szerezze be a kosárat az ügyfél és a kosárazonosítók **ById()** függvény használatával való átadásával. Készítse el a szükséges módosításokat a kosáron. Most hívja meg **a Put** metódust ügyfél- és kosárazonosítók használatával a **ById() metódussal.**
+Egy ügyfél megrendelésének frissítéséhez a **Get()** metódussal szerezze be a kosárat az ügyfél és a kosárazonosítók **ById()** függvény használatával való átadásával. Készítse el a szükséges módosításokat a kosáron. Most hívja meg a **Put** metódust ügyfél- és kosárazonosítók használatával a **ById() metódussal.**
 
 Végül hívja meg a **Put() vagy** **PutAsync()** metódust a rendelés létrehozásához.
 
@@ -39,6 +39,113 @@ var cart = partnerOperations.Customers.ById(customerId).Cart.ById(cartId).Get();
 cart.LineItems.ToArray()[0].Quantity++;
 
 var updatedCart = partnerOperations.Customers.ById(customerId).Cart.ById(cartId).Put(cart);
+```
+
+Az igazolás befejezéséhez és a további viszonteladókhoz való be includehoz tekintse meg az alábbi mintát.
+
+### <a name="api-sample---check-out-cart"></a>API-minta – Bevásárlókocsi
+
+``` csharp
+{
+    "orders": [
+        {
+            "id": "f76c6b7f449d",
+            "alternateId": "f76c6b7f449d",
+            "referenceCustomerId": "f81d98dd-c2f4-499e-a194-5619e260344e",
+            "billingCycle": "monthly",
+            "currencyCode": "USD",
+            "currencySymbol": "$",
+            "lineItems": [
+                {
+                    "lineItemNumber": 0,
+                    "offerId": "CFQ7TTC0LH0Z:0001:CFQ7TTC0K18P",
+                    "subscriptionId": "ebc0beef-7ffb-4044-c074-16f324432139",
+                    "termDuration": "P1M",
+                    "transactionType": "New",
+                    "friendlyName": "AI Builder Capacity add-on",
+                    "quantity": 1,
+                    "links": {
+                        "product": {
+                            "uri": "/products/CFQ7TTC0LH0Z?country=US",
+                            "method": "GET",
+                            "headers": []
+                        },
+                        "sku": {
+                            "uri": "/products/CFQ7TTC0LH0Z/skus/0001?country=US",
+                            "method": "GET",
+                            "headers": []
+                        },
+                        "availability": {
+                            "uri": "/products/CFQ7TTC0LH0Z/skus/0001/availabilities/CFQ7TTC0K18P?country=US",
+                            "method": "GET",
+                            "headers": []
+                        }
+                    }
+                },
+                {
+                    "lineItemNumber": 1,
+                    "offerId": "CFQ7TTC0LFLS:0002:CFQ7TTC0KDLJ",
+                    "subscriptionId": "261bac40-7d88-4327-dfa3-dacd09222d62",
+                    "termDuration": "P1Y",
+                    "transactionType": "New",
+                    "friendlyName": "Azure Active Directory Premium P1",
+                    "quantity": 2,
+                    "partnerIdOnRecord": "517285",
+                    "additionalPartnerIdsOnRecord": 
+                        "5357564",
+                        "5357563"
+                    ],
+                 
+   "links": {
+                        "product": {
+                            "uri": "/products/CFQ7TTC0LFLS?country=US",
+                            "method": "GET",
+                            "headers": []
+                        },
+                        "sku": {
+                            "uri": "/products/CFQ7TTC0LFLS/skus/0002?country=US",
+                            "method": "GET",
+                            "headers": []
+                        },
+                        "availability": {
+                            "uri": "/products/CFQ7TTC0LFLS/skus/0002/availabilities/CFQ7TTC0KDLJ?country=US",
+                            "method": "GET",
+                            "headers": []
+                        }
+                    }
+                }
+            ],
+            "creationDate": "2021-08-18T07:52:23.1921872Z",
+            "status": "pending",
+            "transactionType": "UserPurchase",
+            "links": {
+                "self": {
+                    "uri": "/customers/f81d98dd-c2f4-499e-a194-5619e260344e/orders/f76c6b7f449d",
+                    "method": "GET",
+                    "headers": []
+                },
+                "provisioningStatus": {
+                    "uri": "/customers/f81d98dd-c2f4-499e-a194-5619e260344e/orders/f76c6b7f449d/provisioningstatus",
+                    "method": "GET",
+                    "headers": []
+                },
+                "patchOperation": {
+                    "uri": "/customers/f81d98dd-c2f4-499e-a194-5619e260344e/orders/f76c6b7f449d",
+                    "method": "PATCH",
+                    "headers": []
+                }
+            },
+            "client": {},
+            "attributes": {
+                "objectType": "Order"
+            }
+        }
+    ],
+    "attributes": {
+        "objectType": "CartCheckoutResult"
+    }
+}
+
 ```
 
 ## <a name="rest-request"></a>REST-kérés
@@ -55,7 +162,7 @@ Az alábbi elérésiút-paraméterekkel azonosíthatja az ügyfelet, és megadha
 
 | Név            | Típus     | Kötelező | Leírás                                                            |
 |-----------------|----------|----------|------------------------------------------------------------------------|
-| **ügyfélazonosító** | sztring   | Yes      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.             |
+| **ügyfél-azonosító** | sztring   | Yes      | Egy GUID formátumú ügyfél-azonosító, amely azonosítja az ügyfelet.             |
 | **kocsiazonosító**     | sztring   | Yes      | Egy GUID formátumú kocsiazonosító, amely azonosítja a kosárat.                     |
 
 ### <a name="request-headers"></a>Kérésfejlécek
@@ -69,8 +176,8 @@ Ez a táblázat a kocsi [tulajdonságait ismerteti](cart-resources.md) a kérés
 | Tulajdonság              | Típus             | Kötelező        | Leírás                                                                                               |
 |-----------------------|------------------|-----------------|-----------------------------------------------------------------------------------------------------------|
 | id                    | sztring           | No              | A kosár sikeres létrehozása után megadott kocsiazonosító.                                  |
-| creationTimeStamp     | DateTime         | No              | A kosár létrehozási dátuma, dátum-idő formátumban. Alkalmazva a kosár sikeres létrehozása után.        |
-| lastModifiedTimeStamp | DateTime         | No              | A kosár legutóbbi frissítésének dátuma, dátum-idő formátumban. Alkalmazva a kosár sikeres létrehozása után.    |
+| creationTimeStamp     | DateTime         | No              | A kosár létrehozási dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva.        |
+| lastModifiedTimeStamp | DateTime         | No              | A kosár legutóbbi frissítésének dátuma, dátum-idő formátumban. A kosár sikeres létrehozása után alkalmazva.    |
 | expirationTimeStamp (lejárati idő)   | DateTime         | No              | A kosár lejáratának dátuma, dátum-idő formátumban.  A kosár sikeres létrehozása után alkalmazva.            |
 | lastModifiedUser      | sztring           | No              | Az a felhasználó, aki utoljára frissítette a kosárat. A kosár sikeres létrehozása után alkalmazva.                             |
 | lineItems (sorsorok)             | Objektumok tömbje | Yes             | [CartLineItem-erőforrások tömbje.](cart-resources.md#cartlineitem)                                               |
@@ -89,6 +196,7 @@ Ez a táblázat ismerteti a [CartLineItem](cart-resources.md#cartlineitem) tulaj
 | provisioningContext  | Szótár<sztring, sztring>  | No           | Az ajánlat építéshez használt környezet.                                                          |
 | orderGroup           | sztring                      | No           | Egy csoport, amely jelzi, hogy mely elemek helyezhetők együtt.                                            |
 | error                | Objektum                      | No           | A kosár hiba esetén a kosár létrehozása után lesz alkalmazva.                                                 |
+| AdditionalPartnerIdsOnRecord (További partnerazonosítókOnRecord) | Sztring | No | Ha egy közvetett szolgáltató egy közvetett viszonteladó nevében ad ki rendelést, akkor ezt a mezőt csak a további közvetett viszonteladó MPN-azonosítójával **töltse** ki (soha ne a közvetett szolgáltató azonosítójával). Az ösztönzők nem alkalmazhatók ezekre a további viszonteladókra. Csak legfeljebb 5 közvetett viszonteladót lehet megadni. Ez csak az EU-/EFTA-országokon belül tranzakciós partnerekre vonatkozik.  |
 
 ### <a name="request-example"></a>Példa kérésre
 
