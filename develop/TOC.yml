@@ -362,6 +362,8 @@
           href: get-a-list-of-products.md
         - name: Termékek listájának lekérése (ügyfél alapján)
           href: get-a-list-of-products-by-customer.md
+        - name: Az előléptetések listájának lekért listája
+          href: get-promotions.md
         - name: Egy termék termékváltozatait tartalmazó lista lekérése (ország alapján)
           href: get-a-list-of-skus-for-a-product.md
         - name: Egy termék termékváltozatait tartalmazó lista lekérése (ügyfél alapján)
@@ -372,6 +374,8 @@
           href: get-a-list-of-trial-conversion-offers.md
         - name: Egy termék lekérése azonosító alapján
           href: get-a-product-by-id.md
+        - name: Előléptetés lekért azonosítója
+          href: get-promotion-by-id.md
         - name: Egy termékváltozat lekérése azonosító alapján
           href: get-a-sku-by-id.md
         - name: Egy előfizetés lekérése azonosító alapján
@@ -390,7 +394,7 @@
           href: get-subscription-provisioning-status.md
         - name: Előfizetés regisztrációs állapotának lekérése
           href: get-subscription-registration-status.md
-        - name: Áttűnés lekért
+        - name: Áttűnések lekért
           href: get-transitions.md
         - name: Egyszeri vásárlás
           href: make-a-one-time-purchase.md
@@ -412,6 +416,8 @@
           href: update-a-cart.md
         - name: Kereskedelmi piactéri előfizetés automatikus megújításának frissítése
           href: update-autorenew-for-an-azure-marketplace-subscription.md
+        - name: Az előléptetésre való jogosultság ellenőrzése
+          href: verify-promotion-eligibility.md
     - name: Kifizetések kezelése
       href: manage-payouts.md
     - name: Támogatás biztosítása
@@ -533,6 +539,8 @@
           href: profile-resources.md
         - name: Termékek
           href: product-resources.md
+        - name: Promóciók
+          href: promotion-resources.md
         - name: Kapcsolatok
           href: relationships-resources.md
         - name: Önkiszolgáló szabályzat
