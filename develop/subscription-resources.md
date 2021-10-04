@@ -6,12 +6,12 @@ ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: BrentSerbus
 ms.author: brserbus
-ms.openlocfilehash: e1b95165eeb335c5426df876cbade3190dd447ac
-ms.sourcegitcommit: 856c14b6b351697e3b3d33f1fe376adbb80517c5
+ms.openlocfilehash: 461df9cdb909fc44be9069cb7eb4b41fa2a5f170
+ms.sourcegitcommit: 3ee00d9fe9da6b9df0fb7027ae506e2abe722770
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/02/2021
-ms.locfileid: "129378744"
+ms.lasthandoff: 10/04/2021
+ms.locfileid: "129417287"
 ---
 # <a name="subscription-resources"></a>Előfizetési erőforrások
 
@@ -26,7 +26,7 @@ Az előfizetéssel az ügyfél egy bizonyos ideig használhatja a szolgáltatás
 
 Az **Előfizetés** erőforrás az előfizetés életciklusát jelöli, és olyan tulajdonságokat tartalmaz, amelyek meghatározzák az előfizetés életciklusának államát.
 
-| Tulajdonság             | Típus                                                          | Description                                                                                                                                                                   |
+| Tulajdonság             | Típus                                                          | Leírás                                                                                                                                                                   |
 |----------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | id                   | sztring                                                        | Az előfizetés azonosítója.                                                                                                                                                  |
 | offerId (ajánlatazonosító)              | sztring                                                        | Az ajánlat azonosítója.                                                                                                                                                         |
@@ -64,7 +64,7 @@ Az **Előfizetés** erőforrás az előfizetés életciklusát jelöli, és olya
 
 A **SubscriptionLinks erőforrás** az előfizetési erőforráshoz csatolt hivatkozások gyűjteményét ismerteti.
 
-| Tulajdonság           | Típus                               | Description                           |
+| Tulajdonság           | Típus                               | Leírás                           |
 |--------------------|------------------------------------|---------------------------------------|
 | offer              | [Link](utility-resources.md#link) | Lekérte vagy beállítja az ajánlatot.               |
 | parentSubscription (parentSubscription) | [Link](utility-resources.md#link) | Lekérte vagy beállítja a szülő-előfizetést. |
@@ -80,7 +80,7 @@ A **SubscriptionLinks erőforrás** az előfizetési erőforráshoz csatolt hiva
 
 A **SubscriptionProvisioningStatus erőforrás** az előfizetés kiépítési állapotával kapcsolatos információkat biztosít.
 
-| Tulajdonság   | Típus                                                           | Description                                                          |
+| Tulajdonság   | Típus                                                           | Leírás                                                          |
 |------------|----------------------------------------------------------------|----------------------------------------------------------------------|
 | skuId (termékváltozatazonosító)      | sztring                                                         | Egy GUID formátumú sztring, amely azonosítja a termékváltozatot.             |
 | status     | sztring                                                         | A kiépítés állapotát jelzi: "sikeres", "függőben" vagy "sikertelen". |
@@ -92,7 +92,7 @@ A **SubscriptionProvisioningStatus erőforrás** az előfizetés kiépítési á
 
 A **SubscriptionRegistrationStatus** erőforrás az előfizetési erőforráshoz csatolt hivatkozások gyűjteményét ismerteti.
 
-| Tulajdonság           | Típus                               | Description                                                                           |
+| Tulajdonság           | Típus                               | Leírás                                                                           |
 |--------------------|------------------------------------|---------------------------------------------------------------------------------------|
 | subscriptionId     | sztring                             | Az előfizetés azonosítója.                                                          |
 | status             | sztring                             | A regisztráció állapotát jelzi: "registered", "registering" vagy "notregistered".    |
@@ -101,7 +101,7 @@ A **SubscriptionRegistrationStatus** erőforrás az előfizetési erőforráshoz
 
 A **SupportContact** erőforrás egy támogatási kapcsolattartót jelent az ügyfél előfizetéséhez.
 
-| Tulajdonság        | Típus                                                           | Description                                                                     |
+| Tulajdonság        | Típus                                                           | Leírás                                                                     |
 |-----------------|----------------------------------------------------------------|---------------------------------------------------------------------------------|
 | supportTenantId | sztring                                                         | Egy GUID formátumú sztring, amely a támogatási kapcsolattartó bérlőazonosítóját jelzi. |
 | supportMpnId    | sztring                                                         | A kapcsolattartó Microsoft Partner Network (MPN) azonosítója.                       |
@@ -111,41 +111,41 @@ A **SupportContact** erőforrás egy támogatási kapcsolattartót jelent az üg
 
 ## <a name="overage"></a>Overage (Kereten túli díjak)
 
-A **túlóra erőforrás** azt jelenti, hogy a használat alapján járó előfizetés-túlfelhasználás hozzárendelhető, hogy az hozzá van-e rendelve, és a Viszonteladóhoz van-e rendelve.
+A **túlóra-erőforrás** azt jelenti, hogy a használaton keresztüli előfizetés-túlfelhasználás hozzárendelhető, függetlenül attól, hogy az előfizetés hozzá van-e rendelve, és a Viszonteladóhoz van-e rendelve.
 
-| Tulajdonság        | Típus               | Description                                                                     |
+| Tulajdonság        | Típus               | Leírás                                                                     |
 |-----------------|--------------------|---------------------------------------------------------------------------------|
 | azureEntitlementId | sztring       | Egy GUID formátumú sztring, amely használat alapján megadott előfizetés-azonosítót jelez. |
 | partnerazonosító    | sztring            | Az Microsoft Partner Network előfizetéshez társított viszonteladó Microsoft Partner Network (MPN) azonosítóját.        |
 | típus    | sztring       | A túlóra típusa lehet "PhoneServices"       |
-| túl sok            | boolean      | Egy érték, amely jelzi, hogy próbaverziós előfizetésről van-e szó.       |
-| Linkek           | [ResourceLinks (Erőforrás-hivatkozás)](utility-resources.md#resourcelinks)            | A támogatási kapcsolattartóval kapcsolatos hivatkozások.                          |
-| Attribútumok      | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes)  | A metaadat-attribútumok. Tartalmazza az "objectType": "Overage" (Túlóra) tulajdonságot.  |
+| túl sok            | boolean      | Egy érték, amely jelzi, hogy engedélyezve van-e a túlóra.       |
+| Linkek           | [ResourceLinks (Erőforrás-hivatkozás)](utility-resources.md#resourcelinks)            | A túl sok idővel kapcsolatos hivatkozások.                          |
+| Attribútumok      | [ResourceAttributes (Erőforrás-attribútumok)](utility-resources.md#resourceattributes)  | A metaadat-attribútumok. Tartalmazza az "objectType": "Overage" (Túl sok) tulajdonságot.  |
 
 
 
 ## <a name="registersubscription"></a>RegisterSubscription (Regisztráció regisztrálása)
 
-A **RegisterSubscription erőforrás** egy hivatkozást ad vissza, amely egy előfizetés regisztrációs állapotának lekérdezésére használható. A regisztrációs állapot egy Azure-előfizetés regisztrálására vonatkozó, sikeresen elfogadott kérés válasz törzsében lesz visszaadva.
+A **RegisterSubscription erőforrás** egy hivatkozást ad vissza, amely egy előfizetés regisztrációs állapotának lekérdezésére használható. A regisztrációs állapotot a rendszer visszaadja egy Azure-előfizetés regisztrálására vonatkozó, sikeresen elfogadott kérelem válasz törzsében.
 
-| Tulajdonság                | Típus                               | Description                                                                           |
+| Tulajdonság                | Típus                               | Leírás                                                                           |
 |-------------------------|------------------------------------|---------------------------------------------------------------------------------------|
-| httpResponseMessage     | object                             | A 202 -es "Elfogadva" HTTP-állapotkódot adja vissza, a Regisztrációs állapot lekérdezésére mutató hivatkozást tartalmazó Hely fejléccel. Például: `"/customers/{customer-id}/subscriptions/{subscription-id}/registrationstatus"` |
+| httpResponseMessage     | object                             | A 202 -es "Elfogadva" HTTP-állapotkódot adja vissza, a regisztrációs állapot lekérdezésére mutató hivatkozást tartalmazó Location fejléccel. Például: `"/customers/{customer-id}/subscriptions/{subscription-id}/registrationstatus"` |
 
 ## <a name="refundoption"></a>RefundOption (Visszatérítési beállítás)
 
-A **RefundOption erőforrás** egy lehetséges visszatérítési lehetőséget jelent az előfizetéshez.
+A **RefundOption** erőforrás egy lehetséges visszatérítési lehetőséget jelent az előfizetéshez.
 
-| Tulajdonság          | Típus | Description                                                                         |
+| Tulajdonság          | Típus | Leírás                                                                         |
 |-------------------|--------|-------------------------------------------------------------------------------------|
 | típus | sztring | A visszatérítés típusa. A támogatott értékek a "Partial" (Részleges) és a "Full" (Teljes) |
-| expiresAfter      | sztring UTC dátum- és időformátumban | A beállítás lejárati időbélyege. Ha null értékű, az azt jelenti, hogy nincs lejárati ideje. |
+| expiresAfter      | sztring UTC dátum-idő formátumban | A beállítás lejáratának időbélyege. Ha null értékű, az azt jelenti, hogy nincs lejárati ideje. |
 
 ## <a name="azureentitlement"></a>AzureEntitlement
 
 Az **AzureEntitlement erőforrás** az előfizetésHez szükséges Azure-jogosultságokat jelöli.
 
-| Tulajdonság          | Típus | Description                                                                         |
+| Tulajdonság          | Típus | Leírás                                                                         |
 |-------------------|--------|-------------------------------------------------------------------------------------|
 | id | sztring | A jogosultságazonosító |
 | friendlyName (rövid név)      | sztring | A jogosultság rövid neve. |

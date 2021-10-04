@@ -1,36 +1,36 @@
 ---
 title: Kereskedelmi piactér vagy új kereskedelmi előfizetés lemondása
-description: Megtudhatja, hogyan használhatja Partnerközpont API-kat kereskedelmi piactér vagy új kereskedelmi előfizetés erőforrásának lemondására, amely megfelel egy ügyfélnek és egy előfizetés-azonosítónak.
+description: Megtudhatja, hogyan használhatja Partnerközpont API-kat kereskedelmi piactér vagy új kereskedelmi előfizetés erőforrásának lemondására, amely megfelel egy ügyfél- és előfizetés-azonosítónak.
 ms.date: 02/23/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: cbfe17ba4880c303c3f3ba01db5955a557eb04e2
-ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
+ms.openlocfilehash: ed01a26e22fd814b269b6c8d1769da97e8160619
+ms.sourcegitcommit: 3ee00d9fe9da6b9df0fb7027ae506e2abe722770
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/03/2021
-ms.locfileid: "123456137"
+ms.lasthandoff: 10/04/2021
+ms.locfileid: "129417253"
 ---
 # <a name="cancel-a-commercial-marketplace-or-new-commerce-subscription-using-partner-center-apis"></a>Kereskedelmi piactér vagy új kereskedelmi előfizetés lemondása Partnerközpont API-k használatával
 
 **A következőkre vonatkozik:** Partnerközpont
 
-Ez a cikk azt ismerteti, hogyan használhatja a Partnerközpont API-t az ügyfél- és előfizetés-azonosítónak megfelelő kereskedelmi piactér vagy új [kereskedelmi](subscription-resources.md) előfizetés erőforrásának lemondására.
+Ez a cikk azt ismerteti, hogyan használhatja a Partnerközpont API-t kereskedelmi piactér vagy új [kereskedelmi](subscription-resources.md) előfizetés erőforrásának lemondására, amely megfelel az ügyfél és az előfizetés azonosítójának.
 
 > [!Note] 
-> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesző partnerek számára érhetők el.
+> Az új kereskedelmi módosítások jelenleg csak az M365/D365 új kereskedelmi felhasználói élmény technikai előzetes kiadásának partnerei számára érhetők el.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
+- Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüben, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
-## <a name="partner-center-dashboard-method"></a>Partnerközpont irányítópult metódusa
+## <a name="partner-center-dashboard-method"></a>Partnerközpont irányítópult-metódus
 
-Kereskedelmi piactér-előfizetés lemondása az Partnerközpont irányítópulton:
+Kereskedelmi piactéri előfizetés lemondása az Partnerközpont irányítópulton:
 
 1. [Válasszon ki egy ügyfelet.](get-a-customer-by-name.md)
 
@@ -44,9 +44,9 @@ Az ügyfél előfizetésének lemondása:
 
 1. [Szerezze be az előfizetést azonosító alapján.](get-a-subscription-by-id.md)
 
-2. Módosítsa az előfizetés [**Status (Állapot) tulajdonságát.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.status) Az **állapotkódokkal kapcsolatos információkért** [lásd: SubscriptionStatus enumerálás.](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscriptionstatus)
+2. Módosítsa az előfizetés [**Status (Állapot) tulajdonságát.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.status) Az állapotkódokkal **kapcsolatos információkért** lásd: [SubscriptionStatus enumerálás.](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscriptionstatus)
 
-3. A módosítás után használja a gyűjteményt, **`IAggregatePartner.Customers`** és hívja meg a **ById() metódust.**
+3. A módosítás után használja a gyűjteményt, és **`IAggregatePartner.Customers`** hívja meg a **ById() metódust.**
 
 4. Hívja meg [**a Subscriptions**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot, majd a [**ById() metódust.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid)
 
@@ -63,15 +63,15 @@ var updatedSubscription = partnerOperations.Customers.ById(selectedCustomerId).S
 
 ### <a name="sample-console-test-app"></a>Mintakonzol-tesztalkalmazás
 
-**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project**: PartnerSDK.FeatureSample **osztály:** UpdateSubscription.cs
+**Minta:** [Konzoltesztalkalmazás.](console-test-app.md) **Project:** PartnerSDK.FeatureSample **osztály:** UpdateSubscription.cs
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérés szintaxisa
+### <a name="request-syntax"></a>Kérésszintaxis
 
 | Metódus    | Kérés URI-ja                                                                                                                |
 |-----------|----------------------------------------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription} HTTP/1.1 |
+| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{előfizetés-azonosító} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -80,7 +80,7 @@ Ez a táblázat felsorolja az előfizetés felfüggesztéséhez szükséges lek�
 | Név                    | Típus     | Kötelező | Leírás                               |
 |-------------------------|----------|----------|-------------------------------------------|
 | **ügyfél-bérlő-azonosító**  | **guid** | Y        | Az ügyfélnek megfelelő GUID.     |
-| **id-for-subscription** | **guid** | Y        | Az előfizetéshez tartozó GUID. |
+| **subscription-id** | **guid** | Y        | Az előfizetéshez tartozó GUID. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -90,10 +90,10 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 A kérelem **törzsében** teljes előfizetési erőforrásra van szükség. Győződjön meg **arról, hogy** az Állapot tulajdonság frissítve lett.
 
-### <a name="request-example-for-a-commercial-marketplace-subscription"></a>Példa kérése kereskedelmi piactér-előfizetéshez
+### <a name="request-example-for-a-commercial-marketplace-subscription"></a>Példa kérése kereskedelmi piactéri előfizetéshez
 
 ```http
-PATCH https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id>/subscriptions/<id-for-subscription> HTTP/1.1
+PATCH https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id>/subscriptions/<subscription-id> HTTP/1.1
 Authorization: Bearer <token>
 Accept: application/json
 MS-RequestId: ca7c39f7-1a80-43bc-90d8-ee7d1cad3831
@@ -136,11 +136,14 @@ Connection: Keep-Alive
 
 ### <a name="request-example-for-a-new-commerce-subscription"></a>Példa kérése új kereskedelmi előfizetéshez
 
+Az új kereskedelmi előfizetések a vásárlást vagy megújítást követő 72 órán belül visszavonhatóak. 72 óra után az előfizetések már nem szakíthatóak meg, és az API hibát jelez.
+
+
 > [!Note] 
-> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesző partnerek számára érhetők el.
+> Az új kereskedelmi módosítások jelenleg csak az M365/D365 új kereskedelmi felhasználói élmény technikai előzetes kiadásának partnerei számára érhetők el.
 
 ```http
-PATCH https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id>/subscriptions/<id-for-subscription> HTTP/1.1
+PATCH https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id>/subscriptions/<subscription-id> HTTP/1.1
 Authorization: Bearer <token>
 Accept: application/json
 MS-RequestId: ca7c39f7-1a80-43bc-90d8-ee7d1cad3831
@@ -216,11 +219,11 @@ Connection: Keep-Alive
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez a módszer sikeres, a törölt [előfizetés](subscription-resources.md) erőforrás-tulajdonságait adja vissza a válasz törzsében.
+Ha a kérés sikeres, ez [](subscription-resources.md) a metódus a törölt előfizetés erőforrás-tulajdonságait adja vissza a válasz törzsében.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 

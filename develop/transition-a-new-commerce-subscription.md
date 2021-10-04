@@ -1,17 +1,17 @@
 ---
 title: Új kereskedelmi előfizetés váltása
-description: Frissíti az ügyfél új commmerce-előfizetését egy megadott cél-előfizetésre.
+description: Frissíti az ügyfél új kereskedelmi előfizetését egy megadott cél-előfizetésre.
 ms.date: 02/23/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
 author: BrentSerbus
 ms.author: brserbus
-ms.openlocfilehash: 2bbf2f63cec416e4d4b4a671d2e2b2914b5f5713
-ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
+ms.openlocfilehash: 97ecb104de68b6da0a0588d3b60671de756af5a2
+ms.sourcegitcommit: 3ee00d9fe9da6b9df0fb7027ae506e2abe722770
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/03/2021
-ms.locfileid: "123457306"
+ms.lasthandoff: 10/04/2021
+ms.locfileid: "129417219"
 ---
 # <a name="transition-a-new-commerce-subscription"></a>Új kereskedelmi előfizetés váltása
 
@@ -23,9 +23,9 @@ ms.locfileid: "123457306"
 - Rendszergazdai ügynök
 
 > [!Note] 
-> Az új kereskedelmi módosítások jelenleg csak az M365/D365 új kereskedelmi felhasználói élmény technikai előzetesének részét képezi partnerek számára érhetők el.
+> Az új kereskedelmi módosítások jelenleg csak az M365/D365 új kereskedelmi felhasználói élmény technikai előzetes kiadásának partnerei számára érhetők el.
 
-Az ügyfél új commmerce-előfizetésének cél-előfizetésre való frissítéséhez használatos. Először szerezze be a jogosult váltásokat, hogy a SKUs frissíthető legyen. Ezután az átváltás végrehajtásához szükséges váltás után. Ezek a módszerek a hagyományos és az új kereskedelmi forrás-előfizetéseket is támogatják.  
+Az ügyfél új kereskedelmi előfizetésének cél-előfizetésre való frissítésére használatos. Az előfizetések átváltásához két API-kérést kell igényelni. Először **get jogosult váltások,** hogy a SKUs frissíthető legyen. Ezután **a POST áttűnés** az átváltás végrehajtásához. Ezek a módszerek a hagyományos és az új kereskedelmi forrás-előfizetéseket is támogatják.  
 
 ## <a name="get-transition-eligibilities"></a>Áttűnés képességeinek leözése
 
@@ -35,7 +35,7 @@ Egy adott ügyfélre, előfizetésre és kért típusra vonatkozó jogosult vál
 
 - Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, a következő irányítópulton Partnerközpont [ki:](https://partner.microsoft.com/dashboard). Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - A kezdeti előfizetés egy előfizetés-azonosítója.
 
@@ -54,8 +54,8 @@ Az alábbi lekérdezési paraméterekkel jogosult átmeneteket ad vissza.
 | Név                    | Típus     | Kötelező | Leírás                                       |
 |-------------------------|----------|----------|---------------------------------------------------|
 | **ügyfél-bérlő-azonosító**  | **guid** | Y        | Az ügyfél bérlőjéhez tartozó GUID.             |
-| **subscriptoin-Id** | **guid** | Y        | A kezdeti előfizetésnek megfelelő GUID. |
-| **jogosultságtípus**       | **sztring** | Y        | Leírja, hogy mikor kell végrehajtani az tranzitást, amely lehet azonnali vagy ütemezett.  |
+| **subscription-id** | **guid** | Y        | A kezdeti előfizetésnek megfelelő GUID. |
+| **jogosultságtípus**       | **sztring** | N        | Azt írja le, hogy mikor lesz végrehajtva az átváltás; A lehet azonnali vagy ütemezett. Az alapértelmezett szint a `Immediate`.  |
 
 #### <a name="request-headers"></a>Kérésfejlécek
 
@@ -68,7 +68,7 @@ None
 #### <a name="request-example"></a>Példa kérésre
 
 ```http
-GET https://api.partnercenter.microsoft.com/v1/customers/{customer-tenant-id}/subscriptions/{subscription-Id}/transitionEligibilities?eligibilityType=immediate HTTP/1.1
+GET https://api.partnercenter.microsoft.com/v1/customers/{customer-tenant-id}/subscriptions/{subscription-id}/transitionEligibilities?eligibilityType=immediate HTTP/1.1
 Authorization: Bearer <token>
 Accept: application/json
 MS-RequestId: 18752a69-1aa1-4ef7-8f9d-eb3681b2d70a
@@ -78,7 +78,7 @@ X-Locale: en-US
 
 ### <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus a válasz törzsében található jogosult átmenetek listáját adja vissza.
+Ha ez a módszer sikeres, a válasz törzsében visszaadja az adott előfizetésre jogosult váltások listáját.
 
 #### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
@@ -165,13 +165,13 @@ Date: Fri, 26 Feb 2021 20:42:26 GMT
 
 ## <a name="post-transition"></a>Váltás utáni
 
-Egy adott ügyfélre és előfizetésre vonatkozó átmeneti kérést ad közzé. Intial állapotú átmenetet ad vissza.
+Egy adott ügyfélre és előfizetésre vonatkozó átmeneti kérést ad közzé. A kezdeti állapotával együtt visszaadja az átmenetet.
 
 ### <a name="prerequisites"></a>Előfeltételek
 
 - Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, a következő irányítópulton Partnerközpont [ki:](https://partner.microsoft.com/dashboard). Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - A kezdeti előfizetés egy előfizetés-azonosítója.
 
@@ -181,7 +181,7 @@ Egy adott ügyfélre és előfizetésre vonatkozó átmeneti kérést ad közzé
 
 | Metódus   | Kérés URI-ja                                                                                                                         |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------|
-| **POST**  | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{subscriptoin-Id}/transitions HTTP/1.1 |
+| **POST**  | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{előfizetés-azonosító}/transitions HTTP/1.1 |
 
 
 #### <a name="uri-parameter"></a>URI-paraméter
@@ -191,7 +191,7 @@ Az átváltás végrehajtásához használja az alábbi lekérdezési paraméter
 | Név                    | Típus     | Kötelező | Leírás                                       |
 |-------------------------|----------|----------|---------------------------------------------------|
 | **ügyfél-bérlő-azonosító**  | **guid** | Y        | Az ügyfél bérlőjéhez tartozó GUID.             |
-| **subscriptoin-Id** | **guid** | Y        | A kezdeti előfizetésnek megfelelő GUID. |
+| **subscription-id** | **guid** | Y        | A kezdeti előfizetésnek megfelelő GUID. |
 
 #### <a name="request-headers"></a>Kérésfejlécek
 
@@ -221,7 +221,7 @@ X-Locale: en-US
 
 ### <a name="rest-response"></a>REST-válasz
 
-Ha a művelet sikeres, ez a metódus egy Transition (Átváltás) erőforrást ad vissza a kezdeti eseményekkel.
+Sikeres művelet esetén ez a metódus egy Transition (Áttűnés) erőforrást ad vissza a kezdeti állapotával.
 
 #### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 

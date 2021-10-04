@@ -1,15 +1,15 @@
 ---
 title: Egy előfizetés mennyiségének módosítása
-description: Megtudhatja, hogyan használhatja Partnerközpont API-kat az ügyfél-előfizetések licencszámának módosításakor. Ezt az irányítópulton Partnerközpont is.
+description: Megtudhatja, hogyan használhatja Partnerközpont API-kat az ügyfél-előfizetés licencének mennyiségének megváltozatához. Ezt az irányítópult irányítópultján Partnerközpont is.
 ms.date: 02/23/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: b4bf40bf6ec2875b7091c34a2629331dfe240c95
-ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
+ms.openlocfilehash: 85048dbbdc605f46c12c00484961fbb3068c4f16
+ms.sourcegitcommit: 3ee00d9fe9da6b9df0fb7027ae506e2abe722770
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/03/2021
-ms.locfileid: "123456842"
+ms.lasthandoff: 10/04/2021
+ms.locfileid: "129417236"
 ---
 # <a name="change-the-quantity-of-licenses-in-a-customer-subscription"></a>Az ügyfél-előfizetésben szereplő licencek mennyiségének módosítása
 
@@ -23,13 +23,13 @@ Az Partnerközpont irányítópulton ez a művelet úgy hajtható végre, hogy e
 
 - Hitelesítő adatok a Partnerközpont [leírtak szerint.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, a következő irányítópulton Partnerközpont [ki:](https://partner.microsoft.com/dashboard). Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüben, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
 ## <a name="c"></a>C\#
 
-Az ügyfél előfizetésének mennyiségének változásához [](get-a-subscription-by-id.md)először szerezze be az előfizetést, majd módosítsa az előfizetés [**Quantity (Mennyiség) tulajdonságát.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.quantity) A módosítás után használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a **ById() metódust.** Ezután hívja meg [**a Subscriptions**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) tulajdonságot, majd a [**ById() metódust.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) Végül hívja meg a **Patch() metódust.**
+Az ügyfél előfizetésének mennyiségének módosításakor [](get-a-subscription-by-id.md)először szerezze be az előfizetést, majd módosítsa az előfizetés [**Quantity (Mennyiség) tulajdonságát.**](/dotnet/api/microsoft.store.partnercenter.models.subscriptions.subscription.quantity) A módosítás után használja az **IAggregatePartner.Customers** gyűjteményt, és hívja meg a **ById() metódust.** Ezután hívja meg [**a Subscriptions tulajdonságot,**](/dotnet/api/microsoft.store.partnercenter.customers.icustomer.subscriptions) majd a [**ById() metódust.**](/dotnet/api/microsoft.store.partnercenter.subscriptions.isubscriptioncollection.byid) Végül hívja meg a **Patch() metódust.**
 
 ``` csharp
 // IAggregatePartner partnerOperations;
@@ -54,7 +54,7 @@ var updatedSubscription = partnerOperations.Customers.ById(selectedCustomerId).S
 
 | Metódus    | Kérés URI-ja                                                                                                                |
 |-----------|----------------------------------------------------------------------------------------------------------------------------|
-| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{id-for-subscription} HTTP/1.1 |
+| **JAVÍTÁS** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customer-tenant-id}/subscriptions/{előfizetés-azonosító} HTTP/1.1 |
 
 ### <a name="uri-parameter"></a>URI-paraméter
 
@@ -63,7 +63,7 @@ Ez a táblázat felsorolja az előfizetés mennyiségének változásához szük
 | Név                    | Típus     | Kötelező | Leírás                               |
 |-------------------------|----------|----------|-------------------------------------------|
 | **ügyfél-bérlő-azonosító**  | **guid** | Y        | Az ügyfélnek megfelelő GUID.     |
-| **id-for-subscription** | **guid** | Y        | Az előfizetéshez tartozó GUID. |
+| **subscription-id** | **guid** | Y        | Az előfizetéshez tartozó GUID. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -71,7 +71,7 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem **törzsében** teljes előfizetési erőforrásra van szükség. Győződjön meg **arról, hogy** a Quantity tulajdonság frissült.
+A kérelem **törzsében** teljes előfizetési erőforrásra van szükség. Győződjön meg arról, hogy a **Quantity** tulajdonság frissült.
 
 ### <a name="request-example"></a>Példa kérésre
 
@@ -111,10 +111,12 @@ Connection: Keep-Alive
 ### <a name="request-example-for-new-commerce-subscription-to-reduce-quantity"></a>Példa kérése új kereskedelmi előfizetésre a mennyiség csökkentése érdekében
 
 > [!Note] 
-> Az új kereskedelmi módosítások jelenleg csak az M365/D365 új kereskedelmi felhasználói élmény technikai előzetesének részét képezi partnerek számára érhetők el.
+> Az új kereskedelmi módosítások jelenleg csak az M365/D365 új kereskedelmi felhasználói élmény technikai előzetes kiadásának partnerei számára érhetők el.
+
+A licencmennyiség csak az előfizetés megvásárlását vagy megújítását követő 72 órán belül csökkenthető. A távon hozzáadott licencek szintén csak 72 órán belül csökkenthetők, csak az ügyfélszolgálaton keresztül.
 
 ```http
-PATCH https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id>/subscriptions/<id-for-subscription> HTTP/1.1
+PATCH https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id>/subscriptions/<subscription-id> HTTP/1.1
 Authorization: Bearer <token>
 Accept: application/json
 MS-RequestId: ca7c39f7-1a80-43bc-90d8-ee7d1cad3831
@@ -193,13 +195,13 @@ Ha ez a módszer sikeres, a **200-as HTTP-állapotkódot** és a válasz törzs�
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz egy HTTP-állapotkódot ad vissza, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be az állapotkódot, a hiba típusát és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz egy HTTP-állapotkódot ad vissza, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Egy hálózati nyomkövetési eszközzel olvassa be az állapotkódot, a hibatípust és a további paramétereket. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
-Ha a javítási művelet a vártnál több időt vesz igénybe, a Partnerközpont **egy 202-es** HTTP-állapotkódot és egy helyfejlécet küld, amely az előfizetés lekérési helyére mutat. Rendszeres időközönként lekérdezheti az előfizetést az állapot- és mennyiségváltozások figyelése érdekében.
+Ha a javítási művelet a vártnál több időt vesz igénybe, a Partnerközpont **202-es** HTTP-állapotkódot és egy helyfejlécet küld, amely az előfizetés lekérési helyére mutat. Rendszeres időközönként lekérdezheti az előfizetést az állapot- és mennyiségváltozások figyelése érdekében.
 
 ### <a name="response-examples"></a>Példák válaszra
 
-#### <a name="response-example-1"></a>1. válasz példa
+#### <a name="response-example-1"></a>Válasz példa #1
 
 Sikeres kérés **200-as HTTP-állapotkóddal:**
 
@@ -254,7 +256,7 @@ Connection: Keep-Alive
 }
 ```
 
-#### <a name="response-example-2"></a>2. válasz példa
+#### <a name="response-example-2"></a>Válasz példa #2
 
 Sikeres kérés **202-es HTTP-állapotkóddal:**
 
@@ -270,12 +272,12 @@ Connection: Keep-Alive
 Location: /customers/<customer-tenant-id>/subscriptions/<subscriptionID>
 ```
 
-#### <a name="response-example-for-new-commerce-reduce-seat-counts"></a>Válasz példa az új kereskedelmi helyszám csökkentésére
+#### <a name="response-example-for-new-commerce-license-reduction"></a>Válasz példa az új kereskedelmi licenc csökkentésére
 
 > [!Note] 
-> Az új kereskedelmi módosítások jelenleg csak az M365/D365 új kereskedelmi felhasználói élmény technikai előzetesének részét képezi partnerek számára érhetők el.
+> Az új kereskedelmi módosítások jelenleg csak az M365/D365 új kereskedelmi felhasználói élmény technikai előzetes kiadásának partnerei számára érhetők el.
 
-Válasz új kereskedelmi előfizetések mennyiségének csökkentésekor.
+Api-válaszminta, amikor a 72 órás lemondási időszakon kívül próbálja csökkenteni az új kereskedelmi előfizetések licencmennyiségét.
 
 ```http
 {
