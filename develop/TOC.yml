@@ -390,13 +390,13 @@
           href: get-an-offer-by-id.md
         - name: Megrendelés lekérése azonosító alapján
           href: get-an-order-by-id.md
-        - name: Előfizetés-túlóra lekért
+        - name: Előfizetés-túlóra lekérte
           href: get-subscription-overage.md
         - name: Előfizetés kiépítési állapotának lekérése
           href: get-subscription-provisioning-status.md
         - name: Előfizetés regisztrációs állapotának lekérése
           href: get-subscription-registration-status.md
-        - name: Áttűnések lekért
+        - name: Áttűnés lekért
           href: get-transitions.md
         - name: Egyszeri vásárlás
           href: make-a-one-time-purchase.md
@@ -414,13 +414,19 @@
           href: transition-a-subscription.md
         - name: Új kereskedelmi előfizetés váltása
           href: transition-a-new-commerce-subscription.md
+        - name: Előfizetés ellenőrzése a migráláshoz
+          href: validate-subscription-for-migration.md
+        - name: Új kereskedelmi migrálás létrehozása
+          href: create-migration.md
+        - name: Új kereskedelmi migrálás lekért
+          href: get-new-commerce-migration.md
         - name: Kosár frissítése
           href: update-a-cart.md
         - name: Kereskedelmi piactéri előfizetés automatikus megújításának frissítése
           href: update-autorenew-for-an-azure-marketplace-subscription.md
         - name: Előfizetés-túlóra frissítése
           href: update-subscription-overage.md
-        - name: Az előléptetésre való jogosultság ellenőrzése
+        - name: Az előléptetés jogosultságának ellenőrzése
           href: verify-promotion-eligibility.md
     - name: Kifizetések kezelése
       href: manage-payouts.md
