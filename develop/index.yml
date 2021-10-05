@@ -11,12 +11,13 @@ metadata:
   author: jasonwhowell
   ms.author: jasonh
   ms.date: 06/10/2021
-  ms.openlocfilehash: 6b475f1ce0ff052a8ae5a7f53abbc71d1934526c3a4dc6756c54d4a627e866bd
-  ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+  ms.custom: intro-landing-hub
+  ms.openlocfilehash: 1456fa84a153bc0f345661f363522c67d8fd3276
+  ms.sourcegitcommit: f112efee7344d739bdbf385adba0c554ea2a63e3
   ms.translationtype: MT
   ms.contentlocale: hu-HU
-  ms.lasthandoff: 08/06/2021
-  ms.locfileid: "115993816"
+  ms.lasthandoff: 10/04/2021
+  ms.locfileid: "129439344"
 landingContent:
 - title: Fejlesztés a partnerközponttal
   linkLists:
