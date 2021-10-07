@@ -390,13 +390,13 @@
           href: get-an-offer-by-id.md
         - name: Megrendelés lekérése azonosító alapján
           href: get-an-order-by-id.md
-        - name: Előfizetés-túlóra lekérte
+        - name: Előfizetés-túlóra lekért
           href: get-subscription-overage.md
         - name: Előfizetés kiépítési állapotának lekérése
           href: get-subscription-provisioning-status.md
         - name: Előfizetés regisztrációs állapotának lekérése
           href: get-subscription-registration-status.md
-        - name: Áttűnés lekért
+        - name: Áttűnések lekért
           href: get-transitions.md
         - name: Egyszeri vásárlás
           href: make-a-one-time-purchase.md
@@ -445,6 +445,15 @@
           href: update-a-service-request.md
         - name: Egy előfizetés támogatási kapcsolattartójának frissítése
           href: update-a-subscription-s-support-contact.md
+    - name: Margók megtekintése
+      href: view-margins.md
+      items:
+        - name: Margók lekérte
+          href: get-margins.md
+        - name: Margók letöltése
+          href: download-margins.md
+        - name: Margin-erőforrások
+          href: margin-resources.md
 - name: Integrációs tesztkörnyezet
   items:
     - name: A viszonteladói kapcsolatokhoz szükséges sandbox-képességek

@@ -4,12 +4,12 @@ description: Jogosultságok gyűjteményének begyűjtése.
 ms.date: 01/28/2019
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 9248f2ef97afe7a2cefff5759028da12dc9c3936f2e14cee18063c0428699c81
-ms.sourcegitcommit: 63ef5995314ef22f29768132dff2acf45914ea84
+ms.openlocfilehash: 5247346fef4a5c49e04918efb9098d7a93cc413d
+ms.sourcegitcommit: deb3207935fb5a74df515ed0fd4ffec90e6a143c
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 08/06/2021
-ms.locfileid: "115993673"
+ms.lasthandoff: 10/07/2021
+ms.locfileid: "129646261"
 ---
 # <a name="get-a-collection-of-entitlements"></a>Jogosultságok gyűjteményének lekérése
 
@@ -17,13 +17,13 @@ Jogosultságok gyűjteményének begyűjtése.
 
 ## <a name="prerequisites"></a>Előfeltételek
 
-- A hitelesítéssel Partnerközpont [hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
+- Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd válassza az Ügyfelek **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 ## <a name="c"></a>C\#
 
-Az ügyfél jogosultsággyűjteményének beszerzéséhez szerezze [](entitlement-resources.md#entitlement) be a jogosultsági műveletek felületét az [**IAggregatePartner.Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódus az ügyfél azonosítójával való hívásával az ügyfél azonosításához. Ezután olvassa be a felületet a **Jogosultságok** tulajdonságból, és hívja meg a **Get() vagy** **a GetAsync()** metódust a jogosultságok gyűjteményének lekéréséhez.
+Egy ügyfél jogosultsággyűjteményének beszerzéséhez szerezze [](entitlement-resources.md#entitlement) be a jogosultsági műveletek felületét az [**IAggregatePartner.Customers.ById()**](/dotnet/api/microsoft.store.partnercenter.customers.icustomercollection.byid) metódus az ügyfél azonosítójával való hívásával az ügyfél azonosításához. Ezután olvassa be a felületet a **Jogosultságok** tulajdonságból, és hívja meg a **Get()** vagy **a GetAsync()** metódust a jogosultságok gyűjteményének lekéréséhez.
 
 ``` csharp
 IAggregatePartner partnerOperations;
@@ -33,18 +33,18 @@ string customerId;
 var entitlements = partnerOperations.Customers.ById(customerId).Entitlements.Get();
 ```
 
-A lekért jogosultságok lejárati dátumának feltöltéséhez hívja meg ugyanezeket a fenti metódusokat, és állítsa a **showExpiry** opcionális logikai paramétert true **Get(true)** vagy **GetAsync(true) (igaz) értékre.** Ez azt jelzi, hogy a jogosultság lejárati dátumai kötelezőek (ha vannak).
+A lekérni szükséges jogosultságok lejárati dátumának feltöltéséhez hívja meg a fenti metódusokat, és állítsa a **showExpiry** opcionális logikai paramétert true **Get(true)** vagy **GetAsync(true) (igaz) értékre.** Ez azt jelzi, hogy a jogosultság lejárati dátumai kötelezőek (ha vannak).
 
 > [!IMPORTANT]
-> A saját jogosultságtípusok nem lejárati dátumokkal.
+> A helyszíni jogosultságtípusoknak nincs lejárati dátuma.
 
 ## <a name="rest-request"></a>REST-kérés
 
-### <a name="request-syntax"></a>Kérésszintaxis
+### <a name="request-syntax"></a>Kérés szintaxisa
 
 | Metódus | Kérés URI-ja |
 |--------|-------------|
-| **Kap** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customerId}/entitlements HTTP/1.1                            |
+| **KAP** | [*{baseURL}*](partner-center-rest-urls.md)/v1/customers/{customerId}/entitlements HTTP/1.1                            |
 
 ### <a name="uri-parameters"></a>URI-paraméterek
 
@@ -53,8 +53,8 @@ A kérelem létrehozásakor használja a következő elérési utat és lekérde
 | Név | Típus | Kötelező | Leírás |
 |------|------|----------|-------------|
 | customerId | sztring | Yes | Egy GUID formátumú customerId, amely azonosítja az ügyfelet. |
-| entitlementType (jogosultságtípus) | sztring | No | A lekérni kívánt jogosultságok típusának megadására használható (**szoftver** vagy **reservedInstance** ). Ha nincs beállítva, a program minden típust lekér |
-| showExpiry | boolean | No | Nem kötelező jelző, amely jelzi, hogy szükség van-e a jogosultságok lejárati dátumokra. |
+| entitlementType (jogosultságtípus) | sztring | No | A lekérni kívánt jogosultságok típusának megadására használható **(szoftver** vagy **reservedInstance** ). Ha nincs beállítva, a program az összes típust lekéri |
+| showExpiry | boolean | No | Nem kötelező jelző, amely jelzi, hogy szükség van-e a lejárati dátumokra. |
 
 ### <a name="request-headers"></a>Kérésfejlécek
 
@@ -78,11 +78,11 @@ Host: api.partnercenter.microsoft.com
 
 ## <a name="rest-response"></a>REST-válasz
 
-Ha ez sikeres, a válasz törzse jogosultság-erőforrások [gyűjteményét](entitlement-resources.md#entitlement) tartalmazza.
+Ha ez sikeres, a válasz törzse jogosultsági erőforrások [gyűjteményét](entitlement-resources.md#entitlement) tartalmazza.
 
 ### <a name="response-success-and-error-codes"></a>Sikeres válasz és hibakódok
 
-Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelen állapotot, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
+Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sikertelenséget, valamint további hibakeresési információkat. Ezt a kódot, hibatípust és további paramétereket egy hálózati nyomkövetési eszközzel olvashatja be. A teljes listát lásd: [Hibakódok.](error-codes.md)
 
 ### <a name="response-example"></a>Példa válaszra
 
@@ -171,7 +171,7 @@ Date: Mon, 19 Mar 2018 07:42:51 GMT
 
 ## <a name="additional-examples"></a>További példák
 
-Az alábbi példa bemutatja, hogyan lehet lekérni egy adott típusú jogosultságot és lejárati dátumokat (ha van)
+Az alábbi példa bemutatja, hogyan lehet lekérni egy adott típusú jogosultságot a lejárati dátumokkal együtt (ha van ilyen)
 
 ### <a name="c-example"></a>C \# példa
 
@@ -355,7 +355,7 @@ Date: Mon, 19 Mar 2018 07:45:14 GMT
 
 ### <a name="c-example"></a>C \# példa
 
-A foglalásokkal kapcsolatos további részletek fenntartott példány jogosultságból való lekérésére hívja meg az alatt elérhetővé téve az URI-t a ```entitledArtifacts.link``` ```artifactType = reservedinstance``` következővel: .
+A foglalásokkal kapcsolatos további részletek fenntartott példány jogosultságból való lekérésére hívja meg az URI-t, amely a következővel van ```entitledArtifacts.link``` elérhető: ```artifactType = reservedinstance``` .
 
 ``` csharp
 ResourceCollection<Entitlement> entitlements = partnerOperations.Customers.ById(selectedCustomerId).Entitlements.ByEntitlementType("ReservedInstance").Get();
@@ -403,6 +403,6 @@ Date: Mon, 19 Mar 2018 07:45:14 GMT
 }
 ```
 
-### <a name="api-consumers"></a>API-felhasználók
+### <a name="api-consumers"></a>API-fogyasztók
 
-Azok a partnerek, akik az API-val kérik le a virtuális gép fenntartott példányai jogosultságát – Frissítse a kérés URI-ját **a /customers/{customerId}/jogosultságok címről a /customers/{customerId}/entitlements?entitlementType=virtualmachinereservedinstance** névre a visszamenőleges kompatibilitás fenntartása érdekében. Ha virtuális gépet vagy Azure SQL bővített szerződéssel használ fel, frissítse a kérés URI-ját **a következőre: /customers/{customerId}/entitlements?entitlementType=reservedinstance**.
+Azok a partnerek, akik az API-val kérik le a virtuális gép fenntartott példányai jogosultságát – Frissítse a kérés URI-ját **a /customers/{customerId}/entitlements?entitlementType=virtualmachinereservedinstance** címről a visszamenőleges kompatibilitás fenntartása érdekében. A virtuális gép vagy az Azure SQL szerződéssel való használathoz frissítse a kérés URI-ját **a következőre: /customers/{customerId}/entitlements?entitlementType=reservedinstance**.
