@@ -4,12 +4,12 @@ description: Új kereskedelmi migrálás létrehozása
 ms.date: 10/04/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 659cc036b37ce85283581d2f3e28493814dad5f7
-ms.sourcegitcommit: 856b0baa4824960e13ee9672817a2d2e713fdf43
+ms.openlocfilehash: 558a0bac9a8f690cf2ca5d9a0b365ec259d00fa5
+ms.sourcegitcommit: 53980dc43fb2277878bf61a15a86013b8b1c2574
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 10/05/2021
-ms.locfileid: "129528717"
+ms.lasthandoff: 10/06/2021
+ms.locfileid: "129609945"
 ---
 #  <a name="create-a-new-commerce-migration"></a>Új kereskedelmi migrálás létrehozása
 
@@ -21,7 +21,7 @@ Előfizetés új kereskedelmi felhasználói élménybe való migrálásának l�
 
 - Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja az önálló alkalmazással és az App+User hitelesítő adatokkal történő hitelesítést.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, a következő irányítópulton Partnerközpont [ki:](https://partner.microsoft.com/dashboard). Válassza **a CSP** elemet Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfél-azonosítóval ( `customer-tenant-id` ).
 
 - Aktuális előfizetés-azonosító
 
@@ -56,7 +56,9 @@ Ez a táblázat a kérés törzsében található [Subscription (Előfizetés)](
 ### <a name="request-example"></a>Példa kérésre
 
 ```http
-"currentSubscriptionId" : "9beb6319-6889-4d28-a155-68ca9c783842"
+{
+    "currentSubscriptionId" : "9beb6319-6889-4d28-a155-68ca9c783842"
+}
 ```
 
 ## <a name="rest-response"></a>REST-válasz
@@ -75,7 +77,6 @@ Minden válasz tartalmaz egy HTTP-állapotkódot, amely jelzi a sikeres vagy sik
     "currentSubscriptionId": "9beb6319-6889-4d28-a155-68ca9c783842",
     "status": "Processing",
     "customerTenantId": "a836f6d8-1b17-44af-aaf1-1e5511c5d4e1",
-    "partnerTenantId": "7828d7ba-f17b-45c3-a1ce-8b6c3e3a26c0",
     "catalogItemId": "CFQ7TTC0LF8S:0002:CFQ7TTC0KSVV",
     "subscriptionEndDate": "2022-09-06T00:00:00Z",
     "quantity": 1,
