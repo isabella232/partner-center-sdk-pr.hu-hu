@@ -1,32 +1,32 @@
 ---
-title: A kereskedelmi piactér és az új kereskedelmi előfizetések automatikus frissítése
-description: Frissítse egy előfizetési erőforrás automatikus új tulajdonságát, amely megfelel az ügyfél és az előfizetés azonosítójának.
+title: A kereskedelmi piactér és a szoftver-előfizetések automatikus frissítése
+description: Frissítse egy olyan előfizetési erőforrás autorenew tulajdonságát, amely megfelel az ügyfél és az előfizetés azonosítójának.
 ms.date: 02/23/2021
 ms.service: partner-dashboard
 ms.subservice: partnercenter-sdk
-ms.openlocfilehash: 6d533a41c58b05ec449b76394466dd4608abc65a
-ms.sourcegitcommit: e1db965e8c7b4fe3aaa0ecd6cefea61973ca2232
+ms.openlocfilehash: 89ccedaec2e19e32046225938a6b847c5f8787f3
+ms.sourcegitcommit: 36e88224d0957b7ea6298789c75cdd18fc0f3685
 ms.translationtype: MT
 ms.contentlocale: hu-HU
-ms.lasthandoff: 09/03/2021
-ms.locfileid: "123455727"
+ms.lasthandoff: 10/07/2021
+ms.locfileid: "129663325"
 ---
-# <a name="update-autorenew-for-a-commercial-marketplace-subscription-or-new-commerce-subscriptions"></a>Kereskedelmi piactéri előfizetés vagy új kereskedelmi előfizetés automatikus frissítése
+# <a name="update-autorenew-for-a-commercial-marketplace-subscription-or-new-commerce-subscriptions-and-software-subscriptions"></a>A kereskedelmi piactéri előfizetések vagy új kereskedelmi előfizetések és szoftver-előfizetések automatikus frissítése
 
 **A következőkre vonatkozik:** Partnerközpont
 
 > [!Note] 
-> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesző partnerek számára érhetők el.
+> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében található partnerek számára érhetők el.
 
-Frissítse egy kereskedelmi piactér vagy új [kereskedelmi](subscription-resources.md) előfizetés erőforrás automatikus új tulajdonságát, amely megfelel az ügyfél és az előfizetés azonosítójának.
+Frissítse egy kereskedelmi piactér, új kereskedelem vagy [](subscription-resources.md) szoftver előfizetési erőforrás automatikus új tulajdonságát, amely megfelel az ügyfél- és előfizetés-azonosítónak.
 
-A Partnerközpont irányítópulton ezt a műveletet úgy hajtjuk végre, hogy először [kiválasztunk egy ügyfelet.](get-a-customer-by-name.md) Ezután válassza ki a frissíteni kívánt előfizetést. Végül válthat az Automatikus **megújítás lehetőséggel,** majd válassza a **Küldés lehetőséget.**
+Az Partnerközpont irányítópulton ezt a műveletet úgy hajtjuk végre, hogy először [kiválasztunk egy ügyfelet.](get-a-customer-by-name.md) Ezután válassza ki a frissíteni kívánt előfizetést. Végül válthat az Automatikus **megújítás lehetőséggel,** majd válassza a **Küldés lehetőséget.**
 
 ## <a name="prerequisites"></a>Előfeltételek
 
 - Az Partnerközpont [ismertetett hitelesítő adatok.](partner-center-authentication.md) Ez a forgatókönyv támogatja a hitelesítést az önálló alkalmazással és az App+User hitelesítő adatokkal.
 
-- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd a Customers (Ügyfelek) **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
+- Egy ügyfélazonosító ( `customer-tenant-id` ). Ha nem ismeri az ügyfél azonosítóját, az irányítópulton Partnerközpont [meg.](https://partner.microsoft.com/dashboard) Válassza **a CSP** lehetőséget a Partnerközpont menüből, majd válassza az Ügyfelek **lehetőséget.** Válassza ki az ügyfelet az ügyféllistából, majd válassza a **Fiók lehetőséget.** Az ügyfél Fiók lapján keresse meg a **Microsoft-azonosítót** az **Ügyfélfiók adatai szakaszban.** A Microsoft-azonosító megegyezik az ügyfélazonosítóval ( `customer-tenant-id` ).
 
 - Egy előfizetés-azonosító.
 
@@ -69,7 +69,7 @@ További információ: [REST Partnerközpont fejlécek.](headers.md)
 
 ### <a name="request-body"></a>A kérés törzse
 
-A kérelem törzsében **szükség** van egy teljes kereskedelmi piactéri előfizetési erőforrásra. Győződjön meg arról, hogy az **AutoRenewEnabled tulajdonság** frissítve lett.
+A kérelem **törzsében** teljes előfizetési erőforrásra van szükség. Győződjön meg arról, hogy az **AutoRenewEnabled tulajdonság** frissítve lett.
 
 ### <a name="request-example-for-commercial-marketplace-subscription"></a>Példa kérése kereskedelmi piactér-előfizetéshez
 
@@ -118,7 +118,7 @@ Connection: Keep-Alive
 ### <a name="request-example-for-new-commerce-subscription"></a>Példa kérése új kereskedelmi előfizetéshez
 
 > [!Note] 
-> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében részt vesző partnerek számára érhetők el.
+> Az új kereskedelmi változások jelenleg csak az M365/D365 új kereskedelmi felhasználói élményének technikai előzetesében található partnerek számára érhetők el.
 
 ```http
 PATCH https://api.partnercenter.microsoft.com/v1/customers/<customer-tenant-id>/subscriptions/<id-for-subscription> HTTP/1.1

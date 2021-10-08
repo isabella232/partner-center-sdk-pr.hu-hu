@@ -424,6 +424,8 @@
           href: update-a-cart.md
         - name: Kereskedelmi piactéri előfizetés automatikus megújításának frissítése
           href: update-autorenew-for-an-azure-marketplace-subscription.md
+        - name: Szoftver-előfizetés számlázási gyakoriságának frissítése
+          href: manage-billing-frequency-software-subs.md
         - name: Előfizetés-túlóra frissítése
           href: update-subscription-overage.md
         - name: Az előléptetés jogosultságának ellenőrzése
